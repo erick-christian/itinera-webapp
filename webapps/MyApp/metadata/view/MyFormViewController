@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "myform",
+        "designer|userClassName": "MyFormViewController"
+    },
+    "designerId": "696f979c-fb07-415e-a939-1f568bc2834a"
+}

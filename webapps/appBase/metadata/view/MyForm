@@ -1,0 +1,36 @@
+{
+    "type": "Ext.form.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyPadding": 10,
+        "designer|initialView": true,
+        "designer|userAlias": "myform",
+        "designer|userClassName": "MyForm",
+        "height": 250,
+        "title": "My Form",
+        "width": 400
+    },
+    "name": "MyForm",
+    "designerId": "ac4af954-f446-4085-87d8-6f82c0e59499",
+    "viewControllerInstanceId": "7a67b4a0-738c-4ead-93e2-eb7463d43e6c",
+    "viewModelInstanceId": "4e160566-e082-4233-b958-ed84884b3249",
+    "cn": [
+        {
+            "type": "Ext.button.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "text": "eqwd"
+            },
+            "name": "MyButton",
+            "designerId": "bd689622-4725-4913-b1db-f824a2525911"
+        }
+    ]
+}

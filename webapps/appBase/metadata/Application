@@ -1,0 +1,34 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "name": "appBase",
+        "views": [
+            "MyForm"
+        ]
+    },
+    "name": "Application",
+    "designerId": "application",
+    "cn": [
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "launch",
+                "implHandler": [
+                    "        terian.carga();"
+                ]
+            },
+            "name": "launch",
+            "designerId": "2f07b84c-34b7-4056-aa0e-8dc82fcea96e"
+        }
+    ]
+}

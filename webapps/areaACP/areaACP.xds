@@ -1,0 +1,57 @@
+{
+    "name": "areaACP",
+    "settings": {
+        "cmd": {},
+        "urlPrefix": "",
+        "exportPath": "D:/liferay_pruebas/tomcat-7.0.42/webapps/copamex/web/apps/websac/menuSAC",
+        "buildShouldOverwriteIndex": true,
+        "generateArchitectVersion": true,
+        "spacesToIndent": 4,
+        "lineEnding": "CRLF",
+        "genTimestamps": false,
+        "cacheBust": false,
+        "displayfield-ExtBox1-1370-inputEl": "Not Installed",
+        "canvasControls": {
+            "viewportSize": {
+                "name": "Auto Expand",
+                "builtIn": true,
+                "height": null,
+                "width": null
+            }
+        }
+    },
+    "xdsVersion": "3.2.0",
+    "xdsBuild": 339,
+    "schemaVersion": 1,
+    "upgradeVersion": 310000000001,
+    "framework": "ext42",
+    "viewOrderMap": {
+        "view": [
+            "da80c1aa-5d54-4d5f-a0eb-a432f1968641"
+        ],
+        "store": [
+            "af9d095f-54e3-479f-a8ff-91c1c6ee1d4a",
+            "c0094ba7-83b8-4a7a-aac1-8879b454cd86"
+        ],
+        "controller": [],
+        "model": [
+            "7b7cce90-18c6-4471-ab35-c67b270583e3",
+            "5045746f-08a7-45a6-827c-331168a4a332"
+        ],
+        "resource": [
+            "d1666cde-2b6e-4588-b2dc-8af0e156248a",
+            "397a0099-458b-4a9f-90e5-ca1485281c38",
+            "04f1d76d-4580-4999-8ba6-14cc1b8daa26",
+            "2393bb53-2079-4709-b6b5-c0dc42feea9e",
+            "c6035dcf-4c7d-45ac-9eef-da75e39b9510",
+            "b38f843d-0a1a-4837-9bdb-a4afb50b78cd",
+            "469c11fd-7b93-40a1-b1fe-964de1101284",
+            "d76a6916-5c3d-45eb-a81c-7fc7dfb49b5e",
+            "500b51e6-07e7-4996-aa85-d6deb03430a0",
+            "02ca9003-3dfe-46f0-bb30-c96c437f766a"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

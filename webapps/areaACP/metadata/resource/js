@@ -1,0 +1,15 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "defer": false,
+        "designer|userClassName": "js",
+        "url": "../../../../framework/recursosJS/configLogin.js",
+        "x-compile": true
+    },
+    "designerId": "2393bb53-2079-4709-b6b5-c0dc42feea9e"
+}

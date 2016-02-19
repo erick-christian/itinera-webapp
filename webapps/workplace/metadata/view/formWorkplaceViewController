@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "formworkplace",
+        "designer|userClassName": "formWorkplaceViewController"
+    },
+    "designerId": "90f529ec-cef6-4e5e-8ecd-90f2f2e6eb5b"
+}

@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "winaccess",
+        "designer|userClassName": "winAccessViewModel"
+    },
+    "designerId": "52eab31b-2fd2-4900-aba6-d8f0d33232f0"
+}

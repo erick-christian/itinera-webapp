@@ -1,0 +1,13 @@
+{
+    "type": "cssresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "css1",
+        "url": "../../../../framework/recursosCSS/formatoImg.css"
+    },
+    "designerId": "02ca9003-3dfe-46f0-bb30-c96c437f766a"
+}

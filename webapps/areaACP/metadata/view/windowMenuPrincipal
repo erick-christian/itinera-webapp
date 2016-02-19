@@ -1,0 +1,728 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoShow": true,
+        "closable": false,
+        "designer|initialView": true,
+        "designer|userClassName": "windowMenuPrincipal",
+        "draggable": false,
+        "height": null,
+        "id": "windowMenuPrincipal",
+        "itemId": "windowMenuPrincipal",
+        "layout": "column",
+        "maximized": true,
+        "title": null,
+        "width": null
+    },
+    "designerId": "da80c1aa-5d54-4d5f-a0eb-a432f1968641",
+    "cn": [
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": "colorForm",
+                "dock": "top"
+            },
+            "name": "MyToolbar",
+            "designerId": "1b7fb33d-f9ed-4a8d-8736-98c0afa47b0f",
+            "cn": [
+                {
+                    "type": "Ext.toolbar.Fill",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null
+                    },
+                    "name": "MyFill",
+                    "designerId": "a07bfef9-ec1e-4dc4-92c4-e3bd9f90d19d"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": null,
+                        "iconAlign": "right",
+                        "iconCls": "exit16",
+                        "id": "btnCerrarSesion",
+                        "itemId": "btnCerrarSesion",
+                        "layout|flex": null,
+                        "text": "Cerrar Sesión",
+                        "textAlign": "left",
+                        "width": 150
+                    },
+                    "name": "MyButton",
+                    "designerId": "5a3448c1-b9ef-4a00-b517-aa816161f436",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "sessionStorage.clear();\r",
+                                    "self.location=\"../acceso/index.html\";"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "187a38cc-33ca-4f38-9ab4-edbbfcc02fde"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyCls": [
+                    "colorFormBlanco"
+                ],
+                "bodyPadding": 10,
+                "designer|displayName": "formLogoEmpresa",
+                "height": 140,
+                "id": "formLogoEmpresa",
+                "itemId": "formLogoEmpresa",
+                "layout|columnWidth": 0.1,
+                "title": null,
+                "width": null
+            },
+            "name": "MyForm",
+            "designerId": "876e1d98-e0ff-4204-b799-e73111c1e2c8",
+            "cn": [
+                {
+                    "type": "Ext.Img",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "logoCopamex",
+                        "height": 120,
+                        "src": "../../../../framework/recursosIMG/LogoCopamex.png",
+                        "width": null
+                    },
+                    "name": "MyImg",
+                    "designerId": "54568a4f-09b5-43e4-94b4-02dec9897b76"
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyCls": [
+                    "imagenAmbienteMenu"
+                ],
+                "bodyPadding": 10,
+                "designer|createAlias": null,
+                "designer|displayName": "formInformacion",
+                "height": 140,
+                "id": "formInformacion",
+                "itemId": "formInformacion",
+                "layout": "column",
+                "layout|columnWidth": 0.9,
+                "title": null
+            },
+            "name": "MyForm1",
+            "designerId": "dc2730fd-9f5f-4a86-b3f4-066f051c6f19",
+            "cn": [
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "fuenteTituloGrande",
+                        "designer|displayName": "razonSocial",
+                        "height": 50,
+                        "id": "razonSocial",
+                        "itemId": "razonSocial",
+                        "layout|columnWidth": 1,
+                        "text": "razonSocial",
+                        "width": null
+                    },
+                    "name": "MyLabel",
+                    "designerId": "c17f0ddf-c7d5-41b0-8626-3760a5e9226c"
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "fuenteTituloMedio",
+                        "designer|displayName": "nombreComercial",
+                        "id": "nombreComercial",
+                        "itemId": "nombreComercial",
+                        "layout|columnWidth": 0.5,
+                        "text": "nombreComercial",
+                        "width": null
+                    },
+                    "name": "MyLabel1",
+                    "designerId": "d539776d-ef81-4f5a-b2b9-af11f4c49210"
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "fuenteTituloEntidad",
+                        "designer|displayName": "nomCompleto",
+                        "id": "nomCompleto",
+                        "itemId": "nomCompleto",
+                        "layout|columnWidth": 0.5,
+                        "text": "nomCompleto",
+                        "width": null
+                    },
+                    "name": "MyLabel2",
+                    "designerId": "0ce542c5-1139-494e-aba6-f8b0aeebd673"
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "fuenteTituloMedio",
+                        "designer|displayName": "nombreSistema",
+                        "id": "nombreSistema",
+                        "itemId": "nombreSistema",
+                        "layout|columnWidth": 0.5,
+                        "padding": "10 0 0 0",
+                        "text": "nombreSistema"
+                    },
+                    "name": "MyLabel3",
+                    "designerId": "3125c446-592a-464b-8c78-fc0ba4d31f4b"
+                },
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "fuenteTituloPersona",
+                        "designer|displayName": "nombreEntidad",
+                        "id": "nombreEntidad",
+                        "itemId": "nombreEntidad",
+                        "layout|columnWidth": 0.5,
+                        "padding": "10 0 0 0",
+                        "text": "nombreEntidad",
+                        "width": null
+                    },
+                    "name": "MyLabel4",
+                    "designerId": "1a17712e-f1c7-4ef9-beff-9a91f77a77f5"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onFormInformacionResize",
+                        "implHandler": [
+                            "var alturaForm = Ext.getCmp('windowMenuPrincipal').height - 180;\r",
+                            "Ext.getCmp('tabpanelPrincipal').setHeight(alturaForm);"
+                        ],
+                        "name": "resize",
+                        "scope": "me"
+                    },
+                    "name": "onFormInformacionResize",
+                    "designerId": "aca9e516-765c-496e-95fc-47047ae38b7c"
+                }
+            ]
+        },
+        {
+            "type": "Ext.tab.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "activeTab": 0,
+                "height": null,
+                "id": "tabpanelPrincipal",
+                "itemId": "tabpanelPrincipal",
+                "layout|columnWidth": 1,
+                "width": null
+            },
+            "name": "MyTabPanel",
+            "designerId": "bbdf8a52-81fd-4755-8332-d1281b599e8b",
+            "cn": [
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 427,
+                        "layout": "column",
+                        "title": "Acciones",
+                        "width": null
+                    },
+                    "name": "MyPanel",
+                    "designerId": "392446a4-0b81-4dac-af49-08d3120ddbac",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "",
+                                "padding": null,
+                                "width": 120
+                            },
+                            "name": "TabConfig",
+                            "designerId": "e13cb7ea-7799-4607-bf0d-38581b5ac3d9"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": "botonGrupoNegro",
+                                "componentCls": null,
+                                "designer|displayName": "btnConteoProduccion",
+                                "height": 70,
+                                "iconCls": "factory-48",
+                                "id": "btnConteoProduccion",
+                                "itemId": "btnConteoProduccion",
+                                "layout|columnWidth": 0.2,
+                                "margin": "10 7 5 7",
+                                "padding": "5 10 5 10",
+                                "text": "Conteo de<br>Producción",
+                                "textAlign": "right",
+                                "width": null
+                            },
+                            "name": "MyButton1",
+                            "designerId": "69d20989-1768-4ec4-9335-d1fa0b5f5c46",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "var winConteoProduccion = Ext.getCmp('winConteoProduccion');\r",
+                                            "\r",
+                                            "if(!winConteoProduccion){\r",
+                                            "    winConteoProduccion = new Ext.Window({\r",
+                                            "        title       : \"ACP - Conteo de la Producción\",\r",
+                                            "        titlebar    : false,\r",
+                                            "        minWidth    : 950,\r",
+                                            "        minWidth    : 950,\r",
+                                            "        minHeight   : 650,\r",
+                                            "        maximized   : false,\r",
+                                            "        maximizable : false,\r",
+                                            "        draggable   : false,\r",
+                                            "        closable    : false,\r",
+                                            "        modal       : true,\r",
+                                            "        id          : 'winConteoProduccion',\r",
+                                            "        itemId      : 'winConteoProduccion',\r",
+                                            "        layout      : 'fit',\r",
+                                            "        items : [{\r",
+                                            "            xtype   : \"component\",\r",
+                                            "            autoEl  : {\r",
+                                            "                tag : \"iframe\",\r",
+                                            "                src : \"../conteoProduccion/index.html\",\r",
+                                            "                layout      : 'column'\r",
+                                            "            }\r",
+                                            "        }],\r",
+                                            "        listeners:{\r",
+                                            "            resize: {\r",
+                                            "                fn: function(){\r",
+                                            "                }\r",
+                                            "            }\r",
+                                            "        }\r",
+                                            "\r",
+                                            "    });\r",
+                                            "}\r",
+                                            "\r",
+                                            "\r",
+                                            "winConteoProduccionAbre();\r",
+                                            "\r",
+                                            "function winConteoProduccionAbre(){\r",
+                                            "    winConteoProduccion.show();\r",
+                                            "}\r",
+                                            "\r",
+                                            "function winConteoProduccionCierra(){\r",
+                                            "    winConteoProduccion.close();\r",
+                                            "}"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "c49e9808-43cb-4612-b11c-1c68bec6b0b7"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": "botonGrupoNegro",
+                                "componentCls": null,
+                                "designer|displayName": "btnConteoProduccion",
+                                "height": 70,
+                                "iconCls": "factory-48",
+                                "id": "btnConteoProduccion1",
+                                "itemId": "btnConteoProduccion1",
+                                "layout|columnWidth": 0.2,
+                                "margin": "10 7 5 7",
+                                "padding": "5 10 5 10",
+                                "text": "Conteo de<br>Corrugadora",
+                                "textAlign": "right",
+                                "width": null
+                            },
+                            "name": "MyButton2",
+                            "designerId": "3e16100f-ad5b-4abe-922e-2897e8c2f08b",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "var winConteoProduccion = Ext.getCmp('winConteoProduccion');\r",
+                                            "\r",
+                                            "if(!winConteoProduccion){\r",
+                                            "    winConteoProduccion = new Ext.Window({\r",
+                                            "        title       : \"ACP - Conteo de la Producción\",\r",
+                                            "        titlebar    : false,\r",
+                                            "        minWidth    : 950,\r",
+                                            "        minHeight   : 600,\r",
+                                            "        maximized   : true,\r",
+                                            "        maximizable : false,\r",
+                                            "        draggable   : false,\r",
+                                            "        closable    : false,\r",
+                                            "        modal       : true,\r",
+                                            "        id          : 'winConteoProduccion',\r",
+                                            "        itemId      : 'winConteoProduccion',\r",
+                                            "        layout      : 'fit',\r",
+                                            "        items : [{\r",
+                                            "            xtype   : \"component\",\r",
+                                            "            autoEl  : {\r",
+                                            "                tag : \"iframe\",\r",
+                                            "                src : \"../ConteoCorrugadora/index.html\",\r",
+                                            "                layout      : 'fit'\r",
+                                            "            }\r",
+                                            "        }],\r",
+                                            "        listeners:{\r",
+                                            "            resize: {\r",
+                                            "                fn: function(){\r",
+                                            "                }\r",
+                                            "            }\r",
+                                            "        }\r",
+                                            "\r",
+                                            "    });\r",
+                                            "}\r",
+                                            "\r",
+                                            "\r",
+                                            "winConteoProduccionAbre();\r",
+                                            "\r",
+                                            "function winConteoProduccionAbre(){\r",
+                                            "    winConteoProduccion.show();\r",
+                                            "}\r",
+                                            "\r",
+                                            "function winConteoProduccionCierra(){\r",
+                                            "    winConteoProduccion.close();\r",
+                                            "}"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "3bff60f5-0161-46a3-b2ab-90eb69105952"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 427,
+                        "layout": "column",
+                        "title": "Configuración",
+                        "width": null
+                    },
+                    "name": "MyPanel1",
+                    "designerId": "bc89a414-36a7-4300-bb56-171f1a31b39f",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "",
+                                "padding": null,
+                                "width": 120
+                            },
+                            "name": "TabConfig1",
+                            "designerId": "47512399-7b91-4933-ba11-baa608b464c6"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": "botonGrupoNegro",
+                                "componentCls": null,
+                                "designer|displayName": "btnCatalogoMaquina",
+                                "height": 70,
+                                "iconCls": "engineering-48",
+                                "id": "btnCatalogoMaquina1",
+                                "itemId": "v",
+                                "layout|columnWidth": 0.2,
+                                "margin": "10 7 5 7",
+                                "padding": "5 10 5 10",
+                                "text": "Catalogo de</br>Maquinas",
+                                "textAlign": "right",
+                                "width": null
+                            },
+                            "name": "MyButton3",
+                            "designerId": "31d6c9c0-d3bd-451d-9db0-98391c25fe0b",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "var winCatalogoMaquina = Ext.getCmp('winCatalogoMaquina');\r",
+                                            "\r",
+                                            "if(!winCatalogoMaquina){\r",
+                                            "    winCatalogoMaquina = new Ext.Window({\r",
+                                            "        title       : \"ACP - Catalogo de Maquinas\",\r",
+                                            "        titlebar    : false,\r",
+                                            "        minWidth    : 950,\r",
+                                            "        minHeight   : 600,\r",
+                                            "        maximized   : true,\r",
+                                            "        maximizable : false,\r",
+                                            "        draggable   : false,\r",
+                                            "        closable    : false,\r",
+                                            "        modal       : true,\r",
+                                            "        id          : 'winCatalogoMaquina',\r",
+                                            "        itemId      : 'winCatalogoMaquina',\r",
+                                            "        layout      : 'fit',\r",
+                                            "        items : [{\r",
+                                            "            xtype   : \"component\",\r",
+                                            "            autoEl  : {\r",
+                                            "                tag : \"iframe\",\r",
+                                            "                src : \"../CatalogoMaquina/index.html\",\r",
+                                            "                layout      : 'fit'\r",
+                                            "            }\r",
+                                            "        }],\r",
+                                            "        listeners:{\r",
+                                            "            resize: {\r",
+                                            "                fn: function(){\r",
+                                            "                }\r",
+                                            "            }\r",
+                                            "        }\r",
+                                            "\r",
+                                            "    });\r",
+                                            "}\r",
+                                            "\r",
+                                            "\r",
+                                            "winCatalogoMaquinaAbre();\r",
+                                            "\r",
+                                            "function winCatalogoMaquinaAbre(){\r",
+                                            "    winCatalogoMaquina.show();\r",
+                                            "}\r",
+                                            "\r",
+                                            "function winCatalogoMaquinaCierra(){\r",
+                                            "    winCatalogoMaquina.close();\r",
+                                            "}"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "59da6041-bf0c-4356-ab16-2b22b16b94b1"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": "botonGrupoNegro",
+                                "componentCls": null,
+                                "designer|displayName": "btnCatalogoMaquina",
+                                "height": 70,
+                                "iconCls": "engineering-48",
+                                "id": "btnCatalogoMaquina2",
+                                "itemId": "v1",
+                                "layout|columnWidth": 0.2,
+                                "margin": "10 7 5 7",
+                                "padding": "5 10 5 10",
+                                "text": "Catalogo de</br>Microboards",
+                                "textAlign": "right",
+                                "width": null
+                            },
+                            "name": "MyButton4",
+                            "designerId": "1578bc41-3a20-463b-bc2e-db935703abf6",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "var winCatalogoMaquina = Ext.getCmp('winCatalogoMaquina');\r",
+                                            "\r",
+                                            "if(!winCatalogoMaquina){\r",
+                                            "    winCatalogoMaquina = new Ext.Window({\r",
+                                            "        title       : \"ACP - Catalogo de Maquinas\",\r",
+                                            "        titlebar    : false,\r",
+                                            "        minWidth    : 950,\r",
+                                            "        minHeight   : 600,\r",
+                                            "        maximized   : true,\r",
+                                            "        maximizable : false,\r",
+                                            "        draggable   : false,\r",
+                                            "        closable    : false,\r",
+                                            "        modal       : true,\r",
+                                            "        id          : 'winCatalogoMaquina',\r",
+                                            "        itemId      : 'winCatalogoMaquina',\r",
+                                            "        layout      : 'fit',\r",
+                                            "        items : [{\r",
+                                            "            xtype   : \"component\",\r",
+                                            "            autoEl  : {\r",
+                                            "                tag : \"iframe\",\r",
+                                            "                src : \"../CatalogoMicroboard/index.html\",\r",
+                                            "                layout      : 'fit'\r",
+                                            "            }\r",
+                                            "        }],\r",
+                                            "        listeners:{\r",
+                                            "            resize: {\r",
+                                            "                fn: function(){\r",
+                                            "                }\r",
+                                            "            }\r",
+                                            "        }\r",
+                                            "\r",
+                                            "    });\r",
+                                            "}\r",
+                                            "\r",
+                                            "\r",
+                                            "winCatalogoMaquinaAbre();\r",
+                                            "\r",
+                                            "function winCatalogoMaquinaAbre(){\r",
+                                            "    winCatalogoMaquina.show();\r",
+                                            "}\r",
+                                            "\r",
+                                            "function winCatalogoMaquinaCierra(){\r",
+                                            "    winCatalogoMaquina.close();\r",
+                                            "}"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "08dd4d34-8091-46b6-a258-0d6987c7fa8f"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

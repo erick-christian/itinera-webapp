@@ -1,0 +1,30 @@
+{
+    "type": "Ext.data.Store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "storeClienteActivo",
+        "model": "modClienteActivo",
+        "storeId": "storeClienteActivo"
+    },
+    "designerId": "c0094ba7-83b8-4a7a-aac1-8879b454cd86",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.SessionStorage",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "proxySessionClienteActivo",
+                "id": "proxySessionClienteActivo"
+            },
+            "name": "MySessionStorageProxy",
+            "designerId": "e359ba7a-66e8-4616-82f4-fa91268cc1e8"
+        }
+    ]
+}

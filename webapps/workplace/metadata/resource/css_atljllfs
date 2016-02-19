@@ -1,0 +1,14 @@
+{
+    "type": "cssresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "css_atljllfs",
+        "url": "../../framework/theme/resources/codaxy-theme-azzurra-all.css"
+    },
+    "name": "css1",
+    "designerId": "5295f65f-fee1-4146-b45b-727bb714b7ba"
+}

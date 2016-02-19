@@ -1,0 +1,17 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "defer": true,
+        "designer|userClassName": "js_glchlws3",
+        "url": "../../framework/terian/javascript/trex.js",
+        "x-bootstrap": false,
+        "x-compile": false
+    },
+    "name": "js1",
+    "designerId": "9a1c9bf4-e540-4fb4-8f66-4cb547d4ec5c"
+}

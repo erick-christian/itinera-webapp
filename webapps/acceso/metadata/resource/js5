@@ -1,0 +1,14 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js5",
+        "url": "configRelease.js",
+        "x-compile": true
+    },
+    "designerId": "8111b6c7-d0db-42e2-b11c-5966e6c10512"
+}

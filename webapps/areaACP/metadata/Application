@@ -1,0 +1,117 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "id": "aplicacion",
+        "models": [
+            "modelEstadoDocumentos",
+            "modClienteActivo"
+        ],
+        "name": "areaACP",
+        "stores": [
+            "storeEstadoDocumentos",
+            "storeClienteActivo"
+        ],
+        "views": [
+            "windowMenuPrincipal"
+        ]
+    },
+    "name": "Application",
+    "designerId": "application",
+    "cn": [
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "launch",
+                "implHandler": [
+                    "var nombreEntidad  = convierteAscci(recuperaDatoSesion('nombreEntidad'));\r",
+                    "var nombreSistema = convierteAscci(recuperaDatoSesion('nombreSistema'));\r",
+                    "var nombrePersona = convierteAscci(recuperaDatoSesion('nombre'));\r",
+                    "\r",
+                    "Ext.getCmp('nombreEntidad').setText(nombreEntidad);\r",
+                    "Ext.getCmp('nomCompleto').setText(nombrePersona);\r",
+                    "Ext.getCmp('razonSocial').setText(recuperaDatoSesion('razonSocial'));\r",
+                    "Ext.getCmp('nombreComercial').setText(recuperaDatoSesion('nombreComercial'));\r",
+                    "Ext.getCmp('nombreSistema').setText(nombreSistema);\r",
+                    "\r",
+                    "aplicacionLocal = this;\r",
+                    "\r",
+                    "var nombreSistema = datosOpenLink('tituloAplicacion');\r",
+                    "Ext.getDoc().dom.title = nombreSistema;\r",
+                    "\r",
+                    "var iconoAplicacion = datosOpenLink('servidorWeb');\r",
+                    "iconoAplicacion = iconoAplicacion + 'copamex/framework/ambiente/ambiente.ico';\r",
+                    "cambiaFavicon(iconoAplicacion);\r",
+                    "\r",
+                    "aplicacionLocal.getApplication().generaClienteActivo();\r",
+                    ""
+                ]
+            },
+            "name": "launch",
+            "designerId": "12408f5f-8adf-4135-a507-5b0d11a681a8"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "generaClienteActivo",
+                "implHandler": [
+                    "aDatosAPI = new Array();\r",
+                    "aDatosAPI[0] = new Object();\r",
+                    "aDatosAPI[0].p_codEntidad         = recuperaDatoSesion('codEntidad');\r",
+                    "\r",
+                    "var strJson = JSON.stringify(aDatosAPI);\r",
+                    "\r",
+                    "datosJsonFormulario = {codPrograma      : 'api_AccesoPortal',\r",
+                    "                       codProcedimiento : 'datosCliente',\r",
+                    "                       usuarioActivo    : recuperaDatoSesion('clavePersona'),\r",
+                    "                       codEmpresa       : recuperaDatoSesion('codEmpresa'),\r",
+                    "                       codSistema       : recuperaDatoSesion('codSistema'),\r",
+                    "                       tipoLlamada      : \"formulario\",\r",
+                    "                       datosJson        : strJson};\r",
+                    "\r",
+                    "var funcionSuccess = function(){\r",
+                    "    var datosJson = Ext.decode(recuperaDatosOpenLink('datosCliente'));\r",
+                    "\r",
+                    "    var codCliente = datosJson.temp_datosCliente[0].codcliente;\r",
+                    "    var nomeAbrev  = datosJson.temp_datosCliente[0].nomeabrev;\r",
+                    "    var nomeEmit   = datosJson.temp_datosCliente[0].nomeemit;\r",
+                    "\r",
+                    "    var datosClienteActivo = {\r",
+                    "        codCliente : codCliente,\r",
+                    "        nomeAbrev  : nomeAbrev,\r",
+                    "        nomeEmit   : nomeEmit\r",
+                    "    };\r",
+                    "\r",
+                    "    asignaValoresStore('storeClienteActivo',datosClienteActivo);\r",
+                    "};\r",
+                    "\r",
+                    "var funcionFailure = function(){\r",
+                    "    var datosJson = Ext.decode(recuperaDatosOpenLink('datosCliente'));\r",
+                    "};\r",
+                    "\r",
+                    "ejecutaOpenLink(datosJsonFormulario,\r",
+                    "                funcionSuccess,\r",
+                    "                undefined,\r",
+                    "                funcionFailure,\r",
+                    "                undefined);"
+                ]
+            },
+            "name": "generaClienteActivo",
+            "designerId": "3a886715-bf07-4194-8406-1881d5ad1070"
+        }
+    ]
+}

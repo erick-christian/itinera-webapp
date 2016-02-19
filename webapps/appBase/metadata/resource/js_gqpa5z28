@@ -1,0 +1,16 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "defer": false,
+        "designer|userClassName": "js_gqpa5z28",
+        "url": "../../framework/terian/terian.js",
+        "x-compile": true
+    },
+    "name": "js",
+    "designerId": "7d8a05b5-71dd-4ec1-b184-40a7a860e4e8"
+}

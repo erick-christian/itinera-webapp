@@ -1,0 +1,14 @@
+{
+    "type": "libraryresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "basePath": "../../framework/ext/build/",
+        "designer|userClassName": "Library",
+        "theme": "terianWebTemplate"
+    },
+    "designerId": "120893c2-39c1-4f03-9608-e68b96393bea"
+}

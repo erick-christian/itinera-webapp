@@ -1,0 +1,600 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoShow": true,
+        "closable": false,
+        "designer|initialView": true,
+        "designer|userClassName": "winAcceso",
+        "draggable": false,
+        "height": null,
+        "id": "winAcceso",
+        "itemId": "winAcceso",
+        "maximized": true,
+        "minHeight": null,
+        "minWidth": null,
+        "modal": true,
+        "title": null,
+        "width": null
+    },
+    "configAlternates": {
+        "resizable": "boolean"
+    },
+    "designerId": "93354cf1-704a-463f-86e1-32ef27d4ebe8",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "baseCls": null,
+                "bodyCls": [
+                    "imagenAmbiente"
+                ],
+                "bodyPadding": 10,
+                "cls": null,
+                "designer|displayName": "formAmbiente",
+                "height": 150,
+                "id": "formAmbiente",
+                "itemId": "formAmbiente",
+                "layout": "column",
+                "padding": null,
+                "title": null
+            },
+            "name": "MyForm",
+            "designerId": "d90ed754-e66b-4ec7-8c19-37e7e125449b",
+            "cn": [
+                {
+                    "type": "Ext.form.Label",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "fuenteSombraEnorme",
+                        "designer|displayName": "txtAmbienteActivo",
+                        "formBind": false,
+                        "id": "txtAmbienteActivo",
+                        "itemId": "txtAmbienteActivo",
+                        "layout|columnWidth": 1,
+                        "padding": 45,
+                        "text": "Ambiente"
+                    },
+                    "name": "MyLabel",
+                    "designerId": "fed82a03-2d61-4f8e-b21b-58bd3fc217eb"
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "designer|displayName": "formEspacio01",
+                "height": 100,
+                "id": "formEspacio01",
+                "itemId": "formEspacio01",
+                "title": null
+            },
+            "name": "MyForm1",
+            "designerId": "92c67ef5-5158-4395-8e13-71240f4bf74f"
+        },
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "autoShow": true,
+                "bodyPadding": 10,
+                "defaultAlign": "middle",
+                "designer|displayName": "formAcceso",
+                "height": null,
+                "id": "formAcceso",
+                "itemId": "formAcceso",
+                "layout": "table",
+                "minHeight": 350,
+                "minWidth": null,
+                "pack": "center",
+                "title": null,
+                "width": null
+            },
+            "name": "MyForm2",
+            "designerId": "b075508b-b3dc-4eb2-936c-51551fac5818",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "pack",
+                    "type": "string"
+                }
+            ],
+            "cn": [
+                {
+                    "type": "Ext.Img",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "imgLogotipo",
+                        "height": 150,
+                        "id": "imgLogotipo",
+                        "itemId": "imgLogotipo",
+                        "layout|colspan": 3,
+                        "layout|rowspan": 1,
+                        "padding": "0 70 0 200",
+                        "src": "../../framework/terian/image/LogoCopamex.png"
+                    },
+                    "name": "MyImg",
+                    "designerId": "c388fda7-ff3f-4008-90ec-ed55e2802b93"
+                },
+                {
+                    "type": "Ext.form.FieldSet",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "border": 0,
+                        "designer|displayName": "fieldsetDatosAcceso",
+                        "height": 150,
+                        "id": "fieldsetDatosAcceso",
+                        "itemId": "fieldsetDatosAcceso",
+                        "layout|colspan": 1,
+                        "layout|rowspan": 2,
+                        "padding": null,
+                        "title": null
+                    },
+                    "name": "MyFieldSet",
+                    "designerId": "5e53af1e-a474-4313-adf1-efeefefbbac0",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "blankText": "La Clave de Usuario es requerida",
+                                "fieldLabel": "Clave Usuario:",
+                                "height": null,
+                                "id": "p_clavePersona",
+                                "itemId": "p_clavePersona",
+                                "padding": "48 0 0 0",
+                                "validateBlank": true,
+                                "width": 300
+                            },
+                            "name": "MyTextField",
+                            "designerId": "4409fb36-bced-4b24-9eb9-0a2f3c33fc4a"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "enableKeyEvents": true,
+                                "fieldLabel": "Contraseña :",
+                                "height": null,
+                                "id": "p_acceso",
+                                "inputType": "password",
+                                "itemId": "p_acceso",
+                                "width": 300
+                            },
+                            "name": "MyTextField1",
+                            "designerId": "2d95eb49-cd14-4e9a-ac53-8e5075853090",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onP_accesoKeydown",
+                                        "implHandler": [
+                                            "if (e.getKey() === Ext.EventObject.ENTER)\r",
+                                            "{\r",
+                                            "    aplicacionLocal.getApplication().accederSistema();\r",
+                                            "}\r",
+                                            ""
+                                        ],
+                                        "name": "keydown",
+                                        "scope": "me"
+                                    },
+                                    "name": "onP_accesoKeydown",
+                                    "designerId": "8e453f02-a1bb-4559-b016-8113dcdbc710"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.FieldSet",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "border": 0,
+                        "designer|displayName": "fieldsetBotonAcceso",
+                        "id": "fieldsetBotonAcceso",
+                        "itemId": "fieldsetBotonAcceso",
+                        "padding": null,
+                        "title": null
+                    },
+                    "name": "MyFieldSet1",
+                    "designerId": "fa9b0b12-21fe-4ac3-a6f0-4a70d9e2d6bd",
+                    "cn": [
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": "botonGrupoActivo",
+                                "designer|displayName": "btnAcceder",
+                                "height": 53,
+                                "iconAlign": "top",
+                                "iconCls": null,
+                                "id": "btnAcceder",
+                                "itemId": "btnAcceder",
+                                "padding": null,
+                                "text": "Acceder",
+                                "width": 100
+                            },
+                            "name": "MyButton",
+                            "designerId": "e97fa95f-3559-40b1-b54d-7fb23e159ecf",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "aplicacionLocal.getApplication().accederSistema();"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "9867436a-d946-44c2-9e13-adc5627dabc0"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.toolbar.Toolbar",
+                    "reference": {
+                        "name": "dockedItems",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "cls": "colorForm",
+                        "designer|displayName": "toolbarBotones",
+                        "dock": "bottom",
+                        "id": "toolbarBotones",
+                        "itemId": "toolbarBotones"
+                    },
+                    "name": "MyToolbar",
+                    "designerId": "3697d3e0-19cc-4e62-aceb-a01314b45167",
+                    "cn": [
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": null,
+                                "designer|displayName": "btnRecuperaAcceso",
+                                "height": 80,
+                                "iconAlign": "top",
+                                "iconCls": "locked32",
+                                "id": "btnRecuperaAcceso",
+                                "itemId": "btnRecuperaAcceso",
+                                "layout|flex": null,
+                                "text": "</br>Recupera</br>Acceso",
+                                "tooltip": [
+                                    "\"Ver las actualizacion realizadas al Sistema.\""
+                                ],
+                                "width": 100
+                            },
+                            "name": "MyButton1",
+                            "designerId": "8a2a93bb-c65c-498b-a48f-3f11a775272c",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "var winResetAcceso = Ext.create('widget.winResetAcceso');\r",
+                                            "winResetAcceso.show();\r",
+                                            ""
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "2b8361b0-da83-439c-9375-033084517004"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.toolbar.Separator",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "separator",
+                                "layout|flex": null
+                            },
+                            "name": "MySeparator",
+                            "designerId": "edae6bc2-15f2-454a-969a-fdf825228470"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": null,
+                                "designer|displayName": "btnLiberacion",
+                                "height": 80,
+                                "hidden": true,
+                                "iconAlign": "top",
+                                "iconCls": "options32",
+                                "id": "btnLiberacion",
+                                "itemId": "btnLiberacion",
+                                "layout|flex": null,
+                                "text": "</br>Liberación</br>Julio 2015",
+                                "tooltip": [
+                                    "\"Ver las actualizacion realizadas al Sistema.\""
+                                ],
+                                "width": 100
+                            },
+                            "name": "MyButton2",
+                            "designerId": "c2351dc3-33c8-4ed7-851d-c95f551cdcb1",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "var winReleaseSistema = Ext.getCmp('winReleaseSistema');\r",
+                                            "\r",
+                                            "if(!winReleaseSistema){\r",
+                                            "    winReleaseSistema = new Ext.Window({\r",
+                                            "        title : \"Información de Liberación\",\r",
+                                            "        titlebar: false,\r",
+                                            "        width : 850,\r",
+                                            "        height: 500,\r",
+                                            "        draggable:true,\r",
+                                            "        closable: false,\r",
+                                            "        modal: true,\r",
+                                            "        id: 'winReleaseSistema',\r",
+                                            "        layout : 'fit',\r",
+                                            "        items : [{\r",
+                                            "            xtype : \"component\",\r",
+                                            "            html: '<iframe src=\"PORTALSAC_RegistroCambios_Release201507S1.pdf\" width=\"100%\" height=\"100%\"></iframe>'\r",
+                                            "        }],\r",
+                                            "        buttons: [\r",
+                                            "\r",
+                                            "            {\r",
+                                            "                text: 'Cerrar',\r",
+                                            "                handler: function(){\r",
+                                            "                    winReleaseSistemaCierra();\r",
+                                            "\r",
+                                            "                }\r",
+                                            "            }\r",
+                                            "        ]\r",
+                                            "\r",
+                                            "    });\r",
+                                            "}\r",
+                                            "\r",
+                                            "winReleaseSistemaAbre();\r",
+                                            "\r",
+                                            "function winReleaseSistemaAbre(){\r",
+                                            "    winReleaseSistema.show();\r",
+                                            "\r",
+                                            "}\r",
+                                            "\r",
+                                            "function winReleaseSistemaCierra(){\r",
+                                            "    winReleaseSistema.close();\r",
+                                            "\r",
+                                            "}"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "20096b47-dcc8-4bfa-9c04-baec32808773"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.toolbar.Fill",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "filBotones",
+                                "layout|flex": null
+                            },
+                            "name": "MyFill",
+                            "designerId": "ab1c5cce-1dda-498f-a1cb-159aa12b4689"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": null,
+                                "designer|displayName": "btnSeguimientoProyecto",
+                                "height": 80,
+                                "iconAlign": "top",
+                                "iconCls": "library132",
+                                "layout|flex": null,
+                                "text": "</br>Seguimiento</br>de Proyecto",
+                                "tooltip": [
+                                    "\"Ver las actualizacion realizadas al Sistema.\""
+                                ],
+                                "width": 100
+                            },
+                            "name": "MyButton3",
+                            "designerId": "633c639e-cb9b-4365-bcb5-209af0d89ba0",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "var winSeguimientoProyecto = Ext.getCmp('winSeguimientoProyecto');\r",
+                                            "\r",
+                                            "if(!winSeguimientoProyecto){\r",
+                                            "    winSeguimientoProyecto = new Ext.Window({\r",
+                                            "        title : \"Seguimiento del Proyecto | Portal de Clientes\",\r",
+                                            "        titlebar: false,\r",
+                                            "        width : 850,\r",
+                                            "        height: 500,\r",
+                                            "        draggable:true,\r",
+                                            "        closable: false,\r",
+                                            "        maximizable: true,\r",
+                                            "        modal: true,\r",
+                                            "        id: 'winSeguimientoProyecto',\r",
+                                            "        layout : 'fit',\r",
+                                            "        items : [{\r",
+                                            "            xtype : \"component\",\r",
+                                            "            html: '<iframe src=\"https://tauboard.com/v/cfdf636ed74190258be333bfec41f063\" width=\"100%\" height=\"100%\"></iframe>'\r",
+                                            "        }],\r",
+                                            "        buttons: [\r",
+                                            "\r",
+                                            "            {\r",
+                                            "                text: 'Cerrar',\r",
+                                            "                handler: function(){\r",
+                                            "                    winSeguimientoProyectoCierra();\r",
+                                            "\r",
+                                            "                }\r",
+                                            "            }\r",
+                                            "        ]\r",
+                                            "\r",
+                                            "    });\r",
+                                            "}\r",
+                                            "\r",
+                                            "\r",
+                                            "winSeguimientoProyectoAbre();\r",
+                                            "\r",
+                                            "function winSeguimientoProyectoAbre(){\r",
+                                            "    winSeguimientoProyecto.show();\r",
+                                            "\r",
+                                            "}\r",
+                                            "\r",
+                                            "function winSeguimientoProyectoCierra(){\r",
+                                            "    winSeguimientoProyecto.close();\r",
+                                            "\r",
+                                            "}"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "a8056a44-9b16-447b-a66b-413507f361c7"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onWinAccesoResize",
+                "implHandler": [
+                    "var formAcceso = Ext.getCmp('formAcceso');\r",
+                    "formAcceso.doLayout();\r",
+                    "\r",
+                    "var alturaForm = Ext.getCmp('winAcceso').height - 290;\r",
+                    "Ext.getCmp('formAcceso').setHeight(alturaForm);\r",
+                    "\r",
+                    "var anchoForm = Ext.getCmp('winAcceso').width;\r",
+                    "Ext.getCmp('formEspacio01').setWidth(anchoForm);\r",
+                    "Ext.getCmp('formAmbiente').setWidth(anchoForm);\r",
+                    "Ext.getCmp('formAcceso').setWidth(anchoForm);"
+                ],
+                "name": "resize",
+                "scope": "me"
+            },
+            "name": "onWinAccesoResize",
+            "designerId": "ea6881e4-d982-4f50-8f5b-926382f731b4"
+        }
+    ]
+}

@@ -1,0 +1,79 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "modelEstadoDocumentos"
+    },
+    "designerId": "7b7cce90-18c6-4471-ab35-c67b270583e3",
+    "cn": [
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "actuales"
+            },
+            "name": "MyField",
+            "designerId": "116bea9c-78a7-421e-bb96-29672c39b5c9"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "plazo0130"
+            },
+            "name": "MyField1",
+            "designerId": "84f3d707-b233-4a5b-b0e5-f8e70e4ab4e2"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "plazo3160"
+            },
+            "name": "MyField2",
+            "designerId": "b551cd36-69f4-43a4-89dd-06d9096b927b"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "plazo6190"
+            },
+            "name": "MyField3",
+            "designerId": "ee838b23-7898-4dc4-b6cf-bbb3e3e970e9"
+        },
+        {
+            "type": "Ext.data.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "plazoMas90"
+            },
+            "name": "MyField4",
+            "designerId": "427d2e9e-a9b0-4b78-844f-7ea4e1563649"
+        }
+    ]
+}

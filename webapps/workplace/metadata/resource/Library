@@ -1,0 +1,14 @@
+{
+    "type": "libraryresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Library",
+        "theme": "TerianTheme"
+    },
+    "name": "Library",
+    "designerId": "1e6c4aa5-39a0-459d-a40d-2867d64926be"
+}

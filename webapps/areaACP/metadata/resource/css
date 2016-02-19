@@ -1,0 +1,14 @@
+{
+    "type": "cssresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "css",
+        "id": "formatoForm",
+        "url": "../../../../framework/recursosCSS/formatoForm.css"
+    },
+    "designerId": "500b51e6-07e7-4996-aa85-d6deb03430a0"
+}

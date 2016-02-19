@@ -1,0 +1,14 @@
+{
+    "type": "Ext.data.Store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "storeEstadoDocumentos",
+        "model": "modelEstadoDocumentos",
+        "storeId": "storeEstadoDocumentos"
+    },
+    "designerId": "af9d095f-54e3-479f-a8ff-91c1c6ee1d4a"
+}

@@ -1,0 +1,14 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js4",
+        "url": "../../../../framework/ambiente/configAmbienteACP.js",
+        "x-compile": true
+    },
+    "designerId": "397a0099-458b-4a9f-90e5-ca1485281c38"
+}

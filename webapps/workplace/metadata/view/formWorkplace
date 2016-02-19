@@ -1,0 +1,340 @@
+{
+    "type": "Ext.form.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyPadding": 10,
+        "designer|initialView": true,
+        "designer|userAlias": "formworkplace",
+        "designer|userClassName": "formWorkplace",
+        "height": null,
+        "id": "formWorkplace",
+        "itemId": "formWorkplace",
+        "layout": "fit",
+        "manageHeight": false,
+        "title": null,
+        "width": null
+    },
+    "name": "MyForm",
+    "designerId": "5c2bf61e-97f6-4bdc-afcc-2033f4af19e2",
+    "viewControllerInstanceId": "90f529ec-cef6-4e5e-8ecd-90f2f2e6eb5b",
+    "viewModelInstanceId": "5e3f613a-6c44-4406-98ff-6605d659f309",
+    "cn": [
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "toolbarWorkplace",
+                "dock": "top",
+                "id": "toolbarWorkplace",
+                "itemId": "toolbarWorkplace"
+            },
+            "name": "MyToolbar",
+            "designerId": "7ac38c56-6f6e-4974-93d9-2c650af60b54",
+            "cn": [
+                {
+                    "type": "Ext.toolbar.Fill",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "filWorkplace",
+                        "itemId": "filWorkplace",
+                        "layout|flex": null
+                    },
+                    "name": "MyFill",
+                    "designerId": "abdcd2f4-42ed-4bd8-995b-25e0f5809d89"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnExitWorkspace",
+                        "height": 24,
+                        "iconAlign": null,
+                        "iconCls": "ion-power icon16red",
+                        "id": "btnExitWorkspace",
+                        "itemId": "btnExitWorkspace",
+                        "layout|flex": null,
+                        "text": "Exit",
+                        "textAlign": "left",
+                        "width": 130
+                    },
+                    "name": "MyButton",
+                    "designerId": "7f14ce37-90bc-4f82-97f6-a96deb381e9f",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "sessionStorage.clear();",
+                                    "self.location=\"../access/index.html\";"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "534d671e-c11d-4d10-bf58-24460348486b"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyCls": [
+                    "imagenAmbienteMenu"
+                ],
+                "bodyPadding": 10,
+                "designer|displayName": "formHeader",
+                "height": 140,
+                "id": "formHeader",
+                "itemId": "formHeader",
+                "maxHeight": 140,
+                "title": null
+            },
+            "name": "MyForm1",
+            "designerId": "d3488e1d-5217-4de3-a221-f13960af39ad"
+        },
+        {
+            "type": "Ext.tab.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "activeTab": 0,
+                "designer|displayName": "tabPanelWorkplace",
+                "id": "tabPanelWorkplace",
+                "itemId": "tabPanelWorkplace",
+                "maxHeight": 350
+            },
+            "name": "MyTabPanel",
+            "designerId": "977ff016-a8c9-4bf2-baa2-70eed0899a1a",
+            "cn": [
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "tabTasks",
+                        "id": "tabTasks",
+                        "itemId": "tabTasks",
+                        "title": "Tasks"
+                    },
+                    "name": "MyPanel",
+                    "designerId": "c05433d9-236e-4ed2-93cf-a5c05e4d8937",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tabConfigTasks",
+                                "height": 32,
+                                "iconCls": "ion-gear-a icon24",
+                                "id": "tabConfigTasks",
+                                "itemId": "tabConfigTasks",
+                                "textAlign": "left",
+                                "width": 120
+                            },
+                            "name": "TabConfig",
+                            "designerId": "dd596301-6fd9-429a-9048-75c01f69bb04"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "tabQueries",
+                        "id": "tabQueries",
+                        "itemId": "tabQueries",
+                        "title": "Queries"
+                    },
+                    "name": "MyPanel1",
+                    "designerId": "c751e164-69d1-4482-8c67-d78c0f6f5cd9",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tabConfigQueries",
+                                "height": 32,
+                                "iconCls": "ion-ios-paper icon24",
+                                "id": "tabConfigQueries",
+                                "itemId": "tabConfigQueries",
+                                "textAlign": "left",
+                                "width": 120
+                            },
+                            "name": "TabConfig1",
+                            "designerId": "8246b3a8-dc83-4584-838c-1bbe7cb3194b"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "tabReports",
+                        "height": 500,
+                        "id": "tabReports",
+                        "itemId": "tabReports",
+                        "title": "Reports"
+                    },
+                    "name": "MyPanel2",
+                    "designerId": "d649d9c1-46b0-429a-9a2e-a5cfa04b1eea",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tabConfigReports",
+                                "height": 32,
+                                "iconCls": "ion-printer icon24",
+                                "id": "tabConfigReports",
+                                "itemId": "tabConfigReports",
+                                "textAlign": "left",
+                                "width": 120
+                            },
+                            "name": "TabConfig2",
+                            "designerId": "ef9ee069-ae91-4240-8180-abcd4b7c0dc2"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "tabCatalogs",
+                        "height": null,
+                        "id": "tabCatalogs",
+                        "itemId": "tabCatalogs",
+                        "layout": "column",
+                        "title": "Catalogs"
+                    },
+                    "name": "MyPanel3",
+                    "designerId": "08d400db-3069-4045-ab95-efdaba8c818d",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tabConfigCatalogs",
+                                "height": 32,
+                                "iconCls": "ion-ios-folder icon24",
+                                "id": "tabConfigCatalogs",
+                                "itemId": "tabConfigCatalogs",
+                                "textAlign": "left",
+                                "width": 120
+                            },
+                            "name": "TabConfig2",
+                            "designerId": "f12badd8-f51a-4eb2-acbd-df84429e5b69"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": "botonZoom",
+                                "designer|displayName": "btn",
+                                "iconCls": "ion-person-stalker icon24",
+                                "id": "btn",
+                                "itemId": "btn",
+                                "layout|columnWidth": 0.2,
+                                "margin": "10 10 10 10",
+                                "padding": "10 10 10 10",
+                                "text": "Customer"
+                            },
+                            "name": "MyButton1",
+                            "designerId": "a1a75597-fec7-4244-a1ce-ffacdf2b280f",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "trex.showAppWindow('catCustomer','Customer');"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "873174d9-140c-426c-8792-de8f75239412"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js2",
+        "url": "../../../../framework/recursosJS/configOpenLink.js",
+        "x-compile": true
+    },
+    "designerId": "717a7a41-447c-49a1-ae93-beed29b53164"
+}

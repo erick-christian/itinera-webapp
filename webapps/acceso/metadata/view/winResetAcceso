@@ -1,0 +1,338 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "closable": false,
+        "designer|userAlias": "winResetAcceso",
+        "designer|userClassName": "winResetAcceso",
+        "height": 215,
+        "id": "winResetAcceso",
+        "itemId": "winResetAcceso",
+        "modal": true,
+        "title": "Reestablecer Acceso",
+        "width": 500
+    },
+    "designerId": "0ce19209-c49a-4b43-ad10-7603ad34cf21",
+    "cn": [
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|createAlias": null,
+                "designer|displayName": "toolbarResetAcceso",
+                "dock": "top",
+                "id": "toolbarResetAcceso",
+                "itemId": "toolbarResetAcceso"
+            },
+            "name": "MyToolbar1",
+            "designerId": "1560b6a6-fb3b-40c8-b880-012c604b605e",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnConfirmarResetAcceso",
+                        "iconAlign": "right",
+                        "iconCls": "confirmar16",
+                        "id": "btnConfirmarResetAcceso",
+                        "itemId": "btnConfirmarResetAcceso",
+                        "layout|flex": null,
+                        "text": "Confirmar",
+                        "textAlign": "left",
+                        "width": 135
+                    },
+                    "name": "MyButton4",
+                    "designerId": "864c3331-eda4-4850-9efe-3f7227f24423",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var mensajeUsuario = \"\";\r",
+                                    "\r",
+                                    "aDatosAPI = new Array();\r",
+                                    "aDatosAPI[0] = new Object();\r",
+                                    "aDatosAPI[0].p_clavePersona         = leeValorElemento('tf_claveUsuarioReset');\r",
+                                    "\r",
+                                    "console.log(aDatosAPI[0].p_clavePersona);\r",
+                                    "console.log('Empresa: ' + configuracionSistema('codEmpresa'));\r",
+                                    "\r",
+                                    "var strJson = JSON.stringify(aDatosAPI);\r",
+                                    "\r",
+                                    "datosJsonFormulario = {codPrograma       : 'api_RecuperaAcceso',\r",
+                                    "                       codProcedimiento  : 'recuperaAcceso',\r",
+                                    "                       idOpenLink        : 'recuperaAcceso',\r",
+                                    "                       tipoLlamada       : \"informacion\",\r",
+                                    "                       datosJson         : strJson,\r",
+                                    "                       usuarioActivo     : leeValorElemento('tf_claveUsuarioReset'),\r",
+                                    "                       codEmpresa        : configuracionSistema('codEmpresa'),\r",
+                                    "                       codSistema        : configuracionSistema('codSistema'),\r",
+                                    "                       codEmpresaActiva  : configuracionSistema('codEmpresaActiva'),\r",
+                                    "                       codSucursalActiva : configuracionSistema('codSucursalActiva'),\r",
+                                    "                       openLinkServidor  : datosOpenLink('servidor'),\r",
+                                    "                       openLinkServicio  : datosOpenLink('servicio'),\r",
+                                    "                       openLinkPrograma  : datosOpenLink('programa')\r",
+                                    "\r",
+                                    "                      };\r",
+                                    "\r",
+                                    "\r",
+                                    "var cajaEspera = Ext.MessageBox.show({\r",
+                                    "    msg: 'Por favor espere, procesando información...',\r",
+                                    "    progressText: 'Validando Acceso',\r",
+                                    "    width:400,\r",
+                                    "    wait:true,\r",
+                                    "    waitConfig: {interval:170}\r",
+                                    "});\r",
+                                    "\r",
+                                    "deshabilitaElemento('tf_claveUsuarioReset');\r",
+                                    "deshabilitaElemento('btnConfirmarResetAcceso');\r",
+                                    "deshabilitaElemento('btnCerrarResetAcceso');\r",
+                                    "\r",
+                                    "asignaValorElemento('labelAccion','Enviando Correo Electrónico, por favor espere...');\r",
+                                    "\r",
+                                    "Ext.Ajax.request({\r",
+                                    "    url: '../../../../../../openLink/openLink.jsp',\r",
+                                    "    method: 'POST',\r",
+                                    "    success: function(response,opts){\r",
+                                    "        /* ECRC: Función cuando se ejecuta correctamente el Script en el Servidor */\r",
+                                    "        var datosJson = Ext.decode(response.responseText);\r",
+                                    "\r",
+                                    "        if(datosJson.success === true ){\r",
+                                    "            /* ECRC: API ejecutada correctamente y sin Errores */\r",
+                                    "\r",
+                                    "            var aMensaje = datosJson.temp_mensaje_exec;\r",
+                                    "\r",
+                                    "            for(var iCiclo = 0; iCiclo<aMensaje.length; iCiclo++){\r",
+                                    "                mensajeUsuario += aMensaje[iCiclo].contenido + \"</br></br>\";\r",
+                                    "            }\r",
+                                    "\r",
+                                    "            var winResetAcceso = Ext.getCmp('winResetAcceso');\r",
+                                    "            winResetAcceso.close();\r",
+                                    "\r",
+                                    "            mensajeUsr(\"INFO\",\r",
+                                    "                       \"Acceso Restablecido\",\r",
+                                    "                       mensajeUsuario);\r",
+                                    "        }\r",
+                                    "        else{\r",
+                                    "            /* ECRC: Errores encontrados en la API */\r",
+                                    "            var aMensaje = datosJson.temp_mensaje_exec;\r",
+                                    "\r",
+                                    "            for(var iCiclo = 0; iCiclo<aMensaje.length; iCiclo++){\r",
+                                    "                mensajeUsuario += aMensaje[iCiclo].contenido + \"</br></br>\";\r",
+                                    "            }\r",
+                                    "\r",
+                                    "                mensajeUsr(\"ERROR\",\r",
+                                    "                           \"Error de Acceso\",\r",
+                                    "                           mensajeUsuario);\r",
+                                    "            }\r",
+                                    "    },\r",
+                                    "    failure: function(response,opts){\r",
+                                    "        /* ECRC: Función cuando hay Error en la Ejecución en el Servidor */\r",
+                                    "        console.log('Servidor falló con el Código ' + response.status);\r",
+                                    "    },\r",
+                                    "    callback: function(response,opts){\r",
+                                    "        habilitaElemento('tf_claveUsuarioReset');\r",
+                                    "        habilitaElemento('btnConfirmarResetAcceso');\r",
+                                    "        habilitaElemento('btnCerrarResetAcceso');\r",
+                                    "        asignaValorElemento('labelAccion','Un Correo Electrónico le será enviado con las nuevas credenciales.');\r",
+                                    "    },\r",
+                                    "    params: datosJsonFormulario\r",
+                                    "});\r",
+                                    "\r",
+                                    "cajaEspera.hide();\r",
+                                    ""
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "b6bcdcfd-6747-44a4-b4b5-875f7e52043d"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.toolbar.Fill",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "filResetAcceso",
+                        "layout|flex": null
+                    },
+                    "name": "MyFill1",
+                    "designerId": "38435243-03b5-4459-b1d3-dcb74d8f7317"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnCerrarResetAcceso",
+                        "iconAlign": "right",
+                        "iconCls": "close16",
+                        "id": "btnCerrarResetAcceso",
+                        "itemId": "btnCerrarResetAcceso",
+                        "layout|flex": null,
+                        "text": "Cerrar",
+                        "textAlign": "left",
+                        "width": 135
+                    },
+                    "name": "MyButton5",
+                    "designerId": "3f366b11-b803-4e36-829a-8ca270caaf54",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var winResetAcceso = Ext.getCmp('winResetAcceso');\r",
+                                    "winResetAcceso.close();\r",
+                                    "\r",
+                                    ""
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "e47e362b-9b0b-4ee2-a1e4-70507d9ab935"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "designer|displayName": "formResetAcceso",
+                "height": 250,
+                "id": "formResetAcceso",
+                "itemId": "formResetAcceso",
+                "layout": "column",
+                "title": null
+            },
+            "name": "MyForm3",
+            "designerId": "d326661c-6d95-40b6-ab9f-f02e3c158a73",
+            "cn": [
+                {
+                    "type": "Ext.form.FieldSet",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "fieldsetRestableceAcceso",
+                        "height": 120,
+                        "id": "fieldsetRestableceAcceso",
+                        "itemId": "fieldsetRestableceAcceso",
+                        "layout": "column",
+                        "layout|columnWidth": 1,
+                        "margin": null,
+                        "title": "<b>Información</b>"
+                    },
+                    "name": "MyFieldSet2",
+                    "designerId": "294188bf-55ca-498e-bc9f-231276a47f42",
+                    "cn": [
+                        {
+                            "type": "Ext.form.Label",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "labelDescripcion",
+                                "html": "<p align='justify'><b>Digite su Clave de Usuario para reestablecer su acceso.</b></br></p>",
+                                "id": "labelDescripcion",
+                                "itemId": "labelDescripcion",
+                                "layout|columnWidth": 1,
+                                "text": ""
+                            },
+                            "name": "MyLabel1",
+                            "designerId": "dc07da2d-ff0b-4f5a-934f-bf6b2888cefb"
+                        },
+                        {
+                            "type": "Ext.form.Label",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "labelAccion",
+                                "id": "labelAccion",
+                                "itemId": "labelAccion",
+                                "layout|columnWidth": 1,
+                                "text": "Un Correo Electrónico le será enviado con las nuevas credenciales."
+                            },
+                            "name": "MyLabel2",
+                            "designerId": "04fe16c3-8d9b-442b-a333-734d6e88a7ce"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tf_claveUsuarioReset",
+                                "fieldLabel": "Usuario",
+                                "id": "tf_claveUsuarioReset",
+                                "itemId": "tf_claveUsuarioReset",
+                                "labelWidth": 60,
+                                "layout|columnWidth": 1,
+                                "margin": "10 0 0 100",
+                                "maxWidth": 250,
+                                "minWidth": 250,
+                                "vtype": "alphanum",
+                                "vtypeText": "Escriba su Clave de Acceso",
+                                "width": 250
+                            },
+                            "name": "MyTextField2",
+                            "designerId": "daf88c61-b40b-4e78-9129-868b0994272e"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

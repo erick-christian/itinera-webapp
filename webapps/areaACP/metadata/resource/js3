@@ -1,0 +1,14 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "js3",
+        "url": "../../../../framework/recursosJS/configMantenimiento.js",
+        "x-compile": true
+    },
+    "designerId": "469c11fd-7b93-40a1-b1fe-964de1101284"
+}

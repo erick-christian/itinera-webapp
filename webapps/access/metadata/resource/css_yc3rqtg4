@@ -1,0 +1,14 @@
+{
+    "type": "cssresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "css_yc3rqtg4",
+        "url": "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    },
+    "name": "css1",
+    "designerId": "4ab5bd8c-8882-4cee-bf49-736c42702b97"
+}
