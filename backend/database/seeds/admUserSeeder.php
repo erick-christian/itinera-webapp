@@ -5,11 +5,6 @@ use App\admUser;
 
 class admUserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         //
@@ -18,7 +13,7 @@ class admUserSeeder extends Seeder
             'name'             => 'Erick Christian',
             'last_name'        => 'Rosales Cruz',
             'address'          => 'Itzcuitli Mz. 5 Lt. 20',
-            'neighborhood'     => 'Col. Ciudad Cuauhtemoc',
+            'neighborhood'     => 'Col. Bosques Ciudad Cuauhtemoc',
             'district'         => 'Ecatepec',
             'state_id'         => '2',
             'country_id'       => '1',

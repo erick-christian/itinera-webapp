@@ -62,7 +62,6 @@ class apiCustomer extends Controller
         return json_encode($objReturn);
     }
 
-
     public function showCustomer()
     {
         global $availableInfo;
