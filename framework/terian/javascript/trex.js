@@ -639,6 +639,10 @@ var trex = {
                              p_paramsCallback,
                              p_modoDebug){
 
+
+        console.log('xsfr');
+        console.log('<?php echo csrf_field(); ?>');
+
         var funcionSuccess;
         var funcionFailure;
         var cajaEspera = Ext.MessageBox.show({

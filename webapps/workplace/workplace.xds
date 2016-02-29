@@ -27,8 +27,8 @@
         "lockUrlPrefix": true,
         "installStatus": "Not Installed"
     },
-    "xdsVersion": "3.2.0",
-    "xdsBuild": 339,
+    "xdsVersion": "3.5.0",
+    "xdsBuild": 203,
     "schemaVersion": 1,
     "upgradeVersion": 310000000001,
     "framework": "ext51",

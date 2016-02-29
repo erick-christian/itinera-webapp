@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 use App\admCustomer;
 
@@ -12,7 +10,6 @@ use App\Libraries\Translator;
 use App\Libraries\Emissary;
 
 use Illuminate\Http\Request;
-
 
 class apiCustomer extends Controller
 {

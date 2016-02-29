@@ -57,10 +57,28 @@
                                     "id": "f12badd8-f51a-4eb2-acbd-df84429e5b69"
                                 },
                                 {
-                                    "id": "a1a75597-fec7-4244-a1ce-ffacdf2b280f",
+                                    "id": "b19751b9-7557-4ffc-90a5-033a518570b4",
                                     "cn": [
                                         {
-                                            "id": "873174d9-140c-426c-8792-de8f75239412"
+                                            "id": "7039df07-e177-4fa9-8168-a152b5441e53",
+                                            "cn": [
+                                                {
+                                                    "id": "ce9a4249-cb81-47d7-b994-ed69e219562b"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "fb22f15a-486b-4f4e-b51f-1ab5e0a6e9f4",
+                                    "cn": [
+                                        {
+                                            "id": "a1a75597-fec7-4244-a1ce-ffacdf2b280f",
+                                            "cn": [
+                                                {
+                                                    "id": "873174d9-140c-426c-8792-de8f75239412"
+                                                }
+                                            ]
                                         }
                                     ]
                                 }
@@ -113,8 +131,8 @@
         "topInstance": null
     },
     "inspectorState": {
-        "topInstance": "5645def3-1f97-4c7c-9b89-f8b2b2aedbad",
-        "selectedInstance": "5645def3-1f97-4c7c-9b89-f8b2b2aedbad"
+        "topInstance": "5c2bf61e-97f6-4bdc-afcc-2033f4af19e2",
+        "selectedInstance": "5c2bf61e-97f6-4bdc-afcc-2033f4af19e2"
     },
     "editMode": "code",
     "userSettings": {
