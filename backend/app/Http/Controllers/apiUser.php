@@ -85,12 +85,7 @@ class apiUser extends Controller
         return json_encode($objReturn);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function createUser()
     {
         //
     }
