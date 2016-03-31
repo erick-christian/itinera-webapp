@@ -1,3 +1,66 @@
+.fontBigTitle {
+    font-weight: bold !important;
+    font-family: 'Ubuntu', sans-serif !important;
+    font-size: 200% !important;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 2px #000; /* horizontal-offset vertical-offset 'blur' colour */
+    -moz-text-shadow: 0 0 2px #000;
+    -webkit-text-shadow: 0 0 2px #000;
+}
+
+.fontMediumTitle {
+    font-weight: bold !important;
+    font-family: 'Ubuntu', sans-serif !important;
+    font-size: 160% !important;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 2px #000; /* horizontal-offset vertical-offset 'blur' colour */
+    -moz-text-shadow: 0 0 2px #000;
+    -webkit-text-shadow: 0 0 2px #000;
+}
+
+.fontNormalTitleRight {
+    font-weight: bold !important;
+    font-family: 'Ubuntu', sans-serif !important;
+    font-size: 130% !important;
+    color: rgb(255, 255, 255) !important;
+    text-shadow: 0 0 2px #000 !important; /* horizontal-offset vertical-offset 'blur' colour */
+    -moz-text-shadow: 0 0 2px #000 !important;
+    -webkit-text-shadow: 0 0 2px #000 !important;
+    text-align: right !important;
+}
+
+.fontBigTitleRight {
+    font-weight: bold !important;
+    font-family: 'Ubuntu', sans-serif !important;
+    font-size: 200% !important;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 2px #000; /* horizontal-offset vertical-offset 'blur' colour */
+    -moz-text-shadow: 0 0 2px #000;
+    -webkit-text-shadow: 0 0 2px #000;
+    text-align: right !important;
+}
+
+.fontMediumTitleRight {
+    font-weight: bold !important;
+    font-family: 'Ubuntu', sans-serif !important;
+    font-size: 160% !important;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 2px #000 !important;
+    -moz-text-shadow: 0 0 2px #000 !important;
+    -webkit-text-shadow: 0 0 2px #000 !important;
+    text-align: right !important;
+}
+
+.fontNormalTitle {
+    font-weight: bold !important;
+    font-family: 'Ubuntu', sans-serif !important;
+    font-size: 130% !important;
+    color: rgb(255, 255, 255) !important;
+    text-shadow: 0 0 2px #000 !important;
+    -moz-text-shadow: 0 0 2px #000 !important;
+    -webkit-text-shadow: 0 0 2px #000 !important;
+}
+
 .requiredField{
     font-weight: bold !important;
     color: #990000    !important;
@@ -7,6 +70,12 @@
     font-weight: bold !important;
     color: #B22222    !important;
 }
+
+.disabledRadio {
+    font-weight: normal !important;
+    color: #000000 !important;
+}
+
 
 .imagenAmbiente{
     background-image: url('../environment/Portal_Ambiente.png') !important;
@@ -44,14 +113,14 @@
     color: red;
     margin-top: -0px !important;
     text-align: left !important;
-    
+
 }
 
 .icon32red{
     font-size: 32px;
     color: red;
     margin-top: -8px !important;
-    
+
 }
 
 .botonZoom{

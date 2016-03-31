@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests;
-
 use App\admCustomer;
-
 use App\Libraries\Translator;
 use App\Libraries\Emissary;
 
-use Illuminate\Http\Request;
 
 class apiCustomer extends Controller
 {
@@ -89,7 +87,6 @@ class apiCustomer extends Controller
 
     public function createCustomer()
     {
-
         global $availableInfo;
         global $apiMessage;
 
@@ -105,7 +102,7 @@ class apiCustomer extends Controller
         $customer->zip_code      = $objApiData->{'tfZipCode'};
         $customer->region        = $objApiData->{'tfRegion'};
         $customer->city          = $objApiData->{'tfCity'};
-        $customer->country       = $objApiData->{'tfCountry'};
+        $customer->country_code = $objApiData->{'tfCountry'};
         $customer->contact_name  = $objApiData->{'tfContactName'};
         $customer->contact_phone = $objApiData->{'tfContactPhone'};
         $customer->email         = $objApiData->{'tfEmail'};

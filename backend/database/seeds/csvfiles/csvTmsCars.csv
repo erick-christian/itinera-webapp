@@ -1,0 +1,11 @@
+car_id,car_description,maker,type,cly,model,event,event_date,is_active
+1001,RDX,Acura,Auto,4,2013,Evento,2016-03-15,1,
+1002,A4,Audi,Auto,4,2009,Evento,2016-03-15,1,
+1003,Serie 3,BMW,Auto,6,2009,Evento,2016-03-15,1,
+1004,Serie 4 Grand Coupe,BMW,Auto,6,2010,Evento,2016-03-15,1,
+1005,Lacrosse,Buick,Auto,6,2010,Evento,2016-03-15,1,
+1006,ATS,Cadillac,Auto,6,2009,Evento,2016-03-15,1,
+1007,CTS,Cadillac,Auto,8,2009,Evento,2016-03-15,1,
+1008,300A,Chrysler,Auto,8,2009,Evento,2016-03-15,1,
+1009,FX,Infiniti,Auto,8,2012,Evento,2016-03-15,1,
+1010,XF,Jaguar,Auto,8,2013,Evento,2016-03-15,1,

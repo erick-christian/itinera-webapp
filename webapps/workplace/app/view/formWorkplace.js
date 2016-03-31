@@ -22,9 +22,11 @@ Ext.define('workplace.view.formWorkplace', {
         'Ext.toolbar.Toolbar',
         'Ext.toolbar.Fill',
         'Ext.form.Panel',
+        'Ext.Img',
+        'Ext.form.FieldSet',
+        'Ext.form.Label',
         'Ext.tab.Panel',
-        'Ext.tab.Tab',
-        'Ext.form.FieldSet'
+        'Ext.tab.Tab'
     ],
 
     viewModel: {
@@ -68,66 +70,88 @@ Ext.define('workplace.view.formWorkplace', {
     items: [
         {
             xtype: 'form',
+            border: false,
             height: 140,
             id: 'formHeader',
             itemId: 'formHeader',
             maxHeight: 140,
+            layout: 'column',
             bodyCls: 'imagenAmbienteMenu',
-            bodyPadding: 10
+            bodyPadding: 10,
+            items: [
+                {
+                    xtype: 'image',
+                    columnWidth: 0.2,
+                    height: 120,
+                    id: 'imgLogoCompany',
+                    itemId: 'imgLogoCompany',
+                    maxHeight: 120,
+                    maxWidth: 210,
+                    width: 210,
+                    src: '../../framework/terian/image/logo_itinera_portal.png'
+                },
+                {
+                    xtype: 'fieldset',
+                    columnWidth: 0.75,
+                    border: 0,
+                    layout: 'column',
+                    items: [
+                        {
+                            xtype: 'label',
+                            columnWidth: 1,
+                            cls: 'fontBigTitle',
+                            id: 'lblCompany',
+                            itemId: 'lblCompany',
+                            padding: '10 0 10 45',
+                            text: 'Company'
+                        },
+                        {
+                            xtype: 'label',
+                            columnWidth: 0.5,
+                            cls: 'fontMediumTitle',
+                            id: 'lblUserName',
+                            itemId: 'lblUserName',
+                            padding: '7 0 5 45',
+                            text: 'User Name'
+                        },
+                        {
+                            xtype: 'label',
+                            columnWidth: 0.5,
+                            cls: 'fontMediumTitleRight',
+                            id: 'lblSystemName',
+                            itemId: 'lblSystemName',
+                            padding: '7 0 5 0',
+                            text: 'System Name'
+                        },
+                        {
+                            xtype: 'label',
+                            columnWidth: 0.5,
+                            cls: 'fontNormalTitle',
+                            id: 'lblProfile',
+                            itemId: 'lblProfile',
+                            padding: '0 0 5 45',
+                            text: 'Profile'
+                        },
+                        {
+                            xtype: 'label',
+                            columnWidth: 0.5,
+                            cls: 'fontNormalTitleRight',
+                            id: 'lblVersion',
+                            itemId: 'lblVersion',
+                            padding: '0 0 5 0',
+                            text: 'Version'
+                        }
+                    ]
+                }
+            ]
         },
         {
             xtype: 'tabpanel',
             id: 'tabPanelWorkplace',
             itemId: 'tabPanelWorkplace',
             maxHeight: 350,
-            activeTab: 0,
+            activeTab: 'tabCatalogs',
             items: [
-                {
-                    xtype: 'panel',
-                    id: 'tabTasks',
-                    itemId: 'tabTasks',
-                    title: 'Tasks',
-                    tabConfig: {
-                        xtype: 'tab',
-                        height: 32,
-                        id: 'tabConfigTasks',
-                        itemId: 'tabConfigTasks',
-                        width: 120,
-                        iconCls: 'ion-gear-a icon24',
-                        textAlign: 'left'
-                    }
-                },
-                {
-                    xtype: 'panel',
-                    id: 'tabQueries',
-                    itemId: 'tabQueries',
-                    title: 'Queries',
-                    tabConfig: {
-                        xtype: 'tab',
-                        height: 32,
-                        id: 'tabConfigQueries',
-                        itemId: 'tabConfigQueries',
-                        width: 120,
-                        iconCls: 'ion-ios-paper icon24',
-                        textAlign: 'left'
-                    }
-                },
-                {
-                    xtype: 'panel',
-                    height: 500,
-                    id: 'tabReports',
-                    itemId: 'tabReports',
-                    title: 'Reports',
-                    tabConfig: {
-                        xtype: 'tab',
-                        height: 32,
-                        id: 'tabConfigReports',
-                        itemId: 'tabConfigReports',
-                        width: 120,
-                        iconCls: 'ion-printer icon24',
-                        textAlign: 'left'
-                    }
-                },
                 {
                     xtype: 'panel',
                     id: 'tabCatalogs',
@@ -159,9 +183,26 @@ Ext.define('workplace.view.formWorkplace', {
                                     },
                                     columnWidth: 0.2,
                                     cls: 'botonZoom',
+                                    id: 'btnCatCompany',
+                                    itemId: 'btnCatCompany',
+                                    margin: '10 10 10 10',
+                                    maxWidth: 170,
+                                    padding: '10 10 10 10',
+                                    iconCls: 'ion-ios-briefcase icon24',
+                                    text: 'Company',
+                                    textAlign: 'left'
+                                },
+                                {
+                                    xtype: 'button',
+                                    handler: function (button, e) {
+                                        trex.showAppWindow('catUser', 'User');
+                                    },
+                                    columnWidth: 0.2,
+                                    cls: 'botonZoom',
                                     id: 'btnCatUser',
                                     itemId: 'btnCatUser',
                                     margin: '10 10 10 10',
+                                    maxWidth: 170,
                                     padding: '10 10 10 10',
                                     iconCls: 'ion-ios-people icon24',
                                     text: 'User',
@@ -187,14 +228,177 @@ Ext.define('workplace.view.formWorkplace', {
                                     id: 'btnCatCustomer',
                                     itemId: 'btnCatCustomer',
                                     margin: '10 10 10 10',
+                                    maxWidth: 170,
                                     padding: '10 10 10 10',
                                     iconCls: 'ion-person-stalker icon24',
                                     text: 'Customer',
+                                    textAlign: 'left'
+                                },
+                                {
+                                    xtype: 'button',
+                                    handler: function (button, e) {
+                                        trex.showAppWindow('catCar', 'Car');
+                                    },
+                                    columnWidth: 0.2,
+                                    cls: 'botonZoom',
+                                    id: 'btnCatCars',
+                                    itemId: 'btnCatCars',
+                                    margin: '10 10 10 10',
+                                    maxWidth: 170,
+                                    padding: '10 10 10 10',
+                                    iconCls: 'ion-model-s icon24',
+                                    text: 'Car',
+                                    textAlign: 'left'
+                                },
+                                {
+                                    xtype: 'button',
+                                    handler: function (button, e) {
+                                        trex.showAppWindow('catSector', 'Sector');
+                                    },
+                                    columnWidth: 0.2,
+                                    cls: 'botonZoom',
+                                    id: 'btnCatSector',
+                                    itemId: 'btnCatSector',
+                                    margin: '10 10 10 10',
+                                    maxWidth: 170,
+                                    padding: '10 10 10 10',
+                                    iconCls: 'ion-map icon24',
+                                    text: 'Sector',
+                                    textAlign: 'left'
+                                },
+                                {
+                                    xtype: 'button',
+                                    handler: function (button, e) {
+                                        trex.showAppWindow('catTaxiFares', 'Taxi Fares');
+                                    },
+                                    columnWidth: 0.2,
+                                    cls: 'botonZoom',
+                                    id: 'btnCatTaxiFares',
+                                    itemId: 'btnCatTaxiFares',
+                                    margin: '10 10 10 10',
+                                    maxWidth: 170,
+                                    padding: '10 10 10 10',
+                                    iconCls: 'ion-social-usd icon24',
+                                    text: 'Taxi Fares',
                                     textAlign: 'left'
                                 }
                             ]
                         }
                     ]
+                },
+                {
+                    xtype: 'panel',
+                    id: 'tabTasks',
+                    itemId: 'tabTasks',
+                    title: 'Process',
+                    tabConfig: {
+                        xtype: 'tab',
+                        height: 32,
+                        id: 'tabConfigTasks',
+                        itemId: 'tabConfigTasks',
+                        width: 120,
+                        iconCls: 'ion-gear-a icon24',
+                        textAlign: 'left'
+                    },
+                    items: [
+                        {
+                            xtype: 'fieldset',
+                            id: 'fieldsetModuleProcess',
+                            itemId: 'fieldsetModuleProcess',
+                            layout: 'column',
+                            title: 'Module Process',
+                            items: [
+                                {
+                                    xtype: 'button',
+                                    handler: function (button, e) {
+                                        trex.showAppWindow('proPayments', 'Payments');
+                                    },
+                                    columnWidth: 0.2,
+                                    cls: 'botonZoom',
+                                    id: 'btnProServices',
+                                    itemId: 'btnProServices',
+                                    margin: '10 10 10 10',
+                                    maxWidth: 170,
+                                    padding: '10 10 10 10',
+                                    iconCls: 'ion-ios-speedometer icon24',
+                                    text: 'Services',
+                                    textAlign: 'left'
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'fieldset',
+                            id: 'fieldsetCashflow',
+                            itemId: 'fieldsetCashflow',
+                            layout: 'column',
+                            title: 'Cashflow Process',
+                            items: [
+                                {
+                                    xtype: 'button',
+                                    handler: function (button, e) {
+                                        trex.showAppWindow('proPayments', 'Payments');
+                                    },
+                                    columnWidth: 0.2,
+                                    cls: 'botonZoom',
+                                    id: 'btnProPayments',
+                                    itemId: 'btnProPayments',
+                                    margin: '10 10 10 10',
+                                    maxWidth: 170,
+                                    padding: '10 10 10 10',
+                                    iconCls: 'ion-cash icon24',
+                                    text: 'Payment',
+                                    textAlign: 'left'
+                                },
+                                {
+                                    xtype: 'button',
+                                    handler: function (button, e) {
+                                        trex.showAppWindow('proPayControl', 'Pay Control');
+                                    },
+                                    columnWidth: 0.2,
+                                    cls: 'botonZoom',
+                                    id: 'btnProPayControl',
+                                    itemId: 'btnProPayControl',
+                                    margin: '10 10 10 10',
+                                    maxWidth: 170,
+                                    padding: '10 10 10 10',
+                                    iconCls: 'ion-social-usd icon24',
+                                    text: 'Pay Control',
+                                    textAlign: 'left'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    xtype: 'panel',
+                    id: 'tabQueries',
+                    itemId: 'tabQueries',
+                    title: 'Queries',
+                    tabConfig: {
+                        xtype: 'tab',
+                        height: 32,
+                        id: 'tabConfigQueries',
+                        itemId: 'tabConfigQueries',
+                        width: 120,
+                        iconCls: 'ion-ios-paper icon24',
+                        textAlign: 'left'
+                    }
+                },
+                {
+                    xtype: 'panel',
+                    height: 500,
+                    id: 'tabReports',
+                    itemId: 'tabReports',
+                    title: 'Reports',
+                    tabConfig: {
+                        xtype: 'tab',
+                        height: 32,
+                        id: 'tabConfigReports',
+                        itemId: 'tabConfigReports',
+                        width: 120,
+                        iconCls: 'ion-printer icon24',
+                        textAlign: 'left'
+                    }
                 }
             ]
         }

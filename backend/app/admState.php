@@ -9,12 +9,14 @@ class admState extends Model
 {
     use SoftDeletes;
 
-    //
     protected $table = 'adm_states';
-
-    protected $fillable = ['state_code','state_name'];
+    protected $fillable = [
+        'country_code',
+        'state_code',
+        'state_name',
+        'capital'
+        ];
 
     /* Enable Soft Deleted */
     protected $dates = ['deleted_at'];
-
 }

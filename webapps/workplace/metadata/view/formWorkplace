@@ -113,15 +113,165 @@
                     "imagenAmbienteMenu"
                 ],
                 "bodyPadding": 10,
+                "border": false,
                 "designer|displayName": "formHeader",
                 "height": 140,
                 "id": "formHeader",
                 "itemId": "formHeader",
+                "layout": "column",
                 "maxHeight": 140,
                 "title": null
             },
             "name": "MyForm1",
-            "designerId": "d3488e1d-5217-4de3-a221-f13960af39ad"
+            "designerId": "d3488e1d-5217-4de3-a221-f13960af39ad",
+            "cn": [
+                {
+                    "type": "Ext.Img",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "imgLogoCompany",
+                        "height": 120,
+                        "id": "imgLogoCompany",
+                        "itemId": "imgLogoCompany",
+                        "layout|columnWidth": 0.2,
+                        "maxHeight": 120,
+                        "maxWidth": 210,
+                        "src": "../../framework/terian/image/logo_itinera_portal.png",
+                        "width": 210
+                    },
+                    "name": "MyImg",
+                    "designerId": "bb4397a3-8fca-45d0-9cd5-e13825400f7f"
+                },
+                {
+                    "type": "Ext.form.FieldSet",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "border": 0,
+                        "layout": "column",
+                        "layout|columnWidth": 0.75,
+                        "title": null
+                    },
+                    "name": "MyFieldSet3",
+                    "designerId": "21bea324-3c3b-4d26-9479-3888fecabeb3",
+                    "cn": [
+                        {
+                            "type": "Ext.form.Label",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "baseCls": null,
+                                "cls": [
+                                    "fontBigTitle"
+                                ],
+                                "componentCls": null,
+                                "designer|displayName": "lblCompany",
+                                "id": "lblCompany",
+                                "itemId": "lblCompany",
+                                "layout|columnWidth": 1,
+                                "padding": "10 0 10 45",
+                                "text": "Company"
+                            },
+                            "name": "MyLabel",
+                            "designerId": "949b9cf5-f970-4365-9775-20b4ee30a27f"
+                        },
+                        {
+                            "type": "Ext.form.Label",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": [
+                                    "fontMediumTitle"
+                                ],
+                                "designer|displayName": "lblUserName",
+                                "id": "lblUserName",
+                                "itemId": "lblUserName",
+                                "layout|columnWidth": 0.5,
+                                "padding": "7 0 5 45",
+                                "text": "User Name"
+                            },
+                            "name": "MyLabel1",
+                            "designerId": "682c7494-9da7-41c9-b062-df5370588269"
+                        },
+                        {
+                            "type": "Ext.form.Label",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": [
+                                    "fontMediumTitleRight"
+                                ],
+                                "designer|displayName": "lblSystemName",
+                                "id": "lblSystemName",
+                                "itemId": "lblSystemName",
+                                "layout|columnWidth": 0.5,
+                                "padding": "7 0 5 0",
+                                "text": "System Name"
+                            },
+                            "name": "MyLabel2",
+                            "designerId": "c208a9a8-42ba-4b06-950d-6d1004c91b43"
+                        },
+                        {
+                            "type": "Ext.form.Label",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": [
+                                    "fontNormalTitle"
+                                ],
+                                "designer|displayName": "lblProfile",
+                                "id": "lblProfile",
+                                "itemId": "lblProfile",
+                                "layout|columnWidth": 0.5,
+                                "padding": "0 0 5 45",
+                                "text": "Profile"
+                            },
+                            "name": "MyLabel3",
+                            "designerId": "2869c875-ec75-4d52-9de1-2b61f2e95b44"
+                        },
+                        {
+                            "type": "Ext.form.Label",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "cls": [
+                                    "fontNormalTitleRight"
+                                ],
+                                "designer|displayName": "lblVersion",
+                                "id": "lblVersion",
+                                "itemId": "lblVersion",
+                                "layout|columnWidth": 0.5,
+                                "padding": "0 0 5 0",
+                                "text": "Version"
+                            },
+                            "name": "MyLabel4",
+                            "designerId": "22c45354-84b0-4ae8-b47c-6e7ae9f18607"
+                        }
+                    ]
+                }
+            ]
         },
         {
             "type": "Ext.tab.Panel",
@@ -131,7 +281,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "activeTab": 0,
+                "activeTab": "tabCatalogs",
                 "designer|displayName": "tabPanelWorkplace",
                 "id": "tabPanelWorkplace",
                 "itemId": "tabPanelWorkplace",
@@ -148,10 +298,360 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "designer|displayName": "tabCatalogs",
+                        "height": null,
+                        "id": "tabCatalogs",
+                        "itemId": "tabCatalogs",
+                        "layout": "column",
+                        "title": "Catalogs"
+                    },
+                    "name": "MyPanel3",
+                    "designerId": "08d400db-3069-4045-ab95-efdaba8c818d",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tabConfigCatalogs",
+                                "height": 32,
+                                "iconCls": "ion-ios-folder icon24",
+                                "id": "tabConfigCatalogs",
+                                "itemId": "tabConfigCatalogs",
+                                "textAlign": "left",
+                                "width": 120
+                            },
+                            "name": "TabConfig2",
+                            "designerId": "f12badd8-f51a-4eb2-acbd-df84429e5b69"
+                        },
+                        {
+                            "type": "Ext.form.FieldSet",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "fieldsetSystemCatalogs",
+                                "id": "fieldsetSystemCatalogs",
+                                "itemId": "fieldsetSystemCatalogs",
+                                "layout": "column",
+                                "layout|columnWidth": 1,
+                                "title": "System Catalogs"
+                            },
+                            "name": "MyFieldSet",
+                            "designerId": "b19751b9-7557-4ffc-90a5-033a518570b4",
+                            "cn": [
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": "botonZoom",
+                                        "designer|displayName": "btnCatCompany",
+                                        "height": null,
+                                        "iconCls": "ion-ios-briefcase icon24",
+                                        "id": "btnCatCompany",
+                                        "itemId": "btnCatCompany",
+                                        "layout|columnWidth": 0.2,
+                                        "margin": "10 10 10 10",
+                                        "maxWidth": 170,
+                                        "padding": "10 10 10 10",
+                                        "text": "Company",
+                                        "textAlign": "left"
+                                    },
+                                    "name": "MyButton7",
+                                    "designerId": "452c6495-cbfa-486f-82f0-128caa2e2198",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "button",
+                                                    "e"
+                                                ],
+                                                "fn": "handler",
+                                                "implHandler": [
+                                                    "trex.showAppWindow('catUser','User');"
+                                                ]
+                                            },
+                                            "name": "handler",
+                                            "designerId": "bfbb0374-9815-4ef0-bd68-e8a1415372e9"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": "botonZoom",
+                                        "designer|displayName": "btnCatUser",
+                                        "iconCls": "ion-ios-people icon24",
+                                        "id": "btnCatUser",
+                                        "itemId": "btnCatUser",
+                                        "layout|columnWidth": 0.2,
+                                        "margin": "10 10 10 10",
+                                        "maxWidth": 170,
+                                        "padding": "10 10 10 10",
+                                        "text": "User",
+                                        "textAlign": "left"
+                                    },
+                                    "name": "MyButton2",
+                                    "designerId": "7039df07-e177-4fa9-8168-a152b5441e53",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "button",
+                                                    "e"
+                                                ],
+                                                "fn": "handler",
+                                                "implHandler": [
+                                                    "trex.showAppWindow('catUser','User');"
+                                                ]
+                                            },
+                                            "name": "handler",
+                                            "designerId": "ce9a4249-cb81-47d7-b994-ed69e219562b"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.form.FieldSet",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "fieldsetMainCatalogs",
+                                "id": "fieldsetMainCatalogs",
+                                "itemId": "fieldsetMainCatalogs",
+                                "layout": "column",
+                                "layout|columnWidth": 1,
+                                "title": "Main Catalogs"
+                            },
+                            "name": "MyFieldSet1",
+                            "designerId": "fb22f15a-486b-4f4e-b51f-1ab5e0a6e9f4",
+                            "cn": [
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": "botonZoom",
+                                        "designer|displayName": "btnCatCustomer",
+                                        "iconCls": "ion-person-stalker icon24",
+                                        "id": "btnCatCustomer",
+                                        "itemId": "btnCatCustomer",
+                                        "layout|columnWidth": 0.2,
+                                        "margin": "10 10 10 10",
+                                        "maxWidth": 170,
+                                        "padding": "10 10 10 10",
+                                        "text": "Customer",
+                                        "textAlign": "left"
+                                    },
+                                    "name": "MyButton1",
+                                    "designerId": "a1a75597-fec7-4244-a1ce-ffacdf2b280f",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "button",
+                                                    "e"
+                                                ],
+                                                "fn": "handler",
+                                                "implHandler": [
+                                                    "trex.showAppWindow('catCustomer','Customer');"
+                                                ]
+                                            },
+                                            "name": "handler",
+                                            "designerId": "873174d9-140c-426c-8792-de8f75239412"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": "botonZoom",
+                                        "designer|displayName": "btnCatCars",
+                                        "iconCls": "ion-model-s icon24",
+                                        "id": "btnCatCars",
+                                        "itemId": "btnCatCars",
+                                        "layout|columnWidth": 0.2,
+                                        "margin": "10 10 10 10",
+                                        "maxWidth": 170,
+                                        "padding": "10 10 10 10",
+                                        "text": "Car",
+                                        "textAlign": "left"
+                                    },
+                                    "name": "MyButton3",
+                                    "designerId": "28f854a5-ae72-49f9-884b-b7f9d89a57f5",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "button",
+                                                    "e"
+                                                ],
+                                                "fn": "handler",
+                                                "implHandler": [
+                                                    "trex.showAppWindow('catCar','Car');"
+                                                ]
+                                            },
+                                            "name": "handler",
+                                            "designerId": "46797558-4ace-487e-8e18-7a74fb7ede20"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": "botonZoom",
+                                        "designer|displayName": "btnCatSector",
+                                        "iconCls": "ion-map icon24",
+                                        "id": "btnCatSector",
+                                        "itemId": "btnCatSector",
+                                        "layout|columnWidth": 0.2,
+                                        "margin": "10 10 10 10",
+                                        "maxWidth": 170,
+                                        "padding": "10 10 10 10",
+                                        "text": "Sector",
+                                        "textAlign": "left"
+                                    },
+                                    "name": "MyButton4",
+                                    "designerId": "5a38af80-24f3-4118-abdf-3ddd19bdad21",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "button",
+                                                    "e"
+                                                ],
+                                                "fn": "handler",
+                                                "implHandler": [
+                                                    "trex.showAppWindow('catSector','Sector');"
+                                                ]
+                                            },
+                                            "name": "handler",
+                                            "designerId": "f545c3a2-2b62-4531-95ef-0ffb7e9b88aa"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": "botonZoom",
+                                        "designer|displayName": "btnCatTaxiFares",
+                                        "iconCls": "ion-social-usd icon24",
+                                        "id": "btnCatTaxiFares",
+                                        "itemId": "btnCatTaxiFares",
+                                        "layout|columnWidth": 0.2,
+                                        "margin": "10 10 10 10",
+                                        "maxWidth": 170,
+                                        "padding": "10 10 10 10",
+                                        "text": "Taxi Fares",
+                                        "textAlign": "left"
+                                    },
+                                    "name": "MyButton5",
+                                    "designerId": "5b4065f0-07fc-4955-b914-ee540bc877a8",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "button",
+                                                    "e"
+                                                ],
+                                                "fn": "handler",
+                                                "implHandler": [
+                                                    "trex.showAppWindow('catTaxiFares','Taxi Fares');"
+                                                ]
+                                            },
+                                            "name": "handler",
+                                            "designerId": "947f52b0-275c-4c56-8018-bab63f0502e1"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
                         "designer|displayName": "tabTasks",
                         "id": "tabTasks",
                         "itemId": "tabTasks",
-                        "title": "Tasks"
+                        "title": "Process"
                     },
                     "name": "MyPanel",
                     "designerId": "c05433d9-236e-4ed2-93cf-a5c05e4d8937",
@@ -174,6 +674,179 @@
                             },
                             "name": "TabConfig",
                             "designerId": "dd596301-6fd9-429a-9048-75c01f69bb04"
+                        },
+                        {
+                            "type": "Ext.form.FieldSet",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "fieldsetModuleProcess",
+                                "id": "fieldsetModuleProcess",
+                                "itemId": "fieldsetModuleProcess",
+                                "layout": "column",
+                                "title": "Module Process"
+                            },
+                            "name": "MyFieldSet2",
+                            "designerId": "cbd4f108-ee2c-4db3-9118-fafa1e8cffd9",
+                            "cn": [
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": "botonZoom",
+                                        "designer|displayName": "btnProServices",
+                                        "iconCls": "ion-ios-speedometer icon24",
+                                        "id": "btnProServices",
+                                        "itemId": "btnProServices",
+                                        "layout|columnWidth": 0.2,
+                                        "margin": "10 10 10 10",
+                                        "maxWidth": 170,
+                                        "padding": "10 10 10 10",
+                                        "text": "Services",
+                                        "textAlign": "left"
+                                    },
+                                    "name": "MyButton6",
+                                    "designerId": "bd118e64-2c2f-40f3-aab9-4e50527daf6b",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "button",
+                                                    "e"
+                                                ],
+                                                "fn": "handler",
+                                                "implHandler": [
+                                                    "trex.showAppWindow('proPayments','Payments');"
+                                                ]
+                                            },
+                                            "name": "handler",
+                                            "designerId": "54888145-d040-4396-8949-eee22f7100aa"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.form.FieldSet",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "fieldsetCashflow",
+                                "id": "fieldsetCashflow",
+                                "itemId": "fieldsetCashflow",
+                                "layout": "column",
+                                "title": "Cashflow Process"
+                            },
+                            "name": "MyFieldSet4",
+                            "designerId": "2931da9a-57fe-4648-bc19-b62a547dc7ca",
+                            "cn": [
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": "botonZoom",
+                                        "designer|displayName": "btnProPayments",
+                                        "iconCls": "ion-cash icon24",
+                                        "id": "btnProPayments",
+                                        "itemId": "btnProPayments",
+                                        "layout|columnWidth": 0.2,
+                                        "margin": "10 10 10 10",
+                                        "maxWidth": 170,
+                                        "padding": "10 10 10 10",
+                                        "text": "Payment",
+                                        "textAlign": "left"
+                                    },
+                                    "name": "MyButton2",
+                                    "designerId": "9ab0884b-5ab3-4739-b85d-a58342fab0ae",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "button",
+                                                    "e"
+                                                ],
+                                                "fn": "handler",
+                                                "implHandler": [
+                                                    "trex.showAppWindow('proPayments','Payments');"
+                                                ]
+                                            },
+                                            "name": "handler",
+                                            "designerId": "f1aa84e6-034e-4301-a447-2f40690c189d"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": "botonZoom",
+                                        "designer|displayName": "btnProPayControl",
+                                        "iconCls": "ion-social-usd icon24",
+                                        "id": "btnProPayControl",
+                                        "itemId": "btnProPayControl",
+                                        "layout|columnWidth": 0.2,
+                                        "margin": "10 10 10 10",
+                                        "maxWidth": 170,
+                                        "padding": "10 10 10 10",
+                                        "text": "Pay Control",
+                                        "textAlign": "left"
+                                    },
+                                    "name": "MyButton8",
+                                    "designerId": "9b720d2c-cc87-43b3-9a47-799d6fa3b223",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "button",
+                                                    "e"
+                                                ],
+                                                "fn": "handler",
+                                                "implHandler": [
+                                                    "trex.showAppWindow('proPayControl','Pay Control');"
+                                                ]
+                                            },
+                                            "name": "handler",
+                                            "designerId": "eee51f62-ae83-4854-adea-bfce97faa235"
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 },
@@ -249,173 +922,6 @@
                             },
                             "name": "TabConfig2",
                             "designerId": "ef9ee069-ae91-4240-8180-abcd4b7c0dc2"
-                        }
-                    ]
-                },
-                {
-                    "type": "Ext.panel.Panel",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "designer|displayName": "tabCatalogs",
-                        "height": null,
-                        "id": "tabCatalogs",
-                        "itemId": "tabCatalogs",
-                        "layout": "column",
-                        "title": "Catalogs"
-                    },
-                    "name": "MyPanel3",
-                    "designerId": "08d400db-3069-4045-ab95-efdaba8c818d",
-                    "cn": [
-                        {
-                            "type": "Ext.tab.Tab",
-                            "reference": {
-                                "name": "tabConfig",
-                                "type": "object"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|displayName": "tabConfigCatalogs",
-                                "height": 32,
-                                "iconCls": "ion-ios-folder icon24",
-                                "id": "tabConfigCatalogs",
-                                "itemId": "tabConfigCatalogs",
-                                "textAlign": "left",
-                                "width": 120
-                            },
-                            "name": "TabConfig2",
-                            "designerId": "f12badd8-f51a-4eb2-acbd-df84429e5b69"
-                        },
-                        {
-                            "type": "Ext.form.FieldSet",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|displayName": "fieldsetSystemCatalogs",
-                                "id": "fieldsetSystemCatalogs",
-                                "itemId": "fieldsetSystemCatalogs",
-                                "layout": "column",
-                                "layout|columnWidth": 1,
-                                "title": "System Catalogs"
-                            },
-                            "name": "MyFieldSet",
-                            "designerId": "b19751b9-7557-4ffc-90a5-033a518570b4",
-                            "cn": [
-                                {
-                                    "type": "Ext.button.Button",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "cls": "botonZoom",
-                                        "designer|displayName": "btnCatUser",
-                                        "iconCls": "ion-ios-people icon24",
-                                        "id": "btnCatUser",
-                                        "itemId": "btnCatUser",
-                                        "layout|columnWidth": 0.2,
-                                        "margin": "10 10 10 10",
-                                        "padding": "10 10 10 10",
-                                        "text": "User",
-                                        "textAlign": "left"
-                                    },
-                                    "name": "MyButton2",
-                                    "designerId": "7039df07-e177-4fa9-8168-a152b5441e53",
-                                    "cn": [
-                                        {
-                                            "type": "fixedfunction",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|params": [
-                                                    "button",
-                                                    "e"
-                                                ],
-                                                "fn": "handler",
-                                                "implHandler": [
-                                                    "trex.showAppWindow('catUser','User');"
-                                                ]
-                                            },
-                                            "name": "handler",
-                                            "designerId": "ce9a4249-cb81-47d7-b994-ed69e219562b"
-                                        }
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "type": "Ext.form.FieldSet",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|displayName": "fieldsetMainCatalogs",
-                                "id": "fieldsetMainCatalogs",
-                                "itemId": "fieldsetMainCatalogs",
-                                "layout": "column",
-                                "layout|columnWidth": 1,
-                                "title": "Main Catalogs"
-                            },
-                            "name": "MyFieldSet1",
-                            "designerId": "fb22f15a-486b-4f4e-b51f-1ab5e0a6e9f4",
-                            "cn": [
-                                {
-                                    "type": "Ext.button.Button",
-                                    "reference": {
-                                        "name": "items",
-                                        "type": "array"
-                                    },
-                                    "codeClass": null,
-                                    "userConfig": {
-                                        "cls": "botonZoom",
-                                        "designer|displayName": "btnCatCustomer",
-                                        "iconCls": "ion-person-stalker icon24",
-                                        "id": "btnCatCustomer",
-                                        "itemId": "btnCatCustomer",
-                                        "layout|columnWidth": 0.2,
-                                        "margin": "10 10 10 10",
-                                        "padding": "10 10 10 10",
-                                        "text": "Customer",
-                                        "textAlign": "left"
-                                    },
-                                    "name": "MyButton1",
-                                    "designerId": "a1a75597-fec7-4244-a1ce-ffacdf2b280f",
-                                    "cn": [
-                                        {
-                                            "type": "fixedfunction",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|params": [
-                                                    "button",
-                                                    "e"
-                                                ],
-                                                "fn": "handler",
-                                                "implHandler": [
-                                                    "trex.showAppWindow('catCustomer','Customer');"
-                                                ]
-                                            },
-                                            "name": "handler",
-                                            "designerId": "873174d9-140c-426c-8792-de8f75239412"
-                                        }
-                                    ]
-                                }
-                            ]
                         }
                     ]
                 }

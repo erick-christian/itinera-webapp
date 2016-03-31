@@ -17,22 +17,29 @@ class CreateAdmUsersTable extends Migration
             $table->string('username');
             $table->string('name');
             $table->string('last_name');
-            $table->string('address'); /* Direcci�n */
-            $table->string('neighborhood'); /* Colonia */
-            $table->string('district'); /* Delegaci�n o Municipio */
-            $table->string('state_id'); /* Id Estado */
-            $table->string('country_id'); /* Id Pais */
-            $table->string('zip_code'); /* CP */
+            $table->string('address');
+            $table->string('neighborhood');
+            $table->string('district');
+            $table->string('location');
+            $table->string('region');
+            $table->string('city');
+            $table->string('state_code');
+            $table->string('country_code');
+            $table->string('zip_code');
             $table->string('gender');
+            $table->string('civil_status');
             $table->string('telephone_desk');
             $table->string('telephone_mobile');
             $table->date('birth_date');
             $table->date('register_date');
-            $table->integer('profile_id');
+            $table->string('profile_code');
             $table->string('photo_url');
-            $table->boolean('active');
+            $table->string('active' , 8);
             $table->string('email')->unique();
             $table->string('password', 60);
+            $table->string('latitude');
+            $table->string('longitude');
+            $table->string('geocode_url');            
             $table->rememberToken();
             $table->timestamps();
 
@@ -40,8 +47,9 @@ class CreateAdmUsersTable extends Migration
             $table->softDeletes();
 
             /* Indexes */
+            $table->index('email');
             $table->index('username');
-            $table->index('profile_id');
+            $table->index('profile_code');
         });
     }
 

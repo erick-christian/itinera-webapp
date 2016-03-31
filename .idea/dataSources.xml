@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1434349940">
+  <component name="DataSourceManagerImpl" format="xml" hash="3774291614">
     <data-source source="LOCAL" name="MySQL - itineratms@localhost" uuid="264b7e97-1608-4125-a70a-5257efb4f24e">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>

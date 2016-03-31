@@ -58,7 +58,7 @@
             "userConfig": {
                 "bodyPadding": 10,
                 "designer|displayName": "formSpace",
-                "height": 100,
+                "height": 50,
                 "id": "formSpace",
                 "itemId": "formSpace",
                 "layout|columnWidth": 1,
@@ -80,7 +80,7 @@
                 "height": 350,
                 "id": "formAccess",
                 "itemId": "formAccess",
-                "layout": "table",
+                "layout": "column",
                 "layout|columnWidth": 1,
                 "title": null
             },
@@ -88,27 +88,47 @@
             "designerId": "0380b7bc-2b8f-4605-99b1-88611c3c1c6b",
             "cn": [
                 {
-                    "type": "Ext.Img",
+                    "type": "Ext.form.FieldSet",
                     "reference": {
                         "name": "items",
                         "type": "array"
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "designer|displayName": "imgLogo",
-                        "height": null,
-                        "id": "imgLogo",
-                        "itemId": "imgLogo",
-                        "layout|colspan": 3,
-                        "layout|rowspan": 1,
-                        "maxWidth": null,
-                        "minHeight": null,
-                        "padding": "0 70 0 300",
-                        "src": "../../framework/terian/image/logo_itinera.png",
-                        "width": null
+                        "border": 0,
+                        "layout": "column",
+                        "layout|columnWidth": 0.5,
+                        "margin": null,
+                        "padding": 20,
+                        "title": null
                     },
-                    "name": "MyImg",
-                    "designerId": "a15691b1-3610-404b-8052-9cc54ff4145e"
+                    "name": "MyFieldSet1",
+                    "designerId": "963de30e-3516-4e95-b478-251ad1765fd0",
+                    "cn": [
+                        {
+                            "type": "Ext.Img",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "imgLogo",
+                                "height": 250,
+                                "id": "imgLogo",
+                                "itemId": "imgLogo",
+                                "layout|columnWidth": 1,
+                                "margin": "0 0 0 80",
+                                "maxWidth": 450,
+                                "minHeight": null,
+                                "padding": 50,
+                                "src": "../../framework/terian/image/logo_itinera_grande.png",
+                                "width": null
+                            },
+                            "name": "MyImg",
+                            "designerId": "a15691b1-3610-404b-8052-9cc54ff4145e"
+                        }
+                    ]
                 },
                 {
                     "type": "Ext.form.FieldSet",
@@ -120,11 +140,10 @@
                     "userConfig": {
                         "border": 0,
                         "designer|displayName": "fieldsetDataAccess",
-                        "height": 200,
+                        "height": 300,
                         "id": "fieldsetDataAccess",
                         "itemId": "fieldsetDataAccess",
-                        "layout|colspan": 1,
-                        "layout|rowspan": 2,
+                        "layout|columnWidth": 0.5,
                         "title": null
                     },
                     "name": "MyFieldSet",
@@ -144,8 +163,9 @@
                                 "itemId": "tfEmail",
                                 "labelWidth": 120,
                                 "layout|anchor": "100%",
-                                "minWidth": 340,
-                                "padding": "77 0 0 0",
+                                "maxWidth": 350,
+                                "minWidth": 350,
+                                "padding": "90 0 0 0",
                                 "width": null
                             },
                             "name": "MyTextField",
@@ -165,65 +185,69 @@
                                 "inputType": "password",
                                 "itemId": "tfPassword",
                                 "labelWidth": 120,
-                                "layout|anchor": "100%"
+                                "layout|anchor": "100%",
+                                "maxWidth": 350,
+                                "minWidth": 350
                             },
                             "name": "MyTextField1",
                             "designerId": "96f1a56b-d128-4688-9b45-d9ddd3531ad8"
-                        }
-                    ]
-                },
-                {
-                    "type": "Ext.button.Button",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "animateShadow": true,
-                        "cls": "botonGrupoActivo",
-                        "designer|displayName": "btnAccess",
-                        "height": 55,
-                        "iconCls": "fa fa-unlock-alt fa-lg",
-                        "id": "btnAccess",
-                        "itemId": "btnAccess",
-                        "text": "Access",
-                        "tooltip": "'inclde'",
-                        "tooltipType": "title",
-                        "width": 100
-                    },
-                    "name": "MyButton",
-                    "configAlternates": {
-                        "tooltip": "string"
-                    },
-                    "designerId": "ce6df24e-11a9-478c-a77e-88953bc882df",
-                    "cn": [
+                        },
                         {
-                            "type": "fixedfunction",
+                            "type": "Ext.button.Button",
                             "reference": {
                                 "name": "items",
                                 "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "designer|params": [
-                                    "button",
-                                    "e"
-                                ],
-                                "fn": "handler",
-                                "implHandler": [
-                                    "if(trex.readElement('tfEmail') === '' || trex.readElement('tfPassword') === ''){",
-                                    "    /*",
-                                    "    trex.message('warning',",
-                                    "                '3');",
-                                    "                */",
-                                    "",
-                                    "}",
-                                    "appLocal.validateAccess();"
-                                ]
+                                "animateShadow": true,
+                                "cls": "botonGrupoActivo",
+                                "designer|displayName": "btnAccess",
+                                "height": 55,
+                                "iconCls": "fa fa-unlock-alt fa-lg",
+                                "id": "btnAccess",
+                                "itemId": "btnAccess",
+                                "margin": "0 0 0 250",
+                                "padding": null,
+                                "text": "Access",
+                                "tooltip": "'inclde'",
+                                "tooltipType": "title",
+                                "width": 100
                             },
-                            "name": "handler",
-                            "designerId": "a756d393-e4ad-4ac8-8b4f-a7db01f18d5d"
+                            "name": "MyButton",
+                            "configAlternates": {
+                                "tooltip": "string"
+                            },
+                            "designerId": "ce6df24e-11a9-478c-a77e-88953bc882df",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "if(trex.readElement('tfEmail') === '' || trex.readElement('tfPassword') === ''){",
+                                            "    /*",
+                                            "    trex.message('warning',",
+                                            "                '3');",
+                                            "                */",
+                                            "",
+                                            "}",
+                                            "appLocal.validateAccess();"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "a756d393-e4ad-4ac8-8b4f-a7db01f18d5d"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -282,9 +306,9 @@
                     "userConfig": {
                         "height": 80,
                         "iconAlign": "top",
-                        "iconCls": "ion-refresh large-green",
+                        "iconCls": "ion-document-text large-green",
                         "layout|flex": null,
-                        "text": "MyButton",
+                        "text": null,
                         "width": 100
                     },
                     "name": "MyButton1",

@@ -25,8 +25,8 @@ class CreateAdmCustomersTable extends Migration
             $table->char('company');
             $table->char('tax_id');
             $table->char('address');
-            $table->char('country');
-            $table->char('estate');
+            $table->char('country_code');
+            $table->char('estate_code');
             $table->char('location');
             $table->char('region');
             $table->char('city');

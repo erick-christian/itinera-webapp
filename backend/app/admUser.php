@@ -12,7 +12,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class admUser extends Model implements AuthenticatableContract,
-                                    AuthorizableContract,
+    AuthorizableContract ,
     CanResetPasswordContract
 {
     use Authenticatable, Authorizable, CanResetPassword, SoftDeletes;
@@ -35,19 +35,26 @@ class admUser extends Model implements AuthenticatableContract,
         'address',
         'neighborhood',
         'district',
-        'state_id',
-        'country_id',
+        'location' ,
+        'region' ,
+        'city' ,
+        'state_code' ,
+        'country_code' ,
         'zip_code',
         'gender',
         'telephone_desk',
         'telephone_mobile',
-        'bith_date',
+        'birth_date' ,
         'register_date',
-        'profile_id',
+        'profile_code' ,
         'photo_url',
         'active',
         'email',
-        'password'];
+        'password' ,
+        'latitude' ,
+        'longitude' ,
+        'geocode_url'
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -58,5 +65,4 @@ class admUser extends Model implements AuthenticatableContract,
 
     /* Enable Soft Deleted */
     protected $dates = ['deleted_at'];
-
 }

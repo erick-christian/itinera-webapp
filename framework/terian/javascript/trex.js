@@ -2,7 +2,9 @@ var trex = {
     prepareFormFields : function(p_idForm){
         var objJsonData = new Object();
         var formItems = Ext.getCmp(p_idForm).items;
-
+        var formRadio = Ext.getCmp(p_idForm);
+        
+        
         for(iLoop = 0; iLoop < formItems.keys.length; iLoop++){
             var element = Ext.getCmp(formItems.keys[iLoop]);
 
@@ -11,7 +13,15 @@ var trex = {
                 for(iLoopSet = 0; iLoopSet < element.items.keys.length; iLoopSet++){
                     var field = Ext.getCmp(element.items.keys[iLoopSet]);
 
-                    objJsonData[field.itemId] = field.value;
+                    if (field.xtype === 'radiogroup') {
+
+                        var radioGroup = Ext.getCmp(field.itemId).getValue();
+                        var optionRadio = radioGroup[field.id];
+                        objJsonData[field.itemId] = optionRadio;
+                    }
+                    else {
+                        objJsonData[field.itemId] = field.value;
+                    }
                 }
             }
         }
@@ -80,9 +90,11 @@ var trex = {
         document.body.scroll = "no"; // ie only
     },
 
-    showRecord: function(p_jsonRecordData,p_recordTable){
+    showRecord: function (p_jsonRecordData,
+                          p_recordTable,
+                          p_mode) {
         var fieldUpdated;
-        var prefixObj = ['fi','dt','ch','cbx','ind','tf','ta'];
+        var prefixObj = ['fi', 'dt', 'ch', 'cbx', 'ind', 'tf', 'ta', 'rg', 'rb'];
         var fieldForm;
 
         jsonObject = p_jsonRecordData[p_recordTable][0];
@@ -106,6 +118,8 @@ var trex = {
                     try{
                         var fieldValue = jsonObject[key];
 
+                        console.log('Actualizando el campo: ' + fieldForm.id);
+
                         switch(fieldForm.xtype){
                             case 'datefield':
                                 fieldValue = Ext.Date.parse(fieldValue,'c');
@@ -122,7 +136,14 @@ var trex = {
                             default:
                                 trex.writeElement(fieldUpdated,fieldValue);
                         }
+
                         trex.disableElement(fieldUpdated);
+
+                        if (p_mode === 'edit') {
+                            console.log('habilitado el cqampo: ' + fieldUpdated);
+                            trex.enableElement(fieldUpdated);
+                        }
+                        
                     }
                     catch(error){
                         console.error(fieldUpdated + '(' + jsonObject[key] + ')' + ' >> ' + error.message);
@@ -320,10 +341,13 @@ var trex = {
                 }
             },
             width  : widthMessage
-        });    
-    },    
+        });
+    },
 
-    showInfo: function(p_infoDataBridge, p_type, p_fieldFocus, p_messageFunction){
+    showInfo: function (p_infoDataBridge,
+                        p_type,
+                        p_fieldFocus,
+                        p_messageFunction) {
 
         if(p_infoDataBridge === undefined){
             return;
@@ -334,7 +358,6 @@ var trex = {
 
         var numRecords = Object.keys(p_infoDataBridge.message).length;
         var dataInformation = '';
-
 
         for(var iCiclo=0; iCiclo < numRecords; iCiclo++){
             if(p_infoDataBridge.message[iCiclo] !== null){
@@ -438,6 +461,16 @@ var trex = {
                     else{
                         elemento.setValue(false);
                     }
+                    break;
+                case 'radiogroup':
+                    console.log('radio group:');
+                    console.log(p_valor);
+
+                    var idRadioChecked = 'rb' + p_valor;
+                    Ext.getCmp(idRadioChecked).setValue(true);
+
+                    //elemento.setValue(p_valor);
+
                     break;
                 default:
                     elemento.setValue(p_valor);
@@ -546,6 +579,7 @@ var trex = {
         alert('cargado');
         console.log('funcion de carga');
     },
+
     setInfoDataBridge: function (p_idStore, 
                                   p_respuestaJson){
 

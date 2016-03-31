@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdmCountriesTable extends Migration
+class CreateTmsZonesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,18 +12,25 @@ class CreateAdmCountriesTable extends Migration
      */
     public function up()
     {
-        // Table Countries
-        Schema::create('adm_countries', function (Blueprint $table) {
+
+        if (Schema::hasTable('tms_zones')) {
+            Schema::drop('tms_zones');
+        }
+
+        Schema::create('tms_zones' , function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->char('country_name');
+
+            $table->integer('sector_id');
+            $table->integer('zone_id');
+            $table->string('zone_name');
 
             /* Enable Soft Delete*/
             $table->softDeletes();
 
             /* Indexes */
-            $table->unique('id');
-            $table->index('country_name');
+            $table->unique(['sector_id' , 'zone_id']);
+            $table->index(['zone_id']);
 
         });
     }
@@ -35,8 +42,6 @@ class CreateAdmCountriesTable extends Migration
      */
     public function down()
     {
-        //Delete Table
-        Schema::drop('adm_countries');
+        Schema::drop('tms_zones');
     }
 }
-

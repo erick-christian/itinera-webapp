@@ -11,7 +11,11 @@ class admCountry extends Model
 
     //Model Country
     protected $table = 'adm_countries';
-    protected $fillable = ['country_name'];
+    protected $fillable = [
+        'country_name' ,
+        'country_code' ,
+        'country_domain'
+    ];
 
     /* Enable Soft Deleted */
     protected $dates = ['deleted_at'];

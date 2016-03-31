@@ -20,8 +20,8 @@ Ext.define('access.view.winAccess', {
     requires: [
         'access.view.winAccessViewModel',
         'Ext.form.Panel',
-        'Ext.Img',
         'Ext.form.FieldSet',
+        'Ext.Img',
         'Ext.form.field.Text',
         'Ext.button.Button',
         'Ext.toolbar.Toolbar'
@@ -53,7 +53,7 @@ Ext.define('access.view.winAccess', {
         {
             xtype: 'form',
             columnWidth: 1,
-            height: 100,
+            height: 50,
             id: 'formSpace',
             itemId: 'formSpace',
             bodyPadding: 10
@@ -64,24 +64,34 @@ Ext.define('access.view.winAccess', {
             height: 350,
             id: 'formAccess',
             itemId: 'formAccess',
-            layout: 'table',
+            layout: 'column',
             bodyPadding: 10,
             items: [
                 {
-                    xtype: 'image',
-                    colspan: 3,
-                    rowspan: 1,
-                    id: 'imgLogo',
-                    itemId: 'imgLogo',
-                    padding: '0 70 0 300',
-                    src: '../../framework/terian/image/logo_itinera.png'
+                    xtype: 'fieldset',
+                    columnWidth: 0.5,
+                    border: 0,
+                    padding: 20,
+                    layout: 'column',
+                    items: [
+                        {
+                            xtype: 'image',
+                            columnWidth: 1,
+                            height: 250,
+                            id: 'imgLogo',
+                            itemId: 'imgLogo',
+                            margin: '0 0 0 80',
+                            maxWidth: 450,
+                            padding: 50,
+                            src: '../../framework/terian/image/logo_itinera_grande.png'
+                        }
+                    ]
                 },
                 {
                     xtype: 'fieldset',
-                    colspan: 1,
-                    rowspan: 2,
+                    columnWidth: 0.5,
                     border: 0,
-                    height: 200,
+                    height: 300,
                     id: 'fieldsetDataAccess',
                     itemId: 'fieldsetDataAccess',
                     items: [
@@ -90,8 +100,9 @@ Ext.define('access.view.winAccess', {
                             anchor: '100%',
                             id: 'tfEmail',
                             itemId: 'tfEmail',
-                            minWidth: 340,
-                            padding: '77 0 0 0',
+                            maxWidth: 350,
+                            minWidth: 350,
+                            padding: '90 0 0 0',
                             fieldLabel: 'Mail',
                             labelWidth: 120
                         },
@@ -100,34 +111,37 @@ Ext.define('access.view.winAccess', {
                             anchor: '100%',
                             id: 'tfPassword',
                             itemId: 'tfPassword',
+                            maxWidth: 350,
+                            minWidth: 350,
                             fieldLabel: 'Password',
                             labelWidth: 120,
                             inputType: 'password'
+                        },
+                        {
+                            xtype: 'button',
+                            handler: function (button, e) {
+                                if (trex.readElement('tfEmail') === '' || trex.readElement('tfPassword') === '') {
+                                    /*
+                                     trex.message('warning',
+                                     '3');
+                                     */
+
+                                }
+                                appLocal.validateAccess();
+                            },
+                            animateShadow: true,
+                            cls: 'botonGrupoActivo',
+                            height: 55,
+                            id: 'btnAccess',
+                            itemId: 'btnAccess',
+                            margin: '0 0 0 250',
+                            width: 100,
+                            iconCls: 'fa fa-unlock-alt fa-lg',
+                            text: 'Access',
+                            tooltip: '\'inclde\'',
+                            tooltipType: 'title'
                         }
                     ]
-                },
-                {
-                    xtype: 'button',
-                    handler: function(button, e) {
-                        if(trex.readElement('tfEmail') === '' || trex.readElement('tfPassword') === ''){
-                            /*
-                            trex.message('warning',
-                            '3');
-                            */
-
-                        }
-                        appLocal.validateAccess();
-                    },
-                    animateShadow: true,
-                    cls: 'botonGrupoActivo',
-                    height: 55,
-                    id: 'btnAccess',
-                    itemId: 'btnAccess',
-                    width: 100,
-                    iconCls: 'fa fa-unlock-alt fa-lg',
-                    text: 'Access',
-                    tooltip: '\'inclde\'',
-                    tooltipType: 'title'
                 }
             ]
         }
@@ -146,8 +160,7 @@ Ext.define('access.view.winAccess', {
                     height: 80,
                     width: 100,
                     iconAlign: 'top',
-                    iconCls: 'ion-refresh large-green',
-                    text: 'MyButton'
+                    iconCls: 'ion-document-text large-green'
                 }
             ]
         }

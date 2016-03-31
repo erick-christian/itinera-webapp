@@ -14,7 +14,12 @@
                     "id": "0380b7bc-2b8f-4605-99b1-88611c3c1c6b",
                     "cn": [
                         {
-                            "id": "a15691b1-3610-404b-8052-9cc54ff4145e"
+                            "id": "963de30e-3516-4e95-b478-251ad1765fd0",
+                            "cn": [
+                                {
+                                    "id": "a15691b1-3610-404b-8052-9cc54ff4145e"
+                                }
+                            ]
                         },
                         {
                             "id": "2e0391a0-feeb-4e33-8fe4-ef4cb36fd652",
@@ -24,14 +29,14 @@
                                 },
                                 {
                                     "id": "96f1a56b-d128-4688-9b45-d9ddd3531ad8"
-                                }
-                            ]
-                        },
-                        {
-                            "id": "ce6df24e-11a9-478c-a77e-88953bc882df",
-                            "cn": [
+                                },
                                 {
-                                    "id": "a756d393-e4ad-4ac8-8b4f-a7db01f18d5d"
+                                    "id": "ce6df24e-11a9-478c-a77e-88953bc882df",
+                                    "cn": [
+                                        {
+                                            "id": "a756d393-e4ad-4ac8-8b4f-a7db01f18d5d"
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -99,13 +104,13 @@
         ]
     },
     "canvasState": {
-        "topInstance": null
+        "topInstance": "89475817-588a-4cf8-9464-e343bf666588"
     },
     "inspectorState": {
-        "topInstance": "9a1c9bf4-e540-4fb4-8f66-4cb547d4ec5c",
-        "selectedInstance": "9a1c9bf4-e540-4fb4-8f66-4cb547d4ec5c"
+        "topInstance": "89475817-588a-4cf8-9464-e343bf666588",
+        "selectedInstance": "77faad4a-cc64-409b-bbb1-7d4672c250a7"
     },
-    "editMode": "code",
+    "editMode": "design",
     "userSettings": {
         "no-cmd": true
     }
