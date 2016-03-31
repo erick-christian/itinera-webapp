@@ -85,9 +85,7 @@
                     "                  functionSuccess,",
                     "                  null,",
                     "                  functionFailure,",
-                    "                  null);",
-                    "",
-                    ""
+                    "                  null);"
                 ]
             },
             "name": "showCars",

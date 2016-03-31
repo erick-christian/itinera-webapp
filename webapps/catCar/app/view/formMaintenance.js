@@ -474,8 +474,6 @@ Ext.define('catCar.view.formMaintenance', {
             null,
             functionFailure,
             null);
-
-
     },
 
     deleteCars: function () {
