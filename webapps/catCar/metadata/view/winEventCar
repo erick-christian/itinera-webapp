@@ -1,0 +1,363 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "closable": false,
+        "designer|uiInterfaceName": "green-window",
+        "designer|userAlias": "wineventcar",
+        "designer|userClassName": "winEventCar",
+        "height": 260,
+        "id": "winEventCar",
+        "itemId": "winEventCar",
+        "layout": "column",
+        "maxHeight": 250,
+        "maxWidth": null,
+        "minHeight": 500,
+        "minWidth": 850,
+        "modal": true,
+        "title": "Event Car",
+        "ui": "green-window",
+        "width": 850
+    },
+    "name": "winUserCar1",
+    "designerId": "334ccfd1-b65e-4806-b0d1-25a07e77cdd2",
+    "viewControllerInstanceId": "8b871be6-230f-491e-87a1-afb825abf2c1",
+    "viewModelInstanceId": "ef7602c7-c89b-4fb1-ba36-c49eab35bfb5",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "designer|displayName": "formEventCar",
+                "height": 178,
+                "id": "formEventCar",
+                "itemId": "formEventCar",
+                "layout": "column",
+                "layout|columnWidth": 1,
+                "title": null,
+                "width": 838
+            },
+            "name": "MyForm",
+            "designerId": "c60bf436-d666-442d-bf92-420b1ac607d2",
+            "cn": [
+                {
+                    "type": "basicfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "confirmRecord",
+                        "implHandler": [
+                            "if(Ext.getCmp('formSector').isValid()){",
+                            "    var formRecord    = 'formSector';",
+                            "    var apiController = 'apiSector';",
+                            "    var apiMethod     = 'createSector';",
+                            "",
+                            "    var objJsonRequest = new Object();",
+                            "    objJsonRequest.apiController = apiController;",
+                            "    objJsonRequest.apiMethod     = apiMethod;",
+                            "    objJsonRequest.apiData       = trex.prepareFormFields(formRecord);",
+                            "",
+                            "    var functionSuccess = function(){",
+                            "        var jsonData = trex.getInfoDataBridge(apiController);",
+                            "",
+                            "        trex.showInfo(jsonData, 'information');",
+                            "",
+                            "        var winSector = Ext.getCmp('winSector');",
+                            "        winSector.close();",
+                            "",
+                            "        Ext.getStore('storeSector').load();",
+                            "",
+                            "    };",
+                            "",
+                            "    var functionFailure = function(){",
+                            "        var jsonData = trex.getInfoDataBridge(apiController);",
+                            "        trex.showInfo(jsonData, 'error', 'tfCompany');",
+                            "    };",
+                            "",
+                            "    trex.doDataBridge(objJsonRequest,",
+                            "                      functionSuccess,",
+                            "                      null,",
+                            "                      functionFailure,",
+                            "                      null);",
+                            "",
+                            "}",
+                            "else{",
+                            "",
+                            "    trex.message('error',",
+                            "                 'Incomplete Form',",
+                            "                 'You must fill the required fields');",
+                            "}"
+                        ]
+                    },
+                    "name": "confirmRecord",
+                    "designerId": "9f779513-fa38-4e91-af03-31b7f295f14b"
+                },
+                {
+                    "type": "Ext.form.FieldSet",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "fieldsetEventCarInformation",
+                        "height": 150,
+                        "id": "fieldsetEventCarInformation",
+                        "itemId": "fieldsetEventCarInformation",
+                        "layout": "column",
+                        "layout|columnWidth": 1,
+                        "title": "<b>General information</b>",
+                        "width": 816
+                    },
+                    "name": "MyFieldSet",
+                    "designerId": "ec361c07-c6ab-458a-8a8f-e61fabba052a",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfEvent",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Event",
+                                "id": "tfEvent",
+                                "itemId": "tfEvent",
+                                "labelClsExtra": "requiredField",
+                                "layout|columnWidth": 0.65,
+                                "margin": "0 5 5 5",
+                                "requiredCls": null,
+                                "width": 100
+                            },
+                            "name": "MyTextField3",
+                            "designerId": "7254965d-88af-499c-b31f-05585f0160a1"
+                        },
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "dtEvent",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Date Event",
+                                "id": "dtEvent",
+                                "itemId": "dtEvent",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 130,
+                                "layout|columnWidth": 0.35,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyDateField1",
+                            "designerId": "616a349e-c514-46c6-b42c-f1a10aee7be7"
+                        },
+                        {
+                            "type": "Ext.form.field.TextArea",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfActions",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Actions",
+                                "height": 69,
+                                "id": "tfActions",
+                                "itemId": "tfActions",
+                                "labelClsExtra": "requiredField",
+                                "layout|columnWidth": 0.65,
+                                "margin": "0 5 5 5",
+                                "requiredCls": null,
+                                "width": 100
+                            },
+                            "name": "MyTextArea",
+                            "designerId": "0469353d-5be4-408b-a9f2-0ad39e8ecc2f"
+                        },
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "dtActions",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "End Date Actions",
+                                "id": "dtActions",
+                                "itemId": "dtActions",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 130,
+                                "layout|columnWidth": 0.35,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyDateField2",
+                            "designerId": "99f4d44c-634b-40e4-a3c7-2ae2b12c8832"
+                        },
+                        {
+                            "type": "Ext.form.field.Checkbox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "Active",
+                                "designer|displayName": "chActive",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": null,
+                                "id": "chActive3",
+                                "itemId": "chActive2",
+                                "labelClsExtra": "requiredField",
+                                "layout|columnWidth": 0.17,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyCheckbox2",
+                            "designerId": "660684da-8848-4b72-a72b-a7725120eddc"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "toolbarSector",
+                "dock": "top",
+                "id": "toolbarSector2",
+                "itemId": "toolbarSector"
+            },
+            "name": "MyToolbar1",
+            "designerId": "281cf93b-6561-44ab-a8ad-56541d545cf7",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnConfirmSector",
+                        "iconCls": "ion-checkmark-circled icon16",
+                        "id": "btnConfirmSector2",
+                        "itemId": "btnConfirmSector",
+                        "layout|flex": null,
+                        "text": "Confirm",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton8",
+                    "designerId": "57563a98-3344-478d-bcb9-7c646fcec9f2",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "Ext.getCmp('formSector').confirmRecord();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "e0f74e84-d458-445c-af9d-d19a296d40ed"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.toolbar.Fill",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "filSector",
+                        "id": "filSector2",
+                        "itemId": "filSector",
+                        "layout|flex": null
+                    },
+                    "name": "MyFill1",
+                    "designerId": "3cc1dd5b-e8f6-460d-aa41-2fc77d9e92f8"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnCloseSector",
+                        "iconCls": "ion-close-circled icon16",
+                        "id": "btnCloseSector2",
+                        "itemId": "btnCloseSector",
+                        "layout|flex": null,
+                        "text": "Close",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton9",
+                    "designerId": "e5e6431c-5e14-4694-9865-957d6296a142",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var winSector = Ext.getCmp('winSector');",
+                                    "winSector.close();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "51222c6a-43da-42ba-8bd6-4c3e119e47e8"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

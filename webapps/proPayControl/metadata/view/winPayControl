@@ -1,0 +1,397 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "closable": false,
+        "designer|uiInterfaceName": "green-window",
+        "designer|userAlias": "winPayControl",
+        "designer|userClassName": "winPayControl",
+        "height": 267,
+        "id": "winPayControl",
+        "itemId": "winPayControl",
+        "layout": "column",
+        "maxHeight": 350,
+        "maxWidth": null,
+        "minHeight": 250,
+        "minWidth": 850,
+        "modal": true,
+        "title": "Pay Control",
+        "ui": "green-window",
+        "width": 850
+    },
+    "name": "winExpenses1",
+    "designerId": "08142500-88b0-4636-9de1-7abdab28607c",
+    "viewControllerInstanceId": "8d2af0ca-c7da-4294-8343-93c98aecdfac",
+    "viewModelInstanceId": "326d01b5-4a5f-4f9c-813e-5677acf4c1ae",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "designer|displayName": "formPay",
+                "height": 200,
+                "id": "formPay",
+                "itemId": "formPay",
+                "layout": "column",
+                "layout|columnWidth": 1,
+                "title": null,
+                "width": 838
+            },
+            "name": "MyForm",
+            "designerId": "a0465cf5-1b12-41f9-909f-3aa4a0b893ac",
+            "cn": [
+                {
+                    "type": "basicfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "confirmRecord",
+                        "implHandler": [
+                            "if(Ext.getCmp('formPay').isValid()){",
+                            "    var formRecord    = 'formPayControl';",
+                            "    var apiController = 'apiPayControl';",
+                            "    var apiMethod     = 'createPayControl';",
+                            "",
+                            "    var objJsonRequest = new Object();",
+                            "    objJsonRequest.apiController = apiController;",
+                            "    objJsonRequest.apiMethod     = apiMethod;",
+                            "    objJsonRequest.apiData       = trex.prepareFormFields(formRecord);",
+                            "",
+                            "    var functionSuccess = function(){",
+                            "        var jsonData = trex.getInfoDataBridge(apiController);",
+                            "",
+                            "        trex.showInfo(jsonData, 'information');",
+                            "",
+                            "        var winPayControl = Ext.getCmp('winPayControl');",
+                            "        winPayControl.close();",
+                            "",
+                            "        Ext.getStore('storePayControl').load();",
+                            "",
+                            "    };",
+                            "",
+                            "    var functionFailure = function(){",
+                            "        var jsonData = trex.getInfoDataBridge(apiController);",
+                            "        trex.showInfo(jsonData, 'error', 'tfCompany');",
+                            "    };",
+                            "",
+                            "    trex.doDataBridge(objJsonRequest,",
+                            "                      functionSuccess,",
+                            "                      null,",
+                            "                      functionFailure,",
+                            "                      null);",
+                            "",
+                            "}",
+                            "else{",
+                            "",
+                            "    trex.message('error',",
+                            "                 'Incomplete Form',",
+                            "                 'You must fill the required fields');",
+                            "}"
+                        ]
+                    },
+                    "name": "confirmRecord",
+                    "designerId": "1692a92b-6115-4cf1-84e5-01f6ebd55793"
+                },
+                {
+                    "type": "Ext.form.FieldSet",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|createAlias": null,
+                        "designer|displayName": "fieldsetPayInformation",
+                        "height": 175,
+                        "id": "fieldsetPayInformation",
+                        "itemId": "fieldsetPayInformation",
+                        "layout": "column",
+                        "layout|columnWidth": 1,
+                        "title": "<b>General information</b>",
+                        "width": 816
+                    },
+                    "name": "MyFieldSet",
+                    "designerId": "6e097549-034f-4e17-97cc-289f068fa972",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfInvoice",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Invoice",
+                                "id": "tfInvoice2",
+                                "itemId": "tfInvoice2",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": null,
+                                "layout|columnWidth": 0.33,
+                                "margin": "0 5 5 5",
+                                "maxWidth": null,
+                                "requiredCls": null
+                            },
+                            "name": "MyTextField1",
+                            "designerId": "c78f5812-7fb8-4e8c-87eb-4a251e8b06c7"
+                        },
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "dtInvoiceDate",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Invoice Date",
+                                "id": "dtInvoiceDate",
+                                "itemId": "dtInvoiceDate",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": null,
+                                "layout|columnWidth": 0.33,
+                                "margin": "0 5 5 5",
+                                "width": 150
+                            },
+                            "name": "MyDateField",
+                            "designerId": "9a4a8446-2947-4a29-8924-aef01832597c"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfAmount",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Amount",
+                                "height": null,
+                                "id": "tfAmount2",
+                                "itemId": "tfAmount1",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 90,
+                                "layout|columnWidth": 0.34,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyTextField6",
+                            "designerId": "6963d7af-5e66-47f7-a3e2-e1d28492359c"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfTax",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Tax",
+                                "height": null,
+                                "id": "tfTax1",
+                                "itemId": "tfTax",
+                                "labelClsExtra": null,
+                                "labelWidth": 60,
+                                "layout|columnWidth": 1,
+                                "margin": "0 5 5 560",
+                                "maxWidth": null,
+                                "requiredCls": null
+                            },
+                            "name": "MyTextField",
+                            "designerId": "b27afe5a-22ec-4c1a-9b1b-9fa140ed0695"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfTotal",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Total",
+                                "height": null,
+                                "id": "tfTotal1",
+                                "itemId": "tfTotal",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 60,
+                                "layout|columnWidth": 1,
+                                "margin": "0 5 5 560",
+                                "maxWidth": null,
+                                "requiredCls": null
+                            },
+                            "name": "MyTextField5",
+                            "designerId": "59b8f10a-4ca5-4e0c-9e38-ebebb9dd5e02"
+                        },
+                        {
+                            "type": "Ext.form.field.TextArea",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfNote",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Note",
+                                "height": null,
+                                "id": "tfNote1",
+                                "itemId": "tfNote",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 120,
+                                "layout|columnWidth": 1,
+                                "margin": "0 5 5 5",
+                                "maxWidth": null,
+                                "requiredCls": null
+                            },
+                            "name": "MyTextArea",
+                            "designerId": "05580ab8-b9bb-4fb2-9cda-bda68d5fc9c5"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "toolbarPayControl",
+                "dock": "top",
+                "id": "toolbarPayControl",
+                "itemId": "toolbarPayControl"
+            },
+            "name": "MyToolbar1",
+            "designerId": "489bf06b-f313-47bd-9397-4249164d47d1",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnConfirmPayControl",
+                        "iconCls": "ion-checkmark-circled icon16",
+                        "id": "btnConfirmPayControl",
+                        "itemId": "btnConfirmPayControl",
+                        "layout|flex": null,
+                        "text": "Confirm",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton8",
+                    "designerId": "0b5d862d-8606-488b-8e47-883a73743a7b",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "Ext.getCmp('formPayControl').confirmRecord();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "9565a5f9-d099-434b-9ceb-48c99656998e"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.toolbar.Fill",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "filPay",
+                        "id": "filPay",
+                        "itemId": "filPay",
+                        "layout|flex": null
+                    },
+                    "name": "MyFill1",
+                    "designerId": "53da3a30-7d37-4f3d-8955-e0185c7e4121"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnClosePlayControl",
+                        "iconCls": "ion-close-circled icon16",
+                        "id": "btnClosePayControl",
+                        "itemId": "btnClosePayControl",
+                        "layout|flex": null,
+                        "text": "Close",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton9",
+                    "designerId": "383af32c-212c-4689-9f3a-cece63297a12",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var winPayControl = Ext.getCmp('winPayControl');",
+                                    "winPayControl.close();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "420b1ad4-eba2-4f27-852d-0d0b36045123"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

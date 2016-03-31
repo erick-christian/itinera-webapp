@@ -1,0 +1,295 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "closable": false,
+        "designer|uiInterfaceName": "green-window",
+        "designer|userAlias": "winZone",
+        "designer|userClassName": "winZone",
+        "height": 500,
+        "id": "winZone",
+        "itemId": "winZone",
+        "layout": "column",
+        "maxHeight": 210,
+        "maxWidth": null,
+        "minHeight": 500,
+        "minWidth": 850,
+        "modal": true,
+        "title": "Sector",
+        "ui": "green-window",
+        "width": 850
+    },
+    "name": "winSector1",
+    "designerId": "c2a39dfe-9d2f-4951-a07b-f6fa7b4cfc7d",
+    "viewControllerInstanceId": "ece90031-f86e-4af6-8d15-c6d740b732f0",
+    "viewModelInstanceId": "7254f27e-6683-4860-9f18-c85c2d61d9c4",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "designer|displayName": "formZone",
+                "height": 139,
+                "id": "formZone",
+                "itemId": "formZone",
+                "layout": "column",
+                "layout|columnWidth": 1,
+                "title": null,
+                "width": 838
+            },
+            "name": "MyForm",
+            "designerId": "adc37f94-cc35-43cc-8a09-a27bd6065a4c",
+            "cn": [
+                {
+                    "type": "basicfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "confirmRecord",
+                        "implHandler": [
+                            "if(Ext.getCmp('formSector').isValid()){",
+                            "    var formRecord    = 'formSector';",
+                            "    var apiController = 'apiSector';",
+                            "    var apiMethod     = 'createSector';",
+                            "",
+                            "    var objJsonRequest = new Object();",
+                            "    objJsonRequest.apiController = apiController;",
+                            "    objJsonRequest.apiMethod     = apiMethod;",
+                            "    objJsonRequest.apiData       = trex.prepareFormFields(formRecord);",
+                            "",
+                            "    var functionSuccess = function(){",
+                            "        var jsonData = trex.getInfoDataBridge(apiController);",
+                            "",
+                            "        trex.showInfo(jsonData, 'information');",
+                            "",
+                            "        var winSector = Ext.getCmp('winSector');",
+                            "        winSector.close();",
+                            "",
+                            "        Ext.getStore('storeSector').load();",
+                            "",
+                            "    };",
+                            "",
+                            "    var functionFailure = function(){",
+                            "        var jsonData = trex.getInfoDataBridge(apiController);",
+                            "        trex.showInfo(jsonData, 'error', 'tfCompany');",
+                            "    };",
+                            "",
+                            "    trex.doDataBridge(objJsonRequest,",
+                            "                      functionSuccess,",
+                            "                      null,",
+                            "                      functionFailure,",
+                            "                      null);",
+                            "",
+                            "}",
+                            "else{",
+                            "",
+                            "    trex.message('error',",
+                            "                 'Incomplete Form',",
+                            "                 'You must fill the required fields');",
+                            "}"
+                        ]
+                    },
+                    "name": "confirmRecord",
+                    "designerId": "a7a1c1ac-f46a-4bc5-a5a0-489d011892c9"
+                },
+                {
+                    "type": "Ext.form.FieldSet",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "fieldsetZoneInformation",
+                        "height": 117,
+                        "id": "fieldsetZoneInformation",
+                        "itemId": "fieldsetZoneInformation",
+                        "layout": "column",
+                        "layout|columnWidth": 1,
+                        "title": "<b>General information</b>",
+                        "width": 816
+                    },
+                    "name": "MyFieldSet",
+                    "designerId": "ca4f5613-9608-4240-8d67-2fa6d820cc90",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfZoneID",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Zone ID",
+                                "id": "tfZoneID",
+                                "itemId": "tfZoneID",
+                                "labelClsExtra": "requiredField",
+                                "layout|columnWidth": 0.3,
+                                "margin": "0 5 5 5",
+                                "requiredCls": null,
+                                "width": 387
+                            },
+                            "name": "MyTextField1",
+                            "designerId": "40e317e8-0b1a-4a9c-b271-432ee68e9761"
+                        },
+                        {
+                            "type": "Ext.form.field.ComboBox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "cbZoneName",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Zona Name",
+                                "id": "cbZonaName",
+                                "itemId": "cbZonaName",
+                                "labelClsExtra": "requiredField",
+                                "layout|columnWidth": 0.4,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyComboBox1",
+                            "designerId": "9da2123a-865a-4962-8307-1ea58a755147"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "toolbarSector",
+                "dock": "top",
+                "id": "toolbarSector1",
+                "itemId": "toolbarSector"
+            },
+            "name": "MyToolbar1",
+            "designerId": "70a54302-d8bc-4c52-8c8f-c7c229ae1b91",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnConfirmSector",
+                        "iconCls": "ion-checkmark-circled icon16",
+                        "id": "btnConfirmSector1",
+                        "itemId": "btnConfirmSector",
+                        "layout|flex": null,
+                        "text": "Confirm",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton8",
+                    "designerId": "65d5c63a-e6cc-49dd-b951-29071fca6c28",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "Ext.getCmp('formSector').confirmRecord();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "7e7824eb-dedc-4d05-b310-d2c1c172c6de"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.toolbar.Fill",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "filSector",
+                        "id": "filSector1",
+                        "itemId": "filSector",
+                        "layout|flex": null
+                    },
+                    "name": "MyFill1",
+                    "designerId": "a4f6a69d-23ad-4d98-a2c1-e33985ee032f"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnCloseSector",
+                        "iconCls": "ion-close-circled icon16",
+                        "id": "btnCloseSector1",
+                        "itemId": "btnCloseSector",
+                        "layout|flex": null,
+                        "text": "Close",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton9",
+                    "designerId": "07549eb7-34e7-4014-a38e-f6b5a57e0364",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var winSector = Ext.getCmp('winSector');",
+                                    "winSector.close();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "26c03dc1-fd2a-4b06-89e2-175173ac330d"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,33 @@
+country_code,state_code,state_name,capital
+MEX,AGS,Aguascalientes,Aguascalientes
+MEX,BCN,Baja California (Norte),Mexicali
+MEX,BCS,Baja California Sur,La Paz
+MEX,CMP,Campeche,Campeche
+MEX,COA,Coahuila,Saltillo
+MEX,COL,Colima,Colima
+MEX,CHA,Chiapas,Tuxtla Gutiérrez
+MEX,CHI,Chihuahua,Chihuahua
+MEX,CMX,Ciudad de México,Ciudad de México
+MEX,DUR,Durango,Durango
+MEX,MEX,Estado de México,Toluca de Lerdo
+MEX,GTO,Guanajuato,Guanajuato
+MEX,GRO,Guerrero,Chilpancingo
+MEX,HID,Hidalgo,Pachuca de Soto
+MEX,JAL,Jalisco,Guadalajara
+MEX,MIC,Michoacán,Morelia
+MEX,MOR,Morelos,Cuernavaca
+MEX,NAY,Nayarit,Tepic
+MEX,NLE,Nuevo Léon,Monterrey
+MEX,OAX,Oaxaca,Oaxaca
+MEX,PUE,Puebla,Puebla
+MEX,QRO,Quintana Roo,Chetumal
+MEX,QTR,Querétaro,Querétaro
+MEX,SIN,Sinaloa,Culiacán
+MEX,SLP,San Luis Potosi,San Luis Potosi
+MEX,SON,Sonora,Hermosillo
+MEX,TAB,Tabasco,Villahermosa
+MEX,TAM,Tamaulipas,Ciudad Victoria
+MEX,TLA,Tlaxcala,Tlaxcala
+MEX,VER,Veracruz,Jalapa
+MEX,YUC,Yucatán,Mérida
+MEX,ZAC,Zacatecas,Zacatecas

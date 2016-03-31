@@ -1,0 +1,63 @@
+{
+    "name": "catSector",
+    "settings": {
+        "cmd": {},
+        "lockUrlPrefix": true,
+        "exportPath": "",
+        "buildShouldOverwriteIndex": true,
+        "generateArchitectVersion": true,
+        "spacesToIndent": 4,
+        "lineEnding": "CRLF",
+        "genTimestamps": false,
+        "cacheBust": false,
+        "installStatus": "Not Installed",
+        "urlPrefix": "",
+        "canvasControls": {
+            "viewportSize": {
+                "name": "Auto Expand",
+                "builtIn": true,
+                "height": null,
+                "width": null
+            }
+        }
+    },
+    "xdsVersion": "3.5.0",
+    "xdsBuild": 203,
+    "schemaVersion": 1,
+    "upgradeVersion": 310000000001,
+    "framework": "ext51",
+    "viewOrderMap": {
+        "view": [
+            "35aec26f-3848-4547-950b-a6b49d025b21",
+            "d9aabfc7-12f6-4434-a219-9e774df9acac",
+            "713910f4-4ffb-4378-b163-aef2d02c95ec",
+            "b4fa3f80-fc34-41e6-a8d6-977e18c8b0ac",
+            "c2a39dfe-9d2f-4951-a07b-f6fa7b4cfc7d",
+            "7a8373ad-ab71-4cbf-9933-bda82e4f7259",
+            "7254f27e-6683-4860-9f18-c85c2d61d9c4",
+            "211e9d90-6e1b-46a2-b72d-0751baea6872",
+            "ece90031-f86e-4af6-8d15-c6d740b732f0"
+        ],
+        "store": [
+            "03511b87-c65b-4832-9b4f-bffe6efb296e",
+            "54464034-300f-435e-9ad7-1ffa86d19a8a"
+        ],
+        "controller": [],
+        "model": [
+            "c25ce4c0-5330-40bb-b543-a875fbd5d474",
+            "3fa1495d-f6e5-4ebc-add3-5bdf40631793"
+        ],
+        "resource": [
+            "f3e66cb8-767a-47e1-a67f-f901033d708c",
+            "f04b1d4c-97e1-4326-b2b3-7e8a08141258",
+            "68412dec-a92f-4f3f-a759-b5b73ef23b59",
+            "6c8df4b1-239a-49c7-a997-c28782014567",
+            "9f5bee17-12e5-4279-871f-505b5643d567",
+            "3041f40a-7367-4b6b-8a5f-14a6af61ea9c",
+            "233a7df5-da14-4d82-a06e-0a59310e6cf5"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

@@ -1,0 +1,1118 @@
+{
+    "type": "Ext.form.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyPadding": 10,
+        "designer|initialView": true,
+        "designer|uiInterfaceName": "green-panel",
+        "designer|userAlias": "formMaintenance",
+        "designer|userClassName": "formMaintenance",
+        "height": null,
+        "id": "formMaintenance",
+        "itemId": "formMaintenance",
+        "layout": "column",
+        "manageHeight": false,
+        "maxHeight": null,
+        "maxWidth": null,
+        "minHeight": null,
+        "title": null,
+        "ui": "green-panel",
+        "width": null
+    },
+    "name": "MyForm",
+    "configAlternates": {
+        "CustomerRecord": "object"
+    },
+    "designerId": "35aec26f-3848-4547-950b-a6b49d025b21",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "CustomerRecord",
+            "type": "string"
+        }
+    ],
+    "viewControllerInstanceId": "713910f4-4ffb-4378-b163-aef2d02c95ec",
+    "viewModelInstanceId": "d9aabfc7-12f6-4434-a219-9e774df9acac",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "pMode"
+                ],
+                "fn": "showCars",
+                "implHandler": [
+                    "var apiController = 'apiCar';",
+                    "var apiMethod     = 'showCar';",
+                    "var objJsonData = new Object();",
+                    "objJsonData.CarsID    = Ext.getCmp('formMaintenance').CarsID;",
+                    "",
+                    "var objJsonRequest = new Object();",
+                    "objJsonRequest.apiController = apiController;",
+                    "objJsonRequest.apiMethod     = apiMethod;",
+                    "objJsonRequest.apiData       = JSON.stringify(objJsonData);",
+                    "",
+                    "var functionSuccess = function(){",
+                    "    var jsonData = trex.getInfoDataBridge(apiController);",
+                    "",
+                    "",
+                    "    var winCars = Ext.getCmp('winCars');",
+                    "",
+                    "    if(!winCars){",
+                    "        winCars = Ext.create('widget.winCars');",
+                    "        winCars.show();",
+                    "        trex.hideScrollBars();",
+                    "    }",
+                    "",
+                    "    trex.showRecord(jsonData,'Cars');",
+                    "",
+                    "};",
+                    "",
+                    "var functionFailure = function(){",
+                    "    var jsonData = trex.getInfoDataBridge(apiController);",
+                    "};",
+                    "",
+                    "trex.doDataBridge(objJsonRequest,",
+                    "                  functionSuccess,",
+                    "                  null,",
+                    "                  functionFailure,",
+                    "                  null);",
+                    "",
+                    ""
+                ]
+            },
+            "name": "showCars",
+            "designerId": "e8cd2050-0f41-4cd1-adc0-66a08f67c2a8"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "deleteCars",
+                "implHandler": [
+                    "alert('registro borrado');",
+                    "",
+                    "var formRecord    = 'formCars';",
+                    "var apiController = 'apiCars';",
+                    "var apiMethod     = 'deleteCars';",
+                    "",
+                    "var objJsonData = new Object();",
+                    "objJsonData.CarsId    = Ext.getCmp('formMaintenance').CarsRecord.id;",
+                    "",
+                    "var objJsonRequest = new Object();",
+                    "objJsonRequest.apiController = apiController;",
+                    "objJsonRequest.apiMethod     = apiMethod;",
+                    "objJsonRequest.apiData       = JSON.stringify(objJsonData);",
+                    "",
+                    "var functionSuccess = function(){",
+                    "    var jsonData = trex.getInfoDataBridge(apiController);",
+                    "",
+                    "    console.log(jsonData);",
+                    "    trex.showInfo(jsonData, 'info');",
+                    "",
+                    "};",
+                    "",
+                    "var functionFailure = function(){",
+                    "    var jsonData = trex.getInfoDataBridge(apiController);",
+                    "    trex.showInfo(jsonData, 'error', 'tfCompany');",
+                    "};",
+                    "",
+                    "trex.doDataBridge(objJsonRequest,",
+                    "                  functionSuccess,",
+                    "                  null,",
+                    "                  functionFailure,",
+                    "                  null);"
+                ]
+            },
+            "name": "deleteCars",
+            "designerId": "5a660b92-7c5d-44ad-8a78-7fd85235a771"
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "toolbarMaintenance",
+                "dock": "top",
+                "id": "toolbarMaintenance",
+                "itemId": "toolbarMaintenance"
+            },
+            "name": "MyToolbar",
+            "designerId": "a517b2f6-03b0-4c2d-ab13-68a2a5825de9",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnView",
+                        "iconCls": "ion-eye icon16",
+                        "id": "btnView",
+                        "itemId": "btnView",
+                        "layout|flex": null,
+                        "text": "View",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton",
+                    "designerId": "8a879876-d274-4437-8e2a-b7eb720179b4",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "Ext.getCmp('formMaintenance').showCars();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "ea80bd74-14b6-4648-9e17-b188a3bb5e19"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnCreate",
+                        "iconCls": "ion-plus-circled icon16",
+                        "id": "btnCreate",
+                        "itemId": "btnCreate",
+                        "layout|flex": null,
+                        "text": "Create",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton1",
+                    "designerId": "6bf37f2f-22fe-4a89-bf4d-7e9f556bec14",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "    var winCars = Ext.getCmp('winCars');",
+                                    "",
+                                    "    if(!winCars){",
+                                    "        winCars = Ext.create('widget.winCars');",
+                                    "        winCars.show();",
+                                    "        trex.hideScrollBars();",
+                                    "    }"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "c9617d61-210d-4e41-8f8f-c2b11cffc2e3"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnDelete",
+                        "iconCls": "ion-trash-a icon16",
+                        "id": "btnDelete",
+                        "itemId": "btnDelete",
+                        "layout|flex": null,
+                        "text": "Delete",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton3",
+                    "designerId": "66ca8e9f-5377-44ba-8fe0-e329acebc555",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var msgFunction = function(){",
+                                    "    Ext.getCmp('formMaintenance').deleteCars();",
+                                    "",
+                                    "};",
+                                    "",
+                                    "var msgType = 'question';",
+                                    "var msgTitle = 'Delete Cars';",
+                                    "var msgContent = 'Do you want to delete the Cars record: ';",
+                                    "",
+                                    "trex.message(msgType,",
+                                    "            msgTitle,",
+                                    "            msgContent,",
+                                    "            msgFunction);",
+                                    "",
+                                    "return;"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "9ef92f31-ba6a-4469-8f97-22474da841fd"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.toolbar.Separator",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null,
+                        "width": 30
+                    },
+                    "name": "MySeparator",
+                    "designerId": "3ec719ef-9911-4c07-b1e1-7a7938de3313"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnFind",
+                        "iconCls": "ion-ios-search-strong icon16",
+                        "id": "btnFind",
+                        "itemId": "btnFind",
+                        "layout|flex": null,
+                        "text": "Find",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton4",
+                    "designerId": "7121f5a9-cd2c-475c-8cf3-3ce05bf2dab4"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnFilter",
+                        "iconCls": "ion-funnel icon16",
+                        "id": "btnFilter",
+                        "itemId": "btnFilter",
+                        "layout|flex": null,
+                        "text": "Filter",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton5",
+                    "designerId": "c80a61bc-a457-4c02-be95-dbeeee3abed7"
+                },
+                {
+                    "type": "Ext.toolbar.Separator",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null,
+                        "width": 30
+                    },
+                    "name": "MySeparator1",
+                    "designerId": "7c32099a-0f23-4f85-924c-1b39150d8809"
+                },
+                {
+                    "type": "Ext.toolbar.Fill",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null
+                    },
+                    "name": "MyFill",
+                    "designerId": "d5cafeb4-e448-431b-b32a-cbbb92f9a2a4"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnInformation",
+                        "iconCls": "ion-information-circled icon16",
+                        "id": "btnInformation",
+                        "itemId": "btnInformation",
+                        "layout|flex": null,
+                        "text": "Information",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton6",
+                    "designerId": "17be407b-6a34-40ee-ab6e-409db2064820"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnExit",
+                        "iconCls": "ion-android-exit icon16",
+                        "id": "btnExit",
+                        "itemId": "btnExit",
+                        "layout|flex": null,
+                        "text": "Exit",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton7",
+                    "designerId": "c0f67d57-d3a7-4d3b-b42a-2358d7b7ff03",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var win = window.parent.Ext.getCmp('catCar');",
+                                    "if(win)win[win.closeAction]();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "db3089e0-a59a-438d-aec1-46900458ef02"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "columnLines": false,
+                "designer|displayName": "gridCars",
+                "designer|uiInterfaceName": "green-panel",
+                "forceFit": false,
+                "height": null,
+                "id": "gridCars",
+                "itemId": "gridCars",
+                "layout|columnWidth": 1,
+                "maxHeight": null,
+                "maxWidth": null,
+                "minHeight": null,
+                "store": "storeCar",
+                "title": "Cars",
+                "ui": "green-panel",
+                "width": 1200
+            },
+            "name": "MyGridPanel",
+            "designerId": "0f04f83c-5b90-4407-a865-2f5cd1b88982",
+            "cn": [
+                {
+                    "type": "Ext.view.Table",
+                    "reference": {
+                        "name": "viewConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "tableSector",
+                        "height": 400,
+                        "maxHeight": 300,
+                        "width": 200
+                    },
+                    "name": "MyTable",
+                    "designerId": "10cf5e96-41b3-48f5-8408-b67546a6109f"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "car_id",
+                        "id": "car_id",
+                        "itemId": "car_id",
+                        "minWidth": null,
+                        "text": "Car ID"
+                    },
+                    "name": "MyColumn",
+                    "designerId": "0885592b-b7fa-449a-93a8-04a2ad80f4f7"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "car_description",
+                        "id": "car_description",
+                        "itemId": "car_description",
+                        "minWidth": null,
+                        "text": "Car Description"
+                    },
+                    "name": "MyColumn11",
+                    "designerId": "1a9fd0d3-b104-42d8-8674-8bc9dd0f8e05"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "maker",
+                        "id": "maker",
+                        "itemId": "maker",
+                        "maxWidth": 200,
+                        "minWidth": null,
+                        "text": "Maker",
+                        "width": 300
+                    },
+                    "name": "MyColumn1",
+                    "designerId": "d3e43f69-928a-4106-844e-311c72a99c14"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "type",
+                        "id": "type",
+                        "itemId": "type",
+                        "maxWidth": 250,
+                        "minWidth": null,
+                        "text": "Type",
+                        "width": 150
+                    },
+                    "name": "MyColumn3",
+                    "designerId": "dc14c182-0d3e-4c8f-8c89-5c3466ad4724"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "cly",
+                        "id": "cly",
+                        "itemId": "cly",
+                        "minWidth": null,
+                        "text": "Cly"
+                    },
+                    "name": "MyColumn4",
+                    "designerId": "855b6378-eb1c-4f04-980d-ffa1d95d60f7"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "model",
+                        "id": "model",
+                        "itemId": "model",
+                        "minWidth": null,
+                        "text": "Model"
+                    },
+                    "name": "MyColumn2",
+                    "designerId": "380911e3-4f8a-4b29-b563-97eddf8abfd5"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "event",
+                        "id": "event",
+                        "itemId": "event",
+                        "minWidth": null,
+                        "text": "Event"
+                    },
+                    "name": "MyColumn5",
+                    "designerId": "4fc3a93b-64f9-4ec6-b5cf-8876aa1854b3"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "event_date",
+                        "id": "event_date",
+                        "itemId": "event_date",
+                        "minWidth": null,
+                        "text": "Event Date"
+                    },
+                    "name": "MyColumn6",
+                    "designerId": "8b562d4e-e9c0-40a8-850c-87aadf3c2a89"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "event_date",
+                        "id": "created_date",
+                        "itemId": "created_date",
+                        "text": "Fecha </br> Registro"
+                    },
+                    "name": "MyColumn8",
+                    "designerId": "54d0c36a-cbfa-4446-ab19-ff7ff600aee3"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "is_active",
+                        "id": "isactive",
+                        "itemId": "isactive",
+                        "maxWidth": 50,
+                        "minWidth": 30,
+                        "text": "Active"
+                    },
+                    "name": "MyColumn9",
+                    "designerId": "e6e2a780-6cd4-4f43-90a8-64cdd257a8aa"
+                },
+                {
+                    "type": "Ext.toolbar.Paging",
+                    "reference": {
+                        "name": "dockedItems",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "pagingToolbarCars",
+                        "displayInfo": true,
+                        "dock": "bottom",
+                        "id": "pagingToolbar",
+                        "itemId": "pagingToolbar",
+                        "store": "storeCar",
+                        "width": 260
+                    },
+                    "name": "MyPagingToolbar",
+                    "designerId": "f5f4dd09-b195-4c1d-b15e-26eecaeeec0a"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onGridCarsItemDblClick",
+                        "implHandler": [
+                            "Ext.getCmp('formMaintenance').showCars();"
+                        ],
+                        "name": "itemdblclick",
+                        "scope": "me"
+                    },
+                    "name": "onGridCarsItemDblClick",
+                    "designerId": "ebc25c9b-2e77-432d-a684-c09243a2be42",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "CustomerID",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onGridCarsItemClick",
+                        "implHandler": [
+                            "Ext.getCmp('formMaintenance').CarsID = record.data.id;",
+                            "Ext.getCmp('formMaintenance').CarsRecord = record.data;"
+                        ],
+                        "name": "itemclick",
+                        "scope": "me"
+                    },
+                    "name": "onGridCarsItemClick",
+                    "designerId": "c7ec2c27-ce73-4e2a-893a-5c4a809a51ca"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "columnLines": false,
+                "designer|displayName": "gridUserCar",
+                "designer|uiInterfaceName": "green-panel",
+                "forceFit": false,
+                "height": 350,
+                "id": "gridUserCar",
+                "itemId": "gridUserCar",
+                "layout|columnWidth": 0.5,
+                "margin": "5 5 5 0",
+                "maxHeight": null,
+                "maxWidth": null,
+                "minHeight": null,
+                "store": "storeUserCar",
+                "title": "User Car",
+                "ui": "green-panel",
+                "width": null
+            },
+            "name": "MyGridPanel2",
+            "designerId": "c5d0a0ad-4f4c-459d-b7a2-493857b7a946",
+            "cn": [
+                {
+                    "type": "Ext.view.Table",
+                    "reference": {
+                        "name": "viewConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "tableZone",
+                        "height": 400,
+                        "maxWidth": null,
+                        "width": null
+                    },
+                    "name": "MyTable",
+                    "designerId": "85da2d30-ffcf-445d-aa93-4a7c9250b251"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "user_id",
+                        "id": "user_id",
+                        "itemId": "user_id",
+                        "maxWidth": 80,
+                        "minWidth": null,
+                        "text": "User ID"
+                    },
+                    "name": "MyColumn",
+                    "designerId": "2cbaeac2-dd7f-45ff-b613-3fe32693c541"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "user_name",
+                        "id": "user_name",
+                        "itemId": "user_name",
+                        "maxWidth": 380,
+                        "minWidth": null,
+                        "text": "User  Name",
+                        "width": 380
+                    },
+                    "name": "MyColumn1",
+                    "designerId": "e08d9862-40e8-43a0-b66b-152ac36be08e"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "preferred",
+                        "id": "preferred",
+                        "itemId": "preferred",
+                        "maxWidth": 70,
+                        "minWidth": null,
+                        "text": "Preferred",
+                        "width": 70
+                    },
+                    "name": "MyColumn7",
+                    "designerId": "a3623ff7-1b00-4f3d-87e4-9bc6c6827b65"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "is_active",
+                        "id": "isactive2",
+                        "itemId": "isactive2",
+                        "maxWidth": 60,
+                        "minWidth": null,
+                        "text": "Active",
+                        "width": 60
+                    },
+                    "name": "MyColumn10",
+                    "designerId": "73e70671-b28c-4c7e-8ace-a1ffe44fac5c"
+                },
+                {
+                    "type": "Ext.toolbar.Paging",
+                    "reference": {
+                        "name": "dockedItems",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "pagingToolbarUserCar",
+                        "displayInfo": true,
+                        "dock": "bottom",
+                        "id": "pagingToolbar2",
+                        "itemId": "pagingToolbar2",
+                        "store": "storeUserCar",
+                        "width": 260
+                    },
+                    "name": "MyPagingToolbar",
+                    "designerId": "f8ad3edb-a023-4171-b676-66533467f616"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onGridUserCarItemDblClick",
+                        "implHandler": [
+                            "Ext.getCmp('formMaintenance').showUserCars();"
+                        ],
+                        "name": "itemdblclick",
+                        "scope": "me"
+                    },
+                    "name": "onGridUserCarItemDblClick",
+                    "designerId": "68c5c6bd-644a-4832-a3f0-b0e906a3125e",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "CustomerID",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onGridUserCarItemClick",
+                        "implHandler": [
+                            "Ext.getCmp('formMaintenance').UserCarsID = record.data.id;",
+                            "Ext.getCmp('formMaintenance').UserCarsRecord = record.data;"
+                        ],
+                        "name": "itemclick",
+                        "scope": "me"
+                    },
+                    "name": "onGridUserCarItemClick",
+                    "designerId": "ff4d87e9-f3bb-48ea-a447-1df11478de79"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "columnLines": false,
+                "designer|displayName": "gridEventCar",
+                "designer|uiInterfaceName": "green-panel",
+                "forceFit": false,
+                "height": 350,
+                "id": "gridEventCar",
+                "itemId": "gridEventCar",
+                "layout|columnWidth": 0.5,
+                "margin": "5 5 5 5",
+                "maxHeight": null,
+                "maxWidth": null,
+                "minHeight": null,
+                "store": "storeEventCar",
+                "title": "Event Car",
+                "ui": "green-panel",
+                "width": null
+            },
+            "name": "MyGridPanel1",
+            "designerId": "259e4eb9-9f70-478d-a60a-063fb783f12c",
+            "cn": [
+                {
+                    "type": "Ext.view.Table",
+                    "reference": {
+                        "name": "viewConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "tableEventCar",
+                        "height": 400,
+                        "maxWidth": null,
+                        "width": null
+                    },
+                    "name": "MyTable",
+                    "designerId": "6f2fa501-3917-46ce-8338-353b4623bbc9"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "event",
+                        "id": "event2",
+                        "itemId": "event2",
+                        "maxWidth": 170,
+                        "minWidth": null,
+                        "text": "Event",
+                        "width": 170
+                    },
+                    "name": "MyColumn",
+                    "designerId": "05dc1b0b-0c2f-4d5e-a23a-dd2ab84c5b4f"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "event_date",
+                        "id": "event_date2",
+                        "itemId": "event_date2",
+                        "maxWidth": 80,
+                        "minWidth": null,
+                        "text": "Event Date",
+                        "width": 80
+                    },
+                    "name": "MyColumn1",
+                    "designerId": "cbf4792c-f16e-40da-b991-9d815e243072"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "actions",
+                        "id": "actions",
+                        "itemId": "actions",
+                        "maxWidth": 260,
+                        "minWidth": null,
+                        "text": "Actions",
+                        "width": 260
+                    },
+                    "name": "MyColumn7",
+                    "designerId": "6130978d-eeed-487f-85a5-6b28bdc7e476"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "actions_end_date",
+                        "id": "actions_end_date",
+                        "itemId": "actions_end_date",
+                        "minWidth": null,
+                        "text": "Actions </br> End Date"
+                    },
+                    "name": "MyColumn12",
+                    "designerId": "835fb068-957a-46ac-bbfb-0661a783e355"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "is_active",
+                        "id": "isactive3",
+                        "itemId": "isactive2",
+                        "minWidth": null,
+                        "text": "Active"
+                    },
+                    "name": "MyColumn10",
+                    "designerId": "18326b65-58d6-4541-96b1-f6f16366c8f8"
+                },
+                {
+                    "type": "Ext.toolbar.Paging",
+                    "reference": {
+                        "name": "dockedItems",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "pagingToolbarUserCar",
+                        "displayInfo": true,
+                        "dock": "bottom",
+                        "id": "pagingToolbar3",
+                        "itemId": "pagingToolbar2",
+                        "store": "storeEventCar",
+                        "width": 260
+                    },
+                    "name": "MyPagingToolbar",
+                    "designerId": "ec8e2090-e2d7-43b1-8c1e-0bc8c11db565"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onGridEventCarItemDblClick",
+                        "implHandler": [
+                            "Ext.getCmp('formMaintenance').showUserCars();"
+                        ],
+                        "name": "itemdblclick",
+                        "scope": "me"
+                    },
+                    "name": "onGridEventCarItemDblClick",
+                    "designerId": "7ff9214f-dfc3-4483-b82b-5acf0be8405d",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "CustomerID",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onGridEventCarItemClick",
+                        "implHandler": [
+                            "Ext.getCmp('formMaintenance').UserCarsID = record.data.id;",
+                            "Ext.getCmp('formMaintenance').UserCarsRecord = record.data;"
+                        ],
+                        "name": "itemclick",
+                        "scope": "me"
+                    },
+                    "name": "onGridEventCarItemClick",
+                    "designerId": "d88fdfb4-da22-4700-8853-2b5ece6555ab"
+                }
+            ]
+        }
+    ]
+}

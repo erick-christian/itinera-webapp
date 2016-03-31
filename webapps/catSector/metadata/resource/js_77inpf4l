@@ -1,0 +1,16 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "defer": false,
+        "designer|userClassName": "js_77inpf4l",
+        "url": "../../framework/terian/javascript/trex.js",
+        "x-compile": true
+    },
+    "name": "js",
+    "designerId": "68412dec-a92f-4f3f-a759-b5b73ef23b59"
+}

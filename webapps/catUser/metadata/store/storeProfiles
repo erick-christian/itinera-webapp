@@ -1,0 +1,31 @@
+{
+    "type": "Ext.data.Store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "data": [
+            "[",
+            "    {",
+            "        \"profile_code\": \"admin\",",
+            "        \"profile_description\": \"Administrator\"",
+            "    },",
+            "    {",
+            "        \"profile_code\": \"driver\",",
+            "        \"profile_description\": \"Driver\"",
+            "    },",
+            "    {",
+            "        \"profile_code\": \"customer\",",
+            "        \"profile_description\": \"Customer\"",
+            "    }",
+            "]"
+        ],
+        "designer|userClassName": "storeProfiles",
+        "model": "modProfiles",
+        "storeId": "storeProfiles"
+    },
+    "name": "MyStore",
+    "designerId": "81bcfd5a-7483-4830-b9cd-b735ddb53f6a"
+}

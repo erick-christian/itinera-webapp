@@ -1,0 +1,158 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "modServices"
+    },
+    "name": "MyModel",
+    "designerId": "c25ce4c0-5330-40bb-b543-a875fbd5d474",
+    "cn": [
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "service_id"
+            },
+            "name": "MyField",
+            "designerId": "04cf3651-5227-4136-8893-9776c0f167b8"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "stand_taxi"
+            },
+            "name": "MyField7",
+            "designerId": "9561d351-c1bd-4290-9e5e-d8a898f5f8d6"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "turn"
+            },
+            "name": "MyField2",
+            "designerId": "b2697c48-ce0b-4303-83b6-6137025d009e"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "car_id"
+            },
+            "name": "MyField12",
+            "designerId": "813db386-abce-4f68-851b-ee089424cc3e"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "date"
+            },
+            "name": "MyField24",
+            "designerId": "73cba305-4724-4b01-94fa-c599d453f22f"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "service_type"
+            },
+            "name": "MyField1",
+            "designerId": "2756c3d2-459b-4888-b7f0-067fbb4d0023"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "taxi_type_fare"
+            },
+            "name": "MyField11",
+            "designerId": "5ca80442-5bf9-414e-9de6-7825d0f56a77"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "appointment"
+            },
+            "name": "MyField3",
+            "designerId": "a819bcbc-ad10-4d03-901e-12c3e6d6d033"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "appointment_date"
+            },
+            "name": "MyField4",
+            "designerId": "b273965b-6a0e-4617-8409-b7686368f9ba"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "appointment_Hour"
+            },
+            "name": "MyField26",
+            "designerId": "f3f9d6c3-d5d9-426b-8a86-9b77fc2e246e"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "status"
+            },
+            "name": "MyField16",
+            "designerId": "752c4ea4-630e-4ad5-8c61-87b8aff9b0c5"
+        }
+    ]
+}

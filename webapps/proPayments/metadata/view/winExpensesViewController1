@@ -1,0 +1,14 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "winpay",
+        "designer|userClassName": "winExpensesViewController1"
+    },
+    "name": "winExpensesViewController1",
+    "designerId": "8d2af0ca-c7da-4294-8343-93c98aecdfac"
+}

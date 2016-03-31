@@ -1,0 +1,172 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "modTaxiFares"
+    },
+    "name": "MyModel",
+    "designerId": "c25ce4c0-5330-40bb-b543-a875fbd5d474",
+    "cn": [
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "taxi_fare_id"
+            },
+            "name": "MyField",
+            "designerId": "04cf3651-5227-4136-8893-9776c0f167b8"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "taxi_type_fare",
+                "name": "taxi_type_fare"
+            },
+            "name": "MyField2",
+            "designerId": "b2697c48-ce0b-4303-83b6-6137025d009e"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "sector_start"
+            },
+            "name": "MyField12",
+            "designerId": "813db386-abce-4f68-851b-ee089424cc3e"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "zone_end"
+            },
+            "name": "MyField1",
+            "designerId": "2756c3d2-459b-4888-b7f0-067fbb4d0023"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "taxi_start"
+            },
+            "name": "MyField4",
+            "designerId": "1255cd00-5c2e-439b-af5f-dc5a3e0451ad"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "taxi_km"
+            },
+            "name": "MyField5",
+            "designerId": "96d4589c-7364-48af-913f-ae7da05312a2"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "taxi_min"
+            },
+            "name": "MyField6",
+            "designerId": "4b9ddc5c-888b-46b7-9a9e-c3f315e9a279"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "taxi_min_waiting"
+            },
+            "name": "MyField7",
+            "designerId": "a6c01d6e-c3ee-4bd6-bde0-488fc87f3778"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "cost"
+            },
+            "name": "MyField8",
+            "designerId": "f6a552e6-80a2-4735-94cb-611ff1c24477"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "created_date"
+            },
+            "name": "MyField11",
+            "designerId": "5ca80442-5bf9-414e-9de6-7825d0f56a77"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "isactive"
+            },
+            "name": "MyField16",
+            "designerId": "752c4ea4-630e-4ad5-8c61-87b8aff9b0c5"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "inactive_date"
+            },
+            "name": "MyField17",
+            "designerId": "2831dc8d-8135-43a7-9e1f-822215cd93b5"
+        }
+    ]
+}

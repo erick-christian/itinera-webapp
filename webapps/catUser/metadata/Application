@@ -1,0 +1,72 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "models": [
+            "modUsers",
+            "modProfiles"
+        ],
+        "name": "catUser",
+        "stores": [
+            "storeUsers",
+            "storeProfiles"
+        ],
+        "views": [
+            "formMaintenance",
+            "winUsers"
+        ]
+    },
+    "name": "Application",
+    "designerId": "application",
+    "cn": [
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "launch",
+                "implHandler": [
+                    "appLocal = this.getApplication();",
+                    "Ext.EventManager.onWindowResize(function(w, h){",
+                    "    appLocal.fixInterface(w,h);",
+                    "});",
+                    "",
+                    "appLocal.fixInterface();",
+                    "Ext.getStore('storeUsers').load();"
+                ]
+            },
+            "name": "launch",
+            "designerId": "a46dd979-d857-47b7-8b62-48e2bff03633"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "p_winWidth",
+                    "p_winHeight"
+                ],
+                "fn": "fixInterface",
+                "implHandler": [
+                    "Ext.getCmp('formMaintenance').doLayout();",
+                    "",
+                    "var heightGrid = Ext.getBody().getViewSize().height - 60;",
+                    "Ext.getCmp('gridUsers').setHeight(heightGrid);"
+                ]
+            },
+            "name": "fixInterface",
+            "designerId": "8901fbdb-00c1-4481-9fcb-554d6606711c"
+        }
+    ]
+}

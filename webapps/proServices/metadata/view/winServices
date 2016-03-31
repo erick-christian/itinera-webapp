@@ -1,0 +1,453 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "closable": false,
+        "designer|uiInterfaceName": "green-window",
+        "designer|userAlias": "winServices",
+        "designer|userClassName": "winServices",
+        "height": 300,
+        "id": "winServices",
+        "itemId": "winServices",
+        "layout": "column",
+        "maxHeight": 200,
+        "maxWidth": null,
+        "minHeight": 500,
+        "minWidth": 850,
+        "modal": true,
+        "title": "Services",
+        "ui": "green-window",
+        "width": 850
+    },
+    "name": "MyWindow",
+    "designerId": "b4fa3f80-fc34-41e6-a8d6-977e18c8b0ac",
+    "viewControllerInstanceId": "211e9d90-6e1b-46a2-b72d-0751baea6872",
+    "viewModelInstanceId": "7a8373ad-ab71-4cbf-9933-bda82e4f7259",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "designer|displayName": "formServices",
+                "height": 141,
+                "id": "formServices",
+                "itemId": "formServices",
+                "layout": "column",
+                "layout|columnWidth": 1,
+                "title": null,
+                "width": 838
+            },
+            "name": "MyForm",
+            "designerId": "bc3b6365-e919-400b-afb9-d6de5784f5c7",
+            "cn": [
+                {
+                    "type": "basicfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "confirmRecord",
+                        "implHandler": [
+                            "if(Ext.getCmp('formServices').isValid()){",
+                            "    var formRecord    = 'formServices';",
+                            "    var apiController = 'apiServices';",
+                            "    var apiMethod     = 'createServices';",
+                            "",
+                            "    var objJsonRequest = new Object();",
+                            "    objJsonRequest.apiController = apiController;",
+                            "    objJsonRequest.apiMethod     = apiMethod;",
+                            "    objJsonRequest.apiData       = trex.prepareFormFields(formRecord);",
+                            "",
+                            "    var functionSuccess = function(){",
+                            "        var jsonData = trex.getInfoDataBridge(apiController);",
+                            "",
+                            "        trex.showInfo(jsonData, 'information');",
+                            "",
+                            "        var winServices = Ext.getCmp('winServices');",
+                            "        winServices.close();",
+                            "",
+                            "        Ext.getStore('storeServices').load();",
+                            "",
+                            "    };",
+                            "",
+                            "    var functionFailure = function(){",
+                            "        var jsonData = trex.getInfoDataBridge(apiController);",
+                            "        trex.showInfo(jsonData, 'error', 'tfCompany');",
+                            "    };",
+                            "",
+                            "    trex.doDataBridge(objJsonRequest,",
+                            "                      functionSuccess,",
+                            "                      null,",
+                            "                      functionFailure,",
+                            "                      null);",
+                            "",
+                            "}",
+                            "else{",
+                            "",
+                            "    trex.message('error',",
+                            "                 'Incomplete Form',",
+                            "                 'You must fill the required fields');",
+                            "}"
+                        ]
+                    },
+                    "name": "confirmRecord",
+                    "designerId": "5809c29f-a4f9-4475-80d8-e49faba36c90"
+                },
+                {
+                    "type": "Ext.form.FieldSet",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "fieldsetServicesInformation",
+                        "height": 117,
+                        "id": "fieldsetServicesInformation",
+                        "itemId": "fieldsetServicesInformation",
+                        "layout": "column",
+                        "layout|columnWidth": 1,
+                        "title": "<b>General information</b>",
+                        "width": 816
+                    },
+                    "name": "MyFieldSet",
+                    "designerId": "be47edbc-107b-4c5b-bad1-d5215c4aee72",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfTurn",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Turn",
+                                "id": "tfTurn",
+                                "itemId": "tfTurn",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 60,
+                                "layout|columnWidth": 0.2,
+                                "margin": "0 5 5 5",
+                                "requiredCls": null,
+                                "width": 387
+                            },
+                            "name": "MyTextField1",
+                            "designerId": "7fb0aada-f4b1-4a46-aa34-c827b195a6ce"
+                        },
+                        {
+                            "type": "Ext.form.field.ComboBox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "cbStandTaxi",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Stand Taxi",
+                                "id": "cbStandTaxi",
+                                "itemId": "cbStandTaxi",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 80,
+                                "layout|columnWidth": 0.25,
+                                "margin": "0 5 5 5",
+                                "requiredCls": null
+                            },
+                            "name": "MyComboBox",
+                            "designerId": "c43d51f4-3cdf-43e2-a5d6-5332d6b230cb"
+                        },
+                        {
+                            "type": "Ext.form.field.Display",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tfStandDesc",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Description",
+                                "id": "tfStandDesc",
+                                "itemId": "tfStandDesc",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 120,
+                                "layout|columnWidth": 0.55,
+                                "margin": "0 5 5 5",
+                                "width": 387
+                            },
+                            "name": "MyDisplayField",
+                            "designerId": "d2ec68ed-8a4b-4d37-b448-ac982b570b95"
+                        },
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "dtServDate",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Date",
+                                "id": "dtServDate",
+                                "itemId": "dtServDate",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 60,
+                                "layout|columnWidth": 0.25,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyDateField",
+                            "designerId": "768dce19-8cf5-443b-9315-d00bc23bb4ce"
+                        },
+                        {
+                            "type": "Ext.form.field.ComboBox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "cbTypeService",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Type Services",
+                                "id": "cbTypeServices",
+                                "itemId": "cbTypeServices",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": null,
+                                "layout|columnWidth": 0.35,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyComboBox1",
+                            "designerId": "5bbc022f-f303-4cfe-b23a-1bbdea321099"
+                        },
+                        {
+                            "type": "Ext.form.field.ComboBox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "cbTypeFare",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Type Fare",
+                                "id": "cbTypeFire",
+                                "itemId": "cbTypeFire",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": null,
+                                "layout|columnWidth": 0.35,
+                                "margin": "0 5 5 15"
+                            },
+                            "name": "MyComboBox3",
+                            "designerId": "62204cb1-eb80-49bf-a627-f7270dcb180a"
+                        },
+                        {
+                            "type": "Ext.form.field.Checkbox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "Appointment",
+                                "designer|displayName": "chAppointment",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": null,
+                                "id": "chAppointment",
+                                "itemId": "chAppointment",
+                                "labelClsExtra": "requiredField",
+                                "layout|columnWidth": 0.17,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyCheckbox",
+                            "designerId": "8d34b986-7054-485c-837a-4b275c7243f9"
+                        },
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "cbAppointmentDate",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Appointment Date",
+                                "id": "cbAppointmentDate",
+                                "itemId": "cbAppointmentDate",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 130,
+                                "layout|columnWidth": 0.4,
+                                "margin": "0 5 5 40"
+                            },
+                            "name": "MyDateField1",
+                            "designerId": "3954a43d-ebcf-4250-be03-2493a032d63c"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfAppointmentHour",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Appoitment Hour",
+                                "id": "tfAppointmentHour",
+                                "itemId": "tfAppointmentHour",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 130,
+                                "layout|columnWidth": 0.3,
+                                "margin": "0 5 5 10",
+                                "requiredCls": null,
+                                "width": 387
+                            },
+                            "name": "MyTextField",
+                            "designerId": "e9ad12e6-4195-4141-96f8-1f6087e5398b"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "toolbarServices",
+                "dock": "top",
+                "id": "toolbarServices",
+                "itemId": "toolbarServices"
+            },
+            "name": "MyToolbar1",
+            "designerId": "fef6eff8-877b-4097-b7d1-0ec4ea38faad",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnConfirmServices",
+                        "iconCls": "ion-checkmark-circled icon16",
+                        "id": "btnConfirmServices",
+                        "itemId": "btnConfirmServices",
+                        "layout|flex": null,
+                        "text": "Confirm",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton8",
+                    "designerId": "59f66903-b5a7-40b0-a808-49df68dfad7a",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "Ext.getCmp('formServices').confirmRecord();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "2b953195-3391-4e68-b4b6-8b765c00c67b"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.toolbar.Fill",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "filServices",
+                        "id": "filServices",
+                        "itemId": "filServices",
+                        "layout|flex": null
+                    },
+                    "name": "MyFill1",
+                    "designerId": "153ca171-158d-445b-9be4-43401d1fd05f"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnCloseServices",
+                        "iconCls": "ion-close-circled icon16",
+                        "id": "btnCloseServices",
+                        "itemId": "btnCloseServices",
+                        "layout|flex": null,
+                        "text": "Close",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton9",
+                    "designerId": "05f546a7-2df5-4ca8-97a5-f903e6c8e85a",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var winServices = Ext.getCmp('winServices');",
+                                    "winServices.close();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "751b74d3-cade-464b-9ec2-13112ca462c3"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

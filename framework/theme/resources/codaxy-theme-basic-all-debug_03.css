@@ -1,0 +1,2061 @@
+/* line 414, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-left-tl,
+.x-tab-blue-tab-active-left-bl,
+.x-tab-blue-tab-active-left-tr,
+.x-tab-blue-tab-active-left-br,
+.x-tab-blue-tab-active-left-tc,
+.x-tab-blue-tab-active-left-bc,
+.x-tab-blue-tab-active-left-ml,
+.x-tab-blue-tab-active-left-mr {
+    background-image: url(images/tab/tab-blue-tab-active-left-corners.gif);
+}
+
+/* line 454, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-left-ml,
+.x-tab-blue-tab-active-left-mr {
+    background-image: url(images/tab/tab-blue-tab-active-left-sides.gif);
+}
+
+/* line 464, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-left-mc {
+    padding: 2px 9px 3px 8px;
+}
+
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-blue-tab-active-left:before {
+    display: none;
+    content: "x-slicer:stretch:bottom, frame:2px 0 0 2px, frame-bg:url(images/tab/tab-blue-tab-active-left-fbg.gif), corners:url(images/tab/tab-blue-tab-active-left-corners.gif), sides:url(images/tab/tab-blue-tab-active-left-sides.gif)" !important;
+}
+
+/*</if slicer>*/
+/* */
+/* line 187, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right {
+    -moz-border-radius-topleft: 0px;
+    -webkit-border-top-left-radius: 0px;
+    border-top-left-radius: 0px;
+    -moz-border-radius-topright: 0px;
+    -webkit-border-top-right-radius: 0px;
+    border-top-right-radius: 0px;
+    -moz-border-radius-bottomright: 0px;
+    -webkit-border-bottom-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    -moz-border-radius-bottomleft: 0px;
+    -webkit-border-bottom-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding: 3px 9px 3px 9px;
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    background-image: none;
+    background-color: #c7c7c7;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #c7c7c7), color-stop(100%, #c0c0c0));
+    background-image: -webkit-linear-gradient(top, #c7c7c7, #c0c0c0);
+    background-image: -moz-linear-gradient(top, #c7c7c7, #c0c0c0);
+    background-image: -o-linear-gradient(top, #c7c7c7, #c0c0c0);
+    background-image: -ms-linear-gradient(top, #c7c7c7, #c0c0c0);
+    background-image: linear-gradient(top, #c7c7c7, #c0c0c0);
+}
+
+/* line 237, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right-mc {
+    background-image: url(images/tab/tab-blue-tab-active-right-fbg.gif);
+    background-position: 0 top;
+    background-color: #c7c7c7;
+}
+
+/* line 264, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-nbr .x-tab-blue-tab-active-right {
+    padding: 0 !important;
+    border-width: 0 !important;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+    border-radius: 0px;
+    background-color: transparent !important;
+    background-image: none;
+    box-shadow: none !important;
+}
+
+/* line 281, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right-frameInfo {
+    font-family: th-1-1-1-0-0-1-1-0-3-9-3-9;
+}
+
+/* line 347, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right-tl {
+    background-position: 0 -2px;
+}
+
+/* line 351, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right-tr {
+    background-position: right -3px;
+}
+
+/* line 355, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right-bl {
+    background-position: 0 -4px;
+}
+
+/* line 359, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right-br {
+    background-position: right -5px;
+}
+
+/* line 363, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right-ml {
+    background-position: 0 top;
+}
+
+/* line 371, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right-mr {
+    background-position: right top;
+}
+
+/* line 379, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right-tc {
+    background-position: 0 0;
+}
+
+/* line 383, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right-bc {
+    background-position: 0 -1px;
+}
+
+/* line 390, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right-tr,
+.x-tab-blue-tab-active-right-br,
+.x-tab-blue-tab-active-right-mr {
+    padding-right: 1px;
+}
+
+/* line 396, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right-tl,
+.x-tab-blue-tab-active-right-bl,
+.x-tab-blue-tab-active-right-ml {
+    padding-left: 0;
+}
+
+/* line 400, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right-tc {
+    height: 1px;
+}
+
+/* line 403, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right-bc {
+    height: 1px;
+}
+
+/* line 414, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right-tl,
+.x-tab-blue-tab-active-right-bl,
+.x-tab-blue-tab-active-right-tr,
+.x-tab-blue-tab-active-right-br,
+.x-tab-blue-tab-active-right-tc,
+.x-tab-blue-tab-active-right-bc,
+.x-tab-blue-tab-active-right-ml,
+.x-tab-blue-tab-active-right-mr {
+    background-image: url(images/tab/tab-blue-tab-active-right-corners.gif);
+}
+
+/* line 454, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right-ml,
+.x-tab-blue-tab-active-right-mr {
+    background-image: url(images/tab/tab-blue-tab-active-right-sides.gif);
+}
+
+/* line 464, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
+.x-tab-blue-tab-active-right-mc {
+    padding: 2px 9px 3px 9px;
+}
+
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-blue-tab-active-right:before {
+    display: none;
+    content: "x-slicer:stretch:bottom, frame:1px 1px 1px 0, frame-bg:url(images/tab/tab-blue-tab-active-right-fbg.gif), corners:url(images/tab/tab-blue-tab-active-right-corners.gif), sides:url(images/tab/tab-blue-tab-active-right-sides.gif)" !important;
+}
+
+/*</if slicer>*/
+/* */
+/* line 1073, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active {
+    border-color: #8a8a8a;
+    cursor: pointer;
+    -webkit-box-shadow: #e1e1e1 0 1px 0px 0 inset;
+    -moz-box-shadow: #e1e1e1 0 1px 0px 0 inset;
+    box-shadow: #e1e1e1 0 1px 0px 0 inset;
+}
+
+/* line 1083, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-top {
+    margin: 0px;
+    -webkit-box-shadow: #e1e1e1 0 1px 0px 0 inset;
+    -moz-box-shadow: #e1e1e1 0 1px 0px 0 inset;
+    box-shadow: #e1e1e1 0 1px 0px 0 inset;
+}
+
+/* line 1092, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-top.x-tab-rotate-left {
+    margin: 0px 0px 0px 0px;
+}
+
+/* line 1114, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-top.x-tab-focus {
+    -webkit-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    -moz-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+}
+
+/* line 1156, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-top.x-tab.x-tab-active {
+    -webkit-box-shadow: white 0 1px 0px 0 inset;
+    -moz-box-shadow: white 0 1px 0px 0 inset;
+    box-shadow: white 0 1px 0px 0 inset;
+}
+
+/* line 1185, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-top.x-tab.x-tab-disabled {
+    -webkit-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    -moz-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+}
+
+/* line 1198, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-right {
+    margin: 0px 0px 0px 0px;
+    -webkit-box-shadow: #e1e1e1 0 1px 0px 0 inset;
+    -moz-box-shadow: #e1e1e1 0 1px 0px 0 inset;
+    box-shadow: #e1e1e1 0 1px 0px 0 inset;
+}
+
+/* line 1207, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-right.x-tab-rotate-right {
+    margin: 0px 0px 0px 0px;
+}
+
+/* line 1229, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-right.x-tab-focus {
+    -webkit-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    -moz-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+}
+
+/* line 1271, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-right.x-tab.x-tab-active {
+    -webkit-box-shadow: white 0 1px 0px 0 inset;
+    -moz-box-shadow: white 0 1px 0px 0 inset;
+    box-shadow: white 0 1px 0px 0 inset;
+}
+
+/* line 1300, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-right.x-tab.x-tab-disabled {
+    -webkit-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    -moz-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+}
+
+/* line 1313, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-bottom {
+    margin: 0px 0px 0px 0px;
+    -webkit-box-shadow: #e1e1e1 0 1px 0px 0 inset;
+    -moz-box-shadow: #e1e1e1 0 1px 0px 0 inset;
+    box-shadow: #e1e1e1 0 1px 0px 0 inset;
+}
+
+/* line 1322, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-bottom.x-tab-rotate-left {
+    margin: 0px 0px 0px 0px;
+}
+
+/* line 1344, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-bottom.x-tab-focus {
+    -webkit-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    -moz-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+}
+
+/* line 1386, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-bottom.x-tab.x-tab-active {
+    -webkit-box-shadow: white 0 1px 0px 0 inset;
+    -moz-box-shadow: white 0 1px 0px 0 inset;
+    box-shadow: white 0 1px 0px 0 inset;
+}
+
+/* line 1415, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-bottom.x-tab.x-tab-disabled {
+    -webkit-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    -moz-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+}
+
+/* line 1428, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-left {
+    margin: 0px 0px 0px 0px;
+    -webkit-box-shadow: #e1e1e1 0 1px 0px 0 inset;
+    -moz-box-shadow: #e1e1e1 0 1px 0px 0 inset;
+    box-shadow: #e1e1e1 0 1px 0px 0 inset;
+}
+
+/* line 1437, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-left.x-tab-rotate-right {
+    margin: 0px 0px 0px 0px;
+}
+
+/* line 1459, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-left.x-tab-focus {
+    -webkit-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    -moz-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+}
+
+/* line 1501, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-left.x-tab.x-tab-active {
+    -webkit-box-shadow: white 0 1px 0px 0 inset;
+    -moz-box-shadow: white 0 1px 0px 0 inset;
+    box-shadow: white 0 1px 0px 0 inset;
+}
+
+/* line 1530, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-left.x-tab.x-tab-disabled {
+    -webkit-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    -moz-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+}
+
+/* line 1543, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-button-blue-tab-active {
+    height: 16px;
+}
+
+/* line 1548, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-inner-blue-tab-active {
+    font: bold 11px/16px "Segoe UI", Segoe, "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+    color: #212121;
+    max-width: 100%;
+}
+
+/* line 1559, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-icon-right > .x-tab-inner-blue-tab-active, .x-tab-icon-left > .x-tab-inner-blue-tab-active {
+    max-width: calc(100% - 16px);
+}
+
+/* line 1566, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-icon-el-blue-tab-active {
+    height: 16px;
+    line-height: 16px;
+    background-position: center center;
+}
+
+/* line 1570, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-icon-left > .x-tab-icon-el-blue-tab-active, .x-tab-icon-right > .x-tab-icon-el-blue-tab-active {
+    width: 16px;
+}
+
+/* line 1575, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-icon-top > .x-tab-icon-el-blue-tab-active, .x-tab-icon-bottom > .x-tab-icon-el-blue-tab-active {
+    min-width: 16px;
+}
+
+/* line 1582, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-icon-el-blue-tab-active.x-tab-glyph {
+    font-size: 16px;
+    line-height: 16px;
+    color: #212121;
+    opacity: 0.5;
+}
+
+/* line 1598, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-ie8 .x-tab-icon-el-blue-tab-active.x-tab-glyph {
+    color: #747474;
+}
+
+/* line 1605, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-text.x-tab-icon-left > .x-tab-icon-el-blue-tab-active {
+    margin-right: 4px;
+}
+
+/* line 1616, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-text.x-tab-icon-right > .x-tab-icon-el-blue-tab-active {
+    margin-left: 4px;
+}
+
+/* line 1627, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-text.x-tab-icon-top > .x-tab-icon-el-blue-tab-active {
+    margin-bottom: 4px;
+}
+
+/* line 1631, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-text.x-tab-icon-bottom > .x-tab-icon-el-blue-tab-active {
+    margin-top: 4px;
+}
+
+/* line 1702, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over.x-tab-blue-tab-active {
+    background-color: #d4d4d4;
+}
+
+/* line 1711, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over.x-tab-blue-tab-active .x-tab-inner-blue-tab-active {
+    color: #242424;
+}
+
+/* line 1727, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over.x-tab-blue-tab-active .x-tab-glyph {
+    color: #242424;
+}
+
+/* line 1735, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-ie8m .x-tab-over.x-tab-blue-tab-active .x-tab-glyph {
+    color: #7c7c7c;
+}
+
+/* line 1746, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over.x-tab-blue-tab-active-top, .x-tab-over.x-tab-blue-tab-active-left, .x-tab-over.x-tab-blue-tab-active-right {
+    background-image: none;
+    background-color: #d4d4d4;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #d4d4d4), color-stop(100%, #d1d1d1));
+    background-image: -webkit-linear-gradient(top, #d4d4d4, #d1d1d1);
+    background-image: -moz-linear-gradient(top, #d4d4d4, #d1d1d1);
+    background-image: -o-linear-gradient(top, #d4d4d4, #d1d1d1);
+    background-image: -ms-linear-gradient(top, #d4d4d4, #d1d1d1);
+    background-image: linear-gradient(top, #d4d4d4, #d1d1d1);
+}
+
+/* line 1749, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over.x-tab-blue-tab-active-bottom {
+    background-image: none;
+    background-color: #d4d4d4;
+    background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #d4d4d4), color-stop(100%, #d1d1d1));
+    background-image: -webkit-linear-gradient(bottom, #d4d4d4, #d1d1d1);
+    background-image: -moz-linear-gradient(bottom, #d4d4d4, #d1d1d1);
+    background-image: -o-linear-gradient(bottom, #d4d4d4, #d1d1d1);
+    background-image: -ms-linear-gradient(bottom, #d4d4d4, #d1d1d1);
+    background-image: linear-gradient(bottom, #d4d4d4, #d1d1d1);
+}
+
+/* line 1813, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active.x-tab-blue-tab-active {
+    background-color: #e8e8e8;
+}
+
+/* line 1819, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active.x-tab-blue-tab-active .x-tab-inner-blue-tab-active {
+    color: #262626;
+}
+
+/* line 1834, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active.x-tab-blue-tab-active .x-tab-glyph {
+    color: #262626;
+}
+
+/* line 1842, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-ie8 .x-tab.x-tab-active.x-tab-blue-tab-active .x-tab-glyph {
+    color: #878787;
+}
+
+/* line 1852, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active.x-tab-blue-tab-active-top, .x-tab.x-tab-active.x-tab-blue-tab-active-left, .x-tab.x-tab-active.x-tab-blue-tab-active-right {
+    background-image: none;
+    background-color: #e8e8e8;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f0f0f0), color-stop(100%, #ebebeb));
+    background-image: -webkit-linear-gradient(top, #f0f0f0, #ebebeb);
+    background-image: -moz-linear-gradient(top, #f0f0f0, #ebebeb);
+    background-image: -o-linear-gradient(top, #f0f0f0, #ebebeb);
+    background-image: -ms-linear-gradient(top, #f0f0f0, #ebebeb);
+    background-image: linear-gradient(top, #f0f0f0, #ebebeb);
+}
+
+/* line 1856, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active.x-tab-blue-tab-active-bottom {
+    background-image: none;
+    background-color: #e8e8e8;
+    background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #f0f0f0), color-stop(100%, #ebebeb));
+    background-image: -webkit-linear-gradient(bottom, #f0f0f0, #ebebeb);
+    background-image: -moz-linear-gradient(bottom, #f0f0f0, #ebebeb);
+    background-image: -o-linear-gradient(bottom, #f0f0f0, #ebebeb);
+    background-image: -ms-linear-gradient(bottom, #f0f0f0, #ebebeb);
+    background-image: linear-gradient(bottom, #f0f0f0, #ebebeb);
+}
+
+/* line 1921, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled.x-tab-blue-tab-active {
+    background-color: #b0b0b0;
+    cursor: default;
+}
+
+/* line 1938, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled.x-tab-blue-tab-active .x-tab-inner-blue-tab-active {
+    color: #404040;
+}
+
+/* line 1957, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled.x-tab-blue-tab-active .x-tab-icon-el-blue-tab-active {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+    opacity: 0.5;
+}
+
+/* line 1962, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled.x-tab-blue-tab-active .x-tab-glyph {
+    color: #404040;
+    opacity: 0.3;
+    filter: none;
+}
+
+/* line 1977, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-ie8 .x-tab.x-tab-disabled.x-tab-blue-tab-active .x-tab-glyph {
+    color: #8e8e8e;
+}
+
+/* line 1986, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled.x-tab-blue-tab-active-top, .x-tab.x-tab-disabled.x-tab-blue-tab-active-left, .x-tab.x-tab-disabled.x-tab-blue-tab-active-right {
+    background-image: none;
+    background-color: #b0b0b0;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #b0b0b0), color-stop(100%, #b5b5b5));
+    background-image: -webkit-linear-gradient(top, #b0b0b0, #b5b5b5);
+    background-image: -moz-linear-gradient(top, #b0b0b0, #b5b5b5);
+    background-image: -o-linear-gradient(top, #b0b0b0, #b5b5b5);
+    background-image: -ms-linear-gradient(top, #b0b0b0, #b5b5b5);
+    background-image: linear-gradient(top, #b0b0b0, #b5b5b5);
+}
+
+/* line 1990, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled.x-tab-blue-tab-active-bottom {
+    background-image: none;
+    background-color: #b0b0b0;
+    background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #b0b0b0), color-stop(100%, #b5b5b5));
+    background-image: -webkit-linear-gradient(bottom, #b0b0b0, #b5b5b5);
+    background-image: -moz-linear-gradient(bottom, #b0b0b0, #b5b5b5);
+    background-image: -o-linear-gradient(bottom, #b0b0b0, #b5b5b5);
+    background-image: -ms-linear-gradient(bottom, #b0b0b0, #b5b5b5);
+    background-image: linear-gradient(bottom, #b0b0b0, #b5b5b5);
+}
+
+/* line 1997, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-nbr .x-tab-blue-tab-active {
+    background-image: none;
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over .x-tab-blue-tab-active-top-tl,
+.x-tab-over .x-tab-blue-tab-active-top-bl,
+.x-tab-over .x-tab-blue-tab-active-top-tr,
+.x-tab-over .x-tab-blue-tab-active-top-br,
+.x-tab-over .x-tab-blue-tab-active-top-tc,
+.x-tab-over .x-tab-blue-tab-active-top-bc {
+    background-image: url(images/tab/tab-blue-tab-active-top-over-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over .x-tab-blue-tab-active-top-ml,
+.x-tab-over .x-tab-blue-tab-active-top-mr {
+    background-image: url(images/tab/tab-blue-tab-active-top-over-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over .x-tab-blue-tab-active-top-mc {
+    background-color: #d4d4d4;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-top-over-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus .x-tab-blue-tab-active-top-tl,
+.x-tab-focus .x-tab-blue-tab-active-top-bl,
+.x-tab-focus .x-tab-blue-tab-active-top-tr,
+.x-tab-focus .x-tab-blue-tab-active-top-br,
+.x-tab-focus .x-tab-blue-tab-active-top-tc,
+.x-tab-focus .x-tab-blue-tab-active-top-bc {
+    background-image: url(images/tab/tab-blue-tab-active-top-focus-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus .x-tab-blue-tab-active-top-ml,
+.x-tab-focus .x-tab-blue-tab-active-top-mr {
+    background-image: url(images/tab/tab-blue-tab-active-top-focus-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus .x-tab-blue-tab-active-top-mc {
+    background-color: #c7c7c7;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-top-focus-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-top-tl,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-top-bl,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-top-tr,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-top-br,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-top-tc,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-top-bc {
+    background-image: url(images/tab/tab-blue-tab-active-top-focus-over-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-top-ml,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-top-mr {
+    background-image: url(images/tab/tab-blue-tab-active-top-focus-over-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-top-mc {
+    background-color: #d4d4d4;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-top-focus-over-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active .x-tab-blue-tab-active-top-tl,
+.x-tab.x-tab-active .x-tab-blue-tab-active-top-bl,
+.x-tab.x-tab-active .x-tab-blue-tab-active-top-tr,
+.x-tab.x-tab-active .x-tab-blue-tab-active-top-br,
+.x-tab.x-tab-active .x-tab-blue-tab-active-top-tc,
+.x-tab.x-tab-active .x-tab-blue-tab-active-top-bc {
+    background-image: url(images/tab/tab-blue-tab-active-top-active-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active .x-tab-blue-tab-active-top-ml,
+.x-tab.x-tab-active .x-tab-blue-tab-active-top-mr {
+    background-image: url(images/tab/tab-blue-tab-active-top-active-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active .x-tab-blue-tab-active-top-mc {
+    background-color: #e8e8e8;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-top-active-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-top-tl,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-top-bl,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-top-tr,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-top-br,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-top-tc,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-top-bc {
+    background-image: url(images/tab/tab-blue-tab-active-top-focus-active-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-top-ml,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-top-mr {
+    background-image: url(images/tab/tab-blue-tab-active-top-focus-active-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-top-mc {
+    background-color: #e8e8e8;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-top-focus-active-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-top-tl,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-top-bl,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-top-tr,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-top-br,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-top-tc,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-top-bc {
+    background-image: url(images/tab/tab-blue-tab-active-top-disabled-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-top-ml,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-top-mr {
+    background-image: url(images/tab/tab-blue-tab-active-top-disabled-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-top-mc {
+    background-color: #b0b0b0;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-top-disabled-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over .x-tab-blue-tab-active-right-tl,
+.x-tab-over .x-tab-blue-tab-active-right-bl,
+.x-tab-over .x-tab-blue-tab-active-right-tr,
+.x-tab-over .x-tab-blue-tab-active-right-br,
+.x-tab-over .x-tab-blue-tab-active-right-tc,
+.x-tab-over .x-tab-blue-tab-active-right-bc {
+    background-image: url(images/tab/tab-blue-tab-active-right-over-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over .x-tab-blue-tab-active-right-ml,
+.x-tab-over .x-tab-blue-tab-active-right-mr {
+    background-image: url(images/tab/tab-blue-tab-active-right-over-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over .x-tab-blue-tab-active-right-mc {
+    background-color: #d4d4d4;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-right-over-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus .x-tab-blue-tab-active-right-tl,
+.x-tab-focus .x-tab-blue-tab-active-right-bl,
+.x-tab-focus .x-tab-blue-tab-active-right-tr,
+.x-tab-focus .x-tab-blue-tab-active-right-br,
+.x-tab-focus .x-tab-blue-tab-active-right-tc,
+.x-tab-focus .x-tab-blue-tab-active-right-bc {
+    background-image: url(images/tab/tab-blue-tab-active-right-focus-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus .x-tab-blue-tab-active-right-ml,
+.x-tab-focus .x-tab-blue-tab-active-right-mr {
+    background-image: url(images/tab/tab-blue-tab-active-right-focus-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus .x-tab-blue-tab-active-right-mc {
+    background-color: #c7c7c7;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-right-focus-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-right-tl,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-right-bl,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-right-tr,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-right-br,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-right-tc,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-right-bc {
+    background-image: url(images/tab/tab-blue-tab-active-right-focus-over-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-right-ml,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-right-mr {
+    background-image: url(images/tab/tab-blue-tab-active-right-focus-over-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-right-mc {
+    background-color: #d4d4d4;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-right-focus-over-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active .x-tab-blue-tab-active-right-tl,
+.x-tab.x-tab-active .x-tab-blue-tab-active-right-bl,
+.x-tab.x-tab-active .x-tab-blue-tab-active-right-tr,
+.x-tab.x-tab-active .x-tab-blue-tab-active-right-br,
+.x-tab.x-tab-active .x-tab-blue-tab-active-right-tc,
+.x-tab.x-tab-active .x-tab-blue-tab-active-right-bc {
+    background-image: url(images/tab/tab-blue-tab-active-right-active-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active .x-tab-blue-tab-active-right-ml,
+.x-tab.x-tab-active .x-tab-blue-tab-active-right-mr {
+    background-image: url(images/tab/tab-blue-tab-active-right-active-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active .x-tab-blue-tab-active-right-mc {
+    background-color: #e8e8e8;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-right-active-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-right-tl,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-right-bl,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-right-tr,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-right-br,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-right-tc,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-right-bc {
+    background-image: url(images/tab/tab-blue-tab-active-right-focus-active-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-right-ml,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-right-mr {
+    background-image: url(images/tab/tab-blue-tab-active-right-focus-active-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-right-mc {
+    background-color: #e8e8e8;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-right-focus-active-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-right-tl,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-right-bl,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-right-tr,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-right-br,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-right-tc,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-right-bc {
+    background-image: url(images/tab/tab-blue-tab-active-right-disabled-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-right-ml,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-right-mr {
+    background-image: url(images/tab/tab-blue-tab-active-right-disabled-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-right-mc {
+    background-color: #b0b0b0;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-right-disabled-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over .x-tab-blue-tab-active-bottom-tl,
+.x-tab-over .x-tab-blue-tab-active-bottom-bl,
+.x-tab-over .x-tab-blue-tab-active-bottom-tr,
+.x-tab-over .x-tab-blue-tab-active-bottom-br,
+.x-tab-over .x-tab-blue-tab-active-bottom-tc,
+.x-tab-over .x-tab-blue-tab-active-bottom-bc {
+    background-image: url(images/tab/tab-blue-tab-active-bottom-over-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over .x-tab-blue-tab-active-bottom-ml,
+.x-tab-over .x-tab-blue-tab-active-bottom-mr {
+    background-image: url(images/tab/tab-blue-tab-active-bottom-over-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over .x-tab-blue-tab-active-bottom-mc {
+    background-color: #d4d4d4;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-bottom-over-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus .x-tab-blue-tab-active-bottom-tl,
+.x-tab-focus .x-tab-blue-tab-active-bottom-bl,
+.x-tab-focus .x-tab-blue-tab-active-bottom-tr,
+.x-tab-focus .x-tab-blue-tab-active-bottom-br,
+.x-tab-focus .x-tab-blue-tab-active-bottom-tc,
+.x-tab-focus .x-tab-blue-tab-active-bottom-bc {
+    background-image: url(images/tab/tab-blue-tab-active-bottom-focus-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus .x-tab-blue-tab-active-bottom-ml,
+.x-tab-focus .x-tab-blue-tab-active-bottom-mr {
+    background-image: url(images/tab/tab-blue-tab-active-bottom-focus-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus .x-tab-blue-tab-active-bottom-mc {
+    background-color: #c7c7c7;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-bottom-focus-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-bottom-tl,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-bottom-bl,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-bottom-tr,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-bottom-br,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-bottom-tc,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-bottom-bc {
+    background-image: url(images/tab/tab-blue-tab-active-bottom-focus-over-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-bottom-ml,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-bottom-mr {
+    background-image: url(images/tab/tab-blue-tab-active-bottom-focus-over-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-bottom-mc {
+    background-color: #d4d4d4;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-bottom-focus-over-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active .x-tab-blue-tab-active-bottom-tl,
+.x-tab.x-tab-active .x-tab-blue-tab-active-bottom-bl,
+.x-tab.x-tab-active .x-tab-blue-tab-active-bottom-tr,
+.x-tab.x-tab-active .x-tab-blue-tab-active-bottom-br,
+.x-tab.x-tab-active .x-tab-blue-tab-active-bottom-tc,
+.x-tab.x-tab-active .x-tab-blue-tab-active-bottom-bc {
+    background-image: url(images/tab/tab-blue-tab-active-bottom-active-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active .x-tab-blue-tab-active-bottom-ml,
+.x-tab.x-tab-active .x-tab-blue-tab-active-bottom-mr {
+    background-image: url(images/tab/tab-blue-tab-active-bottom-active-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active .x-tab-blue-tab-active-bottom-mc {
+    background-color: #e8e8e8;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-bottom-active-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-bottom-tl,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-bottom-bl,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-bottom-tr,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-bottom-br,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-bottom-tc,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-bottom-bc {
+    background-image: url(images/tab/tab-blue-tab-active-bottom-focus-active-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-bottom-ml,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-bottom-mr {
+    background-image: url(images/tab/tab-blue-tab-active-bottom-focus-active-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-bottom-mc {
+    background-color: #e8e8e8;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-bottom-focus-active-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-bottom-tl,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-bottom-bl,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-bottom-tr,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-bottom-br,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-bottom-tc,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-bottom-bc {
+    background-image: url(images/tab/tab-blue-tab-active-bottom-disabled-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-bottom-ml,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-bottom-mr {
+    background-image: url(images/tab/tab-blue-tab-active-bottom-disabled-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-bottom-mc {
+    background-color: #b0b0b0;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-bottom-disabled-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over .x-tab-blue-tab-active-left-tl,
+.x-tab-over .x-tab-blue-tab-active-left-bl,
+.x-tab-over .x-tab-blue-tab-active-left-tr,
+.x-tab-over .x-tab-blue-tab-active-left-br,
+.x-tab-over .x-tab-blue-tab-active-left-tc,
+.x-tab-over .x-tab-blue-tab-active-left-bc {
+    background-image: url(images/tab/tab-blue-tab-active-left-over-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over .x-tab-blue-tab-active-left-ml,
+.x-tab-over .x-tab-blue-tab-active-left-mr {
+    background-image: url(images/tab/tab-blue-tab-active-left-over-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over .x-tab-blue-tab-active-left-mc {
+    background-color: #d4d4d4;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-left-over-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus .x-tab-blue-tab-active-left-tl,
+.x-tab-focus .x-tab-blue-tab-active-left-bl,
+.x-tab-focus .x-tab-blue-tab-active-left-tr,
+.x-tab-focus .x-tab-blue-tab-active-left-br,
+.x-tab-focus .x-tab-blue-tab-active-left-tc,
+.x-tab-focus .x-tab-blue-tab-active-left-bc {
+    background-image: url(images/tab/tab-blue-tab-active-left-focus-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus .x-tab-blue-tab-active-left-ml,
+.x-tab-focus .x-tab-blue-tab-active-left-mr {
+    background-image: url(images/tab/tab-blue-tab-active-left-focus-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus .x-tab-blue-tab-active-left-mc {
+    background-color: #c7c7c7;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-left-focus-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-left-tl,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-left-bl,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-left-tr,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-left-br,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-left-tc,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-left-bc {
+    background-image: url(images/tab/tab-blue-tab-active-left-focus-over-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-left-ml,
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-left-mr {
+    background-image: url(images/tab/tab-blue-tab-active-left-focus-over-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-over .x-tab-blue-tab-active-left-mc {
+    background-color: #d4d4d4;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-left-focus-over-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active .x-tab-blue-tab-active-left-tl,
+.x-tab.x-tab-active .x-tab-blue-tab-active-left-bl,
+.x-tab.x-tab-active .x-tab-blue-tab-active-left-tr,
+.x-tab.x-tab-active .x-tab-blue-tab-active-left-br,
+.x-tab.x-tab-active .x-tab-blue-tab-active-left-tc,
+.x-tab.x-tab-active .x-tab-blue-tab-active-left-bc {
+    background-image: url(images/tab/tab-blue-tab-active-left-active-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active .x-tab-blue-tab-active-left-ml,
+.x-tab.x-tab-active .x-tab-blue-tab-active-left-mr {
+    background-image: url(images/tab/tab-blue-tab-active-left-active-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active .x-tab-blue-tab-active-left-mc {
+    background-color: #e8e8e8;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-left-active-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-left-tl,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-left-bl,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-left-tr,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-left-br,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-left-tc,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-left-bc {
+    background-image: url(images/tab/tab-blue-tab-active-left-focus-active-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-left-ml,
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-left-mr {
+    background-image: url(images/tab/tab-blue-tab-active-left-focus-active-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-focus.x-tab-active .x-tab-blue-tab-active-left-mc {
+    background-color: #e8e8e8;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-left-focus-active-fbg.gif);
+}
+
+/* line 2022, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-left-tl,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-left-bl,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-left-tr,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-left-br,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-left-tc,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-left-bc {
+    background-image: url(images/tab/tab-blue-tab-active-left-disabled-corners.gif);
+}
+
+/* line 2027, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-left-ml,
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-left-mr {
+    background-image: url(images/tab/tab-blue-tab-active-left-disabled-sides.gif);
+}
+
+/* line 2031, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled .x-tab-blue-tab-active-left-mc {
+    background-color: #b0b0b0;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-blue-tab-active-left-disabled-fbg.gif);
+}
+
+/* line 2045, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active-tl,
+.x-tab-blue-tab-active-bl,
+.x-tab-blue-tab-active-tr,
+.x-tab-blue-tab-active-br {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF, endColorstr=#00FFFFFF);
+}
+
+/* line 2052, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active .x-tab-close-btn {
+    top: 2px;
+    right: 3px;
+    width: 11px;
+    height: 12px;
+    background: url(images/tab/tab-blue-tab-active-close.png) 0 0;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+    opacity: 0.4;
+}
+
+/* line 2079, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-blue-tab-active.x-tab-active .x-tab-close-btn {
+    background-position: 0 -12px;
+}
+
+/* line 2115, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-closable.x-tab-blue-tab-active .x-tab-button {
+    padding-right: 12px;
+}
+
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-focus.x-tab-blue-tab-active-top:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-top-focus-corners.gif), sides:url(images/tab/tab-blue-tab-active-top-focus-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-top-focus-fbg.gif), frame:2px 2px 2px 2px, stretch:bottom" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-focus.x-tab-blue-tab-active-right:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-right-focus-corners.gif), sides:url(images/tab/tab-blue-tab-active-right-focus-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-right-focus-fbg.gif), frame:2px 2px 2px 2px, stretch:left" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-focus.x-tab-blue-tab-active-bottom:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-bottom-focus-corners.gif), sides:url(images/tab/tab-blue-tab-active-bottom-focus-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-bottom-focus-fbg.gif), frame:2px 2px 2px 2px, stretch:top" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-focus.x-tab-blue-tab-active-left:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-left-focus-corners.gif), sides:url(images/tab/tab-blue-tab-active-left-focus-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-left-focus-fbg.gif), frame:2px 2px 2px 2px, stretch:right" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-over.x-tab-blue-tab-active-top:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-top-over-corners.gif), sides:url(images/tab/tab-blue-tab-active-top-over-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-top-over-fbg.gif), frame:2px 2px 2px 2px, stretch:bottom" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-over.x-tab-blue-tab-active-right:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-right-over-corners.gif), sides:url(images/tab/tab-blue-tab-active-right-over-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-right-over-fbg.gif), frame:2px 2px 2px 2px, stretch:left" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-over.x-tab-blue-tab-active-bottom:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-bottom-over-corners.gif), sides:url(images/tab/tab-blue-tab-active-bottom-over-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-bottom-over-fbg.gif), frame:2px 2px 2px 2px, stretch:top" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-over.x-tab-blue-tab-active-left:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-left-over-corners.gif), sides:url(images/tab/tab-blue-tab-active-left-over-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-left-over-fbg.gif), frame:2px 2px 2px 2px, stretch:right" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-active.x-tab-blue-tab-active-top:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-top-active-corners.gif), sides:url(images/tab/tab-blue-tab-active-top-active-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-top-active-fbg.gif), frame:2px 2px 2px 2px, stretch:bottom" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-active.x-tab-blue-tab-active-right:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-right-active-corners.gif), sides:url(images/tab/tab-blue-tab-active-right-active-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-right-active-fbg.gif), frame:2px 2px 2px 2px, stretch:left" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-active.x-tab-blue-tab-active-bottom:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-bottom-active-corners.gif), sides:url(images/tab/tab-blue-tab-active-bottom-active-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-bottom-active-fbg.gif), frame:2px 2px 2px 2px, stretch:top" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-active.x-tab-blue-tab-active-left:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-left-active-corners.gif), sides:url(images/tab/tab-blue-tab-active-left-active-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-left-active-fbg.gif), frame:2px 2px 2px 2px, stretch:right" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-focus.x-tab-over.x-tab-blue-tab-active-top:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-top-focus-over-corners.gif), sides:url(images/tab/tab-blue-tab-active-top-focus-over-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-top-focus-over-fbg.gif), frame:2px 2px 2px 2px, stretch:bottom" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-focus.x-tab-over.x-tab-blue-tab-active-right:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-right-focus-over-corners.gif), sides:url(images/tab/tab-blue-tab-active-right-focus-over-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-right-focus-over-fbg.gif), frame:2px 2px 2px 2px, stretch:left" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-focus.x-tab-over.x-tab-blue-tab-active-bottom:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-bottom-focus-over-corners.gif), sides:url(images/tab/tab-blue-tab-active-bottom-focus-over-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-bottom-focus-over-fbg.gif), frame:2px 2px 2px 2px, stretch:top" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-focus.x-tab-over.x-tab-blue-tab-active-left:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-left-focus-over-corners.gif), sides:url(images/tab/tab-blue-tab-active-left-focus-over-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-left-focus-over-fbg.gif), frame:2px 2px 2px 2px, stretch:right" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-focus.x-tab-active.x-tab-blue-tab-active-top:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-top-focus-active-corners.gif), sides:url(images/tab/tab-blue-tab-active-top-focus-active-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-top-focus-active-fbg.gif), frame:2px 2px 2px 2px, stretch:bottom" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-focus.x-tab-active.x-tab-blue-tab-active-right:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-right-focus-active-corners.gif), sides:url(images/tab/tab-blue-tab-active-right-focus-active-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-right-focus-active-fbg.gif), frame:2px 2px 2px 2px, stretch:left" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-focus.x-tab-active.x-tab-blue-tab-active-bottom:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-bottom-focus-active-corners.gif), sides:url(images/tab/tab-blue-tab-active-bottom-focus-active-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-bottom-focus-active-fbg.gif), frame:2px 2px 2px 2px, stretch:top" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-focus.x-tab-active.x-tab-blue-tab-active-left:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-left-focus-active-corners.gif), sides:url(images/tab/tab-blue-tab-active-left-focus-active-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-left-focus-active-fbg.gif), frame:2px 2px 2px 2px, stretch:right" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-disabled.x-tab-blue-tab-active-top:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-top-disabled-corners.gif), sides:url(images/tab/tab-blue-tab-active-top-disabled-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-top-disabled-fbg.gif), frame:2px 2px 2px 2px, stretch:bottom" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-disabled.x-tab-blue-tab-active-right:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-right-disabled-corners.gif), sides:url(images/tab/tab-blue-tab-active-right-disabled-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-right-disabled-fbg.gif), frame:2px 2px 2px 2px, stretch:left" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-disabled.x-tab-blue-tab-active-bottom:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-bottom-disabled-corners.gif), sides:url(images/tab/tab-blue-tab-active-bottom-disabled-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-bottom-disabled-fbg.gif), frame:2px 2px 2px 2px, stretch:top" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-disabled.x-tab-blue-tab-active-left:before {
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-blue-tab-active-left-disabled-corners.gif), sides:url(images/tab/tab-blue-tab-active-left-disabled-sides.gif), frame-bg:url(images/tab/tab-blue-tab-active-left-disabled-fbg.gif), frame:2px 2px 2px 2px, stretch:right" !important;
+}
+
+/*</if slicer>*/
+/* */
+/* line 130, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-blue-tab-active {
+    background-color: #c7c7c7;
+    border-style: solid;
+    border-color: #8a8a8a;
+}
+
+/* line 139, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-blue-tab-active-top {
+    border-width: 0 1px 0 0;
+}
+
+/* line 143, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-blue-tab-active-bottom {
+    border-width: 0 1px 0 0;
+}
+
+/* line 147, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-blue-tab-active-left {
+    border-width: 1px 0 0 0;
+}
+
+/* line 157, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-blue-tab-active-right {
+    border-width: 0 0 1px 0;
+}
+
+/* line 169, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-blue-tab-active-top > .x-tab-bar-body-blue-tab-active {
+    padding: 0 0 0 0;
+}
+
+/* line 173, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-blue-tab-active-bottom > .x-tab-bar-body-blue-tab-active {
+    padding: 0 0 0 0;
+}
+
+/* line 177, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-blue-tab-active-left > .x-tab-bar-body-blue-tab-active {
+    padding: 0 0 0 0;
+}
+
+/* line 187, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-blue-tab-active-right > .x-tab-bar-body-blue-tab-active {
+    padding: 0 0 0 0;
+}
+
+/* line 199, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-plain.x-tab-bar-blue-tab-active-horizontal {
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-left-width: 0;
+    border-right-width: 0;
+}
+
+/* line 206, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-plain.x-tab-bar-blue-tab-active-vertical {
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+/* line 218, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-top > .x-tab-bar-body-blue-tab-active {
+    padding-bottom: 3px;
+}
+
+/* line 222, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-bottom > .x-tab-bar-body-blue-tab-active {
+    padding-top: 3px;
+}
+
+/* line 226, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-left > .x-tab-bar-body-blue-tab-active {
+    padding-right: 3px;
+}
+
+/* line 237, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-right > .x-tab-bar-body-blue-tab-active {
+    padding-left: 3px;
+}
+
+/* line 249, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-strip-blue-tab-active {
+    border-style: solid;
+    border-color: #8a8a8a;
+    background-color: #ebebeb;
+}
+
+/* line 256, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-top > .x-tab-bar-strip-blue-tab-active {
+    border-width: 1px 0 0 1px;
+    height: 4px;
+}
+
+/* line 260, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-top.x-tab-bar-plain > .x-tab-bar-strip-blue-tab-active {
+    border-width: 1px 0 0 1px;
+}
+
+/* line 266, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-bottom > .x-tab-bar-strip-blue-tab-active {
+    border-width: 0 0 1px 1px;
+    height: 4px;
+}
+
+/* line 270, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-bottom.x-tab-bar-plain > .x-tab-bar-strip-blue-tab-active {
+    border-width: 0 0 1px 1px;
+}
+
+/* line 276, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-left > .x-tab-bar-strip-blue-tab-active {
+    border-width: 0 0 1px 1px;
+    width: 4px;
+}
+
+/* line 285, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-left.x-tab-bar-plain > .x-tab-bar-strip-blue-tab-active {
+    border-width: 0 0 1px 1px;
+}
+
+/* line 296, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-right > .x-tab-bar-strip-blue-tab-active {
+    border-width: 1px 1px 0 0;
+    width: 4px;
+}
+
+/* line 305, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-right.x-tab-bar-plain > .x-tab-bar-strip-blue-tab-active {
+    border-width: 1px 1px 0 0;
+}
+
+/* line 320, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-horizontal > .x-tab-bar-body-blue-tab-active {
+    min-height: 26px;
+}
+
+/* line 323, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-ie9m .x-tab-bar-horizontal > .x-tab-bar-body-blue-tab-active {
+    min-height: 22px;
+}
+
+/* line 329, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-vertical > .x-tab-bar-body-blue-tab-active {
+    min-width: 26px;
+}
+
+/* line 332, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-ie9m .x-tab-bar-vertical > .x-tab-bar-body-blue-tab-active {
+    min-width: 22px;
+}
+
+/* line 145, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-tab-bar-blue-tab-active-scroller .x-box-scroller-body-horizontal {
+    margin-left: 24px;
+}
+
+/* line 151, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-tab-bar-blue-tab-active-vertical-scroller .x-box-scroller-body-vertical {
+    margin-top: 24px;
+}
+
+/* line 156, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-blue-tab-active {
+    cursor: pointer;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+    opacity: 0.5;
+}
+
+/* line 165, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-blue-tab-active.x-box-scroller-hover {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+    opacity: 0.6;
+}
+
+/* line 171, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-blue-tab-active.x-box-scroller-pressed {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+    opacity: 0.7;
+}
+
+/* line 177, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-blue-tab-active.x-box-scroller-disabled {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* line 188, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-blue-tab-active.x-box-scroller-left, .x-box-scroller-tab-bar-blue-tab-active.x-box-scroller-right {
+    width: 24px;
+    height: 24px;
+    top: 50%;
+    margin-top: -12px;
+}
+
+/* line 214, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-blue-tab-active.x-box-scroller-left {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    background-image: url(images/tab-bar/blue-tab-active-scroll-left.png);
+}
+
+/* line 237, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-blue-tab-active.x-box-scroller-right {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    background-image: url(images/tab-bar/blue-tab-active-scroll-right.png);
+}
+
+/* line 263, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-blue-tab-active.x-box-scroller-top, .x-box-scroller-tab-bar-blue-tab-active.x-box-scroller-bottom {
+    height: 24px;
+    width: 24px;
+    left: 50%;
+    margin-left: -12px;
+}
+
+/* line 289, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-blue-tab-active.x-box-scroller-top {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    background-image: url(images/tab-bar/blue-tab-active-scroll-top.png);
+}
+
+/* line 312, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-blue-tab-active.x-box-scroller-bottom {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    background-image: url(images/tab-bar/blue-tab-active-scroll-bottom.png);
+}
+
+/* line 446, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-blue-tab-active-top .x-box-scroller-tab-bar-blue-tab-active {
+    margin-top: -14px;
+}
+
+/* line 450, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-blue-tab-active-right .x-box-scroller-tab-bar-blue-tab-active {
+    margin-left: -10px;
+}
+
+/* line 454, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-blue-tab-active-bottom .x-box-scroller-tab-bar-blue-tab-active {
+    margin-top: -10px;
+}
+
+/* line 458, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-tab-bar-blue-tab-active-left .x-box-scroller-tab-bar-blue-tab-active {
+    margin-left: -14px;
+}
+
+/* line 467, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-box-scroller-tab-bar-blue-tab-active {
+    background-color: #c7c7c7;
+}
+
+/* line 473, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-box-scroller-tab-bar-blue-tab-active .x-ie8 .x-box-scroller-plain {
+    background-color: #fff;
+}
+
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-bar-blue-tab-active-top:before {
+    display: none;
+    content: "x-slicer:stretch:bottom" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-bar-blue-tab-active-bottom:before {
+    display: none;
+    content: "x-slicer:stretch:top" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-bar-blue-tab-active-left:before {
+    display: none;
+    content: "x-slicer:stretch:right" !important;
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-cmd-slicer.x-tab-bar-blue-tab-active-right:before {
+    display: none;
+    content: "x-slicer:stretch:left" !important;
+}
+
+/*</if slicer>*/
+/* */
+/* line 114, ../../../codaxy-theme-core/sass/etc/ui/tab.scss */
+.x-window-active {
+    /********* TAB CLOSE *********/
+}
+
+/* line 61, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active {
+    background-color: #6ba0d0;
+    background-image: none;
+    background-color: #6ba0d0;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #73a5d2), color-stop(100%, #5491c9));
+    background-image: -webkit-linear-gradient(top, #73a5d2, #5491c9);
+    background-image: -moz-linear-gradient(top, #73a5d2, #5491c9);
+    background-image: -o-linear-gradient(top, #73a5d2, #5491c9);
+    background-image: -ms-linear-gradient(top, #73a5d2, #5491c9);
+    background-image: linear-gradient(top, #73a5d2, #5491c9);
+    border-color: transparent #4487c4 transparent #8a8a8a;
+    -webkit-box-shadow: #4487c4 0 1px 0px 0 inset;
+    -moz-box-shadow: #4487c4 0 1px 0px 0 inset;
+    box-shadow: #4487c4 0 1px 0px 0 inset;
+}
+
+/* line 76, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-bar-strip {
+    border-color: #3b7cb9 transparent transparent #8a8a8a;
+    background-color: #e8e8e8;
+}
+
+/* line 80, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active.x-tab-bar-bottom {
+    -webkit-box-shadow: #4487c4 0 -1px 0px 0 inset;
+    -moz-box-shadow: #4487c4 0 -1px 0px 0 inset;
+    box-shadow: #4487c4 0 -1px 0px 0 inset;
+}
+
+/* line 84, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active.x-tab-bar-bottom .x-tab-bar-strip {
+    border-color: transparent transparent #3b7cb9 #8a8a8a;
+}
+
+/* line 94, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active.x-tab-bar-left {
+    border-width: 0 0 1px 0;
+    -webkit-box-shadow: #4487c4 1px 0 0px 0 inset;
+    -moz-box-shadow: #4487c4 1px 0 0px 0 inset;
+    box-shadow: #4487c4 1px 0 0px 0 inset;
+}
+
+/* line 99, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active.x-tab-bar-left .x-tab-bar-strip {
+    border-width: 1px 0 0 1px;
+    border-color: #8a8a8a transparent transparent #3b7cb9;
+}
+
+/* line 105, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active.x-tab-bar-right {
+    -webkit-box-shadow: #4487c4 -1px 0 0px 0 inset;
+    -moz-box-shadow: #4487c4 -1px 0 0px 0 inset;
+    box-shadow: #4487c4 -1px 0 0px 0 inset;
+}
+
+/* line 109, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active.x-tab-bar-right .x-tab-bar-strip {
+    border-color: #8a8a8a #3b7cb9 transparent transparent;
+}
+
+/* line 114, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active.x-tab-bar-plain {
+    border-width: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+/* line 117, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active.x-tab-bar-plain .x-tab-bar-strip {
+    border-width: 1px 1px 0 1px;
+    border-color: #3b7cb9 #8a8a8a transparent #8a8a8a;
+}
+
+/* line 122, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active.x-tab-bar-plain.x-tab-bar-bottom .x-tab-bar-strip {
+    border-width: 0 1px 1px 1px;
+    border-color: transparent #8a8a8a #3b7cb9 #8a8a8a;
+}
+
+/* line 128, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active.x-tab-bar-plain.x-tab-bar-left .x-tab-bar-strip {
+    border-width: 1px 0 1px 1px;
+    border-color: #8a8a8a transparent #8a8a8a #3b7cb9;
+}
+
+/* line 134, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active.x-tab-bar-plain.x-tab-bar-right .x-tab-bar-strip {
+    border-width: 1px 1px 1px 0;
+    border-color: #8a8a8a #3b7cb9 #8a8a8a transparent;
+}
+
+/* line 142, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active {
+    background-color: #5893ca;
+    /* O-315
+         * used if the tab background color and tab border color have "alpha" value
+         */
+    background-image: none;
+    background-color: #5893ca;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #73a5d2), color-stop(100%, #639bce));
+    background-image: -webkit-linear-gradient(top, #73a5d2, #639bce);
+    background-image: -moz-linear-gradient(top, #73a5d2, #639bce);
+    background-image: -o-linear-gradient(top, #73a5d2, #639bce);
+    background-image: -ms-linear-gradient(top, #73a5d2, #639bce);
+    background-image: linear-gradient(top, #73a5d2, #639bce);
+    border-color: #4487c4;
+    -webkit-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    -moz-box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+    box-shadow: rgba(255, 255, 255, 0.3) 0 1px 0px 0 inset;
+}
+
+/* line 144, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active:first-child {
+    border-width: 1px 1px 0 1px;
+}
+
+/* line 150, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active:last-child {
+    /* O-315
+     * sets tab:last-child border width
+     */
+}
+
+/* line 177, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active .x-tab-inner-blue-tab-active {
+    color: white;
+}
+
+/* line 183, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active .x-tab-text {
+    text-shadow: rgba(255, 255, 255, 0) 1px 1px;
+}
+
+/* line 189, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-active {
+    /* O-315
+     * left border color of the tab that comes after active tab is set to be the same as active tab border color
+     */
+    -webkit-box-shadow: white 0 1px 0px 0 inset;
+    -moz-box-shadow: white 0 1px 0px 0 inset;
+    box-shadow: white 0 1px 0px 0 inset;
+    background-color: #6ba0d0;
+    /* O-315
+     * used if the active tab background color and active tab border color have "alpha" value
+     */
+    border-color: #8a8a8a #4487c4 #4487c4 #4487c4;
+    background-image: none;
+    background-color: #6ba0d0;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #efefef), color-stop(100%, #e8e8e8));
+    background-image: -webkit-linear-gradient(top, #efefef, #e8e8e8);
+    background-image: -moz-linear-gradient(top, #efefef, #e8e8e8);
+    background-image: -o-linear-gradient(top, #efefef, #e8e8e8);
+    background-image: -ms-linear-gradient(top, #efefef, #e8e8e8);
+    background-image: linear-gradient(top, #efefef, #e8e8e8);
+    color: black;
+}
+
+/* line 207, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-active:first-child {
+    border-color: #8a8a8a #4487c4 transparent #8a8a8a;
+}
+
+/* line 209, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-active:first-child:hover {
+    border-color: #8a8a8a #4487c4 transparent #8a8a8a;
+}
+
+/* line 211, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-active .x-tab-text {
+    text-shadow: rgba(255, 255, 255, 0.9) 1px 1px;
+}
+
+/* line 233, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-active .x-tab-inner {
+    color: black;
+}
+
+/* line 236, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-tab-over .x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-active .x-tab-inner {
+    color: black;
+}
+
+/* line 239, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-active.x-tab-over {
+    background-color: #6ba0d0;
+    background-image: none;
+    background-color: #6ba0d0;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #efefef), color-stop(100%, #e8e8e8));
+    background-image: -webkit-linear-gradient(top, #efefef, #e8e8e8);
+    background-image: -moz-linear-gradient(top, #efefef, #e8e8e8);
+    background-image: -o-linear-gradient(top, #efefef, #e8e8e8);
+    background-image: -ms-linear-gradient(top, #efefef, #e8e8e8);
+    background-image: linear-gradient(top, #efefef, #e8e8e8);
+    border-color: #8a8a8a #4487c4 #4487c4 #4487c4;
+    -webkit-box-shadow: white 0 1px 0px 0 inset;
+    -moz-box-shadow: white 0 1px 0px 0 inset;
+    box-shadow: white 0 1px 0px 0 inset;
+}
+
+/* line 245, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-active.x-tab-over .x-tab-inner {
+    color: black;
+}
+
+/* line 254, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-over {
+    background-color: #65a8e6;
+    border-color: #4c8cc6;
+    background-image: none;
+    background-color: #65a8e6;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #65a8e6), color-stop(100%, #5893ca));
+    background-image: -webkit-linear-gradient(top, #65a8e6, #5893ca);
+    background-image: -moz-linear-gradient(top, #65a8e6, #5893ca);
+    background-image: -o-linear-gradient(top, #65a8e6, #5893ca);
+    background-image: -ms-linear-gradient(top, #65a8e6, #5893ca);
+    background-image: linear-gradient(top, #65a8e6, #5893ca);
+}
+
+/* line 263, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-over .x-tab-inner {
+    color: white;
+}
+
+/* line 268, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-bottom {
+    -webkit-box-shadow: rgba(255, 255, 255, 0) 0 1px 0px 0 inset;
+    -moz-box-shadow: rgba(255, 255, 255, 0) 0 1px 0px 0 inset;
+    box-shadow: rgba(255, 255, 255, 0) 0 1px 0px 0 inset;
+    border-width: 0 1px 1px 0;
+}
+
+/* line 273, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-bottom:first-child {
+    border-width: 0 1px 1px 1px;
+}
+
+/* line 276, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-bottom.x-tab-active {
+    -webkit-box-shadow: rgba(255, 255, 255, 0) 0 1px 0px 0 inset;
+    -moz-box-shadow: rgba(255, 255, 255, 0) 0 1px 0px 0 inset;
+    box-shadow: rgba(255, 255, 255, 0) 0 1px 0px 0 inset;
+    border-color: #4487c4 #4487c4 #8a8a8a #4487c4;
+}
+
+/* line 281, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-bottom.x-tab-active:first-child {
+    border-color: transparent #4487c4 #8a8a8a #8a8a8a;
+}
+
+/* line 285, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-bottom:last-child {
+    /* O-315
+     * sets tab:last-child border width
+     */
+}
+
+/* line 295, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-rotate-left {
+    border-width: 1px 0 0 1px;
+}
+
+/* line 297, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-rotate-left:first-child {
+    border-width: 1px 1px 0 1px;
+    /* O-315
+     * tab border radius rotation
+     */
+}
+
+/* line 308, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-rotate-left.x-tab-active {
+    /* O-315
+     * tab active border color inheritance rotation
+     */
+}
+
+/* line 309, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-rotate-left.x-tab-active:first-child {
+    border-color: #8a8a8a #8a8a8a transparent #4487c4;
+}
+
+/* line 335, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-left {
+    border-width: 0 0 1px 1px;
+}
+
+/* line 337, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-left:first-child {
+    border-width: 1px 0 1px 1px;
+    /* O-315
+     * tab border radius rotation
+     */
+}
+
+/* line 346, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-left.x-tab-active {
+    border-color: #4487c4 #4487c4 #4487c4 #8a8a8a;
+    /* O-315
+     * tab active border color inheritance
+     */
+}
+
+/* line 348, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-left.x-tab-active:first-child {
+    border-color: #8a8a8a transparent #4487c4 #8a8a8a;
+}
+
+/* line 363, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-left:last-child {
+    /* O-315
+     * tab border radius rotation
+     */
+}
+
+/* line 379, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-right:first-child {
+    border-width: 1px 1px 1px 0;
+    /* O-315
+     * tab border radius rotation
+     */
+}
+
+/* line 388, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-right.x-tab-active {
+    border-color: #4487c4 #8a8a8a #4487c4 #4487c4;
+    /* O-315
+     * tab active border color inheritance
+     */
+}
+
+/* line 390, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-blue-tab-active .x-tab-blue-tab-active.x-tab-right.x-tab-active:first-child {
+    border-color: #8a8a8a #8a8a8a #4487c4 transparent;
+}
+
+/* line 420, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-blue-tab-active .x-tab-close-btn {
+    background-position: -12px 12px;
+}
+
+/* line 425, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-blue-tab-active.x-tab-over .x-tab-close-btn {
+    background-position: 0 -12px;
+}
+
+/* line 153, ../../../codaxy-theme-core/sass/etc/ui/tab.scss */
+.x-window-active .x-panel-body-blue-tab-active,
+.x-window-active .cx-ui-defined .x-panel-body-blue-tab-active,
+.x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-blue-tab-active,
+.x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-blue-tab-active {
+    /* O-315
+     * added _codaxy-table-ui--text-color so grid text color can be adjusted 
+     */
+    /* O-315
+     * added _codaxy-table-ui--col-border so the grid col line border color can be adjusted separately
+     */
+    /* M-131
+     * Focus indicator same size as grid cell
+     * Adding negative margin to grid-cell-inner to be same size as cell
+     */
+}
+
+/* line 118, ../../../codaxy-theme-core/sass/src/view/Table.scss */
+.x-window-active .x-panel-body-blue-tab-active .x-grid-item-selected,
+.x-window-active .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-item-selected,
+.x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-item-selected,
+.x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-item-selected {
+    background-color: #73a5d2;
+}
+
+/* line 49, ../../../codaxy-theme-core/sass/src/view/Table.scss */
+.x-window-active .x-panel-body-blue-tab-active .x-grid-item-focused,
+.x-window-active .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-item-focused,
+.x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-item-focused,
+.x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-item-focused {
+    background-color: #5491c9;
+}
+
+/* line 55, ../../../codaxy-theme-core/sass/src/view/Table.scss */
+.x-window-active .x-panel-body-blue-tab-active .x-grid-item-focused .x-grid-cell-inner:before,
+.x-window-active .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-item-focused .x-grid-cell-inner:before,
+.x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-item-focused .x-grid-cell-inner:before,
+.x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-item-focused .x-grid-cell-inner:before {
+    border-color: #6ba0d0;
+}
+
+/* line 211, ../../../codaxy-theme-core/sass/src/view/Table.scss */
+.x-window-active .x-panel-body-blue-tab-active .x-grid-with-row-lines .x-grid-item.x-grid-item-selected,
+.x-window-active .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-with-row-lines .x-grid-item.x-grid-item-selected,
+.x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-with-row-lines .x-grid-item.x-grid-item-selected,
+.x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-with-row-lines .x-grid-item.x-grid-item-selected {
+    border-color: #73a5d2;
+}
+
+/* line 226, ../../../codaxy-theme-core/sass/src/view/Table.scss */
+.x-window-active .x-panel-body-blue-tab-active .x-grid-with-row-lines .x-grid-item-selected + .x-grid-item,
+.x-window-active .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-with-row-lines .x-grid-item-selected + .x-grid-item,
+.x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-with-row-lines .x-grid-item-selected + .x-grid-item,
+.x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-with-row-lines .x-grid-item-selected + .x-grid-item {
+    border-top-color: #73a5d2;
+}
+
+/* line 245, ../../../codaxy-theme-core/sass/src/view/Table.scss */
+.x-window-active .x-panel-body-blue-tab-active .x-grid-with-col-lines .x-grid-item-selected .x-grid-cell,
+.x-window-active .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-with-col-lines .x-grid-item-selected .x-grid-cell,
+.x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-with-col-lines .x-grid-item-selected .x-grid-cell,
+.x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-blue-tab-active .x-grid-with-col-lines .x-grid-item-selected .x-grid-cell {
+    border-color: #73a5d2;
+}
+
+/*@include codaxy-red-ui();
+@include codaxy-orange-ui();
+@include codaxy-green-ui();
+@include codaxy-black-ui();*/

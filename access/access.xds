@@ -1,0 +1,52 @@
+{
+    "name": "access",
+    "settings": {
+        "cmd": {},
+        "lockUrlPrefix": true,
+        "exportPath": "",
+        "buildShouldOverwriteIndex": true,
+        "generateArchitectVersion": true,
+        "spacesToIndent": 4,
+        "lineEnding": "CRLF",
+        "genTimestamps": false,
+        "cacheBust": false,
+        "installStatus": "Not Installed",
+        "urlPrefix": "",
+        "canvasControls": {
+            "viewportSize": {
+                "name": "Auto Expand",
+                "builtIn": true,
+                "height": null,
+                "width": null
+            }
+        }
+    },
+    "xdsVersion": "3.5.0",
+    "xdsBuild": 203,
+    "schemaVersion": 1,
+    "upgradeVersion": 310000000001,
+    "framework": "ext51",
+    "viewOrderMap": {
+        "view": [
+            "89475817-588a-4cf8-9464-e343bf666588",
+            "52eab31b-2fd2-4900-aba6-d8f0d33232f0",
+            "f33692a7-06e6-4bab-b669-c00013207614"
+        ],
+        "store": [],
+        "controller": [],
+        "model": [],
+        "resource": [
+            "594bba67-ee71-4032-9b3a-ac3b4d0f1034",
+            "2e980aeb-1dd9-4e5e-a742-03b11a0d419b",
+            "417d9d35-0f0e-492b-ad3c-98395df48dc1",
+            "9a1c9bf4-e540-4fb4-8f66-4cb547d4ec5c",
+            "878c2708-7266-4e3d-971b-8beab046002f",
+            "8fc80636-e95f-44b1-9365-a01e4b4e7af2",
+            "4ab5bd8c-8882-4cee-bf49-736c42702b97",
+            "9384f26b-2e20-4478-9436-91afed469866"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

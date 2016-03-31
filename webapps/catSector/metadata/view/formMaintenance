@@ -1,0 +1,993 @@
+{
+    "type": "Ext.form.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyPadding": 10,
+        "designer|initialView": true,
+        "designer|uiInterfaceName": "green-panel",
+        "designer|userAlias": "formMaintenance",
+        "designer|userClassName": "formMaintenance",
+        "height": null,
+        "id": "formMaintenance",
+        "itemId": "formMaintenance",
+        "layout": "column",
+        "manageHeight": false,
+        "minHeight": null,
+        "title": null,
+        "ui": "green-panel",
+        "width": null
+    },
+    "name": "MyForm",
+    "configAlternates": {
+        "CustomerRecord": "object"
+    },
+    "designerId": "35aec26f-3848-4547-950b-a6b49d025b21",
+    "customConfigs": [
+        {
+            "group": "(Custom Properties)",
+            "name": "CustomerRecord",
+            "type": "string"
+        }
+    ],
+    "viewControllerInstanceId": "713910f4-4ffb-4378-b163-aef2d02c95ec",
+    "viewModelInstanceId": "d9aabfc7-12f6-4434-a219-9e774df9acac",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "pMode"
+                ],
+                "fn": "showSector",
+                "implHandler": [
+                    "var apiController = 'apiSector';",
+                    "var apiMethod     = 'showSector';",
+                    "var objJsonData = new Object();",
+                    "objJsonData.SectorID    = Ext.getCmp('formMaintenance').SectorID;",
+                    "",
+                    "var objJsonRequest = new Object();",
+                    "objJsonRequest.apiController = apiController;",
+                    "objJsonRequest.apiMethod     = apiMethod;",
+                    "objJsonRequest.apiData       = JSON.stringify(objJsonData);",
+                    "",
+                    "var functionSuccess = function(){",
+                    "    var jsonData = trex.getInfoDataBridge(apiController);",
+                    "",
+                    "",
+                    "    var winSector = Ext.getCmp('winSector');",
+                    "",
+                    "    if(!winSector){",
+                    "        winSector = Ext.create('widget.winSector');",
+                    "        winSector.show();",
+                    "        trex.hideScrollBars();",
+                    "    }",
+                    "",
+                    "    trex.showRecord(jsonData,'sector');",
+                    "",
+                    "};",
+                    "",
+                    "var functionFailure = function(){",
+                    "    var jsonData = trex.getInfoDataBridge(apiController);",
+                    "};",
+                    "",
+                    "trex.doDataBridge(objJsonRequest,",
+                    "                  functionSuccess,",
+                    "                  null,",
+                    "                  functionFailure,",
+                    "                  null);",
+                    "",
+                    ""
+                ]
+            },
+            "name": "showSector",
+            "designerId": "e8cd2050-0f41-4cd1-adc0-66a08f67c2a8"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "deleteSector",
+                "implHandler": [
+                    "alert('registro borrado');",
+                    "",
+                    "var formRecord    = 'formSector';",
+                    "var apiController = 'apiSector';",
+                    "var apiMethod     = 'deleteSector';",
+                    "",
+                    "var objJsonData = new Object();",
+                    "objJsonData.SectorId    = Ext.getCmp('formMaintenance').SectorRecord.id;",
+                    "",
+                    "var objJsonRequest = new Object();",
+                    "objJsonRequest.apiController = apiController;",
+                    "objJsonRequest.apiMethod     = apiMethod;",
+                    "objJsonRequest.apiData       = JSON.stringify(objJsonData);",
+                    "",
+                    "var functionSuccess = function(){",
+                    "    var jsonData = trex.getInfoDataBridge(apiController);",
+                    "",
+                    "    console.log(jsonData);",
+                    "    trex.showInfo(jsonData, 'info');",
+                    "",
+                    "};",
+                    "",
+                    "var functionFailure = function(){",
+                    "    var jsonData = trex.getInfoDataBridge(apiController);",
+                    "    trex.showInfo(jsonData, 'error', 'tfCompany');",
+                    "};",
+                    "",
+                    "trex.doDataBridge(objJsonRequest,",
+                    "                  functionSuccess,",
+                    "                  null,",
+                    "                  functionFailure,",
+                    "                  null);"
+                ]
+            },
+            "name": "deleteSector",
+            "designerId": "5a660b92-7c5d-44ad-8a78-7fd85235a771"
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "toolbarMaintenance",
+                "dock": "top",
+                "id": "toolbarMaintenance",
+                "itemId": "toolbarMaintenance"
+            },
+            "name": "MyToolbar",
+            "designerId": "a517b2f6-03b0-4c2d-ab13-68a2a5825de9",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnView",
+                        "iconCls": "ion-eye icon16",
+                        "id": "btnView",
+                        "itemId": "btnView",
+                        "layout|flex": null,
+                        "text": "View",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton",
+                    "designerId": "8a879876-d274-4437-8e2a-b7eb720179b4",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "Ext.getCmp('formMaintenance').showSector();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "ea80bd74-14b6-4648-9e17-b188a3bb5e19"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnCreate",
+                        "iconCls": "ion-plus-circled icon16",
+                        "id": "btnCreate",
+                        "itemId": "btnCreate",
+                        "layout|flex": null,
+                        "text": "Create",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton1",
+                    "designerId": "6bf37f2f-22fe-4a89-bf4d-7e9f556bec14",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "    var winSector = Ext.getCmp('winSector');",
+                                    "",
+                                    "    if(!winSector){",
+                                    "        winSector = Ext.create('widget.winSector');",
+                                    "        winSector.show();",
+                                    "        trex.hideScrollBars();",
+                                    "    }"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "c9617d61-210d-4e41-8f8f-c2b11cffc2e3"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnUpdate",
+                        "iconCls": "ion-edit icon16",
+                        "id": "btnUpdate",
+                        "itemId": "btnUpdate",
+                        "layout|flex": null,
+                        "text": "Update",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton2",
+                    "designerId": "90078365-c921-4791-9c67-8ee253e90e36",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "Ext.getCmp('formMaintenance').showSector('edit');"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "d46cd053-dbfb-498a-b5ae-f7a4bc4a289e"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnDelete",
+                        "iconCls": "ion-trash-a icon16",
+                        "id": "btnDelete",
+                        "itemId": "btnDelete",
+                        "layout|flex": null,
+                        "text": "Delete",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton3",
+                    "designerId": "66ca8e9f-5377-44ba-8fe0-e329acebc555",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var msgFunction = function(){",
+                                    "    Ext.getCmp('formMaintenance').deleteSector();",
+                                    "",
+                                    "};",
+                                    "",
+                                    "var msgType = 'question';",
+                                    "var msgTitle = 'Delete Sector';",
+                                    "var msgContent = 'Do you want to delete the Sector record: ';",
+                                    "",
+                                    "trex.message(msgType,",
+                                    "            msgTitle,",
+                                    "            msgContent,",
+                                    "            msgFunction);",
+                                    "",
+                                    "return;"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "9ef92f31-ba6a-4469-8f97-22474da841fd"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.toolbar.Separator",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null,
+                        "width": 30
+                    },
+                    "name": "MySeparator",
+                    "designerId": "3ec719ef-9911-4c07-b1e1-7a7938de3313"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnFind",
+                        "iconCls": "ion-ios-search-strong icon16",
+                        "id": "btnFind",
+                        "itemId": "btnFind",
+                        "layout|flex": null,
+                        "text": "Find",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton4",
+                    "designerId": "7121f5a9-cd2c-475c-8cf3-3ce05bf2dab4"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnFilter",
+                        "iconCls": "ion-funnel icon16",
+                        "id": "btnFilter",
+                        "itemId": "btnFilter",
+                        "layout|flex": null,
+                        "text": "Filter",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton5",
+                    "designerId": "c80a61bc-a457-4c02-be95-dbeeee3abed7"
+                },
+                {
+                    "type": "Ext.toolbar.Separator",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null,
+                        "width": 30
+                    },
+                    "name": "MySeparator1",
+                    "designerId": "7c32099a-0f23-4f85-924c-1b39150d8809"
+                },
+                {
+                    "type": "Ext.toolbar.Fill",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout|flex": null
+                    },
+                    "name": "MyFill",
+                    "designerId": "d5cafeb4-e448-431b-b32a-cbbb92f9a2a4"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnInformation",
+                        "iconCls": "ion-information-circled icon16",
+                        "id": "btnInformation",
+                        "itemId": "btnInformation",
+                        "layout|flex": null,
+                        "text": "Information",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton6",
+                    "designerId": "17be407b-6a34-40ee-ab6e-409db2064820"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnExit",
+                        "iconCls": "ion-android-exit icon16",
+                        "id": "btnExit",
+                        "itemId": "btnExit",
+                        "layout|flex": null,
+                        "text": "Exit",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton7",
+                    "designerId": "c0f67d57-d3a7-4d3b-b42a-2358d7b7ff03",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var win = window.parent.Ext.getCmp('catSector');",
+                                    "if(win)win[win.closeAction]();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "db3089e0-a59a-438d-aec1-46900458ef02"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "columnLines": false,
+                "designer|displayName": "gridSector",
+                "designer|uiInterfaceName": "green-panel",
+                "forceFit": true,
+                "height": 400,
+                "id": "gridSector",
+                "itemId": "gridSector",
+                "layout|columnWidth": 0.6,
+                "maxHeight": null,
+                "maxWidth": null,
+                "minHeight": null,
+                "store": "storeSector",
+                "title": "Sector",
+                "ui": "green-panel",
+                "width": 800
+            },
+            "name": "MyGridPanel",
+            "designerId": "0f04f83c-5b90-4407-a865-2f5cd1b88982",
+            "cn": [
+                {
+                    "type": "Ext.view.Table",
+                    "reference": {
+                        "name": "viewConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "tableSector",
+                        "height": null,
+                        "width": null
+                    },
+                    "name": "MyTable",
+                    "designerId": "10cf5e96-41b3-48f5-8408-b67546a6109f"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "sector_id",
+                        "id": "sector_id",
+                        "itemId": "sector_id",
+                        "minWidth": null,
+                        "text": "SectorID"
+                    },
+                    "name": "MyColumn",
+                    "designerId": "0885592b-b7fa-449a-93a8-04a2ad80f4f7"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "sector_name",
+                        "id": "sector_name",
+                        "itemId": "sector_name",
+                        "maxWidth": 300,
+                        "minWidth": null,
+                        "text": "Sector Name",
+                        "width": 300
+                    },
+                    "name": "MyColumn1",
+                    "designerId": "d3e43f69-928a-4106-844e-311c72a99c14"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "sector_state",
+                        "id": "sector_state",
+                        "itemId": "sector_state",
+                        "maxWidth": 120,
+                        "minWidth": null,
+                        "text": "State",
+                        "width": 120
+                    },
+                    "name": "MyColumn3",
+                    "designerId": "dc14c182-0d3e-4c8f-8c89-5c3466ad4724"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "sector_country",
+                        "id": "sector_country",
+                        "itemId": "sector_country",
+                        "minWidth": null,
+                        "text": "Country"
+                    },
+                    "name": "MyColumn4",
+                    "designerId": "855b6378-eb1c-4f04-980d-ffa1d95d60f7"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "created_at",
+                        "id": "created_date",
+                        "itemId": "created_date",
+                        "text": "Fecha </br> Registro"
+                    },
+                    "name": "MyColumn8",
+                    "designerId": "54d0c36a-cbfa-4446-ab19-ff7ff600aee3"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "is_active",
+                        "id": "isactive",
+                        "itemId": "isactive",
+                        "maxWidth": 50,
+                        "minWidth": 30,
+                        "text": "Active"
+                    },
+                    "name": "MyColumn9",
+                    "designerId": "e6e2a780-6cd4-4f43-90a8-64cdd257a8aa"
+                },
+                {
+                    "type": "Ext.toolbar.Paging",
+                    "reference": {
+                        "name": "dockedItems",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "pagingToolbarSector",
+                        "displayInfo": true,
+                        "dock": "bottom",
+                        "id": "pagingToolbar",
+                        "itemId": "pagingToolbar",
+                        "store": "storeSector",
+                        "width": 260
+                    },
+                    "name": "MyPagingToolbar",
+                    "designerId": "f5f4dd09-b195-4c1d-b15e-26eecaeeec0a",
+                    "cn": [
+                        {
+                            "type": "Ext.toolbar.Separator",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": null,
+                                "width": 30
+                            },
+                            "name": "MySeparator2",
+                            "designerId": "d4d6f1a2-13ac-4a25-84a0-660b2d074ccc"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "btnAddSector",
+                                "iconCls": "ion-android-add-circle icon16",
+                                "id": "btnAddSector",
+                                "itemId": "btnAddSector",
+                                "layout|flex": null,
+                                "text": "Add",
+                                "textAlign": "left",
+                                "width": 100
+                            },
+                            "name": "MyButton10",
+                            "designerId": "51939135-cdf3-49da-befd-f70654c0f7a4",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "    var winSector = Ext.getCmp('winSector');",
+                                            "",
+                                            "    if(!winSector){",
+                                            "        winSector = Ext.create('widget.winSector');",
+                                            "        winSector.show();",
+                                            "        trex.hideScrollBars();",
+                                            "    }"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "799b4db1-7f77-41e9-9d09-410a0e1bff97"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "btnUpdateSector",
+                                "iconCls": "ion-ios-compose icon16",
+                                "id": "btnUpdateSector",
+                                "itemId": "btnUpdateSector",
+                                "layout|flex": null,
+                                "text": "Update",
+                                "textAlign": "left",
+                                "width": 100
+                            },
+                            "name": "MyButton13",
+                            "designerId": "5b5de1e3-b244-4e8d-b675-966d4ed97d07",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": null
+                                    },
+                                    "name": "handler",
+                                    "designerId": "b4a039a0-e5b4-4033-8fea-89fcc68988aa"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "btnDeleteSector",
+                                "iconCls": "ion-android-delete icon16",
+                                "id": "btnDeleteSector",
+                                "itemId": "btnDeleteSector",
+                                "layout|flex": null,
+                                "text": "Update",
+                                "textAlign": "left",
+                                "width": 100
+                            },
+                            "name": "MyButton14",
+                            "designerId": "c1d80d58-b427-48e0-9f44-627609abb7cc",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": null
+                                    },
+                                    "name": "handler",
+                                    "designerId": "04422f5d-055b-4b5b-aba4-5e7077b0de6a"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onGridSectorItemDblClick",
+                        "implHandler": [
+                            "Ext.getCmp('formMaintenance').showSector();"
+                        ],
+                        "name": "itemdblclick",
+                        "scope": "me"
+                    },
+                    "name": "onGridSectorItemDblClick",
+                    "designerId": "ebc25c9b-2e77-432d-a684-c09243a2be42",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "CustomerID",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onGridSectorItemClick",
+                        "implHandler": [
+                            "Ext.getCmp('formMaintenance').SectorID = record.data.id;",
+                            "Ext.getCmp('formMaintenance').SectorRecord = record.data;"
+                        ],
+                        "name": "itemclick",
+                        "scope": "me"
+                    },
+                    "name": "onGridSectorItemClick",
+                    "designerId": "c7ec2c27-ce73-4e2a-893a-5c4a809a51ca"
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "columnLines": false,
+                "designer|displayName": "gridZone",
+                "designer|uiInterfaceName": "green-panel",
+                "forceFit": true,
+                "height": 400,
+                "id": "gridZone",
+                "itemId": "gridZone",
+                "layout|columnWidth": 0.4,
+                "margin": "0 0 0 15",
+                "maxHeight": null,
+                "maxWidth": null,
+                "minHeight": null,
+                "store": "storeZone",
+                "title": "Zone",
+                "ui": "green-panel",
+                "width": 400
+            },
+            "name": "MyGridPanel2",
+            "designerId": "c5d0a0ad-4f4c-459d-b7a2-493857b7a946",
+            "cn": [
+                {
+                    "type": "Ext.view.Table",
+                    "reference": {
+                        "name": "viewConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "tableZone",
+                        "height": 400,
+                        "maxWidth": null,
+                        "width": null
+                    },
+                    "name": "MyTable",
+                    "designerId": "85da2d30-ffcf-445d-aa93-4a7c9250b251"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "zone_id",
+                        "id": "zone_id",
+                        "itemId": "zone_id",
+                        "maxWidth": 100,
+                        "minWidth": null,
+                        "text": "ZonaID"
+                    },
+                    "name": "MyColumn",
+                    "designerId": "2cbaeac2-dd7f-45ff-b613-3fe32693c541"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "zone_name",
+                        "id": "zone_name",
+                        "itemId": "zone_name",
+                        "minWidth": null,
+                        "text": "Zone </br> Name"
+                    },
+                    "name": "MyColumn1",
+                    "designerId": "e08d9862-40e8-43a0-b66b-152ac36be08e"
+                },
+                {
+                    "type": "Ext.toolbar.Paging",
+                    "reference": {
+                        "name": "dockedItems",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "pagingToolbarSector",
+                        "displayInfo": true,
+                        "dock": "bottom",
+                        "id": "pagingToolbar2",
+                        "itemId": "pagingToolbar",
+                        "store": "storeZone",
+                        "width": 260
+                    },
+                    "name": "MyPagingToolbar",
+                    "designerId": "f8ad3edb-a023-4171-b676-66533467f616"
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onGridZoneItemDblClick",
+                        "implHandler": [
+                            "Ext.getCmp('formMaintenance').showSector();"
+                        ],
+                        "name": "itemdblclick",
+                        "scope": "me"
+                    },
+                    "name": "onGridZoneItemDblClick",
+                    "designerId": "68c5c6bd-644a-4832-a3f0-b0e906a3125e",
+                    "customConfigs": [
+                        {
+                            "group": "(Custom Properties)",
+                            "name": "CustomerID",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onGridZoneItemClick",
+                        "implHandler": [
+                            "Ext.getCmp('formMaintenance').SectorID = record.data.id;",
+                            "Ext.getCmp('formMaintenance').SectorRecord = record.data;"
+                        ],
+                        "name": "itemclick",
+                        "scope": "me"
+                    },
+                    "name": "onGridZoneItemClick",
+                    "designerId": "ff4d87e9-f3bb-48ea-a447-1df11478de79"
+                }
+            ]
+        }
+    ]
+}

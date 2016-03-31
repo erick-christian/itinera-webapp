@@ -1,0 +1,81 @@
+{
+    "type": "Ext.data.Store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "storeUsers",
+        "model": "modUsers",
+        "storeId": "storeUsers"
+    },
+    "name": "MyStore",
+    "designerId": "03511b87-c65b-4832-9b4f-bffe6efb296e",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Rest",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "restProxyUsers",
+                "url": ""
+            },
+            "name": "MyRestProxy",
+            "designerId": "db3058e6-76ee-4a87-abdc-f1d6b676f346",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "jsonReaderUsers",
+                        "rootProperty": "users",
+                        "totalProperty": "numUsers.total"
+                    },
+                    "name": "MyJsonReader",
+                    "designerId": "7131ea24-ccd3-40ef-b51b-17789f030a11"
+                }
+            ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onStoreBeforeLoad",
+                "implHandler": [
+                    "var storeUsers = Ext.getStore('storeUsers');",
+                    "var proxyUsers = storeUsers.getProxy();",
+                    "",
+                    "var objJsonData = new Object();",
+                    "objJsonData.page  = storeUsers.currentPage;",
+                    "objJsonData.start = (storeUsers.currentPage - 1) * storeUsers.pageSize;",
+                    "objJsonData.limit = storeUsers.pageSize;",
+                    "",
+                    "var objJsonRequest = new Object();",
+                    "objJsonRequest.apiController = 'apiUser';",
+                    "objJsonRequest.apiMethod     = 'listUser';",
+                    "objJsonRequest.apiData       = JSON.stringify(objJsonData);",
+                    "",
+                    "proxyUsers.api.read    = '../../backend/public/dataBridge/' + objJsonRequest.apiController;",
+                    "proxyUsers.extraParams = objJsonRequest;",
+                    ""
+                ],
+                "name": "beforeload",
+                "scope": "me"
+            },
+            "name": "onStoreBeforeLoad",
+            "designerId": "aaa65324-6108-4db0-bdb3-d10dfa8de63e"
+        }
+    ]
+}

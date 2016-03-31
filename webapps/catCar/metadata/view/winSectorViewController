@@ -1,0 +1,14 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "wineventcar",
+        "designer|userClassName": "winSectorViewController"
+    },
+    "name": "winSectorViewController",
+    "designerId": "8b871be6-230f-491e-87a1-afb825abf2c1"
+}

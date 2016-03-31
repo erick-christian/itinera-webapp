@@ -1,0 +1,93 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "modEventCar"
+    },
+    "name": "modUserCar1",
+    "designerId": "3b2cc709-dc6d-4667-86a4-2404a1815cf2",
+    "cn": [
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "car_id"
+            },
+            "name": "MyField",
+            "designerId": "d42f86ec-e03b-4323-9635-cf6e63c3b435"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "event"
+            },
+            "name": "MyField2",
+            "designerId": "ff1ee776-f3f3-4ae6-aa22-d8c5b4e44962"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "event_date"
+            },
+            "name": "MyField5",
+            "designerId": "fc9d4e07-205a-4182-89f4-bc536bb331ba"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "actions"
+            },
+            "name": "MyField12",
+            "designerId": "aa892ba8-dda2-4924-9ec0-37c7d0f183ee"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "actions_end_date"
+            },
+            "name": "MyField8",
+            "designerId": "197f3a65-0efe-4940-a070-459cb6ba5d59"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "is_active"
+            },
+            "name": "MyField6",
+            "designerId": "415f910d-04e7-4a40-89c8-8ddf15ec34fe"
+        }
+    ]
+}

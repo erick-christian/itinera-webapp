@@ -1,0 +1,969 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "closable": false,
+        "designer|uiInterfaceName": "green-window",
+        "designer|userAlias": "winUsers",
+        "designer|userClassName": "winUsers",
+        "height": 470,
+        "id": "winUsers",
+        "itemId": "winUsers",
+        "layout": "column",
+        "minHeight": 400,
+        "minWidth": 850,
+        "modal": true,
+        "title": "Users",
+        "ui": "green-window",
+        "width": 850
+    },
+    "name": "MyWindow",
+    "designerId": "b4fa3f80-fc34-41e6-a8d6-977e18c8b0ac",
+    "viewControllerInstanceId": "211e9d90-6e1b-46a2-b72d-0751baea6872",
+    "viewModelInstanceId": "7a8373ad-ab71-4cbf-9933-bda82e4f7259",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "designer|displayName": "formUsers",
+                "height": 410,
+                "id": "formUsers",
+                "itemId": "formUsers",
+                "layout": "column",
+                "layout|columnWidth": 1,
+                "title": null,
+                "width": 838
+            },
+            "name": "MyForm",
+            "designerId": "bc3b6365-e919-400b-afb9-d6de5784f5c7",
+            "cn": [
+                {
+                    "type": "basicfunction",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "confirmRecord",
+                        "implHandler": [
+                            "if(Ext.getCmp('formUsers').isValid()){",
+                            "    var formRecord    = 'formUsers';",
+                            "    var apiController = 'apiUser';",
+                            "    var apiMethod     = 'storeUser';",
+                            "",
+                            "    var objJsonRequest = new Object();",
+                            "    objJsonRequest.apiController = apiController;",
+                            "    objJsonRequest.apiMethod     = apiMethod;",
+                            "    objJsonRequest.apiData       = trex.prepareFormFields(formRecord);",
+                            "",
+                            "    var functionSuccess = function(){",
+                            "        var jsonData = trex.getInfoDataBridge(apiController);",
+                            "",
+                            "        trex.showInfo(jsonData, 'information');",
+                            "",
+                            "        var winUsers = Ext.getCmp('winUsers');",
+                            "        winUsers.close();",
+                            "",
+                            "        Ext.getStore('storeUsers').load();",
+                            "",
+                            "    };",
+                            "",
+                            "    var functionFailure = function(){",
+                            "        var jsonData = trex.getInfoDataBridge(apiController);",
+                            "        trex.showInfo(jsonData, 'error', 'tfCompany');",
+                            "    };",
+                            "",
+                            "    trex.doDataBridge(objJsonRequest,",
+                            "                      functionSuccess,",
+                            "                      null,",
+                            "                      functionFailure,",
+                            "                      null);",
+                            "",
+                            "}",
+                            "else{",
+                            "",
+                            "    trex.message('error',",
+                            "                 'Incomplete Form',",
+                            "                 'You must fill the required fields');",
+                            "}"
+                        ]
+                    },
+                    "name": "confirmRecord",
+                    "designerId": "5809c29f-a4f9-4475-80d8-e49faba36c90"
+                },
+                {
+                    "type": "Ext.form.FieldSet",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "fieldsetUsersInformation",
+                        "height": 184,
+                        "id": "fieldsetUsersInformation",
+                        "itemId": "fieldsetUsersInformation",
+                        "layout": "column",
+                        "layout|columnWidth": 1,
+                        "title": "<b>General information</b>",
+                        "width": 816
+                    },
+                    "name": "MyFieldSet",
+                    "designerId": "be47edbc-107b-4c5b-bad1-d5215c4aee72",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfLastname",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Last Name",
+                                "id": "tfLastName",
+                                "itemId": "tfLastName",
+                                "labelClsExtra": "requiredField",
+                                "layout|columnWidth": 0.5,
+                                "margin": "0 5 5 5",
+                                "requiredCls": null,
+                                "width": 387
+                            },
+                            "name": "MyTextField1",
+                            "designerId": "7fb0aada-f4b1-4a46-aa34-c827b195a6ce"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfname",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Name",
+                                "id": "tfName",
+                                "itemId": "tfName",
+                                "labelClsExtra": "requiredField",
+                                "layout|columnWidth": 0.5,
+                                "margin": "0 5 5 5",
+                                "requiredCls": null
+                            },
+                            "name": "MyTextField",
+                            "designerId": "c43d51f4-3cdf-43e2-a5d6-5332d6b230cb"
+                        },
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "dtCreatedAt",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Created",
+                                "id": "dtCreatedAt",
+                                "itemId": "dtCreatedAt",
+                                "layout|columnWidth": 0.33,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyDateField",
+                            "designerId": "768dce19-8cf5-443b-9315-d00bc23bb4ce"
+                        },
+                        {
+                            "type": "Ext.form.field.Checkbox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "boxLabel": "Active",
+                                "designer|displayName": "chActive",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": null,
+                                "id": "chActive",
+                                "itemId": "chActive",
+                                "layout|columnWidth": 0.17,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyCheckbox",
+                            "designerId": "8d34b986-7054-485c-837a-4b275c7243f9"
+                        },
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "dtBirthDate",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Birth Date",
+                                "id": "dtBirthDate",
+                                "itemId": "dtBirthDate",
+                                "layout|columnWidth": 0.33,
+                                "margin": "0 5 5 5",
+                                "width": 228
+                            },
+                            "name": "MyDateField1",
+                            "designerId": "8e1a97ab-a7a9-4098-953c-0d106540841c"
+                        },
+                        {
+                            "type": "Ext.form.RadioGroup",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "rgGender",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Gender",
+                                "id": "rgGender",
+                                "itemId": "rgGender",
+                                "layout|columnWidth": 0.41,
+                                "margin": "0 5 5 5",
+                                "width": 300
+                            },
+                            "name": "MyRadioGroup1",
+                            "designerId": "707ae943-b294-4276-802b-4820b96cada2",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Radio",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "boxLabel": "Male",
+                                        "checked": true,
+                                        "disabledCls": "disabledRadio",
+                                        "fieldLabel": null,
+                                        "id": "rbMale",
+                                        "inputValue": "Male",
+                                        "itemId": "rbMale",
+                                        "name": "rgGender"
+                                    },
+                                    "name": "MyRadio4",
+                                    "designerId": "7417ad33-090d-419f-ad80-807627391136"
+                                },
+                                {
+                                    "type": "Ext.form.field.Radio",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "boxLabel": "Female",
+                                        "disabledCls": "disabledRadio",
+                                        "fieldLabel": null,
+                                        "id": "rbFemale",
+                                        "inputValue": "Female",
+                                        "itemId": "rbFemale",
+                                        "name": "rgGender"
+                                    },
+                                    "name": "MyRadio5",
+                                    "designerId": "07ba1031-0d76-4f26-a927-00bbde62b2b8"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.form.RadioGroup",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "rgCivilStatus",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Civil Status",
+                                "id": "rgCivilStatus",
+                                "itemId": "rgCivilStatus",
+                                "layout|columnWidth": 0.78,
+                                "margin": "0  5 5 5",
+                                "referenceHolder": false,
+                                "shim": false,
+                                "width": 300
+                            },
+                            "name": "MyRadioGroup",
+                            "designerId": "081fda3c-4718-4945-b83e-5bd09e8610e3",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Radio",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "boxLabel": "Married",
+                                        "disabledCls": "disabledRadio",
+                                        "fieldLabel": null,
+                                        "id": "rbMarried",
+                                        "inputValue": "Married",
+                                        "itemId": "rbMarried",
+                                        "name": "rgCivilStatus"
+                                    },
+                                    "name": "MyRadio",
+                                    "designerId": "6203e72d-9337-457f-a2c8-225e6c02bab5"
+                                },
+                                {
+                                    "type": "Ext.form.field.Radio",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "boxLabel": "Single",
+                                        "disabledCls": "disabledRadio",
+                                        "fieldLabel": null,
+                                        "id": "rbSingle",
+                                        "inputValue": "Single",
+                                        "itemId": "rbSingle",
+                                        "name": "rgCivilStatus"
+                                    },
+                                    "name": "MyRadio1",
+                                    "designerId": "a0966e48-656a-45c8-81bf-774e2a7e1415"
+                                },
+                                {
+                                    "type": "Ext.form.field.Radio",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "boxLabel": "Divorced",
+                                        "disabledCls": "disabledRadio",
+                                        "fieldLabel": null,
+                                        "id": "rbDivorced",
+                                        "inputValue": "Divorced",
+                                        "itemId": "rbDivorced",
+                                        "name": "rgCivilStatus"
+                                    },
+                                    "name": "MyRadio2",
+                                    "designerId": "8393eb75-0976-45df-b416-4bad8d71d09d"
+                                },
+                                {
+                                    "type": "Ext.form.field.Radio",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "boxLabel": "Widowed",
+                                        "disabledCls": "disabledRadio",
+                                        "fieldLabel": null,
+                                        "id": "rbWidowed",
+                                        "inputValue": "Widowed",
+                                        "itemId": "rbWidowed",
+                                        "name": "rgCivilStatus"
+                                    },
+                                    "name": "MyRadio3",
+                                    "designerId": "16bd2c7a-9dfa-4183-ac5f-c52552ad871b"
+                                },
+                                {
+                                    "type": "Ext.form.field.Radio",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "boxLabel": "None",
+                                        "checked": true,
+                                        "disabledCls": "disabledRadio",
+                                        "fieldLabel": null,
+                                        "id": "rbNone",
+                                        "inputValue": "None",
+                                        "itemId": "rbNone",
+                                        "name": "rgCivilStatus"
+                                    },
+                                    "name": "MyRadio6",
+                                    "designerId": "be3f2db7-4156-4642-964d-1b2670f1e141"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfEmail",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Email",
+                                "id": "tfEmail",
+                                "itemId": "tfEmail",
+                                "labelClsExtra": "requiredField",
+                                "layout|columnWidth": 0.4,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyTextField2",
+                            "designerId": "5bbc022f-f303-4cfe-b23a-1bbdea321099"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfPassword",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Password",
+                                "id": "tfPassword",
+                                "inputType": "password",
+                                "itemId": "tfPassword",
+                                "labelWidth": 65,
+                                "layout|columnWidth": 0.3,
+                                "margin": "0 5 5 5",
+                                "width": null
+                            },
+                            "name": "MyTextField3",
+                            "designerId": "2c6eab71-bfd6-491e-bddb-f0e1ccddd9eb"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfPassConf",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Conf. Pass",
+                                "id": "tfPassConf",
+                                "inputType": "password",
+                                "itemId": "tfPassConf",
+                                "labelWidth": 68,
+                                "layout|columnWidth": 0.3,
+                                "margin": "0 5 5 5",
+                                "width": null
+                            },
+                            "name": "MyTextField9",
+                            "designerId": "9da1f087-fe20-4224-9ae9-e3b5861e45c4"
+                        },
+                        {
+                            "type": "Ext.form.field.ComboBox",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tfProfileCode",
+                                "displayField": "profile_description",
+                                "fieldLabel": "Profile",
+                                "id": "tfProfileCode",
+                                "itemId": "tfProfileCode",
+                                "layout|columnWidth": 0.4,
+                                "margin": "0 5 5 5 ",
+                                "store": "storeProfiles",
+                                "valueField": "profile_code"
+                            },
+                            "name": "MyComboBox",
+                            "designerId": "11d312b0-287e-48f0-98dd-aaf3afe8dc9f"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfTelephoneDesk",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Telephone",
+                                "id": "tfTelephoneDesk",
+                                "itemId": "tfTelephoneDesk",
+                                "labelClsExtra": null,
+                                "layout|columnWidth": 0.3,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyTextField11",
+                            "designerId": "3b98f89e-13c4-4cd7-8306-0fa8ebea9684"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfTelephoneMobile",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Mobile",
+                                "id": "tfTelephoneMobile",
+                                "itemId": "tfTelephoneMobile",
+                                "labelClsExtra": null,
+                                "layout|columnWidth": 0.3,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyTextField12",
+                            "designerId": "f0d37be8-ba0f-4ee7-990a-f412119e516a"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.FieldSet",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "fieldsetAddress",
+                        "id": "fieldsetAddress",
+                        "itemId": "fieldsetAddress",
+                        "layout": "column",
+                        "layout|columnWidth": 1,
+                        "title": "<b>Address</b>"
+                    },
+                    "name": "MyFieldSet1",
+                    "designerId": "4d210b19-96af-4525-a25e-5b7b3e317bd5",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfAddress",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Address",
+                                "id": "tfAddress",
+                                "itemId": "tfAddress",
+                                "labelClsExtra": "requiredField",
+                                "layout|columnWidth": 1,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyTextField4",
+                            "designerId": "40d743e7-a72e-440d-8e8a-3a78b8dc6a8c"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfZipCode",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Zip Code",
+                                "id": "tfZipCode",
+                                "itemId": "tfZipCode",
+                                "labelClsExtra": "requiredField",
+                                "layout|columnWidth": 0.33,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyTextField5",
+                            "designerId": "3cac6da4-b0d2-4522-9fa5-77bf5d65033a"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfLocation",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Location",
+                                "id": "tfLocation",
+                                "itemId": "tfLocation",
+                                "labelClsExtra": "requiredField",
+                                "layout|columnWidth": 0.33,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyTextField6",
+                            "designerId": "c47303fa-3405-4f9c-bf52-7cbfae5c6d51"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfRegion",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Region",
+                                "id": "tfRegion",
+                                "itemId": "tfRegion",
+                                "labelClsExtra": "requiredField",
+                                "layout|columnWidth": 0.33,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyTextField7",
+                            "designerId": "1275f1be-d6a6-46a5-8834-53f3c29e0695"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfCity",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "City",
+                                "id": "tfCity",
+                                "itemId": "tfCity",
+                                "labelClsExtra": "requiredField",
+                                "layout|columnWidth": 0.33,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyTextField8",
+                            "designerId": "b65176ef-dd55-40ef-8152-876a9598c0c4"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfStateCode",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "State",
+                                "id": "tfStateCode",
+                                "itemId": "tfStateCode",
+                                "labelClsExtra": "requiredField",
+                                "layout|columnWidth": 0.33,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyTextField10",
+                            "designerId": "d4b189b3-e044-4873-b37a-986e6387e398"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfCountryCode",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Country",
+                                "id": "tfCountryCode",
+                                "itemId": "tfCountryCode",
+                                "labelClsExtra": "requiredField",
+                                "layout|columnWidth": 0.33,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyTextField19",
+                            "designerId": "3954a43d-ebcf-4250-be03-2493a032d63c"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.FieldSet",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "fieldsetGeolocalization",
+                        "height": 85,
+                        "id": "fieldsetGeolocalization",
+                        "itemId": "fieldsetGeolocalization",
+                        "layout": "column",
+                        "layout|columnWidth": 1,
+                        "title": "<b>Geolocalization</b>"
+                    },
+                    "name": "MyFieldSet3",
+                    "designerId": "ead16967-6644-4a17-ad39-230f2652b16d",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tfLatitude",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Latitude",
+                                "id": "tfLatitude",
+                                "itemId": "tfLatitude",
+                                "labelClsExtra": "",
+                                "layout|columnWidth": 0.5,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyTextField16",
+                            "designerId": "3b33c0bf-a713-4360-8a67-b257a5326e24"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tfLongitude",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Longitude",
+                                "id": "tfLongitude",
+                                "itemId": "tfLongitude",
+                                "labelClsExtra": "",
+                                "layout|columnWidth": 0.5,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyTextField17",
+                            "designerId": "d73fb5da-cb68-4258-968a-6eaeb7583e4a"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tfGeocodeUrl",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Geocode URL",
+                                "id": "tfGeocodeUrl",
+                                "itemId": "tfGeocodeUrl",
+                                "layout|columnWidth": 1,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyTextField18",
+                            "designerId": "95cb8bf6-d159-480b-9833-4a88b27808f9"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.FieldSet",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "fieldsetPhoto",
+                        "height": 139,
+                        "hidden": true,
+                        "id": "fieldsetPhoto",
+                        "itemId": "fieldsetPhoto",
+                        "layout": "column",
+                        "layout|columnWidth": 1,
+                        "title": "<b>Photo</b>"
+                    },
+                    "name": "MyFieldSet2",
+                    "designerId": "6c02d649-ce13-4704-bf63-3d4613171874",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.File",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "Photo",
+                                "id": "tfPhoto",
+                                "itemId": "tfPhoto",
+                                "layout|columnWidth": 0.75,
+                                "margin": "35 5 5 5 "
+                            },
+                            "name": "MyFileUpload",
+                            "designerId": "ae56e7ea-d1f1-4577-8342-bd2c021bcf18"
+                        },
+                        {
+                            "type": "Ext.form.field.TextArea",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "",
+                                "height": 108,
+                                "labelWidth": 0,
+                                "layout|columnWidth": 0.2,
+                                "width": 238
+                            },
+                            "name": "MyTextArea",
+                            "designerId": "8d123f40-8fd2-4121-b586-6bc8cec5cdb1"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "toolbarUsers",
+                "dock": "top",
+                "id": "toolbarUsers",
+                "itemId": "toolbarUsers"
+            },
+            "name": "MyToolbar1",
+            "designerId": "fef6eff8-877b-4097-b7d1-0ec4ea38faad",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnConfirmUsers",
+                        "iconCls": "ion-checkmark-circled icon16",
+                        "id": "btnConfirmUsers",
+                        "itemId": "btnConfirmUsers",
+                        "layout|flex": null,
+                        "text": "Confirm",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton8",
+                    "designerId": "59f66903-b5a7-40b0-a808-49df68dfad7a",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "Ext.getCmp('formUsers').confirmRecord();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "2b953195-3391-4e68-b4b6-8b765c00c67b"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.toolbar.Fill",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "filUsers",
+                        "id": "filUsers",
+                        "itemId": "filUsers",
+                        "layout|flex": null
+                    },
+                    "name": "MyFill1",
+                    "designerId": "153ca171-158d-445b-9be4-43401d1fd05f"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "btnCloseUsers",
+                        "iconCls": "ion-close-circled icon16",
+                        "id": "btnCloseUsers",
+                        "itemId": "btnCloseUsers",
+                        "layout|flex": null,
+                        "text": "Close",
+                        "textAlign": "left",
+                        "width": 120
+                    },
+                    "name": "MyButton9",
+                    "designerId": "05f546a7-2df5-4ca8-97a5-f903e6c8e85a",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "var winUsers = Ext.getCmp('winUsers');",
+                                    "winUsers.close();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "751b74d3-cade-464b-9ec2-13112ca462c3"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

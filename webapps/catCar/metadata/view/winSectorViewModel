@@ -1,0 +1,14 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "wineventcar",
+        "designer|userClassName": "winSectorViewModel"
+    },
+    "name": "winSectorViewModel",
+    "designerId": "ef7602c7-c89b-4fb1-ba36-c49eab35bfb5"
+}

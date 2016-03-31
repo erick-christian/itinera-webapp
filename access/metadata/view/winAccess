@@ -1,0 +1,296 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoShow": true,
+        "closable": false,
+        "designer|initialView": true,
+        "designer|userAlias": "winAccess",
+        "designer|userClassName": "winAccess",
+        "frameHeader": false,
+        "header": false,
+        "height": null,
+        "id": "winAccess",
+        "itemId": "winAccess",
+        "layout": "column",
+        "maximized": true,
+        "title": null,
+        "width": null
+    },
+    "name": "MyWindow",
+    "designerId": "89475817-588a-4cf8-9464-e343bf666588",
+    "viewControllerInstanceId": "f33692a7-06e6-4bab-b669-c00013207614",
+    "viewModelInstanceId": "52eab31b-2fd2-4900-aba6-d8f0d33232f0",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyCls": [
+                    "imagenAmbiente"
+                ],
+                "bodyPadding": 10,
+                "designer|displayName": "formEnvironment",
+                "height": 150,
+                "id": "formEnvironment",
+                "itemId": "formEnvironment",
+                "layout|columnWidth": 1,
+                "title": null
+            },
+            "name": "MyForm",
+            "designerId": "8515bda5-96d1-4040-bfb8-3eda919ec8e1"
+        },
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "designer|displayName": "formSpace",
+                "height": 100,
+                "id": "formSpace",
+                "itemId": "formSpace",
+                "layout|columnWidth": 1,
+                "title": null
+            },
+            "name": "MyForm1",
+            "designerId": "6e8e1005-ede7-4c60-91e3-e810fdbf03cf"
+        },
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "designer|displayName": "formAccess",
+                "height": 350,
+                "id": "formAccess",
+                "itemId": "formAccess",
+                "layout": "table",
+                "layout|columnWidth": 1,
+                "title": null
+            },
+            "name": "MyForm2",
+            "designerId": "0380b7bc-2b8f-4605-99b1-88611c3c1c6b",
+            "cn": [
+                {
+                    "type": "Ext.Img",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "imgLogo",
+                        "height": null,
+                        "id": "imgLogo",
+                        "itemId": "imgLogo",
+                        "layout|colspan": 3,
+                        "layout|rowspan": 1,
+                        "maxWidth": null,
+                        "minHeight": null,
+                        "padding": "0 70 0 300",
+                        "src": "../../framework/terian/image/logo_itinera.png",
+                        "width": null
+                    },
+                    "name": "MyImg",
+                    "designerId": "a15691b1-3610-404b-8052-9cc54ff4145e"
+                },
+                {
+                    "type": "Ext.form.FieldSet",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "border": 0,
+                        "designer|displayName": "fieldsetDataAccess",
+                        "height": 200,
+                        "id": "fieldsetDataAccess",
+                        "itemId": "fieldsetDataAccess",
+                        "layout|colspan": 1,
+                        "layout|rowspan": 2,
+                        "title": null
+                    },
+                    "name": "MyFieldSet",
+                    "designerId": "2e0391a0-feeb-4e33-8fe4-ef4cb36fd652",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tfEmail",
+                                "fieldLabel": "Mail",
+                                "id": "tfEmail",
+                                "itemId": "tfEmail",
+                                "labelWidth": 120,
+                                "layout|anchor": "100%",
+                                "minWidth": 340,
+                                "padding": "77 0 0 0",
+                                "width": null
+                            },
+                            "name": "MyTextField",
+                            "designerId": "77faad4a-cc64-409b-bbb1-7d4672c250a7"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tfPassword",
+                                "fieldLabel": "Password",
+                                "id": "tfPassword",
+                                "inputType": "password",
+                                "itemId": "tfPassword",
+                                "labelWidth": 120,
+                                "layout|anchor": "100%"
+                            },
+                            "name": "MyTextField1",
+                            "designerId": "96f1a56b-d128-4688-9b45-d9ddd3531ad8"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "animateShadow": true,
+                        "cls": "botonGrupoActivo",
+                        "designer|displayName": "btnAccess",
+                        "height": 55,
+                        "iconCls": "fa fa-unlock-alt fa-lg",
+                        "id": "btnAccess",
+                        "itemId": "btnAccess",
+                        "text": "Access",
+                        "tooltip": "'inclde'",
+                        "tooltipType": "title",
+                        "width": 100
+                    },
+                    "name": "MyButton",
+                    "configAlternates": {
+                        "tooltip": "string"
+                    },
+                    "designerId": "ce6df24e-11a9-478c-a77e-88953bc882df",
+                    "cn": [
+                        {
+                            "type": "fixedfunction",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|params": [
+                                    "button",
+                                    "e"
+                                ],
+                                "fn": "handler",
+                                "implHandler": [
+                                    "if(trex.readElement('tfEmail') === '' || trex.readElement('tfPassword') === ''){",
+                                    "    /*",
+                                    "    trex.message('warning',",
+                                    "                '3');",
+                                    "                */",
+                                    "",
+                                    "}",
+                                    "appLocal.validateAccess();"
+                                ]
+                            },
+                            "name": "handler",
+                            "designerId": "a756d393-e4ad-4ac8-8b4f-a7db01f18d5d"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onWinAccessResize",
+                "implHandler": [
+                    "var formAccess = Ext.getCmp('formAccess');",
+                    "formAccess.doLayout();",
+                    "",
+                    "var heightForm = Ext.getCmp('winAccess').height - 290;",
+                    "Ext.getCmp('formAccess').setHeight(heightForm);",
+                    "",
+                    "var widthForm = Ext.getCmp('winAccess').width;",
+                    "Ext.getCmp('formEnvironment').setWidth(widthForm);",
+                    "Ext.getCmp('formSpace').setWidth(widthForm);",
+                    "Ext.getCmp('formAccess').setWidth(widthForm);"
+                ],
+                "name": "resize",
+                "scope": "me"
+            },
+            "name": "onWinAccessResize",
+            "designerId": "b6f38cb9-aabf-4c2f-8f85-6f3d4d9b2f00"
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "cls": [
+                    "colorForm"
+                ],
+                "dock": "bottom"
+            },
+            "name": "MyToolbar",
+            "designerId": "58c168d6-d146-4e86-9ec7-ebb3d1b3d4fa",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "height": 80,
+                        "iconAlign": "top",
+                        "iconCls": "ion-document-text large-green",
+                        "layout|flex": null,
+                        "text": null,
+                        "width": 100
+                    },
+                    "name": "MyButton1",
+                    "designerId": "5d31269e-e9b2-43c5-bc5b-797f09e3f3d6"
+                }
+            ]
+        }
+    ]
+}

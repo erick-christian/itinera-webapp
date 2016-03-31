@@ -1,0 +1,16 @@
+{
+    "type": "jsresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "defer": false,
+        "designer|userClassName": "js_9t9w7r4o",
+        "url": "../../framework/terian/environment/configEnvironment.js",
+        "x-compile": true
+    },
+    "name": "js",
+    "designerId": "f04b1d4c-97e1-4326-b2b3-7e8a08141258"
+}

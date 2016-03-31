@@ -1,0 +1,17 @@
+username,name,last_name,address,neighborhood,district,state_code,country_code,zip_code,gender,civil_status,telephone_desk,telephon_mobile,birth_date,register_date,profile_code,photo_url,active,email,password,created_at
+administrator,Administrator,Itinera,Tecámac No. 999,Tecamac,Tecamac,CMX,MEX,87988,Male,Single,54325198,98765421,1980-12-01,2016-03-01,1,,true,admin@itineratms.com,acceso,2016-03-11
+guest,Guest,Itinera,Tecámac No. 999,Tecamac,Tecamac,CMX,MEX,87988,Male,Single,65432125,65498712,1980-12-01,2016-03-01,1,,true,guest@itineratms.com,acceso,2016-03-11
+erickroco,Erick,Rosales,Vicente Guerrero No. 105,Tecamac,Tecamac,CMX,MEX,52047,Male,Single,43824928,59374363,1980-12-01,2016-03-01,1,,true,erick.rosales@terian.com.mx,acceso,2016-03-11
+tonyluis,Antonio Luis,Serrano,Coacalco No. 25,Coacalco,Coacalco,CMX,MEX,12345,Male,Single,55112255,77885522,1980-12-01,2016-03-01,1,,true,antonio.luis@mail.com,acceso,2016-03-11
+driverpri,Conductor,Primario,Coacalco No. 987,Coacalco,Coacalco,CMX,MEX,45896,Male,Single,55226699,44889966,1980-12-01,2016-03-01,1,,true,driverpri@marbu.com,acceso,2016-03-11
+driversec,Conductor,Secundario,Tecamac No. 1010,Tecamac,Tecamac,CMX,MEX,54565,Male,Single,22779966,11995533,1980-12-01,2016-03-01,1,,true,driversec@marbu.com,acceso,2016-03-11
+driver001,Juan Pérez,Secundario,Ecatepec No. 1,Ecatepec,Ecatepec,CMX,MEX,87988,Male,Single,54325198,98765421,1980-12-01,2016-03-01,1,,true,driver001@persona.com,acceso,2016-03-11
+driver002,Jorge Orihuela,Primario,Ecatepec No. 2,Ecatepec,Ecatepec,CMX,MEX,87988,Male,Single,65432125,65498712,1980-12-01,2016-03-01,1,,true,driver002@persona.com,acceso,2016-03-11
+driver003,Baltazar Cedillo,Secundario,Ecatepec No. 3,Ecatepec,Ecatepec,CMX,MEX,52047,Male,Single,43824928,59374363,1980-12-01,2016-03-01,1,,true,driver003@persona.com,acceso,2016-03-11
+driver004,Rafael Lima,Secundario,Cuautitlán No. 1,Cuautitlán,Cuautitlán,CMX,MEX,12345,Male,Single,55112255,77885522,1980-12-01,2016-03-01,1,,true,driver004@persona.com,acceso,2016-03-11
+driver005,Jorge Hernández,Primario,Cuautitlán No. 2,Cuautitlán,Cuautitlán,CMX,MEX,45896,Male,Single,55226699,44889966,1980-12-01,2016-03-01,1,,true,driver005@persona.com,acceso,2016-03-11
+driver006,Juan González,Secundario,Cuautitlán No. 3,Cuautitlán,Cuautitlán,CMX,MEX,54565,Male,Single,22779966,11995533,1980-12-01,2016-03-01,1,,true,driver006@persona.com,acceso,2016-03-11
+driver007,Pedro Pérez,Secundario,Roma No. 105,Ciudad de México,Ciudad de México,CMX,MEX,52047,Male,Single,43824928,59374363,1980-12-01,2016-03-01,1,,true,driver007@persona.com,acceso,2016-03-11
+driver008,Maria Xochitl,Primario,Roma No. 134,Ciudad de México,Ciudad de México,CMX,MEX,12345,Female,Single,55112255,77885522,1980-12-01,2016-03-01,1,,true,driver008@persona.com,acceso,2016-03-11
+driver009,Gervasio Mendez,Secundario,Roma No. 176,Ciudad de México,Ciudad de México,CMX,MEX,45896,Male,Single,55226699,44889966,1980-12-01,2016-03-01,1,,true,driver009@persona.com,acceso,2016-03-11
+driver010,Fernando Rossi,Secundario,Del Valle No. 123,Ciudad de México,Ciudad de México,CMX,MEX,54565,Male,Single,22779966,11995533,1980-12-01,2016-03-01,1,,true,driver010@persona.com,acceso,2016-03-11

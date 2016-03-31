@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "formmaintenance",
+        "designer|userClassName": "formMaintenanceViewController"
+    },
+    "designerId": "713910f4-4ffb-4378-b163-aef2d02c95ec"
+}

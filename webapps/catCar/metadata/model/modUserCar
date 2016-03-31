@@ -1,0 +1,80 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "modUserCar"
+    },
+    "name": "modSector1",
+    "designerId": "3fa1495d-f6e5-4ebc-add3-5bdf40631793",
+    "cn": [
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "car_id"
+            },
+            "name": "MyField",
+            "designerId": "05e20b88-6ba4-4df2-b55b-0f4f2bb5e96d"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "user_id"
+            },
+            "name": "MyField2",
+            "designerId": "9581a17a-95b7-480b-8456-2d93f24ecabf"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "user_name"
+            },
+            "name": "MyField5",
+            "designerId": "cffed512-eacd-47bc-b3d7-5ce218275fb6"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "preferred"
+            },
+            "name": "MyField12",
+            "designerId": "1565edcf-8aac-4b86-a2b6-826069e3fdb4"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "is_active"
+            },
+            "name": "MyField6",
+            "designerId": "034485f2-1681-4215-bcdf-1a59d435aa3c"
+        }
+    ]
+}

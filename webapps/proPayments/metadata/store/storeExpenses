@@ -1,0 +1,81 @@
+{
+    "type": "Ext.data.Store",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "storeExpenses",
+        "model": "modExpenses",
+        "storeId": "storeExpenses"
+    },
+    "name": "storeServices1",
+    "designerId": "48dbea75-9519-4c5a-aea2-6bbc984c943a",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Rest",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "restProxyExpenses",
+                "url": ""
+            },
+            "name": "MyRestProxy",
+            "designerId": "c802e81f-2374-4f98-9232-767222acf8c1",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "jsonReaderExpenses",
+                        "rootProperty": "Expenses",
+                        "totalProperty": "numServices.total"
+                    },
+                    "name": "MyJsonReader",
+                    "designerId": "4db4ffbb-987a-48da-a143-7ebe71811df3"
+                }
+            ]
+        },
+        {
+            "type": "basiceventbinding",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onStoreBeforeLoad",
+                "implHandler": [
+                    "var storeExpenses = Ext.getStore('storeExpenses');",
+                    "var proxyExpenses = storeExpenses.getProxy();",
+                    "",
+                    "var objJsonData = new Object();",
+                    "objJsonData.page  = storeExpenses.currentPage;",
+                    "objJsonData.start = (storeExpenses.currentPage - 1) * storeExpenses.pageSize;",
+                    "objJsonData.limit = storeExpenses.pageSize;",
+                    "",
+                    "var objJsonRequest = new Object();",
+                    "objJsonRequest.apiController = 'apiExpenses';",
+                    "objJsonRequest.apiMethod     = 'listExpenses';",
+                    "objJsonRequest.apiData       = JSON.stringify(objJsonData);",
+                    "",
+                    "proxyExpenses.api.read    = '../../backend/public/dataBridge/' + objJsonRequest.apiController;",
+                    "proxyExpenses.extraParams = objJsonRequest;",
+                    ""
+                ],
+                "name": "beforeload",
+                "scope": "me"
+            },
+            "name": "onStoreBeforeLoad",
+            "designerId": "a30d4896-66b5-4fca-b462-ea19ecd2249b"
+        }
+    ]
+}

@@ -1,0 +1,4 @@
+sector_id,sector_name,sector_state,sector_country,is_active,longitude,latitude,geocode_url,created_at
+100,1A Iztapalapa,Ciudad de México,México,1,456654.465,654321.987,http://geocode.com?axis=123432532,2016-03-12
+200,1B Iztapalapa,Ciudad de México,México,1,321654.369,654321.321,http://geocode.com?axis=123432532,2016-03-12
+300,1C Magdalena Contreras,Ciudad de México,México,1,654321.987,654987.987,http://geocode.com?axis=123432532,2016-03-12

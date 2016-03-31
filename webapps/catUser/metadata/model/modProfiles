@@ -1,0 +1,41 @@
+{
+    "type": "Ext.data.Model",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "modProfiles"
+    },
+    "name": "MyModel",
+    "designerId": "8e9995d5-a744-4ded-a2b3-9407e00b5dc8",
+    "cn": [
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "profile_code"
+            },
+            "name": "MyField13",
+            "designerId": "509ba0a9-4edc-4e7a-8ffe-f9f0e218b231"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "profile_description"
+            },
+            "name": "MyField18",
+            "designerId": "dfb66764-71ec-458e-a54b-447b911bb0cd"
+        }
+    ]
+}

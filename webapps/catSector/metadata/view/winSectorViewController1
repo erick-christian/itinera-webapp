@@ -1,0 +1,14 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "winzone",
+        "designer|userClassName": "winSectorViewController1"
+    },
+    "name": "winSectorViewController1",
+    "designerId": "ece90031-f86e-4af6-8d15-c6d740b732f0"
+}

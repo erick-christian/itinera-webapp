@@ -1,0 +1,14 @@
+{
+    "type": "cssresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "css_yu98blfb",
+        "url": "../../framework/terian/css/pixieDesign.css"
+    },
+    "name": "css",
+    "designerId": "9f5bee17-12e5-4279-871f-505b5643d567"
+}

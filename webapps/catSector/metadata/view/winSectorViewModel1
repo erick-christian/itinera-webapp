@@ -1,0 +1,14 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "winzone",
+        "designer|userClassName": "winSectorViewModel1"
+    },
+    "name": "winSectorViewModel1",
+    "designerId": "7254f27e-6683-4860-9f18-c85c2d61d9c4"
+}

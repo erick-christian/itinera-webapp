@@ -1,0 +1,249 @@
+country_code,country_name,country_domain
+and,Andorra,ad
+afg,Afghanistan,af
+atg,Antigua and Barbuda,ag
+aia,Anguilla,ai
+alb,Albania,al
+arm,Armenia,am
+ago,Angola,ao
+ata,Antarctica,aq
+arg,Argentina,ar
+asm,American Samoa,as
+aus,Australia,au
+abw,Aruba,aw
+ala,Åland Islands,ax
+aze,Azerbaijan,az
+aut,Austria,at
+dza,Algeria,dz
+bhs,Bahamas,bs
+bhr,Bahrain,bh
+bgd,Bangladesh,bd
+brb,Barbados,bb
+blr,Belarus,by
+bel,Belgium,be
+blz,Belize,bz
+ben,Benin,bj
+bmu,Bermuda,bm
+btn,Bhutan,bt
+bol,Plurinational State of Bolivia,bo
+bes,Sint Eustatius and Saba Bonaire,bq
+bih,Bosnia and Herzegowina,ba
+bwa,Botswana,bw
+bvt,Bouvet Island,bv
+bra,Brazil,br
+iot,British Indian Ocean Territory,io
+brn,Brunei Darussalam,bn
+bgr,Bulgaria,bg
+bfa,Burkina Faso,bf
+bdi,Burundi,bi
+khm,Cambodia,kh
+cmr,Cameroon,cm
+can,Canada,ca
+cpv,Cape Verde,cv
+cym,Cayman Islands,ky
+caf,Central African Republic,cf
+tcd,Chad,td
+chl,Chile,cl
+chn,China,cn
+cxr,Christmas Island,cx
+cck,Cocos  Islands,cc
+col,Colombia,co
+com,Comoros,km
+cog,Congo,cg
+cod,The Democratic Republic of The Congo,cd
+cok,Cook Islands,ck
+cri,Costa Rica,cr
+civ,Côte d'Ivoire,ci
+hrv,Croatia ,hr
+cub,Cuba,cu
+cuw,Curaçao,cw
+cyp,Cyprus,cy
+cze,Czech Republic,cz
+dnk,Denmark,dk
+dji,Djibouti,dj
+dma,Dominica,dm
+dom,Dominican Republic,do
+ecu,Ecuador,ec
+egy,Egypt,eg
+slv,El Salvador,sv
+gnq,Equatorial Guinea,gq
+eri,Eritrea,er
+est,Estonia,ee
+eth,Ethiopia,et
+flk,Falkland Islands ,fk
+fro,Faroe Islands,fo
+fji,Fiji,fj
+fin,Finland,fi
+fra,France,fr
+guf,French Guiana,gf
+pyf,French Polynesia,pf
+atf,French Southern Territories,tf
+gab,Gabon,ga
+gmb,Gambia,gm
+geo,Georgia,ge
+deu,Germany,de
+gha,Ghana,gh
+gib,Gibraltar,gi
+grc,Greece,gr
+grl,Greenland,gl
+grd,Grenada,gd
+glp,Guadeloupe,gp
+gum,Guam,gu
+gtm,Guatemala,gt
+ggy,Guernsey,gg
+gin,Guinea,gn
+gnb,Guinea-bissau,gw
+guy,Guyana,gy
+hti,Haiti,ht
+hmd,Heard and McDonald Islands,hm
+vat,Holy See ,va
+hnd,Honduras,hn
+hkg,Hong Kong,hk
+hun,Hungary,hu
+isl,Iceland,is
+ind,India,in
+idn,Indonesia,id
+irn,Iran ,ir
+irq,Iraq,iq
+irl,Ireland,ie
+imn,Isle of Man,im
+isr,Israel,il
+ita,Italy,it
+jam,Jamaica,jm
+jpn,Japan,jp
+jey,Jersey,je
+jor,Jordan,jo
+kaz,Kazakhstan,kz
+ken,Kenya,ke
+kir,Kiribati,ki
+prk,Democratic People's Republic of Korea,kp
+kor,Republic of Korea,kr
+kwt,Kuwait,kw
+kgz,Kyrgyzstan,kg
+lao,Lao People's Democratic Republic,la
+lva,Latvia,lv
+lbn,Lebanon,lb
+lso,Lesotho,ls
+lbr,Liberia,lr
+lby,Libya,ly
+lie,Liechtenstein,li
+ltu,Lithuania,lt
+lux,Luxembourg,lu
+mac,Macao,mo
+mkd,The Former Yugoslav Republic of Macedonia,mk
+mdg,Madagascar,mg
+mwi,Malawi,mw
+mys,Malaysia,my
+mdv,Maldives,mv
+mli,Mali,ml
+mlt,Malta,mt
+mhl,Marshall Islands,mh
+mtq,Martinique,mq
+mrt,Mauritania,mr
+mus,Mauritius,mu
+myt,Mayotte,yt
+mex,Mexico,mx
+fsm,Federated States of Micronesia,fm
+mda,Republic of Moldova,md
+mco,Monaco,mc
+mng,Mongolia,mn
+mne,Montenegro,me
+msr,Montserrat,ms
+mar,Morocco,ma
+moz,Mozambique,mz
+mmr,Myanmar,mm
+nam,Namibia,na
+nru,Nauru,nr
+npl,Nepal,np
+nld,Netherlands,nl
+ncl,New Caledonia,nc
+nzl,New Zealand,nz
+nic,Nicaragua,ni
+ner,Niger,ne
+nga,Nigeria,ng
+niu,Niue,nu
+nfk,Norfolk Island,nf
+mnp,Northern Mariana Islands,mp
+nor,Norway,no
+omn,Oman,om
+pak,Pakistan,pk
+plw,Palau,pw
+pse,State of Palestine,ps
+pan,Panama,pa
+png,Papua New Guinea,pg
+pry,Paraguay,py
+per,Peru,pe
+phl,Philippines,ph
+pcn,Pitcairn,pn
+pol,Poland,pl
+prt,Portugal,pt
+pri,Puerto Rico,pr
+qat,Qatar,qa
+reu,Réunion,re
+rou,Romania,ro
+rus,Russian Federation,ru
+rwa,Rwanda,rw
+shn,Ascension and Tristan Da Cunha Saint Helena,sh
+blm,Saint Barthélemy,bl
+kna,Saint Kitts and Nevis,kn
+lca,Saint Lucia,lc
+spm,Saint Pierre and Miquelon,pm
+vct,Saint Vincent and The Grenadines,vc
+wsm,Samoa,ws
+smr,San Marino,sm
+stp,Sao Tome and Principe,st
+sau,Saudi Arabia,sa
+sen,Senegal,sn
+srb,Serbia,rs
+syc,Seychelles,sc
+sle,Sierra Leone,sl
+sgp,Singapore,sg
+sxm,Sint Maarten ,sx
+svk,Slovakia,sk
+svn,Slovenia,si
+slb,Solomon Islands,sb
+som,Somalia,so
+zaf,South Africa,za
+sgs,South Georgia and The South Sandwich Islands,gs
+ssd,South Sudan,ss
+esp,Spain,es
+lka,Sri Lanka,lk
+sdn,Sudan,sd
+sur,Suriname,sr
+sjm,Svalbard and Jan Mayen Islands,sj
+swz,Swaziland,sz
+swe,Sweden,se
+che,Switzerland,ch
+syr,Syrian Arab Republic,sy
+twn,Province of China Taiwan,tw
+tjk,Tajikistan,tj
+tza,United Republic of Tanzania,tz
+tha,Thailand,th
+tls,Timor-leste,tl
+tgo,Togo,tg
+tkl,Tokelau,tk
+ton,Tonga,to
+tto,Trinidad and Tobago,tt
+tun,Tunisia,tn
+tur,Turkey,tr
+tkm,Turkmenistan,tm
+tca,Turks and Caicos Islands,tc
+tuv,Tuvalu,tv
+uga,Uganda,ug
+ukr,Ukraine,ua
+are,United Arab Emirates,ae
+gbr,United Kingdom,gb
+usa,United States,us
+umi,United States Minor Outlying Islands,um
+ury,Uruguay,uy
+uzb,Uzbekistan,uz
+vut,Vanuatu,vu
+ven,Bolivarian Republic of Venezuela,ve
+vnm,Vietnam,vn
+vgb,Virgin Islands (British),vg
+vir,Virgin Islands (US),vi
+wlf,Wallis and Futuna Islands,wf
+esh,Western Sahara,eh
+yem,Yemen,ye
+zmb,Zambia,zm
+zwe,Zimbabwe,zw
