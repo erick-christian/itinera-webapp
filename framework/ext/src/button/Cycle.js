@@ -40,7 +40,7 @@ Ext.define('Ext.button.Cycle', {
      * @cfg {Object[]} items
      * An array of {@link Ext.menu.CheckItem} **config** objects to be used when creating the button's menu items (e.g.,
      * `{text:'Foo', iconCls:'foo-icon'}`)
-     * 
+     *
      * @deprecated 4.0 Use the {@link #cfg-menu} config instead. All menu items will be created as
      * {@link Ext.menu.CheckItem CheckItems}.
      */
@@ -92,7 +92,7 @@ Ext.define('Ext.button.Cycle', {
      */
 
     // @private
-    getButtonText: function(item) {
+    getButtonText: function (item) {
         var me = this,
             text = '';
 
@@ -111,7 +111,7 @@ Ext.define('Ext.button.Cycle', {
      * @param {Ext.menu.CheckItem} item The item to activate
      * @param {Boolean} [suppressEvent=false] True to prevent the {@link #change} event and {@link #changeHandler} from firing.
      */
-    setActiveItem: function(item, suppressEvent) {
+    setActiveItem: function (item, suppressEvent) {
         var me = this,
             changeHandler = me.changeHandler,
             forceIcon = me.forceIcon,
@@ -144,13 +144,13 @@ Ext.define('Ext.button.Cycle', {
      * Gets the currently active menu item.
      * @return {Ext.menu.CheckItem} The active item
      */
-    getActiveItem: function() {
+    getActiveItem: function () {
         return this.activeItem;
     },
 
     // @private
-    initComponent: function() {
-        var me      = this,
+    initComponent: function () {
+        var me = this,
             checked = 0,
             items,
             i, iLen, item;
@@ -170,11 +170,11 @@ Ext.define('Ext.button.Cycle', {
             item = items[i];
 
             item = Ext.applyIf({
-                group        : me.id,
-                itemIndex    : i,
-                checkHandler : me.checkHandler,
-                scope        : me,
-                checked      : item.checked || false
+                group: me.id,
+                itemIndex: i,
+                checkHandler: me.checkHandler,
+                scope: me,
+                checked: item.checked || false
             }, item);
 
             me.menu.items.push(item);
@@ -191,7 +191,7 @@ Ext.define('Ext.button.Cycle', {
     },
 
     // @private
-    checkHandler: function(item, pressed) {
+    checkHandler: function (item, pressed) {
         if (pressed && !this.settingActive) {
             this.setActiveItem(item);
         }
@@ -202,7 +202,7 @@ Ext.define('Ext.button.Cycle', {
      * item programmatically to the next one in the menu. If the current item is the last one in the menu the active
      * item will be set to the first item in the menu.
      */
-    toggleSelected: function() {
+    toggleSelected: function () {
         var me = this,
             m = me.menu,
             checkItem;

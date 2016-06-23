@@ -91,13 +91,13 @@ $datepicker-header-padding: 4px 6px !default;
  * @var {color}
  * The color of the Date Picker month button
  */
-$datepicker-month-button-color: #fff !default; 
+$datepicker-month-button-color: #fff !default;
 
 /**
  * @var {number}
  * The width of the arrow on the Date Picker month button
  */
-$datepicker-month-button-arrow-width: $button-small-arrow-width !default; 
+$datepicker-month-button-arrow-width: $button-small-arrow-width !default;
 
 /**
  * @var {string}
@@ -109,7 +109,7 @@ $datepicker-month-button-arrow-image: 'datepicker/month-arrow' !default;
  * @var {boolean}
  * True to render the month button as transparent
  */
-$datepicker-use-transparent-month-button: true !default; 
+$datepicker-use-transparent-month-button: true !default;
 
 /**
  * @var {string}
@@ -267,7 +267,7 @@ $datepicker-item-selected-font-weight: $font-weight-bold !default;
  * @var {color}
  * The text color of the items in the previous and next months
  */
-$datepicker-item-prev-next-color: lighten($datepicker-item-color,  75%) !default;
+$datepicker-item-prev-next-color: lighten($datepicker-item-color, 75%) !default;
 
 /**
  * @var {string}
@@ -279,7 +279,7 @@ $datepicker-item-disabled-cursor: default !default;
  * @var {color}
  * The text color of disabled Date Picker items
  */
-$datepicker-item-disabled-color: lighten($datepicker-item-color,  50%) !default;
+$datepicker-item-disabled-color: lighten($datepicker-item-color, 50%) !default;
 
 /**
  * @var {color}

@@ -54,14 +54,14 @@ Ext.define('Ext.chart.axis.Gauge', {
 
     alias: 'axis.gauge',
 
-    drawAxis: function(init) {
+    drawAxis: function (init) {
         var chart = this.chart,
             surface = chart.surface,
             bbox = chart.chartBBox,
             centerX = bbox.x + (bbox.width / 2),
             centerY = bbox.y + bbox.height,
             margin = this.margin || 10,
-            rho = Math.min(bbox.width, 2 * bbox.height) /2 + margin,
+            rho = Math.min(bbox.width, 2 * bbox.height) / 2 + margin,
             sprites = [], sprite,
             steps = this.steps,
             i, pi = Math.PI,
@@ -80,9 +80,9 @@ Ext.define('Ext.chart.axis.Gauge', {
                     sprite = surface.add({
                         type: 'path',
                         path: ['M', centerX + (rho - margin) * cos(i / steps * pi - pi),
-                                    centerY + (rho - margin) * sin(i / steps * pi - pi),
-                                    'L', centerX + rho * cos(i / steps * pi - pi),
-                                    centerY + rho * sin(i / steps * pi - pi), 'Z'],
+                            centerY + (rho - margin) * sin(i / steps * pi - pi),
+                            'L', centerX + rho * cos(i / steps * pi - pi),
+                            centerY + rho * sin(i / steps * pi - pi), 'Z'],
                         stroke: '#ccc'
                     });
                     sprite.setAttributes({
@@ -96,9 +96,9 @@ Ext.define('Ext.chart.axis.Gauge', {
                 for (i = 0; i <= steps; i++) {
                     sprites[i].setAttributes({
                         path: ['M', centerX + (rho - margin) * cos(i / steps * pi - pi),
-                                    centerY + (rho - margin) * sin(i / steps * pi - pi),
-                               'L', centerX + rho * cos(i / steps * pi - pi),
-                                    centerY + rho * sin(i / steps * pi - pi), 'Z'],
+                            centerY + (rho - margin) * sin(i / steps * pi - pi),
+                            'L', centerX + rho * cos(i / steps * pi - pi),
+                            centerY + rho * sin(i / steps * pi - pi), 'Z'],
                         stroke: '#ccc'
                     }, true);
                 }
@@ -111,7 +111,7 @@ Ext.define('Ext.chart.axis.Gauge', {
         }
     },
 
-    drawTitle: function() {
+    drawTitle: function () {
         var me = this,
             chart = me.chart,
             surface = chart.surface,
@@ -139,12 +139,12 @@ Ext.define('Ext.chart.axis.Gauge', {
      * Updates the {@link #title} of this axis.
      * @param {String} title
      */
-    setTitle: function(title) {
+    setTitle: function (title) {
         this.title = title;
         this.drawTitle();
     },
 
-    drawLabel: function() {
+    drawLabel: function () {
         var me = this,
             chart = me.chart,
             surface = chart.surface,
@@ -152,12 +152,12 @@ Ext.define('Ext.chart.axis.Gauge', {
             centerX = bbox.x + (bbox.width / 2),
             centerY = bbox.y + bbox.height,
             margin = me.margin || 10,
-            rho = Math.min(bbox.width, 2 * bbox.height) /2 + 2 * margin,
+            rho = Math.min(bbox.width, 2 * bbox.height) / 2 + 2 * margin,
             round = Math.round,
             labelArray = [], label,
             maxValue = me.maximum || 0,
             minValue = me.minimum || 0,
-            steps = me.steps, 
+            steps = me.steps,
             pi = Math.PI,
             cos = Math.cos,
             sin = Math.sin,

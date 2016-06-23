@@ -59,7 +59,7 @@
  * {@link Ext.data.reader.Xml#xmlData xmlData} property.
  */
 Ext.define('Ext.form.action.Submit', {
-    extend:'Ext.form.action.Action',
+    extend: 'Ext.form.action.Action',
     alternateClassName: 'Ext.form.Action.Submit',
     alias: 'formaction.submit',
 
@@ -72,10 +72,10 @@ Ext.define('Ext.form.action.Submit', {
      */
 
     // inherit docs
-    run : function(){
+    run: function () {
         var me = this,
             form = me.form;
-            
+
         if (me.clientValidation === false || form.isValid()) {
             me.doSubmit();
         } else {
@@ -89,7 +89,7 @@ Ext.define('Ext.form.action.Submit', {
      * @private
      * Performs the submit of the form data.
      */
-    doSubmit: function() {
+    doSubmit: function () {
         var me = this,
             ajaxOptions = Ext.apply(me.createCallback(), {
                 url: me.getUrl(),
@@ -116,31 +116,31 @@ Ext.define('Ext.form.action.Submit', {
             me.cleanup(formInfo);
         }
     },
-    
-    cleanup: function(formInfo) {
+
+    cleanup: function (formInfo) {
         var formEl = formInfo.formEl,
             uploadEls = formInfo.uploadEls,
             uploadFields = formInfo.uploadFields,
             len = uploadFields.length,
             i, field;
-            
+
         for (i = 0; i < len; ++i) {
             field = uploadFields[i];
             if (!field.clearOnSubmit) {
                 field.restoreInput(uploadEls[i]);
-            }    
+            }
         }
-        
+
         if (formEl) {
             Ext.removeNode(formEl);
-        }    
+        }
     },
 
     /**
      * @private
      * Builds the full set of parameters from the field values plus any additional configured params.
      */
-    getParams: function(useModelValues) {
+    getParams: function (useModelValues) {
         var falseVal = false,
             configParams = this.callParent(),
             fieldParams = this.form.getValues(falseVal, falseVal, this.submitEmptyText !== falseVal, useModelValues, /*isSubmitting*/ true);
@@ -157,7 +157,7 @@ Ext.define('Ext.form.action.Submit', {
      *
      * @return {HTMLElement}
      */
-    buildForm: function() {
+    buildForm: function () {
         var me = this,
             fieldsSpec = [],
             formSpec,
@@ -168,7 +168,7 @@ Ext.define('Ext.form.action.Submit', {
             uploadEls = [],
             fields = basicForm.getFields().items,
             i,
-            len   = fields.length,
+            len = fields.length,
             field, key, value, v, vLen,
             el;
 
@@ -201,8 +201,8 @@ Ext.define('Ext.form.action.Submit', {
             action: me.getUrl(),
             method: me.getMethod(),
             target: me.target ?
-                        (Ext.isString(me.target) ? me.target : Ext.fly(me.target).dom.name) :
-                        '_self',
+                (Ext.isString(me.target) ? me.target : Ext.fly(me.target).dom.name) :
+                '_self',
             style: 'display:none',
             cn: fieldsSpec
         };
@@ -239,7 +239,7 @@ Ext.define('Ext.form.action.Submit', {
         };
     },
 
-    getFieldConfig: function(name, value) {
+    getFieldConfig: function (name, value) {
         return {
             tag: 'input',
             type: 'hidden',
@@ -251,12 +251,12 @@ Ext.define('Ext.form.action.Submit', {
     /**
      * @private
      */
-    onSuccess: function(response) {
+    onSuccess: function (response) {
         var form = this.form,
             formActive = form && !form.destroying && !form.isDestroyed,
             success = true,
             result = this.processResponse(response);
-        
+
         if (result !== true && !result.success) {
             if (result.errors && formActive) {
                 form.markInvalid(result.errors);
@@ -264,7 +264,7 @@ Ext.define('Ext.form.action.Submit', {
             this.failureType = Ext.form.action.Action.SERVER_INVALID;
             success = false;
         }
-        
+
         if (formActive) {
             form.afterAction(this, success);
         }
@@ -273,17 +273,17 @@ Ext.define('Ext.form.action.Submit', {
     /**
      * @private
      */
-    handleResponse: function(response) {
+    handleResponse: function (response) {
         var form = this.form,
             errorReader = form.errorReader,
             rs, errors, i, len, records, result;
-            
+
         if (errorReader) {
             rs = errorReader.read(response);
             records = rs.records;
             errors = [];
             if (records) {
-                for(i = 0, len = records.length; i < len; i++) {
+                for (i = 0, len = records.length; i < len; i++) {
                     errors[i] = records[i].data;
                 }
             }
@@ -291,19 +291,19 @@ Ext.define('Ext.form.action.Submit', {
                 errors = null;
             }
             result = {
-                success : rs.success,
-                errors : errors
+                success: rs.success,
+                errors: errors
             };
         } else {
             try {
-                result = Ext.decode(response.responseText);    
+                result = Ext.decode(response.responseText);
             } catch (e) {
                 result = {
                     success: false,
                     errors: []
                 };
             }
-            
+
         }
         return result;
     }

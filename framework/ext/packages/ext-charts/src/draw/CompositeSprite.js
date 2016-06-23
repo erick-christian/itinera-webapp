@@ -12,15 +12,15 @@
  *     var group = Ext.create('Ext.draw.CompositeSprite', {
  *         surface: drawComponent.surface
  *     });
- *                  
+ *
  * Then just by using `MixedCollection` methods it's possible to add {@link Ext.draw.Sprite}s:
- *  
+ *
  *     group.add(sprite1);
  *     group.add(sprite2);
  *     group.add(sprite3);
- *                  
+ *
  * And then apply common Sprite methods to them:
- *  
+ *
  *     group.setAttributes({
  *         fill: '#f00'
  *     }, true);
@@ -34,7 +34,7 @@ Ext.define('Ext.draw.CompositeSprite', {
         animate: 'Ext.util.Animate'
     },
     autoDestroy: false,
-    
+
     /* End Definitions */
     isCompositeSprite: true,
 
@@ -63,9 +63,9 @@ Ext.define('Ext.draw.CompositeSprite', {
      * @inheritdoc Ext.draw.Sprite#click
      */
 
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this;
-        
+
         Ext.apply(me, config);
 
         me.id = Ext.id(null, 'ext-sprite-group-');
@@ -73,33 +73,33 @@ Ext.define('Ext.draw.CompositeSprite', {
     },
 
     // @private
-    onClick: function(e) {
+    onClick: function (e) {
         this.fireEvent('click', e);
     },
 
     // @private
-    onMouseUp: function(e) {
+    onMouseUp: function (e) {
         this.fireEvent('mouseup', e);
     },
 
     // @private
-    onMouseDown: function(e) {
+    onMouseDown: function (e) {
         this.fireEvent('mousedown', e);
     },
 
     // @private
-    onMouseOver: function(e) {
+    onMouseOver: function (e) {
         this.fireEvent('mouseover', e);
     },
 
     // @private
-    onMouseOut: function(e) {
+    onMouseOut: function (e) {
         this.fireEvent('mouseout', e);
     },
 
-    attachEvents: function(o) {
+    attachEvents: function (o) {
         var me = this;
-        
+
         o.on({
             scope: me,
             mousedown: me.onMouseDown,
@@ -111,20 +111,20 @@ Ext.define('Ext.draw.CompositeSprite', {
     },
 
     // Inherit docs from MixedCollection
-    add: function(key, o) {
+    add: function (key, o) {
         var result = this.callParent(arguments);
         this.attachEvents(result);
         return result;
     },
 
-    insert: function(index, key, o) {
+    insert: function (index, key, o) {
         return this.callParent(arguments);
     },
 
     // Inherit docs from MixedCollection
-    remove: function(o) {
+    remove: function (o) {
         var me = this;
-        
+
         o.un({
             scope: me,
             mousedown: me.onMouseDown,
@@ -135,13 +135,13 @@ Ext.define('Ext.draw.CompositeSprite', {
         });
         return me.callParent(arguments);
     },
-    
+
     /**
      * Returns the group bounding box.
      * Behaves like {@link Ext.draw.Sprite#getBBox} method.
      * @return {Object} an object with x, y, width, and height properties.
      */
-    getBBox: function() {
+    getBBox: function () {
         var i = 0,
             sprite,
             bb,
@@ -153,10 +153,10 @@ Ext.define('Ext.draw.CompositeSprite', {
             minY = infinity,
             maxWidth = -infinity,
             maxWidthBBox, maxHeightBBox;
-        
+
         for (; i < len; i++) {
             sprite = items[i];
-            if (sprite.el && ! sprite.bboxExcluded) {
+            if (sprite.el && !sprite.bboxExcluded) {
                 bb = sprite.getBBox();
                 minX = Math.min(minX, bb.x);
                 minY = Math.min(minY, bb.y);
@@ -164,7 +164,7 @@ Ext.define('Ext.draw.CompositeSprite', {
                 maxWidth = Math.max(maxWidth, bb.width + bb.x);
             }
         }
-        
+
         return {
             x: minX,
             y: minY,
@@ -180,11 +180,11 @@ Ext.define('Ext.draw.CompositeSprite', {
      * @param {Boolean} redraw Flag to immediately draw the change.
      * @return {Ext.draw.CompositeSprite} this
      */
-    setAttributes: function(attrs, redraw) {
+    setAttributes: function (attrs, redraw) {
         var i = 0,
             items = this.items,
             len = this.length;
-            
+
         for (; i < len; i++) {
             items[i].setAttributes(attrs, redraw);
         }
@@ -196,11 +196,11 @@ Ext.define('Ext.draw.CompositeSprite', {
      * @param {Boolean} redraw Flag to immediately draw the change.
      * @return {Ext.draw.CompositeSprite} this
      */
-    hide: function(redraw) {
+    hide: function (redraw) {
         var i = 0,
             items = this.items,
             len = this.length;
-            
+
         for (; i < len; i++) {
             items[i].hide(redraw);
         }
@@ -212,11 +212,11 @@ Ext.define('Ext.draw.CompositeSprite', {
      * @param {Boolean} redraw Flag to immediately draw the change.
      * @return {Ext.draw.CompositeSprite} this
      */
-    show: function(redraw) {
+    show: function (redraw) {
         var i = 0,
             items = this.items,
             len = this.length;
-            
+
         for (; i < len; i++) {
             items[i].show(redraw);
         }
@@ -226,13 +226,13 @@ Ext.define('Ext.draw.CompositeSprite', {
     /**
      * Force redraw of all sprites.
      */
-    redraw: function() {
+    redraw: function () {
         var me = this,
             i = 0,
             items = me.items,
             surface = me.getSurface(),
             len = me.length;
-        
+
         if (surface) {
             for (; i < len; i++) {
                 surface.renderItem(items[i]);
@@ -245,12 +245,12 @@ Ext.define('Ext.draw.CompositeSprite', {
      * Sets style for all sprites.
      * @param {String} style CSS Style definition.
      */
-    setStyle: function(obj) {
+    setStyle: function (obj) {
         var i = 0,
             items = this.items,
             len = this.length,
             item, el;
-            
+
         for (; i < len; i++) {
             item = items[i];
             el = item.el;
@@ -264,12 +264,12 @@ Ext.define('Ext.draw.CompositeSprite', {
      * Adds class to all sprites.
      * @param {String} cls CSS class name
      */
-    addCls: function(obj) {
+    addCls: function (obj) {
         var i = 0,
             items = this.items,
             surface = this.getSurface(),
             len = this.length;
-        
+
         if (surface) {
             for (; i < len; i++) {
                 surface.addCls(items[i], obj);
@@ -281,41 +281,41 @@ Ext.define('Ext.draw.CompositeSprite', {
      * Removes class from all sprites.
      * @param {String} cls CSS class name
      */
-    removeCls: function(obj) {
+    removeCls: function (obj) {
         var i = 0,
             items = this.items,
             surface = this.getSurface(),
             len = this.length;
-        
+
         if (surface) {
             for (; i < len; i++) {
                 surface.removeCls(items[i], obj);
             }
         }
     },
-    
+
     /**
      * Grab the surface from the items
      * @private
      * @return {Ext.draw.Surface} The surface, null if not found
      */
-    getSurface: function(){
+    getSurface: function () {
         var first = this.first();
         if (first) {
             return first.surface;
         }
         return null;
     },
-    
+
     /**
      * Destroys this CompositeSprite.
      */
-    destroy: function(){
+    destroy: function () {
         var me = this,
             surface = me.getSurface(),
             destroySprites = me.autoDestroy,
             item;
-            
+
         if (surface) {
             while (me.getCount() > 0) {
                 item = me.first();

@@ -82,12 +82,12 @@ Ext.define('Ext.grid.feature.RowBody', {
     /**
      * @cfg {Boolean} [bodyBefore=false]
      * Configure as `true` to put the row expander body *before* the data row.
-     * 
+     *
      */
     bodyBefore: false,
 
     outerTpl: {
-        fn: function(out, values, parent) {
+        fn: function (out, values, parent) {
             var view = values.view,
                 rowValues = view.rowValues;
 
@@ -100,24 +100,24 @@ Ext.define('Ext.grid.feature.RowBody', {
 
     extraRowTpl: [
         '{%',
-            'if(this.rowBody.bodyBefore) {',
-                // MUST output column sizing elements because the first row in this table
-                // contains one colspanning TD, and that overrides subsequent column width settings.
-                'values.view.renderColumnSizer(values, out);',
-            '} else {',
-                'this.nextTpl.applyOut(values, out, parent);',
-            '}',
-            'values.view.rowBodyFeature.setupRowData(values.record, values.recordIndex, values);',
+        'if(this.rowBody.bodyBefore) {',
+        // MUST output column sizing elements because the first row in this table
+        // contains one colspanning TD, and that overrides subsequent column width settings.
+        'values.view.renderColumnSizer(values, out);',
+        '} else {',
+        'this.nextTpl.applyOut(values, out, parent);',
+        '}',
+        'values.view.rowBodyFeature.setupRowData(values.record, values.recordIndex, values);',
         '%}',
         '<tr class="' + Ext.baseCSSPrefix + 'grid-rowbody-tr {rowBodyCls}" {ariaRowAttr}>',
-            '<td class="' + Ext.baseCSSPrefix + 'grid-td ' + Ext.baseCSSPrefix + 'grid-cell-rowbody" colspan="{rowBodyColspan}" {ariaCellAttr}>',
-                '<div class="' + Ext.baseCSSPrefix + 'grid-rowbody {rowBodyDivCls}" {ariaCellInnerAttr}>{rowBody}</div>',
-            '</td>',
+        '<td class="' + Ext.baseCSSPrefix + 'grid-td ' + Ext.baseCSSPrefix + 'grid-cell-rowbody" colspan="{rowBodyColspan}" {ariaCellAttr}>',
+        '<div class="' + Ext.baseCSSPrefix + 'grid-rowbody {rowBodyDivCls}" {ariaCellInnerAttr}>{rowBody}</div>',
+        '</td>',
         '</tr>',
         '{%',
-            'if(this.rowBody.bodyBefore) {',
-                'this.nextTpl.applyOut(values, out, parent);',
-            '}',
+        'if(this.rowBody.bodyBefore) {',
+        'this.nextTpl.applyOut(values, out, parent);',
+        '}',
         '%}', {
             priority: 100,
 
@@ -125,7 +125,7 @@ Ext.define('Ext.grid.feature.RowBody', {
                 rowSync.add('rowBody', this.owner.eventSelector);
             },
 
-            syncContent: function(destRow, sourceRow, columnsToUpdate) {
+            syncContent: function (destRow, sourceRow, columnsToUpdate) {
                 var owner = this.owner,
                     destRowBody = Ext.fly(destRow).down(owner.eventSelector, true),
                     sourceRowBody;
@@ -138,7 +138,7 @@ Ext.define('Ext.grid.feature.RowBody', {
         }
     ],
 
-    init: function(grid) {
+    init: function (grid) {
         var me = this,
             view = me.view = grid.getView();
 
@@ -162,7 +162,7 @@ Ext.define('Ext.grid.feature.RowBody', {
     },
 
     // Needed to select the data row when clicked on the body row.
-    onClick: function(e) {
+    onClick: function (e) {
         var me = this,
             tableRow = e.getTarget(me.eventSelector);
 
@@ -174,7 +174,7 @@ Ext.define('Ext.grid.feature.RowBody', {
         }
     },
 
-    getSelectedRow: function(view, rowIndex) {
+    getSelectedRow: function (view, rowIndex) {
         var selectedRow = view.getNode(rowIndex);
         if (selectedRow) {
             return Ext.fly(selectedRow).down(this.eventSelector);
@@ -183,7 +183,7 @@ Ext.define('Ext.grid.feature.RowBody', {
     },
 
     // When columns added/removed, keep row body colspan in sync with number of columns.
-    onColumnsChanged: function(headerCt) {
+    onColumnsChanged: function (headerCt) {
         var items = this.view.el.query(this.rowBodyTdSelector),
             colspan = headerCt.getVisibleGridColumns().length,
             len = items.length,
@@ -204,18 +204,18 @@ Ext.define('Ext.grid.feature.RowBody', {
      * @param {Ext.data.Model} record The record instance
      * @param {Object} orig The original result from the prepareData call to massage.
      */
-    setupRowData: function(record, rowIndex, rowValues) {
+    setupRowData: function (record, rowIndex, rowValues) {
         if (this.getAdditionalData) {
             Ext.apply(rowValues, this.getAdditionalData(record.data, rowIndex, record, rowValues));
         }
     },
 
-    setup: function(rows, rowValues) {
+    setup: function (rows, rowValues) {
         rowValues.rowBodyCls = this.rowBodyCls;
         rowValues.rowBodyColspan = this.view.headerCt.visibleColumnManager.getColumns().length - this.colSpanDecrement;
     },
 
-    cleanup: function(rows, rowValues) {
+    cleanup: function (rows, rowValues) {
         rowValues.rowBodyCls = rowValues.rowBodyColspan = rowValues.rowBody = null;
     }
 });

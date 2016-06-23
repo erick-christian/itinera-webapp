@@ -12,10 +12,10 @@ Ext.define('Ext.view.BoundListKeyNav', {
      * @cfg {Ext.view.BoundList} boundList (required)
      * The {@link Ext.view.BoundList} instance for which key navigation will be managed.
      */
-    
+
     navigateOnSpace: true,
 
-    initKeyNav: function(view) {
+    initKeyNav: function (view) {
         var me = this,
             field = view.pickerField;
 
@@ -68,7 +68,7 @@ Ext.define('Ext.view.BoundListKeyNav', {
         });
     },
 
-    processViewEvent: function(view, record, node, index, event) {
+    processViewEvent: function (view, record, node, index, event) {
 
         // Event is valid if it is from within the list
         if (event.within(view.listWrap)) {
@@ -86,24 +86,24 @@ Ext.define('Ext.view.BoundListKeyNav', {
         // Falsy return stops the KeyMap processing the event
     },
 
-    enable: function() {
+    enable: function () {
         this.fieldKeyNav.enable();
         this.callParent();
     },
 
-    disable: function() {
+    disable: function () {
         this.fieldKeyNav.disable();
         this.callParent();
     },
 
-    onItemMouseDown: function(view, record, item, index, event) {
+    onItemMouseDown: function (view, record, item, index, event) {
         this.callParent([view, record, item, index, event]);
-        
+
         // Stop the mousedown from blurring the input field
         event.preventDefault();
     },
 
-    onKeyUp: function() {
+    onKeyUp: function () {
         var me = this,
             boundList = me.view,
             allItems = boundList.all,
@@ -114,7 +114,7 @@ Ext.define('Ext.view.BoundListKeyNav', {
         me.setPosition(newItemIdx);
     },
 
-    onKeyDown: function() {
+    onKeyDown: function () {
         var me = this,
             boundList = me.view,
             allItems = boundList.all,
@@ -129,7 +129,7 @@ Ext.define('Ext.view.BoundListKeyNav', {
 
     onKeyRight: Ext.returnTrue,
 
-    onKeyTab: function(e) {
+    onKeyTab: function (e) {
         var view = this.view,
             field = view.pickerField;
 
@@ -137,7 +137,7 @@ Ext.define('Ext.view.BoundListKeyNav', {
             if (field.selectOnTab) {
                 this.selectHighlighted(e);
             }
-            
+
             if (field.collapse) {
                 field.collapse();
             }
@@ -147,7 +147,7 @@ Ext.define('Ext.view.BoundListKeyNav', {
         return true;
     },
 
-    onKeyEnter: function(e) {
+    onKeyEnter: function (e) {
         var view = this.view,
             selModel = view.getSelectionModel(),
             field = view.pickerField,
@@ -165,7 +165,7 @@ Ext.define('Ext.view.BoundListKeyNav', {
         }
     },
 
-    onKeySpace: function() {
+    onKeySpace: function () {
         if (this.navigateOnSpace) {
             this.callParent(arguments);
         }
@@ -173,7 +173,7 @@ Ext.define('Ext.view.BoundListKeyNav', {
         return true;
     },
 
-    onKeyEsc: function() {
+    onKeyEsc: function () {
         if (this.view.pickerField) {
             this.view.pickerField.collapse();
         }
@@ -183,7 +183,7 @@ Ext.define('Ext.view.BoundListKeyNav', {
      * Highlights the item at the given index.
      * @param {Number} index
      */
-    focusItem: function(item) {
+    focusItem: function (item) {
         var me = this,
             boundList = me.view;
 
@@ -201,7 +201,7 @@ Ext.define('Ext.view.BoundListKeyNav', {
      * Triggers selection of the currently highlighted item according to the behavior of
      * the configured SelectionModel.
      */
-    selectHighlighted: function(e) {
+    selectHighlighted: function (e) {
         var me = this,
             boundList = me.view,
             selModel = boundList.getSelectionModel(),
@@ -228,7 +228,7 @@ Ext.define('Ext.view.BoundListKeyNav', {
         }
     },
 
-    destroy: function() {
+    destroy: function () {
         Ext.destroy(this.fieldKeyNav);
         this.callParent();
     }

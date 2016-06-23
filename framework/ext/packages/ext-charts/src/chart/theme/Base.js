@@ -10,7 +10,7 @@ Ext.define('Ext.chart.theme.Base', {
 
     /* End Definitions */
 
-    constructor: function(config) {
+    constructor: function (config) {
         var ident = Ext.identityFn;
         Ext.chart.theme.call(this, config, {
             background: false,
@@ -54,7 +54,7 @@ Ext.define('Ext.chart.theme.Base', {
                 font: 'bold 18px Arial',
                 fill: '#444',
                 rotate: {
-                    x:0, y:0,
+                    x: 0, y: 0,
                     degrees: 270
                 }
             },
@@ -66,7 +66,7 @@ Ext.define('Ext.chart.theme.Base', {
                 font: 'bold 18px Arial',
                 fill: '#444',
                 rotate: {
-                    x:0, y:0,
+                    x: 0, y: 0,
                     degrees: 270
                 }
             },
@@ -82,7 +82,7 @@ Ext.define('Ext.chart.theme.Base', {
                 radius: 3,
                 size: 3
             },
-            colors: [ "#94ae0a", "#115fa6","#a61120", "#ff8809", "#ffd13e", "#a61187", "#24ad9a", "#7c7474", "#a66111"],
+            colors: ["#94ae0a", "#115fa6", "#a61120", "#ff8809", "#ffd13e", "#a61187", "#24ad9a", "#7c7474", "#a66111"],
             seriesThemes: [{
                 fill: "#94ae0a"
             }, {
@@ -120,13 +120,13 @@ Ext.define('Ext.chart.theme.Base', {
             }],
             markerThemes: [{
                 fill: "#115fa6",
-                type: 'circle' 
+                type: 'circle'
             }, {
                 fill: "#94ae0a",
                 type: 'cross'
             }, {
                 fill: "#115fa6",
-                type: 'plus' 
+                type: 'plus'
             }, {
                 fill: "#94ae0a",
                 type: 'circle'
@@ -136,23 +136,23 @@ Ext.define('Ext.chart.theme.Base', {
             }]
         });
     }
-}, function() {
+}, function () {
     var palette = ['#b1da5a', '#4ce0e7', '#e84b67', '#da5abd', '#4d7fe6', '#fec935'],
         names = ['Green', 'Sky', 'Red', 'Purple', 'Blue', 'Yellow'],
         i = 0, j = 0, l = palette.length, themes = Ext.chart.theme,
         categories = [['#f0a50a', '#c20024', '#2044ba', '#810065', '#7eae29'],
-                      ['#6d9824', '#87146e', '#2a9196', '#d39006', '#1e40ac'],
-                      ['#fbbc29', '#ce2e4e', '#7e0062', '#158b90', '#57880e'],
-                      ['#ef5773', '#fcbd2a', '#4f770d', '#1d3eaa', '#9b001f'],
-                      ['#7eae29', '#fdbe2a', '#910019', '#27b4bc', '#d74dbc'],
-                      ['#44dce1', '#0b2592', '#996e05', '#7fb325', '#b821a1']],
+            ['#6d9824', '#87146e', '#2a9196', '#d39006', '#1e40ac'],
+            ['#fbbc29', '#ce2e4e', '#7e0062', '#158b90', '#57880e'],
+            ['#ef5773', '#fcbd2a', '#4f770d', '#1d3eaa', '#9b001f'],
+            ['#7eae29', '#fdbe2a', '#910019', '#27b4bc', '#d74dbc'],
+            ['#44dce1', '#0b2592', '#996e05', '#7fb325', '#b821a1']],
         cats = categories.length;
-    
+
     //Create themes from base colors
     for (; i < l; i++) {
-        themes[names[i]] = (function(color) {
+        themes[names[i]] = (function (color) {
             return Ext.extend(themes.Base, {
-                constructor: function(config) {
+                constructor: function (config) {
                     themes.Base.prototype.constructor.call(this, Ext.apply({
                         baseColor: color
                     }, config));
@@ -160,12 +160,12 @@ Ext.define('Ext.chart.theme.Base', {
             });
         }(palette[i]));
     }
-    
+
     //Create theme from color array
     for (i = 0; i < cats; i++) {
-        themes['Category' + (i + 1)] = (function(category) {
+        themes['Category' + (i + 1)] = (function (category) {
             return Ext.extend(themes.Base, {
-                constructor: function(config) {
+                constructor: function (config) {
                     themes.Base.prototype.constructor.call(this, Ext.apply({
                         colors: category
                     }, config));

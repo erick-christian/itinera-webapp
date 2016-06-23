@@ -1,12 +1,12 @@
 /** */
 Ext.define('Ext.aria.view.BoundListKeyNav', {
     override: 'Ext.view.BoundListKeyNav',
-    
+
     requires: [
         'Ext.aria.view.View'
     ],
 
-    focusItem: function(item) {
+    focusItem: function (item) {
         var me = this,
             boundList = me.view;
 

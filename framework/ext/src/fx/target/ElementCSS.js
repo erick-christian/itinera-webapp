@@ -1,8 +1,8 @@
 /**
  * @class Ext.fx.target.ElementCSS
- * 
+ *
  * This class represents a animation target for an {@link Ext.dom.Element} that supports CSS
- * based animation. In general this class will not be created directly, the {@link Ext.dom.Element} 
+ * based animation. In general this class will not be created directly, the {@link Ext.dom.Element}
  * will be passed to the animation and the appropriate target will be created.
  */
 Ext.define('Ext.fx.target.ElementCSS', {
@@ -13,19 +13,19 @@ Ext.define('Ext.fx.target.ElementCSS', {
 
     /* End Definitions */
 
-    setAttr: function(targetData, isFirstFrame) {
+    setAttr: function (targetData, isFirstFrame) {
         var cssArr = {
                 attrs: [],
                 duration: [],
                 easing: []
             },
             ln = targetData.length,
-            cleanerFn = function() {
+            cleanerFn = function () {
                 this.setStyle(Ext.supports.CSS3Prefix + 'TransitionProperty', null);
                 this.setStyle(Ext.supports.CSS3Prefix + 'TransitionDuration', null);
                 this.setStyle(Ext.supports.CSS3Prefix + 'TransitionTimingFunction', null);
             },
-            single = { single: true },
+            single = {single: true},
             attributes, attrs, attr, easing, duration, o, i, j, ln2;
 
         for (i = 0; i < ln; i++) {
@@ -35,7 +35,7 @@ Ext.define('Ext.fx.target.ElementCSS', {
             attrs = attrs.attrs;
             for (attr in attrs) {
                 if (Ext.Array.indexOf(cssArr.attrs, attr) == -1) {
-                    cssArr.attrs.push(attr.replace(/[A-Z]/g, function(v) {
+                    cssArr.attrs.push(attr.replace(/[A-Z]/g, function (v) {
                         return '-' + v.toLowerCase();
                     }));
                     cssArr.duration.push(duration + 'ms');

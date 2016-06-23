@@ -7,19 +7,17 @@
     "codeClass": null,
     "userConfig": {
         "closable": false,
-        "designer|uiInterfaceName": "green-window",
         "designer|userAlias": "winCustomer",
         "designer|userClassName": "winCustomer",
-        "height": 530,
+        "height": 610,
         "id": "winCustomer",
         "itemId": "winCustomer",
         "layout": "column",
-        "minHeight": 500,
-        "minWidth": 850,
+        "minHeight": 610,
+        "minWidth": 1000,
         "modal": true,
         "title": "Customer",
-        "ui": "green-window",
-        "width": 850
+        "width": 1000
     },
     "name": "MyWindow",
     "designerId": "b4fa3f80-fc34-41e6-a8d6-977e18c8b0ac",
@@ -127,18 +125,41 @@
                             "codeClass": null,
                             "userConfig": {
                                 "allowBlank": false,
+                                "designer|displayName": "tfShortName",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Short Name",
+                                "id": "tfShortName",
+                                "itemId": "tfShortName",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 90,
+                                "layout|columnWidth": 0.33,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyTextField2",
+                            "designerId": "5bbc022f-f303-4cfe-b23a-1bbdea321099"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
                                 "designer|displayName": "tfCompany",
                                 "disabledCls": "disabledField",
                                 "fieldLabel": "Company",
                                 "id": "tfCompany",
                                 "itemId": "tfCompany",
                                 "labelClsExtra": "requiredField",
-                                "layout|columnWidth": 0.6,
+                                "labelWidth": 90,
+                                "layout|columnWidth": 0.66,
                                 "margin": "0 5 5 5",
                                 "requiredCls": null
                             },
-                            "name": "MyTextField",
-                            "designerId": "c43d51f4-3cdf-43e2-a5d6-5332d6b230cb"
+                            "name": "MyTextField15",
+                            "designerId": "942e3b31-9af1-44a0-ab52-d4a23f79c1e9"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -155,7 +176,8 @@
                                 "id": "tfTaxId",
                                 "itemId": "tfTaxId",
                                 "labelClsExtra": "requiredField",
-                                "layout|columnWidth": 0.4,
+                                "labelWidth": 90,
+                                "layout|columnWidth": 0.33,
                                 "margin": "0 5 5 5",
                                 "requiredCls": null
                             },
@@ -171,17 +193,31 @@
                             "codeClass": null,
                             "userConfig": {
                                 "allowBlank": false,
-                                "designer|displayName": "tfShortName",
+                                "designer|displayName": "tfEmail",
                                 "disabledCls": "disabledField",
-                                "fieldLabel": "Short Name",
-                                "id": "tfShortName",
-                                "itemId": "tfShortName",
+                                "fieldLabel": "Email",
+                                "id": "tfEmail",
+                                "itemId": "tfEmail",
                                 "labelClsExtra": "requiredField",
-                                "layout|columnWidth": 0.4,
+                                "labelWidth": 90,
+                                "layout|columnWidth": 0.33,
                                 "margin": "0 5 5 5"
                             },
-                            "name": "MyTextField2",
-                            "designerId": "5bbc022f-f303-4cfe-b23a-1bbdea321099"
+                            "name": "MyTextField11",
+                            "designerId": "6100b1b0-9478-4fe4-99c2-87c91116533e"
+                        },
+                        {
+                            "type": "Ext.toolbar.Spacer",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|columnWidth": 1
+                            },
+                            "name": "MySpacer5",
+                            "designerId": "f1a43c7a-f1bd-4cfb-857d-1e516aee1c5f"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -197,8 +233,11 @@
                                 "id": "tfPassword",
                                 "inputType": "password",
                                 "itemId": "tfPassword",
-                                "layout|columnWidth": 0.4,
-                                "margin": "0 5 5 5"
+                                "labelWidth": 90,
+                                "layout|columnWidth": 0.33,
+                                "margin": "0 5 5 5",
+                                "maxWidth": null,
+                                "width": null
                             },
                             "name": "MyTextField3",
                             "designerId": "2c6eab71-bfd6-491e-bddb-f0e1ccddd9eb"
@@ -216,6 +255,7 @@
                                 "fieldLabel": "Created",
                                 "id": "dtCreatedAt",
                                 "itemId": "dtCreatedAt",
+                                "labelWidth": 90,
                                 "layout|columnWidth": 0.3,
                                 "margin": "0 5 5 5"
                             },
@@ -236,11 +276,66 @@
                                 "fieldLabel": null,
                                 "id": "chActive",
                                 "itemId": "chActive",
-                                "layout|columnWidth": 0.5,
+                                "layout|columnWidth": 0.2,
                                 "margin": "0 5 5 5"
                             },
                             "name": "MyCheckbox",
                             "designerId": "8d34b986-7054-485c-837a-4b275c7243f9"
+                        },
+                        {
+                            "type": "Ext.toolbar.Spacer",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|columnWidth": 1
+                            },
+                            "name": "MySpacer6",
+                            "designerId": "cba56dd8-2ca9-4b2d-a4ee-cb43d34d3957"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfPhone",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Phone",
+                                "id": "tfPhone",
+                                "itemId": "tfPhone",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 90,
+                                "layout|columnWidth": 0.33,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyTextField20",
+                            "designerId": "97af75d5-43bc-468d-94a3-aaba47103614"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tfWebsite",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "WebSite",
+                                "id": "tfWebsite",
+                                "itemId": "tfWebsite",
+                                "labelWidth": 90,
+                                "layout|columnWidth": 0.5,
+                                "margin": "0 5 5 5"
+                            },
+                            "name": "MyTextField13",
+                            "designerId": "aedffd00-f20d-404e-bd85-352de44d7510"
                         }
                     ]
                 },
@@ -253,6 +348,7 @@
                     "codeClass": null,
                     "userConfig": {
                         "designer|displayName": "fieldsetAddress",
+                        "height": 160,
                         "id": "fieldsetAddress",
                         "itemId": "fieldsetAddress",
                         "layout": "column",
@@ -277,8 +373,12 @@
                                 "id": "tfAddress",
                                 "itemId": "tfAddress",
                                 "labelClsExtra": "requiredField",
-                                "layout|columnWidth": 1,
-                                "margin": "0 5 5 5"
+                                "labelWidth": 90,
+                                "layout|columnWidth": 0.7,
+                                "margin": "0 5 5 5",
+                                "maxWidth": 665,
+                                "minWidth": 665,
+                                "width": 665
                             },
                             "name": "MyTextField4",
                             "designerId": "40d743e7-a72e-440d-8e8a-3a78b8dc6a8c"
@@ -298,74 +398,25 @@
                                 "id": "tfZipCode",
                                 "itemId": "tfZipCode",
                                 "labelClsExtra": "requiredField",
-                                "layout|columnWidth": 0.33,
+                                "labelWidth": 90,
+                                "layout|columnWidth": 0.2,
                                 "margin": "0 5 5 5"
                             },
                             "name": "MyTextField5",
                             "designerId": "3cac6da4-b0d2-4522-9fa5-77bf5d65033a"
                         },
                         {
-                            "type": "Ext.form.field.Text",
+                            "type": "Ext.toolbar.Spacer",
                             "reference": {
                                 "name": "items",
                                 "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "allowBlank": false,
-                                "designer|displayName": "tfLocation",
-                                "disabledCls": "disabledField",
-                                "fieldLabel": "Location",
-                                "id": "tfLocation",
-                                "itemId": "tfLocation",
-                                "labelClsExtra": "requiredField",
-                                "layout|columnWidth": 0.33,
-                                "margin": "0 5 5 5"
+                                "layout|columnWidth": 1
                             },
-                            "name": "MyTextField6",
-                            "designerId": "c47303fa-3405-4f9c-bf52-7cbfae5c6d51"
-                        },
-                        {
-                            "type": "Ext.form.field.Text",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "allowBlank": false,
-                                "designer|displayName": "tfRegion",
-                                "disabledCls": "disabledField",
-                                "fieldLabel": "Region",
-                                "id": "tfRegion",
-                                "itemId": "tfRegion",
-                                "labelClsExtra": "requiredField",
-                                "layout|columnWidth": 0.33,
-                                "margin": "0 5 5 5"
-                            },
-                            "name": "MyTextField7",
-                            "designerId": "1275f1be-d6a6-46a5-8834-53f3c29e0695"
-                        },
-                        {
-                            "type": "Ext.form.field.Text",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "allowBlank": false,
-                                "designer|displayName": "tfCity",
-                                "disabledCls": "disabledField",
-                                "fieldLabel": "City",
-                                "id": "tfCity",
-                                "itemId": "tfCity",
-                                "labelClsExtra": "requiredField",
-                                "layout|columnWidth": 0.33,
-                                "margin": "0 5 5 5"
-                            },
-                            "name": "MyTextField8",
-                            "designerId": "b65176ef-dd55-40ef-8152-876a9598c0c4"
+                            "name": "MySpacer4",
+                            "designerId": "69ab18b6-345a-4da5-bd44-32968dfa9388"
                         },
                         {
                             "type": "Ext.form.field.Text",
@@ -382,11 +433,712 @@
                                 "id": "tfCountry",
                                 "itemId": "tfCountry",
                                 "labelClsExtra": "requiredField",
-                                "layout|columnWidth": 0.33,
-                                "margin": "0 5 5 5"
+                                "labelWidth": 90,
+                                "layout|columnWidth": 0.3,
+                                "margin": "0 5 5 5",
+                                "maxWidth": 180,
+                                "width": 180
                             },
                             "name": "MyTextField19",
-                            "designerId": "3954a43d-ebcf-4250-be03-2493a032d63c"
+                            "designerId": "3954a43d-ebcf-4250-be03-2493a032d63c",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onTfCountryBlur",
+                                        "implHandler": [
+                                            "if(trex.readElement('tfCountry') === ''){",
+                                            "    return;",
+                                            "}",
+                                            "",
+                                            "var functionSuccess = function(){",
+                                            "    var jsonData = trex.getInfoDataBridge('apiCountry');",
+                                            "    console.log('pais valido');",
+                                            "    console.log(jsonData);",
+                                            "",
+                                            "    trex.writeElement('tfCountry'    , jsonData.country[0].country_code);",
+                                            "    trex.writeElement('tfCountryName', jsonData.country[0].country_name);",
+                                            "};",
+                                            "",
+                                            "var functionFailure = function(){",
+                                            "    var jsonData = trex.getInfoDataBridge('apiCountry');",
+                                            "    trex.showInfo(jsonData, 'error', 'tfCountry');",
+                                            "};",
+                                            "",
+                                            "var objJsonData = new Object();",
+                                            "objJsonData.countryCode    = trex.readElement('tfCountry');",
+                                            "",
+                                            "var objJsonRequest = new Object();",
+                                            "objJsonRequest.apiController = 'apiCountry';",
+                                            "objJsonRequest.apiMethod     = 'validateCountry';",
+                                            "objJsonRequest.apiData       = JSON.stringify(objJsonData);",
+                                            "",
+                                            "trex.doDataBridge(objJsonRequest,",
+                                            "                  functionSuccess,",
+                                            "                  null,",
+                                            "                  functionFailure,",
+                                            "                  null);"
+                                        ],
+                                        "name": "blur",
+                                        "scope": "me"
+                                    },
+                                    "name": "onTfCountryBlur",
+                                    "designerId": "dc8e5ef9-d148-4a2b-b8f8-757095a18a3f"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "btnSearchCountry",
+                                "iconCls": "ion-search icon16",
+                                "id": "btnSearchCountry",
+                                "itemId": "btnSearchCountry",
+                                "layout|columnWidth": 0.1,
+                                "maxWidth": 30,
+                                "text": null,
+                                "width": 30
+                            },
+                            "name": "MyButton12",
+                            "designerId": "3894abb8-b5e5-4e56-9b5f-ef768f31e696",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnSearchCountryClick",
+                                        "implHandler": [
+                                            "",
+                                            "trex.showWindow('winCountrySearch');",
+                                            "trex.refreshGrid('gridCountry');",
+                                            ""
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnSearchCountryClick",
+                                    "designerId": "f8c125aa-5193-4995-9cb3-2bd2f994ef41"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tfCountryName",
+                                "fieldLabel": null,
+                                "id": "tfCountryName",
+                                "itemId": "tfCountryName",
+                                "layout|columnWidth": 0.5,
+                                "maxWidth": 450,
+                                "width": 450
+                            },
+                            "name": "MyTextField14",
+                            "designerId": "2e57deca-4438-4da8-a1f0-797d2dd62b0f"
+                        },
+                        {
+                            "type": "Ext.toolbar.Spacer",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "id": "spacerAddress1",
+                                "layout|columnWidth": 1
+                            },
+                            "name": "MySpacer",
+                            "designerId": "6f7c21d9-9f34-4fbc-8ee8-cef3f9ee72f1"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfState",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "State",
+                                "id": "tfState",
+                                "itemId": "tfState",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 90,
+                                "layout|columnWidth": 0.3,
+                                "margin": "0 5 5 5",
+                                "maxWidth": 180,
+                                "width": 180
+                            },
+                            "name": "MyTextField26",
+                            "designerId": "05375777-e020-40e7-a954-35a61a39d865",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onTfCountryBlur1",
+                                        "implHandler": [
+                                            "if(trex.readElement('tfState') === ''){",
+                                            "    return;",
+                                            "}",
+                                            "",
+                                            "var functionSuccess = function(){",
+                                            "    var jsonData = trex.getInfoDataBridge('apiState');",
+                                            "    console.log('pais valido');",
+                                            "    console.log(jsonData);",
+                                            "",
+                                            "    trex.writeElement('tfState'    , jsonData.country[0].country_code);",
+                                            "    trex.writeElement('tfStateName', jsonData.country[0].country_name);",
+                                            "};",
+                                            "",
+                                            "var functionFailure = function(){",
+                                            "    var jsonData = trex.getInfoDataBridge('apiState');",
+                                            "    trex.showInfo(jsonData, 'error', 'tfState');",
+                                            "};",
+                                            "",
+                                            "var objJsonData = new Object();",
+                                            "objJsonData.countryCode    = trex.readElement('tfState');",
+                                            "",
+                                            "var objJsonRequest = new Object();",
+                                            "objJsonRequest.apiController = 'apiState';",
+                                            "objJsonRequest.apiMethod     = 'validateState';",
+                                            "objJsonRequest.apiData       = JSON.stringify(objJsonData);",
+                                            "",
+                                            "trex.doDataBridge(objJsonRequest,",
+                                            "                  functionSuccess,",
+                                            "                  null,",
+                                            "                  functionFailure,",
+                                            "                  null);"
+                                        ],
+                                        "name": "blur",
+                                        "scope": "me"
+                                    },
+                                    "name": "onTfCountryBlur1",
+                                    "designerId": "cc62111a-ac2e-4b91-946d-b59ca444faca"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "btnSearchCState",
+                                "iconCls": "ion-search icon16",
+                                "id": "btnSearchState",
+                                "itemId": "btnSearchState",
+                                "layout|columnWidth": 0.1,
+                                "maxWidth": 30,
+                                "text": null,
+                                "width": 30
+                            },
+                            "name": "MyButton19",
+                            "designerId": "da55c788-539a-492e-b999-a7a1bf7447be",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnSearchCountryClick1",
+                                        "implHandler": [
+                                            "",
+                                            "trex.showWindow('winStateSearch');",
+                                            "trex.refreshGrid('gridState');",
+                                            ""
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnSearchCountryClick1",
+                                    "designerId": "4e94d612-f444-45c2-aab7-0447713fbbac"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tfStateName",
+                                "fieldLabel": null,
+                                "id": "tfStateName",
+                                "itemId": "tfStateName",
+                                "layout|columnWidth": 0.5,
+                                "maxWidth": 450,
+                                "width": 450
+                            },
+                            "name": "MyTextField27",
+                            "designerId": "7f06cd84-b509-4566-bbd5-abef1fcf3652"
+                        },
+                        {
+                            "type": "Ext.toolbar.Spacer",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "id": "spacerAddress2",
+                                "layout|columnWidth": 1
+                            },
+                            "name": "MySpacer7",
+                            "designerId": "0e4e8974-48ba-4246-8fdc-2e3a679d5276"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfCity",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "City",
+                                "id": "tfCity",
+                                "itemId": "tfCity",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 90,
+                                "layout|columnWidth": 0.3,
+                                "margin": "0 5 5 5",
+                                "maxWidth": 180,
+                                "width": 180
+                            },
+                            "name": "MyTextField8",
+                            "designerId": "b65176ef-dd55-40ef-8152-876a9598c0c4",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onTfCityBlur",
+                                        "name": "blur",
+                                        "scope": "me"
+                                    },
+                                    "name": "onTfCityBlur",
+                                    "designerId": "928f0d4c-353b-4e1e-8d88-73a264ed1ab3"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "btnSearchCity",
+                                "iconCls": "ion-search icon16",
+                                "id": "btnSearchCity",
+                                "itemId": "btnSearchCity",
+                                "layout|columnWidth": 0.1,
+                                "maxWidth": 30,
+                                "text": null,
+                                "width": 30
+                            },
+                            "name": "MyButton13",
+                            "designerId": "643a2672-b07f-4298-a91b-403e423d30ab",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onBtnSearchCityClick",
+                                        "implHandler": [
+                                            "        trex.showWindow('winCitySearch');",
+                                            "        trex.refreshGrid('gridCity');"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onBtnSearchCityClick",
+                                    "designerId": "24daead6-0d47-4464-af0e-ac79604ffc69"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tfCityName",
+                                "fieldLabel": null,
+                                "id": "tfCityName",
+                                "itemId": "tfCityName",
+                                "layout|columnWidth": 0.75,
+                                "maxWidth": 450,
+                                "minWidth": null,
+                                "width": 450
+                            },
+                            "name": "MyTextField6",
+                            "designerId": "96215033-9778-4e07-b6b3-bc1b85219ca7"
+                        },
+                        {
+                            "type": "Ext.toolbar.Spacer",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|columnWidth": 1
+                            },
+                            "name": "MySpacer1",
+                            "designerId": "46c55fee-7e6d-4b1a-bab8-5680c3f2f6d7"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfRegion",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Region",
+                                "id": "tfRegion",
+                                "itemId": "tfRegion",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 90,
+                                "layout|columnWidth": 0.3,
+                                "margin": "0 5 5 5",
+                                "maxWidth": 180,
+                                "width": 180
+                            },
+                            "name": "MyTextField7",
+                            "designerId": "1275f1be-d6a6-46a5-8834-53f3c29e0695",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onTfRegionBlur",
+                                        "implHandler": [
+                                            "if(trex.readElement('tfRegion') === ''){",
+                                            "    return;",
+                                            "}",
+                                            "",
+                                            "var functionSuccess = function(){",
+                                            "    var jsonData = trex.getInfoDataBridge('apiState');",
+                                            "    console.log('region valido');",
+                                            "    console.log(jsonData);",
+                                            "",
+                                            "    trex.writeElement('tfRegion'    , jsonData.country[0].region_code);",
+                                            "    trex.writeElement('tfRegionName', jsonData.country[0].region_name);",
+                                            "};",
+                                            "",
+                                            "var functionFailure = function(){",
+                                            "    var jsonData = trex.getInfoDataBridge('apiState');",
+                                            "    trex.showInfo(jsonData, 'error', 'tfState');",
+                                            "};",
+                                            "",
+                                            "var objJsonData = new Object();",
+                                            "objJsonData.countryCode  = trex.readElement('tfCountry');",
+                                            "objJsonData.stateCode    = trex.readElement('tfState');",
+                                            "objJsonData.cityCode     = trex.readElement('tfCity');",
+                                            "objJsonData.regionCode   = trex.readElement('tfRegion');",
+                                            "",
+                                            "var objJsonRequest = new Object();",
+                                            "objJsonRequest.apiController = 'apiRegion';",
+                                            "objJsonRequest.apiMethod     = 'validateRegion';",
+                                            "objJsonRequest.apiData       = JSON.stringify(objJsonData);",
+                                            "",
+                                            "trex.doDataBridge(objJsonRequest,",
+                                            "                  functionSuccess,",
+                                            "                  null,",
+                                            "                  functionFailure,",
+                                            "                  null);"
+                                        ],
+                                        "name": "blur",
+                                        "scope": "me"
+                                    },
+                                    "name": "onTfRegionBlur",
+                                    "designerId": "8ca96995-5db3-4a9a-bc14-b5604208d3db"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "btnSearchRegion",
+                                "iconCls": "ion-search icon16",
+                                "layout|columnWidth": 0.1,
+                                "maxWidth": 30,
+                                "text": null,
+                                "width": 30
+                            },
+                            "name": "MyButton14",
+                            "designerId": "9d4ddfa0-4d2c-4b8f-a964-c6e3024d99c0",
+                            "cn": [
+                                {
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onButtonClick",
+                                        "implHandler": [
+                                            "trex.showWindow('winRegionSearch');",
+                                            "trex.refreshGrid('gridRegion');"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onButtonClick",
+                                    "designerId": "e84dc2d1-65b0-46bc-86e1-9a6e70eca594"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tfRegionName",
+                                "fieldLabel": null,
+                                "id": "tfRegionName",
+                                "itemId": "tfRegionName",
+                                "layout|columnWidth": 0.75,
+                                "maxWidth": 450,
+                                "width": 450
+                            },
+                            "name": "MyTextField22",
+                            "designerId": "6d86d722-7275-454c-a4f1-bc339a9bb021"
+                        },
+                        {
+                            "type": "Ext.toolbar.Spacer",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|columnWidth": 1
+                            },
+                            "name": "MySpacer2",
+                            "designerId": "53f19522-1845-456f-890c-383824b90ee2"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.form.FieldSet",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "fieldsetService",
+                        "id": "fieldsetService",
+                        "itemId": "fieldsetService",
+                        "layout": "column",
+                        "layout|columnWidth": 1,
+                        "title": "<b>Service</b>"
+                    },
+                    "name": "MyFieldSet4",
+                    "designerId": "7abcac4d-c397-435c-a965-5a2b0b6ba353",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfStandTaxi",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Stand Taxi",
+                                "id": "tfStandTaxi",
+                                "itemId": "tfStandTaxi",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 90,
+                                "layout|columnWidth": 0.3,
+                                "margin": "0 5 5 5",
+                                "maxWidth": 180,
+                                "width": 180
+                            },
+                            "name": "MyTextField12",
+                            "designerId": "45b0153c-2737-4de6-b988-7e814a05b4a9"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "btnSearchCountry",
+                                "iconCls": "ion-search icon16",
+                                "id": "btnSearchCountry1",
+                                "itemId": "btnSearchCountry1",
+                                "layout|columnWidth": 0.1,
+                                "maxWidth": 30,
+                                "text": null,
+                                "width": 30
+                            },
+                            "name": "MyButton15",
+                            "designerId": "9a5919f0-628c-49eb-a0a6-639a8af270bf"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tfCountryName",
+                                "fieldLabel": null,
+                                "id": "tfCountryName1",
+                                "itemId": "tfCountryName1",
+                                "layout|columnWidth": 0.75,
+                                "maxWidth": 450,
+                                "width": 450
+                            },
+                            "name": "MyTextField23",
+                            "designerId": "9104d374-e82c-48f2-bcba-b6be8b30e3fe"
+                        },
+                        {
+                            "type": "Ext.toolbar.Spacer",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|columnWidth": 1
+                            },
+                            "name": "MySpacer3",
+                            "designerId": "49e01c88-8412-47d1-9c17-b1b22af574e2"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowBlank": false,
+                                "designer|displayName": "tfSector",
+                                "disabledCls": "disabledField",
+                                "fieldLabel": "Sector",
+                                "id": "tfSector",
+                                "itemId": "tfSector",
+                                "labelClsExtra": "requiredField",
+                                "labelWidth": 90,
+                                "layout|columnWidth": 0.3,
+                                "margin": "0 5 5 5",
+                                "maxWidth": 180,
+                                "width": 180
+                            },
+                            "name": "MyTextField21",
+                            "designerId": "c725882d-da78-4552-bab2-0c103e09bf51"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "btnSearchCountry",
+                                "iconCls": "ion-search icon16",
+                                "id": "btnSearchCountry2",
+                                "itemId": "btnSearchCountry2",
+                                "layout|columnWidth": 0.1,
+                                "maxWidth": 30,
+                                "text": null,
+                                "width": 30
+                            },
+                            "name": "MyButton16",
+                            "designerId": "ba8807e8-9246-4ab7-a888-b433e33509fa"
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "tfCountryName",
+                                "fieldLabel": null,
+                                "id": "tfCountryName2",
+                                "itemId": "tfCountryName2",
+                                "layout|columnWidth": 0.75,
+                                "maxWidth": 450,
+                                "width": 450
+                            },
+                            "name": "MyTextField24",
+                            "designerId": "d3ffcb1d-7c1b-44bc-b0c5-ba15a93b1d08"
                         }
                     ]
                 },
@@ -423,6 +1175,7 @@
                                 "id": "tfContactName",
                                 "itemId": "tfContactName",
                                 "labelClsExtra": "requiredField",
+                                "labelWidth": 90,
                                 "layout|columnWidth": 0.5,
                                 "margin": "0 5 5 5"
                             },
@@ -444,70 +1197,12 @@
                                 "id": "tfContactPhone",
                                 "itemId": "tfContactPhone",
                                 "labelClsExtra": "requiredField",
+                                "labelWidth": 90,
                                 "layout|columnWidth": 0.5,
                                 "margin": "0 5 5 5"
                             },
                             "name": "MyTextField10",
                             "designerId": "e33f02bc-1240-420d-ba01-4e8d9169b89c"
-                        },
-                        {
-                            "type": "Ext.form.field.Text",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "allowBlank": false,
-                                "designer|displayName": "tfEmail",
-                                "disabledCls": "disabledField",
-                                "fieldLabel": "Email",
-                                "id": "tfEmail",
-                                "itemId": "tfEmail",
-                                "labelClsExtra": "requiredField",
-                                "layout|columnWidth": 0.5,
-                                "margin": "0 5 5 5"
-                            },
-                            "name": "MyTextField11",
-                            "designerId": "6100b1b0-9478-4fe4-99c2-87c91116533e"
-                        },
-                        {
-                            "type": "Ext.form.field.Text",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|displayName": "tfPhone",
-                                "disabledCls": "disabledField",
-                                "fieldLabel": "Phone",
-                                "id": "tfPhone",
-                                "itemId": "tfPhone",
-                                "layout|columnWidth": 0.5,
-                                "margin": "0 5 5 5"
-                            },
-                            "name": "MyTextField12",
-                            "designerId": "0cc53d24-dc65-47e0-a13b-4f0b9dc9b770"
-                        },
-                        {
-                            "type": "Ext.form.field.Text",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|displayName": "tfWebsite",
-                                "disabledCls": "disabledField",
-                                "fieldLabel": "tfWebsite",
-                                "id": "tfWebsite",
-                                "itemId": "tfWebsite",
-                                "layout|columnWidth": 0.5,
-                                "margin": "0 5 5 5"
-                            },
-                            "name": "MyTextField13",
-                            "designerId": "aedffd00-f20d-404e-bd85-352de44d7510"
                         }
                     ]
                 },
@@ -543,6 +1238,7 @@
                                 "id": "tfLatitude",
                                 "itemId": "tfLatitude",
                                 "labelClsExtra": "",
+                                "labelWidth": 90,
                                 "layout|columnWidth": 0.5,
                                 "margin": "0 5 5 5"
                             },
@@ -563,6 +1259,7 @@
                                 "id": "tfLongitude",
                                 "itemId": "tfLongitude",
                                 "labelClsExtra": "",
+                                "labelWidth": 90,
                                 "layout|columnWidth": 0.5,
                                 "margin": "0 5 5 5"
                             },
@@ -582,6 +1279,7 @@
                                 "fieldLabel": "Geocode URL",
                                 "id": "tfGeocodeUrl",
                                 "itemId": "tfGeocodeUrl",
+                                "labelWidth": 90,
                                 "layout|columnWidth": 1,
                                 "margin": "0 5 5 5"
                             },

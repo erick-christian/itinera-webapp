@@ -13,7 +13,7 @@ class admProfile extends Model
 
     protected $fillable = [
         'profile_code' ,
-        'profile_description' ,
+        'profile_description'
     ];
 
     /* Enable Soft Deleted */

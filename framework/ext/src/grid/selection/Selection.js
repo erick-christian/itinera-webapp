@@ -11,7 +11,7 @@
  */
 Ext.define('Ext.grid.selection.Selection', {
 
-    constructor: function(view) {
+    constructor: function (view) {
         //<debug>
         if (!view || !(view.isTableView || view.isLockingView)) {
             Ext.Error.raise('Selection must be created for a given TableView or LockingView');

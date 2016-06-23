@@ -43,7 +43,7 @@ Ext.define('Ext.chart.interactions.ItemInfo', {
          * Defines the gestures that should trigger the item info panel to be displayed.
          */
         gestures: {
-            'start' : { event: 'tap', handler: 'onInfoGesture'}
+            'start': {event: 'tap', handler: 'onInfoGesture'}
         },
 
         // TODO:ps The trigger above should be 'itemtap', not 'tap'.
@@ -91,7 +91,7 @@ Ext.define('Ext.chart.interactions.ItemInfo', {
             me.fireEvent('show', me, item, panel);
             Ext.Viewport.add(panel);
             panel.show('pop');
-            item.series.setAttributesForItem(item, { highlighted: true });
+            item.series.setAttributesForItem(item, {highlighted: true});
             me.sync();
         }
         return false;
@@ -101,7 +101,7 @@ Ext.define('Ext.chart.interactions.ItemInfo', {
         var me = this,
             item = me.item;
         if (item) {
-            item.series.setAttributesForItem(item, { highlighted: false });
+            item.series.setAttributesForItem(item, {highlighted: false});
             delete me.item;
             me.sync();
         }

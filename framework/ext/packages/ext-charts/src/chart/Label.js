@@ -43,7 +43,7 @@
  * The rule of thumb is that to customize the value and modify simple visual attributes, it
  * is simpler to use a renderer function, while overridding `onCreateLabel` and `onPlaceLabel`
  * allows the application to take entire control over the labels.
- * 
+ *
  */
 Ext.define('Ext.chart.Label', {
 
@@ -56,12 +56,12 @@ Ext.define('Ext.chart.Label', {
     /**
      * @method onCreateLabel
      * @template
-     * 
+     *
      * Called each time a new label is created.
-     * 
+     *
      * **Note:** This method must be implemented in Series that mixes
      * in this Label mixin.
-     * 
+     *
      * @param {Ext.data.Model} storeItem The element of the store that is
      * related to the sprite.
      * @param {Object} item The item related to the sprite.
@@ -74,16 +74,16 @@ Ext.define('Ext.chart.Label', {
      * May be `false` if the label is hidden
      * @return {Ext.draw.Sprite} The created sprite that will draw the label.
      */
-    
+
     /**
      * @method onPlaceLabel
      * @template
-     * 
+     *
      * Called for updating the position of the label.
-     * 
+     *
      * **Note:** This method must be implemented in Series that mixes
      * in this Label mixin.
-     * 
+     *
      * @param {Ext.draw.Sprite} label The sprite that draws the label.
      * @param {Ext.data.Model} storeItem The element of the store
      * that is related to the sprite.
@@ -100,14 +100,14 @@ Ext.define('Ext.chart.Label', {
      * animations for the labels.
      * @param {Number} index The series index.
      */
-    
+
     /**
      * @cfg {Object} label
      * Object with the following properties:
      *
      * @cfg {String} label.display
      *
-     * Specifies the presence and position of the labels. The possible values depend on the chart type. 
+     * Specifies the presence and position of the labels. The possible values depend on the chart type.
      * For Line and Scatter charts: "under" | "over" | "rotate".
      * For Bar and Column charts: "insideStart" | "insideEnd" | "outside".
      * For Pie charts: "inside" | "outside" | "rotate".
@@ -131,7 +131,7 @@ Ext.define('Ext.chart.Label', {
      *
      * @cfg {String} label.color
      *
-     * The color of the label text. It can be specified in hex values 
+     * The color of the label text. It can be specified in hex values
      * (eg. '#f00' or '#ff0000'), or as a CSS color name (eg. 'red').
      *
      * Default value: '#000' (black).
@@ -139,7 +139,7 @@ Ext.define('Ext.chart.Label', {
      * @cfg {Boolean} label.contrast
      *
      * True to render the label in contrasting color with the backround of a column
-     * in a Bar chart or of a slice in a Pie chart. 
+     * in a Bar chart or of a slice in a Pie chart.
      *
      * Default value: false.
      *
@@ -176,7 +176,7 @@ Ext.define('Ext.chart.Label', {
      *
      * @cfg {String} label.calloutLine.color
      *
-     * The color of the line. It can be specified in hex values 
+     * The color of the line. It can be specified in hex values
      * (eg. '#f00' or '#ff0000'), or as a CSS color name (eg. 'red').
      * By default, it uses the color of the pie slice.
      *
@@ -190,7 +190,7 @@ Ext.define('Ext.chart.Label', {
      *
      * The length of the line. By default, the length of the line is calculated taking
      * into account the {@link #label.padding} and the width and height of the label.
-     * If specified, it should be larger than {@link #label.padding} otherwise the 
+     * If specified, it should be larger than {@link #label.padding} otherwise the
      * line may cross the label itself.
      *
      * @cfg {String} label.font
@@ -223,19 +223,19 @@ Ext.define('Ext.chart.Label', {
     colorStringRe: /url\s*\(\s*#([^\/)]+)\s*\)/,
 
     // @private the mixin constructor. Used internally by Series.
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this;
         me.label = Ext.applyIf(me.label || {},
-        {
-            display: "none",
-            stackedDisplay: "none",
-            color: "#000",
-            field: "name",
-            minMargin: 50,
-            font: "11px Helvetica, sans-serif",
-            orientation: "horizontal",
-            renderer: Ext.identityFn
-        });
+            {
+                display: "none",
+                stackedDisplay: "none",
+                color: "#000",
+                field: "name",
+                minMargin: 50,
+                font: "11px Helvetica, sans-serif",
+                orientation: "horizontal",
+                renderer: Ext.identityFn
+            });
 
         if (me.label.display !== 'none') {
             me.labelsGroup = me.chart.surface.getGroup(me.seriesId + '-labels');
@@ -243,7 +243,7 @@ Ext.define('Ext.chart.Label', {
     },
 
     // @private a method to render all labels in the labelGroup
-    renderLabels: function() {
+    renderLabels: function () {
         var me = this,
             chart = me.chart,
             gradients = chart.gradients,
@@ -272,8 +272,8 @@ Ext.define('Ext.chart.Label', {
             return;
         }
         // no items displayed, hide all labels
-        if(itemLength == 0){
-            while(groupLength--) {
+        if (itemLength == 0) {
+            while (groupLength--) {
                 hides.push(groupLength);
             }
         } else {
@@ -284,7 +284,7 @@ Ext.define('Ext.chart.Label', {
                     label = group.getAt(groupIndex);
                     storeItem = store.getAt(i);
                     //check the excludes
-                    while(this.__excludes && this.__excludes[index]) {
+                    while (this.__excludes && this.__excludes[index]) {
                         index++;
                     }
 
@@ -332,7 +332,8 @@ Ext.define('Ext.chart.Label', {
                                     gradient = gradients[k];
                                     if (gradient.id == colorString) {
                                         //avg color stops
-                                        colorStop = 0; colorStopTotal = 0;
+                                        colorStop = 0;
+                                        colorStopTotal = 0;
                                         for (colorStopIndex in gradient.stops) {
                                             colorStop++;
                                             colorStopTotal += Color.fromString(gradient.stops[colorStopIndex].color).getGrayscale();
@@ -384,7 +385,7 @@ Ext.define('Ext.chart.Label', {
                                     fill: String(Color.fromHSL.apply({}, labelColor))
                                 }, true);
                                 me.onPlaceLabel(label, storeItem, item, i, 'over', animate, index);
-                                groupIndex ++;
+                                groupIndex++;
                             }
 
                             if (bottomText) {
@@ -399,7 +400,7 @@ Ext.define('Ext.chart.Label', {
                                     fill: String(Color.fromHSL.apply({}, labelColor))
                                 }, true);
                                 me.onPlaceLabel(label, storeItem, item, i, 'under', animate, index);
-                                groupIndex ++;
+                                groupIndex++;
                             }
                         }
                     }
@@ -408,16 +409,16 @@ Ext.define('Ext.chart.Label', {
                 }
             }
             groupLength = group.length;
-        
-            while(groupLength > groupIndex){
+
+            while (groupLength > groupIndex) {
                 hides.push(groupIndex);
                 groupIndex++;
-           }
+            }
         }
         me.hideLabels(hides);
     },
 
-    hideLabels: function(hides){
+    hideLabels: function (hides) {
         var labelsGroup = this.labelsGroup,
             hlen = !!hides && hides.length;
 
@@ -428,10 +429,10 @@ Ext.define('Ext.chart.Label', {
         if (hlen === false) {
             hlen = labelsGroup.getCount();
             while (hlen--) {
-              labelsGroup.getAt(hlen).hide(true);
+                labelsGroup.getAt(hlen).hide(true);
             }
         } else {
-            while(hlen--) {
+            while (hlen--) {
                 labelsGroup.getAt(hides[hlen]).hide(true);
             }
         }

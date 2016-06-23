@@ -10,7 +10,7 @@ Ext.define('Ext.tree.View', {
             type: 'treemodel'
         }
     },
-    
+
     /**
      * @property {Boolean} isTreeView
      * `true` in this class to identify an object as an instantiated TreeView, or subclass thereof.
@@ -29,7 +29,7 @@ Ext.define('Ext.tree.View', {
     // collapsed or expanded. During the animation, UI interaction is forbidden by testing
     // for an ancestor node with this class.
     nodeAnimWrapCls: Ext.baseCSSPrefix + 'tree-animator-wrap',
-    
+
     ariaRole: 'tree',
 
     /**
@@ -78,11 +78,11 @@ Ext.define('Ext.tree.View', {
     // treeRowTpl which is inserted into the rowTpl chain before the base rowTpl. Sets tree-specific classes and attributes
     treeRowTpl: [
         '{%',
-            'this.processRowValues(values);',
-            'this.nextTpl.applyOut(values, out, parent);',
+        'this.processRowValues(values);',
+        'this.nextTpl.applyOut(values, out, parent);',
         '%}', {
             priority: 10,
-            processRowValues: function(rowValues) {
+            processRowValues: function (rowValues) {
                 var record = rowValues.record,
                     view = rowValues.view;
 
@@ -129,7 +129,7 @@ Ext.define('Ext.tree.View', {
      * @param {Ext.event.Event} e The event object for the drag
      */
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this;
 
         if (me.bufferedRenderer) {
@@ -150,7 +150,7 @@ Ext.define('Ext.tree.View', {
         me.addRowTpl(Ext.XTemplate.getTpl(me, 'treeRowTpl'));
     },
 
-    onFillComplete: function(treeStore, fillRoot, newNodes) {
+    onFillComplete: function (treeStore, fillRoot, newNodes) {
         var me = this,
             store = me.store,
             start = store.indexOf(newNodes[0]);
@@ -171,14 +171,14 @@ Ext.define('Ext.tree.View', {
         me.refreshPartner();
     },
 
-    refreshPartner: function() {
+    refreshPartner: function () {
         var partner = this.lockingPartner;
         if (partner) {
             partner.refresh();
         }
     },
 
-    afterRender: function() {
+    afterRender: function () {
         var me = this;
 
         me.callParent();
@@ -196,7 +196,7 @@ Ext.define('Ext.tree.View', {
         });
     },
 
-    afterComponentLayout: function(width, height, prevWidth, prevHeight) {
+    afterComponentLayout: function (width, height, prevWidth, prevHeight) {
         var scroller = this.getScrollable();
 
         this.callParent([width, height, prevWidth, prevHeight]);
@@ -206,7 +206,7 @@ Ext.define('Ext.tree.View', {
         }
     },
 
-    processUIEvent: function(e) {
+    processUIEvent: function (e) {
         // If the clicked node is part of an animation, ignore the click.
         // This is because during a collapse animation, the associated Records
         // will already have been removed from the Store, and the event is not processable.
@@ -216,11 +216,11 @@ Ext.define('Ext.tree.View', {
         return this.callParent([e]);
     },
 
-    setRootNode: function(node) {
+    setRootNode: function (node) {
         this.node = node;
     },
 
-    onCheckboxChange: function(e, t) {
+    onCheckboxChange: function (e, t) {
         var me = this,
             item = e.getTarget(me.getItemSelector(), me.getTargetEl());
 
@@ -229,7 +229,7 @@ Ext.define('Ext.tree.View', {
         }
     },
 
-    onCheckChange: function(record) {
+    onCheckChange: function (record) {
         var checked = record.get('checked');
         if (Ext.isBoolean(checked)) {
             checked = !checked;
@@ -238,9 +238,9 @@ Ext.define('Ext.tree.View', {
         }
     },
 
-    getChecked: function() {
+    getChecked: function () {
         var checked = [];
-        this.node.cascadeBy(function(rec){
+        this.node.cascadeBy(function (rec) {
             if (rec.get('checked')) {
                 checked.push(rec);
             }
@@ -248,14 +248,14 @@ Ext.define('Ext.tree.View', {
         return checked;
     },
 
-    isItemChecked: function(rec) {
+    isItemChecked: function (rec) {
         return rec.get('checked');
     },
 
     /**
      * @private
      */
-    createAnimWrap: function(record, index) {
+    createAnimWrap: function (record, index) {
         var me = this,
             node = me.getNode(record),
             tmpEl;
@@ -301,7 +301,7 @@ Ext.define('Ext.tree.View', {
      *
      * @return {Ext.dom.Element} The wrapping element as created in {@link #createAnimWrap}, or null
      */
-    getAnimWrap: function(parent, bubble) {
+    getAnimWrap: function (parent, bubble) {
         if (!this.animate) {
             return null;
         }
@@ -320,7 +320,7 @@ Ext.define('Ext.tree.View', {
         return wrap;
     },
 
-    doAdd: function(records, index) {
+    doAdd: function (records, index) {
         var me = this,
             record = records[0],
             parent = record.parentNode,
@@ -365,7 +365,7 @@ Ext.define('Ext.tree.View', {
         return children;
     },
 
-    onRemove: function(ds, records, index) {
+    onRemove: function (ds, records, index) {
         var me = this,
             empty, i;
 
@@ -398,7 +398,7 @@ Ext.define('Ext.tree.View', {
         }
     },
 
-    doRemove: function(record, index) {
+    doRemove: function (record, index) {
         // If we are adding records which have a parent that is currently expanding
         // lets add them to the animation wrap
         var me = this,
@@ -417,7 +417,7 @@ Ext.define('Ext.tree.View', {
         all.removeElement(index);
     },
 
-    onBeforeExpand: function(parent, records, index) {
+    onBeforeExpand: function (parent, records, index) {
         var me = this,
             animWrap;
 
@@ -439,7 +439,7 @@ Ext.define('Ext.tree.View', {
         }
     },
 
-    onExpand: function(parent) {
+    onExpand: function (parent) {
         var me = this,
             queue = me.animQueue,
             id = parent.getId(),
@@ -475,8 +475,8 @@ Ext.define('Ext.tree.View', {
         // Must set element height before this event finishes because animation does not set
         // initial condition until first tick has elapsed.
         // Which is good because the upcoming layout resumption must read the content height BEFORE it gets squished.
-        Ext.on('idle', function() {
-	    animateEl.dom.style.height = '0px';
+        Ext.on('idle', function () {
+            animateEl.dom.style.height = '0px';
         }, null, {single: true});
 
         animateEl.animate({
@@ -488,7 +488,7 @@ Ext.define('Ext.tree.View', {
             },
             duration: me.expandDuration,
             listeners: {
-                afteranimate: function() {
+                afteranimate: function () {
                     // Move all the nodes out of the anim wrap to their proper location
                     // Must do this in afteranimate because lastframe does not fire if the
                     // animation is stopped.
@@ -508,7 +508,7 @@ Ext.define('Ext.tree.View', {
                     me.animWraps[animWrap.record.internalId] = queue[id] = null;
                 }
             },
-            callback: function() {
+            callback: function () {
                 parent.isExpandingOrCollapsing = false;
                 if (!me.isDestroyed) {
                     me.refreshSize(true);
@@ -519,7 +519,7 @@ Ext.define('Ext.tree.View', {
     },
 
     // Triggered by the TreeStore's beforecollapse event.
-    onBeforeCollapse: function(parent, records, index, callback, scope) {
+    onBeforeCollapse: function (parent, records, index, callback, scope) {
         var me = this,
             animWrap;
 
@@ -551,7 +551,7 @@ Ext.define('Ext.tree.View', {
         }
     },
 
-    onCollapse: function(parent) {
+    onCollapse: function (parent) {
         var me = this,
             queue = me.animQueue,
             id = parent.getId(),
@@ -589,13 +589,13 @@ Ext.define('Ext.tree.View', {
             },
             duration: me.collapseDuration,
             listeners: {
-                afteranimate: function() {
+                afteranimate: function () {
                     // In case lastframe did not fire because the animation was stopped.
                     animWrap.el.destroy();
                     me.animWraps[animWrap.record.internalId] = queue[id] = null;
                 }
             },
-            callback: function() {
+            callback: function () {
                 parent.isExpandingOrCollapsing = false;
                 if (!me.isDestroyed) {
                     me.refreshSize(true);
@@ -615,7 +615,7 @@ Ext.define('Ext.tree.View', {
      * @param {Ext.data.Model} node The node
      * @return {Boolean} True if the node is animating
      */
-    isAnimating: function(node) {
+    isAnimating: function (node) {
         return !!this.animQueue[node.getId()];
     },
 
@@ -628,7 +628,7 @@ Ext.define('Ext.tree.View', {
      * @param {Function} [callback] The function to run after the expand is completed
      * @param {Object} [scope] The scope of the callback function.
      */
-    expand: function(record, deep, callback, scope) {
+    expand: function (record, deep, callback, scope) {
         var me = this,
             doAnimate = !!me.animate,
             result;
@@ -658,7 +658,7 @@ Ext.define('Ext.tree.View', {
      * @param {Function} [callback] The function to run after the collapse is completed
      * @param {Object} [scope] The scope of the callback function.
      */
-    collapse: function(record, deep, callback, scope) {
+    collapse: function (record, deep, callback, scope) {
         var me = this,
             doAnimate = !!me.animate;
 
@@ -680,7 +680,7 @@ Ext.define('Ext.tree.View', {
      * @param {Function} [callback] The function to run after the expand/collapse is completed
      * @param {Object} [scope] The scope of the callback function.
      */
-    toggle: function(record, deep, callback, scope) {
+    toggle: function (record, deep, callback, scope) {
         if (record.isExpanded()) {
             this.collapse(record, deep, callback, scope);
         } else {
@@ -688,7 +688,7 @@ Ext.define('Ext.tree.View', {
         }
     },
 
-    onItemDblClick: function(record, item, index, e) {
+    onItemDblClick: function (record, item, index, e) {
         var me = this,
             editingPlugin = me.editingPlugin;
 
@@ -698,14 +698,14 @@ Ext.define('Ext.tree.View', {
         }
     },
 
-    onBeforeItemMouseDown: function(record, item, index, e) {
+    onBeforeItemMouseDown: function (record, item, index, e) {
         if (e.getTarget(this.expanderSelector, item)) {
             return false;
         }
         return this.callParent([record, item, index, e]);
     },
 
-    onItemClick: function(record, item, index, e) {
+    onItemClick: function (record, item, index, e) {
         if (e.getTarget(this.expanderSelector, item) && record.isExpandable()) {
             this.toggle(record, e.ctrlKey);
             return false;
@@ -713,22 +713,22 @@ Ext.define('Ext.tree.View', {
         return this.callParent([record, item, index, e]);
     },
 
-    onExpanderMouseOver: function(e, t) {
+    onExpanderMouseOver: function (e, t) {
         e.getTarget(this.cellSelector, 10, true).addCls(this.expanderIconOverCls);
     },
 
-    onExpanderMouseOut: function(e, t) {
+    onExpanderMouseOut: function (e, t) {
         e.getTarget(this.cellSelector, 10, true).removeCls(this.expanderIconOverCls);
     },
 
-    getStoreListeners: function() {
+    getStoreListeners: function () {
         return Ext.apply(this.callParent(), {
             rootchange: this.onRootChange,
             fillcomplete: this.onFillComplete
         });
     },
 
-    onBindStore: function(store, initial, propName, oldStore) {
+    onBindStore: function (store, initial, propName, oldStore) {
         var oldRoot = oldStore && oldStore.getRootNode(),
             newRoot = store && store.getRootNode();
 
@@ -742,14 +742,14 @@ Ext.define('Ext.tree.View', {
         }
     },
 
-    onRootChange: function(newRoot, oldRoot) {
+    onRootChange: function (newRoot, oldRoot) {
         var me = this;
 
         if (oldRoot) {
             me.rootListeners.destroy();
             me.rootListeners = null;
         }
-        
+
         if (newRoot) {
             me.rootListeners = newRoot.on({
                 beforeexpand: me.onBeforeExpand,
@@ -762,10 +762,10 @@ Ext.define('Ext.tree.View', {
         }
     },
 
-    ensureSingleExpand: function(node) {
+    ensureSingleExpand: function (node) {
         var parent = node.parentNode;
         if (parent) {
-            parent.eachChild(function(child) {
+            parent.eachChild(function (child) {
                 if (child !== node && child.isExpanded()) {
                     child.collapse();
                 }
@@ -773,7 +773,7 @@ Ext.define('Ext.tree.View', {
         }
     },
 
-    shouldUpdateCell: function(record, column, changedFieldNames) {
+    shouldUpdateCell: function (record, column, changedFieldNames) {
         // For the TreeColumn, if any of the known tree column UI affecting fields are updated
         // the cell should be updated in whatever way. 1 if a custom renderer (not our default tree cell renderer), else 2.
         if (column.isTreeColumn && changedFieldNames) {

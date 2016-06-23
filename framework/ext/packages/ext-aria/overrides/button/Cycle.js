@@ -1,9 +1,9 @@
 /** */
 Ext.define('Ext.aria.button.Cycle', {
     override: 'Ext.button.Cycle'
-    
+
     //<debug>
-    , constructor: function(config) {
+    , constructor: function (config) {
         // Don't warn if we're under the slicer
         if (!Ext.theme) {
             Ext.log.warn(
@@ -13,7 +13,7 @@ Ext.define('Ext.aria.button.Cycle', {
                 "Authoring guide: http://www.w3.org/TR/wai-aria-practices/#menubutton"
             );
         }
-        
+
         this.callParent(arguments);
     }
     //</debug>

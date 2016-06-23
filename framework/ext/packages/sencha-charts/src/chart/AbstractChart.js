@@ -212,20 +212,20 @@ Ext.define('Ext.chart.AbstractChart', {
          *
          *   - **any {@link Ext.data.Store Store} class / subclass**
          *   - **an {@link Ext.data.Store#storeId ID of a store}**
-         *   - **a {@link Ext.data.Store Store} config object**.  When passing a config you can 
-         *     specify the store type by alias.  Passing a config object with a store type will 
+         *   - **a {@link Ext.data.Store Store} config object**.  When passing a config you can
+         *     specify the store type by alias.  Passing a config object with a store type will
          *     dynamically create a new store of that type when the chart is instantiated.
          *
          * For example:
-         * 
+         *
          *     Ext.define('MyApp.store.Customer', {
          *         extend: 'Ext.data.Store',
          *         alias: 'store.customerstore',
          *     
          *         fields: ['name', 'value']
          *     });
-         *     
-         *     
+         *
+         *
          *     Ext.create({
          *         xtype: 'cartesian',
          *         renderTo: document.body,
@@ -768,7 +768,7 @@ Ext.define('Ext.chart.AbstractChart', {
     },
 
     /**
-     * @method getAxis Returns an axis instance based on the type of data passed. 
+     * @method getAxis Returns an axis instance based on the type of data passed.
      * @param {String/Number/Ext.chart.axis.Axis} axis You may request an axis by passing
      * an id, the number of the array key returned by {@link #getAxes}, or an axis instance.
      * @return {Ext.chart.axis.Axis} The axis requested
@@ -879,7 +879,7 @@ Ext.define('Ext.chart.AbstractChart', {
         this.scheduleLayout();
     },
 
-    circularCopyArray: function(inArray, startIndex, count) {
+    circularCopyArray: function (inArray, startIndex, count) {
         var outArray = [],
             i, len = inArray && inArray.length;
         if (len) {
@@ -890,7 +890,7 @@ Ext.define('Ext.chart.AbstractChart', {
         return outArray;
     },
 
-    circularCopyObject: function(inObject, startIndex, count) {
+    circularCopyObject: function (inObject, startIndex, count) {
         var me = this,
             name, value, outObject = {};
         if (count) {
@@ -919,7 +919,7 @@ Ext.define('Ext.chart.AbstractChart', {
     },
 
     applyColors: function (newColors) {
-        newColors = Ext.Array.map(newColors, function(color) {
+        newColors = Ext.Array.map(newColors, function (color) {
             if (Ext.isString(color)) {
                 return color;
             } else {
@@ -964,11 +964,11 @@ Ext.define('Ext.chart.AbstractChart', {
             seriesList = me.getSeries(),
             colors = me.getColors(),
             series, i;
-            //seriesStyle,
-            //colorIndex = 0,
-            //markerIndex = 0,
-            //markerCount,
-            //colorCount,
+        //seriesStyle,
+        //colorIndex = 0,
+        //markerIndex = 0,
+        //markerCount,
+        //colorCount,
 
         me.updateChartTheme(theme);
 
@@ -1014,8 +1014,7 @@ Ext.define('Ext.chart.AbstractChart', {
         me.redraw();
     },
 
-    themeOnlyIfConfigured: {
-    },
+    themeOnlyIfConfigured: {},
 
     updateChartTheme: function (theme) {
         var me = this,
@@ -1090,7 +1089,7 @@ Ext.define('Ext.chart.AbstractChart', {
      * @param {Object/Object[]/Ext.chart.series.Series/Ext.chart.series.Series[]} newSeries A config object
      * describing the Series to add, or an instantiated Series object. Or an array of these.
      */
-    addSeries: function(newSeries) {
+    addSeries: function (newSeries) {
         var series = this.getSeries();
 
         Ext.Array.push(series, newSeries);
@@ -1105,7 +1104,7 @@ Ext.define('Ext.chart.AbstractChart', {
      *
      * @param {Ext.chart.series.Series/String} series The Series or the `id` of the Series to remove. May be an array.
      */
-    removeSeries: function(series) {
+    removeSeries: function (series) {
         series = Ext.Array.from(series);
 
         var existingSeries = this.getSeries(),
@@ -1339,7 +1338,7 @@ Ext.define('Ext.chart.AbstractChart', {
             seriesList = me.getSeries(),
             mainRect = me.getMainRect(),
             ln = seriesList.length,
-            // If we haven't drawn yet, don't attempt to find any items.
+        // If we haven't drawn yet, don't attempt to find any items.
             i = me.hasFirstLayout ? ln - 1 : -1,
             series, item;
 
@@ -1370,7 +1369,7 @@ Ext.define('Ext.chart.AbstractChart', {
         var me = this,
             seriesList = me.getSeries(),
             ln = seriesList.length,
-            // If we haven't drawn yet, don't attempt to find any items.
+        // If we haven't drawn yet, don't attempt to find any items.
             i = me.hasFirstLayout ? ln - 1 : -1,
             items = [],
             series, item;
@@ -1481,7 +1480,7 @@ Ext.define('Ext.chart.AbstractChart', {
         if (Ext.isObject(newHighlightItem) && Ext.isObject(oldHighlightItem)) {
             if (newHighlightItem.sprite === oldHighlightItem.sprite &&
                 newHighlightItem.index === oldHighlightItem.index
-                ) {
+            ) {
                 return;
             }
         }
@@ -1519,7 +1518,7 @@ Ext.define('Ext.chart.AbstractChart', {
         for (i = 0, ln = series.length; i < ln; i++) {
             series[i].destroy();
         }
-        
+
         if (legend) {
             legend.destroy();
             me.setLegend(null);

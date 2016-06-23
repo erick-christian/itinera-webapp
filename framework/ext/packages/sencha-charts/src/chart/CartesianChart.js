@@ -77,7 +77,7 @@ Ext.define('Ext.chart.CartesianChart', {
             bottom: 0
         }
     },
-    xtype: [ 'cartesian', 'chart' ],
+    xtype: ['cartesian', 'chart'],
 
     applyInnerPadding: function (padding, oldPadding) {
         if (!Ext.isObject(padding)) {
@@ -115,7 +115,7 @@ Ext.define('Ext.chart.CartesianChart', {
             // Resizing will still be decremented
             return;
         }
-        
+
         this.suspendThicknessChanged();
         var me = this,
             chartRect = me.getSurface('chart').getRect(),
@@ -219,8 +219,8 @@ Ext.define('Ext.chart.CartesianChart', {
             if (flipXY) {
                 if (isRtl) {
                     surface.matrix.set(0, -1, -1, 0,
-                            innerPadding.left + innerWidth,
-                            innerPadding.top + innerHeight);
+                        innerPadding.left + innerWidth,
+                        innerPadding.top + innerHeight);
                 } else {
                     surface.matrix.set(0, -1, 1, 0,
                         innerPadding.left,
@@ -370,7 +370,7 @@ Ext.define('Ext.chart.CartesianChart', {
                 zIndex = (sprite.attr.zIndex || 0);
                 if (zIndex < zBase) {
                     // Set the sprite's zIndex
-                    zIndex += (i+1) * 100 + zBase;
+                    zIndex += (i + 1) * 100 + zBase;
                     sprite.attr.zIndex = zIndex;
                     // Iterate through its marker sprites to do the same.
                     markers = sprite.boundMarkers;
@@ -428,8 +428,8 @@ Ext.define('Ext.chart.CartesianChart', {
         var me = this,
             watermarkElement = me.watermarkElement,
             rect = watermarkElement &&
-                  (me.getSurface ? me.getSurface('main').getRect()
-                                 : me.getItems().get(0).getRect());
+                (me.getSurface ? me.getSurface('main').getRect()
+                    : me.getItems().get(0).getRect());
 
         if (rect) {
             watermarkElement.setStyle({

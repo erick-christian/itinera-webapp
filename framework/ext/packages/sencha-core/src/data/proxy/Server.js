@@ -5,10 +5,10 @@
  */
 Ext.define('Ext.data.proxy.Server', {
     extend: 'Ext.data.proxy.Proxy',
-    alias : 'proxy.server',
+    alias: 'proxy.server',
     alternateClassName: 'Ext.data.ServerProxy',
-    uses  : ['Ext.data.Request'],
-    
+    uses: ['Ext.data.Request'],
+
     isRemote: true,
 
     config: {
@@ -17,69 +17,69 @@ Ext.define('Ext.data.proxy.Server', {
          * The URL from which to request the data object.
          */
         url: '',
-    
+
         /**
          * @cfg {String} [pageParam="page"]
          * The name of the 'page' parameter to send in a request. Defaults to 'page'. Set this to `''` if you don't
          * want to send a page parameter.
          */
         pageParam: 'page',
-    
+
         /**
          * @cfg {String} [startParam="start"]
          * The name of the 'start' parameter to send in a request. Defaults to 'start'. Set this to `''` if you don't
          * want to send a start parameter.
          */
         startParam: 'start',
-    
+
         /**
          * @cfg {String} [limitParam="limit"]
          * The name of the 'limit' parameter to send in a request. Defaults to 'limit'. Set this to `''` if you don't
          * want to send a limit parameter.
          */
         limitParam: 'limit',
-    
+
         /**
          * @cfg {String} [groupParam="group"]
          * The name of the 'group' parameter to send in a request. Defaults to 'group'. Set this to `''` if you don't
          * want to send a group parameter.
          */
         groupParam: 'group',
-    
+
         /**
          * @cfg {String} [groupDirectionParam="groupDir"]
          * The name of the direction parameter to send in a request. **This is only used when simpleGroupMode is set to
          * true.**
          */
         groupDirectionParam: 'groupDir',
-    
+
         /**
          * @cfg {String} [sortParam="sort"]
          * The name of the 'sort' parameter to send in a request. Defaults to 'sort'. Set this to `''` if you don't
          * want to send a sort parameter.
          */
         sortParam: 'sort',
-    
+
         /**
          * @cfg {String} [filterParam="filter"]
          * The name of the 'filter' parameter to send in a request. Defaults to 'filter'. Set this to `''` if you don't
          * want to send a filter parameter.
          */
         filterParam: 'filter',
-    
+
         /**
          * @cfg {String} [directionParam="dir"]
          * The name of the direction parameter to send in a request. **This is only used when simpleSortMode is set to
          * true.**
          */
         directionParam: 'dir',
-    
+
         /**
          * @cfg {String} [idParam="id"]
          * The name of the parameter which carries the id of the entity being operated upon.
          */
         idParam: 'id',
-    
+
         /**
          * @cfg {Boolean} [simpleSortMode=false]
          * Enabling simpleSortMode in conjunction with remoteSort will only send one sort property and a direction when a
@@ -87,7 +87,7 @@ Ext.define('Ext.data.proxy.Server', {
          * and either 'ASC' or 'DESC'.
          */
         simpleSortMode: false,
-    
+
         /**
          * @cfg {Boolean} [simpleGroupMode=false]
          * Enabling simpleGroupMode in conjunction with remoteGroup will only send one group property and a direction when a
@@ -95,25 +95,25 @@ Ext.define('Ext.data.proxy.Server', {
          * or 'DESC'.
          */
         simpleGroupMode: false,
-    
+
         /**
          * @cfg {Boolean} [noCache=true]
          * Disable caching by adding a unique parameter name to the request. Set to false to allow caching. Defaults to true.
          */
-        noCache : true,
-    
+        noCache: true,
+
         /**
          * @cfg {String} [cacheString="_dc"]
          * The name of the cache param added to the url when using noCache. Defaults to "_dc".
          */
         cacheString: "_dc",
-    
+
         /**
          * @cfg {Number} timeout
          * The number of milliseconds to wait for a response. Defaults to 30000 milliseconds (30 seconds).
          */
-        timeout : 30000,
-    
+        timeout: 30000,
+
         /**
          * @cfg {Object} api
          * Specific urls to call on CRUD action methods "create", "read", "update" and "destroy". Defaults to:
@@ -142,10 +142,10 @@ Ext.define('Ext.data.proxy.Server', {
          * configured {@link Ext.data.proxy.Server#url url}.
          */
         api: {
-            create  : undefined,
-            read    : undefined,
-            update  : undefined,
-            destroy : undefined
+            create: undefined,
+            read: undefined,
+            update: undefined,
+            destroy: undefined
         },
 
         /**
@@ -166,19 +166,19 @@ Ext.define('Ext.data.proxy.Server', {
      */
 
     //in a ServerProxy all four CRUD operations are executed in the same manner, so we delegate to doRequest in each case
-    create: function() {
+    create: function () {
         return this.doRequest.apply(this, arguments);
     },
 
-    read: function() {
+    read: function () {
         return this.doRequest.apply(this, arguments);
     },
 
-    update: function() {
+    update: function () {
         return this.doRequest.apply(this, arguments);
     },
 
-    erase: function() {
+    erase: function () {
         return this.doRequest.apply(this, arguments);
     },
 
@@ -187,7 +187,7 @@ Ext.define('Ext.data.proxy.Server', {
      * @param {String} name The key for the new value
      * @param {Object} value The value
      */
-    setExtraParam: function(name, value) {
+    setExtraParam: function (name, value) {
         this.getExtraParams()[name] = value;
     },
 
@@ -195,14 +195,14 @@ Ext.define('Ext.data.proxy.Server', {
      * Creates an {@link Ext.data.Request Request} object from {@link Ext.data.operation.Operation Operation}.
      *
      * This gets called from doRequest methods in subclasses of Server proxy.
-     * 
+     *
      * @param {Ext.data.operation.Operation} operation The operation to execute
      * @return {Ext.data.Request} The request object
      */
-    buildRequest: function(operation) {
+    buildRequest: function (operation) {
         var me = this,
             initialParams = Ext.apply({}, operation.getParams()),
-            // Clone params right now so that they can be mutated at any point further down the call stack
+        // Clone params right now so that they can be mutated at any point further down the call stack
             params = Ext.applyIf(initialParams, me.getExtraParams() || {}),
             request,
             operationId,
@@ -221,10 +221,10 @@ Ext.define('Ext.data.proxy.Server', {
         }
 
         request = new Ext.data.Request({
-            params   : params,
-            action   : operation.getAction(),
-            records  : operation.getRecords(),
-            url      : operation.getUrl(),
+            params: params,
+            action: operation.getAction(),
+            records: operation.getRecords(),
+            url: operation.getUrl(),
             operation: operation,
 
             // this is needed by JsonSimlet in order to properly construct responses for
@@ -250,7 +250,7 @@ Ext.define('Ext.data.proxy.Server', {
      *
      * @protected
      */
-    processResponse: function(success, operation, request, response) {
+    processResponse: function (success, operation, request, response) {
         var me = this,
             exception, reader, resultSet;
 
@@ -281,7 +281,7 @@ Ext.define('Ext.data.proxy.Server', {
             me.setException(operation, response);
             exception = true;
         }
-        
+
         if (exception) {
             me.fireEvent('exception', me, response, operation);
         }
@@ -293,14 +293,14 @@ Ext.define('Ext.data.proxy.Server', {
         // resume layouts.
         me.fireEvent('endprocessresponse', me, response, operation);
     },
-    
+
     /**
      * Sets up an exception on the operation
      * @private
      * @param {Ext.data.operation.Operation} operation The operation
      * @param {Object} response The response
      */
-    setException: function(operation, response) {
+    setException: function (operation, response) {
         operation.setException({
             status: response.status,
             statusText: response.statusText,
@@ -323,7 +323,7 @@ Ext.define('Ext.data.proxy.Server', {
      * @param {Array} value An array of sorters/filters.
      * @return {Object} The encoded value
      */
-    applyEncoding: function(value) {
+    applyEncoding: function (value) {
         return Ext.encode(value);
     },
 
@@ -334,11 +334,11 @@ Ext.define('Ext.data.proxy.Server', {
      * @param {Boolean} [preventArray=false] Prevents the items from being output as an array.
      * @return {String} The encoded sorters
      */
-    encodeSorters: function(sorters, preventArray) {
+    encodeSorters: function (sorters, preventArray) {
         var out = [],
-            length = sorters.length, 
+            length = sorters.length,
             i;
-        
+
         for (i = 0; i < length; i++) {
             out[i] = sorters[i].serialize();
         }
@@ -352,7 +352,7 @@ Ext.define('Ext.data.proxy.Server', {
      * @param {Ext.util.Filter[]} filters The array of {@link Ext.util.Filter Filter} objects
      * @return {String} The encoded filters
      */
-    encodeFilters: function(filters) {
+    encodeFilters: function (filters) {
         var out = [],
             length = filters.length,
             i, op;
@@ -368,7 +368,7 @@ Ext.define('Ext.data.proxy.Server', {
      * @private
      * Copy any sorters, filters etc into the params so they can be sent over the wire
      */
-    getParams: function(operation) {
+    getParams: function (operation) {
         if (!operation.isReadOperation) {
             return {};
         }
@@ -444,7 +444,7 @@ Ext.define('Ext.data.proxy.Server', {
      * @param {Ext.data.Request} request The request object
      * @return {String} The url
      */
-    buildUrl: function(request) {
+    buildUrl: function (request) {
         var me = this,
             url = me.getUrl(request);
 
@@ -470,7 +470,7 @@ Ext.define('Ext.data.proxy.Server', {
      * @param {Ext.data.Request} request The request
      * @return {String} The url
      */
-    getUrl: function(request) {
+    getUrl: function (request) {
         var url;
         if (request) {
             url = request.getUrl() || this.getApi()[request.getAction()];
@@ -481,14 +481,14 @@ Ext.define('Ext.data.proxy.Server', {
     /**
      * In ServerProxy subclasses, the {@link #create}, {@link #read}, {@link #update} and {@link #erase} methods all
      * pass through to doRequest. Each ServerProxy subclass must implement the doRequest method - see {@link
-     * Ext.data.proxy.JsonP} and {@link Ext.data.proxy.Ajax} for examples. This method carries the same signature as
+        * Ext.data.proxy.JsonP} and {@link Ext.data.proxy.Ajax} for examples. This method carries the same signature as
      * each of the methods that delegate to it.
      *
      * @param {Ext.data.operation.Operation} operation The Ext.data.operation.Operation object
      * @param {Function} callback The callback function to call when the Operation has completed
      * @param {Object} scope The scope in which to execute the callback
      */
-    doRequest: function(operation) {
+    doRequest: function (operation) {
         //<debug>
         Ext.Error.raise("The doRequest function has not been implemented on your Ext.data.proxy.Server subclass. See src/data/ServerProxy.js for details");
         //</debug>
@@ -504,11 +504,11 @@ Ext.define('Ext.data.proxy.Server', {
      */
     afterRequest: Ext.emptyFn,
 
-    destroy: function() {
+    destroy: function () {
         this.callParent();
-        
+
         Ext.destroy(this.getReader(), this.getWriter());
-        
+
         this.reader = this.writer = null;
     }
 });

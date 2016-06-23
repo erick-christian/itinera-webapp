@@ -68,9 +68,6 @@
         "594bba67-ee71-4032-9b3a-ac3b4d0f1034": {
             "id": "594bba67-ee71-4032-9b3a-ac3b4d0f1034"
         },
-        "2e980aeb-1dd9-4e5e-a742-03b11a0d419b": {
-            "id": "2e980aeb-1dd9-4e5e-a742-03b11a0d419b"
-        },
         "417d9d35-0f0e-492b-ad3c-98395df48dc1": {
             "id": "417d9d35-0f0e-492b-ad3c-98395df48dc1"
         },
@@ -88,6 +85,9 @@
         },
         "9384f26b-2e20-4478-9436-91afed469866": {
             "id": "9384f26b-2e20-4478-9436-91afed469866"
+        },
+        "2e980aeb-1dd9-4e5e-a742-03b11a0d419b": {
+            "id": "2e980aeb-1dd9-4e5e-a742-03b11a0d419b"
         }
     },
     "tabState": {
@@ -108,7 +108,7 @@
     },
     "inspectorState": {
         "topInstance": "89475817-588a-4cf8-9464-e343bf666588",
-        "selectedInstance": "77faad4a-cc64-409b-bbb1-7d4672c250a7"
+        "selectedInstance": "89475817-588a-4cf8-9464-e343bf666588"
     },
     "editMode": "design",
     "userSettings": {

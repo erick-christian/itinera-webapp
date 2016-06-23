@@ -32,11 +32,6 @@ $grid-actioncolumn-icon-opacity-disabled: .3 !default;
  */
 $grid-actioncolumn-horizontal-padding: 2px !default;
 
-
 //private
-$grid-actioncolumn-cell-padding:
-    max(ceil(($grid-row-height - $grid-actioncolumn-icon-height) / 2), 0)
-    $grid-actioncolumn-horizontal-padding
-    max(floor(($grid-row-height - $grid-actioncolumn-icon-height) / 2), 0)
-    $grid-actioncolumn-horizontal-padding
+$grid-actioncolumn-cell-padding: max(ceil(($grid-row-height - $grid-actioncolumn-icon-height) / 2), 0) $grid-actioncolumn-horizontal-padding max(floor(($grid-row-height - $grid-actioncolumn-icon-height) / 2), 0) $grid-actioncolumn-horizontal-padding
     

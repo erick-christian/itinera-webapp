@@ -50,10 +50,10 @@ Ext.define('Ext.data.NodeStore', {
      * @protected
      * Recursion level counter. Incremented when expansion or collaping of a node is initiated,
      * including when nested nodes below the expanding/collapsing root begin expanding or collapsing.
-     * 
+     *
      * This ensures that collapsestart, collapsecomplete, expandstart and expandcomplete only
      * fire on the top level node being collapsed/expanded.
-     * 
+     *
      * Also, allows listeners to the `add` and `remove` events to know whether a collapse of expand is in progress.
      */
     isExpandingOrCollapsing: 0,
@@ -61,11 +61,11 @@ Ext.define('Ext.data.NodeStore', {
     // NodeStores are never buffered or paged. They are loaded from the TreeStore to reflect all visible
     // nodes.
     // BufferedRenderer always asks for the *total* count, so this must return the count.
-    getTotalCount: function() {
+    getTotalCount: function () {
         return this.getCount();
     },
 
-    afterEdit: function(record, modifiedFields) {
+    afterEdit: function (record, modifiedFields) {
         // Only for when being used as the flat NodeStore of a List
         if (this.getNode() && modifiedFields) {
 
@@ -83,7 +83,7 @@ Ext.define('Ext.data.NodeStore', {
     },
 
 
-    afterReject : function(record) {
+    afterReject: function (record) {
         var me = this;
         // Must pass the 5th param (modifiedFieldNames) as null, otherwise the
         // event firing machinery appends the listeners "options" object to the arg list
@@ -96,7 +96,7 @@ Ext.define('Ext.data.NodeStore', {
         }
     },
 
-    afterCommit : function(record, modifiedFieldNames) {
+    afterCommit: function (record, modifiedFieldNames) {
         var me = this;
         if (!modifiedFieldNames) {
             modifiedFieldNames = null;
@@ -107,39 +107,39 @@ Ext.define('Ext.data.NodeStore', {
         }
     },
 
-    onNodeAppend: function(parent, node) {
+    onNodeAppend: function (parent, node) {
         this.add([node].concat(this.retrieveChildNodes(node)));
     },
 
-    onNodeInsert: function(parent, node) {
+    onNodeInsert: function (parent, node) {
         this.add([node].concat(this.retrieveChildNodes(node)));
     },
 
-    onNodeRemove: function(parent, node) {
+    onNodeRemove: function (parent, node) {
         this.remove([node].concat(this.retrieveChildNodes(node)));
     },
 
-    onNodeExpand: function(parent, records) {
+    onNodeExpand: function (parent, records) {
         this.loadRecords(records);
     },
 
-    applyNode: function(node) {
+    applyNode: function (node) {
         if (node) {
             Ext.data.NodeInterface.decorate(node);
         }
         return node;
     },
 
-    updateNode: function(node, oldNode) {
+    updateNode: function (node, oldNode) {
         var me = this,
             data;
 
         if (oldNode && !oldNode.isDestroyed) {
             oldNode.un({
-                append  : 'onNodeAppend',
-                insert  : 'onNodeInsert',
-                remove  : 'onNodeRemove',
-                load    : 'onNodeLoad',
+                append: 'onNodeAppend',
+                insert: 'onNodeInsert',
+                remove: 'onNodeRemove',
+                load: 'onNodeLoad',
                 scope: me
             });
             oldNode.unjoin(me);
@@ -147,11 +147,11 @@ Ext.define('Ext.data.NodeStore', {
 
         if (node) {
             node.on({
-                scope   : me,
-                append  : 'onNodeAppend',
-                insert  : 'onNodeInsert',
-                remove  : 'onNodeRemove',
-                load    : 'onNodeLoad'
+                scope: me,
+                append: 'onNodeAppend',
+                insert: 'onNodeInsert',
+                remove: 'onNodeRemove',
+                load: 'onNodeLoad'
             });
 
             node.join(me);
@@ -173,7 +173,7 @@ Ext.define('Ext.data.NodeStore', {
             me.add(data);
             me.resumeEvents();
 
-            if(data.length === 0) {
+            if (data.length === 0) {
                 me.loaded = node.loaded = true;
             }
 
@@ -187,7 +187,7 @@ Ext.define('Ext.data.NodeStore', {
      * @param {Ext.data.NodeInterface} root
      * @return {Array}
      */
-    retrieveChildNodes: function(root) {
+    retrieveChildNodes: function (root) {
         var node = this.getNode(),
             recursive = this.getRecursive(),
             added = [],
@@ -229,7 +229,7 @@ Ext.define('Ext.data.NodeStore', {
      * @param {Object} node
      * @return {Boolean}
      */
-    isVisible: function(node) {
+    isVisible: function (node) {
         var parent = node.parentNode;
 
         if (!this.getRecursive() && parent !== this.getNode()) {

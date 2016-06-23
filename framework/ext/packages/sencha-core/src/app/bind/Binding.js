@@ -17,7 +17,7 @@ Ext.define('Ext.app.bind.Binding', {
     constructor: function (stub, callback, scope, options) {
         var me = this;
 
-        me.callParent([ stub.owner, callback, scope, options ]);
+        me.callParent([stub.owner, callback, scope, options]);
 
         me.stub = stub;
         me.depth = stub.depth;
@@ -86,7 +86,7 @@ Ext.define('Ext.app.bind.Binding', {
      *
      * @private
      */
-    bindValidationField: function(callback, scope) {
+    bindValidationField: function (callback, scope) {
         var stub = this.stub;
         return stub && stub.bindValidationField(callback, scope);
     },
@@ -206,14 +206,14 @@ Ext.define('Ext.app.bind.Binding', {
             this.notify(this.getValue());
         },
 
-        schedule: function() {
+        schedule: function () {
             // If the parent stub is already scheduled, then we will be
             // called when the stub hits the next tick.
             if (!this.stub.scheduled) {
                 this.callParent();
             }
         },
-        
+
         sort: function () {
             var stub = this.stub;
 

@@ -62,7 +62,7 @@ Ext.define('Ext.chart.axis.Axis', {
      * You can set specific options for the grid configuration for odd and/or even lines/rows.
      * Since the rows being drawn are rectangle sprites, you can set to an odd or even property
      * all styles that apply to {@link Ext.draw.Sprite}. For more information on all the style
-     * properties you can set please take a look at {@link Ext.draw.Sprite}. Some useful style 
+     * properties you can set please take a look at {@link Ext.draw.Sprite}. Some useful style
      * properties are `opacity`, `fill`, `stroke`, `stroke-width`, etc.
      *
      * The possible values for a grid option are then *true*, *false*, or an object with `{ odd, even }` properties
@@ -109,11 +109,11 @@ Ext.define('Ext.chart.axis.Axis', {
      * The title for the Axis
      */
 
-     /**
-      * @cfg {Boolean} hidden
-      * `true` to hide the axis.
-      */
-     hidden: false,
+    /**
+     * @cfg {Boolean} hidden
+     * `true` to hide the axis.
+     */
+    hidden: false,
 
     // @private force min/max values from store
     forceMinMax: false,
@@ -152,8 +152,8 @@ Ext.define('Ext.chart.axis.Axis', {
     adjustEnd: true,
 
     majorTickSteps: false,
-    
-    nullGutters: { lower: 0, upper: 0, verticalAxis: undefined },
+
+    nullGutters: {lower: 0, upper: 0, verticalAxis: undefined},
 
     // @private
     applyData: Ext.emptyFn,
@@ -323,11 +323,11 @@ Ext.define('Ext.chart.axis.Axis', {
         if (typeof min === 'number') {
             min = Ext.Number.correctFloat(min);
         }
-         
+
         if (typeof max === 'number') {
             max = Ext.Number.correctFloat(max);
         }
-        
+
         //normalize min max for snapEnds.
         if (min != max && (max != Math.floor(max) || min != Math.floor(min))) {
             min = Math.floor(min);
@@ -345,7 +345,7 @@ Ext.define('Ext.chart.axis.Axis', {
         if (min >= max) {
             // snapEnds will return NaN if max >= min;
             min = Math.floor(min);
-            max = min + 1;                
+            max = min + 1;
         }
 
         return {min: min, max: max};
@@ -382,7 +382,7 @@ Ext.define('Ext.chart.axis.Axis', {
         }
 
         if (changedRange) {
-            out.steps = Math.ceil((out.to - out.from) / out.step);            
+            out.steps = Math.ceil((out.to - out.from) / out.step);
         }
 
         me.prevMin = (min == max ? 0 : min);
@@ -396,7 +396,7 @@ Ext.define('Ext.chart.axis.Axis', {
      */
     drawAxis: function (init) {
         var me = this,
-            i, 
+            i,
             x = me.x,
             y = me.y,
             dashSize = me.dashSize,
@@ -411,7 +411,7 @@ Ext.define('Ext.chart.axis.Axis', {
             stepsArray = Ext.isArray(steps),
             from = stepCalcs.from,
             to = stepCalcs.to,
-            // If we have a single item, to - from will be 0.
+        // If we have a single item, to - from will be 0.
             axisRange = (to - from) || 1,
             trueLength,
             currentX,
@@ -438,7 +438,7 @@ Ext.define('Ext.chart.axis.Axis', {
 
         me.from = from;
         me.to = to;
-        
+
         // If there is nothing to show, then leave. 
         if (me.hidden || (from > to)) {
             return;
@@ -452,7 +452,7 @@ Ext.define('Ext.chart.axis.Axis', {
         if (stepsArray) {
             // Clean the array of steps:
             // First remove the steps that are out of bounds.
-            steps = Ext.Array.filter(steps, function(elem, index, array) {
+            steps = Ext.Array.filter(steps, function (elem, index, array) {
                 return (+elem > +me.from && +elem < +me.to);
             }, this);
 
@@ -491,9 +491,9 @@ Ext.define('Ext.chart.axis.Axis', {
                         // padding is all that is left to take into account.
                         padding = series[i].getPadding();
                         if (verticalAxis) {
-                            seriesGutters = { lower: padding.bottom, upper: padding.top, verticalAxis: true };
+                            seriesGutters = {lower: padding.bottom, upper: padding.top, verticalAxis: true};
                         } else {
-                            seriesGutters = { lower: padding.left, upper: padding.right, verticalAxis: false };
+                            seriesGutters = {lower: padding.left, upper: padding.right, verticalAxis: false};
                         }
                     }
                     if (gutters.lower < seriesGutters.lower) {
@@ -523,7 +523,7 @@ Ext.define('Ext.chart.axis.Axis', {
                     currentY = y - gutters.lower - (steps[tick] - steps[0]) * trueLength / axisRange;
                     path.push("M", currentX, Math.floor(currentY) + 0.5, "l", dashLength * 2, 0);
 
-                    inflections.push([ currentX, Math.floor(currentY) ]);
+                    inflections.push([currentX, Math.floor(currentY)]);
 
                     if (calcLabels) {
                         me.labels.push(steps[tick]);
@@ -538,7 +538,7 @@ Ext.define('Ext.chart.axis.Axis', {
                     currentX = x + gutters.lower + (steps[tick] - steps[0]) * trueLength / axisRange;
                     path.push("M", Math.floor(currentX) + 0.5, currentY, "l", 0, dashLength * 2 + 1);
 
-                    inflections.push([ Math.floor(currentX), currentY ]);
+                    inflections.push([Math.floor(currentX), currentY]);
 
                     if (calcLabels) {
                         me.labels.push(steps[tick]);
@@ -571,7 +571,7 @@ Ext.define('Ext.chart.axis.Axis', {
         if (gutters && subDashValue) {
             for (tick = 0; tick < stepCount - 1; tick++) {
                 begin = +steps[tick];
-                end = +steps[tick+1];
+                end = +steps[tick + 1];
                 if (verticalAxis) {
                     for (value = begin + subDashValue; value < end; value += subDashValue) {
                         currentY = y - gutters.lower - (value - steps[0]) * trueLength / axisRange;
@@ -584,7 +584,7 @@ Ext.define('Ext.chart.axis.Axis', {
                         path.push("M", Math.floor(currentX) + 0.5, currentY, "l", 0, dashLength + 1);
                     }
                 }
-            }            
+            }
         }
 
 
@@ -1018,7 +1018,7 @@ Ext.define('Ext.chart.axis.Axis', {
             else if (!titleAlign || titleAlign === 'center') {
                 y -= ((me.length / 2) - (bbox.height / 2));
             }
-            
+
             if (position == 'left') {
                 x -= (maxWidth + pad + (bbox.width / 2));
             }
@@ -1034,7 +1034,7 @@ Ext.define('Ext.chart.axis.Axis', {
             else if (!titleAlign || titleAlign === 'center') {
                 x += (me.length / 2) - (bbox.width * 0.5);
             }
-            
+
             if (position == 'top') {
                 y -= (maxHeight + pad + (bbox.height * 0.3));
             }

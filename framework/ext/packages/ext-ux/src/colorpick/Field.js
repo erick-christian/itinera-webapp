@@ -38,8 +38,8 @@ Ext.define('Ext.ux.colorpick.Field', {
     // "Color Swatch" shown on the left of the field
     beforeBodyEl: [
         '<div class="' + Ext.baseCSSPrefix + 'colorpicker-field-swatch">' +
-            '<div id="{id}-swatchEl" data-ref="swatchEl" class="' + Ext.baseCSSPrefix +
-                    'colorpicker-field-swatch-inner"></div>' +
+        '<div id="{id}-swatchEl" data-ref="swatchEl" class="' + Ext.baseCSSPrefix +
+        'colorpicker-field-swatch-inner"></div>' +
         '</div>'
     ],
 
@@ -93,7 +93,7 @@ Ext.define('Ext.ux.colorpick.Field', {
     },
 
     // override as required by parent pickerfield
-    createPicker: function() {
+    createPicker: function () {
         var me = this,
             popup = me.getPopup(),
             picker;
@@ -131,7 +131,7 @@ Ext.define('Ext.ux.colorpick.Field', {
     },
 
     // Expects value formatted as per "format" config
-    setValue: function(color) {
+    setValue: function (color) {
         var me = this,
             c = me.applyValue(color);
 
@@ -143,7 +143,7 @@ Ext.define('Ext.ux.colorpick.Field', {
     },
 
     // Sets this.format and color picker's setFormat()
-    updateFormat: function(format) {
+    updateFormat: function (format) {
         var cp = this.colorPicker;
 
         if (cp) {

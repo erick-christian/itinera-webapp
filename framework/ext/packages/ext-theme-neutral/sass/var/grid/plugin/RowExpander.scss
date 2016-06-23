@@ -33,8 +33,4 @@ $row-expander-cell-spacing-after: 6px !default;
 $row-expander-cursor: pointer !default;
 
 // private
-$row-expander-cell-padding:
-    max(ceil(($grid-row-height - $row-expander-height) / 2), 0)
-    $row-expander-cell-spacing-after
-    max(floor(($grid-row-height - $row-expander-height) / 2), 0)
-    $row-expander-cell-spacing-before;
+$row-expander-cell-padding: max(ceil(($grid-row-height - $row-expander-height) / 2), 0) $row-expander-cell-spacing-after max(floor(($grid-row-height - $row-expander-height) / 2), 0) $row-expander-cell-spacing-before;

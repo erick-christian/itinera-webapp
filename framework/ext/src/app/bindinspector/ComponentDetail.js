@@ -1,7 +1,7 @@
 Ext.define('Ext.app.bindinspector.ComponentDetail', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.bindinspector-componentdetail',
-    
+
     requires: [
         'Ext.form.field.Display',
         'Ext.grid.Panel',
@@ -9,7 +9,7 @@ Ext.define('Ext.app.bindinspector.ComponentDetail', {
         'Ext.form.field.Checkbox',
         'Ext.app.bindinspector.Util'
     ],
-    
+
     layout: 'border',
     //borderRegionSwapMin: 1000, // see onCtResize
 
@@ -42,8 +42,8 @@ Ext.define('Ext.app.bindinspector.ComponentDetail', {
             html: 'Select a component with a ViewModel (or inherited ViewModel) from the ComponentList to view the ViewModel details'
         }]
     },
-    
-    initComponent: function() {
+
+    initComponent: function () {
         var me = this,
             comp = me.component || {},
             env = me.env,
@@ -87,7 +87,7 @@ Ext.define('Ext.app.bindinspector.ComponentDetail', {
         if (comp.reference) {
             title += '[' + comp.reference + '] &bull; ';
         }
-        
+
         // build the bindings supporting data if the component has bindings and does not already have its bindData
         bindData = comp.bindData || Ext.app.bindinspector.Util.buildBindData(bindings);
 
@@ -217,7 +217,7 @@ Ext.define('Ext.app.bindinspector.ComponentDetail', {
             this.onSelectionChange(selModel, selModel.getSelection());
         }
     },
-    
+
     // when the component detail node is selected highlight (if allowed by the highlight checkbox)
     // the root data node from the view model detail tree
     onSelectionChange: function (selModel, selected, clear) {
@@ -244,11 +244,11 @@ Ext.define('Ext.app.bindinspector.ComponentDetail', {
         store = vmDetail.getStore();
         root = store.getRootNode();
         targets = [];
-        
+
         // get the node or nodes from which the bindings are bound
         if (tokens && highlight) {
             if (binding.isTemplateBinding) {
-                Ext.Array.forEach(tokens, function(token) {
+                Ext.Array.forEach(tokens, function (token) {
                     targets.push(root.findChild('name', token[0]));
                 }, this);
             } else if (binding.isMultiBinding) {
@@ -282,57 +282,57 @@ Ext.define('Ext.app.bindinspector.ComponentDetail', {
 
     // if the cell click is on a descriptor token focus on its data node in the
     // view model tree
-    onCellClick: function(view, cell, colIdx, record, row, rowIdx, e) {
+    onCellClick: function (view, cell, colIdx, record, row, rowIdx, e) {
         var target = e.getTarget('.' + this.activeCls),
             path;
-        
+
         if (target) {
             path = target.getAttribute('data-path');
             this.showPath(path);
         }
     },
-    
-    showPath: function(path) {
+
+    showPath: function (path) {
         this.selectPath(this.down('bindinspector-viewmodeldetail'), path);
     },
 
     // select the view model tree's node using the passed path
     // which is furnished by the onCellClick -> showPath method
-    selectPath: function(tab, path) {
+    selectPath: function (tab, path) {
         var node = tab.getRootNode(),
             parts = path.split('.'),
             len = parts.length,
             i;
-        
+
         for (i = 0; node && i < len; ++i) {
             node = this.getChildByKey(node, parts[i]);
         }
-        
+
         if (node) {
             tab.getSelectionModel().select(node);
         }
     },
-    
-    getChildByKey: function(node, key) {
+
+    getChildByKey: function (node, key) {
         var childNodes = node.childNodes;
         if (childNodes) {
-            return Ext.Array.findBy(childNodes, function(child) {
+            return Ext.Array.findBy(childNodes, function (child) {
                 return child.get('name') === key;
             });
         }
         return null;
     },
-    
+
     // extracts the descriptor markup for the component detail grid
-    descriptorRenderer: function(v, meta, rec) {
+    descriptorRenderer: function (v, meta, rec) {
         var binding = rec.get('binding'),
             descriptor = rec.get('descriptor'),
             tokens = rec.get('tokens');
 
         v = v || '';
-        
+
         if (binding.isTemplateBinding) {
-            Ext.Array.forEach(tokens, function(token) {
+            Ext.Array.forEach(tokens, function (token) {
                 var tokenRe = new RegExp('{' + token.join('\\.') + '}', 'g');
                 v = v.replace(tokenRe, this.parseTokens(token));
             }, this);
@@ -343,9 +343,9 @@ Ext.define('Ext.app.bindinspector.ComponentDetail', {
         }
         return Ext.String.htmlEncode(v);
     },
-    
+
     // decorates the descriptor markup using the descriptor tokens from the binding
-    parseTokens: function(tokens) {
+    parseTokens: function (tokens) {
         var me = this,
             out = [],
             vm = me.env.getInheritedVM(me.component),
@@ -359,12 +359,12 @@ Ext.define('Ext.app.bindinspector.ComponentDetail', {
             ownerVMs, len, vmPlural;
 
         tokens = tokens || [];
-        
-        Ext.Array.forEach(tokens, function(token) {
+
+        Ext.Array.forEach(tokens, function (token) {
             var stub = Ext.app.bindinspector.Util.getChildStub(token, currParent),
                 cls = '',
                 value;
-                
+
             if (stub) {
                 value = stub.value;
                 if (value !== undefined) {
@@ -411,10 +411,10 @@ Ext.define('Ext.app.bindinspector.ComponentDetail', {
 
         return '<span ' + tip + 'class="' + me.descriptorCls + addlCls + '">{' + out.join('.') + '}</span>';
     }
-}, function() {
+}, function () {
     this.prototype.BindingModel = Ext.define(null, {
         extend: 'Ext.data.Model',
-        
+
         fields: ['key', 'descriptor', 'tokens', 'value', 'binding']
     });
 });

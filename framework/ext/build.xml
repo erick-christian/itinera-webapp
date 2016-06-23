@@ -55,8 +55,8 @@
         </condition>
 
     </target>
-    
-    <target name="-after-init" depends="-apply-version-stamp"/> 
+
+    <target name="-after-init" depends="-apply-version-stamp"/>
 
     <macrodef name="x-set-license">
         <attribute name="license" default="${ext.license.name}"/>
@@ -207,9 +207,9 @@
             <available file="${package.dir}/all-licenses/${ext.license.name}" type="dir"/>
         </condition>
 
-        <property name="ext.license"  value="${package.licenses.dir}"/>
+        <property name="ext.license" value="${package.licenses.dir}"/>
 
-        <echo> loading file-header.txt </echo>
+        <echo>loading file-header.txt</echo>
         <!-- Load the appropriate license file header -->
         <local name="file-header"/>
         <loadfile property="file-header" srcfile="${ext.license}/file-header.txt">
@@ -218,7 +218,7 @@
             </filterchain>
         </loadfile>
 
-        <echo> expanding file-header.txt </echo>
+        <echo>expanding file-header.txt</echo>
         <copy file="${ext.license}/file-header.txt"
               tofile="${package.licenses.dir}/file-header.txt.final"
               overwrite="true">
@@ -280,13 +280,13 @@
 
         <local name="manifest.wrapper"/>
         <local name="concat.options"/>
-        
+
         <property name="concat.options">
-                -remove-text-references=false
-                -optimize-string-references=false
-                -remove-requirement-nodes=false
+            -remove-text-references=false
+            -optimize-string-references=false
+            -remove-requirement-nodes=false
         </property>
-        
+
         <property name="manifest.wrapper"><![CDATA[
 var Ext = Ext || {};
 (function(manifest){
@@ -298,7 +298,7 @@ var Ext = Ext || {};
         }
     }
 })]]></property>
-            
+
         <echo append="true" file="${build.dir}/ext-debug.js" message="${manifest.wrapper}"/>
         <echo append="true" file="${build.dir}/ext.js" message="${manifest.wrapper}"/>
 
@@ -445,7 +445,7 @@ var Ext = Ext || {};
         This target allows the package build to be leveraged while swapping out the files
         with license information.
         -->
-        <property name="ext.license"  value="${package.licenses.dir}/beta"/>
+        <property name="ext.license" value="${package.licenses.dir}/beta"/>
 
         <!-- Load the appropriate license file header -->
         <local name="file-header"/>
@@ -454,7 +454,7 @@ var Ext = Ext || {};
                 <expandproperties/>
             </filterchain>
         </loadfile>
-        
+
         <for list="ext,ext-all,ext-all-rtl" param="file">
             <sequential>
                 <x-compress-js srcfile="${build.dir}/@{file}.js"
@@ -534,7 +534,7 @@ var Ext = Ext || {};
                 </for>
             </sequential>
         </for>
-        
+
         <copy file="${basedir}/ext-bootstrap.js"
               tofile="${build.dir}/bootstrap.js">
             <filterchain>
@@ -594,7 +594,7 @@ var Ext = Ext || {};
                  token="build/examples/index.html"
                  value="examples/index.html"/>
     </target>
-    
+
     <target name="-before-pkg" depends="init,release-notes,prep-build-folder">
         <if>
             <available file="${basedir}/release-notes.html"/>
@@ -642,7 +642,7 @@ var Ext = Ext || {};
 
     <target name="charts" depends="init">
         <x-compile refid="${compiler.ref.id}">
-        <![CDATA[
+            <![CDATA[
             -classpath=${basedir}/../packages/sencha-charts/src-ext,${basedir}/../packages/sencha-charts/src
             -classpath=${basedir}/../packages/sencha-charts/overrides-ext,${basedir}/../packages/sencha-charts/overrides@overrides
             include
@@ -653,7 +653,7 @@ var Ext = Ext || {};
 
     <target name="ext-charts" depends="init">
         <x-compile refid="${compiler.ref.id}">
-        <![CDATA[
+            <![CDATA[
             -classpath=${basedir}/packages/ext-charts/src
             include
                 -all
@@ -668,7 +668,7 @@ var Ext = Ext || {};
         <delete file="${package.dir}/bootstrap-manifest.js"/>
 
         <x-compile refid="${compiler.ref.id}">
-        <![CDATA[
+            <![CDATA[
             include
                 -all
             and
@@ -701,7 +701,7 @@ var Ext = Ext || {};
                      overrideTpl="Ext.Loader.loadScriptsSyncBasePrefix"
                      overrideTplType="jsonp"
                      overrideExcludeTags="">
-<![CDATA[
+            <![CDATA[
 Ext.Boot.loadSyncBasePrefix([
     "bootstrap-manifest.js",
     "bootstrap-files.js"
@@ -718,12 +718,12 @@ Ext.Boot.loadSyncBasePrefix([
                     <sequential>
                         <local name="out"/>
                         <property name="out" value="@{part1}@{part2}js"/>
-                            <echo>Generating ${out}</echo>
-                            <copy file="${basedir}/bootstrap.js" tofile="${basedir}/${out}"
-                                  overwrite="true"/>
-                            <replace file="${basedir}/${out}"
-                                     token="bootstrapper"
-                                     value="bootstrapper :: GENERATED COPY! Edit &quot;sencha-core/bootstrap.js&quot;"/>
+                        <echo>Generating ${out}</echo>
+                        <copy file="${basedir}/bootstrap.js" tofile="${basedir}/${out}"
+                              overwrite="true"/>
+                        <replace file="${basedir}/${out}"
+                                 token="bootstrapper"
+                                 value="bootstrapper :: GENERATED COPY! Edit &quot;sencha-core/bootstrap.js&quot;"/>
                     </sequential>
                 </for>
             </sequential>
@@ -789,7 +789,7 @@ Ext.Boot.loadSyncBasePrefix([
 
     <target name="release-notes" depends="init" if="jira.user.name" unless="opt.norelnotes"
             description="Build release notes HTML file">
-        
+
         <property name="jira.host" value="sencha.jira.com"/>
         <property name="jira.browse.url" value="https://${jira.host}/browse"/>
         <property name="jira.search.base" value="/sr/jira.issueviews:searchrequest-xml/temp/SearchRequest.xml"/>
@@ -801,7 +801,7 @@ Ext.Boot.loadSyncBasePrefix([
             <format property="tstamp.datetime" pattern="yyyy-MM-dd HH:mm:ss"/>
             <format property="tstamp.pretty" pattern="MMMM d, yyyy"/>
         </tstamp>
-        
+
         <!--
         This is the CURL command that disables the XSRF check:
             curl -H "X-Atlassian-Token: no-check" -g 'https://sencha.jira.com/sr/jira.issueviews:searchrequest-xml/temp/SearchRequest.xml?jqlQuery=project+%3D+EXTJSIV+AND+type+%3D+Bug+AND+fixVersion+in+%28%224.1.0%22%2C+%224.1.0+Beta+1%22%2C+%224.1.x%22%29+AND+status+in+%28%22Awaiting+Review%22%2C+Closed%29+ORDER+BY+priority+DESC%2C+created+ASC&tempMax=1000&os_username=TODO&os_password=TODO'
@@ -849,7 +849,8 @@ Ext.Boot.loadSyncBasePrefix([
         <for list="${static.packages}" delimiter="," param="static.package">
             <sequential>
                 <echo message="Moving @{static.package} from ${workspace.dir}/packages to ${package.dir}/packages"/>
-                <move file="${workspace.dir}/packages/@{static.package}" todir="${package.dir}/packages" verbose="true"/>
+                <move file="${workspace.dir}/packages/@{static.package}" todir="${package.dir}/packages"
+                      verbose="true"/>
             </sequential>
         </for>
 
@@ -863,13 +864,14 @@ Ext.Boot.loadSyncBasePrefix([
                    value="${package.subpkgs},sencha-charts,sencha-soap,sencha-amf"/>
         </x-property-file>
     </target>
-    
+
     <target name="restore-workspace" depends="init" if="repo.dev.mode">
         <echo message="Restoring static packages"/>
         <for list="${static.packages}" delimiter="," param="static.package">
             <sequential>
                 <echo message="Moving @{static.package} from ${package.dir}/packages to ${workspace.dir}/packages"/>
-                <move file="${package.dir}/packages/@{static.package}" todir="${workspace.dir}/packages" verbose="true"/>
+                <move file="${package.dir}/packages/@{static.package}" todir="${workspace.dir}/packages"
+                      verbose="true"/>
             </sequential>
         </for>
 
@@ -917,7 +919,8 @@ Ext.Boot.loadSyncBasePrefix([
                 <if>
                     <available file="@{extra.subpkg.dir}/build" type="dir"/>
                     <then>
-                        <echo>Copying @{extra.subpkg.dir}/build to ${build.dir}/packages/${extra.subpkg.name}/build</echo>
+                        <echo>Copying @{extra.subpkg.dir}/build to ${build.dir}/packages/${extra.subpkg.name}/build
+                        </echo>
                         <copy todir="${build.dir}/packages/${extra.subpkg.name}/build">
                             <fileset dir="@{extra.subpkg.dir}/build"
                                      includes="**/*"/>
@@ -961,7 +964,7 @@ Ext.Boot.loadSyncBasePrefix([
     <target name="test-ext" depends="bootstrap,build-classic,test-run"/>
 
     <target name="test-all" depends="test-ext"/>
-    
+
     <target name="coverage-run" depends="init">
         <x-sencha-command dir="${package.dir}">
             <![CDATA[
@@ -977,13 +980,13 @@ Ext.Boot.loadSyncBasePrefix([
             ]]>
         </x-sencha-command>
     </target>
-    
+
     <target name="coverage-report" depends="init">
         <x-shell dir="${workspace.dir}/test">
             node istanbul_report.js ${workspace.dir}/test/coverage-results ${workspace.dir}
         </x-shell>
     </target>
-    
+
     <target name="coverage" depends="coverage-run,coverage-report"/>
 
 </project>

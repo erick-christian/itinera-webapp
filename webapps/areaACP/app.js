@@ -34,9 +34,9 @@ Ext.application({
     ],
     name: 'areaACP',
 
-    launch: function() {
+    launch: function () {
         Ext.create('areaACP.view.windowMenuPrincipal', {renderTo: Ext.getBody()});
-        var nombreEntidad  = convierteAscci(recuperaDatoSesion('nombreEntidad'));
+        var nombreEntidad = convierteAscci(recuperaDatoSesion('nombreEntidad'));
         var nombreSistema = convierteAscci(recuperaDatoSesion('nombreSistema'));
         var nombrePersona = convierteAscci(recuperaDatoSesion('nombre'));
 
@@ -59,46 +59,48 @@ Ext.application({
 
     },
 
-    generaClienteActivo: function() {
+    generaClienteActivo: function () {
         aDatosAPI = new Array();
         aDatosAPI[0] = new Object();
-        aDatosAPI[0].p_codEntidad         = recuperaDatoSesion('codEntidad');
+        aDatosAPI[0].p_codEntidad = recuperaDatoSesion('codEntidad');
 
         var strJson = JSON.stringify(aDatosAPI);
 
-        datosJsonFormulario = {codPrograma      : 'api_AccesoPortal',
-                               codProcedimiento : 'datosCliente',
-                               usuarioActivo    : recuperaDatoSesion('clavePersona'),
-                               codEmpresa       : recuperaDatoSesion('codEmpresa'),
-                               codSistema       : recuperaDatoSesion('codSistema'),
-                               tipoLlamada      : "formulario",
-                               datosJson        : strJson};
+        datosJsonFormulario = {
+            codPrograma: 'api_AccesoPortal',
+            codProcedimiento: 'datosCliente',
+            usuarioActivo: recuperaDatoSesion('clavePersona'),
+            codEmpresa: recuperaDatoSesion('codEmpresa'),
+            codSistema: recuperaDatoSesion('codSistema'),
+            tipoLlamada: "formulario",
+            datosJson: strJson
+        };
 
-        var funcionSuccess = function(){
+        var funcionSuccess = function () {
             var datosJson = Ext.decode(recuperaDatosOpenLink('datosCliente'));
 
             var codCliente = datosJson.temp_datosCliente[0].codcliente;
-            var nomeAbrev  = datosJson.temp_datosCliente[0].nomeabrev;
-            var nomeEmit   = datosJson.temp_datosCliente[0].nomeemit;
+            var nomeAbrev = datosJson.temp_datosCliente[0].nomeabrev;
+            var nomeEmit = datosJson.temp_datosCliente[0].nomeemit;
 
             var datosClienteActivo = {
-                codCliente : codCliente,
-                nomeAbrev  : nomeAbrev,
-                nomeEmit   : nomeEmit
+                codCliente: codCliente,
+                nomeAbrev: nomeAbrev,
+                nomeEmit: nomeEmit
             };
 
-            asignaValoresStore('storeClienteActivo',datosClienteActivo);
+            asignaValoresStore('storeClienteActivo', datosClienteActivo);
         };
 
-        var funcionFailure = function(){
+        var funcionFailure = function () {
             var datosJson = Ext.decode(recuperaDatosOpenLink('datosCliente'));
         };
 
         ejecutaOpenLink(datosJsonFormulario,
-                        funcionSuccess,
-                        undefined,
-                        funcionFailure,
-                        undefined);
+            funcionSuccess,
+            undefined,
+            funcionFailure,
+            undefined);
     }
 
 });

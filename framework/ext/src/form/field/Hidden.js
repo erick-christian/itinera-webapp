@@ -43,39 +43,39 @@
  *
  */
 Ext.define('Ext.form.field.Hidden', {
-    extend:'Ext.form.field.Base',
+    extend: 'Ext.form.field.Base',
     alias: ['widget.hiddenfield', 'widget.hidden'],
     alternateClassName: 'Ext.form.Hidden',
 
     // private
     focusable: false,
-    inputType : 'hidden',
+    inputType: 'hidden',
     isTextInput: false,
     hideLabel: true,
     hidden: true,
-    
+
     ariaRole: 'presentation',
-    
-    initComponent: function() {
+
+    initComponent: function () {
         this.formItemCls += '-hidden';
-        this.callParent();    
+        this.callParent();
     },
-    
+
     /**
      * @private
      * Override. Treat undefined and null values as equal to an empty string value.
      */
-    isEqual: function(value1, value2) {
+    isEqual: function (value1, value2) {
         return this.isEqualAsString(value1, value2);
     },
 
     // These are all private overrides
     initEvents: Ext.emptyFn,
-    setSize : Ext.emptyFn,
-    setWidth : Ext.emptyFn,
-    setHeight : Ext.emptyFn,
-    setPosition : Ext.emptyFn,
-    setPagePosition : Ext.emptyFn,
-    markInvalid : Ext.emptyFn,
-    clearInvalid : Ext.emptyFn
+    setSize: Ext.emptyFn,
+    setWidth: Ext.emptyFn,
+    setHeight: Ext.emptyFn,
+    setPosition: Ext.emptyFn,
+    setPagePosition: Ext.emptyFn,
+    markInvalid: Ext.emptyFn,
+    clearInvalid: Ext.emptyFn
 });

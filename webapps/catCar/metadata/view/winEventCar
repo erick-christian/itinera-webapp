@@ -8,13 +8,13 @@
     "userConfig": {
         "closable": false,
         "designer|uiInterfaceName": "green-window",
-        "designer|userAlias": "wineventcar",
+        "designer|userAlias": "winEventCar",
         "designer|userClassName": "winEventCar",
-        "height": 260,
+        "height": 240,
         "id": "winEventCar",
         "itemId": "winEventCar",
         "layout": "column",
-        "maxHeight": 250,
+        "maxHeight": 240,
         "maxWidth": null,
         "minHeight": 500,
         "minWidth": 850,
@@ -348,8 +348,8 @@
                                 ],
                                 "fn": "handler",
                                 "implHandler": [
-                                    "var winSector = Ext.getCmp('winSector');",
-                                    "winSector.close();"
+                                    "var winEventCar = Ext.getCmp('winEventCar');",
+                                    "winEventCar.close();"
                                 ]
                             },
                             "name": "handler",

@@ -157,9 +157,9 @@ Ext.define('Ext.window.Window', {
      */
 
     /**
-    * @cfg {String} [baseCls='x-window']
-    * The base CSS class to apply to this panel's element.
-    */
+     * @cfg {String} [baseCls='x-window']
+     * The base CSS class to apply to this panel's element.
+     */
     baseCls: Ext.baseCSSPrefix + 'window',
 
     /**
@@ -348,7 +348,7 @@ Ext.define('Ext.window.Window', {
      */
 
     // @private
-    initComponent: function() {
+    initComponent: function () {
         var me = this;
         // Explicitly set frame to false, since alwaysFramed is
         // true, we only want to lookup framing in a specific instance
@@ -379,7 +379,7 @@ Ext.define('Ext.window.Window', {
      *
      * @return {Ext.dom.Element/Ext.Component} the focus holding element or Component.
      */
-    getFocusEl: function() {
+    getFocusEl: function () {
         var me = this;
 
         // If the legacy FocusManager is enabled, then we must not focus
@@ -391,7 +391,7 @@ Ext.define('Ext.window.Window', {
     // State Management
 
     // @private
-    getState: function() {
+    getState: function () {
         var me = this,
             state = me.callParent() || {},
             maximized = !!me.maximized,
@@ -416,7 +416,7 @@ Ext.define('Ext.window.Window', {
         return state;
     },
 
-    applyState: function(state){
+    applyState: function (state) {
         var me = this;
 
         if (state) {
@@ -437,7 +437,7 @@ Ext.define('Ext.window.Window', {
     },
 
     // @private
-    onRender: function(ct, position) {
+    onRender: function (ct, position) {
         var me = this;
 
         me.callParent(arguments);
@@ -460,7 +460,7 @@ Ext.define('Ext.window.Window', {
     },
 
     // @private
-    afterRender: function() {
+    afterRender: function () {
         var me = this,
             header = me.header,
             keyMap;
@@ -488,7 +488,7 @@ Ext.define('Ext.window.Window', {
     },
 
     // @private
-    onEsc: function(k, e) {
+    onEsc: function (k, e) {
         // hide the dependency from Cmd
         var mgr = Ext['FocusManager']; // jshint ignore:line
 
@@ -500,7 +500,7 @@ Ext.define('Ext.window.Window', {
     },
 
     // @private
-    beforeDestroy: function() {
+    beforeDestroy: function () {
         var me = this;
         if (me.rendered) {
             Ext.un('resize', me.onWindowResize, me);
@@ -521,7 +521,7 @@ Ext.define('Ext.window.Window', {
      *
      * Implementations should jst add new tool config objects to `this.tools`
      */
-    addTools: function() {
+    addTools: function () {
         var me = this,
             tools = [];
 
@@ -532,7 +532,7 @@ Ext.define('Ext.window.Window', {
             tools.push({
                 type: 'minimize',
                 handler: 'minimize',
-                scope:  me
+                scope: me
             });
         }
         if (me.maximizable) {
@@ -548,7 +548,7 @@ Ext.define('Ext.window.Window', {
         }
     },
 
-    onShow: function() {
+    onShow: function () {
         var me = this;
 
         me.callParent(arguments);
@@ -560,10 +560,10 @@ Ext.define('Ext.window.Window', {
         if (me.keyMap) {
             me.keyMap.enable();
         }
-   },
+    },
 
     // @private
-    doClose: function() {
+    doClose: function () {
         var me = this;
 
         // Being called as callback after going through the hide call below
@@ -579,7 +579,7 @@ Ext.define('Ext.window.Window', {
     },
 
     // @private
-    afterHide: function() {
+    afterHide: function () {
         var me = this;
 
         // No longer subscribe to resizing now that we're hidden
@@ -595,7 +595,7 @@ Ext.define('Ext.window.Window', {
     },
 
     // @private
-    onWindowResize: function() {
+    onWindowResize: function () {
         var me = this,
             sizeModel;
 
@@ -619,16 +619,16 @@ Ext.define('Ext.window.Window', {
      * the minimize event can be handled or this method can be overridden.
      * @return {Ext.window.Window} this
      */
-    minimize: function() {
+    minimize: function () {
         this.fireEvent('minimize', this);
         return this;
     },
 
-    resumeHeaderLayout: function(changed) {
+    resumeHeaderLayout: function (changed) {
         this.header.resumeLayouts(changed ? this.isRootCfg : null);
     },
 
-    afterCollapse: function() {
+    afterCollapse: function () {
         var me = this,
             header = me.header,
             tools = me.tools;
@@ -644,7 +644,7 @@ Ext.define('Ext.window.Window', {
         me.callParent(arguments);
     },
 
-    afterExpand: function() {
+    afterExpand: function () {
         var me = this,
             header = me.header,
             tools = me.tools,
@@ -671,7 +671,7 @@ Ext.define('Ext.window.Window', {
      * @param {Boolean} [animate=false] Pass `true` to animate this Window to full size.
      * @return {Ext.window.Window} this
      */
-    maximize: function(animate) {
+    maximize: function (animate) {
         var me = this,
             header = me.header,
             tools = me.tools,
@@ -683,7 +683,7 @@ Ext.define('Ext.window.Window', {
             me.expand(false);
             if (!me.hasSavedRestore) {
                 restore = me.restoreSize = {
-                    width:  width ? width : null,
+                    width: width ? width : null,
                     height: height ? height : null
                 };
 
@@ -708,7 +708,7 @@ Ext.define('Ext.window.Window', {
             if (me.dd) {
                 me.dd.disable();
                 if (header) {
-                   header.removeCls(header.indicateDragCls);
+                    header.removeCls(header.indicateDragCls);
                 }
             }
             if (me.resizer) {
@@ -720,7 +720,7 @@ Ext.define('Ext.window.Window', {
 
             me.syncMonitorWindowResize();
             me.fitContainer(animate = (animate || !!me.animateTarget) ? {
-                callback: function() {
+                callback: function () {
                     me.maximized = true;
                     me.fireEvent('maximize', me);
                 }
@@ -739,7 +739,7 @@ Ext.define('Ext.window.Window', {
      * @param {Boolean} [animate=false] Pass `true` to animate the restore.
      * @return {Ext.window.Window} this
      */
-    restore: function(animate) {
+    restore: function (animate) {
         var me = this,
             tools = me.tools,
             header = me.header,
@@ -767,7 +767,7 @@ Ext.define('Ext.window.Window', {
             newBox.x = me.restorePos[0];
             newBox.y = me.restorePos[1];
             me.setBox(newBox, animate = (animate || !!me.animateTarget) ? {
-                callback: function() {
+                callback: function () {
                     me.el.enableShadow(null, true);
                     me.maximized = false;
                     me.fireEvent('restore', me);
@@ -810,9 +810,9 @@ Ext.define('Ext.window.Window', {
     syncMonitorWindowResize: function () {
         var me = this,
             currentlyMonitoring = me._monitoringResize,
-            // all the states where we should be listening to window resize:
+        // all the states where we should be listening to window resize:
             yes = me.monitorResize || me.constrain || me.constrainHeader || me.maximized,
-            // all the states where we veto this:
+        // all the states where we veto this:
             veto = me.hidden || me.destroying || me.isDestroyed;
 
         if (yes && !veto) {
@@ -835,11 +835,11 @@ Ext.define('Ext.window.Window', {
      * state of the window.
      * @return {Ext.window.Window} this
      */
-    toggleMaximize: function() {
-        return this[this.maximized ? 'restore': 'maximize']();
+    toggleMaximize: function () {
+        return this[this.maximized ? 'restore' : 'maximize']();
     },
 
-    createGhost: function() {
+    createGhost: function () {
         var ghost = this.callParent(arguments);
         ghost.xtype = 'window';
         return ghost;
@@ -850,7 +850,7 @@ Ext.define('Ext.window.Window', {
      * receive focus when the Window's `focus` method is called, otherwise the
      * Window itself will receive focus.
      */
-    getDefaultFocus: function() {
+    getDefaultFocus: function () {
         var me = this,
             result,
             defaultComp = me.defaultButton || me.defaultFocus,
@@ -888,7 +888,7 @@ Ext.define('Ext.window.Window', {
     privates: {
         // Override. Windows are always simple draggable, they do not use Ext.Panel.DDs
         // The dd property in a Window is always a ComponentDragger
-        initDraggable: function() {
+        initDraggable: function () {
             /**
              * @property {Ext.util.ComponentDragger} dd
              * If this Window is configured {@link #cfg-draggable}, this property will contain an instance of
@@ -902,7 +902,7 @@ Ext.define('Ext.window.Window', {
             this.initSimpleDraggable();
         },
 
-        onHeaderClick: function(header, e) {
+        onHeaderClick: function (header, e) {
             var delegate;
 
             if (header.el.contains(e.getTarget())) {
@@ -914,7 +914,7 @@ Ext.define('Ext.window.Window', {
             }
         },
 
-        initResizable: function(){
+        initResizable: function () {
             this.callParent(arguments);
             if (this.maximized) {
                 this.resizer.disable();

@@ -23,9 +23,9 @@
  */
 Ext.define('Ext.data.amf.Packet', {
 
-    
+
     config: {
-        
+
         /**
          * @property {Array} headers
          * @readonly
@@ -44,7 +44,7 @@ Ext.define('Ext.data.amf.Packet', {
          * The header value
          */
         headers: [],
-        
+
         /**
          * @property {Array} messages
          * @readonly
@@ -60,18 +60,18 @@ Ext.define('Ext.data.amf.Packet', {
          * - `body`: Mixed
          * The message body
          */
-        messages:[],
-        
+        messages: [],
+
         /**
          * @property {Number} version
          * @readonly
          * The AMF version number (0 or 3)
          */
         version: 0
-        
+
 
     },
-    
+
         /**
          * Mapping of AMF data types to the names of the methods responsible for
          * reading them.
@@ -119,20 +119,20 @@ Ext.define('Ext.data.amf.Packet', {
          * @param {Array} byteArray A byte array containing the encoded AMF data.
          * @return {Ext.data.amf.Packet} this AMF Packet
          */
-        decode: function(byteArray) {
+        decode: function (byteArray) {
             var me = this,
                 headers = [],
-                messages =  [],
+                messages = [],
                 headerCount, messageCount;
-            
+
             me.twoPowN52 = Math.pow(2, -52);
             me.twoPow8 = Math.pow(2, 8);
 
-            
+
             me.setHeaders(headers);
             me.setMessages(messages);
             me.pos = 0;
-            
+
             if (byteArray instanceof ArrayBuffer) {
                 // convert to byte array form so that we can read the data
                 byteArray = new Uint8Array(byteArray);
@@ -206,7 +206,7 @@ Ext.define('Ext.data.amf.Packet', {
          * @param {Array} byteArray A byte array containing the encoded AMF data.
          * @return {Object} the decoded object
          */
-        decodeValue: function(byteArray) {
+        decodeValue: function (byteArray) {
             var me = this;
 
             me.bytes = byteArray;
@@ -244,13 +244,12 @@ Ext.define('Ext.data.amf.Packet', {
         },
 
 
-
         /**
          * Parses an xml string and returns an xml document
          * @private
          * @param {String} xml
          */
-        parseXml: function(xml) {
+        parseXml: function (xml) {
             var doc;
 
             if (window.DOMParser) {
@@ -267,7 +266,7 @@ Ext.define('Ext.data.amf.Packet', {
          * Reads an AMF0 date from the byte array
          * @private
          */
-        readAmf0Date: function() {
+        readAmf0Date: function () {
             var date = new Date(this.readDouble());
             // An AMF0 date type ends with a 16 bit integer time-zone, but
             // according to the spec time-zone is "reserved, not supported,
@@ -280,7 +279,7 @@ Ext.define('Ext.data.amf.Packet', {
          * Reads an AMF0 Object from the byte array
          * @private
          */
-        readAmf0Object: function(obj) {
+        readAmf0Object: function (obj) {
             var me = this,
                 key;
 
@@ -307,16 +306,16 @@ Ext.define('Ext.data.amf.Packet', {
          * Reads an AMF0 string from the byte array
          * @private
          */
-        readAmf0String: function() {
+        readAmf0String: function () {
             // AMF0 strings begin with a 16 bit byte-length header.
             return this.readUtf8(this.readUInt(2));
         },
 
-        readAmf0Xml: function() {
+    readAmf0Xml: function () {
             return this.parseXml(this.readLongString());
         },
 
-        readAmf3Array: function() {
+    readAmf3Array: function () {
             var me = this,
                 header = me.readUInt29(),
                 count, key, array, i;
@@ -344,7 +343,7 @@ Ext.define('Ext.data.amf.Packet', {
                     me.objects.push(array);
                     do {
                         array[key] = me.readValue();
-                    } while((key = me.readAmf3String()));
+                    } while ((key = me.readAmf3String()));
                     // The dense portion of the array is then read into the
                     // associative object, keyed by ordinal index.
                     for (i = 0; i < count; i++) {
@@ -372,7 +371,7 @@ Ext.define('Ext.data.amf.Packet', {
          * Reads an AMF3 date from the byte array
          * @private
          */
-        readAmf3Date: function() {
+        readAmf3Date: function () {
             var me = this,
                 header = me.readUInt29(),
                 date;
@@ -394,7 +393,7 @@ Ext.define('Ext.data.amf.Packet', {
          * Reads an AMF3 object from the byte array
          * @private
          */
-        readAmf3Object: function() {
+        readAmf3Object: function () {
             var me = this,
                 header = me.readUInt29(),
                 members = [],
@@ -495,7 +494,7 @@ Ext.define('Ext.data.amf.Packet', {
          * Reads an AMF3 string from the byte array
          * @private
          */
-        readAmf3String: function() {
+        readAmf3String: function () {
             var me = this,
                 header = me.readUInt29(),
                 value;
@@ -523,7 +522,7 @@ Ext.define('Ext.data.amf.Packet', {
          * Reads an AMF3 XMLDocument type or XML type from the byte array
          * @private
          */
-        readAmf3Xml: function() {
+        readAmf3Xml: function () {
             var me = this,
                 header = me.readUInt29(),
                 doc;
@@ -546,7 +545,7 @@ Ext.define('Ext.data.amf.Packet', {
          * Reads an AMF0 boolean from the byte array
          * @private
          */
-        readBoolean: function() {
+        readBoolean: function () {
             return !!this.bytes[this.pos++];
         },
 
@@ -554,7 +553,7 @@ Ext.define('Ext.data.amf.Packet', {
          * Reads an AMF3 ByteArray type from the byte array
          * @private
          */
-        readByteArray: function() {
+        readByteArray: function () {
             var header = this.readUInt29(),
                 byteArray, end;
 
@@ -583,31 +582,31 @@ Ext.define('Ext.data.amf.Packet', {
          * Reads a IEEE 754 double-precision binary floating-point number
          * @private
          */
-        readDouble: function() {
+        readDouble: function () {
             var byte1 = this.bytes[this.pos++],
                 byte2 = this.bytes[this.pos++],
-                // the first bit of byte1 is the sign (0 = positive, 1 = negative.
-                // We read this bit by shifting the 7 least significant bits of
-                // byte1 off to the right.
+            // the first bit of byte1 is the sign (0 = positive, 1 = negative.
+            // We read this bit by shifting the 7 least significant bits of
+            // byte1 off to the right.
                 sign = (byte1 >> 7) ? -1 : 1,
-                // the exponent takes up the next 11 bits.
+            // the exponent takes up the next 11 bits.
                 exponent =
                     // extract the 7 least significant bits from byte1 and then
                     // shift them left by 4 bits to make room for the 4 remaining
                     // bits from byte 2
                     (((byte1 & 0x7F) << 4)
-                     // add the 4 most significant bits from byte 2 to complete
-                     // the exponent
-                     | (byte2 >> 4)),
-                // the remaining 52 bits make up the significand. read the 4
-                // least significant bytes of byte 2 to begin the significand
+                    // add the 4 most significant bits from byte 2 to complete
+                    // the exponent
+                    | (byte2 >> 4)),
+            // the remaining 52 bits make up the significand. read the 4
+            // least significant bytes of byte 2 to begin the significand
                 significand = (byte2 & 0x0F),
-                // The most significant bit of the significand is always 1 for
-                // a normalized number, therefore it is not stored. This bit is
-                // referred to as the "hidden bit". The true bit width of the
-                // significand is 53 if you include the hidden bit. An exponent
-                // of 0 indicates that this is a subnormal number, and subnormal
-                // numbers always have a 0 hidden bit.
+            // The most significant bit of the significand is always 1 for
+            // a normalized number, therefore it is not stored. This bit is
+            // referred to as the "hidden bit". The true bit width of the
+            // significand is 53 if you include the hidden bit. An exponent
+            // of 0 indicates that this is a subnormal number, and subnormal
+            // numbers always have a 0 hidden bit.
                 hiddenBit = exponent ? 1 : 0,
                 i = 6;
 
@@ -654,7 +653,7 @@ Ext.define('Ext.data.amf.Packet', {
          * Reads an AMF0 ECMA Array from the byte array
          * @private
          */
-        readEcmaArray: function() {
+        readEcmaArray: function () {
             // An ecma array type is encoded exactly like an anonymous object
             // with the exception that it has a 32 bit "count" at the beginning.
             // We handle emca arrays by just throwing away the count and then
@@ -667,7 +666,7 @@ Ext.define('Ext.data.amf.Packet', {
          * Returns false.  Used for reading the false type
          * @private
          */
-        readFalse: function() {
+        readFalse: function () {
             return false;
         },
 
@@ -675,7 +674,7 @@ Ext.define('Ext.data.amf.Packet', {
          * Reads a long string (longer than 65535 bytes) from the byte array
          * @private
          */
-        readLongString: function() {
+        readLongString: function () {
             // long strings begin with a 32 bit byte-length header.
             return this.readUtf8(this.readUInt(4));
         },
@@ -684,7 +683,7 @@ Ext.define('Ext.data.amf.Packet', {
          * Returns null.  Used for reading the null type
          * @private
          */
-        readNull: function() {
+        readNull: function () {
             return null;
         },
 
@@ -695,7 +694,7 @@ Ext.define('Ext.data.amf.Packet', {
          * ecma-array) is included in the data more than once.
          * @private
          */
-        readReference: function() {
+        readReference: function () {
             // a reference type contains a single 16 bit integer that represents
             // the index of an already deserialized object in the objects array
             return this.objects[this.readUInt(2)];
@@ -705,7 +704,7 @@ Ext.define('Ext.data.amf.Packet', {
          * Reads an AMF0 strict array (an array with ordinal indices)
          * @private
          */
-        readStrictArray: function() {
+        readStrictArray: function () {
             var me = this,
                 len = me.readUInt(4),
                 arr = [];
@@ -729,7 +728,7 @@ Ext.define('Ext.data.amf.Packet', {
          * Reads an AMF0 typed object from the byte array
          * @private
          */
-        readTypedObject: function() {
+        readTypedObject: function () {
             var me = this,
                 className = me.readAmf0String(),
                 klass, instance, modified;
@@ -753,7 +752,7 @@ Ext.define('Ext.data.amf.Packet', {
          * a 16 bit integer, 4 to read a 32 bit integer, etc.
          * @return {Number}
          */
-        readUInt: function(byteCount) {
+        readUInt: function (byteCount) {
             var i = 1,
                 result;
 
@@ -787,7 +786,7 @@ Ext.define('Ext.data.amf.Packet', {
          * @private
          * @return {Number}
          */
-        readUInt29: function() {
+        readUInt29: function () {
             var value = this.bytes[this.pos++],
                 nextByte;
 
@@ -835,7 +834,7 @@ Ext.define('Ext.data.amf.Packet', {
          * @param {Number} byteLength The number of bytes to read
          * @return {String}
          */
-        readUtf8: function(byteLength) {
+        readUtf8: function (byteLength) {
             var end = this.pos + byteLength, // the string's end position
                 chars = [],
                 charCount = 0,
@@ -934,7 +933,7 @@ Ext.define('Ext.data.amf.Packet', {
                 if (++charCount === maxCharCount) {
                     charArrays.push(chars = []);
                     charCount = 0;
-                    charArrayCount ++;
+                    charArrayCount++;
                 }
             }
 
@@ -958,7 +957,7 @@ Ext.define('Ext.data.amf.Packet', {
          * the pointer.
          * @private
          */
-        readValue: function() {
+        readValue: function () {
             var me = this,
                 marker = me.bytes[me.pos++];
 
@@ -981,11 +980,11 @@ Ext.define('Ext.data.amf.Packet', {
          */
 
         converters: {
-            'flex.messaging.io.ArrayCollection': function(obj) {
+            'flex.messaging.io.ArrayCollection': function (obj) {
                 return obj.source || []; // array collections have a source var that contains the actual data
             }
         }
 
     }
-          );
+);
 //</feature>

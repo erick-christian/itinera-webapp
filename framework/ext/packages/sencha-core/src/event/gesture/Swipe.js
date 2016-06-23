@@ -51,7 +51,7 @@ Ext.define('Ext.event.gesture.Swipe', {
         maxDuration: 1000
     },
 
-    onTouchStart: function(e) {
+    onTouchStart: function (e) {
         if (this.callParent(arguments) === false) {
             return false;
         }
@@ -67,7 +67,7 @@ Ext.define('Ext.event.gesture.Swipe', {
         this.startY = touch.pageY;
     },
 
-    onTouchMove: function(e) {
+    onTouchMove: function (e) {
         var touch = e.changedTouches[0],
             x = touch.pageX,
             y = touch.pageY,
@@ -119,7 +119,7 @@ Ext.define('Ext.event.gesture.Swipe', {
         }
     },
 
-    onTouchEnd: function(e) {
+    onTouchEnd: function (e) {
         if (this.onTouchMove(e) === false) {
             return false;
         }
@@ -165,17 +165,17 @@ Ext.define('Ext.event.gesture.Swipe', {
         });
     },
 
-    onTouchCancel: function(e) {
+    onTouchCancel: function (e) {
         this.fire('swipecancel', e);
         return false;
     },
 
-    reset: function() {
+    reset: function () {
         var me = this;
 
         me.startTime = me.isHorizontal = me.isVertical = me.startX = me.startY = null;
     }
-}, function(Swipe) {
+}, function (Swipe) {
     var gestures = Ext.manifest.gestures;
     Swipe.instance = new Swipe(gestures && gestures.swipe);
 });

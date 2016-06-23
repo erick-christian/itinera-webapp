@@ -1,7 +1,7 @@
 Ext.define('ExtThemeNeptune.Component', {
     override: 'Ext.Component',
 
-    initComponent: function() {
+    initComponent: function () {
         this.callParent();
 
         if (this.dock && this.border === undefined) {

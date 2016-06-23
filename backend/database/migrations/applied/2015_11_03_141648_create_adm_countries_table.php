@@ -15,15 +15,18 @@ class CreateAdmCountriesTable extends Migration
         // Table Countries
         Schema::create('adm_countries' , function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-            $table->char('country_name');
+            $table->string('country_code');
+            $table->string('country_name');
+            $table->string('country_domain');
 
+            $table->timestamps();
+            
             /* Enable Soft Delete*/
             $table->softDeletes();
 
             /* Indexes */
-            $table->unique('id');
-            $table->index('country_name');
+            $table->unique(['country_code'] , 'idxCountry');
+            $table->index(['country_name'] , 'idxCountryName');
 
         });
     }

@@ -61,7 +61,6 @@ Ext.define('access.view.winAccess', {
         {
             xtype: 'form',
             columnWidth: 1,
-            height: 350,
             id: 'formAccess',
             itemId: 'formAccess',
             layout: 'column',
@@ -77,11 +76,12 @@ Ext.define('access.view.winAccess', {
                         {
                             xtype: 'image',
                             columnWidth: 1,
-                            height: 250,
+                            height: 220,
                             id: 'imgLogo',
                             itemId: 'imgLogo',
                             margin: '0 0 0 80',
-                            maxWidth: 450,
+                            maxHeight: 220,
+                            maxWidth: 360,
                             padding: 50,
                             src: '../../framework/terian/image/logo_itinera_grande.png'
                         }
@@ -158,6 +158,7 @@ Ext.define('access.view.winAccess', {
                 {
                     xtype: 'button',
                     height: 80,
+                    hidden: true,
                     width: 100,
                     iconAlign: 'top',
                     iconCls: 'ion-document-text large-green'

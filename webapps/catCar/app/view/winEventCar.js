@@ -15,7 +15,7 @@
 
 Ext.define('catCar.view.winEventCar', {
     extend: 'Ext.window.Window',
-    alias: 'widget.wineventcar',
+    alias: 'widget.winEventCar',
 
     requires: [
         'catCar.view.winSectorViewModel',
@@ -32,10 +32,10 @@ Ext.define('catCar.view.winEventCar', {
     viewModel: {
         type: 'wineventcar'
     },
-    height: 260,
+    height: 240,
     id: 'winEventCar',
     itemId: 'winEventCar',
-    maxHeight: 250,
+    maxHeight: 240,
     minHeight: 500,
     minWidth: 850,
     ui: 'green-window',
@@ -199,8 +199,8 @@ Ext.define('catCar.view.winEventCar', {
                 {
                     xtype: 'button',
                     handler: function (button, e) {
-                        var winSector = Ext.getCmp('winSector');
-                        winSector.close();
+                        var winEventCar = Ext.getCmp('winEventCar');
+                        winEventCar.close();
                     },
                     id: 'btnCloseSector2',
                     itemId: 'btnCloseSector',

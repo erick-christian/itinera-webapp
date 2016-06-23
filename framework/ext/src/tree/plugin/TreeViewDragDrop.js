@@ -53,13 +53,13 @@ Ext.define('Ext.tree.plugin.TreeViewDragDrop', {
      * **This event is fired through the TreeView. Add listeners to the TreeView object**
      *
      * Fired when a drop gesture has been triggered by a mouseup event in a valid drop position in the TreeView.
-     * 
+     *
      * Returning `false` to this event signals that the drop gesture was invalid, and if the drag proxy will animate
      * back to the point from which the drag began.
      *
-     * The dropHandlers parameter can be used to defer the processing of this event. For example to wait for the result of 
+     * The dropHandlers parameter can be used to defer the processing of this event. For example to wait for the result of
      * a message box confirmation or an asynchronous server call. See the details of this property for more information.
-     *  
+     *
      *     @example
      *     view.on('beforedrop', function(node, data, overModel, dropPosition, dropHandlers) {
      *         // Defer the handling
@@ -96,7 +96,7 @@ Ext.define('Ext.tree.plugin.TreeViewDragDrop', {
      * @param {Object} dropHandlers
      * This parameter allows the developer to control when the drop action takes place. It is useful if any asynchronous
      * processing needs to be completed before performing the drop. This object has the following properties:
-     * 
+     *
      * @param {Boolean} dropHandlers.wait Indicates whether the drop should be deferred. Set this property to true to defer the drop.
      * @param {Function} dropHandlers.processDrop A function to be called to complete the drop operation.
      * @param {Function} dropHandlers.cancelDrop A function to be called to cancel the drop operation.
@@ -137,7 +137,7 @@ Ext.define('Ext.tree.plugin.TreeViewDragDrop', {
      * - `{0}` The number of selected items.
      * - `{1}` 's' when more than 1 items (only useful for English).
      */
-    dragText : '{0} selected node{1}',
+    dragText: '{0} selected node{1}',
     //</locale>
 
     /**
@@ -164,8 +164,8 @@ Ext.define('Ext.tree.plugin.TreeViewDragDrop', {
      * A named drag drop group to which this object belongs. If a group is specified, then both the DragZones and
      * DropZone used by this plugin will only interact with other drag drop objects in the same group.
      */
-    ddGroup : "TreeDD",
-    
+    ddGroup: "TreeDD",
+
     /**
      * True to register this container with the Scrollmanager for auto scrolling during drag operations.
      * A {@link Ext.dd.ScrollManager} configuration may also be passed.
@@ -199,7 +199,7 @@ Ext.define('Ext.tree.plugin.TreeViewDragDrop', {
      * The delay in milliseconds to wait before expanding a target tree node while dragging a droppable node over the
      * target.
      */
-    expandDelay : 1000,
+    expandDelay: 1000,
 
     /**
      * @cfg {Boolean} enableDrop
@@ -266,7 +266,7 @@ Ext.define('Ext.tree.plugin.TreeViewDragDrop', {
      * An {@link Ext.grid.ViewDropZone DropZone} which handles mouseover and dropping records in any grid which shares the same {@link #dropGroup}.
      */
 
-    init : function(view) {
+    init: function (view) {
         view.on('render', this.onViewRender, this, {single: true});
     },
 
@@ -274,11 +274,11 @@ Ext.define('Ext.tree.plugin.TreeViewDragDrop', {
      * @private
      * Component calls destroy on all its plugins at destroy time.
      */
-    destroy: function() {
+    destroy: function () {
         Ext.destroy(this.dragZone, this.dropZone);
     },
 
-    onViewRender : function(view) {
+    onViewRender: function (view) {
         var me = this,
             scrollEl;
 
@@ -312,7 +312,7 @@ Ext.define('Ext.tree.plugin.TreeViewDragDrop', {
             }, me.dropZone));
         }
     }
-}, function(){
+}, function () {
     var proto = this.prototype;
     proto.nodeHighlightOnDrop = proto.nodeHighlightOnRepair = Ext.enableFx;
 });

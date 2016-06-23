@@ -1,13 +1,13 @@
 Ext.define('ExtThemeNeptune.Component', {
     override: 'Ext.Component',
-    initComponent: function() {
+    initComponent: function () {
         this.callParent();
         if (this.dock && this.border === undefined) {
             this.border = false;
         }
     },
     privates: {
-        initStyles: function() {
+        initStyles: function () {
             var me = this,
                 hasOwnBorder = me.hasOwnProperty('border'),
                 border = me.border;
@@ -42,12 +42,12 @@ Ext.define('ExtThemeNeptune.layout.component.Dock', {
     /**
      * This table contains the border removal classes indexed by the sum of the edges to
      * remove. Each edge is assigned a value:
-     * 
+     *
      *  * `left` = 1
      *  * `bottom` = 2
      *  * `right` = 4
      *  * `top` = 8
-     * 
+     *
      * @private
      */
     noBorderClassTable: [
@@ -94,7 +94,7 @@ Ext.define('ExtThemeNeptune.layout.component.Dock', {
         bottom: 2,
         left: 1
     },
-    handleItemBorders: function() {
+    handleItemBorders: function () {
         var me = this,
             edges = 0,
             maskT = 8,
@@ -126,7 +126,7 @@ Ext.define('ExtThemeNeptune.layout.component.Dock', {
             if (item.ignoreBorderManagement) {
                 // headers in framed panels ignore border management, so we do not want
                 // to set "satisfied" on the edge in question
-                
+
                 continue;
             }
             dock = item.dock;
@@ -294,7 +294,7 @@ Ext.define('ExtThemeNeptune.layout.component.Dock', {
             owner.addBodyCls(addCls);
         }
     },
-    onRemove: function(item) {
+    onRemove: function (item) {
         var lastBorderMask = item.lastBorderMask;
         if (!item.isDestroyed && !item.ignoreBorderManagement && lastBorderMask) {
             item.lastBorderMask = 0;
@@ -311,7 +311,7 @@ Ext.define('ExtThemeNeptune.panel.Panel', {
     border: false,
     bodyBorder: false,
     initBorderProps: Ext.emptyFn,
-    initBodyBorder: function() {
+    initBodyBorder: function () {
         // The superclass method converts a truthy bodyBorder into a number and sets
         // an inline border-width style on the body element.  This prevents that from
         // happening if borderBody === true so that the body will get its border-width
@@ -324,7 +324,7 @@ Ext.define('ExtThemeNeptune.panel.Panel', {
 
 Ext.define('ExtThemeNeptune.panel.Table', {
     override: 'Ext.panel.Table',
-    initComponent: function() {
+    initComponent: function () {
         var me = this;
         if (!me.hasOwnProperty('bodyBorder') && !me.hideHeaders) {
             me.bodyBorder = true;

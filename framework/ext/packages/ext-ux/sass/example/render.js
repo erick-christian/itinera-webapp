@@ -22,8 +22,8 @@ Ext.theme = {
      */
     _shortcuts: {},
 
-    doRequire : function(xtype) {
-        if(xtype.indexOf("widget.") != 0) {
+    doRequire: function (xtype) {
+        if (xtype.indexOf("widget.") != 0) {
             xtype = "widget." + xtype;
         }
         Ext.require([xtype]);
@@ -88,12 +88,12 @@ Ext.theme = {
         var all = Ext.theme._manifest;
         var add = Ext.isArray(manifest) ? manifest : arguments;
 
-        if(manifest.xtype) {
+        if (manifest.xtype) {
             Ext.theme.doRequire(manifest.xtype);
         }
 
         for (var i = 0, n = add.length; i < n; ++i) {
-            if(add[i].xtype) {
+            if (add[i].xtype) {
                 Ext.theme.doRequire(add[i].xtype);
             }
             all.push(add[i]);
@@ -137,9 +137,9 @@ Ext.theme = {
             var existing = all[xtype];
 
             Ext.theme.doRequire(xtype);
-            for(var i=0; i < add.length; i++) {
+            for (var i = 0; i < add.length; i++) {
                 var config = add[i];
-                if(config.xtype) {
+                if (config.xtype) {
                     Ext.theme.doRequire(config.xtype);
                 }
             }
@@ -157,7 +157,7 @@ Ext.theme = {
      * @private
      */
     addPrefix: function (prefix, s) {
-        if (!s || (s.length > prefix.length && s.substring(0,prefix.length) === prefix)) {
+        if (!s || (s.length > prefix.length && s.substring(0, prefix.length) === prefix)) {
             return s;
         }
         return prefix + s;
@@ -186,7 +186,7 @@ Ext.theme = {
             config.ui = ui;
         }
         if (shortcut) {
-            var tpl = { ui: ui };
+            var tpl = {ui: ui};
             Ext.theme.copyProps(entry, shortcut, tpl);
             Ext.theme.copyProps(config, shortcut.config, tpl);
         }
@@ -229,7 +229,7 @@ Ext.theme = {
             for (var key in src) {
                 var val = src[key];
                 if (tpl && typeof val === 'string') {
-                    for (var i = 0; i < replacements.length; ++ i) {
+                    for (var i = 0; i < replacements.length; ++i) {
                         val = val.replace(replacements[i].re, replacements[i].value);
                     }
                 }
@@ -248,12 +248,12 @@ Ext.theme = {
         var entry = Ext.theme.applyShortcut(manifestEntry, shortcut);
         var config = entry.config;
         var widget = Ext.create(entry.xtype, config);
-        var ct = Ext.fly(document.body).createChild({ cls: 'widget-container' });
+        var ct = Ext.fly(document.body).createChild({cls: 'widget-container'});
 
         Ext.theme.currentWidget = widget;
 
         if (widget.floating === true) {
-            widget.floating = { shadow: false };
+            widget.floating = {shadow: false};
         }
         if (widget.floating) {
             widget.focusOnToFront = false;
@@ -378,7 +378,7 @@ Ext.theme = {
         Ext.theme.generateSlicerManifest();
     },
 
-    generateSlicerManifest: function() {
+    generateSlicerManifest: function () {
         var now = new Date().getTime(),
             me = Ext.theme,
         // This function is defined by slicer.js (the framework-independent piece)
@@ -388,9 +388,9 @@ Ext.theme = {
         me.generateStart = me.generateStart || now;
         delta = now - me.generateStart;
 
-        if(gsm) {
+        if (gsm) {
             gsm();
-        } else if(delta < (10 * 1000)){
+        } else if (delta < (10 * 1000)) {
             // allow the outer script wrapper a chance to inject the capture function
             // but stop trying after 10 seconds
             Ext.defer(Ext.theme.generateSlicerManifest, 100);
@@ -414,12 +414,12 @@ Ext.theme = {
      * This used to be `loadExtStylesheet`.
      * @private
      */
-    loadCss: function  (src, callback) {
+    loadCss: function (src, callback) {
         var xhr = new XMLHttpRequest();
 
         xhr.open('GET', src);
 
-        xhr.onload = function() {
+        xhr.onload = function () {
             var css = xhr.responseText,
                 head = document.getElementsByTagName('head')[0],
                 style = document.createElement('style');

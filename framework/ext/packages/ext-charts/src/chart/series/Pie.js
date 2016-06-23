@@ -149,7 +149,7 @@ Ext.define('Ext.chart.series.Pie', {
 
     /**
      * @cfg {Number|Object} rotation
-     * If a Number, the angle in radians of the first pie slice. 
+     * If a Number, the angle in radians of the first pie slice.
      * 0 means 3 o'clock. (-Math.PI / 2) means noon. (+Math.PI / 2) means 6 o'clock.
      * undefined means centered around 3 o'clock. Default's undefined.
      * If an Object, the angle can be specified in degrees or radians as in
@@ -158,7 +158,7 @@ Ext.define('Ext.chart.series.Pie', {
     rotation: undefined,
 
 
-    constructor: function(config) {
+    constructor: function (config) {
         this.callParent(arguments);
         var me = this,
             chart = me.chart,
@@ -186,24 +186,24 @@ Ext.define('Ext.chart.series.Pie', {
                     y: 2
                 }
             },
-            {
-                "stroke-width": 4,
-                "stroke-opacity": 1,
-                stroke: 'rgb(150, 150, 150)',
-                translate: {
-                    x: 0.9,
-                    y: 1.5
-                }
-            },
-            {
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                stroke: 'rgb(100, 100, 100)',
-                translate: {
-                    x: 0.6,
-                    y: 1
-                }
-            }]
+                {
+                    "stroke-width": 4,
+                    "stroke-opacity": 1,
+                    stroke: 'rgb(150, 150, 150)',
+                    translate: {
+                        x: 0.9,
+                        y: 1.5
+                    }
+                },
+                {
+                    "stroke-width": 2,
+                    "stroke-opacity": 1,
+                    stroke: 'rgb(100, 100, 100)',
+                    translate: {
+                        x: 0.6,
+                        y: 1
+                    }
+                }]
         });
         me.group = surface.getGroup(me.seriesId);
         if (shadow) {
@@ -211,7 +211,7 @@ Ext.define('Ext.chart.series.Pie', {
                 me.shadowGroups.push(surface.getGroup(me.seriesId + '-shadows' + i));
             }
         }
-        surface.customAttributes.segment = function(opt) {
+        surface.customAttributes.segment = function (opt) {
             //Browsers will complain if we create a path
             //element that has no path commands. So ensure a dummy 
             //path command for an empty path.
@@ -223,18 +223,18 @@ Ext.define('Ext.chart.series.Pie', {
         };
         me.__excludes = me.__excludes || [];
     },
-    
-    onRedraw: function(){
+
+    onRedraw: function () {
         this.initialize();
     },
 
     // @private updates some onbefore render parameters.
-    initialize: function() {
+    initialize: function () {
         var me = this,
             store = me.chart.getChartStore(),
             data = store.data.items,
             i, ln, rec;
-            
+
         me.callParent();
         //Add yFields to be used in Legend.js
         me.yField = [];
@@ -247,7 +247,7 @@ Ext.define('Ext.chart.series.Pie', {
     },
 
     // @private returns an object with properties for a PieSlice.
-    getSegment: function(opt) {
+    getSegment: function (opt) {
         var me = this,
             rad = me.rad,
             cos = Math.cos,
@@ -290,10 +290,10 @@ Ext.define('Ext.chart.series.Pie', {
         if (opt.startRho !== 0) {
             x1 = x + opt.startRho * c1;
             y1 = y + opt.startRho * s1;
-    
+
             x3 = x + opt.startRho * c2;
             y3 = y + opt.startRho * s2;
-    
+
             x5 = x + opt.startRho * cm;
             y5 = y + opt.startRho * sm;
 
@@ -323,7 +323,7 @@ Ext.define('Ext.chart.series.Pie', {
     },
 
     // @private utility function to calculate the middle point of a pie slice.
-    calcMiddle: function(item) {
+    calcMiddle: function (item) {
         var me = this,
             rad = me.rad,
             slice = item.slice,
@@ -346,7 +346,7 @@ Ext.define('Ext.chart.series.Pie', {
     /**
      * Draws the series for the current chart.
      */
-    drawSeries: function() {
+    drawSeries: function () {
         var me = this,
             store = me.chart.getChartStore(),
             data = store.data.items,
@@ -501,17 +501,17 @@ Ext.define('Ext.chart.series.Pie', {
                 slice = slices[i];
                 slice.shadowAttrs = [];
                 record = store.getAt(i);
-                
+
                 for (j = 0, rhoAcum = 0, shadows = []; j < layers; j++) {
                     sprite = group.getAt(i * layers + j);
-                    
+
                     if (lenField[j] && !(this.__excludes && this.__excludes[i])) {
                         deltaRho = record.get(lenField[j]) / layerTotals[i] * slice.rho;
                     }
                     else {
                         deltaRho = slice.rho;
                     }
-                    
+
                     //set pie slice properties
                     rendererAttributes = {
                         segment: {
@@ -553,17 +553,17 @@ Ext.define('Ext.chart.series.Pie', {
         for (i = 0, ln = slices.length; i < ln; i++) {
             slice = slices[i];
             record = store.getAt(i);
-            
+
             for (j = 0, rhoAcum = 0; j < layers; j++) {
                 sprite = group.getAt(i * layers + j);
-                
+
                 if (lenField[j] && !(this.__excludes && this.__excludes[i])) {
                     deltaRho = record.get(lenField[j]) / layerTotals[i] * slice.rho;
                 }
                 else {
                     deltaRho = slice.rho;
                 }
-                
+
                 //set pie slice properties
                 rendererAttributes = Ext.apply({
                     segment: {
@@ -575,14 +575,14 @@ Ext.define('Ext.chart.series.Pie', {
                         endRho: rhoAcum + deltaRho
                     },
                     hidden: (!slice.value && (slice.startAngle % me.accuracy) == (slice.endAngle % me.accuracy))
-                }, Ext.apply(seriesStyle, colorArrayStyle && { fill: colorArrayStyle[(layers > 1? j : i) % colorArrayLength] } || {}));
+                }, Ext.apply(seriesStyle, colorArrayStyle && {fill: colorArrayStyle[(layers > 1 ? j : i) % colorArrayLength]} || {}));
                 item = Ext.apply({},
-                rendererAttributes.segment, {
-                    slice: slice,
-                    series: me,
-                    storeItem: slice.storeItem,
-                    index: i
-                });
+                    rendererAttributes.segment, {
+                        slice: slice,
+                        series: me,
+                        storeItem: slice.storeItem,
+                        index: i
+                    });
                 me.calcMiddle(item);
                 if (enableShadows) {
                     item.shadows = slice.shadowAttrs[j];
@@ -594,7 +594,7 @@ Ext.define('Ext.chart.series.Pie', {
                         type: "path",
                         group: group,
                         middle: item.middle
-                    }, Ext.apply(seriesStyle, colorArrayStyle && { fill: colorArrayStyle[(layers > 1? j : i) % colorArrayLength] } || {}));
+                    }, Ext.apply(seriesStyle, colorArrayStyle && {fill: colorArrayStyle[(layers > 1 ? j : i) % colorArrayLength]} || {}));
                     sprite = surface.add(Ext.apply(spriteOptions, rendererAttributes));
                 }
                 slice.sprite = slice.sprite || [];
@@ -609,7 +609,7 @@ Ext.define('Ext.chart.series.Pie', {
                         to: rendererAttributes,
                         listeners: {
                             afteranimate: {
-                                fn: function() {
+                                fn: function () {
                                     this._animating = false;
                                 },
                                 scope: sprite
@@ -649,7 +649,7 @@ Ext.define('Ext.chart.series.Pie', {
         me.renderCallouts();
     },
 
-    setSpriteAttributes: function(sprite, attrs, animate) {
+    setSpriteAttributes: function (sprite, attrs, animate) {
         var me = this;
         if (animate) {
             sprite.stopAnimation();
@@ -663,7 +663,7 @@ Ext.define('Ext.chart.series.Pie', {
         }
     },
 
-    createLabelLine: function(i, hidden) {
+    createLabelLine: function (i, hidden) {
         var me = this,
             calloutLine = me.label.calloutLine,
             line = me.chart.surface.add({
@@ -676,18 +676,18 @@ Ext.define('Ext.chart.series.Pie', {
         return line;
     },
 
-    drawLabelLine: function(label, from, to, animate) {
+    drawLabelLine: function (label, from, to, animate) {
         var me = this,
             line = label.lineSprite,
             path = 'M' + from.x + ' ' + from.y + 'L' + to.x + ' ' + to.y + 'Z';
 
-        me.setSpriteAttributes(line, { 
-            'path': path 
+        me.setSpriteAttributes(line, {
+            'path': path
         }, animate);
     },
 
     // @private callback for when creating a label sprite.
-    onCreateLabel: function(storeItem, item, i, display) {
+    onCreateLabel: function (storeItem, item, i, display) {
         var me = this,
             group = me.labelsGroup,
             config = me.label,
@@ -706,7 +706,7 @@ Ext.define('Ext.chart.series.Pie', {
     },
 
     // @private callback for when placing a label sprite.
-    onPlaceLabel: function(label, storeItem, item, i, display, animate, index) {
+    onPlaceLabel: function (label, storeItem, item, i, display, animate, index) {
         var me = this,
             rad = me.rad,
             chart = me.chart,
@@ -733,7 +733,7 @@ Ext.define('Ext.chart.series.Pie', {
             isOutside = (display === 'outside'),
             calloutLine = label.attr.calloutLine,
             lineWidth = (calloutLine && calloutLine.width) || 2,
-            labelPadding = (label.attr.padding || 20) + (isOutside ? lineWidth/2 + 4 : 0),
+            labelPadding = (label.attr.padding || 20) + (isOutside ? lineWidth / 2 + 4 : 0),
             labelPaddingX = 0, labelPaddingY = 0,
             a1, a2, seg;
 
@@ -742,12 +742,12 @@ Ext.define('Ext.chart.series.Pie', {
         if (this.__excludes && this.__excludes[i]) {
             opt.hidden = true;
         }
-        
+
         if (config.hideLessThan) {
             a1 = Math.min(startAngle, endAngle) * rad;
             a2 = Math.max(startAngle, endAngle) * rad;
             seg = (a2 - a1) * item.rho;
-            
+
             if (seg < config.hideLessThan) {
                 opt.hidden = label.showOnHighlight = true;
             }
@@ -759,64 +759,64 @@ Ext.define('Ext.chart.series.Pie', {
         }, true);
 
         if (label.lineSprite) {
-            var attrs = { opacity: (opt.hidden ? 0 : 1) };
+            var attrs = {opacity: (opt.hidden ? 0 : 1)};
             if (opt.hidden) {
-                attrs.translate = {x:0, y:0};
+                attrs.translate = {x: 0, y: 0};
             }
             me.setSpriteAttributes(label.lineSprite, attrs, false);
         }
 
         switch (display) {
-        case 'outside':
-            label.isOutside = true;
+            case 'outside':
+                label.isOutside = true;
 
-            // calculate the distance to the pie's edge
-            rho = item.endRho;
+                // calculate the distance to the pie's edge
+                rho = item.endRho;
 
-            // calculate the padding around the label
-            labelPaddingX = (Math.abs(dg) <= 90 ? labelPadding : -labelPadding);
-            labelPaddingY = (dg >= 0 ? labelPadding : -labelPadding);
+                // calculate the padding around the label
+                labelPaddingX = (Math.abs(dg) <= 90 ? labelPadding : -labelPadding);
+                labelPaddingY = (dg >= 0 ? labelPadding : -labelPadding);
 
-            // add the distance from the label's center to its edge, plus padding
-            label.setAttributes({rotation:{degrees: 0}}, true);
-            labelBox = label.getBBox();
-            width = labelBox.width/2 * Math.cos(theta);
-            height = labelBox.height/2 * Math.sin(theta);
-            width += labelPaddingX;
-            height += labelPaddingY;
+                // add the distance from the label's center to its edge, plus padding
+                label.setAttributes({rotation: {degrees: 0}}, true);
+                labelBox = label.getBBox();
+                width = labelBox.width / 2 * Math.cos(theta);
+                height = labelBox.height / 2 * Math.sin(theta);
+                width += labelPaddingX;
+                height += labelPaddingY;
 
-            rho += Math.sqrt(width*width + height*height);
+                rho += Math.sqrt(width * width + height * height);
 
-            //update positions
-            opt.x = rho * Math.cos(theta) + centerX;
-            opt.y = rho * Math.sin(theta) + centerY;
-            break;
+                //update positions
+                opt.x = rho * Math.cos(theta) + centerX;
+                opt.y = rho * Math.sin(theta) + centerY;
+                break;
 
-        case 'rotate':
-            dg = Ext.draw.Draw.normalizeDegrees(dg);
-            dg = (dg > 90 && dg < 270) ? dg + 180: dg;
-
-            prevDg = label.attr.rotation.degrees;
-            if (prevDg != null && Math.abs(prevDg - dg) > 180 * 0.5) {
-                if (dg > prevDg) {
-                    dg -= 360;
-                } else {
-                    dg += 360;
-                }
-                dg = dg % 360;
-            } else {
+            case 'rotate':
                 dg = Ext.draw.Draw.normalizeDegrees(dg);
-            }
-            //update rotation angle
-            opt.rotate = {
-                degrees: dg,
-                x: opt.x,
-                y: opt.y
-            };
-            break;
+                dg = (dg > 90 && dg < 270) ? dg + 180 : dg;
 
-        default:
-            break;
+                prevDg = label.attr.rotation.degrees;
+                if (prevDg != null && Math.abs(prevDg - dg) > 180 * 0.5) {
+                    if (dg > prevDg) {
+                        dg -= 360;
+                    } else {
+                        dg += 360;
+                    }
+                    dg = dg % 360;
+                } else {
+                    dg = Ext.draw.Draw.normalizeDegrees(dg);
+                }
+                //update rotation angle
+                opt.rotate = {
+                    degrees: dg,
+                    x: opt.x,
+                    y: opt.y
+                };
+                break;
+
+            default:
+                break;
         }
 
         //ensure the object has zero translation
@@ -838,8 +838,8 @@ Ext.define('Ext.chart.series.Pie', {
                 animateLine = animate,
                 fromPoint = {
                     // edge of the pie
-                    x: (item.endRho - lineWidth/2) * Math.cos(theta) + centerX,
-                    y: (item.endRho - lineWidth/2) * Math.sin(theta) + centerY
+                    x: (item.endRho - lineWidth / 2) * Math.cos(theta) + centerX,
+                    y: (item.endRho - lineWidth / 2) * Math.sin(theta) + centerY
                 },
                 labelCenter = {
                     // center of the label box
@@ -867,16 +867,16 @@ Ext.define('Ext.chart.series.Pie', {
                 var normalTheta = Ext.draw.Draw.normalizeRadians(-theta),
                     cos = Math.cos(normalTheta),
                     sin = Math.sin(normalTheta),
-                    labelWidth = (labelBox.width + lineWidth + 4)/2,
-                    labelHeight = (labelBox.height + lineWidth + 4)/2;
+                    labelWidth = (labelBox.width + lineWidth + 4) / 2,
+                    labelHeight = (labelBox.height + lineWidth + 4) / 2;
 
                 if (Math.abs(cos) * labelHeight > Math.abs(sin) * labelWidth) {
                     // the line connects to the right or left sides of the label
                     toPoint.x = labelCenter.x - labelWidth * sign(cos);
-                    toPoint.y = labelCenter.y + labelWidth * sin/cos * sign(cos);
+                    toPoint.y = labelCenter.y + labelWidth * sin / cos * sign(cos);
                 } else {
                     // the line connects to the top or bottom sides of the label
-                    toPoint.x = labelCenter.x - labelHeight * cos/sin * sign(sin);
+                    toPoint.x = labelCenter.x - labelHeight * cos / sin * sign(sin);
                     toPoint.y = labelCenter.y + labelHeight * sign(sin);
                 }
             }
@@ -892,7 +892,7 @@ Ext.define('Ext.chart.series.Pie', {
     },
 
     // @private callback for when placing a callout sprite.
-    onPlaceCallout: function(callout, storeItem, item, i, display, animate, index) {
+    onPlaceCallout: function (callout, storeItem, item, i, display, animate, index) {
         var me = this,
             chart = me.chart,
             centerX = me.centerX,
@@ -907,7 +907,7 @@ Ext.define('Ext.chart.series.Pie', {
             rho = 1,
             rhoCenter,
             theta = Math.atan2(y, x || 1),
-            bbox = (callout && callout.label ? callout.label.getBBox() : {width:0,height:0}),
+            bbox = (callout && callout.label ? callout.label.getBBox() : {width: 0, height: 0}),
             offsetFromViz = 20,
             offsetToSide = 10,
             offsetBox = 10,
@@ -931,14 +931,14 @@ Ext.define('Ext.chart.series.Pie', {
             //set the line from the middle of the pie to the box.
             me.onAnimate(callout.lines, {
                 to: {
-                    path: ["M", x + centerX, y + centerY, "L", opt.x, opt.y, "Z", "M", opt.x, opt.y, "l", x > 0 ? offsetToSide: -offsetToSide, 0, "z"]
+                    path: ["M", x + centerX, y + centerY, "L", opt.x, opt.y, "Z", "M", opt.x, opt.y, "l", x > 0 ? offsetToSide : -offsetToSide, 0, "z"]
                 }
             });
             //set box position
             me.onAnimate(callout.box, {
                 to: {
-                    x: opt.x + (x > 0 ? offsetToSide: -(offsetToSide + bbox.width + 2 * offsetBox)),
-                    y: opt.y + (y > 0 ? ( - bbox.height - offsetBox / 2) : ( - bbox.height - offsetBox / 2)),
+                    x: opt.x + (x > 0 ? offsetToSide : -(offsetToSide + bbox.width + 2 * offsetBox)),
+                    y: opt.y + (y > 0 ? ( -bbox.height - offsetBox / 2) : ( -bbox.height - offsetBox / 2)),
                     width: bbox.width + 2 * offsetBox,
                     height: bbox.height + 2 * offsetBox
                 }
@@ -947,29 +947,29 @@ Ext.define('Ext.chart.series.Pie', {
             me.onAnimate(callout.label, {
                 to: {
                     x: opt.x + (x > 0 ? (offsetToSide + offsetBox) : -(offsetToSide + bbox.width + offsetBox)),
-                    y: opt.y + (y > 0 ? -bbox.height / 4: -bbox.height / 4)
+                    y: opt.y + (y > 0 ? -bbox.height / 4 : -bbox.height / 4)
                 }
             });
         } else {
             //set the line from the middle of the pie to the box.
             callout.lines.setAttributes({
-                path: ["M", x + centerX, y + centerY, "L", opt.x, opt.y, "Z", "M", opt.x, opt.y, "l", x > 0 ? offsetToSide: -offsetToSide, 0, "z"]
-            },
-            true);
+                    path: ["M", x + centerX, y + centerY, "L", opt.x, opt.y, "Z", "M", opt.x, opt.y, "l", x > 0 ? offsetToSide : -offsetToSide, 0, "z"]
+                },
+                true);
             //set box position
             callout.box.setAttributes({
-                x: opt.x + (x > 0 ? offsetToSide: -(offsetToSide + bbox.width + 2 * offsetBox)),
-                y: opt.y + (y > 0 ? ( - bbox.height - offsetBox / 2) : ( - bbox.height - offsetBox / 2)),
-                width: bbox.width + 2 * offsetBox,
-                height: bbox.height + 2 * offsetBox
-            },
-            true);
+                    x: opt.x + (x > 0 ? offsetToSide : -(offsetToSide + bbox.width + 2 * offsetBox)),
+                    y: opt.y + (y > 0 ? ( -bbox.height - offsetBox / 2) : ( -bbox.height - offsetBox / 2)),
+                    width: bbox.width + 2 * offsetBox,
+                    height: bbox.height + 2 * offsetBox
+                },
+                true);
             //set text position
             callout.label.setAttributes({
-                x: opt.x + (x > 0 ? (offsetToSide + offsetBox) : -(offsetToSide + bbox.width + offsetBox)),
-                y: opt.y + (y > 0 ? -bbox.height / 4: -bbox.height / 4)
-            },
-            true);
+                    x: opt.x + (x > 0 ? (offsetToSide + offsetBox) : -(offsetToSide + bbox.width + offsetBox)),
+                    y: opt.y + (y > 0 ? -bbox.height / 4 : -bbox.height / 4)
+                },
+                true);
         }
         for (p in callout) {
             callout[p].show(true);
@@ -977,12 +977,12 @@ Ext.define('Ext.chart.series.Pie', {
     },
 
     // @private handles sprite animation for the series.
-    onAnimate: function(sprite, attr) {
+    onAnimate: function (sprite, attr) {
         sprite.show();
         return this.callParent(arguments);
     },
 
-    isItemInPoint: function(x, y, item, i) {
+    isItemInPoint: function (x, y, item, i) {
         var me = this,
             cx = me.centerX,
             cy = me.centerY,
@@ -1005,11 +1005,11 @@ Ext.define('Ext.chart.series.Pie', {
             }
         }
         return (angle <= startAngle && angle > endAngle
-                && rho >= item.startRho && rho <= item.endRho);
+        && rho >= item.startRho && rho <= item.endRho);
     },
 
     // @private hides all elements in the series.
-    hideAll: function(index) {
+    hideAll: function (index) {
         var i, l, shadow, shadows, sh, lsh, sprite;
         index = (isNaN(this._index) ? index : this._index) || 0;
         this.__excludes = this.__excludes || [];
@@ -1040,7 +1040,7 @@ Ext.define('Ext.chart.series.Pie', {
     },
 
     // @private shows all elements in the series.
-    showAll: function(index) {
+    showAll: function (index) {
         index = (isNaN(this._index) ? index : this._index) || 0;
         this.__excludes[index] = false;
         this.drawSeries();
@@ -1050,7 +1050,7 @@ Ext.define('Ext.chart.series.Pie', {
      * Highlight the specified item. If no item is provided the whole series will be highlighted.
      * @param item {Object} Info about the item; same format as returned by #getItemForPoint
      */
-    highlightItem: function(item) {
+    highlightItem: function (item) {
         var me = this,
             rad = me.rad,
             highlightSegment,
@@ -1082,13 +1082,13 @@ Ext.define('Ext.chart.series.Pie', {
         if (!item || me.animating || (item.sprite && item.sprite._animating)) {
             return;
         }
-        
+
         me.callParent([item]);
-        
+
         if (!me.highlight) {
             return;
         }
-        
+
         if ('segment' in me.highlightCfg) {
             highlightSegment = me.highlightCfg.segment;
             animate = me.chart.animate;
@@ -1113,14 +1113,14 @@ Ext.define('Ext.chart.series.Pie', {
                 if (Math.abs(y) < 1e-10) {
                     y = 0;
                 }
-                
+
                 attrs = {
                     translate: {
                         x: x,
                         y: y
                     }
                 };
-                
+
                 if (label.showOnHighlight) {
                     attrs.opacity = 1;
                     attrs.hidden = false;
@@ -1143,7 +1143,7 @@ Ext.define('Ext.chart.series.Pie', {
                     to = {};
                     itemHighlightSegment = item.sprite._from.segment;
                     for (prop in itemHighlightSegment) {
-                        if (! (prop in highlightSegment)) {
+                        if (!(prop in highlightSegment)) {
                             to[prop] = itemHighlightSegment[prop];
                         }
                     }
@@ -1160,7 +1160,7 @@ Ext.define('Ext.chart.series.Pie', {
      * Un-highlights the specified item. If no item is provided it will un-highlight the entire series.
      * @param item {Object} Info about the item; same format as returned by #getItemForPoint
      */
-    unHighlightItem: function() {
+    unHighlightItem: function () {
         var me = this,
             items,
             animate,
@@ -1206,19 +1206,19 @@ Ext.define('Ext.chart.series.Pie', {
                     if (group) {
                         label = group.getAt(item.index);
                         attrs = Ext.apply({
-                            translate: {
-                                x: 0,
-                                y: 0
-                            }
-                        },
-                        display == 'rotate' ? {
-                            rotate: {
-                                x: label.attr.x,
-                                y: label.attr.y,
-                                degrees: label.attr.rotation.degrees
-                            }
-                        }: {});
-                        
+                                translate: {
+                                    x: 0,
+                                    y: 0
+                                }
+                            },
+                            display == 'rotate' ? {
+                                rotate: {
+                                    x: label.attr.x,
+                                    y: label.attr.y,
+                                    degrees: label.attr.rotation.degrees
+                                }
+                            } : {});
+
                         if (label.showOnHighlight) {
                             attrs.opacity = 0;
                             attrs.hidden = true;
@@ -1240,12 +1240,12 @@ Ext.define('Ext.chart.series.Pie', {
                             hs = item.sprite._from.segment;
                             Ext.apply(to, hs);
                             for (p in ihs) {
-                                if (! (p in hs)) {
+                                if (!(p in hs)) {
                                     to[p] = ihs[p];
                                 }
                             }
                             shadow = shadows[j];
-                            me.setSpriteAttributes(shadow, { segment: to }, animate);
+                            me.setSpriteAttributes(shadow, {segment: to}, animate);
                         }
                     }
                 }
@@ -1258,7 +1258,7 @@ Ext.define('Ext.chart.series.Pie', {
      * Returns the color of the series (to be displayed as color for the series legend item).
      * @param item {Object} Info about the item; same format as returned by #getItemForPoint
      */
-    getLegendColor: function(index) {
+    getLegendColor: function (index) {
         var me = this;
         return (me.colorSet && me.colorSet[index % me.colorSet.length]) || me.colorArrayStyle[index % me.colorArrayStyle.length];
     }

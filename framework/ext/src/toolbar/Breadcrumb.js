@@ -16,7 +16,7 @@ Ext.define('Ext.toolbar.Breadcrumb', {
         'Ext.data.TreeStore',
         'Ext.button.Split'
     ],
-    
+
     mixins: [
         'Ext.util.FocusableContainer'
     ],
@@ -98,7 +98,7 @@ Ext.define('Ext.toolbar.Breadcrumb', {
         /**
          * @cfg {Boolean} [useSplitButtons=true]
          * `false` to use regular {@link Ext.button.Button Button}s instead of {@link
-         * Ext.button.Split Split Buttons}.  When `true`, a click on the body of a button
+            * Ext.button.Split Split Buttons}.  When `true`, a click on the body of a button
          * will navigate to the specified node, and a click on the arrow will show a menu
          * containing the the child nodes.  When `false`, the only mode of navigation is
          * the menu, since a click anywhere on the button will show the menu.
@@ -122,7 +122,7 @@ Ext.define('Ext.toolbar.Breadcrumb', {
     _folderIconCls: Ext.baseCSSPrefix + 'breadcrumb-icon-folder',
     _leafIconCls: Ext.baseCSSPrefix + 'breadcrumb-icon-leaf',
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this,
             layout = me.layout,
             overflowHandler = me.getOverflowHandler();
@@ -155,7 +155,7 @@ Ext.define('Ext.toolbar.Breadcrumb', {
         me.callParent();
     },
 
-    onDestroy: function() {
+    onDestroy: function () {
         var me = this;
 
         me._buttons = Ext.destroy(me._buttons);
@@ -163,7 +163,7 @@ Ext.define('Ext.toolbar.Breadcrumb', {
         me.callParent();
     },
 
-    afterComponentLayout: function() {
+    afterComponentLayout: function () {
         var me = this,
             overflowHandler = me.layout.overflowHandler;
 
@@ -189,7 +189,7 @@ Ext.define('Ext.toolbar.Breadcrumb', {
      * @return {Ext.toolbar.Breadcrumb} this The breadcrumb component
      */
 
-    applySelection: function(node) {
+    applySelection: function (node) {
         var store = this.getStore();
         if (store) {
             node = (node === 'root') ? this.getStore().getRoot() : node;
@@ -199,7 +199,7 @@ Ext.define('Ext.toolbar.Breadcrumb', {
         return node;
     },
 
-    updateSelection: function(node) {
+    updateSelection: function (node) {
         var me = this,
             buttons = me._buttons,
             items = [],
@@ -323,21 +323,21 @@ Ext.define('Ext.toolbar.Breadcrumb', {
         me._needsSync = false;
     },
 
-    applyUseSplitButtons: function(useSplitButtons, oldUseSplitButtons) {
+    applyUseSplitButtons: function (useSplitButtons, oldUseSplitButtons) {
         if (this.rendered && useSplitButtons !== oldUseSplitButtons) {
             Ext.Error.raise("Cannot reconfigure 'useSplitButtons' config of Ext.toolbar.Breadcrumb after initial render");
         }
         return useSplitButtons;
     },
 
-    applyStore: function(store) {
+    applyStore: function (store) {
         if (store) {
             store = Ext.data.StoreManager.lookup(store);
         }
         return store;
     },
 
-    updateStore: function(store, oldStore) {
+    updateStore: function (store, oldStore) {
         this._needsSync = true;
 
         if (store && !this.isConfiguring) {
@@ -346,7 +346,7 @@ Ext.define('Ext.toolbar.Breadcrumb', {
     },
 
     //<debug>
-    updateOverflowHandler: function(overflowHandler) {
+    updateOverflowHandler: function (overflowHandler) {
         if (overflowHandler === 'menu') {
             Ext.Error.raise("Using Menu overflow with breadcrumb is not currently supported.");
         }
@@ -360,7 +360,7 @@ Ext.define('Ext.toolbar.Breadcrumb', {
          * @param {Ext.button.Split} button
          * @param {Ext.event.Event} e
          */
-        _onButtonClick: function(button, e) {
+        _onButtonClick: function (button, e) {
             if (this.getUseSplitButtons()) {
                 this.setSelection(this.getStore().getNodeById(button._breadcrumbNodeId));
             }
@@ -373,7 +373,7 @@ Ext.define('Ext.toolbar.Breadcrumb', {
          * @param {Ext.menu.Item} item
          * @param {Ext.event.Event} e
          */
-        _onMenuClick: function(menu, item, e) {
+        _onMenuClick: function (menu, item, e) {
             if (item) {
                 this.setSelection(this.getStore().getNodeById(item._breadcrumbNodeId));
             }
@@ -384,7 +384,7 @@ Ext.define('Ext.toolbar.Breadcrumb', {
          * @private
          * @param {Ext.menu.Menu} menu
          */
-        _onMenuBeforeShow: function(menu) {
+        _onMenuBeforeShow: function (menu) {
             var me = this,
                 node = me.getStore().getNodeById(menu.ownerCmp._breadcrumbNodeId),
                 displayField = me.getDisplayField(),

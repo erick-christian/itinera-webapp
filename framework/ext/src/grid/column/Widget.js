@@ -180,10 +180,10 @@ Ext.define('Ext.grid.column.Widget', {
      *
      * The widget will be decorated with 2 methods:
      * `getWidgetRecord` - Returns the {@link Ext.data.Model record} the widget is associated with.
-     * `getWidgetColumn` - Returns the {@link Ext.grid.column.Widget column} the widget 
+     * `getWidgetColumn` - Returns the {@link Ext.grid.column.Widget column} the widget
      * was associated with.
      */
-    
+
     /**
      * @cfg {Function/String} onWidgetAttach
      * A function that will be called when a widget is attached to a record. This may be useful for
@@ -194,16 +194,16 @@ Ext.define('Ext.grid.column.Widget', {
      * @declarativeHandler
      */
     onWidgetAttach: null,
-    
+
     /**
      * @cfg {Boolean} [stopSelection=true]
      * Prevent grid selection upon click on the widget.
      */
     stopSelection: true,
-     
+
     preventUpdate: true,
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this,
             widget;
 
@@ -224,10 +224,10 @@ Ext.define('Ext.grid.column.Widget', {
         me.isFixedSize = Ext.isNumber(widget.width);
     },
 
-    processEvent : function(type, view, cell, recordIndex, cellIndex, e, record, row) {
+    processEvent: function (type, view, cell, recordIndex, cellIndex, e, record, row) {
         var selector = view.innerSelector,
             target;
-         
+
         if (this.stopSelection && type === 'click') {
             // Grab the target that matches the cell inner selector. If we have a target, then,
             // that means we either clicked on the inner part or the widget inside us. If 
@@ -240,7 +240,7 @@ Ext.define('Ext.grid.column.Widget', {
         }
     },
 
-    beforeRender: function() {
+    beforeRender: function () {
         var me = this,
             tdCls = me.tdCls,
             widget;
@@ -262,7 +262,7 @@ Ext.define('Ext.grid.column.Widget', {
         me.callParent();
     },
 
-    afterRender: function() {
+    afterRender: function () {
         var view = this.getView();
 
         this.callParent();
@@ -275,13 +275,13 @@ Ext.define('Ext.grid.column.Widget', {
     },
 
     // Cell must be left blank
-    defaultRenderer: Ext.emptyFn, 
+    defaultRenderer: Ext.emptyFn,
 
-    updater: function(cell, value, record) {
+    updater: function (cell, value, record) {
         this.updateWidget(record);
     },
 
-    onResize: function(newWidth) {
+    onResize: function (newWidth) {
         var me = this,
             liveWidgets = me.liveWidgets,
             view = me.getView(),
@@ -300,7 +300,7 @@ Ext.define('Ext.grid.column.Widget', {
         }
     },
 
-    onAdded: function() {
+    onAdded: function () {
         var me = this,
             view;
 
@@ -322,7 +322,7 @@ Ext.define('Ext.grid.column.Widget', {
         }
     },
 
-    onRemoved: function(isDestroying) {
+    onRemoved: function (isDestroying) {
         var me = this,
             liveWidgets = me.liveWidgets,
             viewListeners = me.viewListeners,
@@ -341,7 +341,7 @@ Ext.define('Ext.grid.column.Widget', {
         me.callParent(arguments);
     },
 
-    onDestroy: function() {
+    onDestroy: function () {
         var me = this,
             oldWidgetMap = me.liveWidgets,
             freeWidgetStack = me.freeWidgetStack,
@@ -355,18 +355,18 @@ Ext.define('Ext.grid.column.Widget', {
                 delete widget.getWidgetColumn;
                 widget.destroy();
             }
-        
+
             for (i = 0, len = freeWidgetStack.length; i < len; ++i) {
                 freeWidgetStack[i].destroy();
             }
         }
-        
+
         me.freeWidgetStack = me.liveWidgets = null;
-        
+
         me.callParent();
     },
 
-    getWidget: function(record) {
+    getWidget: function (record) {
         var liveWidgets = this.liveWidgets,
             widget;
 
@@ -377,12 +377,12 @@ Ext.define('Ext.grid.column.Widget', {
     },
 
     privates: {
-        getCachedStyle: function(el, style) {
+        getCachedStyle: function (el, style) {
             var cachedStyles = this.cachedStyles;
-          return cachedStyles[style] || (cachedStyles[style] = Ext.fly(el).getStyle(style));
+            return cachedStyles[style] || (cachedStyles[style] = Ext.fly(el).getStyle(style));
         },
 
-        getFreeWidget: function() {
+        getFreeWidget: function () {
             var me = this,
                 result = me.freeWidgetStack ? me.freeWidgetStack.pop() : null;
 
@@ -415,7 +415,7 @@ Ext.define('Ext.grid.column.Widget', {
             }
         },
 
-        onItemAdd: function(records, index, items) {
+        onItemAdd: function (records, index, items) {
             var me = this,
                 view = me.getView(),
                 hasAttach = !!me.onWidgetAttach,
@@ -458,7 +458,7 @@ Ext.define('Ext.grid.column.Widget', {
                         if (widget.defaultBindProperty && dataIndex) {
                             widget.setConfig(widget.defaultBindProperty, record.get(dataIndex));
                         }
-                        
+
                         if (hasAttach) {
                             Ext.callback(me.onWidgetAttach, me.scope, [me, widget, record], 0, me);
                         }
@@ -481,7 +481,7 @@ Ext.define('Ext.grid.column.Widget', {
             }
         },
 
-        onItemRemove: function(records, index, items) {
+        onItemRemove: function (records, index, items) {
             var me = this,
                 liveWidgets = me.liveWidgets,
                 widget, item, id, len, i;
@@ -509,11 +509,11 @@ Ext.define('Ext.grid.column.Widget', {
             }
         },
 
-        onItemUpdate: function(record, recordIndex, oldItemDom) {
+        onItemUpdate: function (record, recordIndex, oldItemDom) {
             this.updateWidget(record);
         },
 
-        onViewRefresh: function(view, records) {
+        onViewRefresh: function (view, records) {
             var me = this,
                 rows = view.all,
                 hasAttach = !!me.onWidgetAttach,
@@ -587,11 +587,11 @@ Ext.define('Ext.grid.column.Widget', {
             }
         },
 
-        returnFalse: function() {
+        returnFalse: function () {
             return false;
         },
 
-        setupViewListeners: function(view) {
+        setupViewListeners: function (view) {
             var me = this;
 
             me.viewListeners = view.on({
@@ -608,7 +608,7 @@ Ext.define('Ext.grid.column.Widget', {
             }
         },
 
-        updateWidget: function(record) {
+        updateWidget: function (record) {
             var dataIndex = this.dataIndex,
                 widget;
 
@@ -619,13 +619,13 @@ Ext.define('Ext.grid.column.Widget', {
                     widget.setConfig(widget.defaultBindProperty, record.get(dataIndex));
                 }
             }
-        }, 
-        
-        widgetRecordDecorator: function() {
+        },
+
+        widgetRecordDecorator: function () {
             return this.$widgetRecord;
         },
-        
-        widgetColumnDecorator: function() {
+
+        widgetColumnDecorator: function () {
             return this.$widgetColumn;
         }
     }

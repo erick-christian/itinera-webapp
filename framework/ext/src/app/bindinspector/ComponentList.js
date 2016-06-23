@@ -5,7 +5,7 @@ Ext.define('Ext.app.bindinspector.ComponentList', {
     requires: [
         'Ext.form.field.Text'
     ],
-    
+
     rootVisible: false,
     title: 'Component Tree',
     hideHeaders: true,
@@ -18,8 +18,8 @@ Ext.define('Ext.app.bindinspector.ComponentList', {
 
     bindingsIcon: '☍',
     vmIcon: '☶',
-    
-    initComponent: function() {
+
+    initComponent: function () {
         var me = this,
             nodes = [];
 
@@ -44,7 +44,7 @@ Ext.define('Ext.app.bindinspector.ComponentList', {
         };
 
         // build the component node hierarchy
-        Ext.Array.forEach(me.components, function(comp) {
+        Ext.Array.forEach(me.components, function (comp) {
             nodes.push(me.buildNode(comp));
         }, me);
 
@@ -83,7 +83,7 @@ Ext.define('Ext.app.bindinspector.ComponentList', {
                 triggers: {
                     clear: {
                         cls: Ext.baseCSSPrefix + 'form-clear-trigger',
-                        handler: function(field) {
+                        handler: function (field) {
                             var tree = field.up('treepanel');
 
                             field.reset();
@@ -297,18 +297,18 @@ Ext.define('Ext.app.bindinspector.ComponentList', {
 
             // if newVal matches the queryRe regex attempt the lookup using Ext.ComponentQuery
             if (isQuery) {
-                try
-                {
+                try {
                     components = Ext.ComponentQuery.query(newVal);
-                } catch (e) {}
-                
+                } catch (e) {
+                }
+
                 len = components.length;
 
                 for (i = 0; i < len; i++) {
                     ids.push(components[i].id);
                 }
             }
-            
+
             store.suspendEvents();
             store.filter({
                 filterFn: function (node) {
@@ -358,9 +358,9 @@ Ext.define('Ext.app.bindinspector.ComponentList', {
         }
         store.clearFilter();
     },
-    
+
     // constructs the tree node for the given component
-    buildNode: function(comp) {
+    buildNode: function (comp) {
         var me = this,
             ownerCt = me.getRefOwner(),
             childItems = comp.items,
@@ -392,7 +392,7 @@ Ext.define('Ext.app.bindinspector.ComponentList', {
         if (sansData.length === 0) {
             sansData = undefined;
         }
-        
+
         ref = comp.reference ? '<b>[' + comp.reference + ']</b> &bull; ' : '';
 
         o = {
@@ -406,7 +406,7 @@ Ext.define('Ext.app.bindinspector.ComponentList', {
             bindData: bindData,
             children: []
         };
-        
+
         if (childItems) {
             for (i = 0, len = childItems.length; i < len; ++i) {
                 child = me.buildNode(childItems[i]);
@@ -416,19 +416,19 @@ Ext.define('Ext.app.bindinspector.ComponentList', {
                 }
             }
         }
-        
+
         if (o.children.length) {
             o.expanded = true;
             o.leaf = false;
         } else {
             o.leaf = true;
         }
-        
+
         return o;
     },
-    
+
     // on item dblclick fire the 'componentdblclick' event for the bindinspector-container to listen for
-    onItemDblclick: function(view, rec) {
+    onItemDblclick: function (view, rec) {
         this.fireEvent('componentdblclick', this, rec);
     },
 
@@ -437,7 +437,7 @@ Ext.define('Ext.app.bindinspector.ComponentList', {
         var node = this.getView().getNode(rec);
         this.fireEvent('componentselect', this, rec, node);
     }
-}, function() {
+}, function () {
     this.prototype.Model = Ext.define(null, {
         extend: 'Ext.data.TreeModel',
         fields: ['hasViewModel', 'hasBindings', 'reference', 'hasDeepBindings', 'reference', 'sansData', 'bindData', 'isSrcVM']

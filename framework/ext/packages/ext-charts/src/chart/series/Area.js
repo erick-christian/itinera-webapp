@@ -93,7 +93,7 @@ Ext.define('Ext.chart.series.Area', {
      */
     style: {},
 
-    constructor: function(config) {
+    constructor: function (config) {
         this.callParent(arguments);
         var me = this,
             surface = me.chart.surface,
@@ -123,7 +123,7 @@ Ext.define('Ext.chart.series.Area', {
     },
 
     // @private Shrinks dataSets down to a smaller size
-    shrink: function(xValues, yValues, size) {
+    shrink: function (xValues, yValues, size) {
         var len = xValues.length,
             ratio = Math.floor(len / size),
             i, j,
@@ -143,7 +143,7 @@ Ext.define('Ext.chart.series.Area', {
             }
             if (i % ratio == 0) {
                 //push averages
-                xRes.push(xSum/ratio);
+                xRes.push(xSum / ratio);
                 for (j = 0; j < yCompLen; ++j) {
                     ySum[j] /= ratio;
                 }
@@ -162,7 +162,7 @@ Ext.define('Ext.chart.series.Area', {
     },
 
     // @private Get chart and data boundaries
-    getBounds: function() {
+    getBounds: function () {
         var me = this,
             chart = me.chart,
             store = chart.getChartStore(),
@@ -233,7 +233,7 @@ Ext.define('Ext.chart.series.Area', {
                 if (isNaN(tmp)) {
                     allowDate = false;
                 }
-            } 
+            }
         }
         for (i = 0; i < l; i++) {
             record = data[i];
@@ -284,7 +284,7 @@ Ext.define('Ext.chart.series.Area', {
     },
 
     // @private Build an array of paths for the chart
-    getPaths: function() {
+    getPaths: function () {
         var me = this,
             chart = me.chart,
             store = chart.getChartStore(),
@@ -297,7 +297,7 @@ Ext.define('Ext.chart.series.Area', {
             count = 0,
             paths = [],
             reverse = me.reverse,
-            i, ln, x, y, xValue, yValue, acumY, areaIndex, 
+            i, ln, x, y, xValue, yValue, acumY, areaIndex,
             prevAreaIndex, areaElem, path, startX, idx;
 
         ln = bounds.xValues.length;
@@ -355,8 +355,8 @@ Ext.define('Ext.chart.series.Area', {
                 first = false;
 
                 path.push('L', x, bbox.y + bbox.height,
-                          'L', startX, bbox.y + bbox.height,
-                          'Z');
+                    'L', startX, bbox.y + bbox.height,
+                    'Z');
             }
             // Close other paths to the one before them
             else {
@@ -365,9 +365,9 @@ Ext.define('Ext.chart.series.Area', {
                 path.push('L', x, componentPath[0][2]);
                 for (i = 0; i < ln; i++) {
                     path.push(componentPath[i][0],
-                              componentPath[i][1],
-                              componentPath[i][2]);
-                    items[areaIndex].pointsDown[ln -i -1] = [componentPath[i][1], componentPath[i][2]];
+                        componentPath[i][1],
+                        componentPath[i][2]);
+                    items[areaIndex].pointsDown[ln - i - 1] = [componentPath[i][1], componentPath[i][2]];
                 }
                 path.push('L', startX, path[2], 'Z');
             }
@@ -382,7 +382,7 @@ Ext.define('Ext.chart.series.Area', {
     /**
      * Draws the series for the current chart.
      */
-    drawSeries: function() {
+    drawSeries: function () {
         var me = this,
             chart = me.chart,
             store = chart.getChartStore(),
@@ -394,7 +394,7 @@ Ext.define('Ext.chart.series.Area', {
             colorArrayLength = colorArrayStyle && colorArrayStyle.length || 0,
             themeIndex = me.themeIdx,
             areaIndex, areaElem, paths, path, rendererAttributes, idx;
-        
+
         me.unHighlightItem();
         me.cleanHighlights();
 
@@ -456,13 +456,13 @@ Ext.define('Ext.chart.series.Area', {
     },
 
     // @private
-    onAnimate: function(sprite, attr) {
+    onAnimate: function (sprite, attr) {
         sprite.show();
         return this.callParent(arguments);
     },
 
     // @private
-    onCreateLabel: function(storeItem, item, i, display) {
+    onCreateLabel: function (storeItem, item, i, display) {
         // TODO: Implement labels for Area charts. 
         // The code in onCreateLabel() and onPlaceLabel() was originally copied
         // from another Series but it cannot work because item.point[] doesn't
@@ -490,7 +490,7 @@ Ext.define('Ext.chart.series.Area', {
     },
 
     // @private
-    onPlaceLabel: function(label, storeItem, item, i, display, animate, index) {
+    onPlaceLabel: function (label, storeItem, item, i, display, animate, index) {
         var me = this,
             chart = me.chart,
             resizing = chart.resizing,
@@ -539,7 +539,7 @@ Ext.define('Ext.chart.series.Area', {
                 y: y
             }, true);
             if (resizing && me.animation) {
-                me.animation.on('afteranimate', function() {
+                me.animation.on('afteranimate', function () {
                     label.show(true);
                 });
             } else {
@@ -549,18 +549,18 @@ Ext.define('Ext.chart.series.Area', {
     },
 
     // @private
-    onPlaceCallout : function(callout, storeItem, item, i, display, animate, index) {
+    onPlaceCallout: function (callout, storeItem, item, i, display, animate, index) {
         var me = this,
             chart = me.chart,
             surface = chart.surface,
             resizing = chart.resizing,
             config = me.callouts,
             items = me.items,
-            prev = (i == 0) ? false : items[i -1].point,
-            next = (i == items.length -1) ? false : items[i +1].point,
+            prev = (i == 0) ? false : items[i - 1].point,
+            next = (i == items.length - 1) ? false : items[i + 1].point,
             cur = item.point,
             dir, norm, normal, a, aprev, anext,
-            bbox = (callout && callout.label ? callout.label.getBBox() : {width:0,height:0}),
+            bbox = (callout && callout.label ? callout.label.getBBox() : {width: 0, height: 0}),
             offsetFromViz = 30,
             offsetToSide = 10,
             offsetBox = 3,
@@ -601,8 +601,8 @@ Ext.define('Ext.chart.series.Area', {
         y = cur[1] + normal[1] * offsetFromViz;
 
         //box position and dimensions
-        boxx = x + (normal[0] > 0? 0 : -(bbox.width + 2 * offsetBox));
-        boxy = y - bbox.height /2 - offsetBox;
+        boxx = x + (normal[0] > 0 ? 0 : -(bbox.width + 2 * offsetBox));
+        boxy = y - bbox.height / 2 - offsetBox;
         boxw = bbox.width + 2 * offsetBox;
         boxh = bbox.height + 2 * offsetBox;
 
@@ -620,8 +620,8 @@ Ext.define('Ext.chart.series.Area', {
         y = cur[1] + normal[1] * offsetFromViz;
 
         //update box position and dimensions
-        boxx = x + (normal[0] > 0? 0 : -(bbox.width + 2 * offsetBox));
-        boxy = y - bbox.height /2 - offsetBox;
+        boxx = x + (normal[0] > 0 ? 0 : -(bbox.width + 2 * offsetBox));
+        boxy = y - bbox.height / 2 - offsetBox;
         boxw = bbox.width + 2 * offsetBox;
         boxh = bbox.height + 2 * offsetBox;
 
@@ -638,7 +638,7 @@ Ext.define('Ext.chart.series.Area', {
         }, true);
         //set text position
         callout.label.setAttributes({
-            x: x + (normal[0] > 0? offsetBox : -(bbox.width + offsetBox)),
+            x: x + (normal[0] > 0 ? offsetBox : -(bbox.width + offsetBox)),
             y: y
         }, true);
         for (p in callout) {
@@ -646,7 +646,7 @@ Ext.define('Ext.chart.series.Area', {
         }
     },
 
-    isItemInPoint: function(x, y, item, i) {
+    isItemInPoint: function (x, y, item, i) {
         var me = this,
             pointsUp = item.pointsUp,
             pointsDown = item.pointsDown,
@@ -658,9 +658,9 @@ Ext.define('Ext.chart.series.Area', {
 
         for (p = 0, pln = pointsUp.length; p < pln; p++) {
             point = [pointsUp[p][0], pointsUp[p][1]];
-            
+
             distChanged = false;
-            last = p == pln -1;
+            last = p == pln - 1;
 
             if (dist > abs(x - point[0])) {
                 dist = abs(x - point[0]);
@@ -669,15 +669,15 @@ Ext.define('Ext.chart.series.Area', {
                     ++p;
                 }
             }
-            
+
             if (!distChanged || (distChanged && last)) {
-                point = pointsUp[p -1];
-                if (y >= point[1] && (!pointsDown.length || y <= (pointsDown[p -1][1]))) {
+                point = pointsUp[p - 1];
+                if (y >= point[1] && (!pointsDown.length || y <= (pointsDown[p - 1][1]))) {
                     idx = reverse ? pln - p : p - 1;
                     item.storeIndex = idx;
                     item.storeField = me.yField[i];
                     item.storeItem = me.chart.getChartStore().getAt(idx);
-                    item._points = pointsDown.length? [point, pointsDown[p - 1]] : [point];
+                    item._points = pointsDown.length ? [point, pointsDown[p - 1]] : [point];
                     return true;
                 } else {
                     break;
@@ -691,7 +691,7 @@ Ext.define('Ext.chart.series.Area', {
      * Highlight this entire series.
      * @param {Object} item Info about the item; same format as returned by #getItemForPoint.
      */
-    highlightSeries: function() {
+    highlightSeries: function () {
         var area, to, fillColor;
         if (this._index !== undefined) {
             area = this.areas[this._index];
@@ -728,7 +728,7 @@ Ext.define('Ext.chart.series.Area', {
      * UnHighlight this entire series.
      * @param {Object} item Info about the item; same format as returned by #getItemForPoint.
      */
-    unHighlightSeries: function() {
+    unHighlightSeries: function () {
         var area;
         if (this._index !== undefined) {
             area = this.areas[this._index];
@@ -753,21 +753,21 @@ Ext.define('Ext.chart.series.Area', {
      * Highlight the specified item. If no item is provided the whole series will be highlighted.
      * @param item {Object} Info about the item; same format as returned by #getItemForPoint
      */
-    highlightItem: function(item) {
+    highlightItem: function (item) {
         var me = this,
             points, path;
         if (!item) {
             this.highlightSeries();
             return;
         }
-        
+
         points = item._points;
         if (points.length === 2) {
             path = ['M', points[0][0], points[0][1], 'L', points[1][0], points[1][1]];
         } else {
             path = ['M', points[0][0], points[0][1], 'L', points[0][0], me.bbox.y + me.bbox.height];
         }
-        
+
         me.highlightSprite.setAttributes({
             path: path,
             hidden: false
@@ -778,7 +778,7 @@ Ext.define('Ext.chart.series.Area', {
      * Un-highlights the specified item. If no item is provided it will un-highlight the entire series.
      * @param {Object} item Info about the item; same format as returned by #getItemForPoint
      */
-    unHighlightItem: function(item) {
+    unHighlightItem: function (item) {
         if (!item) {
             this.unHighlightSeries();
         }
@@ -789,7 +789,7 @@ Ext.define('Ext.chart.series.Area', {
     },
 
     // @private
-    hideAll: function(index) {
+    hideAll: function (index) {
         var me = this;
         index = (isNaN(me._index) ? index : me._index) || 0;
         me.__excludes[index] = true;
@@ -798,7 +798,7 @@ Ext.define('Ext.chart.series.Area', {
     },
 
     // @private
-    showAll: function(index) {
+    showAll: function (index) {
         var me = this;
         index = (isNaN(me._index) ? index : me._index) || 0;
         me.__excludes[index] = false;
@@ -806,7 +806,7 @@ Ext.define('Ext.chart.series.Area', {
         me.redraw();
     },
 
-    redraw: function() {
+    redraw: function () {
         //store previous configuration for the legend
         //and set it to false so we don't
         //re-build label elements if not necessary.
@@ -817,13 +817,13 @@ Ext.define('Ext.chart.series.Area', {
         me.chart.redraw();
         me.chart.legend.rebuild = prevLegendConfig;
     },
-    
-    hide: function() {
+
+    hide: function () {
         if (this.areas) {
             var me = this,
                 areas = me.areas,
                 i, j, l, ln, shadows;
-            
+
             if (areas && areas.length) {
                 for (i = 0, ln = areas.length; i < ln; ++i) {
                     if (areas[i]) {
@@ -839,7 +839,7 @@ Ext.define('Ext.chart.series.Area', {
      * Returns the color of the series (to be displayed as color for the series legend item).
      * @param {Object} item Info about the item; same format as returned by #getItemForPoint
      */
-    getLegendColor: function(index) {
+    getLegendColor: function (index) {
         var me = this;
         index += me.themeIdx;
         return me.colorArrayStyle[index % me.colorArrayStyle.length];

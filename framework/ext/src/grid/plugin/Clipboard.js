@@ -53,7 +53,7 @@ Ext.define('Ext.grid.plugin.Clipboard', {
                 lastRecord = record;
                 ret.push(row = []);
             }
-            
+
             dataIndex = cellContext.column.dataIndex;
 
             if (isRaw) {

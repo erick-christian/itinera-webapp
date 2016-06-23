@@ -176,10 +176,10 @@ Ext.define('catCar.view.formMaintenance', {
             columns: [
                 {
                     xtype: 'gridcolumn',
-                    id: 'car_id',
-                    itemId: 'car_id',
-                    dataIndex: 'car_id',
-                    text: 'Car ID'
+                    id: 'car_code',
+                    itemId: 'car_code',
+                    dataIndex: 'car_code',
+                    text: 'Car Code'
                 },
                 {
                     xtype: 'gridcolumn',
@@ -190,11 +190,11 @@ Ext.define('catCar.view.formMaintenance', {
                 },
                 {
                     xtype: 'gridcolumn',
-                    id: 'maker',
-                    itemId: 'maker',
+                    id: 'carmaker',
+                    itemId: 'carmaker',
                     maxWidth: 200,
                     width: 300,
-                    dataIndex: 'maker',
+                    dataIndex: 'carmaker_code',
                     text: 'Maker'
                 },
                 {
@@ -327,7 +327,50 @@ Ext.define('catCar.view.formMaintenance', {
                     itemId: 'pagingToolbar2',
                     width: 260,
                     displayInfo: true,
-                    store: 'storeUserCar'
+                    store: 'storeUserCar',
+                    items: [
+                        {
+                            xtype: 'tbseparator',
+                            width: 50
+                        },
+                        {
+                            xtype: 'button',
+                            handler: function (button, e) {
+                                var winUserCar = Ext.getCmp('winUserCar');
+
+                                if (!winUserCar) {
+                                    winUserCar = Ext.create('widget.winUserCar');
+                                    winUserCar.show();
+                                    trex.hideScrollBars();
+                                }
+                            },
+                            id: 'btnCreateUserCar',
+                            itemId: 'btnCreateUserCar',
+                            width: 40,
+                            iconCls: 'ion-ios-compose icon16'
+                        },
+                        {
+                            xtype: 'button',
+                            handler: function (button, e) {
+                                var winUserCar = Ext.getCmp('winUserCar');
+
+                                if (!winUserCar) {
+                                    winUserCar = Ext.create('widget.winUserCar');
+                                    winUserCar.show();
+                                    trex.hideScrollBars();
+                                }
+                            },
+                            width: 40,
+                            iconCls: 'ion-edit icon16',
+                            tooltip: 'create'
+                        },
+                        {
+                            xtype: 'button',
+                            width: 40,
+                            iconCls: 'ion-android-delete icon16',
+                            tooltip: 'create'
+                        }
+                    ]
                 }
             ],
             listeners: {
@@ -399,9 +442,48 @@ Ext.define('catCar.view.formMaintenance', {
                     dock: 'bottom',
                     id: 'pagingToolbar3',
                     itemId: 'pagingToolbar2',
-                    width: 260,
+                    width: 30,
                     displayInfo: true,
-                    store: 'storeEventCar'
+                    store: 'storeEventCar',
+                    items: [
+                        {
+                            xtype: 'tbseparator',
+                            width: 50
+                        },
+                        {
+                            xtype: 'button',
+                            handler: function (button, e) {
+                                var winEventCar = Ext.getCmp('winEventCar');
+
+                                if (!winEventCar) {
+                                    winEventCar = Ext.create('widget.winEventCar');
+                                    winEventCar.show();
+                                    trex.hideScrollBars();
+                                }
+                            },
+                            width: 40,
+                            iconCls: 'ion-ios-compose icon16'
+                        },
+                        {
+                            xtype: 'button',
+                            handler: function (button, e) {
+                                var winEventCar = Ext.getCmp('winEventCar');
+
+                                if (!winEventCar) {
+                                    winEventCar = Ext.create('widget.winEventCar');
+                                    winEventCar.show();
+                                    trex.hideScrollBars();
+                                }
+                            },
+                            width: 40,
+                            iconCls: 'ion-edit icon16'
+                        },
+                        {
+                            xtype: 'button',
+                            width: 40,
+                            iconCls: 'ion-android-delete icon16'
+                        }
+                    ]
                 }
             ],
             listeners: {

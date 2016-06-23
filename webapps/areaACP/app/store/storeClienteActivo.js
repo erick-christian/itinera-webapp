@@ -21,7 +21,7 @@ Ext.define('areaACP.store.storeClienteActivo', {
         'Ext.data.proxy.SessionStorage'
     ],
 
-    constructor: function(cfg) {
+    constructor: function (cfg) {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({

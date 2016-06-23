@@ -167,7 +167,7 @@ Ext.define('Ext.draw.sprite.Text', {
                  */
                 font: "string"
                 //<debug>
-                ,debug: 'default'
+                , debug: 'default'
                 //</debug>
             },
             aliases: {
@@ -302,7 +302,8 @@ Ext.define('Ext.draw.sprite.Text', {
         if (plain.dirty) {
             me.updatePlainBBox(plain);
             plain.dirty = false;
-        } if (surface.getInherited().rtl && surface.getFlipRtlText()) {
+        }
+        if (surface.getInherited().rtl && surface.getFlipRtlText()) {
             // Since sprite's attributes haven't actually changed at this point,
             // and we just want to update the position of its bbox
             // based on surface's width, there's no reason to perform

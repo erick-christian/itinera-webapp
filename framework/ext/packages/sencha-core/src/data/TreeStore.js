@@ -19,18 +19,18 @@
  * so the reader can find nested data for each node (if a root is not specified, it will default to
  * 'children'). This will tell the tree to look for any nested tree nodes by the same keyword, i.e., 'children'.
  * If a root is specified in the config make sure that any nested nodes with children have the same name.
- * 
+ *
  * **Note:** Setting {@link #defaultRootProperty} accomplishes the same thing.
- * 
+ *
  * #rootProperty as a Function
- * You can pass a function as the data reader's rootProperty when the tree's dataset has 
- * mixed root properties. Child nodes can then be programmatically determined at read time.  
- * 
- * For example, the child nodes may be passed via the 'children' property 
- * name, though you may have a top-level root property of 'items'.  
- * 
+ * You can pass a function as the data reader's rootProperty when the tree's dataset has
+ * mixed root properties. Child nodes can then be programmatically determined at read time.
+ *
+ * For example, the child nodes may be passed via the 'children' property
+ * name, though you may have a top-level root property of 'items'.
+ *
  * See {@link Ext.data.reader.Reader#rootProperty rootProperty} for more information.
- * 
+ *
  */
 Ext.define('Ext.data.TreeStore', {
     extend: 'Ext.data.NodeStore',
@@ -66,10 +66,10 @@ Ext.define('Ext.data.TreeStore', {
          * Setting the `root` config option is the same as calling {@link #setRootNode}.
          *
          * It's important to note that setting expanded to true on the root node will cause
-         * the tree store to attempt to load.  This will occur regardless the value of 
-         * {@link Ext.data.ProxyStore#autoLoad autoLoad}. If you you do not want the store 
+         * the tree store to attempt to load.  This will occur regardless the value of
+         * {@link Ext.data.ProxyStore#autoLoad autoLoad}. If you you do not want the store
          * to load on instantiation, ensure expanded is false and load the store when you're ready.
-         * 
+         *
          */
         root: null,
 
@@ -116,7 +116,7 @@ Ext.define('Ext.data.TreeStore', {
          * @cfg {Boolean} [clearOnLoad=true]
          * Remove previously existing child nodes before loading.
          */
-        clearOnLoad : true,
+        clearOnLoad: true,
 
         /**
          * @cfg {Boolean} [clearRemovedOnLoad=true]
@@ -168,12 +168,12 @@ Ext.define('Ext.data.TreeStore', {
      * By default, the Store uses an {@link Ext.data.TreeModel}. If you configure fields, it uses a subclass of {@link Ext.data.TreeModel}
      * defined with the set of fields that you specify (In addition to the fields which it uses for storing internal state).
      */
-    
+
     _silentOptions: {
         silent: true
     },
 
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this;
 
         me.byIdMap = {};
@@ -252,7 +252,7 @@ Ext.define('Ext.data.TreeStore', {
      * @param {Ext.data.TreeModel/Ext.data.NodeInterface} oldRoot The old root
      */
 
-    applyFields: function(fields) {
+    applyFields: function (fields) {
         var me = this;
 
         if (fields) {
@@ -277,7 +277,7 @@ Ext.define('Ext.data.TreeStore', {
     },
 
     // TreeStore has to do right things upon SorterCollection update
-    onSorterEndUpdate: function() {
+    onSorterEndUpdate: function () {
         var me = this,
             sorterCollection = me.getSorters(),
             sorters = sorterCollection.getRange(),
@@ -289,7 +289,7 @@ Ext.define('Ext.data.TreeStore', {
             if (me.getRemoteSort()) {
                 if (sorters.length) {
                     me.attemptLoad({
-                        callback: function() {
+                        callback: function () {
                             me.fireEvent('sort', me, sorters);
                         }
                     });
@@ -309,20 +309,20 @@ Ext.define('Ext.data.TreeStore', {
         }
     },
 
-    updateFolderSort: function(folderSort) {
+    updateFolderSort: function (folderSort) {
         this.needsFolderSort = folderSort;
         this.onSorterEndUpdate();
     },
 
-    getSortFn: function() {
+    getSortFn: function () {
         return this._sortFn || (this._sortFn = this.createSortFn());
     },
 
-    createSortFn: function() {
+    createSortFn: function () {
         var me = this,
             sortersSortFn = this.sorters.getSortFn();
 
-        return function(node1, node2) {
+        return function (node1, node2) {
             var node1FolderOrder, node2FolderOrder,
                 result = 0;
 
@@ -340,7 +340,7 @@ Ext.define('Ext.data.TreeStore', {
         };
     },
 
-    afterEdit: function(node, modifiedFieldNames) {
+    afterEdit: function (node, modifiedFieldNames) {
         var me = this;
 
         if (me.needsLocalFilter()) {
@@ -349,11 +349,11 @@ Ext.define('Ext.data.TreeStore', {
         me.callParent([node, modifiedFieldNames]);
     },
 
-    fireChangeEvent: function(record) {
+    fireChangeEvent: function (record) {
         return !!this.byIdMap[record.id];
     },
 
-    updateRootVisible: function(rootVisible) {
+    updateRootVisible: function (rootVisible) {
         var rootNode = this.getRoot(),
             data;
 
@@ -367,23 +367,23 @@ Ext.define('Ext.data.TreeStore', {
         }
     },
 
-    updateTrackRemoved: function(trackRemoved) {
+    updateTrackRemoved: function (trackRemoved) {
         this.callParent(arguments);
         this.removedNodes = this.removed;
         this.removed = null;
     },
 
-    getRemovedRecords: function() {
+    getRemovedRecords: function () {
         return this.removedNodes;
     },
 
-    onDestroyRecords: function(records, operation, success) {
+    onDestroyRecords: function (records, operation, success) {
         if (success) {
             this.removedNodes.length = 0;
         }
     },
 
-    updateProxy: function(proxy) {
+    updateProxy: function (proxy) {
         var reader;
         // The proxy sets a parameter to carry the entity ID based upon the Operation's id
         // That parameter name defaults to "id".
@@ -401,17 +401,17 @@ Ext.define('Ext.data.TreeStore', {
         }
     },
 
-    setProxy: function(proxy) {
+    setProxy: function (proxy) {
         this.changingProxy = true;
         this.callParent([proxy]);
         this.changingProxy = false;
     },
 
-    applyModel: function(model) {
+    applyModel: function (model) {
         return this.callParent(arguments) || Ext.data.TreeModel;
     },
 
-    updateModel: function(model) {
+    updateModel: function (model) {
         var isNode = model.prototype.isNode;
 
         // Ensure that the model has the required interface to function as a tree node.
@@ -424,7 +424,7 @@ Ext.define('Ext.data.TreeStore', {
         }
     },
 
-    onFilterEndUpdate: function(filters) {
+    onFilterEndUpdate: function (filters) {
         var me = this,
             length = filters.length,
             root = me.getRoot(),
@@ -436,7 +436,7 @@ Ext.define('Ext.data.TreeStore', {
                 me.doFilter(root);
             } else {
                 root.cascadeBy({
-                    after: function(node) {
+                    after: function (node) {
                         // Set visible field silently: do not fire update events to views.
                         // Views will receive refresh event from onNodeFilter.
                         node.set('visible', true, me._silentOptions);
@@ -475,7 +475,7 @@ Ext.define('Ext.data.TreeStore', {
      * Called from filter/clearFilter. Refreshes the view based upon
      * the new filter setting.
      */
-    onNodeFilter: function(root, childNodes) {
+    onNodeFilter: function (root, childNodes) {
         var me = this,
             data = me.getData(),
             toAdd = [];
@@ -513,7 +513,7 @@ Ext.define('Ext.data.TreeStore', {
      * @param {Object} scope The scope in which to run the callback function
      * @param {Array} args The extra args to pass to the callback after the new child nodes
      */
-    onBeforeNodeExpand: function(node, callback, scope, args) {
+    onBeforeNodeExpand: function (node, callback, scope, args) {
         var me = this,
             storeReader,
             nodeProxy,
@@ -533,7 +533,7 @@ Ext.define('Ext.data.TreeStore', {
         }
         // The node is loading
         else if (node.isLoading()) {
-            me.on('load', function() {
+            me.on('load', function () {
                 callbackArgs = [node.childNodes];
                 if (args) {
                     callbackArgs.push.apply(callbackArgs, args);
@@ -569,7 +569,7 @@ Ext.define('Ext.data.TreeStore', {
                 if (children) {
                     me.fillNode(node, reader.extractData(children, {
                         model: node.childType,
-                        recordCreator : me.recordCreator
+                        recordCreator: me.recordCreator
                     }));
                 }
 
@@ -590,7 +590,7 @@ Ext.define('Ext.data.TreeStore', {
                     node: node,
                     // We use onChildNodesAvailable here because we want trigger to
                     // the loading event after we've loaded children
-                    onChildNodesAvailable: function() {
+                    onChildNodesAvailable: function () {
                         // Clear the callback, since if we're introducing a custom one,
                         // it may be re-used on reload
                         delete me.lastOptions.onChildNodesAvailable;
@@ -607,7 +607,7 @@ Ext.define('Ext.data.TreeStore', {
 
     // Called from a node's onChildNodesAvailable method to
     // insert the newly available child nodes below the parent.
-    onNodeExpand: function(parent, records) {
+    onNodeExpand: function (parent, records) {
         var me = this,
             insertIndex = me.indexOf(parent) + 1,
             toAdd = [];
@@ -627,7 +627,7 @@ Ext.define('Ext.data.TreeStore', {
 
     // Collects child nodes to remove into the passed toRemove array.
     // When available, all descendant nodes are pushed into that array using recursion.
-    handleNodeExpand: function(parent, records, toAdd) {
+    handleNodeExpand: function (parent, records, toAdd) {
         var me = this,
             ln = records ? records.length : 0,
             i, record;
@@ -670,7 +670,7 @@ Ext.define('Ext.data.TreeStore', {
      * @private
      * Called from a node's collapse method
      */
-    onNodeCollapse: function(parent, records, callback, scope) {
+    onNodeCollapse: function (parent, records, callback, scope) {
         var me = this,
             collapseIndex = me.indexOf(parent) + 1,
             lastNodeIndexPlus;
@@ -723,7 +723,7 @@ Ext.define('Ext.data.TreeStore', {
      *
      * This is so that removal of nodes at full depth can be optimized into one removeAt(start, length) call.
      */
-    indexOfNextVisibleNode: function(node) {
+    indexOfNextVisibleNode: function (node) {
         var result;
 
         while (node.parentNode) {
@@ -736,7 +736,7 @@ Ext.define('Ext.data.TreeStore', {
             if (result) {
                 return this.indexOf(result);
             }
-            
+
             // If there is no next sibling, we try to find the parent node's next visible sibling.
             node = node.parentNode;
         }
@@ -749,7 +749,7 @@ Ext.define('Ext.data.TreeStore', {
      * @private
      * Filter function for new records.
      */
-    filterNew: function(item) {
+    filterNew: function (item) {
         // Root nodes are always generated on the client side, and therefore phantom.
         // But they should never be included in the new records list.
         return !item.get('root') && this.callParent([item]);
@@ -759,17 +759,17 @@ Ext.define('Ext.data.TreeStore', {
      * @private
      * Filter function for rejected records.
      */
-    filterRejects: function(item) {
+    filterRejects: function (item) {
         // Root nodes are always generated on the client side, and therefore phantom.
         // But they should never be included in the rejects list.
         return !item.get('root') && this.callParent([item]);
     },
 
-    getNewRecords: function() {
+    getNewRecords: function () {
         return Ext.Array.filter(Ext.Object.getValues(this.byIdMap), this.filterNew, this);
     },
 
-    getUpdatedRecords: function() {
+    getUpdatedRecords: function () {
         return Ext.Array.filter(Ext.Object.getValues(this.byIdMap), this.filterUpdated);
     },
 
@@ -792,9 +792,9 @@ Ext.define('Ext.data.TreeStore', {
     //
     // If there are expanded nodes, descendants will be in this store and need removing too.
     // These values are used in onNodeRemove below, after the node has been unhooked from its siblings and parent.
-    beforeNodeRemove: function(parentNode, childNodes) {
+    beforeNodeRemove: function (parentNode, childNodes) {
         if (!Ext.isArray(childNodes)) {
-            childNodes = [ childNodes ];
+            childNodes = [childNodes];
         }
         var me = this,
             len = childNodes.length,
@@ -827,7 +827,7 @@ Ext.define('Ext.data.TreeStore', {
 
     // Called from a node's removeChild & removeAll methods *after* the node is unhooked from siblings and parent.
     // Remove the visible descendant nodes that we calculated in beforeRemoveNode above.
-    onNodeRemove: function(parentNode, childNodes, isMove) {
+    onNodeRemove: function (parentNode, childNodes, isMove) {
         var me = this,
             removed = me.removedNodes,
             len = childNodes.length,
@@ -872,7 +872,7 @@ Ext.define('Ext.data.TreeStore', {
         // beforeNodeRemove would only collect "bletch" and "blivit", and the code above would remove those two.
         // We now have to collect zarg, uk, screeble, raz and poot.
         for (i = 0; i < len; i++) {
-            childNodes[i].cascadeBy(function(node) {
+            childNodes[i].cascadeBy(function (node) {
                 // We have to unregister all descendant nodes.
                 me.unregisterNode(node);
 
@@ -903,7 +903,7 @@ Ext.define('Ext.data.TreeStore', {
      *
      * Called from a node's appendChild method.
      */
-    onNodeAppend: function(parent, node, index) {
+    onNodeAppend: function (parent, node, index) {
         this.onNodeInsert(parent, node, index);
     },
 
@@ -912,7 +912,7 @@ Ext.define('Ext.data.TreeStore', {
      *
      * Called from a node's insertBefore method.
      */
-    onNodeInsert: function(parent, node, index) {
+    onNodeInsert: function (parent, node, index) {
         var me = this,
             data = node.raw || node.data,
             refNode,
@@ -982,7 +982,7 @@ Ext.define('Ext.data.TreeStore', {
             if (dataRoot) {
                 me.fillNode(node, reader.extractData(dataRoot, {
                     model: node.childType,
-                    recordCreator : me.recordCreator
+                    recordCreator: me.recordCreator
                 }));
             }
         }
@@ -996,7 +996,7 @@ Ext.define('Ext.data.TreeStore', {
      * @param {Ext.data.NodeInterface} node The node to register
      * @param {Boolean} [includeChildren] True to unregister any child nodes
      */
-    registerNode: function(node, includeChildren) {
+    registerNode: function (node, includeChildren) {
         var me = this,
             children, length, i;
 
@@ -1017,7 +1017,7 @@ Ext.define('Ext.data.TreeStore', {
      * @param {Ext.data.NodeInterface} node The node to unregister
      * @param {Boolean} [includeChildren] True to unregister any child nodes
      */
-    unregisterNode: function(node, includeChildren) {
+    unregisterNode: function (node, includeChildren) {
         var me = this,
             children, length, i;
 
@@ -1031,7 +1031,7 @@ Ext.define('Ext.data.TreeStore', {
         }
     },
 
-    onNodeSort: function(node, childNodes) {
+    onNodeSort: function (node, childNodes) {
         var me = this;
 
         // The onNodeCollapse and onNodeExpand should not sync.
@@ -1051,7 +1051,7 @@ Ext.define('Ext.data.TreeStore', {
         me.resumeAutoSync(me.autoSync);
     },
 
-    applyRoot: function(newRoot) {
+    applyRoot: function (newRoot) {
         var me = this,
             Model = me.getModel(),
             idProperty = Model.prototype.idProperty,
@@ -1088,7 +1088,7 @@ Ext.define('Ext.data.TreeStore', {
         return newRoot;
     },
 
-    updateRoot: function(newRoot, oldRoot) {
+    updateRoot: function (newRoot, oldRoot) {
         var me = this,
             oldOwner,
             initial = !oldRoot,
@@ -1193,7 +1193,7 @@ Ext.define('Ext.data.TreeStore', {
             // Root is not loaded; go through the expand mechanism to force a load
             else {
                 newRoot.data.expanded = false;
-                newRoot.expand(false, function() {
+                newRoot.expand(false, function () {
                     me.fireEvent('datachanged', me);
                     me.fireEvent('refresh', me);
                 });
@@ -1208,14 +1208,14 @@ Ext.define('Ext.data.TreeStore', {
 
         return newRoot;
     },
-    
+
     /**
      * @method getById
      * @inheritdoc Ext.data.LocalStore
-     * @localdoc **NOTE:** TreeStore's getById method will only search nodes that 
-     * are expanded (all ancestor nodes are {@link Ext.data.NodeInterface#expanded 
+     * @localdoc **NOTE:** TreeStore's getById method will only search nodes that
+     * are expanded (all ancestor nodes are {@link Ext.data.NodeInterface#expanded
      * expanded}: true -- {@link Ext.data.NodeInterface#isExpanded isExpanded})
-     * 
+     *
      * See also {@link #getNodeById}
      */
 
@@ -1225,7 +1225,7 @@ Ext.define('Ext.data.TreeStore', {
      * @param {String} id The id of the node to get.
      * @return {Ext.data.NodeInterface}
      */
-    getNodeById: function(id) {
+    getNodeById: function (id) {
         return this.byIdMap[id] || null;
     },
 
@@ -1236,14 +1236,14 @@ Ext.define('Ext.data.TreeStore', {
      * @param {String} fieldName The name of the Record field to test.
      * @param {String/RegExp} value Either a string that the field value
      * should begin with, or a RegExp to test against the field.
-     * @param {Boolean} [anyMatch=true] False to match any part of the string, not just 
+     * @param {Boolean} [anyMatch=true] False to match any part of the string, not just
      * the beginning.
      * @param {Boolean} [caseSensitive=false] True for case sensitive comparison
      * @param {Boolean} [exactMatch=false] True to force exact match (^ and $ characters
      * added to the regex). Ignored if `anyMatch` is `true`.
      * @return {Ext.data.NodeInterface} The matched node or null
      */
-    findNode: function(property, value, startsWith, endsWith, ignoreCase) {
+    findNode: function (property, value, startsWith, endsWith, ignoreCase) {
         if (Ext.isEmpty(value, false)) {
             return null;
         }
@@ -1255,7 +1255,7 @@ Ext.define('Ext.data.TreeStore', {
         var regex = Ext.String.createRegex(value, startsWith, endsWith, ignoreCase),
             result = null;
 
-        Ext.Object.eachValue(this.byIdMap, function(node) {
+        Ext.Object.eachValue(this.byIdMap, function (node) {
             if (node && regex.test(node.get(property))) {
                 result = node;
                 return false;
@@ -1278,7 +1278,7 @@ Ext.define('Ext.data.TreeStore', {
      * default to the root node.
      * @param {Ext.data.NodeInterface} [options.node] The tree node to load. Defaults to the store's {@link #cfg-root root node}
      */
-    load: function(options) {
+    load: function (options) {
         options = options || {};
         options.params = options.params || {};
 
@@ -1287,11 +1287,11 @@ Ext.define('Ext.data.TreeStore', {
             callback = options.callback,
             scope = options.scope,
             clearOnLoad = me.getClearOnLoad(),
-            // If we are loading the root, and clearing on load, then it is a whole
-            // store reload.
-            // This is handled efficiently in onProxyLoad by firing the refresh event
-            // which will completely refresh any dependent views as would be expected
-            // from a reload() call.
+        // If we are loading the root, and clearing on load, then it is a whole
+        // store reload.
+        // This is handled efficiently in onProxyLoad by firing the refresh event
+        // which will completely refresh any dependent views as would be expected
+        // from a reload() call.
             isReload = node && node.isRoot() && node.isLoaded() && clearOnLoad,
             operation, doClear;
 
@@ -1314,7 +1314,7 @@ Ext.define('Ext.data.TreeStore', {
             if (clearOnLoad) {
                 node.data.expanded = false;
             }
-            options.callback = function(loadedNodes, operation, success) {
+            options.callback = function (loadedNodes, operation, success) {
 
                 // If newly loaded nodes are to be added to the existing child node set, then we have to collapse
                 // first so that they get removed from the NodeStore, and the subsequent expand will reveal the
@@ -1363,7 +1363,7 @@ Ext.define('Ext.data.TreeStore', {
                 me.unregisterNode(node, true);
                 node.childNodes.length = 0;
                 doClear = true;
-            } 
+            }
             // If clear node on load, remove its children
             else if (clearOnLoad) {
                 if (me.getTrackRemoved() && me.getClearRemovedOnLoad()) {
@@ -1393,7 +1393,7 @@ Ext.define('Ext.data.TreeStore', {
         return me;
     },
 
-    onProxyLoad: function(operation) {
+    onProxyLoad: function (operation) {
         var me = this,
             options = operation.initialConfig,
             successful = operation.wasSuccessful(),
@@ -1419,9 +1419,9 @@ Ext.define('Ext.data.TreeStore', {
             if (me.getParentIdProperty()) {
                 records = me.treeify(node, records);
             }
-            
+
             if (isReload) {
-                 me.suspendEvent('add', 'update');
+                me.suspendEvent('add', 'update');
             }
             records = me.fillNode(node, records);
         }
@@ -1436,9 +1436,9 @@ Ext.define('Ext.data.TreeStore', {
          * @param {Ext.data.Operation} operation The operation that triggered this load.
          * @param {Ext.data.NodeInterface} node The node that was loaded.
          */
-        
+
         if (isReload) {
-             me.resumeEvent('add', 'update');
+            me.resumeEvent('add', 'update');
 
             me.callObservers('BeforePopulate');
             me.fireEvent('datachanged', me);
@@ -1455,7 +1455,7 @@ Ext.define('Ext.data.TreeStore', {
      * @private
      * @param {Ext.data.NodeInterface} node
      */
-    clearRemoved: function(node) {
+    clearRemoved: function (node) {
         var me = this,
             removed = me.removedNodes,
             id = node.getId(),
@@ -1512,7 +1512,7 @@ Ext.define('Ext.data.TreeStore', {
      * @param {Ext.data.NodeInterface} node The node to fill
      * @param {Ext.data.TreeModel[]} newNodes The records to add
      */
-    fillNode: function(node, newNodes) {
+    fillNode: function (node, newNodes) {
         var me = this,
             newNodeCount = newNodes ? newNodes.length : 0,
             sorters = me.getSorters(),
@@ -1570,7 +1570,7 @@ Ext.define('Ext.data.TreeStore', {
     },
 
     // Called by a node which is appending children to itself
-    beginFill: function() {
+    beginFill: function () {
         var me = this;
 
         if (!me.fillCount++) { // jshint ignore:line
@@ -1582,7 +1582,7 @@ Ext.define('Ext.data.TreeStore', {
     },
 
     // resume view updating and data syncing after a node fill
-    endFill: function(parent, nodes) {
+    endFill: function (parent, nodes) {
         var me = this,
             fillArray = me.fillArray,
             i, len,
@@ -1591,7 +1591,7 @@ Ext.define('Ext.data.TreeStore', {
         // Keep every block of records added during the fill
         fillArray.push(nodes);
 
-        if (! --me.fillCount) {
+        if (!--me.fillCount) {
             me.resumeAutoSync();
             me.resumeEvent('add', 'update');
 
@@ -1618,11 +1618,11 @@ Ext.define('Ext.data.TreeStore', {
      * @param {Ext.data.NodeInterface} node2
      * @return {Number}
      */
-    sortByIndex: function(node1, node2) {
+    sortByIndex: function (node1, node2) {
         return node1.data.index - node2.data.index;
     },
 
-    onIdChanged: function(node, oldId, newId) {
+    onIdChanged: function (node, oldId, newId) {
         var childNodes = node.childNodes,
             len = childNodes && childNodes.length,
             i;
@@ -1640,7 +1640,7 @@ Ext.define('Ext.data.TreeStore', {
     // @private
     // Converts a flat array of nodes into a tree structure.
     // Returns an array which is the childNodes array of the rootNode.
-    treeify: function(parentNode, records) {
+    treeify: function (parentNode, records) {
         var me = this,
             loadParentNodeId = parentNode.getId(),
             parentIdProperty = me.getParentIdProperty(),
@@ -1672,15 +1672,15 @@ Ext.define('Ext.data.TreeStore', {
             }
             me.registerNode(node);
         }
-        
+
         return result;
     },
-    
-    cleanRecords: function(node, records){
+
+    cleanRecords: function (node, records) {
         var nodeHash = {},
             childNodes = node.childNodes,
             i = 0,
-            len  = childNodes.length,
+            len = childNodes.length,
             out = [],
             rec;
 
@@ -1699,14 +1699,14 @@ Ext.define('Ext.data.TreeStore', {
         return out;
     },
 
-    removeAll: function() {
+    removeAll: function () {
         this.suspendEvents();
         this.setRoot(null);
         this.resumeEvents();
         this.callParent();
     },
 
-    doSort: function(sorterFn) {
+    doSort: function (sorterFn) {
         var me = this;
         if (me.getRemoteSort()) {
             //the load function will pick up the new sorters and request the sorted data from the proxy
@@ -1719,11 +1719,11 @@ Ext.define('Ext.data.TreeStore', {
         me.fireEvent('sort', me, me.sorters.getRange());
     },
 
-    filterVisible: function(node) {
+    filterVisible: function (node) {
         return node.get('visible');
     },
 
-    isVisible: function(node) {
+    isVisible: function (node) {
         var parentNode = node.parentNode,
             visible = node.data.visible,
             root = this.getRoot();
@@ -1737,7 +1737,7 @@ Ext.define('Ext.data.TreeStore', {
         return visible && !(node === root && !this.getRootVisible());
     },
 
-    commitChanges : function() {
+    commitChanges: function () {
         var removed = this.removedNodes;
 
         if (removed) {
@@ -1752,7 +1752,7 @@ Ext.define('Ext.data.TreeStore', {
      * @return {Ext.data.NodeInterface}
      * @deprecated 5.0 Use {@link #getRoot} instead
      */
-    getRootNode: function() {
+    getRootNode: function () {
         return this.getRoot();
     },
 
@@ -1762,7 +1762,7 @@ Ext.define('Ext.data.TreeStore', {
      * @return {Ext.data.NodeInterface} The new root
      * @deprecated 5.0 Use {@link #setRoot} instead
      */
-    setRootNode: function(root) {
+    setRootNode: function (root) {
         this.setRoot(root);
         return this.getRoot();
     },
@@ -1779,14 +1779,14 @@ Ext.define('Ext.data.TreeStore', {
             return new Model(data);
         },
 
-        doFilter: function(node) {
+        doFilter: function (node) {
             var root = this.getRoot(),
                 filterFn = this.getFilters().getFilterFn();
-                
+
             this.filterNodes(root, node, filterFn);
         },
 
-        filterNodes: function(root, node, filterFn) {
+        filterNodes: function (root, node, filterFn) {
             var match = false,
                 childNodes = node.childNodes,
                 len = childNodes && childNodes.length,
@@ -1803,11 +1803,11 @@ Ext.define('Ext.data.TreeStore', {
             return match;
         },
 
-        needsLocalFilter: function() {
+        needsLocalFilter: function () {
             return !this.getRemoteFilter() && this.getFilters().length;
         },
 
-        onRemoteFilterSet: function(filters, remoteFilter) {
+        onRemoteFilterSet: function (filters, remoteFilter) {
             // Filtering is done at the Store level for TreeStores.
             // It has to be done on a hierarchical basis.
             // The onFilterEndUpdate signal has to be passed into the root node which filters its children
@@ -1820,7 +1820,7 @@ Ext.define('Ext.data.TreeStore', {
             }
         },
 
-        onRemoteSortSet: function(sorters, remoteSort) {
+        onRemoteSortSet: function (sorters, remoteSort) {
             // Sorting is done at the Store level for TreeStores.
             // It has to be done on a hierarchical basis.
             // The onSorterEndUpdate signal has to be passed root node which sorts its children

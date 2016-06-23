@@ -104,7 +104,7 @@ Ext.define('Ext.draw.engine.Svg', {
         }
     },
 
-    createSvgElement: function(type, attrs) {
+    createSvgElement: function (type, attrs) {
         var el = this.domRef.createElementNS("http:/" + "/www.w3.org/2000/svg", type),
             key;
         if (attrs) {
@@ -115,7 +115,7 @@ Ext.define('Ext.draw.engine.Svg', {
         return el;
     },
 
-    createSpriteElement: function(sprite) {
+    createSpriteElement: function (sprite) {
         // Create svg element and append to the DOM.
         var el = this.createSvgElement(sprite.type);
         el.id = sprite.id;
@@ -134,7 +134,7 @@ Ext.define('Ext.draw.engine.Svg', {
         sprite.fireEvent("render", sprite);
         return el;
     },
-    
+
     getBBoxText: function (sprite) {
         var bbox = {},
             bb, height, width, i, ln, el;
@@ -144,7 +144,7 @@ Ext.define('Ext.draw.engine.Svg', {
             try {
                 bbox = el.getBBox();
                 return bbox;
-            } catch(e) {
+            } catch (e) {
                 // Firefox 3.0.x plays badly here
             }
             bbox = {x: bbox.x, y: Infinity, width: 0, height: 0};
@@ -161,34 +161,34 @@ Ext.define('Ext.draw.engine.Svg', {
         }
     },
 
-    hide: function() {
+    hide: function () {
         Ext.get(this.el).hide();
     },
 
-    show: function() {
+    show: function () {
         Ext.get(this.el).show();
     },
 
-    hidePrim: function(sprite) {
+    hidePrim: function (sprite) {
         this.addCls(sprite, Ext.baseCSSPrefix + 'hide-visibility');
     },
 
-    showPrim: function(sprite) {
+    showPrim: function (sprite) {
         this.removeCls(sprite, Ext.baseCSSPrefix + 'hide-visibility');
     },
 
-    getDefs: function() {
+    getDefs: function () {
         return this._defs || (this._defs = this.createSvgElement("defs"));
     },
 
-    transform: function(sprite, matrixOnly) {
+    transform: function (sprite, matrixOnly) {
         var me = this,
             matrix = new Ext.draw.Matrix(),
             transforms = sprite.transformations,
             transformsLength = transforms.length,
             i = 0,
             transform, type;
-            
+
         for (; i < transformsLength; i++) {
             transform = transforms[i];
             type = transform.type;
@@ -208,10 +208,10 @@ Ext.define('Ext.draw.engine.Svg', {
         }
     },
 
-    setSize: function(width, height) {
+    setSize: function (width, height) {
         var me = this,
             el = me.el;
-        
+
         width = +width || me.width;
         height = +height || me.height;
         me.width = width;
@@ -229,7 +229,7 @@ Ext.define('Ext.draw.engine.Svg', {
      * Get the region for the surface's canvas area
      * @return {Ext.util.Region}
      */
-    getRegion: function() {
+    getRegion: function () {
         // Mozilla requires using the background rect because the svg element returns an
         // incorrect region. Webkit gives no region for the rect and must use the svg element.
         var svgXY = this.el.getXY(),
@@ -245,15 +245,15 @@ Ext.define('Ext.draw.engine.Svg', {
         };
     },
 
-    onRemove: function(sprite) {
+    onRemove: function (sprite) {
         if (sprite.el) {
             sprite.el.destroy();
             delete sprite.el;
         }
         this.callParent(arguments);
     },
-    
-    setViewBox: function(x, y, width, height) {
+
+    setViewBox: function (x, y, width, height) {
         if (isFinite(x) && isFinite(y) && isFinite(width) && isFinite(height)) {
             this.callParent(arguments);
             this.el.dom.setAttribute("viewBox", [x, y, width, height].join(" "));
@@ -263,7 +263,7 @@ Ext.define('Ext.draw.engine.Svg', {
     render: function (container) {
         var me = this,
             cfg, el, defs, bgRect, webkitRect;
-            
+
         if (!me.el) {
             cfg = {
                 xmlns: "http:/" + "/www.w3.org/2000/svg",
@@ -271,11 +271,11 @@ Ext.define('Ext.draw.engine.Svg', {
                 width: me.width || 0,
                 height: me.height || 0
             };
-            
+
             if (me.forceLtr) {
                 cfg.direction = 'ltr';
             }
-            
+
             el = me.createSvgElement('svg', cfg);
             defs = me.getDefs();
 
@@ -290,7 +290,7 @@ Ext.define('Ext.draw.engine.Svg', {
                 stroke: "none",
                 opacity: 0
             });
-            
+
             if (Ext.isSafari3) {
                 // Rect that we will show/hide to fix old WebKit bug with rendering issues.
                 webkitRect = me.createSvgElement("rect", {
@@ -331,20 +331,20 @@ Ext.define('Ext.draw.engine.Svg', {
     },
 
     // private
-    onMouseEnter: function(e) {
+    onMouseEnter: function (e) {
         if (this.el.parent().getRegion().contains(e.getPoint())) {
             this.fireEvent('mouseenter', e);
         }
     },
 
     // private
-    onMouseLeave: function(e) {
+    onMouseLeave: function (e) {
         if (!this.el.parent().getRegion().contains(e.getPoint())) {
             this.fireEvent('mouseleave', e);
         }
     },
     // @private - Normalize a delegated single event from the main container to each sprite and sprite group
-    processEvent: function(name, e) {
+    processEvent: function (name, e) {
         var target = e.getTarget(),
             surface = this.surface,
             sprite;
@@ -374,12 +374,14 @@ Ext.define('Ext.draw.engine.Svg', {
             //into the sprite.
 
             //get the actual rendered text.
-            text = sprite.tspans && Ext.Array.map(sprite.tspans, function(t) { return t.textContent; }).join('');
+            text = sprite.tspans && Ext.Array.map(sprite.tspans, function (t) {
+                    return t.textContent;
+                }).join('');
 
             if (!sprite.tspans || attrs.text != text) {
                 tspans = this.setText(sprite, attrs.text);
                 sprite.tspans = tspans;
-            //for all other cases reuse the tspans previously created.
+                //for all other cases reuse the tspans previously created.
             } else {
                 tspans = sprite.tspans || [];
             }
@@ -399,12 +401,12 @@ Ext.define('Ext.draw.engine.Svg', {
         }
     },
 
-    setText: function(sprite, textString) {
-         var me = this,
-             el = sprite.el.dom,
-             tspans = [],
-             height, tspan, text, i, ln, texts;
-        
+    setText: function (sprite, textString) {
+        var me = this,
+            el = sprite.el.dom,
+            tspans = [],
+            height, tspan, text, i, ln, texts;
+
         while (el.firstChild) {
             el.removeChild(el.firstChild);
         }
@@ -422,7 +424,7 @@ Ext.define('Ext.draw.engine.Svg', {
         return tspans;
     },
 
-    renderAll: function() {
+    renderAll: function () {
         this.items.each(this.renderItem, this);
     },
 
@@ -444,7 +446,7 @@ Ext.define('Ext.draw.engine.Svg', {
         }
     },
 
-    redraw: function(sprite) {
+    redraw: function (sprite) {
         sprite.dirty = sprite.zIndexDirty = true;
         this.renderItem(sprite);
     },
@@ -455,9 +457,9 @@ Ext.define('Ext.draw.engine.Svg', {
             group = sprite.group,
             sattr = sprite.attr,
             parsers = me.parsers,
-            //Safari does not handle linear gradients correctly in quirksmode
-            //ref: https://bugs.webkit.org/show_bug.cgi?id=41952
-            //ref: EXTJSIV-1472
+        //Safari does not handle linear gradients correctly in quirksmode
+        //ref: https://bugs.webkit.org/show_bug.cgi?id=41952
+        //ref: EXTJSIV-1472
             gradientsMap = me.gradientsMap || {},
             safariFix = Ext.isSafari && !Ext.isStrict,
             fontRe = me.fontRe,
@@ -475,19 +477,19 @@ Ext.define('Ext.draw.engine.Svg', {
         attrs = me.scrubAttrs(sprite) || {};
 
         // if (sprite.dirtyPath) {
-            sprite.bbox.plain = 0;
-            sprite.bbox.transform = 0;
-            if (sprite.type == "circle" || sprite.type == "ellipse") {
-                attrs.cx = attrs.cx || attrs.x;
-                attrs.cy = attrs.cy || attrs.y;
-            }
-            else if (sprite.type == "rect") {
-                attrs.rx = attrs.ry = attrs.r;
-            }
-            else if (sprite.type == "path" && attrs.d) {
-                attrs.d = Ext.draw.Draw.pathToString(Ext.draw.Draw.pathToAbsolute(attrs.d));
-            }
-            sprite.dirtyPath = false;
+        sprite.bbox.plain = 0;
+        sprite.bbox.transform = 0;
+        if (sprite.type == "circle" || sprite.type == "ellipse") {
+            attrs.cx = attrs.cx || attrs.x;
+            attrs.cy = attrs.cy || attrs.y;
+        }
+        else if (sprite.type == "rect") {
+            attrs.rx = attrs.ry = attrs.r;
+        }
+        else if (sprite.type == "path" && attrs.d) {
+            attrs.d = Ext.draw.Draw.pathToString(Ext.draw.Draw.pathToAbsolute(attrs.d));
+        }
+        sprite.dirtyPath = false;
         // }
         // else {
         //     delete attrs.d;
@@ -498,7 +500,7 @@ Ext.define('Ext.draw.engine.Svg', {
             delete attrs['clip-rect'];
         }
         if (sprite.type == 'text' && attrs.font && sprite.dirtyFont) {
-            el.set({ style: "font: " + attrs.font});
+            el.set({style: "font: " + attrs.font});
         }
         if (sprite.type == "image") {
             el.dom.setAttributeNS(me.xlink, "href", attrs.src);
@@ -536,7 +538,7 @@ Ext.define('Ext.draw.engine.Svg', {
                 }
             }
         }
-        
+
         if (sprite.type == 'text') {
             me.tuneText(sprite, attrs);
         }
@@ -559,7 +561,7 @@ Ext.define('Ext.draw.engine.Svg', {
         }
     },
 
-    setClip: function(sprite, params) {
+    setClip: function (sprite, params) {
         var me = this,
             rect = params["clip-rect"],
             clipEl, clipPath;
@@ -578,7 +580,7 @@ Ext.define('Ext.draw.engine.Svg', {
             me.getDefs().appendChild(clipEl);
             sprite.el.dom.setAttribute("clip-path", "url(#" + clipEl.id + ")");
             sprite.clip = clipPath;
-        } 
+        }
         // if (!attrs[key]) {
         //     var clip = Ext.getDoc().dom.getElementById(sprite.el.getAttribute("clip-path").replace(/(^url\(#|\)$)/g, ""));
         //     clip && clip.parentNode.removeChild(clip);
@@ -591,7 +593,7 @@ Ext.define('Ext.draw.engine.Svg', {
      * Insert or move a given sprite's element to the correct place in the DOM list for its zIndex
      * @param {Ext.draw.Sprite} sprite
      */
-    applyZIndex: function(sprite) {
+    applyZIndex: function (sprite) {
         var me = this,
             items = me.items,
             idx = items.indexOf(sprite),
@@ -615,19 +617,19 @@ Ext.define('Ext.draw.engine.Svg', {
         return sprite;
     },
 
-    addGradient: function(gradient) {
+    addGradient: function (gradient) {
         gradient = Ext.draw.Draw.parseGradient(gradient);
         var me = this,
             ln = gradient.stops.length,
             vector = gradient.vector,
-            //Safari does not handle linear gradients correctly in quirksmode
-            //ref: https://bugs.webkit.org/show_bug.cgi?id=41952
-            //ref: EXTJSIV-1472
+        //Safari does not handle linear gradients correctly in quirksmode
+        //ref: https://bugs.webkit.org/show_bug.cgi?id=41952
+        //ref: EXTJSIV-1472
             usePlain = Ext.isSafari && !Ext.isStrict,
             gradientEl, stop, stopEl, i, gradientsMap;
-            
+
         gradientsMap = me.gradientsMap || {};
-        
+
         if (!usePlain) {
             if (gradient.type == "linear") {
                 gradientEl = me.createSvgElement("linearGradient");
@@ -653,7 +655,7 @@ Ext.define('Ext.draw.engine.Svg', {
                 stopEl = me.createSvgElement("stop");
                 stopEl.setAttribute("offset", stop.offset + "%");
                 stopEl.setAttribute("stop-color", stop.color);
-                stopEl.setAttribute("stop-opacity",stop.opacity);
+                stopEl.setAttribute("stop-opacity", stop.opacity);
                 gradientEl.appendChild(stopEl);
             }
         } else {
@@ -668,21 +670,21 @@ Ext.define('Ext.draw.engine.Svg', {
      * @param {String} className The CSS class to check for
      * @return {Boolean} True if the class exists, else false
      */
-    hasCls: function(sprite, className) {
+    hasCls: function (sprite, className) {
         return className && (' ' + (sprite.el.dom.getAttribute('class') || '') + ' ').indexOf(' ' + className + ' ') != -1;
     },
 
-    addCls: function(sprite, className) {
+    addCls: function (sprite, className) {
         var el = sprite.el,
             i,
             len,
             v,
             cls = [],
-            curCls =  el.getAttribute('class') || '';
+            curCls = el.getAttribute('class') || '';
         // Separate case is for speed
         if (!Ext.isArray(className)) {
             if (typeof className == 'string' && !this.hasCls(sprite, className)) {
-                el.set({ 'class': curCls + ' ' + className });
+                el.set({'class': curCls + ' ' + className});
             }
         }
         else {
@@ -693,17 +695,17 @@ Ext.define('Ext.draw.engine.Svg', {
                 }
             }
             if (cls.length) {
-                el.set({ 'class': ' ' + cls.join(' ') });
+                el.set({'class': ' ' + cls.join(' ')});
             }
         }
     },
 
-    removeCls: function(sprite, className) {
+    removeCls: function (sprite, className) {
         var me = this,
             el = sprite.el,
-            curCls =  el.getAttribute('class') || '',
+            curCls = el.getAttribute('class') || '',
             i, idx, len, cls, elClasses;
-        if (!Ext.isArray(className)){
+        if (!Ext.isArray(className)) {
             className = [className];
         }
         if (curCls) {
@@ -718,13 +720,13 @@ Ext.define('Ext.draw.engine.Svg', {
                     }
                 }
             }
-            el.set({ 'class': elClasses.join(' ') });
+            el.set({'class': elClasses.join(' ')});
         }
     },
 
-    destroy: function() {
+    destroy: function () {
         var me = this;
-        
+
         me.callParent();
         if (me.el) {
             me.el.destroy();

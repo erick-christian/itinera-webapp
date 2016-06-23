@@ -10,7 +10,7 @@ Ext.define('Ext.grid.RowEditorButtons', {
     shrinkWrap: true,
     position: 'bottom',
 
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this,
             rowEditor = config.rowEditor,
             cssPrefix = Ext.baseCSSPrefix,
@@ -44,7 +44,7 @@ Ext.define('Ext.grid.RowEditorButtons', {
         me.addClsWithUI(me.position);
     },
 
-    setButtonPosition: function(position) {
+    setButtonPosition: function (position) {
         var me = this,
             rowEditor = this.rowEditor,
             rowEditorHeight = rowEditor.getHeight(),
@@ -72,11 +72,11 @@ Ext.define('Ext.grid.RowEditorButtons', {
     },
 
     privates: {
-        getFramingInfoCls: function(){
+        getFramingInfoCls: function () {
             return this.baseCls + '-' + this.ui + '-' + this.position;
         },
 
-        getFrameInfo: function() {
+        getFrameInfo: function () {
             var frameInfo = this.callParent();
 
             // Trick Renderable into rendering the top framing elements, even though they

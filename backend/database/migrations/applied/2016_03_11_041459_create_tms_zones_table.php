@@ -19,18 +19,24 @@ class CreateTmsZonesTable extends Migration
 
         Schema::create('tms_zones' , function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
 
-            $table->integer('sector_id');
-            $table->integer('zone_id');
+            $table->string('sector_code');
+            $table->string('zone_code');
             $table->string('zone_name');
+
+            $table->date('inactive_date');
+            $table->char('is_active' , 3);
+
+            $table->timestamps();
 
             /* Enable Soft Delete*/
             $table->softDeletes();
 
             /* Indexes */
-            $table->unique(['sector_id' , 'zone_id']);
-            $table->index(['zone_id']);
+            $table->unique(['sector_code' , 'zone_code'] ,
+                'idxSectorZone');
+            $table->index(['zone_code'] ,
+                'idxZoneCode');
 
         });
     }

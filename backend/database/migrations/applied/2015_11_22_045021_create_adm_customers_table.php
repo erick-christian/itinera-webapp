@@ -16,38 +16,46 @@ class CreateAdmCustomersTable extends Migration
             Schema::drop('adm_customers');
         }
 
-        Schema::create('adm_customers', function (Blueprint $table) {
+        Schema::create('adm_customers' , function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
 
-            $table->char('short_name');
-            $table->string('password', 60);
-            $table->char('company');
-            $table->char('tax_id');
-            $table->char('address');
-            $table->char('country_code');
-            $table->char('estate_code');
-            $table->char('location');
-            $table->char('region');
-            $table->char('city');
-            $table->char('zip_code');
-            $table->char('phone');
-            $table->char('contact_name');
-            $table->char('contact_phone');
-            $table->char('email');
-            $table->char('website');
-            $table->char('active');
-            $table->char('latitude');
-            $table->char('longitude');
-            $table->char('geocode_url');
+            $table->string('short_name');
+            $table->string('company');
+            $table->char('password' , 60);
+            $table->string('tax_id');
+            $table->string('address');
+            $table->string('country_code');
+            $table->string('estate_code');
+            $table->string('city');
+            $table->string('region');
+            $table->string('location');
+            $table->string('zip_code');
+            $table->string('phone');
+            $table->string('contact_name');
+            $table->string('contact_phone');
+            $table->string('contact_email');
+            $table->string('website');
+
+            $table->string('stand_taxi_code');
+            $table->string('sector_code');
+
+            $table->string('latitude');
+            $table->string('longitude');
+            $table->string('geocode_url');
+
+            $table->date('inactive_date');
+            $table->char('is_active' , 3);
+
+            /* Enable Timestamps */
+            $table->timestamps();
 
             /* Enable Soft Delete*/
             $table->softDeletes();
 
             /* Indexes */
-            $table->index(['company']);
-            $table->index(['tax_id']);
-            $table->index(['short_name']);
+            $table->unique(['short_name'] , 'idxShortName');
+            $table->index(['company'] , 'idxCompany');
+            $table->index(['tax_id'] , 'idxTaxId');
         });
     }
 
@@ -58,7 +66,7 @@ class CreateAdmCustomersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('adm_languages');
+        Schema::drop('adm_customers');
     }
 }
 

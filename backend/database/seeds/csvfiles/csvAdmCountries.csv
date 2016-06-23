@@ -1,249 +1,249 @@
-country_code,country_name,country_domain
-and,Andorra,ad
-afg,Afghanistan,af
-atg,Antigua and Barbuda,ag
-aia,Anguilla,ai
-alb,Albania,al
-arm,Armenia,am
-ago,Angola,ao
-ata,Antarctica,aq
-arg,Argentina,ar
-asm,American Samoa,as
-aus,Australia,au
-abw,Aruba,aw
-ala,Åland Islands,ax
-aze,Azerbaijan,az
-aut,Austria,at
-dza,Algeria,dz
-bhs,Bahamas,bs
-bhr,Bahrain,bh
-bgd,Bangladesh,bd
-brb,Barbados,bb
-blr,Belarus,by
-bel,Belgium,be
-blz,Belize,bz
-ben,Benin,bj
-bmu,Bermuda,bm
-btn,Bhutan,bt
-bol,Plurinational State of Bolivia,bo
-bes,Sint Eustatius and Saba Bonaire,bq
-bih,Bosnia and Herzegowina,ba
-bwa,Botswana,bw
-bvt,Bouvet Island,bv
-bra,Brazil,br
-iot,British Indian Ocean Territory,io
-brn,Brunei Darussalam,bn
-bgr,Bulgaria,bg
-bfa,Burkina Faso,bf
-bdi,Burundi,bi
-khm,Cambodia,kh
-cmr,Cameroon,cm
-can,Canada,ca
-cpv,Cape Verde,cv
-cym,Cayman Islands,ky
-caf,Central African Republic,cf
-tcd,Chad,td
-chl,Chile,cl
-chn,China,cn
-cxr,Christmas Island,cx
-cck,Cocos  Islands,cc
-col,Colombia,co
-com,Comoros,km
-cog,Congo,cg
-cod,The Democratic Republic of The Congo,cd
-cok,Cook Islands,ck
-cri,Costa Rica,cr
-civ,Côte d'Ivoire,ci
-hrv,Croatia ,hr
-cub,Cuba,cu
-cuw,Curaçao,cw
-cyp,Cyprus,cy
-cze,Czech Republic,cz
-dnk,Denmark,dk
-dji,Djibouti,dj
-dma,Dominica,dm
-dom,Dominican Republic,do
-ecu,Ecuador,ec
-egy,Egypt,eg
-slv,El Salvador,sv
-gnq,Equatorial Guinea,gq
-eri,Eritrea,er
-est,Estonia,ee
-eth,Ethiopia,et
-flk,Falkland Islands ,fk
-fro,Faroe Islands,fo
-fji,Fiji,fj
-fin,Finland,fi
-fra,France,fr
-guf,French Guiana,gf
-pyf,French Polynesia,pf
-atf,French Southern Territories,tf
-gab,Gabon,ga
-gmb,Gambia,gm
-geo,Georgia,ge
-deu,Germany,de
-gha,Ghana,gh
-gib,Gibraltar,gi
-grc,Greece,gr
-grl,Greenland,gl
-grd,Grenada,gd
-glp,Guadeloupe,gp
-gum,Guam,gu
-gtm,Guatemala,gt
-ggy,Guernsey,gg
-gin,Guinea,gn
-gnb,Guinea-bissau,gw
-guy,Guyana,gy
-hti,Haiti,ht
-hmd,Heard and McDonald Islands,hm
-vat,Holy See ,va
-hnd,Honduras,hn
-hkg,Hong Kong,hk
-hun,Hungary,hu
-isl,Iceland,is
-ind,India,in
-idn,Indonesia,id
-irn,Iran ,ir
-irq,Iraq,iq
-irl,Ireland,ie
-imn,Isle of Man,im
-isr,Israel,il
-ita,Italy,it
-jam,Jamaica,jm
-jpn,Japan,jp
-jey,Jersey,je
-jor,Jordan,jo
-kaz,Kazakhstan,kz
-ken,Kenya,ke
-kir,Kiribati,ki
-prk,Democratic People's Republic of Korea,kp
-kor,Republic of Korea,kr
-kwt,Kuwait,kw
-kgz,Kyrgyzstan,kg
-lao,Lao People's Democratic Republic,la
-lva,Latvia,lv
-lbn,Lebanon,lb
-lso,Lesotho,ls
-lbr,Liberia,lr
-lby,Libya,ly
-lie,Liechtenstein,li
-ltu,Lithuania,lt
-lux,Luxembourg,lu
-mac,Macao,mo
-mkd,The Former Yugoslav Republic of Macedonia,mk
-mdg,Madagascar,mg
-mwi,Malawi,mw
-mys,Malaysia,my
-mdv,Maldives,mv
-mli,Mali,ml
-mlt,Malta,mt
-mhl,Marshall Islands,mh
-mtq,Martinique,mq
-mrt,Mauritania,mr
-mus,Mauritius,mu
-myt,Mayotte,yt
-mex,Mexico,mx
-fsm,Federated States of Micronesia,fm
-mda,Republic of Moldova,md
-mco,Monaco,mc
-mng,Mongolia,mn
-mne,Montenegro,me
-msr,Montserrat,ms
-mar,Morocco,ma
-moz,Mozambique,mz
-mmr,Myanmar,mm
-nam,Namibia,na
-nru,Nauru,nr
-npl,Nepal,np
-nld,Netherlands,nl
-ncl,New Caledonia,nc
-nzl,New Zealand,nz
-nic,Nicaragua,ni
-ner,Niger,ne
-nga,Nigeria,ng
-niu,Niue,nu
-nfk,Norfolk Island,nf
-mnp,Northern Mariana Islands,mp
-nor,Norway,no
-omn,Oman,om
-pak,Pakistan,pk
-plw,Palau,pw
-pse,State of Palestine,ps
-pan,Panama,pa
-png,Papua New Guinea,pg
-pry,Paraguay,py
-per,Peru,pe
-phl,Philippines,ph
-pcn,Pitcairn,pn
-pol,Poland,pl
-prt,Portugal,pt
-pri,Puerto Rico,pr
-qat,Qatar,qa
-reu,Réunion,re
-rou,Romania,ro
-rus,Russian Federation,ru
-rwa,Rwanda,rw
-shn,Ascension and Tristan Da Cunha Saint Helena,sh
-blm,Saint Barthélemy,bl
-kna,Saint Kitts and Nevis,kn
-lca,Saint Lucia,lc
-spm,Saint Pierre and Miquelon,pm
-vct,Saint Vincent and The Grenadines,vc
-wsm,Samoa,ws
-smr,San Marino,sm
-stp,Sao Tome and Principe,st
-sau,Saudi Arabia,sa
-sen,Senegal,sn
-srb,Serbia,rs
-syc,Seychelles,sc
-sle,Sierra Leone,sl
-sgp,Singapore,sg
-sxm,Sint Maarten ,sx
-svk,Slovakia,sk
-svn,Slovenia,si
-slb,Solomon Islands,sb
-som,Somalia,so
-zaf,South Africa,za
-sgs,South Georgia and The South Sandwich Islands,gs
-ssd,South Sudan,ss
-esp,Spain,es
-lka,Sri Lanka,lk
-sdn,Sudan,sd
-sur,Suriname,sr
-sjm,Svalbard and Jan Mayen Islands,sj
-swz,Swaziland,sz
-swe,Sweden,se
-che,Switzerland,ch
-syr,Syrian Arab Republic,sy
-twn,Province of China Taiwan,tw
-tjk,Tajikistan,tj
-tza,United Republic of Tanzania,tz
-tha,Thailand,th
-tls,Timor-leste,tl
-tgo,Togo,tg
-tkl,Tokelau,tk
-ton,Tonga,to
-tto,Trinidad and Tobago,tt
-tun,Tunisia,tn
-tur,Turkey,tr
-tkm,Turkmenistan,tm
-tca,Turks and Caicos Islands,tc
-tuv,Tuvalu,tv
-uga,Uganda,ug
-ukr,Ukraine,ua
-are,United Arab Emirates,ae
-gbr,United Kingdom,gb
-usa,United States,us
-umi,United States Minor Outlying Islands,um
-ury,Uruguay,uy
-uzb,Uzbekistan,uz
-vut,Vanuatu,vu
-ven,Bolivarian Republic of Venezuela,ve
-vnm,Vietnam,vn
-vgb,Virgin Islands (British),vg
-vir,Virgin Islands (US),vi
-wlf,Wallis and Futuna Islands,wf
-esh,Western Sahara,eh
-yem,Yemen,ye
-zmb,Zambia,zm
-zwe,Zimbabwe,zw
+country_code,country_name,country_domain,is_active,created_at
+and,Andorra,ad,no,20/04/16 12:00
+afg,Afghanistan,af,no,20/04/16 12:00
+atg,Antigua and Barbuda,ag,no,20/04/16 12:00
+aia,Anguilla,ai,no,20/04/16 12:00
+alb,Albania,al,no,20/04/16 12:00
+arm,Armenia,am,no,20/04/16 12:00
+ago,Angola,ao,no,20/04/16 12:00
+ata,Antarctica,aq,no,20/04/16 12:00
+arg,Argentina,ar,no,20/04/16 12:00
+asm,American Samoa,as,no,20/04/16 12:00
+aus,Australia,au,no,20/04/16 12:00
+abw,Aruba,aw,no,20/04/16 12:00
+ala,Åland Islands,ax,no,20/04/16 12:00
+aze,Azerbaijan,az,no,20/04/16 12:00
+aut,Austria,at,no,20/04/16 12:00
+dza,Algeria,dz,no,20/04/16 12:00
+bhs,Bahamas,bs,no,20/04/16 12:00
+bhr,Bahrain,bh,no,20/04/16 12:00
+bgd,Bangladesh,bd,no,20/04/16 12:00
+brb,Barbados,bb,no,20/04/16 12:00
+blr,Belarus,by,no,20/04/16 12:00
+bel,Belgium,be,no,20/04/16 12:00
+blz,Belize,bz,no,20/04/16 12:00
+ben,Benin,bj,no,20/04/16 12:00
+bmu,Bermuda,bm,no,20/04/16 12:00
+btn,Bhutan,bt,no,20/04/16 12:00
+bol,Plurinational State of Bolivia,bo,no,20/04/16 12:00
+bes,Sint Eustatius and Saba Bonaire,bq,no,20/04/16 12:00
+bih,Bosnia and Herzegowina,ba,no,20/04/16 12:00
+bwa,Botswana,bw,no,20/04/16 12:00
+bvt,Bouvet Island,bv,no,20/04/16 12:00
+bra,Brazil,br,no,20/04/16 12:00
+iot,British Indian Ocean Territory,io,no,20/04/16 12:00
+brn,Brunei Darussalam,bn,no,20/04/16 12:00
+bgr,Bulgaria,bg,no,20/04/16 12:00
+bfa,Burkina Faso,bf,no,20/04/16 12:00
+bdi,Burundi,bi,no,20/04/16 12:00
+khm,Cambodia,kh,no,20/04/16 12:00
+cmr,Cameroon,cm,no,20/04/16 12:00
+can,Canada,ca,no,20/04/16 12:00
+cpv,Cape Verde,cv,no,20/04/16 12:00
+cym,Cayman Islands,ky,no,20/04/16 12:00
+caf,Central African Republic,cf,no,20/04/16 12:00
+tcd,Chad,td,no,20/04/16 12:00
+chl,Chile,cl,no,20/04/16 12:00
+chn,China,cn,no,20/04/16 12:00
+cxr,Christmas Island,cx,no,20/04/16 12:00
+cck,Cocos  Islands,cc,no,20/04/16 12:00
+col,Colombia,co,no,20/04/16 12:00
+com,Comoros,km,no,20/04/16 12:00
+cog,Congo,cg,no,20/04/16 12:00
+cod,The Democratic Republic of The Congo,cd,no,20/04/16 12:00
+cok,Cook Islands,ck,no,20/04/16 12:00
+cri,Costa Rica,cr,no,20/04/16 12:00
+civ,Côte d'Ivoire,ci,no,20/04/16 12:00
+hrv,Croatia ,hr,no,20/04/16 12:00
+cub,Cuba,cu,no,20/04/16 12:00
+cuw,Curaçao,cw,no,20/04/16 12:00
+cyp,Cyprus,cy,no,20/04/16 12:00
+cze,Czech Republic,cz,no,20/04/16 12:00
+dnk,Denmark,dk,no,20/04/16 12:00
+dji,Djibouti,dj,no,20/04/16 12:00
+dma,Dominica,dm,no,20/04/16 12:00
+dom,Dominican Republic,do,no,20/04/16 12:00
+ecu,Ecuador,ec,no,20/04/16 12:00
+egy,Egypt,eg,no,20/04/16 12:00
+slv,El Salvador,sv,no,20/04/16 12:00
+gnq,Equatorial Guinea,gq,no,20/04/16 12:00
+eri,Eritrea,er,no,20/04/16 12:00
+est,Estonia,ee,no,20/04/16 12:00
+eth,Ethiopia,et,no,20/04/16 12:00
+flk,Falkland Islands ,fk,no,20/04/16 12:00
+fro,Faroe Islands,fo,no,20/04/16 12:00
+fji,Fiji,fj,no,20/04/16 12:00
+fin,Finland,fi,no,20/04/16 12:00
+fra,France,fr,no,20/04/16 12:00
+guf,French Guiana,gf,no,20/04/16 12:00
+pyf,French Polynesia,pf,no,20/04/16 12:00
+atf,French Southern Territories,tf,no,20/04/16 12:00
+gab,Gabon,ga,no,20/04/16 12:00
+gmb,Gambia,gm,no,20/04/16 12:00
+geo,Georgia,ge,no,20/04/16 12:00
+deu,Germany,de,no,20/04/16 12:00
+gha,Ghana,gh,no,20/04/16 12:00
+gib,Gibraltar,gi,no,20/04/16 12:00
+grc,Greece,gr,no,20/04/16 12:00
+grl,Greenland,gl,no,20/04/16 12:00
+grd,Grenada,gd,no,20/04/16 12:00
+glp,Guadeloupe,gp,no,20/04/16 12:00
+gum,Guam,gu,no,20/04/16 12:00
+gtm,Guatemala,gt,no,20/04/16 12:00
+ggy,Guernsey,gg,no,20/04/16 12:00
+gin,Guinea,gn,no,20/04/16 12:00
+gnb,Guinea-bissau,gw,no,20/04/16 12:00
+guy,Guyana,gy,no,20/04/16 12:00
+hti,Haiti,ht,no,20/04/16 12:00
+hmd,Heard and McDonald Islands,hm,no,20/04/16 12:00
+vat,Holy See ,va,no,20/04/16 12:00
+hnd,Honduras,hn,no,20/04/16 12:00
+hkg,Hong Kong,hk,no,20/04/16 12:00
+hun,Hungary,hu,no,20/04/16 12:00
+isl,Iceland,is,no,20/04/16 12:00
+ind,India,in,no,20/04/16 12:00
+idn,Indonesia,id,no,20/04/16 12:00
+irn,Iran ,ir,no,20/04/16 12:00
+irq,Iraq,iq,no,20/04/16 12:00
+irl,Ireland,ie,no,20/04/16 12:00
+imn,Isle of Man,im,no,20/04/16 12:00
+isr,Israel,il,no,20/04/16 12:00
+ita,Italy,it,no,20/04/16 12:00
+jam,Jamaica,jm,no,20/04/16 12:00
+jpn,Japan,jp,no,20/04/16 12:00
+jey,Jersey,je,no,20/04/16 12:00
+jor,Jordan,jo,no,20/04/16 12:00
+kaz,Kazakhstan,kz,no,20/04/16 12:00
+ken,Kenya,ke,no,20/04/16 12:00
+kir,Kiribati,ki,no,20/04/16 12:00
+prk,Democratic People's Republic of Korea,kp,no,20/04/16 12:00
+kor,Republic of Korea,kr,no,20/04/16 12:00
+kwt,Kuwait,kw,no,20/04/16 12:00
+kgz,Kyrgyzstan,kg,no,20/04/16 12:00
+lao,Lao People's Democratic Republic,la,no,20/04/16 12:00
+lva,Latvia,lv,no,20/04/16 12:00
+lbn,Lebanon,lb,no,20/04/16 12:00
+lso,Lesotho,ls,no,20/04/16 12:00
+lbr,Liberia,lr,no,20/04/16 12:00
+lby,Libya,ly,no,20/04/16 12:00
+lie,Liechtenstein,li,no,20/04/16 12:00
+ltu,Lithuania,lt,no,20/04/16 12:00
+lux,Luxembourg,lu,no,20/04/16 12:00
+mac,Macao,mo,no,20/04/16 12:00
+mkd,The Former Yugoslav Republic of Macedonia,mk,no,20/04/16 12:00
+mdg,Madagascar,mg,no,20/04/16 12:00
+mwi,Malawi,mw,no,20/04/16 12:00
+mys,Malaysia,my,no,20/04/16 12:00
+mdv,Maldives,mv,no,20/04/16 12:00
+mli,Mali,ml,no,20/04/16 12:00
+mlt,Malta,mt,no,20/04/16 12:00
+mhl,Marshall Islands,mh,no,20/04/16 12:00
+mtq,Martinique,mq,no,20/04/16 12:00
+mrt,Mauritania,mr,no,20/04/16 12:00
+mus,Mauritius,mu,no,20/04/16 12:00
+myt,Mayotte,yt,no,20/04/16 12:00
+mex,Mexico,mx,yes,20/04/16 12:00
+fsm,Federated States of Micronesia,fm,no,20/04/16 12:00
+mda,Republic of Moldova,md,no,20/04/16 12:00
+mco,Monaco,mc,no,20/04/16 12:00
+mng,Mongolia,mn,no,20/04/16 12:00
+mne,Montenegro,me,no,20/04/16 12:00
+msr,Montserrat,ms,no,20/04/16 12:00
+mar,Morocco,ma,no,20/04/16 12:00
+moz,Mozambique,mz,no,20/04/16 12:00
+mmr,Myanmar,mm,no,20/04/16 12:00
+nam,Namibia,na,no,20/04/16 12:00
+nru,Nauru,nr,no,20/04/16 12:00
+npl,Nepal,np,no,20/04/16 12:00
+nld,Netherlands,nl,no,20/04/16 12:00
+ncl,New Caledonia,nc,no,20/04/16 12:00
+nzl,New Zealand,nz,no,20/04/16 12:00
+nic,Nicaragua,ni,no,20/04/16 12:00
+ner,Niger,ne,no,20/04/16 12:00
+nga,Nigeria,ng,no,20/04/16 12:00
+niu,Niue,nu,no,20/04/16 12:00
+nfk,Norfolk Island,nf,no,20/04/16 12:00
+mnp,Northern Mariana Islands,mp,no,20/04/16 12:00
+nor,Norway,no,no,20/04/16 12:00
+omn,Oman,om,no,20/04/16 12:00
+pak,Pakistan,pk,no,20/04/16 12:00
+plw,Palau,pw,no,20/04/16 12:00
+pse,State of Palestine,ps,no,20/04/16 12:00
+pan,Panama,pa,no,20/04/16 12:00
+png,Papua New Guinea,pg,no,20/04/16 12:00
+pry,Paraguay,py,no,20/04/16 12:00
+per,Peru,pe,no,20/04/16 12:00
+phl,Philippines,ph,no,20/04/16 12:00
+pcn,Pitcairn,pn,no,20/04/16 12:00
+pol,Poland,pl,no,20/04/16 12:00
+prt,Portugal,pt,no,20/04/16 12:00
+pri,Puerto Rico,pr,no,20/04/16 12:00
+qat,Qatar,qa,no,20/04/16 12:00
+reu,Réunion,re,no,20/04/16 12:00
+rou,Romania,ro,no,20/04/16 12:00
+rus,Russian Federation,ru,no,20/04/16 12:00
+rwa,Rwanda,rw,no,20/04/16 12:00
+shn,Ascension and Tristan Da Cunha Saint Helena,sh,no,20/04/16 12:00
+blm,Saint Barthélemy,bl,no,20/04/16 12:00
+kna,Saint Kitts and Nevis,kn,no,20/04/16 12:00
+lca,Saint Lucia,lc,no,20/04/16 12:00
+spm,Saint Pierre and Miquelon,pm,no,20/04/16 12:00
+vct,Saint Vincent and The Grenadines,vc,no,20/04/16 12:00
+wsm,Samoa,ws,no,20/04/16 12:00
+smr,San Marino,sm,no,20/04/16 12:00
+stp,Sao Tome and Principe,st,no,20/04/16 12:00
+sau,Saudi Arabia,sa,no,20/04/16 12:00
+sen,Senegal,sn,no,20/04/16 12:00
+srb,Serbia,rs,no,20/04/16 12:00
+syc,Seychelles,sc,no,20/04/16 12:00
+sle,Sierra Leone,sl,no,20/04/16 12:00
+sgp,Singapore,sg,no,20/04/16 12:00
+sxm,Sint Maarten ,sx,no,20/04/16 12:00
+svk,Slovakia,sk,no,20/04/16 12:00
+svn,Slovenia,si,no,20/04/16 12:00
+slb,Solomon Islands,sb,no,20/04/16 12:00
+som,Somalia,so,no,20/04/16 12:00
+zaf,South Africa,za,no,20/04/16 12:00
+sgs,South Georgia and The South Sandwich Islands,gs,no,20/04/16 12:00
+ssd,South Sudan,ss,no,20/04/16 12:00
+esp,Spain,es,no,20/04/16 12:00
+lka,Sri Lanka,lk,no,20/04/16 12:00
+sdn,Sudan,sd,no,20/04/16 12:00
+sur,Suriname,sr,no,20/04/16 12:00
+sjm,Svalbard and Jan Mayen Islands,sj,no,20/04/16 12:00
+swz,Swaziland,sz,no,20/04/16 12:00
+swe,Sweden,se,no,20/04/16 12:00
+che,Switzerland,ch,no,20/04/16 12:00
+syr,Syrian Arab Republic,sy,no,20/04/16 12:00
+twn,Province of China Taiwan,tw,no,20/04/16 12:00
+tjk,Tajikistan,tj,no,20/04/16 12:00
+tza,United Republic of Tanzania,tz,no,20/04/16 12:00
+tha,Thailand,th,no,20/04/16 12:00
+tls,Timor-leste,tl,no,20/04/16 12:00
+tgo,Togo,tg,no,20/04/16 12:00
+tkl,Tokelau,tk,no,20/04/16 12:00
+ton,Tonga,to,no,20/04/16 12:00
+tto,Trinidad and Tobago,tt,no,20/04/16 12:00
+tun,Tunisia,tn,no,20/04/16 12:00
+tur,Turkey,tr,no,20/04/16 12:00
+tkm,Turkmenistan,tm,no,20/04/16 12:00
+tca,Turks and Caicos Islands,tc,no,20/04/16 12:00
+tuv,Tuvalu,tv,no,20/04/16 12:00
+uga,Uganda,ug,no,20/04/16 12:00
+ukr,Ukraine,ua,no,20/04/16 12:00
+are,United Arab Emirates,ae,no,20/04/16 12:00
+gbr,United Kingdom,gb,no,20/04/16 12:00
+usa,United States,us,no,20/04/16 12:00
+umi,United States Minor Outlying Islands,um,no,20/04/16 12:00
+ury,Uruguay,uy,no,20/04/16 12:00
+uzb,Uzbekistan,uz,no,20/04/16 12:00
+vut,Vanuatu,vu,no,20/04/16 12:00
+ven,Bolivarian Republic of Venezuela,ve,no,20/04/16 12:00
+vnm,Vietnam,vn,no,20/04/16 12:00
+vgb,Virgin Islands (British),vg,no,20/04/16 12:00
+vir,Virgin Islands (US),vi,no,20/04/16 12:00
+wlf,Wallis and Futuna Islands,wf,no,20/04/16 12:00
+esh,Western Sahara,eh,no,20/04/16 12:00
+yem,Yemen,ye,no,20/04/16 12:00
+zmb,Zambia,zm,no,20/04/16 12:00
+zwe,Zimbabwe,zw,no,20/04/16 12:00

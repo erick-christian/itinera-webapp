@@ -66,7 +66,7 @@
  *     });
  */
 Ext.define('Ext.form.field.Date', {
-    extend:'Ext.form.field.Picker',
+    extend: 'Ext.form.field.Picker',
     alias: 'widget.datefield',
     requires: ['Ext.picker.Date'],
     alternateClassName: ['Ext.form.DateField', 'Ext.form.Date'],
@@ -77,7 +77,7 @@ Ext.define('Ext.form.field.Date', {
      * The default date format string which can be overriden for localization support. The format must be valid
      * according to {@link Ext.Date#parse}.
      */
-    format : "m/d/Y",
+    format: "m/d/Y",
     //</locale>
     //<locale>
     /**
@@ -85,55 +85,55 @@ Ext.define('Ext.form.field.Date', {
      * Multiple date formats separated by "|" to try when parsing a user input value and it does not match the defined
      * format.
      */
-    altFormats : "m/d/Y|n/j/Y|n/j/y|m/j/y|n/d/y|m/j/Y|n/d/Y|m-d-y|m-d-Y|m/d|m-d|md|mdy|mdY|d|Y-m-d|n-j|n/j",
+    altFormats: "m/d/Y|n/j/Y|n/j/y|m/j/y|n/d/y|m/j/Y|n/d/Y|m-d-y|m-d-Y|m/d|m-d|md|mdy|mdY|d|Y-m-d|n-j|n/j",
     //</locale>
     //<locale>
     /**
      * @cfg {String} disabledDaysText
      * The tooltip to display when the date falls on a disabled day.
      */
-    disabledDaysText : "Disabled",
+    disabledDaysText: "Disabled",
     //</locale>
     //<locale>
     /**
      * @cfg {String} disabledDatesText
      * The tooltip text to display when the date falls on a disabled date.
      */
-    disabledDatesText : "Disabled",
+    disabledDatesText: "Disabled",
     //</locale>
     //<locale>
     /**
      * @cfg {String} minText
      * The error text to display when the date in the cell is before {@link #minValue}.
      */
-    minText : "The date in this field must be equal to or after {0}",
+    minText: "The date in this field must be equal to or after {0}",
     //</locale>
     //<locale>
     /**
      * @cfg {String} maxText
      * The error text to display when the date in the cell is after {@link #maxValue}.
      */
-    maxText : "The date in this field must be equal to or before {0}",
+    maxText: "The date in this field must be equal to or before {0}",
     //</locale>
     //<locale>
     /**
      * @cfg {String} invalidText
      * The error text to display when the date in the field is invalid.
      */
-    invalidText : "{0} is not a valid date - it must be in the format {1}",
+    invalidText: "{0} is not a valid date - it must be in the format {1}",
     //</locale>
     /**
      * @cfg {String} [triggerCls='x-form-date-trigger']
      * An additional CSS class used to style the trigger button. The trigger will always get the class 'x-form-trigger'
      * and triggerCls will be **appended** if specified (default class displays a calendar icon).
      */
-    triggerCls : Ext.baseCSSPrefix + 'form-date-trigger',
+    triggerCls: Ext.baseCSSPrefix + 'form-date-trigger',
     /**
      * @cfg {Boolean} showToday
      * false to hide the footer area of the Date picker containing the Today button and disable the keyboard handler for
      * spacebar that selects the current date.
      */
-    showToday : true,
+    showToday: true,
     /**
      * @cfg {Date/String} minValue
      * The minimum allowed date. Can be either a Javascript date object or a string date in a valid format.
@@ -211,17 +211,17 @@ Ext.define('Ext.form.field.Date', {
      */
     valuePublishEvent: ['select', 'blur'],
 
-    initComponent : function(){
+    initComponent: function () {
         var me = this,
             isString = Ext.isString,
             min, max;
 
         min = me.minValue;
         max = me.maxValue;
-        if(isString(min)){
+        if (isString(min)) {
             me.minValue = me.parseDate(min);
         }
-        if(isString(max)){
+        if (isString(max)) {
             me.maxValue = me.parseDate(max);
         }
         me.disabledDatesRE = null;
@@ -230,7 +230,7 @@ Ext.define('Ext.form.field.Date', {
         me.callParent();
     },
 
-    initValue: function() {
+    initValue: function () {
         var me = this,
             value = me.value;
 
@@ -243,11 +243,11 @@ Ext.define('Ext.form.field.Date', {
     },
 
     // private
-    initDisabledDays : function(){
-        if(this.disabledDates){
-            var dd   = this.disabledDates,
-                len  = dd.length - 1,
-                re   = "(?:",
+    initDisabledDays: function () {
+        if (this.disabledDates) {
+            var dd = this.disabledDates,
+                len = dd.length - 1,
+                re = "(?:",
                 d,
                 dLen = dd.length,
                 date;
@@ -270,7 +270,7 @@ Ext.define('Ext.form.field.Date', {
      * @param {String[]} disabledDates An array of date strings (see the {@link #disabledDates} config for details on
      * supported values) used to disable a pattern of dates.
      */
-    setDisabledDates : function(disabledDates){
+    setDisabledDates: function (disabledDates) {
         var me = this,
             picker = me.picker;
 
@@ -286,7 +286,7 @@ Ext.define('Ext.form.field.Date', {
      * @param {Number[]} disabledDays An array of disabled day indexes. See the {@link #disabledDays} config for details on
      * supported values.
      */
-    setDisabledDays : function(disabledDays){
+    setDisabledDays: function (disabledDays) {
         var picker = this.picker;
 
         this.disabledDays = disabledDays;
@@ -299,7 +299,7 @@ Ext.define('Ext.form.field.Date', {
      * Replaces any existing {@link #minValue} with the new value and refreshes the Date picker.
      * @param {Date} value The minimum date that can be selected
      */
-    setMinValue : function(value){
+    setMinValue: function (value) {
         var me = this,
             picker = me.picker,
             minValue = (Ext.isString(value) ? me.parseDate(value) : value);
@@ -315,7 +315,7 @@ Ext.define('Ext.form.field.Date', {
      * Replaces any existing {@link #maxValue} with the new value and refreshes the Date picker.
      * @param {Date} value The maximum date that can be selected
      */
-    setMaxValue : function(value){
+    setMaxValue: function (value) {
         var me = this,
             picker = me.picker,
             maxValue = (Ext.isString(value) ? me.parseDate(value) : value);
@@ -335,7 +335,7 @@ Ext.define('Ext.form.field.Date', {
      * @param {Object} [value] The value to get errors for (defaults to the current field value)
      * @return {String[]} All validation errors for this field
      */
-    getErrors: function(value) {
+    getErrors: function (value) {
         value = arguments.length > 0 ? value : this.formatDate(this.processRawValue(this.getRawValue()));
 
         var me = this,
@@ -353,10 +353,9 @@ Ext.define('Ext.form.field.Date', {
             day,
             time;
 
-        
 
         if (value === null || value.length < 1) { // if it's blank and textfield didn't flag it then it's valid
-             return errors;
+            return errors;
         }
 
         svalue = value;
@@ -378,7 +377,7 @@ Ext.define('Ext.form.field.Date', {
         if (disabledDays) {
             day = value.getDay();
 
-            for(; i < len; i++) {
+            for (; i < len; i++) {
                 if (day === disabledDays[i]) {
                     errors.push(me.disabledDaysText);
                     break;
@@ -394,11 +393,11 @@ Ext.define('Ext.form.field.Date', {
         return errors;
     },
 
-    rawToValue: function(rawValue) {
+    rawToValue: function (rawValue) {
         return this.parseDate(rawValue) || rawValue || null;
     },
 
-    valueToRaw: function(value) {
+    valueToRaw: function (value) {
         return this.formatDate(this.parseDate(value));
     },
 
@@ -433,7 +432,7 @@ Ext.define('Ext.form.field.Date', {
      * @param {String} format A valid date format (see {@link Ext.Date#parse})
      * @return {Date} The parsed Date object, or null if the value could not be successfully parsed.
      */
-    safeParse : function(value, format) {
+    safeParse: function (value, format) {
         var me = this,
             utilDate = Ext.Date,
             result = null,
@@ -454,7 +453,7 @@ Ext.define('Ext.form.field.Date', {
     },
 
     // @private
-    getSubmitValue: function() {
+    getSubmitValue: function () {
         var format = this.submitFormat || this.format,
             value = this.getValue();
 
@@ -464,8 +463,8 @@ Ext.define('Ext.form.field.Date', {
     /**
      * @private
      */
-    parseDate : function(value) {
-        if(!value || Ext.isDate(value)){
+    parseDate: function (value) {
+        if (!value || Ext.isDate(value)) {
             return value;
         }
 
@@ -487,11 +486,11 @@ Ext.define('Ext.form.field.Date', {
     },
 
     // private
-    formatDate: function(date){
+    formatDate: function (date) {
         return Ext.isDate(date) ? Ext.Date.dateFormat(date, this.format) : date;
     },
 
-    createPicker: function() {
+    createPicker: function () {
         var me = this,
             format = Ext.String.format;
 
@@ -519,14 +518,14 @@ Ext.define('Ext.form.field.Date', {
                 select: me.onSelect
             },
             keyNavConfig: {
-                esc: function() {
+                esc: function () {
                     me.collapse();
                 }
             }
         });
     },
 
-    onSelect: function(m, d) {
+    onSelect: function (m, d) {
         var me = this;
 
         me.setValue(d);
@@ -538,13 +537,13 @@ Ext.define('Ext.form.field.Date', {
      * @private
      * Sets the Date picker's value to match the current field value when expanding.
      */
-    onExpand: function() {
+    onExpand: function () {
         var value = this.getValue();
         this.picker.setValue(Ext.isDate(value) ? value : new Date());
     },
 
     // private
-    onBlur: function(e) {
+    onBlur: function (e) {
         var me = this,
             v = me.rawToValue(me.getRawValue());
 

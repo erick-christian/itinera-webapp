@@ -82,7 +82,7 @@ Ext.Config = function (name) {
         get: 'get' + capitalizedName,
         set: 'set' + capitalizedName,
         initGet: 'initGet' + capitalizedName,
-        doSet : 'doSet' + capitalizedName,
+        doSet: 'doSet' + capitalizedName,
         changeEvent: name.toLowerCase() + 'change'
     };
 
@@ -142,7 +142,7 @@ Ext.Config.prototype = {
     getGetter: function () {
         return this.getter || (this.root.getter = this.makeGetter());
     },
-    
+
     getInitGetter: function () {
         return this.initGetter || (this.root.initGetter = this.makeInitGetter());
     },
@@ -205,7 +205,7 @@ Ext.Config.prototype = {
             i, val;
 
         if (newValue instanceof Array) {
-            for (i = newValue.length; i--; ) {
+            for (i = newValue.length; i--;) {
                 val = newValue[i];
                 if (!preserveExisting || !(val in ret)) {
                     ret[val] = true;

@@ -7,6 +7,7 @@
  */
 
 namespace app\Http\Controllers;
+
 use App\Http\Requests;
 
 use App\admTranslation;
@@ -21,19 +22,21 @@ class apiPrepareInterface
 {
     protected $request;
 
-    public function __construct(Request $request){
+    public function __construct(Request $request)
+    {
         $this->request = $request;
     }
 
-    public function getInformation(){
+    public function getInformation()
+    {
         global $availableInfo;
         global $apiMessage;
 
         $objApiData = json_decode($this->request->input('apiData'));
-        $interface      = $objApiData->{'interface'};
+        $interface = $objApiData->{'interface'};
 
         $translations = admTranslation::
-        where('interface',$interface)
+        where('interface' , $interface)
             ->get();
 
         $languages = admLanguage::all();
@@ -42,15 +45,15 @@ class apiPrepareInterface
         $availableInfo = true;
 
         $apiMessage = Translator::translate(
-            'Spanish',
-            'apiAccessLogin',
-            'InformationPrepared',
+            'Spanish' ,
+            'apiAccessLogin' ,
+            'InformationPrepared' ,
             'InformationPrepared');
 
         Emissary::success($availableInfo);
-        Emissary::addMessage('info-api',$apiMessage);
-        Emissary::addData('translations',$translations);
-        Emissary::addData('languages',$languages);
+        Emissary::addMessage('info-api' , $apiMessage);
+        Emissary::addData('translations' , $translations);
+        Emissary::addData('languages' , $languages);
 
         $objReturn = Emissary::getEnvelope();
         return json_encode($objReturn);

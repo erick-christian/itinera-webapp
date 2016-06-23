@@ -34,7 +34,7 @@ Ext.define('Ext.chart.series.Cartesian', {
      */
     axis: 'left',
 
-    getLegendLabels: function() {
+    getLegendLabels: function () {
         var me = this,
             labels = [],
             fields, i, ln,
@@ -73,11 +73,11 @@ Ext.define('Ext.chart.series.Cartesian', {
      * @param {Function} fn
      * @param {Object} scope
      */
-    eachYValue: function(record, fn, scope) {
+    eachYValue: function (record, fn, scope) {
         var me = this,
             yValueAccessors = me.getYValueAccessors(),
             i, ln, accessor;
-        
+
         for (i = 0, ln = yValueAccessors.length; i < ln; i++) {
             accessor = yValueAccessors[i];
             fn.call(scope, accessor(record), i);
@@ -89,7 +89,7 @@ Ext.define('Ext.chart.series.Cartesian', {
      * via legend drag-drop.
      * @return {Number}
      */
-    getYValueCount: function() {
+    getYValueCount: function () {
         return this.getYValueAccessors().length;
     },
 
@@ -100,13 +100,13 @@ Ext.define('Ext.chart.series.Cartesian', {
      * this list of accessors will be kept in sync with those combinations.
      * @return {Array} array of accessor functions
      */
-    getYValueAccessors: function() {
+    getYValueAccessors: function () {
         var me = this,
             accessors = me.yValueAccessors,
             yFields, i, ln;
 
         function getFieldAccessor(field) {
-            return function(record) {
+            return function (record) {
                 return record.get(field);
             }
         }
@@ -125,7 +125,7 @@ Ext.define('Ext.chart.series.Cartesian', {
      * Calculate the min and max values for this series's xField.
      * @return {Array} [min, max]
      */
-    getMinMaxXValues: function() {
+    getMinMaxXValues: function () {
         var me = this,
             chart = me.chart,
             store = chart.getChartStore(),
@@ -139,7 +139,7 @@ Ext.define('Ext.chart.series.Cartesian', {
         if (count > 0) {
             min = Infinity;
             max = -min;
-                
+
             for (i = 0, ln = data.length; i < ln; i++) {
                 record = data[i];
                 xValue = record.get(xField);
@@ -150,12 +150,12 @@ Ext.define('Ext.chart.series.Cartesian', {
                     min = xValue;
                 }
             }
-            
+
             // If we made no progress, treat it like a category axis
             if (min == Infinity) {
                 min = 0;
             }
-            
+
             if (max == -Infinity) {
                 max = count - 1;
             }
@@ -170,7 +170,7 @@ Ext.define('Ext.chart.series.Cartesian', {
      * combinations, exclusions, and stacking.
      * @return {Array} [min, max]
      */
-    getMinMaxYValues: function() {
+    getMinMaxYValues: function () {
         var me = this,
             chart = me.chart,
             store = chart.getChartStore(),
@@ -205,7 +205,7 @@ Ext.define('Ext.chart.series.Cartesian', {
         if (count > 0) {
             min = Infinity;
             max = -min;
-            
+
             for (i = 0, ln = data.length; i < ln; i++) {
                 record = data[i];
                 if (stacked) {
@@ -222,12 +222,12 @@ Ext.define('Ext.chart.series.Cartesian', {
                     me.eachYValue(record, eachYValue);
                 }
             }
-            
+
             // If we made no progress, treat it like a category axis
             if (min == Infinity) {
                 min = 0;
             }
-            
+
             if (max == -Infinity) {
                 max = count - 1;
             }
@@ -237,7 +237,7 @@ Ext.define('Ext.chart.series.Cartesian', {
         return [min, max];
     },
 
-    getAxesForXAndYFields: function() {
+    getAxesForXAndYFields: function () {
         var me = this,
             axes = me.chart.axes,
             reverse = me.reverse,
@@ -246,9 +246,9 @@ Ext.define('Ext.chart.series.Cartesian', {
             xFields = {}, xFieldList = [].concat(me.xField),
             fields, xAxis, yAxis, i, ln, flipXY;
 
-        
+
         flipXY = me.type === 'bar' && me.column === false;
-        if(flipXY) {
+        if (flipXY) {
             fields = yFieldList;
             yFieldList = xFieldList;
             xFieldList = fields;
@@ -282,7 +282,7 @@ Ext.define('Ext.chart.series.Cartesian', {
                 xAxis = 'bottom';
             }
         }
-        
+
         if (Ext.Array.indexOf(axis, 'left') > -1) {
             yAxis = flipXY ? 'right' : 'left';
         } else if (Ext.Array.indexOf(axis, 'right') > -1) {
@@ -315,7 +315,7 @@ Ext.define('Ext.chart.series.Cartesian', {
         return flipXY ? {
             xAxis: yAxis,
             yAxis: xAxis
-        }: {
+        } : {
             xAxis: xAxis,
             yAxis: yAxis
         };

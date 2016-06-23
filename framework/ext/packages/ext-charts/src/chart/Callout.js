@@ -8,7 +8,7 @@ Ext.define('Ext.chart.Callout', {
 
     /* End Definitions */
 
-    constructor: function(config) {
+    constructor: function (config) {
         if (config.callouts) {
             config.callouts.styles = Ext.applyIf(config.callouts.styles || {}, {
                 color: "#000",
@@ -19,7 +19,7 @@ Ext.define('Ext.chart.Callout', {
         }
     },
 
-    renderCallouts: function() {
+    renderCallouts: function () {
         if (!this.callouts) {
             return;
         }
@@ -42,20 +42,20 @@ Ext.define('Ext.chart.Callout', {
             label,
             storeItem,
             display;
-            
+
         for (i = 0, count = 0; i < len; i++) {
             for (j = 0; j < ratio; j++) {
                 item = items[count];
                 label = group[count];
                 storeItem = store.getAt(i);
-                
+
                 display = (!config.filter || config.filter(storeItem));
-                
+
                 if (!display && !label) {
                     count++;
-                    continue;               
+                    continue;
                 }
-                
+
                 if (!label) {
                     group[count] = label = me.onCreateCallout(storeItem, item, i, display, j, count);
                 }
@@ -71,7 +71,7 @@ Ext.define('Ext.chart.Callout', {
                                 label[p].setAttributes({
                                     hidden: true
                                 }, true);
-                            } else if(label[p].setVisible) {
+                            } else if (label[p].setVisible) {
                                 label[p].setVisible(false);
                             }
                         }
@@ -81,7 +81,7 @@ Ext.define('Ext.chart.Callout', {
                     config.renderer(label, storeItem);
                 }
                 me.onPlaceCallout(label, storeItem, item, i, display, animate,
-                                  j, count, previouslyPlacedCallouts);
+                    j, count, previouslyPlacedCallouts);
                 previouslyPlacedCallouts.push(label);
                 count++;
             }
@@ -89,7 +89,7 @@ Ext.define('Ext.chart.Callout', {
         this.hideCallouts(count);
     },
 
-    onCreateCallout: function(storeItem, item, i, display) {
+    onCreateCallout: function (storeItem, item, i, display) {
         var me = this,
             group = me.calloutsGroup,
             config = me.callouts,
@@ -105,16 +105,16 @@ Ext.define('Ext.chart.Callout', {
             };
 
         calloutObj.lines = surface.add(Ext.apply({},
-        {
-            type: 'path',
-            path: 'M0,0',
-            stroke: me.getLegendColor() || '#555'
-        },
-        styles));
+            {
+                type: 'path',
+                path: 'M0,0',
+                stroke: me.getLegendColor() || '#555'
+            },
+            styles));
 
         if (config.items) {
             calloutObj.panel = new Ext.Panel({
-                style: "position: absolute;",    
+                style: "position: absolute;",
                 width: width,
                 height: height,
                 items: config.items,
@@ -125,12 +125,12 @@ Ext.define('Ext.chart.Callout', {
         return calloutObj;
     },
 
-    hideCallouts: function(index) {
+    hideCallouts: function (index) {
         var calloutsArray = this.calloutsArray,
             len = calloutsArray.length,
             co,
             p;
-        while (len-->index) {
+        while (len-- > index) {
             co = calloutsArray[len];
             for (p in co) {
                 if (co[p]) {

@@ -111,7 +111,7 @@ Ext.define('Ext.chart.series.Polar', {
         return [this.dataRange[1], this.dataRange[3]];
     },
 
-    themeColorCount: function() {
+    themeColorCount: function () {
         var me = this,
             store = me.getStore(),
             count = store && store.getCount() || 0;

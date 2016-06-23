@@ -1,16 +1,122 @@
+Ext.define('modelSession',
+    {
+        extend: 'Ext.data.Model',
+        fields: [
+            {name: 'company_code', type: 'string'},
+            {name: 'company_name', type: 'string'},
+            {name: 'user_id', type: 'string'},
+            {name: 'user_name', type: 'string'},
+            {name: 'user_profile', type: 'string'},
+            {name: 'user_email', type: 'string'},
+            {name: 'profile_code', type: 'string'},
+            {name: 'system_code', type: 'string'},
+            {name: 'system_name', type: 'string'},
+            {name: 'system_version', type: 'string'}
+        ]
+    });
+
+Ext.define('storeSession',
+    {
+        extend: 'Ext.data.Store',
+        model: 'modelSession',
+        proxy: {
+            type: 'sessionstorage',
+            id: 'storeSession'
+        }
+    });
+
 var trex = {
-    prepareFormFields : function(p_idForm){
+    closeWindow: function (idWindow) {
+        var winWidget = Ext.getCmp(idWindow);
+        winWidget.close();
+    },
+
+    showWindow: function (idWindow) {
+        var winWidget = Ext.getCmp(idWindow);
+
+        if (!winWidget) {
+            var widgetWindow = 'widget.' + idWindow;
+
+            winCountrySearch = Ext.create(widgetWindow);
+            winCountrySearch.show();
+            trex.hideScrollBars();
+        }
+    },
+
+    refreshGrid: function (idGrid) {
+        var gridElement = Ext.getCmp(idGrid);
+
+        if (gridElement !== undefined) {
+            gridElement.getStore().loadData([], '');
+            gridElement.getStore().load();
+        }
+        else {
+            console.error('tRex: Grid not found: ' + idGrid);
+        }
+    },
+
+    changeAppIcon: function (src) {
+        var link = document.createElement('link'),
+            oldLink = document.getElementById('dynamic-favicon');
+        link.id = 'dynamic-favicon';
+        link.rel = 'icon';
+        link.href = src;
+
+        if (oldLink) {
+            document.head.removeChild(oldLink);
+        }
+        document.head.appendChild(link);
+    },
+
+    generateSession: function (p_sessionData) {
+        Ext.onReady(function () {
+
+            var storeSession = Ext.create('storeSession');
+            storeSession.getProxy().clear();
+
+            storeSession.add({
+                company_code: p_sessionData.company_code,
+                company_name: p_sessionData.company_name,
+                user_id: p_sessionData.user_id,
+                user_name: p_sessionData.user_name,
+                user_profile: p_sessionData.user_profile,
+                user_email: p_sessionData.user_email,
+                profile_code: p_sessionData.profile_code,
+                system_code: p_sessionData.system_code,
+                system_name: p_sessionData.system_name,
+                system_version: p_sessionData.system_version
+            });
+
+            storeSession.sync();
+        });
+    },
+
+    getSessionData: function (p_data) {
+        var returnValue = '';
+        var storeSession = Ext.create('storeSession');
+
+        storeSession.load(function (records, op, success) {
+            var sessionItinera, iCiclo;
+
+            sessionItinera = records[0].data;
+            returnValue = sessionItinera[p_data];
+        });
+
+        return returnValue;
+    },
+
+    prepareFormFields: function (p_idForm) {
         var objJsonData = new Object();
         var formItems = Ext.getCmp(p_idForm).items;
         var formRadio = Ext.getCmp(p_idForm);
-        
-        
-        for(iLoop = 0; iLoop < formItems.keys.length; iLoop++){
+
+
+        for (iLoop = 0; iLoop < formItems.keys.length; iLoop++) {
             var element = Ext.getCmp(formItems.keys[iLoop]);
 
-            if(element.xtype === 'fieldset'){
+            if (element.xtype === 'fieldset') {
 
-                for(iLoopSet = 0; iLoopSet < element.items.keys.length; iLoopSet++){
+                for (iLoopSet = 0; iLoopSet < element.items.keys.length; iLoopSet++) {
                     var field = Ext.getCmp(element.items.keys[iLoopSet]);
 
                     if (field.xtype === 'radiogroup') {
@@ -30,37 +136,42 @@ var trex = {
         return returnValue;
     },
 
-    showAppWindow : function(p_windowId,p_title){
+    showAppWindow: function (p_windowId, p_title, p_maximized) {
 
         var winApplication = Ext.getCmp(p_windowId);
         var appUrl = "../" + p_windowId + "/index.html";
+        var winMaximized = true;
 
-        if(!winApplication){
+        if (typeof(p_maximized) !== undefined) {
+            winMaximized = p_maximized;
+        }
+
+        if (!winApplication) {
             winApplication = new Ext.Window({
-                title       : p_title,
-                titlebar    : false,
-                minWidth    : 900,
-                minHeight   : 500,
-                maximized   : true,
-                maximizable : false,
-                draggable   : false,
-                closable    : false,
-                ui          : 'green-window',
-                modal       : true,
-                id          : p_windowId,
-                itemId      : p_windowId,
-                layout      : 'fit',
-                items : [{
-                    xtype   : "component",
-                    autoEl  : {
-                        tag    : "iframe",
-                        src    : appUrl,
-                        layout : 'fit'
+                title: p_title,
+                titlebar: false,
+                minWidth: 1100,
+                minHeight: 650,
+                maximized: winMaximized,
+                maximizable: false,
+                draggable: false,
+                closable: false,
+                //ui: 'green-window',
+                modal: true,
+                id: p_windowId,
+                itemId: p_windowId,
+                layout: 'fit',
+                items: [{
+                    xtype: "component",
+                    autoEl: {
+                        tag: "iframe",
+                        src: appUrl,
+                        layout: 'fit'
                     }
                 }],
-                listeners:{
+                listeners: {
                     resize: {
-                        fn: function(){
+                        fn: function () {
                         }
                     }
                 }
@@ -71,21 +182,21 @@ var trex = {
         trex.hideScrollBars();
         winApplicationOpen();
 
-        function winApplicationOpen(){
+        function winApplicationOpen() {
             winApplication.show();
         }
 
-        function winApplicationClose(){
+        function winApplicationClose() {
             winApplication.close();
-        }        
+        }
     },
 
-    showScrollBars : function(){
+    showScrollBars: function () {
         document.documentElement.style.overflow = 'auto';  // firefox, chrome
         document.body.scroll = "yes"; // ie only            
     },
 
-    hideScrollBars : function(){
+    hideScrollBars: function () {
         document.documentElement.style.overflow = 'hidden';  // firefox, chrome
         document.body.scroll = "no"; // ie only
     },
@@ -99,14 +210,14 @@ var trex = {
 
         jsonObject = p_jsonRecordData[p_recordTable][0];
 
-        if(jsonObject === undefined){
+        if (jsonObject === undefined) {
             jsonObject = p_jsonRecordData[p_recordTable];
         }
 
         console.log(jsonObject);
 
         for (var key in jsonObject) {
-            for(var prefix in prefixObj){
+            for (var prefix in prefixObj) {
 
                 var valPrefix = prefixObj[prefix];
 
@@ -114,27 +225,27 @@ var trex = {
 
                 fieldForm = Ext.getCmp(fieldUpdated);
 
-                if(fieldForm !== undefined){
-                    try{
+                if (fieldForm !== undefined) {
+                    try {
                         var fieldValue = jsonObject[key];
 
                         console.log('Actualizando el campo: ' + fieldForm.id);
 
-                        switch(fieldForm.xtype){
+                        switch (fieldForm.xtype) {
                             case 'datefield':
-                                fieldValue = Ext.Date.parse(fieldValue,'c');
-                                fieldValue = Ext.Date.format(fieldValue,'Y/m/d');
+                                fieldValue = Ext.Date.parse(fieldValue, 'c');
+                                fieldValue = Ext.Date.format(fieldValue, 'Y/m/d');
 
                                 var dateValue = new Date(fieldValue);
 
                                 /*var valFecha = new Date(valAnn,valMes,valDia);*/
 
                                 console.log(fieldValue);
-                                trex.writeElement(fieldUpdated,dateValue);
+                                trex.writeElement(fieldUpdated, dateValue);
 
                                 break;
                             default:
-                                trex.writeElement(fieldUpdated,fieldValue);
+                                trex.writeElement(fieldUpdated, fieldValue);
                         }
 
                         trex.disableElement(fieldUpdated);
@@ -143,50 +254,52 @@ var trex = {
                             console.log('habilitado el cqampo: ' + fieldUpdated);
                             trex.enableElement(fieldUpdated);
                         }
-                        
+
                     }
-                    catch(error){
+                    catch (error) {
                         console.error(fieldUpdated + '(' + jsonObject[key] + ')' + ' >> ' + error.message);
                     }
                 }
             } //for - Prefix
         } //for - jsonObject  
-    },   
+    },
 
-    enableElement : function (p_elemento){
+    enableElement: function (p_elemento) {
         var elemento = Ext.getCmp(p_elemento);
-        if(elemento !== undefined){
+        if (elemento !== undefined) {
             elemento.setDisabled(false);
         }
     },
 
-    disableElement : function (p_elemento){
+    disableElement: function (p_elemento) {
         var elemento = Ext.getCmp(p_elemento);
-        if(elemento !== undefined){
+        if (elemento !== undefined) {
             elemento.setDisabled(true);
         }
-        else{
+        else {
             console.error('disableElement - No se encontró el Componente o Elemento: ' + p_elemento);
         }
     },
 
-    toCamelCase : function(str) {
+    toCamelCase: function (str) {
         var stringReturn;
 
-        stringReturn = str.replace(/_/g,' ');
+        stringReturn = str.replace(/_/g, ' ');
 
-        stringReturn =  stringReturn.toLowerCase()
-        .replace( /['"]/g, '' )
-        .replace( /\W+/g, ' ' )
-        .replace( / (.)/g, function($1) { return $1.toUpperCase(); })
-        .replace( / /g, '' )
+        stringReturn = stringReturn.toLowerCase()
+            .replace(/['"]/g, '')
+            .replace(/\W+/g, ' ')
+            .replace(/ (.)/g, function ($1) {
+                return $1.toUpperCase();
+            })
+            .replace(/ /g, '')
         ;
 
         stringReturn = stringReturn.charAt(0).toUpperCase() + stringReturn.slice(1);
         return stringReturn;
     },
 
-    translateInterface: function(p_interfaceName){
+    translateInterface: function (p_interfaceName) {
 
         var objJsonData = new Object();
 
@@ -194,55 +307,55 @@ var trex = {
 
         var objJsonRequest = new Object();
         objJsonRequest.apiController = 'apiPrepareInterface';
-        objJsonRequest.apiMethod     = 'getInformation';
-        objJsonRequest.apiData       = JSON.stringify(objJsonData);
+        objJsonRequest.apiMethod = 'getInformation';
+        objJsonRequest.apiData = JSON.stringify(objJsonData);
 
-        var functionSuccess = function(){
+        var functionSuccess = function () {
 
             var jsonData = trex.getInfoDataBridge('apiPrepareInterface');
             var defaultLanguage = environment.defaultLanguage();
 
-            var languageData = jsonData.languages.filter(function (languageData){
+            var languageData = jsonData.languages.filter(function (languageData) {
                 return languageData.name === defaultLanguage;
             })[0];
 
             var translations = jsonData.translations;
 
-            for (var iLoop = 0; iLoop < translations.length; iLoop++){
-                var tooltip     = 'tooltip0'     + languageData.id;
-                var empty       = 'empty0'       + languageData.id;
+            for (var iLoop = 0; iLoop < translations.length; iLoop++) {
+                var tooltip = 'tooltip0' + languageData.id;
+                var empty = 'empty0' + languageData.id;
                 var translation = 'translation0' + languageData.id;
 
                 var widgetId = translations[iLoop]['widget'];
                 widgetObj = Ext.getCmp(widgetId);
-                if(widgetObj !== undefined){
+                if (widgetObj !== undefined) {
                     console.log(widgetObj);
 
-                    if(widgetObj.componentCls === 'x-field'){
+                    if (widgetObj.componentCls === 'x-field') {
                         widgetObj.labelEl.update(translations[iLoop][translation]);
                         widgetObj.emptyText = translations[iLoop][empty];
                         widgetObj.applyEmptyText();
                         widgetObj.reset();
                     }
 
-                    if(widgetObj.componentCls === 'x-btn'){
+                    if (widgetObj.componentCls === 'x-btn') {
                         widgetObj.setText(translations[iLoop][translation]);
                         widgetObj.setTooltip(translations[iLoop][tooltip]);
 
                         /* pone un mensage despues de ejecutar
-                        var toolTip = Ext.get(widgetId);
-                        toolTip.set({ 
-                            'data-qtitle': 'New Tooltip Title', //this line is optional
-                            'data-qtip': 'Updated Tool Tip!' 
-                        });
-                        */
+                         var toolTip = Ext.get(widgetId);
+                         toolTip.set({ 
+                         'data-qtitle': 'New Tooltip Title', //this line is optional
+                         'data-qtip': 'Updated Tool Tip!' 
+                         });
+                         */
                     }
                 }
             }
 
         };
 
-        var functionFailure = function(){
+        var functionFailure = function () {
             var jsonData = trex.getInfoDataBridge('apiPrepareInterface');
             trex.showInfo(jsonData, 'error', 'tfEmail');
         };
@@ -254,93 +367,93 @@ var trex = {
                           null);
     },
 
-    focusElement: function (p_element){
+    focusElement: function (p_element) {
         var element = Ext.getCmp(p_element);
 
-        if(element === undefined){
+        if (element === undefined) {
             console.error('focusElement - Element was not found: ' + p_element);
             return;
         }
-        element.focus(false,200);
+        element.focus(false, 200);
     },
 
-    message: function (p_type,p_title,p_message,p_function,p_format){
+    message: function (p_type, p_title, p_message, p_function, p_format) {
 
         var iconoMessage;
         var botonMessage;
         var botonTexto;
         var decodificaUtf8;
 
-        switch(p_type){
-            case "information": 
+        switch (p_type) {
+            case "information":
                 iconoMessage = Ext.MessageBox.INFO;
                 botonMessage = Ext.Msg.OK;
                 break;
-            case "question": 
+            case "question":
                 iconoMessage = Ext.MessageBox.QUESTION;
                 botonMessage = Ext.Msg.YESNO;
-                botonTexto   = {                        
+                botonTexto = {
                     yes: 'Confirmar',
                     no: 'Cerrar'
                 };
                 break;
-            case "warning": 
+            case "warning":
                 iconoMessage = Ext.MessageBox.WARNING;
                 botonMessage = Ext.Msg.OK;
                 break;
-            case "error": 
+            case "error":
                 iconoMessage = Ext.MessageBox.ERROR;
                 botonMessage = Ext.Msg.OK;
                 break;
         }
 
-        if(p_message.indexOf("á") > 0 ||
-           p_message.indexOf("é") > 0 ||
-           p_message.indexOf("í") > 0 ||
-           p_message.indexOf("ó") > 0 ||
-           p_message.indexOf("ú") > 0 ||
-           p_message.indexOf("ñ") > 0
-          ){
+        if (p_message.indexOf("á") > 0 ||
+            p_message.indexOf("é") > 0 ||
+            p_message.indexOf("í") > 0 ||
+            p_message.indexOf("ó") > 0 ||
+            p_message.indexOf("ú") > 0 ||
+            p_message.indexOf("ñ") > 0
+        ) {
             decodificaUtf8 = false;
         }
-        else{
+        else {
             decodificaUtf8 = true;
         }
 
-        if(decodificaUtf8 === true){
+        if (decodificaUtf8 === true) {
             p_message = Ext.encode(p_message);
         }
 
         /*--------------------------------------\
-    | ECRC: Formato especial del Message.	|
-    \--------------------------------------*/
+         | ECRC: Formato especial del Message.	|
+         \--------------------------------------*/
         var widthMessage = 400;
-        if(p_format!== undefined && p_format.width !== undefined){
+        if (p_format !== undefined && p_format.width !== undefined) {
             widthMessage = p_format.width;
         }
 
         Ext.Msg.show({
-            title  : p_title,
-            msg    : p_message,
-            icon   : iconoMessage,
+            title: p_title,
+            msg: p_message,
+            icon: iconoMessage,
             buttons: botonMessage,
             buttonText: botonTexto,
-            fn     : function(btn){
+            fn: function (btn) {
 
-                if(btn=='yes' || btn=='ok'){
-                    if(p_function !== '' && p_function !== undefined){
+                if (btn == 'yes' || btn == 'ok') {
+                    if (p_function !== '' && p_function !== undefined) {
 
-                        if(String(p_function).indexOf('function') != -1){
+                        if (String(p_function).indexOf('function') != -1) {
                             p_function();
                         }
-                        else{
+                        else {
                             eval(p_function);
                         }
 
                     }
                 }
             },
-            width  : widthMessage
+            width: widthMessage
         });
     },
 
@@ -349,7 +462,7 @@ var trex = {
                         p_fieldFocus,
                         p_messageFunction) {
 
-        if(p_infoDataBridge === undefined){
+        if (p_infoDataBridge === undefined) {
             return;
         }
 
@@ -359,22 +472,22 @@ var trex = {
         var numRecords = Object.keys(p_infoDataBridge.message).length;
         var dataInformation = '';
 
-        for(var iCiclo=0; iCiclo < numRecords; iCiclo++){
-            if(p_infoDataBridge.message[iCiclo] !== null){
+        for (var iCiclo = 0; iCiclo < numRecords; iCiclo++) {
+            if (p_infoDataBridge.message[iCiclo] !== null) {
 
                 dataMessage = p_infoDataBridge.message[iCiclo];
 
                 console.log('dataMessage');
                 console.log(dataMessage);
 
-                if(dataMessage.type !== undefined && dataMessage.type == 'info-api'){
+                if (dataMessage.type !== undefined && dataMessage.type == 'info-api') {
                     dataInformation = dataInformation + dataMessage.message + '</br></br>';
                 }
             }
         }
 
-        var msgTitulo    = '';
-        switch(p_type){
+        var msgTitulo = '';
+        switch (p_type) {
             case 'information':
                 msgTitulo = 'System Information';
                 break;
@@ -387,17 +500,17 @@ var trex = {
             case 'error':
                 msgTitulo = 'System Error';
                 break;
-            default:                
+            default:
         }
 
-        var msgTipo      = p_type;
+        var msgTipo = p_type;
         var msgContenido = dataInformation;
-        var msgFuncion   = function(){
-            if(p_fieldFocus !== undefined){
+        var msgFuncion = function () {
+            if (p_fieldFocus !== undefined) {
                 trex.focusElement(p_fieldFocus);
             }
 
-            if(p_messageFunction !== undefined){
+            if (p_messageFunction !== undefined) {
                 console.log('vba a ejecutar una funcion extra');
                 console.log(p_messageFunction);
 
@@ -405,7 +518,7 @@ var trex = {
             }
         };
 
-        var msgFormato   = {};
+        var msgFormato = {};
         msgFormato.width = 500;
 
         this.message(msgTipo,
@@ -413,38 +526,41 @@ var trex = {
                      msgContenido,
                      msgFuncion,
                      msgFormato
-                    );        
+        );
     },
 
     writeElement: function (p_elemento,
-                             p_valor,
-                             p_tipo){
+                            p_valor,
+                            p_tipo) {
 
         var valorElemento = p_valor;
         var elemento = Ext.getCmp(p_elemento);
 
-        if(elemento === undefined){
+        if (elemento === undefined) {
             console.error('writeElement - No se encontró el Componente o Elemento: ' + p_elemento);
             return;
         }
 
-        if(p_valor === 'NULL' ||
-           p_valor === undefined ||
-           p_valor === null){
+        if (p_valor === 'NULL' ||
+            p_valor === undefined ||
+            p_valor === null) {
             p_valor = '';
         }
 
-        if(p_valor !== '' || p_valor !== null){
-            if(elemento.xtype !== 'datefield'){
-                if(p_valor !== undefined){
+        if (p_valor !== '' || p_valor !== null) {
+            if (elemento.xtype !== 'datefield') {
+                if (p_valor !== undefined) {
 
                     p_valor = Ext.util.Format.htmlDecode(p_valor);
                 }
             }
         }
 
-        if(elemento !== undefined){
-            switch(elemento.xtype){
+        if (elemento !== undefined) {
+
+            console.log('Elemento Seleccionado');
+
+            switch (elemento.xtype) {
                 case 'textfield':
                     elemento.setValue(p_valor);
                     break;
@@ -455,10 +571,10 @@ var trex = {
                     elemento.update(p_valor);
                     break;
                 case 'checkboxfield':
-                    if(p_valor === 'true' || p_valor === 'yes'){
+                    if (p_valor === 'true' || p_valor === 'yes') {
                         elemento.setValue(true);
                     }
-                    else{
+                    else {
                         elemento.setValue(false);
                     }
                     break;
@@ -476,119 +592,119 @@ var trex = {
                     elemento.setValue(p_valor);
             }
 
-            if(isNaN(p_valor) === false){
-                if(p_tipo == "INT"){
+            if (isNaN(p_valor) === false) {
+                if (p_tipo == "INT") {
                     Ext.getCmp(p_elemento).setValue(Ext.util.Format.number(p_valor, '0,000'));
                 }
 
-                if(p_tipo == "DEC"){
+                if (p_tipo == "DEC") {
                     Ext.getCmp(p_elemento).setValue(Ext.util.Format.number(p_valor, '0,000.00'));
                 }
 
-                if(p_tipo == "VAL"){
+                if (p_tipo == "VAL") {
                     Ext.getCmp(p_elemento).setValue(Ext.util.Format.number(p_valor, '0,000.00000'));
                 }
             }
 
             /*--------------------------------------------------\
-        | ECRC: Asignación de Valores para Campos Fecha.	|
-        \--------------------------------------------------*/
+             | ECRC: Asignación de Valores para Campos Fecha.	|
+             \--------------------------------------------------*/
             var elementoDate = Ext.getCmp(p_elemento);
 
-            if(elementoDate.xtype === 'datefield'){ 
-                if(p_valor            !== 'NULL' &&
-                   p_valor            !== ''     &&
-                   p_valor            !== null   &&
-                   p_valor            !== undefined){
+            if (elementoDate.xtype === 'datefield') {
+                if (p_valor !== 'NULL' &&
+                    p_valor !== '' &&
+                    p_valor !== null &&
+                    p_valor !== undefined) {
 
-                    if(typeof(p_valor) == 'object'){
+                    if (typeof(p_valor) == 'object') {
                         elementoDate.setValue(p_valor);
                     }
-                    else{
-                        var valDia   = p_valor.substring(0,2);
-                        var valMes   = p_valor.substring(3,5) - 1;
-                        var valAnn   = p_valor.substring(6,10);
-                        var valFecha = new Date(valAnn,valMes,valDia);
+                    else {
+                        var valDia = p_valor.substring(0, 2);
+                        var valMes = p_valor.substring(3, 5) - 1;
+                        var valAnn = p_valor.substring(6, 10);
+                        var valFecha = new Date(valAnn, valMes, valDia);
                         elementoDate.setValue(valFecha);
                     }
                 }
-                else{
+                else {
                     elementoDate.setValue(null);
                 }
             }
         }
-        else{
+        else {
             var mensaje = 'No se encontro el Elemento con Id  o itemId en la Interfaz: ' + p_elemento;
             console.error(mensaje);
         }
 
-    },    
-    readElement: function (p_element,p_type){
-        var valRetorno = "";
+    },
+    readElement: function (p_element, p_type) {
+        var returnValue = "";
         var Elemento = Ext.getCmp(p_element);
 
-        if(Elemento === undefined){
+        if (Elemento === undefined) {
             console.error('readElement - Element was not found by ID: ' + p_element);
             return;
-        }    
+        }
 
         var tipoElemento = Elemento.getXType();
 
-        switch(tipoElemento){
+        switch (tipoElemento) {
             case 'datefield':
-                valRetorno = Ext.getCmp(p_element).getSubmitValue();
+                returnValue = Ext.getCmp(p_element).getSubmitValue();
 
-                if(p_type === 'date'){
-                    var dia = valRetorno.substring(0,2);
-                    var mes = valRetorno.substring(3,5);
-                    var ann = valRetorno.substring(8,10);
+                if (p_type === 'date') {
+                    var dia = returnValue.substring(0, 2);
+                    var mes = returnValue.substring(3, 5);
+                    var ann = returnValue.substring(8, 10);
 
-                    valRetorno = dia + "-" + mes + "-" + ann;
-                }            
+                    returnValue = dia + "-" + mes + "-" + ann;
+                }
                 break;
             case 'timefield':
-                valRetorno = Ext.getCmp(p_element).getValue();
-                valRetorno = Ext.Date.format(valRetorno, 'H:i');
-                valRetorno = valRetorno.replace(':','|');
+                returnValue = Ext.getCmp(p_element).getValue();
+                returnValue = Ext.Date.format(returnValue, 'H:i');
+                returnValue = returnValue.replace(':', '|');
                 break;
             case 'radiogroup':
                 var radioGroup = Ext.getCmp(p_element).getValue();
-                valRetorno = radioGroup[p_element];            
+                returnValue = radioGroup[p_element];
                 break;
             case 'checkbox':
-                valRetorno = Ext.getCmp(p_element).getValue().toString();
+                returnValue = Ext.getCmp(p_element).getValue().toString();
                 break;
             default:
-                valRetorno = Ext.getCmp(p_element).getValue();
+                returnValue = Ext.getCmp(p_element).getValue();
         }
 
-        if(p_type === 'number'){
+        if (p_type === 'number') {
             /* ECRC: Cleaning the number format  */
-            valRetorno = valRetorno.replace("$","");
-            valRetorno = valRetorno.split(",").join('');
+            returnValue = returnValue.replace("$", "");
+            returnValue = returnValue.split(",").join('');
         }
 
-        if(typeof valRetorno == 'string'){
-            valRetorno = valRetorno.trim();
+        if (typeof returnValue == 'string') {
+            returnValue = returnValue.trim();
         }
-        return valRetorno;
+        return returnValue;
     },
 
 
-    carga: function (){
+    carga: function () {
         alert('cargado');
         console.log('funcion de carga');
     },
 
-    setInfoDataBridge: function (p_idStore, 
-                                  p_respuestaJson){
+    setInfoDataBridge: function (p_idStore,
+                                 p_respuestaJson) {
 
         Ext.define('modDataBridge',
                    {
                        extend: 'Ext.data.Model',
                        fields: [
-                           {name: 'idStore', type:'string'},
-                           {name: 'respuestaJson', type:'string'}
+                           {name: 'idStore', type: 'string'},
+                           {name: 'respuestaJson', type: 'string'}
                        ]
                    });
 
@@ -596,7 +712,7 @@ var trex = {
                    {
                        extend: 'Ext.data.Store',
                        model: 'modDataBridge',
-                       proxy:{
+                       proxy: {
                            type: 'sessionstorage',
                            id: p_idStore
                        }
@@ -610,17 +726,17 @@ var trex = {
             respuestaJson: p_respuestaJson
         });
 
-        storeDataBridge.sync();  
+        storeDataBridge.sync();
     },
 
-    getInfoDataBridge : function (p_idStore){
+    getInfoDataBridge: function (p_idStore) {
 
         Ext.define('modDataBridge',
                    {
                        extend: 'Ext.data.Model',
                        fields: [
-                           {name: 'idStore', type:'string'},
-                           {name: 'respuestaJson', type:'string'}
+                           {name: 'idStore', type: 'string'},
+                           {name: 'respuestaJson', type: 'string'}
                        ]
                    });
 
@@ -628,50 +744,50 @@ var trex = {
                    {
                        extend: 'Ext.data.Store',
                        model: 'modDataBridge',
-                       proxy:{
+                       proxy: {
                            type: 'sessionstorage',
                            id: p_idStore
                        }
                    });
 
-        var valRetorno = '';
+        var returnValue = '';
         var storeDataBridge = Ext.create('storeDataBridge');
 
         Ext.define('storeDataBridge',
                    {
                        extend: 'Ext.data.Store',
                        model: 'modDataBridge',
-                       proxy:{
+                       proxy: {
                            type: 'sessionstorage',
                            id: 'openLink'
                        }
                    });
 
-        storeDataBridge.load(function(records,op,success){
+        storeDataBridge.load(function (records, op, success) {
             var infoDataBridge, iCiclo;
 
-            for (iCiclo=0; iCiclo<records.length; iCiclo++){
+            for (iCiclo = 0; iCiclo < records.length; iCiclo++) {
                 infoDataBridge = records[iCiclo].data;
-                //valRetorno = Ext.decode(infoDataBridge.respuestaJson);
-                valRetorno = infoDataBridge.respuestaJson;
+                //returnValue = Ext.decode(infoDataBridge.respuestaJson);
+                returnValue = infoDataBridge.respuestaJson;
 
             }
 
-            return valRetorno;
+            return returnValue;
         });
 
-        valRetorno = Ext.decode(valRetorno);
-        return valRetorno;
-    },    
+        returnValue = Ext.decode(returnValue);
+        return returnValue;
+    },
 
     doDataBridge: function (p_jsonDataForm,
-                             p_fncSuccess,
-                             p_paramsSuccess,
-                             p_fncFailure,
-                             p_paramsFailure,
-                             p_fncCallback,
-                             p_paramsCallback,
-                             p_modoDebug){
+                            p_fncSuccess,
+                            p_paramsSuccess,
+                            p_fncFailure,
+                            p_paramsFailure,
+                            p_fncCallback,
+                            p_paramsCallback,
+                            p_modoDebug) {
 
 
         console.log('xsfr');
@@ -682,9 +798,9 @@ var trex = {
         var cajaEspera = Ext.MessageBox.show({
             msg: 'Por favor espere, procesando informacion...',
             progressText: 'Procesando',
-            width:300,
-            wait:true,
-            waitConfig: {interval:170}
+            width: 300,
+            wait: true,
+            waitConfig: {interval: 170}
         });
 
         var nombreCampo;
@@ -694,7 +810,7 @@ var trex = {
         aDatosJson[0] = new Object();
 
         var tokenLaravel = Ext.util.Cookies.get('XSRF-TOKEN');
-        if(tokenLaravel !== null){
+        if (tokenLaravel !== null) {
             p_jsonDataForm._token = tokenLaravel;
         }
 
@@ -706,15 +822,15 @@ var trex = {
         Ext.Ajax.request({
             url: urlAjax,
             method: 'POST',
-            headers:{
+            headers: {
                 'XSRF-TOKEN': tokenLaravel
             },
             params: p_jsonDataForm,
-            success: function(response,opts){
+            success: function (response, opts) {
                 var jsonData = Ext.decode(response.responseText);
                 var idDataBridge = p_jsonDataForm.apiController;
 
-                if(p_jsonDataForm.apiController !== undefined){
+                if (p_jsonDataForm.apiController !== undefined) {
                     idDataBridge = p_jsonDataForm.apiController;
                 }
 
@@ -723,27 +839,27 @@ var trex = {
                                       );
 
                 /* ECRC: Función cuando se ejecuta correctamente el Script en el Servidor */
-                if(jsonData.success === true ){
+                if (jsonData.success === true) {
                     cajaEspera.hide();
-                    if(p_fncSuccess !== undefined){
+                    if (p_fncSuccess !== undefined) {
                         /*--------------------------------------\
-                     | ECRC: Integración de Jasper Reports.	|
-                     \--------------------------------------*/
-                        if(p_fncSuccess == "generaReporte"){
+                         | ECRC: Integración de Jasper Reports.	|
+                         \--------------------------------------*/
+                        if (p_fncSuccess == "generaReporte") {
                             /*----------------------------------------------------------------------\
-                         | ECRC: En ésta sección se general la URL para  presentar  el  Reporte	|
-                         |       para que posteriormente se presente una Ventana con el Reporte	|
-                         |       ya generado.													|
-                         |       Los parámetros que se envían al Jasper Server son:				|
-                         |       idSesion y jsonData (Con el ID Sesión y el ID Trans).			|
-                         \----------------------------------------------------------------------*/
+                             | ECRC: En ésta sección se general la URL para  presentar  el  Reporte	|
+                             |       para que posteriormente se presente una Ventana con el Reporte	|
+                             |       ya generado.													|
+                             |       Los parámetros que se envían al Jasper Server son:				|
+                             |       idSesion y jsonData (Con el ID Sesión y el ID Trans).			|
+                             \----------------------------------------------------------------------*/
 
                             var urlJasper = creaUrlJasper(p_paramsSuccess);
                             funcionSuccess = p_fncSuccess + "('" + urlJasper + "',p_paramsSuccess)";
 
-                            try{
+                            try {
                                 eval(funcionSuccess);
-                            } catch(error){
+                            } catch (error) {
                                 console.error('Error en la Funcion: ' + funcionSuccess);
                                 console.error(error.message);
                                 console.error('Verifique la Sintaxis de la Funcion.');
@@ -751,41 +867,41 @@ var trex = {
                         }
                         else {
 
-                            if(p_paramsSuccess === "" || p_paramsSuccess === undefined){
+                            if (p_paramsSuccess === "" || p_paramsSuccess === undefined) {
                                 funcionSuccess = p_fncSuccess + "(p_jsonDataForm,jsonData)";
                             }
-                            else{
+                            else {
                                 var strParametros = String(p_paramsSuccess);
                                 var arrayParametros = strParametros.split(",");
 
-                                if(arrayParametros.length > 1){
+                                if (arrayParametros.length > 1) {
                                     funcionSuccess = p_fncSuccess + "(";
 
-                                    for(var iCiclo=0;iCiclo<=arrayParametros.length;iCiclo++){
+                                    for (var iCiclo = 0; iCiclo <= arrayParametros.length; iCiclo++) {
 
-                                        if(arrayParametros[iCiclo] !== undefined){
+                                        if (arrayParametros[iCiclo] !== undefined) {
                                             funcionSuccess += arrayParametros[iCiclo];
-                                            if(iCiclo != (arrayParametros.length - 1)  ){
+                                            if (iCiclo != (arrayParametros.length - 1)) {
                                                 funcionSuccess += ",";
                                             }
                                         }
                                     }
                                     funcionSuccess += ")";
                                 }
-                                else{
+                                else {
                                     funcionSuccess = p_fncSuccess + "(p_paramsSuccess)";
                                 }
                             }
 
-                            try{
-                                if(String(p_fncSuccess).indexOf('function') != -1){
+                            try {
+                                if (String(p_fncSuccess).indexOf('function') != -1) {
                                     funcionSuccess = p_fncSuccess;
                                     funcionSuccess();
-                                }else{
+                                } else {
                                     eval(funcionSuccess);
                                 }
 
-                            } catch(error){
+                            } catch (error) {
                                 console.error('Error en la Funcion: ' + funcionSuccess);
                                 console.error(error.message);
                                 console.error('Verifique la Sintaxis de la Funcion.');
@@ -794,18 +910,18 @@ var trex = {
 
                     }
                 }
-                else{
-                    if(jsonData.dsRetorno != undefined){
+                else {
+                    if (jsonData.dsRetorno != undefined) {
                         /*------------------------------------------------------------------\
-                     | ECRC: Errores de Lógica de Negocio encontrados en la ejecución	|
-                     |       de los Procedimientos Backend.								|
-                     \------------------------------------------------------------------*/
+                         | ECRC: Errores de Lógica de Negocio encontrados en la ejecución	|
+                         |       de los Procedimientos Backend.								|
+                         \------------------------------------------------------------------*/
                         numRecords = Object.keys(jsonData.dsRetorno.ttInformacion).length;
 
-                        for(var iCiclo=0; iCiclo <= numRecords; iCiclo++){
-                            if(jsonData.dsRetorno.ttInformacion[iCiclo] != null){
+                        for (var iCiclo = 0; iCiclo <= numRecords; iCiclo++) {
+                            if (jsonData.dsRetorno.ttInformacion[iCiclo] != null) {
 
-                                if(jsonData.dsRetorno.ttInformacion[iCiclo].tipo == 'ERROR'){
+                                if (jsonData.dsRetorno.ttInformacion[iCiclo].tipo == 'ERROR') {
                                     mensajeError = '<font color=darkred size=2px><b>' + jsonData.dsRetorno.ttInformacion[iCiclo].codInformacion + ' - ';
                                     mensajeError += jsonData.dsRetorno.ttInformacion[iCiclo].descInformacion + '</b></br>';
                                     mensajeError += '<i>' + jsonData.dsRetorno.ttInformacion[iCiclo].adicional + '</i></font></br>';
@@ -816,35 +932,33 @@ var trex = {
 
                     cajaEspera.hide();
 
-                    if(p_modoDebug){
+                    if (p_modoDebug) {
                         Ext.Msg.show({
-                            title      : 'Error en API Backend',
-                            msg        : mensajeError,
-                            width      : 500,
-                            buttons    : Ext.MessageBox.OK,
-                            icon       : Ext.MessageBox.ERROR
+                            title: 'Error en API Backend',
+                            msg: mensajeError,
+                            width: 500,
+                            buttons: Ext.MessageBox.OK,
+                            icon: Ext.MessageBox.ERROR
                         });
                     }
 
 
-
-                    if(p_paramsFailure === "" || p_paramsFailure === undefined){
+                    if (p_paramsFailure === "" || p_paramsFailure === undefined) {
                         p_paramsFailure = jsonData;
                         funcionFailure = p_fncFailure + "(p_jsonDataForm,p_paramsFailure)";
                     }
-                    else{
+                    else {
 
                         funcionFailure = p_fncFailure + "(p_paramsFailure,p_jsonDataForm)";
                     }
 
 
-
-                    if(p_fncFailure !== undefined){
-                        if(String(p_fncFailure).indexOf('function') != -1){
+                    if (p_fncFailure !== undefined) {
+                        if (String(p_fncFailure).indexOf('function') != -1) {
                             funcionFailure = p_fncFailure;
                             funcionFailure();
                         }
-                        else{
+                        else {
                             console.info('Funcion de error: ' + p_fncFailure + ' > ' + funcionFailure);
                             console.info('Ejecutando la Funcion: ' + funcionFailure);
                             eval(funcionFailure);
@@ -852,30 +966,30 @@ var trex = {
                     }
                 }
             },
-            failure: function(response,opts){
+            failure: function (response, opts) {
                 /* ECRC: Función cuando hay Error en la Ejecución en el Servidor */
                 console.error('Servidor Fallo con el Estado: ' + response.status);
                 cajaEspera.hide();
             },
-            callback: function(success){
+            callback: function (success) {
                 var funcionCallback;
-                if(success && p_fncCallback !== undefined){
-                    if(p_paramsCallback !== undefined || p_paramsCallback != ''){
+                if (success && p_fncCallback !== undefined) {
+                    if (p_paramsCallback !== undefined || p_paramsCallback != '') {
                         funcionCallback = p_fncCallback + '(p_paramsCallback)';
                     }
-                    else{
+                    else {
                         funcionCallback = p_fncCallback + '()';
                     }
 
-                    try{
-                        if(String(p_fncCallback).indexOf('function') != -1){
+                    try {
+                        if (String(p_fncCallback).indexOf('function') != -1) {
                             funcionCallback = p_fncCallback;
                             funcionCallback();
-                        }else{
+                        } else {
                             eval(funcionCallback);
                         }
 
-                    }catch(error){
+                    } catch (error) {
                         console.error('Error en la Funcion Callback');
                         console.error(error.message);
                         console.error('Verifique la Sintaxis de la Funcion');

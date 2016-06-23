@@ -20,28 +20,28 @@
  * Required in order for outline-offset to work in IE8
  */
 @mixin css-outline(
-    $width: 1px,
-    $style: solid,
-    $color: #000,
-    $offset: 0,
-    $border-width: 0
+  $width: 1px,
+  $style: solid,
+  $color: #000,
+  $offset: 0,
+  $border-width: 0
 ) {
-    outline: $width $style $color;
-    outline-offset: $offset;
+  outline: $width $style $color;
+  outline-offset: $offset;
 
-    @if $include-ie {
-        .#{$prefix}ie8 & {
-            outline: none;
-            &:after {
-                position: absolute;
-                content: ' ';
-                top: -$offset - $width - top($border-width) ;
-                right: -$offset - $width - right($border-width);
-                bottom: -$offset - $width - bottom($border-width);
-                left: -$offset - $width - left($border-width);
+  @if $include-ie {
+    .#{$prefix}ie8 & {
+      outline: none;
+      &:after {
+        position: absolute;
+        content: ' ';
+        top: -$offset - $width - top($border-width);
+        right: -$offset - $width - right($border-width);
+        bottom: -$offset - $width - bottom($border-width);
+        left: -$offset - $width - left($border-width);
 
-                border: $width $style $color;
-            }
-        }
+        border: $width $style $color;
+      }
     }
+  }
 }

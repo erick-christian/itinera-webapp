@@ -69,72 +69,72 @@
  * the `{@link Ext.plugin.Viewport viewport plugin}`.
  */
 Ext.define('Ext.container.Viewport', {
-    extend: 'Ext.container.Container',
+        extend: 'Ext.container.Container',
 
-    requires: [
-        'Ext.plugin.Viewport'
-    ],
+        requires: [
+            'Ext.plugin.Viewport'
+        ],
 
-    mixins: [
-        'Ext.mixin.Responsive'
-    ],
+        mixins: [
+            'Ext.mixin.Responsive'
+        ],
 
-    alias: 'widget.viewport',
-    alternateClassName: 'Ext.Viewport',
+        alias: 'widget.viewport',
+        alternateClassName: 'Ext.Viewport',
 
-    /**
-     * @property {Boolean} isViewport
-     * `true` in this class to identify an object as an instantiated Viewport, or subclass thereof.
-     * @readonly
-     */
+        /**
+         * @property {Boolean} isViewport
+         * `true` in this class to identify an object as an instantiated Viewport, or subclass thereof.
+         * @readonly
+         */
 
-    /**
-     * @cfg {Number} [maxUserScale=10]
-     * The maximum zoom scale. Only applicable for touch devices. Set this to 1 to
-     * disable zooming.
-     */
+        /**
+         * @cfg {Number} [maxUserScale=10]
+         * The maximum zoom scale. Only applicable for touch devices. Set this to 1 to
+         * disable zooming.
+         */
 
-    // Privatize config options which, if used, would interfere with the
-    // correct operation of the Viewport as the sole manager of the
-    // layout of the document body.
+        // Privatize config options which, if used, would interfere with the
+        // correct operation of the Viewport as the sole manager of the
+        // layout of the document body.
 
-    /**
-     * @cfg {Boolean} allowDomMove
-     * @private
-     */
+        /**
+         * @cfg {Boolean} allowDomMove
+         * @private
+         */
 
-    /**
-     * @cfg {String/HTMLElement/Ext.dom.Element} renderTo
-     * Always renders to document body.
-     * @private
-     */
+        /**
+         * @cfg {String/HTMLElement/Ext.dom.Element} renderTo
+         * Always renders to document body.
+         * @private
+         */
 
-    /**
-     * @cfg {Number} height
-     * Sets itself to viewport width.
-     * @private
-     */
+        /**
+         * @cfg {Number} height
+         * Sets itself to viewport width.
+         * @private
+         */
 
-    /**
-     * @cfg {Number} width
-     * Sets itself to viewport height.
-     * @private
-     */
+        /**
+         * @cfg {Number} width
+         * Sets itself to viewport height.
+         * @private
+         */
 
-    privates: {
-        updateResponsiveState: function () {
-            // By providing this method we are in sync with the layout suspend/resume as
-            // well as other changes to configs that need to happen during this pulse of
-            // size change.
+        privates: {
+            updateResponsiveState: function () {
+                // By providing this method we are in sync with the layout suspend/resume as
+                // well as other changes to configs that need to happen during this pulse of
+                // size change.
 
-            // Since we are not using the Viewport plugin beyond applying its methods on
-            // to our prototype, we need to be Responsive ourselves and call this here:
-            this.handleViewportResize();
+                // Since we are not using the Viewport plugin beyond applying its methods on
+                // to our prototype, we need to be Responsive ourselves and call this here:
+                this.handleViewportResize();
 
-            this.mixins.responsive.updateResponsiveState.call(this);
+                this.mixins.responsive.updateResponsiveState.call(this);
+            }
         }
-    }
-},
-function () {
-    Ext.plugin.Viewport.decorate(this);
-});
+    },
+    function () {
+        Ext.plugin.Viewport.decorate(this);
+    });

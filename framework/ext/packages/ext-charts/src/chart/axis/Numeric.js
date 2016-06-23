@@ -91,7 +91,7 @@ Ext.define('Ext.chart.axis.Numeric', {
 
     uses: ['Ext.data.Store'],
 
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this,
             hasLabel = !!(config.label && config.label.renderer),
             label;
@@ -104,13 +104,13 @@ Ext.define('Ext.chart.axis.Numeric', {
         }
 
         if (!hasLabel) {
-            label.renderer = function(v) {
+            label.renderer = function (v) {
                 return me.roundToDecimal(v, me.decimals);
             };
         }
     },
 
-    roundToDecimal: function(v, dec) {
+    roundToDecimal: function (v, dec) {
         var val = Math.pow(10, dec || 0);
         return Math.round(v * val) / val;
     },
@@ -152,7 +152,7 @@ Ext.define('Ext.chart.axis.Numeric', {
     scale: "linear",
 
     // @private constrains to datapoints between minimum and maximum only
-    doConstrain: function() {
+    doConstrain: function () {
         var me = this,
             chart = me.chart,
             store = chart.getChartStore(),
@@ -188,7 +188,7 @@ Ext.define('Ext.chart.axis.Numeric', {
                 data.push(record);
             }
         }
-        
+
         chart.setSubStore(new Ext.data.Store({
             model: store.model,
             data: data
@@ -215,7 +215,7 @@ Ext.define('Ext.chart.axis.Numeric', {
     adjustMinimumByMajorUnit: false,
 
     // applying constraint
-    processView: function() {
+    processView: function () {
         var me = this,
             chart = me.chart,
             series = chart.series.items,
@@ -237,7 +237,7 @@ Ext.define('Ext.chart.axis.Numeric', {
     },
 
     // @private apply data.
-    applyData: function() {
+    applyData: function () {
         this.callParent();
         return this.calcEnds();
     }

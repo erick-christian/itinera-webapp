@@ -95,7 +95,7 @@ Ext.define('Ext.selection.RowModel', {
      */
     deselectOnContainerClick: false,
 
-    onUpdate: function(record) {
+    onUpdate: function (record) {
         var me = this,
             view = me.view,
             index;
@@ -111,21 +111,21 @@ Ext.define('Ext.selection.RowModel', {
 
     // Allow the GridView to update the UI by
     // adding/removing a CSS class from the row.
-    onSelectChange: function(record, isSelected, suppressEvent, commitFn) {
-        var me      = this,
-            views   = me.views || [me.view],
+    onSelectChange: function (record, isSelected, suppressEvent, commitFn) {
+        var me = this,
+            views = me.views || [me.view],
             viewsLn = views.length,
             recordIndex = me.store.indexOf(record),
             eventName = isSelected ? 'select' : 'deselect',
             i, view;
 
         if ((suppressEvent || me.fireEvent('before' + eventName, me, record, recordIndex)) !== false &&
-                commitFn() !== false) {
+            commitFn() !== false) {
 
             // Selection models can handle more than one view
             for (i = 0; i < viewsLn; i++) {
                 view = views[i];
-                recordIndex  = view.indexOf(record);
+                recordIndex = view.indexOf(record);
 
                 // The record might not be rendered due to either buffered rendering,
                 // or removal/hiding of all columns (eg empty locked side).
@@ -144,7 +144,7 @@ Ext.define('Ext.selection.RowModel', {
         }
     },
 
-    onEditorTab: function(editingPlugin, e) {
+    onEditorTab: function (editingPlugin, e) {
         var me = this,
             view = editingPlugin.context.view,
             record = editingPlugin.getActiveRecord(),
@@ -159,7 +159,7 @@ Ext.define('Ext.selection.RowModel', {
 
         do {
             lastPos = position;
-            position  = view.walkCells(position, direction, e, me.preventWrap);
+            position = view.walkCells(position, direction, e, me.preventWrap);
             if (lastPos && lastPos.isEqual(position)) {
                 // If we end up with the same result twice, it means that we weren't able to progress
                 // via walkCells, for example if the remaining records are non-record rows, so gracefully
@@ -173,7 +173,7 @@ Ext.define('Ext.selection.RowModel', {
      * Returns position of the first selected cell in the selection in the format {row: row, column: column}
      * @deprecated 5.0.1 Use the {@link Ext.view.Table#getNavigationModel NavigationModel} instead.
      */
-    getCurrentPosition: function() {
+    getCurrentPosition: function () {
         var firstSelection = this.selected.getAt(0);
         if (firstSelection) {
             return new Ext.grid.CellContext(this.view).setPosition(this.store.indexOf(firstSelection), 0);
@@ -193,7 +193,7 @@ Ext.define('Ext.selection.RowModel', {
      * @param {Boolean} [suppressEvent] Set to false to not fire a select event
      * @return {Boolean} `true` if there is a next record, else `false`
      */
-    selectNext: function(keepExisting, suppressEvent) {
+    selectNext: function (keepExisting, suppressEvent) {
         var me = this,
             store = me.store,
             selection = me.getSelection(),
@@ -216,7 +216,7 @@ Ext.define('Ext.selection.RowModel', {
      * @param {Boolean} [suppressEvent] Set to false to not fire a select event
      * @return {Boolean} `true` if there is a previous record, else `false`
      */
-    selectPrevious: function(keepExisting, suppressEvent) {
+    selectPrevious: function (keepExisting, suppressEvent) {
         var me = this,
             selection = me.getSelection(),
             record = selection[0],
@@ -232,11 +232,11 @@ Ext.define('Ext.selection.RowModel', {
         return success;
     },
 
-    isRowSelected: function(record) {
+    isRowSelected: function (record) {
         return this.isSelected(record);
     },
 
-    isCellSelected: function(view, record, columnHeader) {
+    isCellSelected: function (view, record, columnHeader) {
         return this.isSelected(record);
-    } 
+    }
 });

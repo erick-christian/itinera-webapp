@@ -21,22 +21,22 @@ class CreateTmsCarsTable extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->char('car_id');
+            $table->char('carmaker_code');
+            $table->char('car_code');
             $table->string('car_description');
-            $table->string('maker');
             $table->string('type');
             $table->string('cly');
             $table->string('model');
             $table->string('event');
-            $table->dateTime('event_date');
             $table->char('is_active' , 2);
+            $table->dateTime('event_date');
             $table->dateTime('inactive_date');
 
             /* Enable Soft Delete*/
             $table->softDeletes();
 
             /* Indexes */
-            $table->unique(['car_id']);
+            $table->index(['carmaker_code' , 'car_code']);
             $table->index(['event_date']);
 
         });

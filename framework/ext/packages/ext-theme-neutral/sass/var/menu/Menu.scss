@@ -91,7 +91,7 @@ $menu-item-active-background-color: $base-color !default;
  * The border-color of the active {@link Ext.menu.Item Menu Item}
  */
 $menu-item-active-border-color: adjust-color($base-color, $saturation: 23%, $lightness: -3%) !default;
- 
+
 /**
  * @var {string/list}
  * The background-gradient for {@link Ext.menu.Item Menu Items}. Can be either the name

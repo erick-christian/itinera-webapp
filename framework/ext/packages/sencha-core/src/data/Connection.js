@@ -82,29 +82,29 @@ Ext.define('Ext.data.Connection', {
         password: '',
 
         /**
-        * @cfg {Boolean} disableCaching
-        * True to add a unique cache-buster param to GET requests.
-        */
+         * @cfg {Boolean} disableCaching
+         * True to add a unique cache-buster param to GET requests.
+         */
         disableCaching: true,
 
         /**
-        * @cfg {Boolean} withCredentials
-        * True to set `withCredentials = true` on the XHR object
-        */
+         * @cfg {Boolean} withCredentials
+         * True to set `withCredentials = true` on the XHR object
+         */
         withCredentials: false,
 
         /**
-        * @cfg {Boolean} binary
-        * True if the response should be treated as binary data.  If true, the binary
-        * data will be accessible as a "responseBytes" property on the response object.
-        */
+         * @cfg {Boolean} binary
+         * True if the response should be treated as binary data.  If true, the binary
+         * data will be accessible as a "responseBytes" property on the response object.
+         */
         binary: false,
 
         /**
-        * @cfg {Boolean} cors
-        * True to enable CORS support on the XHR object. Currently the only effect of this option
-        * is to use the XDomainRequest object instead of XMLHttpRequest if the browser is IE8 or above.
-        */
+         * @cfg {Boolean} cors
+         * True to enable CORS support on the XHR object. Currently the only effect of this option
+         * is to use the XDomainRequest object instead of XMLHttpRequest if the browser is IE8 or above.
+         */
         cors: false,
 
         isXdr: false,
@@ -112,64 +112,64 @@ Ext.define('Ext.data.Connection', {
         defaultXdrContentType: 'text/plain',
 
         /**
-        * @cfg {String} disableCachingParam
-        * Change the parameter which is sent went disabling caching through a cache buster.
-        */
+         * @cfg {String} disableCachingParam
+         * Change the parameter which is sent went disabling caching through a cache buster.
+         */
         disableCachingParam: '_dc',
 
         /**
-        * @cfg {Number} timeout
-        * The timeout in milliseconds to be used for requests.
-        */
-        timeout : 30000,
+         * @cfg {Number} timeout
+         * The timeout in milliseconds to be used for requests.
+         */
+        timeout: 30000,
 
         /**
-        * @cfg {Object} extraParams
-        * Any parameters to be appended to the request.
-        */
-       extraParams: null,
+         * @cfg {Object} extraParams
+         * Any parameters to be appended to the request.
+         */
+        extraParams: null,
 
         /**
-        * @cfg {Boolean} [autoAbort=false]
-        * Whether this request should abort any pending requests.
-        */
-       autoAbort: false,
+         * @cfg {Boolean} [autoAbort=false]
+         * Whether this request should abort any pending requests.
+         */
+        autoAbort: false,
 
         /**
-        * @cfg {String} method
-        * The default HTTP method to be used for requests.
-        *
-        * If not set, but {@link #request} params are present, POST will be used;
-        * otherwise, GET will be used.
-        */
-       method: null,
+         * @cfg {String} method
+         * The default HTTP method to be used for requests.
+         *
+         * If not set, but {@link #request} params are present, POST will be used;
+         * otherwise, GET will be used.
+         */
+        method: null,
 
         /**
-        * @cfg {Object} defaultHeaders
-        * An object containing request headers which are added to each request made by this object.
-        */
-       defaultHeaders: null,
+         * @cfg {Object} defaultHeaders
+         * An object containing request headers which are added to each request made by this object.
+         */
+        defaultHeaders: null,
 
         /**
          * @cfg {String} defaultPostHeader
          * The default header to be sent out with any post request.
          */
-        defaultPostHeader : 'application/x-www-form-urlencoded; charset=UTF-8',
+        defaultPostHeader: 'application/x-www-form-urlencoded; charset=UTF-8',
 
         /**
          * @cfg {Boolean} useDefaultXhrHeader
          * `true` to send the {@link #defaultXhrHeader} along with any request.
          */
-        useDefaultXhrHeader : true,
+        useDefaultXhrHeader: true,
 
         /**
          * @cfg {String}
          * The header to send with Ajax requests. Also see {@link #useDefaultXhrHeader}.
          */
-        defaultXhrHeader : 'XMLHttpRequest'
+        defaultXhrHeader: 'XMLHttpRequest'
     },
 
-    constructor : function(config) {
+    constructor: function (config) {
         // Will call initConfig
         this.mixins.observable.constructor.call(this, config);
 
@@ -329,7 +329,7 @@ Ext.define('Ext.data.Connection', {
      *
      * @return {Object} The request object. This may be used to cancel the request.
      */
-    request : function(options) {
+    request: function (options) {
         options = options || {};
         var me = this,
             scope = options.scope || window,
@@ -369,7 +369,7 @@ Ext.define('Ext.data.Connection', {
                 options: options,
                 async: async,
                 binary: options.binary || me.getBinary(),
-                timeout: Ext.defer(function() {
+                timeout: Ext.defer(function () {
                     request.timedout = true;
                     me.abort(request);
                 }, options.timeout || me.getTimeout())
@@ -400,7 +400,7 @@ Ext.define('Ext.data.Connection', {
         }
     },
 
-    processXdrRequest: function(request, xhr) {
+    processXdrRequest: function (request, xhr) {
         var me = this;
 
         // Mutate the request object as per XDR spec.
@@ -412,7 +412,7 @@ Ext.define('Ext.data.Connection', {
         xhr.onerror = xhr.ontimeout = Ext.Function.bind(me.onStateChange, me, [request, false]);
     },
 
-    processXdrResponse: function(response, xhr) {
+    processXdrResponse: function (response, xhr) {
         // Mutate the response object as per XDR spec.
         response.getAllResponseHeaders = function () {
             return [];
@@ -430,7 +430,7 @@ Ext.define('Ext.data.Connection', {
      * @param {String} params Any extra parameters to pass
      * @param {Object} options The initial options
      */
-    upload: function(form, url, params, options) {
+    upload: function (form, url, params, options) {
         form = Ext.getDom(form);
         options = options || {};
 
@@ -445,7 +445,7 @@ Ext.define('Ext.data.Connection', {
                 enctype: form.enctype,
                 action: form.action
             },
-            addField = function(name, value) {
+            addField = function (name, value) {
                 hiddenItem = document.createElement('input');
                 Ext.fly(hiddenItem).set({
                     type: 'hidden',
@@ -506,8 +506,8 @@ Ext.define('Ext.data.Connection', {
 
         // Bind the frame's load event
         Ext.get(frame).on({
-            load        : Ext.Function.bind(this.onUploadComplete, this, [frame, options]),
-            single      : !Ext.isOpera    // Opera introduces multiple 'load' events, so account for extras as well with {single: ? }.
+            load: Ext.Function.bind(this.onUploadComplete, this, [frame, options]),
+            single: !Ext.isOpera    // Opera introduces multiple 'load' events, so account for extras as well with {single: ? }.
         });
 
         form.submit();
@@ -526,9 +526,9 @@ Ext.define('Ext.data.Connection', {
      * response object to simulate an XHR and populates its responseText from the now-loaded iframe's document body
      * (or a textarea inside the body). We then clean up by removing the iframe
      */
-    onUploadComplete: function(frame, options) {
+    onUploadComplete: function (frame, options) {
         var me = this,
-            // bogus response object
+        // bogus response object
             response = {
                 responseText: '',
                 responseXML: null
@@ -592,7 +592,7 @@ Ext.define('Ext.data.Connection', {
      * Detects whether the form is intended to be used for an upload.
      * @private
      */
-    isFormUpload: function(options) {
+    isFormUpload: function (options) {
         var form = this.getForm(options);
         if (form) {
             return (options.isUpload || (/multipart\/form-data/i).test(form.getAttribute('enctype')));
@@ -606,7 +606,7 @@ Ext.define('Ext.data.Connection', {
      * @param {Object} options The request options
      * @return {HTMLElement} The form, null if not passed
      */
-    getForm: function(options) {
+    getForm: function (options) {
         var form = options.form || null;
         if (form) {
             form = Ext.getDom(form);
@@ -620,7 +620,7 @@ Ext.define('Ext.data.Connection', {
      * @param {Object} scope The scope to execute in
      * @return {Object} The params for the request
      */
-    setOptions: function(options, scope) {
+    setOptions: function (options, scope) {
         var me = this,
             params = options.params || {},
             extraParams = me.getExtraParams(),
@@ -729,7 +729,7 @@ Ext.define('Ext.data.Connection', {
      * @param {String} url
      * @return {String} The modified url
      */
-    setupUrl: function(options, url) {
+    setupUrl: function (options, url) {
         var form = this.getForm(options);
         if (form) {
             url = url || form.action;
@@ -746,7 +746,7 @@ Ext.define('Ext.data.Connection', {
      * @param {String} params
      * @return {String} The modified params
      */
-    setupParams: function(options, params) {
+    setupParams: function (options, params) {
         var form = this.getForm(options),
             serializedForm;
         if (form && !this.isFormUpload(options)) {
@@ -764,7 +764,7 @@ Ext.define('Ext.data.Connection', {
      * @param {String} method
      * @return {String} The modified method
      */
-    setupMethod: function(options, method) {
+    setupMethod: function (options, method) {
         if (this.isFormUpload(options)) {
             return 'POST';
         }
@@ -779,7 +779,7 @@ Ext.define('Ext.data.Connection', {
      * @param {Object} data The data for the request
      * @param {Object} params The params for the request
      */
-    setupHeaders: function(xhr, options, data, params) {
+    setupHeaders: function (xhr, options, data, params) {
         var me = this,
             headers = Ext.apply({}, options.headers || {}, me.getDefaultHeaders() || {}),
             contentType = me.getDefaultPostHeader(),
@@ -823,7 +823,7 @@ Ext.define('Ext.data.Connection', {
                     xhr.setRequestHeader(key, header);
                 }
             }
-        } catch(e) {
+        } catch (e) {
             me.fireEvent('exception', key, header);
         }
         return headers;
@@ -846,7 +846,7 @@ Ext.define('Ext.data.Connection', {
                 // catch all for all other browser types
                 xhr = new Ext.data.flash.BinaryXhr();
             }
-        } else  if (me.getCors() && Ext.isIE && Ext.ieVersion <= 9) {
+        } else if (me.getCors() && Ext.isIE && Ext.ieVersion <= 9) {
             xhr = me.getXdrInstance();
             me.setIsXdr(true);
         } else {
@@ -886,10 +886,10 @@ Ext.define('Ext.data.Connection', {
                 // the unprocessed binary data can be read from the responseText
                 // (see createResponse())
                 xhr.overrideMimeType('text\/plain; charset=x-user-defined');
-            //<debug>
+                //<debug>
             } else if (!Ext.isIE) {
                 Ext.log.warn("Your browser does not support loading binary data using Ajax.");
-            //</debug>
+                //</debug>
             }
         }
 
@@ -907,7 +907,7 @@ Ext.define('Ext.data.Connection', {
      * - IE 10 (and above?) supports CORS with native XMLHttpRequest object
      * @private
      */
-    getXdrInstance: function() {
+    getXdrInstance: function () {
         var xdr;
 
         if (Ext.ieVersion >= 8) {
@@ -925,16 +925,16 @@ Ext.define('Ext.data.Connection', {
      * Creates the appropriate XHR transport for this browser.
      * @private
      */
-    getXhrInstance: (function() {
-        var options = [function() {
-            return new XMLHttpRequest();
-        }, function() {
-            return new ActiveXObject('MSXML2.XMLHTTP.3.0'); // jshint ignore:line
-        }, function() {
-            return new ActiveXObject('MSXML2.XMLHTTP'); // jshint ignore:line
-        }, function() {
-            return new ActiveXObject('Microsoft.XMLHTTP'); // jshint ignore:line
-        }], i = 0,
+    getXhrInstance: (function () {
+        var options = [function () {
+                return new XMLHttpRequest();
+            }, function () {
+                return new ActiveXObject('MSXML2.XMLHTTP.3.0'); // jshint ignore:line
+            }, function () {
+                return new ActiveXObject('MSXML2.XMLHTTP'); // jshint ignore:line
+            }, function () {
+                return new ActiveXObject('Microsoft.XMLHTTP'); // jshint ignore:line
+            }], i = 0,
             len = options.length,
             xhr;
 
@@ -943,7 +943,7 @@ Ext.define('Ext.data.Connection', {
                 xhr = options[i];
                 xhr();
                 break;
-            } catch(e) {
+            } catch (e) {
             }
         }
         return xhr;
@@ -954,7 +954,7 @@ Ext.define('Ext.data.Connection', {
      * @param {Object} [request] Defaults to the last transaction
      * @return {Boolean} True if there is an outstanding request.
      */
-    isLoading : function(request) {
+    isLoading: function (request) {
         if (!request) {
             request = this.getLatest();
         }
@@ -972,7 +972,7 @@ Ext.define('Ext.data.Connection', {
      * Aborts an active request.
      * @param {Object} [request] Defaults to the last request
      */
-    abort : function(request) {
+    abort: function (request) {
         var me = this,
             xhr;
 
@@ -1007,7 +1007,7 @@ Ext.define('Ext.data.Connection', {
     /**
      * Aborts all active requests
      */
-    abortAll: function(){
+    abortAll: function () {
         var requests = this.requests,
             id;
 
@@ -1023,7 +1023,7 @@ Ext.define('Ext.data.Connection', {
      * @private
      * @return {Object} The request. Null if there is no recent request
      */
-    getLatest: function(){
+    getLatest: function () {
         var id = this.latestId,
             request;
 
@@ -1038,7 +1038,7 @@ Ext.define('Ext.data.Connection', {
      * @private
      * @param {Object} request The request
      */
-    onStateChange : function(request, xdrResult) {
+    onStateChange: function (request, xdrResult) {
         var me = this,
             globalEvents = Ext.GlobalEvents;
 
@@ -1058,7 +1058,7 @@ Ext.define('Ext.data.Connection', {
      * @private
      * @param {Object} request The request
      */
-    clearTimeout: function(request) {
+    clearTimeout: function (request) {
         clearTimeout(request.timeout);
         delete request.timeout;
     },
@@ -1068,7 +1068,7 @@ Ext.define('Ext.data.Connection', {
      * @private
      * @param {Object} request The request
      */
-    cleanup: function(request) {
+    cleanup: function (request) {
         request.xhr = null;
         delete request.xhr;
     },
@@ -1079,7 +1079,7 @@ Ext.define('Ext.data.Connection', {
      * @param {Object} request
      * @return {Object} The response
      */
-    onComplete : function(request, xdrResult) {
+    onComplete: function (request, xdrResult) {
         var me = this,
             options = request.options,
             xhr,
@@ -1099,8 +1099,8 @@ Ext.define('Ext.data.Connection', {
         } catch (e) {
             // in some browsers we can't access the status if the readyState is not 4, so the request has failed
             result = {
-                success : false,
-                isException : false
+                success: false,
+                isException: false
             };
 
         }
@@ -1129,7 +1129,7 @@ Ext.define('Ext.data.Connection', {
      * @param {Number} status The status code
      * @return {Object} An object containing success/status state
      */
-    parseStatus: function(status) {
+    parseStatus: function (status) {
         // see: https://prototype.lighthouseapp.com/projects/8886/tickets/129-ie-mangles-http-response-status-code-204-to-1223
         status = status == 1223 ? 204 : status;
 
@@ -1159,7 +1159,7 @@ Ext.define('Ext.data.Connection', {
      * @private
      * @param {Object} request
      */
-    createResponse : function(request) {
+    createResponse: function (request) {
         var me = this,
             xhr = request.xhr,
             isXdr = me.getIsXdr(),
@@ -1188,10 +1188,10 @@ Ext.define('Ext.data.Connection', {
             requestId: request.id,
             status: xhr.status,
             statusText: xhr.statusText,
-            getResponseHeader: function(header) {
+            getResponseHeader: function (header) {
                 return headers[header.toLowerCase()];
             },
-            getAllResponseHeaders: function() {
+            getAllResponseHeaders: function () {
                 return headers;
             }
         };
@@ -1222,12 +1222,12 @@ Ext.define('Ext.data.Connection', {
      * @private
      * @param {Object} request
      */
-    createException : function(request) {
+    createException: function (request) {
         return {
-            request : request,
-            requestId : request.id,
-            status : request.aborted ? -1 : 0,
-            statusText : request.aborted ? 'transaction aborted' : 'communication failure',
+            request: request,
+            requestId: request.id,
+            status: request.aborted ? -1 : 0,
+            statusText: request.aborted ? 'transaction aborted' : 'communication failure',
             aborted: request.aborted,
             timedout: request.timedout
         };
@@ -1239,7 +1239,7 @@ Ext.define('Ext.data.Connection', {
      * @param {Object} xhr the xhr response object
      * @return {Uint8Array/Array}
      */
-    getByteArray: function(xhr) {
+    getByteArray: function (xhr) {
         var response = xhr.response,
             responseBody = xhr.responseBody,
             Cls = Ext.data.flash && Ext.data.flash.BinaryXhr,
@@ -1260,7 +1260,7 @@ Ext.define('Ext.data.Connection', {
             // using the responseBody and then converting it to an Array.
             try {
                 byteArray = new VBArray(responseBody).toArray(); // jshint ignore:line
-            } catch(e) {
+            } catch (e) {
                 // If the binary response is empty, the VBArray constructor will
                 // choke on the responseBody.  We can't simply do a null check
                 // on responseBody because responseBody is always falsy when it
@@ -1299,16 +1299,16 @@ Ext.define('Ext.data.Connection', {
      * binary data from an xhr response in IE8 and below.
      * @private
      */
-    injectVBScript: function() {
+    injectVBScript: function () {
         var scriptTag = document.createElement('script');
         scriptTag.type = 'text/vbscript';
         scriptTag.text = [
             'Function getIEByteArray(byteArray, out)',
-                'Dim len, i',
-                'len = LenB(byteArray)',
-                'For i = 1 to len',
-                    'out.push(AscB(MidB(byteArray, i, 1)))',
-                'Next',
+            'Dim len, i',
+            'len = LenB(byteArray)',
+            'For i = 1 to len',
+            'out.push(AscB(MidB(byteArray, i, 1)))',
+            'Next',
             'End Function'
         ].join('\n');
         Ext.getHead().dom.appendChild(scriptTag);
@@ -1319,7 +1319,7 @@ Ext.define('Ext.data.Connection', {
      * @private
      * @return {boolean} <tt>true</tt> if the browser can natively post binary data.
      */
-    nativeBinaryPostSupport: function() {
+    nativeBinaryPostSupport: function () {
         return Ext.isChrome ||
             (Ext.isSafari && Ext.isDefined(window.Uint8Array)) ||
             (Ext.isGecko && Ext.isDefined(window.Uint8Array));

@@ -1,34 +1,34 @@
 /** */
 Ext.define('Ext.aria.picker.Color', {
     override: 'Ext.picker.Color',
-    
+
     requires: [
         'Ext.aria.Component'
     ],
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this;
 
         me.callParent(arguments);
         //\\ TODO: set up KeyNav
     },
 
-    ariaGetEl: function() {
+    ariaGetEl: function () {
         return this.innerEl;
     },
 
-    onColorSelect: function(picker, cell) {
+    onColorSelect: function (picker, cell) {
         var me = this;
-        
+
         if (cell && cell.dom) {
             me.ariaUpdate(me.eventEl, {
                 'aria-activedescendant': cell.dom.id
             });
         }
     },
-    
+
     privates: {
-        getFocusEl: function() {
+        getFocusEl: function () {
             return this.el;
         }
     }

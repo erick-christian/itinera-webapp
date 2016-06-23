@@ -19,7 +19,7 @@ Ext.define('Ext.menu.Manager', {
     /**
      * @private
      */
-    constructor: function() {
+    constructor: function () {
         var me = this;
 
         // Lazily create the mousedown listener on first menu show
@@ -31,7 +31,7 @@ Ext.define('Ext.menu.Manager', {
         };
     },
 
-    checkActiveMenus: function(e) {
+    checkActiveMenus: function (e) {
         var allMenus = this.visible,
             len = allMenus.length,
             i, menu;
@@ -52,7 +52,7 @@ Ext.define('Ext.menu.Manager', {
      * {@link Ext.menu.Menu#afterShow} adds itself to the visible list here.
      * @private
      */
-    onShow: function(menu) {
+    onShow: function (menu) {
         if (menu.floating) {
             Ext.Array.include(this.visible, menu);
         }
@@ -62,7 +62,7 @@ Ext.define('Ext.menu.Manager', {
      * {@link Ext.menu.Menu#onHide} removes itself from the visible list here.
      * @private
      */
-    onHide: function(menu) {
+    onHide: function (menu) {
         if (menu.floating) {
             Ext.Array.remove(this.visible, menu);
         }
@@ -72,7 +72,7 @@ Ext.define('Ext.menu.Manager', {
      * Hides all floating menus that are currently visible
      * @return {Boolean} success True if any active menus were hidden.
      */
-    hideAll: function() {
+    hideAll: function () {
         var allMenus = this.visible,
             len = allMenus.length,
             result = false,
@@ -96,16 +96,16 @@ Ext.define('Ext.menu.Manager', {
      * @param {Object} [config] A configuration to use when creating the menu.
      * @return {Ext.menu.Menu} The specified menu, or null if none are found
      */
-    get: function(menu, config) {
+    get: function (menu, config) {
         var result;
-        
+
         if (typeof menu === 'string') { // menu id
             result = Ext.getCmp(menu);
             if (result instanceof Ext.menu.Menu) {
                 menu = result;
             }
         } else if (Ext.isArray(menu)) { // array of menu items
-            config = Ext.apply({items:menu}, config);
+            config = Ext.apply({items: menu}, config);
             menu = new Ext.menu.Menu(config);
         } else if (!menu.isComponent) { // otherwise, must be a config
             config = Ext.apply({}, menu, config);
@@ -115,8 +115,8 @@ Ext.define('Ext.menu.Manager', {
     },
 
     // @private
-    registerCheckable: function(menuItem) {
-        var groups  = this.groups,
+    registerCheckable: function (menuItem) {
+        var groups = this.groups,
             groupId = menuItem.group;
 
         if (groupId) {
@@ -129,8 +129,8 @@ Ext.define('Ext.menu.Manager', {
     },
 
     // @private
-    unregisterCheckable: function(menuItem) {
-        var groups  = this.groups,
+    unregisterCheckable: function (menuItem) {
+        var groups = this.groups,
             groupId = menuItem.group;
 
         if (groupId) {
@@ -138,10 +138,10 @@ Ext.define('Ext.menu.Manager', {
         }
     },
 
-    onCheckChange: function(menuItem, state) {
-        var groups  = this.groups,
+    onCheckChange: function (menuItem, state) {
+        var groups = this.groups,
             groupId = menuItem.group,
-            i       = 0,
+            i = 0,
             group, ln, curr;
 
         if (groupId && state) {

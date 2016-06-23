@@ -12,7 +12,7 @@ class CreateAdmUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('adm_users', function (Blueprint $table) {
+        Schema::create('adm_users' , function (Blueprint $table) {
             $table->increments('id');
             $table->string('username');
             $table->string('name');
@@ -36,10 +36,10 @@ class CreateAdmUsersTable extends Migration
             $table->string('photo_url');
             $table->string('active' , 8);
             $table->string('email')->unique();
-            $table->string('password', 60);
+            $table->string('password' , 60);
             $table->string('latitude');
             $table->string('longitude');
-            $table->string('geocode_url');            
+            $table->string('geocode_url');
             $table->rememberToken();
             $table->timestamps();
 

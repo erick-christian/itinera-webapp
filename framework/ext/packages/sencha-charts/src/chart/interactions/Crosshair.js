@@ -249,8 +249,8 @@ Ext.define('Ext.chart.interactions.Crosshair', {
                 axisPosition = axis.getPosition();
                 axisAlignment = axis.getAlignment();
                 title = axis.getTitle(),
-                titleBBox = title && title.attr.text !== '' && title.getBBox(),
-                attr = axisSprite.attr;
+                    titleBBox = title && title.attr.text !== '' && title.getBBox(),
+                    attr = axisSprite.attr;
                 axisThickness = axisSprite.thickness;
                 lineWidth = attr.axisLine ? attr.lineWidth : 0;
                 halfLineWidth = lineWidth / 2;
@@ -296,7 +296,7 @@ Ext.define('Ext.chart.interactions.Crosshair', {
                     y: (function () {
                         switch (axisPosition) {
                             case 'top':
-                                titlePadding = titleBBox ? titleBBox.y + titleBBox.height: 0;
+                                titlePadding = titleBBox ? titleBBox.y + titleBBox.height : 0;
                                 return titlePadding + (axisHeight - titlePadding - tickPadding) / 2 - halfLineWidth;
                             case 'bottom':
                                 titlePadding = titleBBox ? axisHeight - titleBBox.y : 0;
@@ -419,7 +419,7 @@ Ext.define('Ext.chart.interactions.Crosshair', {
     onGestureEnd: function (e) {
         var me = this,
             chart = me.getChart(),
-            surface =  chart.getSurface('overlay'),
+            surface = chart.getSurface('overlay'),
             axes = chart.getAxes(),
             axis, axisPosition, axisSurface, axisLabel,
             i;

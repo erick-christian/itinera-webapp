@@ -30,17 +30,17 @@
  *         }]
  *     }).showAt([5, 5]);
  */
- Ext.define('Ext.menu.DatePicker', {
-     extend: 'Ext.menu.Menu',
+Ext.define('Ext.menu.DatePicker', {
+    extend: 'Ext.menu.Menu',
 
-     alias: 'widget.datemenu',
+    alias: 'widget.datemenu',
 
-     requires: [
+    requires: [
         'Ext.picker.Date'
-     ],
-     
+    ],
+
     ariaRole: 'dialog',
-    
+
     //<locale>
     /**
      * @cfg {String} ariaLabel ARIA label for the Date Picker menu
@@ -52,13 +52,13 @@
      * @cfg {Boolean} hideOnClick
      * False to continue showing the menu after a date is selected.
      */
-    hideOnClick : true,
+    hideOnClick: true,
 
     /**
      * @cfg {String} pickerId
      * An id to assign to the underlying date picker.
      */
-    pickerId : null,
+    pickerId: null,
 
     /**
      * @cfg {Number} maxHeight
@@ -70,13 +70,13 @@
      * The {@link Ext.picker.Date} instance for this DateMenu
      */
 
-    initComponent : function(){
+    initComponent: function () {
         var me = this,
             cfg = Ext.apply({}, me.initialConfig);
-            
+
         // Ensure we clear any listeners so they aren't duplicated
         delete cfg.listeners;
-            
+
         Ext.apply(me, {
             showSeparator: false,
             plain: true,
@@ -104,7 +104,7 @@
         }
     },
 
-    hidePickerOnSelect: function() {
+    hidePickerOnSelect: function () {
         Ext.menu.Manager.hideAll();
     }
- });
+});

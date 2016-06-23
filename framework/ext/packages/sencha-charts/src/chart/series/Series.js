@@ -258,9 +258,9 @@ Ext.define('Ext.chart.series.Series', {
         /**
          * @cfg {Array} colors
          * An array of color values which is used, in order of appearance, by the series. Each series
-         * can request one or more colors from the array. Radar, Scatter or Line charts require just 
-         * one color each. Candlestick and OHLC require two (1 for drops + 1 for rises). Pie charts  
-         * and Stacked charts (like Column or Pie charts) require one color for each data category 
+         * can request one or more colors from the array. Radar, Scatter or Line charts require just
+         * one color each. Candlestick and OHLC require two (1 for drops + 1 for rises). Pie charts
+         * and Stacked charts (like Column or Pie charts) require one color for each data category
          * they represent, so one color for each slice of a Pie chart or each segment of a Column chart.
          * It overrides the colors that are provided by the current theme.
          */
@@ -494,7 +494,7 @@ Ext.define('Ext.chart.series.Series', {
      * A Pie chart needs one color per slice while a Stacked Bar chart needs one per segment.
      * An OHLC chart needs 2 colors (one for drops, one for rises), and most other charts need just 1 color.
      */
-    themeColorCount: function() {
+    themeColorCount: function () {
         return 1;
     },
 
@@ -503,7 +503,7 @@ Ext.define('Ext.chart.series.Series', {
      * Returns the number of markers this series needs.
      * Currently, only the Line, Scatter and Radar series use markers - and they need just one each.
      */
-    themeMarkerCount: function() {
+    themeMarkerCount: function () {
         return 0;
     },
 
@@ -609,7 +609,7 @@ Ext.define('Ext.chart.series.Series', {
         if (Ext.isObject(newHighlightItem) && Ext.isObject(oldHighlightItem)) {
             if (newHighlightItem.sprite === oldHighlightItem.sprite &&
                 newHighlightItem.index === oldHighlightItem.index
-                ) {
+            ) {
                 return;
             }
         }
@@ -826,7 +826,9 @@ Ext.define('Ext.chart.series.Series', {
             layout = axis && axis.getLayout(),
             coord = axis ? function (x, field, idx, items) {
                 return layout.getCoordFor(x, field, idx, items);
-            } : function (x) { return +x; },
+            } : function (x) {
+                return +x;
+            },
             i, x;
         for (i = 0; i < length; i++) {
             x = items[i].data[field];
@@ -1015,7 +1017,7 @@ Ext.define('Ext.chart.series.Series', {
             } else {
                 if (directionFields) {
                     for (j = 0; j < directionFields.length; j++) {
-                        if ( Ext.Array.indexOf(axisFields, directionFields[j]) >= 0 ) {
+                        if (Ext.Array.indexOf(axisFields, directionFields[j]) >= 0) {
                             return axis;
                         }
                     }
@@ -1262,7 +1264,7 @@ Ext.define('Ext.chart.series.Series', {
             if (arguments.length > 1) {
                 record = legendStore.findBy(function (rec) {
                     return rec.get('series') === id &&
-                           rec.get('index') === index;
+                        rec.get('index') === index;
                 });
                 if (record !== -1) {
                     record = legendStore.getAt(record);
@@ -1315,7 +1317,7 @@ Ext.define('Ext.chart.series.Series', {
             theme = me.getThemeStyle(),
             fillColors = Ext.Array.clone(colors),
             strokeColors = me.getStrokeColorsFromFillColors(colors),
-            newSubStyle = { fillStyle: fillColors, strokeStyle: strokeColors };
+            newSubStyle = {fillStyle: fillColors, strokeStyle: strokeColors};
 
         theme.subStyle = Ext.apply(theme.subStyle || {}, newSubStyle);
         theme.markerSubStyle = Ext.apply(theme.markerSubStyle || {}, newSubStyle);
@@ -1323,8 +1325,7 @@ Ext.define('Ext.chart.series.Series', {
         me.doUpdateStyles();
     },
 
-    themeOnlyIfConfigured: {
-    },
+    themeOnlyIfConfigured: {},
 
     updateTheme: function (theme) {
         var me = this,
@@ -1411,7 +1412,7 @@ Ext.define('Ext.chart.series.Series', {
         }
     },
 
-    getStyleWithTheme: function() {
+    getStyleWithTheme: function () {
         var me = this,
             theme = me.getThemeStyle(),
             seriesThemeStyle = (theme && theme.style) || {},
@@ -1419,7 +1420,7 @@ Ext.define('Ext.chart.series.Series', {
         return style;
     },
 
-    getSubStyleWithTheme: function() {
+    getSubStyleWithTheme: function () {
         var me = this,
             theme = me.getThemeStyle(),
             seriesThemeSubStyle = (theme && theme.subStyle) || {},
@@ -1608,7 +1609,7 @@ Ext.define('Ext.chart.series.Series', {
     destroy: function () {
         var me = this,
             store = me._store,
-            // Peek at the config so we don't create one just to destroy it
+        // Peek at the config so we don't create one just to destroy it
             tooltip = me.getConfig('tooltip', true),
             sprites = me.getSprites(),
             sprite, i, ln;

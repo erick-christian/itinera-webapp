@@ -75,7 +75,7 @@ Ext.define('Ext.data.proxy.Sql', {
         defaultDateFormat: 'Y-m-d H:i:s.u'
     },
 
-    updateModel: function(model) {
+    updateModel: function (model) {
         if (model) {
             var modelName = model.modelName,
                 defaultDateFormat = this.getDefaultDateFormat(),
@@ -97,7 +97,7 @@ Ext.define('Ext.data.proxy.Sql', {
         this.callParent(arguments);
     },
 
-    setException: function(operation, error) {
+    setException: function (operation, error) {
         operation.setException(error);
     },
 
@@ -109,12 +109,12 @@ Ext.define('Ext.data.proxy.Sql', {
 
         operation.setStarted();
 
-        db.transaction(function(transaction) {
+        db.transaction(function (transaction) {
                 if (!tableExists) {
                     me.createTable(transaction);
                 }
 
-                me.insertRecords(records, transaction, function(resultSet, error) {
+                me.insertRecords(records, transaction, function (resultSet, error) {
                     if (operation.process(operation.getAction(), resultSet) === false) {
                         me.fireEvent('exception', me, operation);
                     }
@@ -124,13 +124,13 @@ Ext.define('Ext.data.proxy.Sql', {
                     }
                 }, me);
             },
-            function(transaction, error) {
+            function (transaction, error) {
                 me.setException(operation, error);
                 if (typeof callback == 'function') {
                     callback.call(scope || me, operation);
                 }
             },
-            function(transaction) {
+            function (transaction) {
                 if (typeof callback == 'function') {
                     callback.call(scope || me, operation);
                 }
@@ -138,7 +138,7 @@ Ext.define('Ext.data.proxy.Sql', {
         );
     },
 
-    read: function(operation, callback, scope) {
+    read: function (operation, callback, scope) {
         var me = this,
             db = me.getDatabaseObject(),
             model = me.getModel(),
@@ -163,7 +163,7 @@ Ext.define('Ext.data.proxy.Sql', {
 
         operation.setStarted();
 
-        db.transaction(function(transaction) {
+        db.transaction(function (transaction) {
                 if (!tableExists) {
                     me.createTable(transaction);
                 }
@@ -178,7 +178,7 @@ Ext.define('Ext.data.proxy.Sql', {
                     }
 
                     if (filters && filters.length) {
-                        filtered = Ext.create('Ext.util.Collection', function(record) {
+                        filtered = Ext.create('Ext.util.Collection', function (record) {
                             return record.getId();
                         });
                         filtered.setFilterRoot('data');
@@ -196,13 +196,13 @@ Ext.define('Ext.data.proxy.Sql', {
                     }
                 });
             },
-            function(transaction, error) {
+            function (transaction, error) {
                 me.setException(operation, error);
                 if (typeof callback == 'function') {
                     callback.call(scope || me, operation);
                 }
             },
-            function(transaction) {
+            function (transaction) {
                 if (typeof callback == 'function') {
                     callback.call(scope || me, operation);
                 }
@@ -210,7 +210,7 @@ Ext.define('Ext.data.proxy.Sql', {
         );
     },
 
-    update: function(operation, callback, scope) {
+    update: function (operation, callback, scope) {
         var me = this,
             records = operation.getRecords(),
             db = me.getDatabaseObject(),
@@ -223,23 +223,23 @@ Ext.define('Ext.data.proxy.Sql', {
                     me.createTable(transaction);
                 }
 
-                me.updateRecords(transaction, records, function(resultSet, errors) {
+                me.updateRecords(transaction, records, function (resultSet, errors) {
                     if (operation.process(operation.getAction(), resultSet) === false) {
                         me.fireEvent('exception', me, operation);
                     }
 
                     if (errors) {
-                       operation.setException(errors);
+                        operation.setException(errors);
                     }
                 });
             },
-            function(transaction, error) {
+            function (transaction, error) {
                 me.setException(operation, error);
                 if (typeof callback == 'function') {
                     callback.call(scope || me, operation);
                 }
             },
-            function(transaction) {
+            function (transaction) {
                 if (typeof callback == 'function') {
                     callback.call(scope || me, operation);
                 }
@@ -247,7 +247,7 @@ Ext.define('Ext.data.proxy.Sql', {
         );
     },
 
-    erase: function(operation, callback, scope) {
+    erase: function (operation, callback, scope) {
         var me = this,
             records = operation.getRecords(),
             db = me.getDatabaseObject(),
@@ -255,28 +255,28 @@ Ext.define('Ext.data.proxy.Sql', {
 
         operation.setStarted();
 
-        db.transaction(function(transaction) {
+        db.transaction(function (transaction) {
                 if (!tableExists) {
                     me.createTable(transaction);
                 }
 
-                me.destroyRecords(transaction, records, function(resultSet, error) {
+                me.destroyRecords(transaction, records, function (resultSet, error) {
                     if (operation.process(operation.getAction(), resultSet) === false) {
                         me.fireEvent('exception', me, operation);
                     }
 
                     if (error) {
-                       operation.setException(error);
+                        operation.setException(error);
                     }
                 });
             },
-            function(transaction, error) {
+            function (transaction, error) {
                 me.setException(operation, error);
                 if (typeof callback == 'function') {
                     callback.call(scope || me, operation);
                 }
             },
-            function(transaction) {
+            function (transaction) {
                 if (typeof callback == 'function') {
                     callback.call(scope || me, operation);
                 }
@@ -289,7 +289,7 @@ Ext.define('Ext.data.proxy.Sql', {
         this.setTableExists(true);
     },
 
-    insertRecords: function(records, transaction, callback, scope) {
+    insertRecords: function (records, transaction, callback, scope) {
         var me = this,
             table = me.getTable(),
             columns = me.getColumns(),
@@ -346,7 +346,7 @@ Ext.define('Ext.data.proxy.Sql', {
         });
     },
 
-    selectRecords: function(transaction, params, callback, scope) {
+    selectRecords: function (transaction, params, callback, scope) {
         var me = this,
             table = me.getTable(),
             idProperty = me.getModel().getIdProperty(),
@@ -395,7 +395,7 @@ Ext.define('Ext.data.proxy.Sql', {
             }
         }
         transaction.executeSql(sql, null,
-            function(transaction, resultSet) {
+            function (transaction, resultSet) {
                 rows = resultSet.rows;
                 count = rows.length;
 
@@ -417,7 +417,7 @@ Ext.define('Ext.data.proxy.Sql', {
                     callback.call(scope || me, result);
                 }
             },
-            function(transaction, error) {
+            function (transaction, error) {
                 result.setSuccess(false);
                 result.setTotal(0);
                 result.setCount(0);
@@ -558,7 +558,7 @@ Ext.define('Ext.data.proxy.Sql', {
         return data;
     },
 
-    getColumnValues: function(columns, data) {
+    getColumnValues: function (columns, data) {
         var ln = columns.length,
             values = [],
             i, column, value;
@@ -574,7 +574,7 @@ Ext.define('Ext.data.proxy.Sql', {
         return values;
     },
 
-    getSchemaString: function() {
+    getSchemaString: function () {
         var me = this,
             schema = [],
             model = me.getModel(),
@@ -605,7 +605,7 @@ Ext.define('Ext.data.proxy.Sql', {
         return schema.join(', ');
     },
 
-    getPersistedModelColumns: function(model) {
+    getPersistedModelColumns: function (model) {
         var fields = model.getFields().items,
             uniqueIdStrategy = this.getUniqueIdStrategy(),
             idProperty = model.getIdProperty(),
@@ -628,7 +628,7 @@ Ext.define('Ext.data.proxy.Sql', {
         return columns;
     },
 
-    convertToSqlType: function(type) {
+    convertToSqlType: function (type) {
         switch (type.toLowerCase()) {
             case 'date':
             case 'string':
@@ -659,22 +659,22 @@ Ext.define('Ext.data.proxy.Sql', {
         }
     },
 
-    dropTable: function(config) {
+    dropTable: function (config) {
         var me = this,
             table = me.getTable(),
             callback = config ? config.callback : null,
             scope = config ? config.scope || me : null,
             db = me.getDatabaseObject();
 
-        db.transaction(function(transaction) {
+        db.transaction(function (transaction) {
                 transaction.executeSql('DROP TABLE ' + table);
             },
-            function(transaction, error) {
+            function (transaction, error) {
                 if (typeof callback == 'function') {
                     callback.call(scope || me, false, table, error);
                 }
             },
-            function(transaction) {
+            function (transaction) {
                 if (typeof callback == 'function') {
                     callback.call(scope || me, true, table);
                 }
@@ -684,7 +684,7 @@ Ext.define('Ext.data.proxy.Sql', {
         me.setTableExists(false);
     },
 
-    getDatabaseObject: function() {
+    getDatabaseObject: function () {
         return openDatabase(this.getDatabase(), '1.0', 'Sencha Database', 5 * 1024 * 1024);
     }
 });

@@ -73,13 +73,13 @@ Ext.define('Ext.grid.column.Boolean', {
      * @hide
      */
 
-     /**
+    /**
      * @cfg {Boolean} producesHTML
      * @inheritdoc
      */
     producesHTML: false,
 
-    defaultRenderer: function(value){
+    defaultRenderer: function (value) {
         if (value === undefined) {
             return this.undefinedText;
         }
@@ -90,7 +90,7 @@ Ext.define('Ext.grid.column.Boolean', {
         return this.trueText;
     },
 
-    updater: function(cell, value) {
+    updater: function (cell, value) {
         cell.firstChild.innerHTML = Ext.grid.column.Boolean.prototype.defaultRenderer.call(this, value);
     }
 });

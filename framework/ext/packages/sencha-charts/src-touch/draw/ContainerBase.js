@@ -5,7 +5,7 @@ Ext.define('Ext.draw.ContainerBase', {
         WATERMARK: 'Powered by <span style="color:#22E962; font-weight: 900">Sencha Touch</span> <span style="color:#75cdff; font-weight: 900">GPLv3</span>'
     },
 
-    constructor: function(config) {
+    constructor: function (config) {
         this.callParent([config]);
         this.initAnimator();
     },
@@ -28,7 +28,7 @@ Ext.define('Ext.draw.ContainerBase', {
                             reference: 'watermarkElement',
                             cls: 'x-chart-watermark',
                             html: Ext.draw.Container.WATERMARK,
-                            style: Ext.draw.Container.WATERMARK ? '': 'display:none'
+                            style: Ext.draw.Container.WATERMARK ? '' : 'display:none'
                         }
                     ]
                 }
@@ -36,7 +36,7 @@ Ext.define('Ext.draw.ContainerBase', {
         };
     },
 
-    addElementListener: function() {
+    addElementListener: function () {
         this.element.on.apply(this.element, arguments);
     },
 

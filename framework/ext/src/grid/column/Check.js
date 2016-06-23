@@ -72,7 +72,7 @@ Ext.define('Ext.grid.column.Check', {
      * @param {Boolean} checked True if the box is now checked
      */
 
-    constructor: function() {
+    constructor: function () {
         this.scope = this;
         this.callParent(arguments);
     },
@@ -81,7 +81,7 @@ Ext.define('Ext.grid.column.Check', {
      * @private
      * Process and refire events routed from the GridView's processEvent method.
      */
-    processEvent: function(type, view, cell, recordIndex, cellIndex, e, record, row) {
+    processEvent: function (type, view, cell, recordIndex, cellIndex, e, record, row) {
         var me = this,
             key = type === 'keydown' && e.getKey(),
             mousedown = type === 'mousedown',
@@ -124,7 +124,7 @@ Ext.define('Ext.grid.column.Check', {
     /**
      * Enables this CheckColumn.
      */
-    onEnable: function() {
+    onEnable: function () {
         this.callParent(arguments);
         this._setDisabled(false);
     },
@@ -132,12 +132,12 @@ Ext.define('Ext.grid.column.Check', {
     /**
      * Disables this CheckColumn.
      */
-    onDisable: function() {
+    onDisable: function () {
         this._setDisabled(true);
     },
 
     // Don't want to conflict with the Component method
-    _setDisabled: function(disabled) {
+    _setDisabled: function (disabled) {
         var me = this,
             cls = me.disabledCls,
             items;
@@ -152,7 +152,7 @@ Ext.define('Ext.grid.column.Check', {
 
     // Note: class names are not placed on the prototype bc renderer scope
     // is not in the header.
-    defaultRenderer : function(value, cellValues) {
+    defaultRenderer: function (value, cellValues) {
         var cssPrefix = Ext.baseCSSPrefix,
             cls = cssPrefix + 'grid-checkcolumn';
 

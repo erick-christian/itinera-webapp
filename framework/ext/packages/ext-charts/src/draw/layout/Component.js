@@ -17,12 +17,12 @@ Ext.define('Ext.draw.layout.Component', {
     /* End Definitions */
 
     type: 'draw',
-    
-    measureContentWidth : function (ownerContext) {
+
+    measureContentWidth: function (ownerContext) {
         var target = ownerContext.target,
             paddingInfo = ownerContext.getPaddingInfo(),
             bbox = this.getBBox(ownerContext);
-            
+
         if (!target.viewBox) {
             if (target.autoSize) {
                 return bbox.width + paddingInfo.width;
@@ -37,12 +37,12 @@ Ext.define('Ext.draw.layout.Component', {
             }
         }
     },
-    
-    measureContentHeight : function (ownerContext) {
+
+    measureContentHeight: function (ownerContext) {
         var target = ownerContext.target,
             paddingInfo = ownerContext.getPaddingInfo(),
             bbox = this.getBBox(ownerContext);
-            
+
         if (!ownerContext.target.viewBox) {
             if (target.autoSize) {
                 return bbox.height + paddingInfo.height;
@@ -57,8 +57,8 @@ Ext.define('Ext.draw.layout.Component', {
             }
         }
     },
-    
-    getBBox: function(ownerContext) {
+
+    getBBox: function (ownerContext) {
         var bbox = ownerContext.surfaceBBox;
         if (!bbox) {
             bbox = ownerContext.target.surface.items.getBBox();
@@ -74,11 +74,11 @@ Ext.define('Ext.draw.layout.Component', {
     publishInnerWidth: function (ownerContext, width) {
         ownerContext.setContentWidth(width - ownerContext.getFrameInfo().width, true);
     },
-    
+
     publishInnerHeight: function (ownerContext, height) {
         ownerContext.setContentHeight(height - ownerContext.getFrameInfo().height, true);
     },
-    
+
     finishedLayout: function (ownerContext) {
         // TODO: Is there a better way doing this?
         var props = ownerContext.props,
@@ -87,7 +87,7 @@ Ext.define('Ext.draw.layout.Component', {
         // We don't want the cost of getProps, so we just use the props data... this is ok
         // because all the props have been calculated by this time
         this.owner.setSurfaceSize(props.contentWidth - paddingInfo.width, props.contentHeight - paddingInfo.height);
-        
+
         // calls afterComponentLayout, so we want the surface to be sized before that:
         this.callParent(arguments);
     }

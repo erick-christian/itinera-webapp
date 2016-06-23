@@ -1,7 +1,7 @@
 /** */
 Ext.define('Ext.aria.window.MessageBox', {
     override: 'Ext.window.MessageBox',
-    
+
     requires: [
         'Ext.aria.window.Window',
         'Ext.aria.form.field.Text',

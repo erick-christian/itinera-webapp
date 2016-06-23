@@ -1,6 +1,6 @@
 Ext.define('Ext.rtl.draw.Sprite', {
     override: 'Ext.draw.Sprite',
-    
+
     /*
      * --------Using RTL text in charts--------
      * 
@@ -35,17 +35,17 @@ Ext.define('Ext.rtl.draw.Sprite', {
      * not change, however the surrounding characters move around
      * relative to what's already there.
      */
-    
+
     // This character is the right to left mark
     // http://en.wikipedia.org/wiki/Right-to-left_mark
     // It is used to group characters in an RTL manner
     RLM: '\u200F',
-    
+
     // A simple regex to match most strong RTL characters. Indicates that
     // the string contains RTL characters
     rtlRe: /[\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC]/,
-    
-    transformText: function(text) {
+
+    transformText: function (text) {
         var me = this,
             surface = me.surface;
 
@@ -56,5 +56,5 @@ Ext.define('Ext.rtl.draw.Sprite', {
             return me.RLM + text;
         }
         return me.callParent(arguments);
-    }    
+    }
 });

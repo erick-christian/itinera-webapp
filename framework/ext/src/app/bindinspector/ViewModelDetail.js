@@ -1,7 +1,7 @@
 Ext.define('Ext.app.bindinspector.ViewModelDetail', {
     extend: 'Ext.tree.Panel',
     alias: 'widget.bindinspector-viewmodeldetail',
-    
+
     rootVisible: false,
     cls: Ext.baseCSSPrefix + 'bindinspector-viewmodeldetail',
 
@@ -11,13 +11,13 @@ Ext.define('Ext.app.bindinspector.ViewModelDetail', {
     unhighlightedCls: Ext.baseCSSPrefix + 'bindinspector-unhighlighted',
     lastItemCls: Ext.baseCSSPrefix + 'bindinspector-last-item',
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this,
             vm = me.vm,
             title = 'VM &nbsp;&nbsp;&nbsp;⇒ &nbsp;&nbsp;&nbsp;',
             env = me.up('bindinspector-container').env,
             comp = env.getCmp(vm.view);
-        
+
         // add the component's reference to the title if it has a reference
         if (comp.reference) {
             title += '[' + comp.reference + '] &bull; ';
@@ -60,7 +60,7 @@ Ext.define('Ext.app.bindinspector.ViewModelDetail', {
                 return cls.join(' ');
             }
         };
-        
+
         me.store = {
             model: me.Model,
             root: {
@@ -104,7 +104,7 @@ Ext.define('Ext.app.bindinspector.ViewModelDetail', {
 
         me.on('cellclick', me.onSearchCellClick, me);
     },
-    
+
     dataOnlyNode: 'This item contains data but has nothing requesting the value',
     stubOnlyNode: 'This item has the value requested but no data backing it',
     dataPointLoading: 'Data point is loading (at the time the app snapshot was captured)',
@@ -213,9 +213,9 @@ Ext.define('Ext.app.bindinspector.ViewModelDetail', {
         meta.tdAttr = 'data-qclass="' + Ext.baseCSSPrefix + 'componentlist-tip" data-qtip="' + bindingsText + '"';
         return v;
     },
-    
+
     // renderer for the main tree column
-    renderName: function(v, meta, rec) {
+    renderName: function (v, meta, rec) {
         var me = this,
             data = rec.get('hasData'),
             stub = rec.get('hasStub'),
@@ -234,18 +234,18 @@ Ext.define('Ext.app.bindinspector.ViewModelDetail', {
         if (tip !== '') {
             meta.tdAttr = 'data-qclass="' + Ext.baseCSSPrefix + 'componentlist-tip" data-qtip="' + tip + '"';
         }
-        
+
         return v;
     },
-    
+
     // build method to construct the nodes displayed in the ViewModelDetail tree
-    setupData: function(vm, data, stub, inherited, ownerVMs) {
+    setupData: function (vm, data, stub, inherited, ownerVMs) {
         var merged = {},
             out = [],
             dataMap = vm.dataMap,
             dm = [],
             item, children, stubChild, key, stopDigging, linkInfo;
-        
+
         if (data && Ext.isObject(data)) {
             if (data.isModel) {
                 data = data.data;
@@ -322,7 +322,7 @@ Ext.define('Ext.app.bindinspector.ViewModelDetail', {
         for (key in merged) {
             item = merged[key];
             //if (!stopDigging) { // was missing nested model data with stopDigging
-                item.children = this.setupData(vm, item.value, item.stub, item.inherited, item.ownerVMs);
+            item.children = this.setupData(vm, item.value, item.stub, item.inherited, item.ownerVMs);
             //}
             delete item.stub;
             if (item.children && item.children.length) {
@@ -333,10 +333,10 @@ Ext.define('Ext.app.bindinspector.ViewModelDetail', {
             }
             out.push(merged[key]);
         }
-        
+
         return out;
     }
-}, function() {
+}, function () {
     this.prototype.Model = Ext.define(null, {
         extend: 'Ext.data.TreeModel',
         fields: ['name', 'value', 'inherited', 'hasData', 'hasStub', 'isLoading', 'bindCount', 'cumulativeBindCount', 'highlighted']

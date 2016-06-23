@@ -22,13 +22,13 @@ Ext.define('catCar.model.modCar', {
 
     fields: [
         {
-            name: 'car_id'
+            name: 'carmaker_code'
+        },
+        {
+            name: 'car_code'
         },
         {
             name: 'car_description'
-        },
-        {
-            name: 'maker'
         },
         {
             name: 'type'

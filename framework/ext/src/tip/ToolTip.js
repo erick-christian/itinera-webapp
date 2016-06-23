@@ -216,7 +216,7 @@ Ext.define('Ext.tip.ToolTip', {
 
     ariaRole: 'tooltip',
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this;
         me.callParent(arguments);
         me.lastActive = new Date();
@@ -224,7 +224,7 @@ Ext.define('Ext.tip.ToolTip', {
         me.origAnchor = me.anchor;
     },
 
-    onRender: function(ct, position) {
+    onRender: function (ct, position) {
         var me = this;
         me.callParent(arguments);
         me.anchorCls = Ext.baseCSSPrefix + 'tip-anchor-' + me.getAnchorPosition();
@@ -244,7 +244,7 @@ Ext.define('Ext.tip.ToolTip', {
      * Binds this ToolTip to the specified element. The tooltip will be displayed when the mouse moves over the element.
      * @param {String/HTMLElement/Ext.dom.Element} target The Element, HTMLElement, or ID of an element to bind to
      */
-    setTarget: function(target) {
+    setTarget: function (target) {
         var me = this,
             t = Ext.get(target),
             tg;
@@ -287,7 +287,7 @@ Ext.define('Ext.tip.ToolTip', {
     /**
      * @private
      */
-    onMouseMove: function(e) {
+    onMouseMove: function (e) {
         var me = this,
             t,
             xy;
@@ -319,7 +319,7 @@ Ext.define('Ext.tip.ToolTip', {
     /**
      * @private
      */
-    getTargetXY: function() {
+    getTargetXY: function () {
         var me = this,
             mouseOffset,
             offsets, xy, dw, dh, de, bd, scrollX, scrollY, axy, sz, constrainPosition;
@@ -399,7 +399,7 @@ Ext.define('Ext.tip.ToolTip', {
      * Overrides Positionable's calculateConstrainedPosition to return a value that is valid for ToolTip
      * @private
      */
-    calculateConstrainedPosition: function(constrainTo) {
+    calculateConstrainedPosition: function (constrainTo) {
         var me = this,
             visible,
             result,
@@ -424,9 +424,9 @@ Ext.define('Ext.tip.ToolTip', {
         return result;
     },
 
-    getMouseOffset: function() {
+    getMouseOffset: function () {
         var me = this,
-        offset = me.anchor ? [0, 0] : [15, 18];
+            offset = me.anchor ? [0, 0] : [15, 18];
         if (me.mouseOffset) {
             offset[0] += me.mouseOffset[0];
             offset[1] += me.mouseOffset[1];
@@ -449,7 +449,7 @@ Ext.define('Ext.tip.ToolTip', {
     /**
      * @private
      */
-    getAnchorPosition: function() {
+    getAnchorPosition: function () {
         var me = this,
             m;
         if (me.anchor) {
@@ -465,12 +465,12 @@ Ext.define('Ext.tip.ToolTip', {
         }
 
         switch (me.tipAnchor) {
-        case 't':
-            return 'top';
-        case 'b':
-            return 'bottom';
-        case 'r':
-            return 'right';
+            case 't':
+                return 'top';
+            case 'b':
+                return 'bottom';
+            case 'r':
+                return 'right';
         }
         return 'left';
     },
@@ -478,56 +478,56 @@ Ext.define('Ext.tip.ToolTip', {
     /**
      * @private
      */
-    getAnchorAlign: function() {
+    getAnchorAlign: function () {
         switch (this.anchor) {
-        case 'top':
-            return 'tl-bl';
-        case 'left':
-            return 'tl-tr';
-        case 'right':
-            return 'tr-tl';
-        default:
-            return 'bl-tl';
+            case 'top':
+                return 'tl-bl';
+            case 'left':
+                return 'tl-tr';
+            case 'right':
+                return 'tr-tl';
+            default:
+                return 'bl-tl';
         }
     },
 
     /**
      * @private
      */
-    getOffsets: function() {
+    getOffsets: function () {
         var me = this,
             mouseOffset,
             offsets,
             ap = me.getAnchorPosition().charAt(0);
         if (me.anchorToTarget && !me.trackMouse) {
             switch (ap) {
-            case 't':
-                offsets = [0, 9];
-                break;
-            case 'b':
-                offsets = [0, -13];
-                break;
-            case 'r':
-                offsets = [ - 13, 0];
-                break;
-            default:
-                offsets = [9, 0];
-                break;
+                case 't':
+                    offsets = [0, 9];
+                    break;
+                case 'b':
+                    offsets = [0, -13];
+                    break;
+                case 'r':
+                    offsets = [-13, 0];
+                    break;
+                default:
+                    offsets = [9, 0];
+                    break;
             }
         } else {
             switch (ap) {
-            case 't':
-                offsets = [ - 15 - me.anchorOffset, 30];
-                break;
-            case 'b':
-                offsets = [ - 19 - me.anchorOffset, -13 - me.el.dom.offsetHeight];
-                break;
-            case 'r':
-                offsets = [ - 15 - me.el.dom.offsetWidth, -13 - me.anchorOffset];
-                break;
-            default:
-                offsets = [25, -13 - me.anchorOffset];
-                break;
+                case 't':
+                    offsets = [-15 - me.anchorOffset, 30];
+                    break;
+                case 'b':
+                    offsets = [-19 - me.anchorOffset, -13 - me.el.dom.offsetHeight];
+                    break;
+                case 'r':
+                    offsets = [-15 - me.el.dom.offsetWidth, -13 - me.anchorOffset];
+                    break;
+                default:
+                    offsets = [25, -13 - me.anchorOffset];
+                    break;
             }
         }
         mouseOffset = me.getMouseOffset();
@@ -540,7 +540,7 @@ Ext.define('Ext.tip.ToolTip', {
     /**
      * @private
      */
-    onTargetOver: function(e) {
+    onTargetOver: function (e) {
         var me = this,
             delegate = me.delegate,
             t;
@@ -584,7 +584,7 @@ Ext.define('Ext.tip.ToolTip', {
             me.show(xy);
         }
     },
-    
+
     showFromDelay: function (xy) {
         var me = this;
         // Need to check this here since onDisable only gets called after render, which
@@ -598,7 +598,7 @@ Ext.define('Ext.tip.ToolTip', {
         delete me.fromDelayShow;
     },
 
-    onShowVeto: function(){
+    onShowVeto: function () {
         this.callParent();
         delete this.triggerElement;
         this.clearTimer('show');
@@ -607,11 +607,11 @@ Ext.define('Ext.tip.ToolTip', {
     /**
      * @private
      */
-    onTargetOut: function(e) {
+    onTargetOut: function (e) {
         var me = this,
             triggerEl = me.triggerElement,
-            // If we don't have a delegate, then the target is set
-            // to true, so set it to the main target.
+        // If we don't have a delegate, then the target is set
+        // to true, so set it to the main target.
             target = triggerEl === true ? me.target : triggerEl;
 
         // If disabled, moving within the current target, ignore the mouseout
@@ -631,7 +631,7 @@ Ext.define('Ext.tip.ToolTip', {
     /**
      * @private
      */
-    delayHide: function() {
+    delayHide: function () {
         var me = this;
 
         if (!me.hidden && !me.hideTimer) {
@@ -642,7 +642,7 @@ Ext.define('Ext.tip.ToolTip', {
     /**
      * Hides this tooltip if visible.
      */
-    hide: function() {
+    hide: function () {
         var me = this;
         me.clearTimer('dismiss');
         me.lastActive = new Date();
@@ -677,7 +677,7 @@ Ext.define('Ext.tip.ToolTip', {
     /**
      * @inheritdoc
      */
-    showAt: function(xy) {
+    showAt: function (xy) {
         var me = this;
         me.lastActive = new Date();
         me.clearTimers();
@@ -706,38 +706,38 @@ Ext.define('Ext.tip.ToolTip', {
     /**
      * @private
      */
-    syncAnchor: function() {
+    syncAnchor: function () {
         var me = this,
             anchorPos,
             targetPos,
             offset;
         switch (me.tipAnchor.charAt(0)) {
-        case 't':
-            anchorPos = 'b';
-            targetPos = 'tl';
-            offset = [20 + me.anchorOffset, 1];
-            break;
-        case 'r':
-            anchorPos = 'l';
-            targetPos = 'tr';
-            offset = [ - 1, 12 + me.anchorOffset];
-            break;
-        case 'b':
-            anchorPos = 't';
-            targetPos = 'bl';
-            offset = [20 + me.anchorOffset, -1];
-            break;
-        default:
-            anchorPos = 'r';
-            targetPos = 'tl';
-            offset = [1, 12 + me.anchorOffset];
-            break;
+            case 't':
+                anchorPos = 'b';
+                targetPos = 'tl';
+                offset = [20 + me.anchorOffset, 1];
+                break;
+            case 'r':
+                anchorPos = 'l';
+                targetPos = 'tr';
+                offset = [-1, 12 + me.anchorOffset];
+                break;
+            case 'b':
+                anchorPos = 't';
+                targetPos = 'bl';
+                offset = [20 + me.anchorOffset, -1];
+                break;
+            default:
+                anchorPos = 'r';
+                targetPos = 'tl';
+                offset = [1, 12 + me.anchorOffset];
+                break;
         }
         me.anchorEl.alignTo(me.el, anchorPos + '-' + targetPos, offset);
         me.anchorEl.setStyle('z-index', parseInt(me.el.getZIndex(), 10) || 0 + 1).setVisibilityMode(Ext.Element.DISPLAY);
     },
 
-    afterSetPosition: function(x, y) {
+    afterSetPosition: function (x, y) {
         var me = this;
         me.callParent(arguments);
         if (me.anchor) {
@@ -770,20 +770,20 @@ Ext.define('Ext.tip.ToolTip', {
     /**
      * @private
      */
-    clearTimers: function() {
+    clearTimers: function () {
         var me = this;
         me.clearTimer('show');
         me.clearTimer('dismiss');
         me.clearTimer('hide');
     },
 
-    onShow: function() {
+    onShow: function () {
         var me = this;
         me.callParent();
         me.mon(Ext.getDoc(), 'mousedown', me.onDocMouseDown, me);
     },
 
-    onHide: function() {
+    onHide: function () {
         var me = this;
         me.callParent();
         me.mun(Ext.getDoc(), 'mousedown', me.onDocMouseDown, me);
@@ -792,7 +792,7 @@ Ext.define('Ext.tip.ToolTip', {
     /**
      * @private
      */
-    onDocMouseDown: function(e) {
+    onDocMouseDown: function (e) {
         var me = this;
         if (!me.closable && !e.within(me.el.dom)) {
             me.disable();
@@ -803,19 +803,19 @@ Ext.define('Ext.tip.ToolTip', {
     /**
      * @private
      */
-    doEnable: function() {
+    doEnable: function () {
         if (!this.isDestroyed) {
             this.enable();
         }
     },
 
-    onDisable: function() {
+    onDisable: function () {
         this.callParent();
         this.clearTimers();
         this.hide();
     },
 
-    beforeDestroy: function() {
+    beforeDestroy: function () {
         var me = this;
         me.clearTimers();
         Ext.destroy(me.anchorEl);
@@ -826,7 +826,7 @@ Ext.define('Ext.tip.ToolTip', {
         me.callParent();
     },
 
-    onDestroy: function() {
+    onDestroy: function () {
         Ext.getDoc().un('mousedown', this.onDocMouseDown, this);
         this.callParent();
     }

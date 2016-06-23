@@ -1,7 +1,7 @@
-describe("Ext.data.reader.Json", function() {
+describe("Ext.data.reader.Json", function () {
     var reader, data1, data2, result1, result2, result3;
 
-    beforeEach(function() {
+    beforeEach(function () {
         Ext.ClassManager.enableNamespaceParseCache = false;
         Ext.data.Model.schema.setNamespace('spec');
         Ext.define('spec.JsonReader', {
@@ -20,47 +20,47 @@ describe("Ext.data.reader.Json", function() {
         });
     });
 
-    afterEach(function(){
+    afterEach(function () {
         Ext.ClassManager.enableNamespaceParseCache = true;
         Ext.undefine('spec.JsonReader');
         Ext.data.Model.schema.clear(true);
     });
-    
-    describe("raw data", function() {
+
+    describe("raw data", function () {
         var data, rec;
-        
-        beforeEach(function() {
+
+        beforeEach(function () {
             data = {
                 inter: 1
             };
         });
-        
-        afterEach(function() {
+
+        afterEach(function () {
             rec = null;
         });
-        
-        it("should not set raw data reference by default", function() {
+
+        it("should not set raw data reference by default", function () {
             rec = reader.readRecords([data]).getRecords()[0];
-            
+
             expect(rec.raw).not.toBeDefined();
         });
-        
+
         it('should set raw data reference for a TreeStore record', function () {
             // Simulate TreeStore node
             spec.JsonReader.prototype.isNode = true;
-            
+
             rec = reader.readRecords([data]).getRecords()[0];
-            
+
             expect(rec.raw).toBe(data);
         });
     });
 
-    describe("copyFrom", function() {
+    describe("copyFrom", function () {
         var Model = Ext.define(null, {
             extend: 'Ext.data.Model'
         });
 
-        it("should copy the model", function() {
+        it("should copy the model", function () {
             var reader = new Ext.data.reader.Json({
                 model: Model
             });
@@ -69,7 +69,7 @@ describe("Ext.data.reader.Json", function() {
             expect(copy.getModel()).toBe(Model);
         });
 
-        it("should copy the record", function() {
+        it("should copy the record", function () {
             var reader = new Ext.data.reader.Json({
                 model: Model,
                 record: 'foo'
@@ -86,7 +86,7 @@ describe("Ext.data.reader.Json", function() {
             expect(result.getRecords()[0].get('x')).toBe(1);
         });
 
-        it("should copy the totalProperty", function() {
+        it("should copy the totalProperty", function () {
             var reader = new Ext.data.reader.Json({
                 model: Model,
                 totalProperty: 'aTotal'
@@ -101,7 +101,7 @@ describe("Ext.data.reader.Json", function() {
             expect(result.getTotal()).toBe(1000);
         });
 
-        it("should copy the successProperty", function() {
+        it("should copy the successProperty", function () {
             var reader = new Ext.data.reader.Json({
                 model: Model,
                 successProperty: 'aSuccess'
@@ -116,7 +116,7 @@ describe("Ext.data.reader.Json", function() {
             expect(result.getSuccess()).toBe(false);
         });
 
-        it("should copy the messageProperty", function() {
+        it("should copy the messageProperty", function () {
             var reader = new Ext.data.reader.Json({
                 model: Model,
                 messageProperty: 'aMessage'
@@ -131,7 +131,7 @@ describe("Ext.data.reader.Json", function() {
             expect(result.getMessage()).toBe('Some Message');
         });
 
-        it("should copy the rootProperty", function() {
+        it("should copy the rootProperty", function () {
             var reader = new Ext.data.reader.Json({
                 model: Model,
                 rootProperty: 'aRoot'
@@ -147,37 +147,37 @@ describe("Ext.data.reader.Json", function() {
         });
     });
 
-    describe("preserveRawData", function() {
-        it("should not use the raw data object for the model if set to true", function() {
+    describe("preserveRawData", function () {
+        it("should not use the raw data object for the model if set to true", function () {
             reader.setPreserveRawData(true);
             var o = {
                 inter: 1
             };
-            
+
             var rec = reader.readRecords([o]).getRecords()[0];
-            
+
             rec.set('inter', 2);
             expect(o.inter).toBe(1);
         });
-        
-        it("should be able to modify the raw data object for the model if set to false", function() {
+
+        it("should be able to modify the raw data object for the model if set to false", function () {
             reader.setPreserveRawData(false);
             var o = {
                 inter: 1
             };
-            
+
             var rec = reader.readRecords([o]).getRecords()[0];
-            
+
             rec.set('inter', 2);
             expect(o.inter).toBe(2);
         });
     });
-    
-    describe("extractors", function() {
+
+    describe("extractors", function () {
         var createReader;
-        
-        beforeEach(function(){
-            createReader = function(cfg){
+
+        beforeEach(function () {
+            createReader = function (cfg) {
                 cfg = cfg || {};
                 reader = new Ext.data.reader.Json(Ext.applyIf({
                     model: 'spec.JsonReader'
@@ -185,16 +185,16 @@ describe("Ext.data.reader.Json", function() {
                 reader.buildExtractors(true);
             };
         });
-        
-        afterEach(function(){
+
+        afterEach(function () {
             reader = createReader = null;
         });
-        
-        it("should run function extractors in the reader scope", function(){
+
+        it("should run function extractors in the reader scope", function () {
             var actual;
-            
+
             createReader({
-                successProperty: function(){
+                successProperty: function () {
                     actual = this;
                     return true;
                 }
@@ -204,27 +204,27 @@ describe("Ext.data.reader.Json", function() {
             });
             expect(actual).toBe(reader);
         });
-        
+
         /**
          * While testing all of these individually is a bit redundant, it's for completeness
          * to ensure that all of them are run through the proper extractors.
          */
-        describe("getTotal", function(){
-            it("should default to total", function(){
+        describe("getTotal", function () {
+            it("should default to total", function () {
                 createReader();
                 expect(reader.getTotal({
                     total: 5
                 })).toBe(5);
             });
-            
-            it("should have no getTotal method if the totalProperty isn't specified", function(){
+
+            it("should have no getTotal method if the totalProperty isn't specified", function () {
                 createReader({
                     totalProperty: ''
                 });
                 expect(reader.getTotal).toBeUndefined();
             });
-            
-            it("should read the specified property name", function(){
+
+            it("should read the specified property name", function () {
                 createReader({
                     totalProperty: 'foo'
                 });
@@ -232,10 +232,10 @@ describe("Ext.data.reader.Json", function() {
                     foo: 10
                 })).toBe(10);
             });
-            
-            it("should accept a function configuration", function(){
+
+            it("should accept a function configuration", function () {
                 createReader({
-                    totalProperty: function(data){
+                    totalProperty: function (data) {
                         return data.big.chain.total;
                     }
                 });
@@ -247,9 +247,9 @@ describe("Ext.data.reader.Json", function() {
                     }
                 })).toBe(65);
             });
-            
-            describe("JSON", function(){
-                it("should read dot notation", function(){
+
+            describe("JSON", function () {
+                it("should read dot notation", function () {
                     createReader({
                         totalProperty: 'big.chain.total'
                     });
@@ -261,8 +261,8 @@ describe("Ext.data.reader.Json", function() {
                         }
                     })).toBe(43);
                 });
-                
-                it("should read array notation for numeric values", function(){
+
+                it("should read array notation for numeric values", function () {
                     createReader({
                         totalProperty: 'values[0]'
                     });
@@ -270,8 +270,8 @@ describe("Ext.data.reader.Json", function() {
                         values: [9]
                     })).toBe(9);
                 });
-                
-                it("should read array notation for property names", function(){
+
+                it("should read array notation for property names", function () {
                     createReader({
                         totalProperty: '["foo-bar"]'
                     });
@@ -279,8 +279,8 @@ describe("Ext.data.reader.Json", function() {
                         'foo-bar': 16
                     })).toBe(16);
                 });
-                
-                it("should read array/dot notation", function(){
+
+                it("should read array/dot notation", function () {
                     createReader({
                         totalProperty: 'big[0].chain.total'
                     });
@@ -292,8 +292,8 @@ describe("Ext.data.reader.Json", function() {
                         }]
                     })).toBe(17);
                 });
-                
-                it("should not read dot chains if simple accessors are used", function(){
+
+                it("should not read dot chains if simple accessors are used", function () {
                     createReader({
                         totalProperty: 'some.big.chain',
                         useSimpleAccessors: true
@@ -302,25 +302,25 @@ describe("Ext.data.reader.Json", function() {
                         'some.big.chain': 88
                     })).toBe(88);
                 });
-            });            
+            });
         });
-        
-        describe("success", function(){
-            it("should default to success", function(){
+
+        describe("success", function () {
+            it("should default to success", function () {
                 createReader();
                 expect(reader.getSuccess({
                     success: true
                 })).toBe(true);
             });
-            
-            it("should have no getSuccess method if the successProperty isn't specified", function(){
+
+            it("should have no getSuccess method if the successProperty isn't specified", function () {
                 createReader({
                     successProperty: ''
                 });
                 expect(reader.getSuccess).toBeUndefined();
             });
-            
-            it("should read the specified property name", function(){
+
+            it("should read the specified property name", function () {
                 createReader({
                     successProperty: 'foo'
                 });
@@ -328,10 +328,10 @@ describe("Ext.data.reader.Json", function() {
                     foo: false
                 })).toBe(false);
             });
-            
-            it("should accept a function configuration", function(){
+
+            it("should accept a function configuration", function () {
                 createReader({
-                    successProperty: function(data){
+                    successProperty: function (data) {
                         return data.big.chain.success;
                     }
                 });
@@ -343,9 +343,9 @@ describe("Ext.data.reader.Json", function() {
                     }
                 })).toBe(true);
             });
-            
-            describe("JSON", function(){
-                it("should read dot notation", function(){
+
+            describe("JSON", function () {
+                it("should read dot notation", function () {
                     createReader({
                         successProperty: 'big.chain.success'
                     });
@@ -357,8 +357,8 @@ describe("Ext.data.reader.Json", function() {
                         }
                     })).toBe(true);
                 });
-                
-                it("should read array notation for numeric values", function(){
+
+                it("should read array notation for numeric values", function () {
                     createReader({
                         successProperty: 'values[0]'
                     });
@@ -366,8 +366,8 @@ describe("Ext.data.reader.Json", function() {
                         values: [false]
                     })).toBe(false);
                 });
-                
-                it("should read array notation for property names", function(){
+
+                it("should read array notation for property names", function () {
                     createReader({
                         successProperty: '["foo-bar"]'
                     });
@@ -375,8 +375,8 @@ describe("Ext.data.reader.Json", function() {
                         'foo-bar': false
                     })).toBe(false);
                 });
-                
-                it("should read array/dot notation", function(){
+
+                it("should read array/dot notation", function () {
                     createReader({
                         successProperty: 'big[0].chain.success'
                     });
@@ -388,8 +388,8 @@ describe("Ext.data.reader.Json", function() {
                         }]
                     })).toBe(true);
                 });
-                
-                it("should not read dot chains if simple accessors are used", function(){
+
+                it("should not read dot chains if simple accessors are used", function () {
                     createReader({
                         successProperty: 'some.big.chain',
                         useSimpleAccessors: true
@@ -400,21 +400,21 @@ describe("Ext.data.reader.Json", function() {
                 });
             });
         });
-        
-        describe("message", function(){
-            it("should default to undefined", function(){
+
+        describe("message", function () {
+            it("should default to undefined", function () {
                 createReader();
                 expect(reader.getMessage).toBeUndefined();
             });
-            
-            it("should have no getMessage method if the messageProperty isn't specified", function(){
+
+            it("should have no getMessage method if the messageProperty isn't specified", function () {
                 createReader({
                     successProperty: ''
                 });
                 expect(reader.getSuccess).toBeUndefined();
             });
-            
-            it("should read the specified property name", function(){
+
+            it("should read the specified property name", function () {
                 createReader({
                     messageProperty: 'foo'
                 });
@@ -422,10 +422,10 @@ describe("Ext.data.reader.Json", function() {
                     foo: false
                 })).toBe(false);
             });
-            
-            it("should accept a function configuration", function(){
+
+            it("should accept a function configuration", function () {
                 createReader({
-                    messageProperty: function(data){
+                    messageProperty: function (data) {
                         return data.big.chain.message;
                     }
                 });
@@ -437,9 +437,9 @@ describe("Ext.data.reader.Json", function() {
                     }
                 })).toBe('msg');
             });
-            
-            describe("JSON", function(){
-                it("should read dot notation", function(){
+
+            describe("JSON", function () {
+                it("should read dot notation", function () {
                     createReader({
                         messageProperty: 'big.chain.message'
                     });
@@ -451,8 +451,8 @@ describe("Ext.data.reader.Json", function() {
                         }
                     })).toBe('some message');
                 });
-                
-                it("should read array notation for numeric values", function(){
+
+                it("should read array notation for numeric values", function () {
                     createReader({
                         messageProperty: 'values[0]'
                     });
@@ -460,8 +460,8 @@ describe("Ext.data.reader.Json", function() {
                         values: ['a message']
                     })).toBe('a message');
                 });
-                
-                it("should read array notation for property names", function(){
+
+                it("should read array notation for property names", function () {
                     createReader({
                         messageProperty: '["foo-bar"]'
                     });
@@ -469,8 +469,8 @@ describe("Ext.data.reader.Json", function() {
                         'foo-bar': 'new msg'
                     })).toBe('new msg');
                 });
-                
-                it("should read array/dot notation", function(){
+
+                it("should read array/dot notation", function () {
                     createReader({
                         messageProperty: 'big[0].chain.message'
                     });
@@ -482,8 +482,8 @@ describe("Ext.data.reader.Json", function() {
                         }]
                     })).toBe('stuff');
                 });
-                
-                it("should not read dot chains if simple accessors are used", function(){
+
+                it("should not read dot chains if simple accessors are used", function () {
                     createReader({
                         messageProperty: 'some.big.chain',
                         useSimpleAccessors: true
@@ -494,23 +494,23 @@ describe("Ext.data.reader.Json", function() {
                 });
             });
         });
-        
-        describe("root", function(){
-            it("should default to a function returning the main object", function(){
+
+        describe("root", function () {
+            it("should default to a function returning the main object", function () {
                 var data = [];
                 createReader();
                 expect(reader.getRoot(data)).toBe(data);
             });
-            
-            it("default to a function returning the main object root isn't specified", function(){
+
+            it("default to a function returning the main object root isn't specified", function () {
                 var data = [];
                 createReader({
                     rootProperty: ''
                 });
                 expect(reader.getRoot(data)).toBe(data);
             });
-            
-            it("should read the specified property name", function(){
+
+            it("should read the specified property name", function () {
                 var data = [];
                 createReader({
                     rootProperty: 'foo'
@@ -519,11 +519,11 @@ describe("Ext.data.reader.Json", function() {
                     foo: data
                 })).toBe(data);
             });
-            
-            it("should accept a function configuration", function(){
+
+            it("should accept a function configuration", function () {
                 var data = [];
                 createReader({
-                    rootProperty: function(data){
+                    rootProperty: function (data) {
                         return data.big.chain.root;
                     }
                 });
@@ -535,9 +535,9 @@ describe("Ext.data.reader.Json", function() {
                     }
                 })).toBe(data);
             });
-            
-            describe("JSON", function(){
-                it("should read dot notation", function(){
+
+            describe("JSON", function () {
+                it("should read dot notation", function () {
                     var data = [];
                     createReader({
                         rootProperty: 'big.chain.root'
@@ -550,8 +550,8 @@ describe("Ext.data.reader.Json", function() {
                         }
                     })).toBe(data);
                 });
-                
-                it("should read array notation for numeric values", function(){
+
+                it("should read array notation for numeric values", function () {
                     var data = [];
                     createReader({
                         rootProperty: 'values[0]'
@@ -560,8 +560,8 @@ describe("Ext.data.reader.Json", function() {
                         values: [data]
                     })).toBe(data);
                 });
-                
-                it("should read array notation for property names", function(){
+
+                it("should read array notation for property names", function () {
                     var data = [];
                     createReader({
                         rootProperty: '["foo-bar"]'
@@ -570,8 +570,8 @@ describe("Ext.data.reader.Json", function() {
                         'foo-bar': data
                     })).toBe(data);
                 });
-                
-                it("should read array/dot notation", function(){
+
+                it("should read array/dot notation", function () {
                     var data = [];
                     createReader({
                         rootProperty: 'big[0].chain.root'
@@ -584,8 +584,8 @@ describe("Ext.data.reader.Json", function() {
                         }]
                     })).toBe(data);
                 });
-                
-                it("should not read dot chains if simple accessors are used", function(){
+
+                it("should not read dot chains if simple accessors are used", function () {
                     var data = [];
                     createReader({
                         rootProperty: 'some.big.chain',
@@ -597,14 +597,14 @@ describe("Ext.data.reader.Json", function() {
                 });
             });
         });
-        
-        describe("fields", function(){
+
+        describe("fields", function () {
             var rawOptions = {
                 recordCreator: Ext.identityFn
             };
-            
-            beforeEach(function(){
-                createReader = function(fields, simple){
+
+            beforeEach(function () {
+                createReader = function (fields, simple) {
                     Ext.define('spec.JsonFieldTest', {
                         extend: 'Ext.data.Model',
                         fields: fields
@@ -616,18 +616,18 @@ describe("Ext.data.reader.Json", function() {
                     });
                 };
             });
-            
-            afterEach(function() {
+
+            afterEach(function () {
                 Ext.undefine('spec.JsonFieldTest');
             });
-            
-            it("should read the name if no mapping is specified", function(){
+
+            it("should read the name if no mapping is specified", function () {
                 createReader(['field']);
                 var result = reader.readRecords([{field: 'val'}], rawOptions).getRecords()[0];
                 expect(result.field).toBe('val');
             });
-            
-            it("should give precedence to the mapping", function(){
+
+            it("should give precedence to the mapping", function () {
                 createReader([{
                     name: 'field',
                     mapping: 'somethingElse'
@@ -635,11 +635,11 @@ describe("Ext.data.reader.Json", function() {
                 var result = reader.readRecords([{somethingElse: 'a value'}], rawOptions).getRecords()[0];
                 expect(result.field).toEqual('a value');
             });
-            
-            it("should accept a function", function(){
+
+            it("should accept a function", function () {
                 createReader([{
                     name: 'field',
-                    mapping: function(o){
+                    mapping: function (o) {
                         return o.complex.chain.value;
                     }
                 }]);
@@ -652,8 +652,8 @@ describe("Ext.data.reader.Json", function() {
                 }], rawOptions).getRecords()[0];
                 expect(result.field).toBe(2);
             });
-            
-            it("should ignore certain falsy mapping values", function(){
+
+            it("should ignore certain falsy mapping values", function () {
                 createReader([{
                     name: 'field',
                     mapping: undefined
@@ -669,13 +669,13 @@ describe("Ext.data.reader.Json", function() {
                     field2: 'val2',
                     field3: 'val3'
                 }], rawOptions).getRecords()[0];
-                
+
                 expect(result.field).toBe('val');
                 expect(result.field2).toBe('val2');
                 expect(result.field3).toBe('val3');
             });
 
-            it("should allow zero value for mapping", function(){
+            it("should allow zero value for mapping", function () {
                 createReader([{
                     name: 'field',
                     mapping: 0
@@ -688,7 +688,7 @@ describe("Ext.data.reader.Json", function() {
                 expect(result2.field).toBe('T');
             });
 
-            it("should not include a mapping where the value doesn't exist", function() {
+            it("should not include a mapping where the value doesn't exist", function () {
                 createReader([{
                     name: 'field',
                     mapping: 'foo'
@@ -702,8 +702,8 @@ describe("Ext.data.reader.Json", function() {
                 expect(result.hasOwnProperty('field')).toBe(false);
             });
 
-            describe("JSON", function(){
-                it("should read dot notation", function(){
+            describe("JSON", function () {
+                it("should read dot notation", function () {
                     createReader([{
                         name: 'field',
                         mapping: 'some.value'
@@ -715,8 +715,8 @@ describe("Ext.data.reader.Json", function() {
                     }], rawOptions).getRecords()[0];
                     expect(result.field).toBe('mapped');
                 });
-                
-                it("should handle dot notation with an undefined property", function(){
+
+                it("should handle dot notation with an undefined property", function () {
                     createReader([{
                         name: 'field',
                         mapping: 'some.value'
@@ -728,8 +728,8 @@ describe("Ext.data.reader.Json", function() {
                     }], rawOptions).getRecords()[0];
                     expect(result.field).toBeUndefined(); // default value
                 });
-                
-                it("should handle dot notation with nested undefined properties", function(){
+
+                it("should handle dot notation with nested undefined properties", function () {
                     createReader([{
                         name: 'field',
                         mapping: 'some.deep.nested.value'
@@ -741,9 +741,9 @@ describe("Ext.data.reader.Json", function() {
                     }], rawOptions).getRecords()[0];
                     expect(result.field).toBeUndefined(); // default value
                 });
-                
-                 it("should read array notation for numeric values", function(){
-                     createReader([{
+
+                it("should read array notation for numeric values", function () {
+                    createReader([{
                         name: 'field',
                         mapping: 'values[0]'
                     }]);
@@ -752,8 +752,8 @@ describe("Ext.data.reader.Json", function() {
                     }], rawOptions).getRecords()[0];
                     expect(result.field).toBe('a');
                 });
-                
-                it("should read array notation for property names", function(){
+
+                it("should read array notation for property names", function () {
                     createReader([{
                         name: 'field',
                         mapping: '["a-prop"]'
@@ -763,8 +763,8 @@ describe("Ext.data.reader.Json", function() {
                     }], rawOptions).getRecords()[0];
                     expect(result.field).toBe('woo');
                 });
-                
-                it("should read array/dot notation", function(){
+
+                it("should read array/dot notation", function () {
                     createReader([{
                         name: 'field',
                         mapping: 'big[0].chain.value'
@@ -778,8 +778,8 @@ describe("Ext.data.reader.Json", function() {
                     }], rawOptions).getRecords()[0];
                     expect(result.field).toBe(45);
                 });
-                
-                it("should handle array/dot notation with nested undefined properties", function(){
+
+                it("should handle array/dot notation with nested undefined properties", function () {
                     createReader([{
                         name: 'field',
                         mapping: 'big[0].deep.chain.value'
@@ -793,8 +793,8 @@ describe("Ext.data.reader.Json", function() {
                     }], rawOptions).getRecords()[0];
                     expect(result.field).toBeUndefined(); // default value
                 });
-                
-                it("should not read dot chains if simple accessors are used", function(){
+
+                it("should not read dot chains if simple accessors are used", function () {
                     createReader([{
                         name: 'field',
                         mapping: 'a.long.name'
@@ -802,11 +802,11 @@ describe("Ext.data.reader.Json", function() {
                     var result = reader.readRecords([{
                         'a.long.name': 'sixty'
                     }], rawOptions).getRecords()[0];
-                    
+
                     expect(result.field).toBe('sixty');
                 });
-                
-                it("should handle dot chains with undefined values if simple accessors are used", function(){
+
+                it("should handle dot chains with undefined values if simple accessors are used", function () {
                     createReader([{
                         name: 'field',
                         mapping: 'a.long.name'
@@ -817,7 +817,7 @@ describe("Ext.data.reader.Json", function() {
                     expect(result.field).toBeUndefined();
                 });
 
-                it("should read dotted properties inside a bracketed block", function() {
+                it("should read dotted properties inside a bracketed block", function () {
                     createReader([{
                         name: 'field',
                         mapping: '["foo.bar.baz"]'
@@ -829,7 +829,7 @@ describe("Ext.data.reader.Json", function() {
                     expect(result.field).toBe('x');
                 });
 
-                it("should read [arrayIndex].property", function() {
+                it("should read [arrayIndex].property", function () {
                     createReader([{
                         name: 'field',
                         mapping: '[2].foo'
@@ -843,7 +843,7 @@ describe("Ext.data.reader.Json", function() {
                     expect(result.field).toBe('x');
                 });
 
-                it("should read [arrayIndex]['property']", function() {
+                it("should read [arrayIndex]['property']", function () {
                     createReader([{
                         name: 'field',
                         mapping: '[2]["complex-name"]'
@@ -857,7 +857,7 @@ describe("Ext.data.reader.Json", function() {
                     expect(result.field).toBe('x');
                 });
 
-                it("should read [arrayIndex][arrayIndex]", function() {
+                it("should read [arrayIndex][arrayIndex]", function () {
                     createReader([{
                         name: 'field',
                         mapping: '[2][1]'
@@ -869,7 +869,7 @@ describe("Ext.data.reader.Json", function() {
                     expect(result.field).toBe(4);
                 });
 
-                it("should read property.property", function() {
+                it("should read property.property", function () {
                     createReader([{
                         name: 'field',
                         mapping: 'foo.bar'
@@ -883,7 +883,7 @@ describe("Ext.data.reader.Json", function() {
                     expect(result.field).toBe('x');
                 });
 
-                it("should read property['property']", function() {
+                it("should read property['property']", function () {
                     createReader([{
                         name: 'field',
                         mapping: 'foo["complex-name"]'
@@ -897,7 +897,7 @@ describe("Ext.data.reader.Json", function() {
                     expect(result.field).toBe('x');
                 });
 
-                it("should read property[arrayIndex]", function() {
+                it("should read property[arrayIndex]", function () {
                     createReader([{
                         name: 'field',
                         mapping: 'foo[2]'
@@ -909,7 +909,7 @@ describe("Ext.data.reader.Json", function() {
                     expect(result.field).toBe(3);
                 });
 
-                it("should read ['property'].property", function() {
+                it("should read ['property'].property", function () {
                     createReader([{
                         name: 'field',
                         mapping: '["complex-name"].foo'
@@ -923,7 +923,7 @@ describe("Ext.data.reader.Json", function() {
                     expect(result.field).toBe('x');
                 });
 
-                it("should read ['property']['property']", function() {
+                it("should read ['property']['property']", function () {
                     createReader([{
                         name: 'field',
                         mapping: '["complex-name"]["other-prop"]'
@@ -937,7 +937,7 @@ describe("Ext.data.reader.Json", function() {
                     expect(result.field).toBe('x');
                 });
 
-                it("should read ['property'][arrayIndex]", function() {
+                it("should read ['property'][arrayIndex]", function () {
                     createReader([{
                         name: 'field',
                         mapping: '["complex-name"][1]'
@@ -949,7 +949,7 @@ describe("Ext.data.reader.Json", function() {
                     expect(result.field).toBe(2);
                 });
 
-                it("should read property['property'][arrayIndex]", function() {
+                it("should read property['property'][arrayIndex]", function () {
                     createReader([{
                         name: 'field',
                         mapping: 'foo["complex-name"][2]'
@@ -963,7 +963,7 @@ describe("Ext.data.reader.Json", function() {
                     expect(result.field).toBe(3);
                 });
 
-                it("should handle property[arrayIndex]['property']", function() {
+                it("should handle property[arrayIndex]['property']", function () {
                     createReader([{
                         name: 'field',
                         mapping: 'foo[1]["complex-name"]'
@@ -977,7 +977,7 @@ describe("Ext.data.reader.Json", function() {
                     expect(result.field).toBe('x');
                 });
 
-                it("should handle ['property'].property[arrayIndex]", function() {
+                it("should handle ['property'].property[arrayIndex]", function () {
                     createReader([{
                         name: 'field',
                         mapping: '["complex-name"].foo[1]'
@@ -991,7 +991,7 @@ describe("Ext.data.reader.Json", function() {
                     expect(result.field).toBe(2);
                 });
 
-                it("should handle ['property'][arrayIndex].property", function() {
+                it("should handle ['property'][arrayIndex].property", function () {
                     createReader([{
                         name: 'field',
                         mapping: '["complex-name"][1].foo'
@@ -1005,7 +1005,7 @@ describe("Ext.data.reader.Json", function() {
                     expect(result.field).toBe('x');
                 });
 
-                it("should handle [arrayIndex].property['property']", function() {
+                it("should handle [arrayIndex].property['property']", function () {
                     createReader([{
                         name: 'field',
                         mapping: '[1].foo["complex-name"]'
@@ -1021,7 +1021,7 @@ describe("Ext.data.reader.Json", function() {
                     expect(result.field).toBe('x');
                 });
 
-                it("should handle [arrayIndex]['property'].property", function() {
+                it("should handle [arrayIndex]['property'].property", function () {
                     createReader([{
                         name: 'field',
                         mapping: '[1]["complex-name"].foo'
@@ -1040,8 +1040,8 @@ describe("Ext.data.reader.Json", function() {
         });
     });
 
-    describe("reading records", function() {
-        beforeEach(function() {
+    describe("reading records", function () {
+        beforeEach(function () {
             Ext.define("spec.JsonReaderTest", {
                 extend: 'Ext.data.Model',
                 fields: [
@@ -1051,9 +1051,9 @@ describe("Ext.data.reader.Json", function() {
                     {name: 'inter', type: 'integer'},
                     {name: 'class', type: 'string'},
                     {
-                        name: 'string', 
-                        type: 'string', 
-                        convert: function(v) {
+                        name: 'string',
+                        type: 'string',
+                        convert: function (v) {
                             return "modified/" + v;
                         }
                     }, {
@@ -1073,58 +1073,58 @@ describe("Ext.data.reader.Json", function() {
             });
 
             data1 = {
-                id     : 1,
-                bool   : true,
-                inter  : 8675,
+                id: 1,
+                bool: true,
+                inter: 8675,
                 floater: 1.23,
-                string : 'Ed',
+                string: 'Ed',
                 'class': 'person'
             };
 
             data2 = {
-                id     : 2,
-                bool   : false,
-                inter  : 309,
+                id: 2,
+                bool: false,
+                inter: 309,
                 floater: 4.56,
-                string : 'Nick',
+                string: 'Nick',
                 'class': 'person'
             };
 
             result1 = reader.readRecords({
-                data       : [data1],
+                data: [data1],
                 successProp: true,
-                totalProp  : 2
+                totalProp: 2
             });
 
             result2 = reader.readRecords({
-                data       : [data2],
+                data: [data2],
                 successProp: false,
-                totalProp  : 6,
-                message    : 'Failed'
+                totalProp: 6,
+                message: 'Failed'
             });
-            
+
             result3 = reader.readRecords({
-                data       : data2,
+                data: data2,
                 successProp: true,
-                totalProp  : 6
+                totalProp: 6
             });
         });
-        
-        afterEach(function() {
+
+        afterEach(function () {
             Ext.undefine("spec.JsonReaderTest");
         });
 
-        it("should read the success property", function() {
+        it("should read the success property", function () {
             expect(result1.getSuccess()).toBe(true);
             expect(result2.getSuccess()).toBe(false);
         });
 
-        it("should read the total record count", function() {
+        it("should read the total record count", function () {
             expect(result1.getTotal()).toBe(2);
             expect(result2.getTotal()).toBe(6);
         });
 
-        it("should read records correctly", function() {
+        it("should read records correctly", function () {
             var recData = result1.getRecords()[0].getData();
 
             expect(recData.id).toBe(data1.id);
@@ -1132,87 +1132,87 @@ describe("Ext.data.reader.Json", function() {
             expect(recData.bool).toBe(data1.bool);
             expect(recData.inter).toBe(data1.inter);
         });
-        
-        it("should be able to have fields as reserved words", function(){
+
+        it("should be able to have fields as reserved words", function () {
             var recData = result1.getRecords()[0].getData();
-            expect(recData['class']).toBe('person');    
+            expect(recData['class']).toBe('person');
         });
-        
-        it("should read records correctly if there was just a single object instead of an array of data", function() {
+
+        it("should read records correctly if there was just a single object instead of an array of data", function () {
             var recData = result3.getRecords()[0].getData();
-            
+
             expect(recData.id).toBe(data2.id);
             expect(recData.floater).toBe(data2.floater);
             expect(recData.bool).toBe(data2.bool);
             expect(recData.inter).toBe(data2.inter);
         });
-        
-        it("should still read on failure by default", function(){
+
+        it("should still read on failure by default", function () {
             expect(result2.getRecords()[0].getId()).toBe(2);
         });
-        
-        it("should ignore values records/total when success is false & readRecordsOnFailure is false", function(){
+
+        it("should ignore values records/total when success is false & readRecordsOnFailure is false", function () {
             reader.setReadRecordsOnFailure(false);
             result2 = reader.readRecords({
-                data       : [data2],
+                data: [data2],
                 successProp: false,
-                totalProp  : 6,
-                message    : 'Failed'
+                totalProp: 6,
+                message: 'Failed'
             });
             expect(result2.getRecords()).toEqual([]);
             expect(result2.getTotal()).toBe(0);
             expect(result2.getMessage()).toBe('Failed');
         });
 
-        it("should respect the field's convert function", function() {
+        it("should respect the field's convert function", function () {
             var recData = result1.getRecords()[0].getData();
 
             expect(recData.string).toBe('modified/Ed');
         });
-        
-        it("should be able to load a single record", function(){
+
+        it("should be able to load a single record", function () {
             var data = reader.readRecords({
                 data: data1
             }).getRecords()[0].getData();
-            
+
             expect(data.id).toBe(data1.id);
             expect(data.floater).toBe(data1.floater);
             expect(data.bool).toBe(data1.bool);
             expect(data.inter).toBe(data1.inter);
         });
-        
-        it("should handle record instances being in the data", function(){
+
+        it("should handle record instances being in the data", function () {
             var data = reader.readRecords({
-                data       : [data1, new spec.JsonReaderTest(data2)],
+                data: [data1, new spec.JsonReaderTest(data2)],
                 successProp: true
             }).getRecords()[1].getData();
-            
+
             expect(data.id).toBe(data2.id);
             expect(data.floater).toBe(data2.floater);
             expect(data.bool).toBe(data2.bool);
             expect(data.inter).toBe(data2.inter);
         });
-        
-        describe("readOptions", function() {
-            it("should return what we construct when we pass recordCreator", function() {
+
+        describe("readOptions", function () {
+            it("should return what we construct when we pass recordCreator", function () {
                 var records = reader.readRecords({
                     data: [data1, data2]
                 }, {
-                    recordCreator: function(o) {
+                    recordCreator: function (o) {
                         return o;
                     }
                 }).getRecords();
                 expect(records[0]).toEqual(data1);
                 expect(records[1]).toEqual(data2);
-            });  
-            
-            it("should process mappings", function() {
+            });
+
+            it("should process mappings", function () {
                 var records = reader.readRecords({
                     data: [{
                         someMap: 'foo'
                     }]
                 }, {
-                    recordCreator: function(o) {
+                    recordCreator: function (o) {
                         return o;
                     }
                 }).getRecords();
@@ -1224,10 +1224,10 @@ describe("Ext.data.reader.Json", function() {
         });
     });
 
-    describe("loading with a 'record' property", function() {
+    describe("loading with a 'record' property", function () {
         var data, resultSet;
 
-        beforeEach(function() {
+        beforeEach(function () {
             Ext.define('spec.User', {
                 extend: 'Ext.data.Model',
                 fields: [
@@ -1262,16 +1262,16 @@ describe("Ext.data.reader.Json", function() {
 
             resultSet = reader.readRecords(data);
         });
-        
-        afterEach(function() {
+
+        afterEach(function () {
             Ext.undefine('spec.User');
         });
 
-        it("should parse the correct number of results", function() {
+        it("should parse the correct number of results", function () {
             expect(resultSet.getCount()).toEqual(2);
         });
 
-        it("should parse each record correctly", function() {
+        it("should parse each record correctly", function () {
             var records = resultSet.getRecords(),
                 record1 = records[0],
                 record2 = records[1];
@@ -1281,20 +1281,21 @@ describe("Ext.data.reader.Json", function() {
         });
     });
 
-    describe("calling model onLoad", function() {
-        beforeEach(function() {
+    describe("calling model onLoad", function () {
+        beforeEach(function () {
             Ext.define('spec.User', {
                 extend: 'Ext.data.Model',
                 fields: ['name'],
-                onLoad: function() {}
+                onLoad: function () {
+                }
             });
         });
 
-        afterEach(function() {
+        afterEach(function () {
             Ext.undefine('spec.User');
         });
 
-        it("should call the template method for each record", function() {
+        it("should call the template method for each record", function () {
             var spy = spyOn(spec.User.prototype, 'onLoad');
             reader = new Ext.data.reader.Json({
                 model: 'spec.User'
@@ -1311,9 +1312,9 @@ describe("Ext.data.reader.Json", function() {
             expect(spy.callCount).toBe(7);
         });
 
-        it("should call the template method after processing associations", function() {
+        it("should call the template method after processing associations", function () {
             var count;
-            spyOn(spec.User.prototype, 'onLoad').andCallFake(function() {
+            spyOn(spec.User.prototype, 'onLoad').andCallFake(function () {
                 count = this.orders().getCount();
             });
             Ext.define('spec.Order', {
@@ -1337,7 +1338,7 @@ describe("Ext.data.reader.Json", function() {
         });
     });
 
-    describe("loading nested data", function() {
+    describe("loading nested data", function () {
         var nestedLoadData = {
             "users": [
                 {
@@ -1347,7 +1348,7 @@ describe("Ext.data.reader.Json", function() {
                         {
                             "line1": "525 University Avenue",
                             "line2": "Suite 23",
-                            "town" : "Palo Alto"
+                            "town": "Palo Alto"
                         }
                     ],
                     "orders": [
@@ -1356,19 +1357,19 @@ describe("Ext.data.reader.Json", function() {
                             "total": 100,
                             "order_items": [
                                 {
-                                    "id"      : 20,
-                                    "price"   : 40,
+                                    "id": 20,
+                                    "price": 40,
                                     "quantity": 2,
-                                    "product" : {
+                                    "product": {
                                         "id": 1000,
                                         "name": "MacBook Pro"
                                     }
                                 },
                                 {
-                                    "id"      : 21,
-                                    "price"   : 20,
+                                    "id": 21,
+                                    "price": 20,
                                     "quantity": 1,
-                                    "product" : {
+                                    "product": {
                                         "id": 1001,
                                         "name": "iPhone"
                                     }
@@ -1384,7 +1385,7 @@ describe("Ext.data.reader.Json", function() {
                                     "price": 10,
                                     "quantity": 1,
                                     "product": {
-                                        "id"  : 1002,
+                                        "id": 1002,
                                         "name": "iPad"
                                     }
                                 }
@@ -1395,7 +1396,7 @@ describe("Ext.data.reader.Json", function() {
             ]
         };
 
-        beforeEach(function() {
+        beforeEach(function () {
             //We have five models - User, Address, Order, OrderItem and Product
             Ext.define("spec.User", {
                 extend: 'Ext.data.Model',
@@ -1416,7 +1417,7 @@ describe("Ext.data.reader.Json", function() {
                     }
                 }
             });
-            
+
             spyOn(Ext.log, 'warn');
 
             Ext.define('spec.Address', {
@@ -1434,7 +1435,7 @@ describe("Ext.data.reader.Json", function() {
                     'id', 'total'
                 ],
 
-                hasMany  : {model: 'spec.OrderItem', name: 'orderItems', associationKey: 'order_items'},
+                hasMany: {model: 'spec.OrderItem', name: 'orderItems', associationKey: 'order_items'},
                 belongsTo: 'spec.User'
             });
 
@@ -1456,8 +1457,8 @@ describe("Ext.data.reader.Json", function() {
                 hasMany: {model: 'spec.OrderItem', name: 'orderItems'}
             });
         });
-        
-        afterEach(function() {
+
+        afterEach(function () {
             Ext.undefine('spec.User');
             Ext.undefine('spec.Address');
             Ext.undefine('spec.Order');
@@ -1472,49 +1473,49 @@ describe("Ext.data.reader.Json", function() {
             }));
         }
 
-        it("should set implicitIncludes to true by default", function() {
+        it("should set implicitIncludes to true by default", function () {
             reader = createReader();
 
             expect(reader.getImplicitIncludes()).toBe(true);
         });
 
-        it("should not parse includes if implicitIncludes is set to false", function() {
+        it("should not parse includes if implicitIncludes is set to false", function () {
             reader = createReader({implicitIncludes: false});
 
             var resultSet = reader.read(Ext.clone(nestedLoadData)),
-                user      = resultSet.getRecords()[0],
-                orders    = user.orders();
+                user = resultSet.getRecords()[0],
+                orders = user.orders();
 
             expect(orders.getCount()).toBe(0);
         });
 
-        describe("when reading nested data", function() {
+        describe("when reading nested data", function () {
             var resultSet, user, orders, orderItems, product, addresses;
 
-            beforeEach(function() {
-                reader     = createReader();
-                resultSet  = reader.read(Ext.clone(nestedLoadData));
-                user       = resultSet.getRecords()[0];
-                addresses  = user.addresses();
-                orders     = user.orders();
+            beforeEach(function () {
+                reader = createReader();
+                resultSet = reader.read(Ext.clone(nestedLoadData));
+                user = resultSet.getRecords()[0];
+                addresses = user.addresses();
+                orders = user.orders();
                 orderItems = orders.first().orderItems();
-                product    = orderItems.first().getProduct();
+                product = orderItems.first().getProduct();
             });
 
-            it("should populate first-order associations", function() {
+            it("should populate first-order associations", function () {
                 expect(orders.getCount()).toBe(2);
                 expect(addresses.getCount()).toBe(1);
             });
 
-            it("should populate second-order associations", function() {
+            it("should populate second-order associations", function () {
                 expect(orderItems.getCount()).toBe(2);
             });
 
-            it("should populate belongsTo associations", function() {
+            it("should populate belongsTo associations", function () {
                 expect(product.get('name')).toBe('MacBook Pro');
             });
 
-            it("should ignore associations where the model isn't yet loaded", function() {
+            it("should ignore associations where the model isn't yet loaded", function () {
                 Ext.define('spec.Employee', {
                     extend: 'Ext.data.Model',
                     fields: ['id', 'name', {
@@ -1525,7 +1526,7 @@ describe("Ext.data.reader.Json", function() {
                 reader = new Ext.data.reader.Json({
                     model: 'spec.Employee'
                 });
-                expect(function() {
+                expect(function () {
                     reader.read({
                         id: 1,
                         name: 'Foo'
@@ -1535,25 +1536,25 @@ describe("Ext.data.reader.Json", function() {
         });
     });
 
-    describe("reconfiguring via metadata", function() {
+    describe("reconfiguring via metadata", function () {
 
-        it("should call onMetaChange", function() {
+        it("should call onMetaChange", function () {
             var meta = {some: 'meta data'};
-            
+
             spyOn(reader, 'onMetaChange').andReturn();
             spyOn(reader, 'getRoot').andReturn([]);
-            
+
             reader.readRecords({metaData: meta});
             expect(reader.onMetaChange).toHaveBeenCalledWith(meta);
         });
-        
-        it("should accept a custom meta property", function(){
+
+        it("should accept a custom meta property", function () {
             reader.setMetaProperty('foo.bar.baz');
             reader.buildExtractors(true);
-            
+
             spyOn(reader, 'onMetaChange').andReturn();
             spyOn(reader, 'getRoot').andReturn([]);
-            
+
             var o = {};
             var meta = {
                 foo: {
@@ -1565,10 +1566,10 @@ describe("Ext.data.reader.Json", function() {
             reader.readRecords(meta);
             expect(reader.onMetaChange).toHaveBeenCalledWith(o);
         });
-        
+
     });
 
-    describe("reading xhr", function() {
+    describe("reading xhr", function () {
         var goodResponse = {
                 responseText: '{ "success": true, "users": [{"name": "Ben", "location": "Boston"}, {"name": "Mike", "location": "Redwood City"}, {"name": "Nick", "location": "Kansas City"}] }'
             },
@@ -1576,7 +1577,7 @@ describe("Ext.data.reader.Json", function() {
                 responseText: 'this is not JSON'
             };
 
-        beforeEach(function() {
+        beforeEach(function () {
             Ext.define('spec.User', {
                 extend: 'Ext.data.Model',
                 fields: ['name', 'location']
@@ -1590,53 +1591,53 @@ describe("Ext.data.reader.Json", function() {
                     }
                 }
             });
-         });
-         
-         afterEach(function() {
-             Ext.undefine('spec.User');
-         });
-        
+        });
+
+        afterEach(function () {
+            Ext.undefine('spec.User');
+        });
+
         function doRead(response) {
             return reader.read(response);
         }
 
-        describe("if there is a responseText property", function() {
-            describe("if there is valid JSON", function() {    
-                it("should be successful", function() {
+        describe("if there is a responseText property", function () {
+            describe("if there is valid JSON", function () {
+                it("should be successful", function () {
                     expect(doRead(goodResponse).getSuccess()).toBe(true);
                 });
 
-                it("should return the expected number of records", function() {
+                it("should return the expected number of records", function () {
                     expect(doRead(goodResponse).getCount()).toBe(3);
                 });
-    
-                it("should not return a non-empty dataset", function() {
+
+                it("should not return a non-empty dataset", function () {
                     expect(doRead(goodResponse).getRecords().length).toBe(3);
                 });
             });
 
-            describe("if there is invalid JSON", function() {
-                beforeEach(function() {
+            describe("if there is invalid JSON", function () {
+                beforeEach(function () {
                     spyOn(Ext, 'log');
                     spyOn(Ext.Logger, 'warn');
                 });
-                
-                it("should not be successful", function() {
+
+                it("should not be successful", function () {
                     expect(doRead(badResponse).getSuccess()).toBe(false);
                 });
 
-                it("should not return any records", function() {
+                it("should not return any records", function () {
                     expect(doRead(badResponse).getTotal()).toBe(0);
                 });
-    
-                it("should return any empty dataset", function() {
+
+                it("should return any empty dataset", function () {
                     expect(doRead(badResponse).getRecords().length).toBe(0);
                 });
             });
         });
 
-        describe("if there is no responseText property", function() {            
-            it("should return an empty dataset", function() {
+        describe("if there is no responseText property", function () {
+            it("should return an empty dataset", function () {
                 expect(doRead("something").getCount()).toBe(0);
             });
         });

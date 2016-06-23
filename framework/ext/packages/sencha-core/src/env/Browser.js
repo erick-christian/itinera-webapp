@@ -15,10 +15,10 @@
     var me = this,
         browserPrefixes = me.browserPrefixes,
         enginePrefixes = me.enginePrefixes,
-        browserMatch = userAgent.match(new RegExp('((?:' + 
-                Ext.Object.getValues(browserPrefixes).join(')|(?:') + '))([\\w\\._]+)')),
-        engineMatch = userAgent.match(new RegExp('((?:' + 
-                Ext.Object.getValues(enginePrefixes).join(')|(?:') + '))([\\w\\._]+)')),
+        browserMatch = userAgent.match(new RegExp('((?:' +
+            Ext.Object.getValues(browserPrefixes).join(')|(?:') + '))([\\w\\._]+)')),
+        engineMatch = userAgent.match(new RegExp('((?:' +
+            Ext.Object.getValues(enginePrefixes).join(')|(?:') + '))([\\w\\._]+)')),
         browserNames = me.browserNames,
         browserName = browserNames.other,
         engineNames = me.engineNames,
@@ -334,7 +334,7 @@
 
             maxIEVersion = Math.max(majorVer, 11);
             for (i = 7; i <= maxIEVersion; ++i) {
-                prefix = 'isIE' + i; 
+                prefix = 'isIE' + i;
                 if (majorVer <= i) {
                     Ext[prefix + 'm'] = true;
                 }
@@ -585,7 +585,7 @@ Ext.env.Browser.prototype = {
      */
     engineVersion: null,
 
-    setFlag: function(name, value, publish) {
+    setFlag: function (name, value, publish) {
         if (value === undefined) {
             value = true;
         }
@@ -599,15 +599,15 @@ Ext.env.Browser.prototype = {
         return this;
     },
 
-    getStyleDashPrefix: function() {
+    getStyleDashPrefix: function () {
         return this.styleDashPrefixes[this.engineName];
     },
 
-    getStylePrefix: function() {
+    getStylePrefix: function () {
         return this.stylePrefixes[this.engineName];
     },
 
-    getVendorProperyName: function(name) {
+    getVendorProperyName: function (name) {
         var prefix = this.propertyPrefixes[this.engineName];
 
         if (prefix.length > 0) {
@@ -617,7 +617,7 @@ Ext.env.Browser.prototype = {
         return name;
     },
 
-    getPreferredTranslationMethod: function(config) {
+    getPreferredTranslationMethod: function (config) {
         if (typeof config === 'object' && 'translationMethod' in config && config.translationMethod !== 'auto') {
             return config.translationMethod;
         } else {

@@ -40,7 +40,9 @@
                     "});",
                     "",
                     "appLocal.fixInterface();",
-                    "Ext.getStore('storeTaxiFares').load();"
+                    "",
+                    "Ext.getStore('storeTaxiFares').load();",
+                    ""
                 ]
             },
             "name": "launch",
@@ -62,8 +64,10 @@
                 "implHandler": [
                     "Ext.getCmp('formMaintenance').doLayout();",
                     "",
-                    "var heightGrid = Ext.getBody().getViewSize().height - 60;",
-                    "Ext.getCmp('gridTaxiFares').setHeight(heightGrid);"
+                    "var heightGrid = Ext.getBody().getViewSize().height - 55;",
+                    "Ext.getCmp('gridTaxiFares').setHeight(heightGrid);",
+                    "Ext.getCmp('gridRangeFares').setHeight(heightGrid);",
+                    ""
                 ]
             },
             "name": "fixInterface",

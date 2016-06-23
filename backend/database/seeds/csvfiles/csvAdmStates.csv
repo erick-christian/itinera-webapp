@@ -1,33 +1,32 @@
-country_code,state_code,state_name,capital
-MEX,AGS,Aguascalientes,Aguascalientes
-MEX,BCN,Baja California (Norte),Mexicali
-MEX,BCS,Baja California Sur,La Paz
-MEX,CMP,Campeche,Campeche
-MEX,COA,Coahuila,Saltillo
-MEX,COL,Colima,Colima
-MEX,CHA,Chiapas,Tuxtla GutiÈrrez
-MEX,CHI,Chihuahua,Chihuahua
-MEX,CMX,Ciudad de MÈxico,Ciudad de MÈxico
-MEX,DUR,Durango,Durango
-MEX,MEX,Estado de MÈxico,Toluca de Lerdo
-MEX,GTO,Guanajuato,Guanajuato
-MEX,GRO,Guerrero,Chilpancingo
-MEX,HID,Hidalgo,Pachuca de Soto
-MEX,JAL,Jalisco,Guadalajara
-MEX,MIC,Michoac·n,Morelia
-MEX,MOR,Morelos,Cuernavaca
-MEX,NAY,Nayarit,Tepic
-MEX,NLE,Nuevo LÈon,Monterrey
-MEX,OAX,Oaxaca,Oaxaca
-MEX,PUE,Puebla,Puebla
-MEX,QRO,Quintana Roo,Chetumal
-MEX,QTR,QuerÈtaro,QuerÈtaro
-MEX,SIN,Sinaloa,Culiac·n
-MEX,SLP,San Luis Potosi,San Luis Potosi
-MEX,SON,Sonora,Hermosillo
-MEX,TAB,Tabasco,Villahermosa
-MEX,TAM,Tamaulipas,Ciudad Victoria
-MEX,TLA,Tlaxcala,Tlaxcala
-MEX,VER,Veracruz,Jalapa
-MEX,YUC,Yucat·n,MÈrida
-MEX,ZAC,Zacatecas,Zacatecas
+"MEX","01","Aguascalientes"
+"MEX","02","Baja California"
+"MEX","03","Baja California Sur"
+"MEX","04","Campeche"
+"MEX","05","Coahuila de Zaragoza"
+"MEX","06","Colima"
+"MEX","07","Chiapas"
+"MEX","08","Chihuahua"
+"MEX","09","Distrito Federal"
+"MEX","10","Durango"
+"MEX","11","Guanajuato"
+"MEX","12","Guerrero"
+"MEX","13","Hidalgo"
+"MEX","14","Jalisco"
+"MEX","15","M√©xico"
+"MEX","16","Michoac√°n de Ocampo"
+"MEX","17","Morelos"
+"MEX","18","Nayarit"
+"MEX","19","Nuevo Le√≥n"
+"MEX","20","Oaxaca"
+"MEX","21","Puebla"
+"MEX","22","Quer√©taro"
+"MEX","23","Quintana Roo"
+"MEX","24","San Luis Potos√≠"
+"MEX","25","Sinaloa"
+"MEX","26","Sonora"
+"MEX","27","Tabasco"
+"MEX","28","Tamaulipas"
+"MEX","29","Tlaxcala"
+"MEX","30","Veracruz de Ignacio de la Llave"
+"MEX","31","Yucat√°n"
+"MEX","32","Zacatecas"

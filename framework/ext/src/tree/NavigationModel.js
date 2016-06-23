@@ -9,10 +9,10 @@
  */
 Ext.define('Ext.tree.NavigationModel', {
     extend: 'Ext.grid.NavigationModel',
-    
+
     alias: 'view.navigation.tree',
-    
-    initKeyNav: function(view) {
+
+    initKeyNav: function (view) {
         var me = this,
             columns = me.view.ownerGrid.columns;
 
@@ -35,12 +35,12 @@ Ext.define('Ext.tree.NavigationModel', {
         });
     },
 
-    onColumnsChanged: function() {
+    onColumnsChanged: function () {
         // Must go up to any possible locking assembly to find total number of columns
         this.isTreeGrid = this.view.ownerGrid.getVisibleColumnManager().getColumns().length > 1;
     },
 
-    onKeyLeft: function(keyEvent) {
+    onKeyLeft: function (keyEvent) {
         var me = this,
             view = keyEvent.view,
             record = me.record;
@@ -63,7 +63,7 @@ Ext.define('Ext.tree.NavigationModel', {
         }
     },
 
-    onKeyRight: function(keyEvent) {
+    onKeyRight: function (keyEvent) {
         var me = this,
             record = me.record;
 
@@ -85,7 +85,7 @@ Ext.define('Ext.tree.NavigationModel', {
         }
     },
 
-    onKeyEnter: function(keyEvent) {
+    onKeyEnter: function (keyEvent) {
         if (this.record.data.checked != null) {
             this.toggleCheck(keyEvent);
         } else {
@@ -93,7 +93,7 @@ Ext.define('Ext.tree.NavigationModel', {
         }
     },
 
-    onKeySpace: function(keyEvent) {
+    onKeySpace: function (keyEvent) {
         if (this.record.data.checked != null) {
             this.toggleCheck(keyEvent);
         } else {
@@ -101,12 +101,12 @@ Ext.define('Ext.tree.NavigationModel', {
         }
     },
 
-    toggleCheck: function(keyEvent) {
+    toggleCheck: function (keyEvent) {
         this.view.onCheckChange(this.record);
     },
 
     // (asterisk) on keypad expands all nodes.
-    onAsterisk: function(keyEvent) {
+    onAsterisk: function (keyEvent) {
         this.view.ownerCt.expandAll();
     }
 });

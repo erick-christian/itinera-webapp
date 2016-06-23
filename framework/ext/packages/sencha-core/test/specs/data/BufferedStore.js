@@ -1,4 +1,4 @@
-describe('Ext.data.BufferedStore', function() {
+describe('Ext.data.BufferedStore', function () {
     var bufferedStore, captured;
 
     function getData(start, limit) {
@@ -54,7 +54,7 @@ describe('Ext.data.BufferedStore', function() {
         }, cfg));
     }
 
-    beforeEach(function() {
+    beforeEach(function () {
         Ext.define('spec.ForumThread', {
             extend: 'Ext.data.Model',
             fields: [
@@ -75,8 +75,8 @@ describe('Ext.data.BufferedStore', function() {
         MockAjaxManager.addMethods();
         captured = [];
     });
-    
-    afterEach(function(){
+
+    afterEach(function () {
         MockAjaxManager.removeMethods();
         bufferedStore.destroy();
         captured = bufferedStore = null;
@@ -84,7 +84,7 @@ describe('Ext.data.BufferedStore', function() {
         Ext.undefine('spec.ForumThread');
     });
 
-    it('should be able to lookup a record by its internalId', function() {
+    it('should be able to lookup a record by its internalId', function () {
         createStore();
         bufferedStore.loadPage(1);
         satisfyRequests();
@@ -95,7 +95,7 @@ describe('Ext.data.BufferedStore', function() {
         expect(bufferedStore.getByInternalId(String(rec0.internalId))).toBe(rec0);
     });
 
-    it('should be able to start from any page', function() {
+    it('should be able to start from any page', function () {
         createStore();
         bufferedStore.loadPage(10);
 
@@ -110,13 +110,13 @@ describe('Ext.data.BufferedStore', function() {
         expect(page10[99].get('title')).toBe('Title999');
     });
 
-    it('should be able to find records in a buffered store', function() {
+    it('should be able to find records in a buffered store', function () {
         createStore();
         bufferedStore.load();
 
         satisfyRequests();
 
-        expect(bufferedStore.findBy(function(rec) {
+        expect(bufferedStore.findBy(function (rec) {
             return rec.get('title') === 'Title10';
         })).toBe(10);
 
@@ -125,7 +125,7 @@ describe('Ext.data.BufferedStore', function() {
         expect(bufferedStore.find('title', 'title10')).toBe(10);
     });
 
-    it("should clear the data when calling sort with parameters when remote sorting", function() {
+    it("should clear the data when calling sort with parameters when remote sorting", function () {
         createStore();
         bufferedStore.load();
 
@@ -137,7 +137,7 @@ describe('Ext.data.BufferedStore', function() {
         expect(bufferedStore.data.getCount()).toBe(300);
     });
 
-    it('should load the store when filtered', function() {
+    it('should load the store when filtered', function () {
         var spy = jasmine.createSpy();
 
         createStore({
@@ -150,10 +150,10 @@ describe('Ext.data.BufferedStore', function() {
         bufferedStore.filter('title', 'panel');
         satisfyRequests();
         expect(spy).toHaveBeenCalled();
-   });
+    });
 
-    it('should load the store when sorted', function() {
-         var spy = jasmine.createSpy();
+    it('should load the store when sorted', function () {
+        var spy = jasmine.createSpy();
 
         createStore({
             listeners: {
@@ -165,9 +165,9 @@ describe('Ext.data.BufferedStore', function() {
         bufferedStore.sort('title', 'ASC');
         satisfyRequests();
         expect(spy).toHaveBeenCalled();
-   });
+    });
 
-    it("should update the sorters when sorting by an existing key", function() {
+    it("should update the sorters when sorting by an existing key", function () {
         createStore({
             sorters: [{
                 property: 'title'
@@ -183,7 +183,7 @@ describe('Ext.data.BufferedStore', function() {
     // Test for https://sencha.jira.com/browse/EXTJSIV-10338
     // purgePageCount ensured that the viewSize could never be satisfied
     // by small pages because they would keep being pruned.
-    it('should load the requested range when the pageSize is small', function() {
+    it('should load the requested range when the pageSize is small', function () {
         var spy = jasmine.createSpy();
         createStore({
             pageSize: 5,
@@ -293,23 +293,23 @@ describe('Ext.data.BufferedStore', function() {
 
             satisfyRequests();
 
-            bufferedStore.on('refresh', function() {
+            bufferedStore.on('refresh', function () {
                 refreshed++;
             });
 
             bufferedStore.reload();
             satisfyRequests();
-            
+
             expect(refreshed).toBe(1);
             count = bufferedStore.getData().getCount();
 
             bufferedStore.reload();
             satisfyRequests();
-            
+
             expect(bufferedStore.getData().getCount()).toBe(count);
         });
 
-        it("should not request larger than the previous total", function() {
+        it("should not request larger than the previous total", function () {
             var total = 6679,
                 viewSize = 50;
 
@@ -328,7 +328,7 @@ describe('Ext.data.BufferedStore', function() {
             captured.length = 0;
 
             bufferedStore.reload();
-            expect(function() {
+            expect(function () {
                 satisfyRequests(total);
             }).not.toThrow();
             expect(captured[captured.length - 1]).toEqual({
@@ -338,9 +338,9 @@ describe('Ext.data.BufferedStore', function() {
             });
         });
     });
-    
-    describe('pruning', function() {
-        it('should prune least recently used pages as new ones are added above the purgePageCount', function() {
+
+    describe('pruning', function () {
+        it('should prune least recently used pages as new ones are added above the purgePageCount', function () {
             var keys;
 
             // Keep it simple
@@ -357,7 +357,7 @@ describe('Ext.data.BufferedStore', function() {
 
             // The PageMap should contain page 1
             keys = [];
-            bufferedStore.getData().forEach(function(rec){
+            bufferedStore.getData().forEach(function (rec) {
                 keys.push(String(rec.internalId));
             });
             expect(keys.length).toBe(10);
@@ -372,7 +372,7 @@ describe('Ext.data.BufferedStore', function() {
 
             // The PageMap should contain pages 1 and 2
             keys = [];
-            bufferedStore.getData().forEach(function(rec){
+            bufferedStore.getData().forEach(function (rec) {
                 keys.push(String(rec.internalId));
             });
             expect(keys.length).toBe(20);
@@ -387,7 +387,7 @@ describe('Ext.data.BufferedStore', function() {
 
             // The PageMap should contain pages 2 and 3
             keys = [];
-            bufferedStore.getData().forEach(function(rec){
+            bufferedStore.getData().forEach(function (rec) {
                 keys.push(String(rec.internalId));
             });
             expect(keys.length).toBe(20);

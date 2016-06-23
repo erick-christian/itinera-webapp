@@ -84,7 +84,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
     loadId: 0,
 
     // Initialize this as a plugin
-    init: function(grid) {
+    init: function (grid) {
         var me = this,
             view = grid.view,
             viewListeners = {
@@ -138,7 +138,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
     },
 
     // Keep the variableRowHeight and any Lockable's syncRowHeight property correct WRT variable row heights being possible.
-    checkVariableRowHeight: function() {
+    checkVariableRowHeight: function () {
         var me = this,
             grid = me.grid;
 
@@ -187,19 +187,19 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         }
     },
 
-    onReconfigure: function(grid, store){
+    onReconfigure: function (grid, store) {
         if (store && store !== this.store) {
             this.bindStore(store);
         }
     },
 
-    unbindStore: function() {
+    unbindStore: function () {
         this.storeListeners.destroy();
         this.store = null;
     },
 
     // Disallow mouse interactions, and disable handling of scroll events until the load is finished
-    onBeforeStoreLoad: function() {
+    onBeforeStoreLoad: function () {
         var view = this.view;
         if (view && view.rendered) {
             view.el.dom.style.pointerEvents = 'none';
@@ -208,7 +208,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
     },
 
     // Re-enable mouse interactions and scroll event handling on load.
-    onStoreLoad: function() {
+    onStoreLoad: function () {
         var view = this.view;
         if (view && view.rendered) {
             view.el.dom.style.pointerEvents = '';
@@ -216,7 +216,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         this.enable();
     },
 
-    onStoreClear: function() {
+    onStoreClear: function () {
         var me = this,
             view = me.view;
 
@@ -240,15 +240,15 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
     },
 
     // If the store is not grouped, we can switch to fixed row height mode
-    onStoreGroupChange: function(store) {
+    onStoreGroupChange: function (store) {
         this.refreshSize();
     },
 
-    onViewBoxReady: function(view) {
+    onViewBoxReady: function (view) {
         this.refreshScroller(view, this.scrollHeight);
     },
 
-    onViewRefresh: function(view, records) {
+    onViewRefresh: function (view, records) {
         var me = this,
             rows = view.all,
             height;
@@ -312,12 +312,12 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         }
     },
 
-    refreshSize: function() {
+    refreshSize: function () {
         var me = this,
             view = me.view,
             nodeCache = view.all,
-            // Calculates scroll range.
-            // Also calculates rowHeight if we do not have an own rowHeight property.
+        // Calculates scroll range.
+        // Also calculates rowHeight if we do not have an own rowHeight property.
             newScrollHeight = me.getScrollHeight();
 
         // We are displaying the last row, ensure the scroll range finishes exactly at the bottom of the view body.
@@ -332,7 +332,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         me.stretchView(view, newScrollHeight);
     },
 
-    onViewResize: function(view, width, height, oldWidth, oldHeight) {
+    onViewResize: function (view, width, height, oldWidth, oldHeight) {
         var me = this,
             newViewSize;
 
@@ -351,7 +351,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         }
     },
 
-    onWrappedColumnWidthChange: function(oldWidth, newWidth) {
+    onWrappedColumnWidthChange: function (oldWidth, newWidth) {
         var me = this,
             view = me.view;
 
@@ -362,7 +362,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
             me.refreshSize();
 
             // Calculate new viewSize - number of rows to render.
-            me.setViewSize (Math.ceil(view.getHeight() / me.rowHeight) + me.trailingBufferZone + me.leadingBufferZone);
+            me.setViewSize(Math.ceil(view.getHeight() / me.rowHeight) + me.trailingBufferZone + me.leadingBufferZone);
 
             // ViewSize now encompasses all data; move to the top
             if (me.viewSize >= me.store.getCount()) {
@@ -381,7 +381,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         }
     },
 
-    stretchView: function(view, scrollRange) {
+    stretchView: function (view, scrollRange) {
         var me = this,
             recordCount = me.store.getCount(),
             el,
@@ -404,7 +404,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
                 me.refreshScroller(view, scrollRange);
             } else if (!me.pendingScrollerRefresh) {
                 view.on({
-                    boxready: function() {
+                    boxready: function () {
                         me.refreshScroller(view, scrollRange);
                         me.pendingScrollerRefresh = false;
                     },
@@ -448,7 +448,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         }
     },
 
-    refreshScroller: function(view, scrollRange) {
+    refreshScroller: function (view, scrollRange) {
         var scroller = view.getScrollable();
 
         if (scroller) {
@@ -459,7 +459,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         }
     },
 
-    setViewSize: function(viewSize, fromLockingPartner) {
+    setViewSize: function (viewSize, fromLockingPartner) {
         var me = this,
             store = me.store,
             view = me.view,
@@ -500,7 +500,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
             if (elCount) {
                 storeCount = store.getCount();
                 start = rows.startIndex;
-                    end = Math.min(start + viewSize - 1, storeCount - 1);
+                end = Math.min(start + viewSize - 1, storeCount - 1);
 
                 // Only do expensive adding or removal if range is not already correct
                 if (!(start === rows.startIndex && end === rows.endIndex)) {
@@ -517,7 +517,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
 
                             // Store's getRange API always has been inclusive of endIndex.
                             store.getRange(rows.endIndex + 1, end, {
-                                callback: function(records, start) {
+                                callback: function (records, start) {
                                     newRows = view.doAdd(records, start);
                                     view.fireEvent('itemadd', records, start, newRows);
                                 }
@@ -551,7 +551,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
 
     // @private
     // TableView's getViewRange delegates the operation to this method if buffered rendering is present.
-    getViewRange: function() {
+    getViewRange: function () {
         var me = this,
             rows = me.view.all,
             store = me.store,
@@ -585,7 +585,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
      * @private
      * Handles the Store replace event, producing a correct buffered view after the replace operation.
      */
-    onReplace: function(store, startIndex, oldRecords, newRecords) {
+    onReplace: function (store, startIndex, oldRecords, newRecords) {
         var me = this,
             view = me.view,
             rows = view.all,
@@ -636,7 +636,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
             // The handleViewScroll added rows, so we must scroll to keep the visuals the same;
             else {
                 view.suspendEvent('scroll');
-                view.scrollBy(0, (oldStartIndex  - rows.startIndex) * me.rowHeight);
+                view.scrollBy(0, (oldStartIndex - rows.startIndex) * me.rowHeight);
                 view.resumeEvent('scroll');
             }
             view.refreshSize(rows.getCount() !== renderedSize);
@@ -700,7 +700,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
      * @param {Object}          [options.scope] The scope (`this` reference) in which to execute the callback. Defaults to this BufferedRenderer.
      *
      */
-    scrollTo: function(recordIdx, options) {
+    scrollTo: function (recordIdx, options) {
         var args = arguments,
             me = this,
             view = me.view,
@@ -794,7 +794,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
                 view.getNavigationModel().setPosition(record, 0);
             }
             if (callback) {
-                callback.call(scope||me, recordIdx, record, targetRow);
+                callback.call(scope || me, recordIdx, record, targetRow);
             }
             return;
         }
@@ -817,7 +817,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         tableTop = Math.max(startIdx * me.rowHeight, 0);
 
         store.getRange(startIdx, endIdx, {
-            callback: function(range, start, end) {
+            callback: function (range, start, end) {
                 var scroller = view.getScrollable();
 
                 // Render the range.
@@ -874,13 +874,13 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
                     view.getNavigationModel().setPosition(record, 0);
                 }
                 if (callback) {
-                    callback.call(scope||me, recordIdx, record, targetRow);
+                    callback.call(scope || me, recordIdx, record, targetRow);
                 }
             }
         });
     },
 
-    onViewScroll: function() {
+    onViewScroll: function () {
         var me = this,
             store = me.store,
             totalCount = (store.getCount()),
@@ -903,12 +903,12 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         }
     },
 
-    handleViewScroll: function(direction) {
-        var me              = this,
-            rows            = me.view.all,
-            store           = me.store,
-            viewSize        = me.viewSize,
-            lastItemIndex   = (store.getCount()) - 1,
+    handleViewScroll: function (direction) {
+        var me = this,
+            rows = me.view.all,
+            store = me.store,
+            viewSize = me.viewSize,
+            lastItemIndex = (store.getCount()) - 1,
             requestStart,
             requestEnd;
 
@@ -963,7 +963,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         }
     },
 
-    bottomOfViewCloseToEdge: function() {
+    bottomOfViewCloseToEdge: function () {
         var me = this;
 
         if (me.variableRowHeight) {
@@ -973,7 +973,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         }
     },
 
-    topOfViewCloseToEdge: function() {
+    topOfViewCloseToEdge: function () {
         var me = this;
 
         if (me.variableRowHeight) {
@@ -989,7 +989,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
      * Refreshes the current rendered range if possible.
      * Optionally refreshes starting at the specified index.
      */
-    refreshView: function(startIndex) {
+    refreshView: function (startIndex) {
         var me = this,
             viewSize = me.viewSize,
             rows = me.view.all,
@@ -1024,7 +1024,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         });
     },
 
-    doRefreshView: function(range, startIndex, endIndex, options) {
+    doRefreshView: function (range, startIndex, endIndex, options) {
         var me = this,
             view = me.view,
             navModel = view.getNavigationModel(),
@@ -1089,7 +1089,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
                     // No overlap: calculate the a new body top and scrollTop.
                     else {
                         // To position rows, remove table's top border
-                        me.setBodyTop(me.bodyTop  = calculatedTop = startIndex * me.rowHeight);
+                        me.setBodyTop(me.bodyTop = calculatedTop = startIndex * me.rowHeight);
                         view.suspendEvent('scroll');
                         view.setScrollY(me.position = me.scrollTop = Math.max(calculatedTop - me.rowHeight * (calculatedTop < me.bodyTop ? me.leadingBufferZone : me.trailingBufferZone, 0)));
                         view.resumeEvent('scroll');
@@ -1117,7 +1117,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         }
     },
 
-    renderRange: function(start, end, forceSynchronous, fromLockingPartner) {
+    renderRange: function (start, end, forceSynchronous, fromLockingPartner) {
         var me = this,
             rows = me.view.all,
             store = me.store;
@@ -1152,7 +1152,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         }
     },
 
-    onRangeFetched: function(range, start, end, options, fromLockingPartner) {
+    onRangeFetched: function (range, start, end, options, fromLockingPartner) {
         var me = this,
             view = me.view,
             oldStart,
@@ -1205,7 +1205,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
             }
 
             // We've just added a bunch of rows to the top of our range, so move upwards to keep the row appearance stable
-           newTop = me.bodyTop + increment;
+            newTop = me.bodyTop + increment;
         }
         else {
             // No overlapping nodes, we'll need to render the whole range
@@ -1313,7 +1313,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         return newRows;
     },
 
-    syncRowHeights: function(itemEls, partnerItemEls) {
+    syncRowHeights: function (itemEls, partnerItemEls) {
         var me = this,
             ln = 0, otherLn = 1, // Different initial values so that all items are synched
             mySynchronizer = [],
@@ -1368,7 +1368,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         }
     },
 
-    setBodyTop: function(bodyTop) {
+    setBodyTop: function (bodyTop) {
         var me = this,
             view = me.view,
             store = me.store,
@@ -1391,7 +1391,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         }
     },
 
-    getFirstVisibleRowIndex: function(startRow, endRow, viewportTop, viewportBottom) {
+    getFirstVisibleRowIndex: function (startRow, endRow, viewportTop, viewportBottom) {
         var me = this,
             view = me.view,
             rows = view.all,
@@ -1438,13 +1438,13 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         }
         return Math.floor(me.scrollTop / me.rowHeight);
     },
-    
+
     /**
      * Returns the index of the last row in your table view deemed to be visible.
      * @return {Number}
      * @private
      */
-    getLastVisibleRowIndex: function(startRow, endRow, viewportTop, viewportBottom) {
+    getLastVisibleRowIndex: function (startRow, endRow, viewportTop, viewportBottom) {
         var me = this,
             view = me.view,
             rows = view.all,
@@ -1493,11 +1493,11 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         return me.getFirstVisibleRowIndex() + Math.ceil(clientHeight / me.rowHeight);
     },
 
-    getScrollHeight: function(calculatedOnly) {
+    getScrollHeight: function (calculatedOnly) {
         var me = this,
-            view   = me.view,
-            rows   = view.all,
-            store  = me.store,
+            view = me.view,
+            rows = view.all,
+            store = me.store,
             recCount = store.getCount(),
             rowCount,
             scrollHeight;
@@ -1525,7 +1525,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
 
     },
 
-    attemptLoad: function(start, end) {
+    attemptLoad: function (start, end) {
         var me = this;
         if (me.scrollToLoadBuffer) {
             if (!me.loadTask) {
@@ -1537,18 +1537,18 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         }
     },
 
-    cancelLoad: function() {
+    cancelLoad: function () {
         if (this.loadTask) {
             this.loadTask.cancel();
         }
     },
 
-    doAttemptLoad:  function(start, end) {
+    doAttemptLoad: function (start, end) {
         var me = this;
 
         this.store.getRange(start, end, {
             loadId: ++me.loadId,
-            callback: function(range, start, end, options) {
+            callback: function (range, start, end, options) {
                 // If our loadId position has not changed since the getRange request started, we can continue to render
                 if (options.loadId === me.loadId) {
                     this.onRangeFetched(range, start, end, options);
@@ -1559,12 +1559,12 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         });
     },
 
-    destroy: function() {
+    destroy: function () {
         var me = this,
             view = me.view;
-        
+
         me.cancelLoad();
-        
+
         if (view && view.el) {
             view.un('scroll', me.onViewScroll, me);
         }
@@ -1572,7 +1572,7 @@ Ext.define('Ext.grid.plugin.BufferedRenderer', {
         // Remove listeners from old grid, view and store
         Ext.destroy(me.viewListeners, me.storeListeners, me.gridListeners, me.stretcher);
     }
-}, function(cls) {
+}, function (cls) {
     // Minimal leading and trailing zones are best on mobile.
     // Use 2 to ensure visible range is covered
     if (Ext.supports.Touch) {

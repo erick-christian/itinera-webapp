@@ -16,15 +16,15 @@ Ext.define('Ext.tab.Tab', {
      * `true` in this class to identify an object as an instantiated Tab, or subclass thereof.
      */
     isTab: true,
-    
+
     /**
      * @cfg {Number} tabIndex
      * Sets a DOM tabIndex for this tab. Tab's tabIndex is automatically managed by the framework
-     * and doesn't generally require modification.  
+     * and doesn't generally require modification.
      *
      * tabIndex on tab defaults to -1.
      */
-     tabIndex: -1,
+    tabIndex: -1,
 
     baseCls: Ext.baseCSSPrefix + 'tab',
     closeElOverCls: Ext.baseCSSPrefix + 'tab-close-btn-over',
@@ -171,7 +171,7 @@ Ext.define('Ext.tab.Tab', {
         left: 2
     },
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this;
 
         if (me.card) {
@@ -181,22 +181,22 @@ Ext.define('Ext.tab.Tab', {
         me.callParent(arguments);
     },
 
-    getActualRotation: function() {
+    getActualRotation: function () {
         var rotation = this.getRotation();
 
         return (rotation !== 'default') ? rotation :
             this._defaultRotations[this.getTabPosition()];
     },
 
-    updateRotation: function() {
+    updateRotation: function () {
         this.syncRotationAndPosition();
     },
 
-    updateTabPosition: function() {
+    updateTabPosition: function () {
         this.syncRotationAndPosition();
     },
 
-    syncRotationAndPosition: function() {
+    syncRotationAndPosition: function () {
         var me = this,
             rotateClasses = me._rotateClasses,
             position = me.getTabPosition(),
@@ -236,7 +236,7 @@ Ext.define('Ext.tab.Tab', {
         this.syncRotationAndPosition();
     },
 
-    getTemplateArgs: function() {
+    getTemplateArgs: function () {
         var me = this,
             result = me.callParent();
 
@@ -246,7 +246,7 @@ Ext.define('Ext.tab.Tab', {
         return result;
     },
 
-    beforeRender: function() {
+    beforeRender: function () {
         var me = this,
             tabBar = me.up('tabbar'),
             tabPanel = me.up('tabpanel');
@@ -277,7 +277,7 @@ Ext.define('Ext.tab.Tab', {
         }
     },
 
-    onRender: function() {
+    onRender: function () {
         var me = this;
 
         me.setElOrientation();
@@ -288,11 +288,11 @@ Ext.define('Ext.tab.Tab', {
             me.closeEl.addClsOnOver(me.closeElOverCls);
             me.closeEl.addClsOnClick(me.closeElPressedCls);
         }
-        
+
         me.initKeyNav();
     },
-    
-    initKeyNav: function() {
+
+    initKeyNav: function () {
         var me = this;
 
         me.keyNav = new Ext.util.KeyNav(me.el, {
@@ -302,7 +302,7 @@ Ext.define('Ext.tab.Tab', {
         });
     },
 
-    setElOrientation: function() {
+    setElOrientation: function () {
         var me = this,
             rotation = me.getActualRotation(),
             el = me.el;
@@ -315,7 +315,7 @@ Ext.define('Ext.tab.Tab', {
     },
 
     // inherit docs
-    enable: function(silent) {
+    enable: function (silent) {
         var me = this;
 
         me.callParent(arguments);
@@ -326,7 +326,7 @@ Ext.define('Ext.tab.Tab', {
     },
 
     // inherit docs
-    disable: function(silent) {
+    disable: function (silent) {
         var me = this;
 
         me.callParent(arguments);
@@ -336,7 +336,7 @@ Ext.define('Ext.tab.Tab', {
         return me;
     },
 
-    onDestroy: function() {
+    onDestroy: function () {
         var me = this;
 
         Ext.destroy(me.keyNav);
@@ -350,7 +350,7 @@ Ext.define('Ext.tab.Tab', {
      * @param {Boolean} closable Pass false to make the tab not closable. Otherwise the tab will be made closable (eg a
      * close button will appear on the tab)
      */
-    setClosable: function(closable) {
+    setClosable: function (closable) {
         var me = this;
 
         // Closable must be true if no args
@@ -421,7 +421,7 @@ Ext.define('Ext.tab.Tab', {
      * belongs to and would not need to be done by the developer
      * @param {Ext.Component} card The card to set
      */
-    setCard: function(card) {
+    setCard: function (card) {
         var me = this;
 
         me.card = card;
@@ -441,7 +441,7 @@ Ext.define('Ext.tab.Tab', {
      * @private
      * Listener attached to click events on the Tab's close button
      */
-    onCloseClick: function() {
+    onCloseClick: function () {
         var me = this;
 
         if (me.fireEvent('beforeclose', me) !== false) {
@@ -461,14 +461,14 @@ Ext.define('Ext.tab.Tab', {
      * Fires the close event on the tab.
      * @private
      */
-    fireClose: function(){
+    fireClose: function () {
         this.fireEvent('close', this);
     },
 
     /**
      * @private
      */
-    onEnterKey: function(e) {
+    onEnterKey: function (e) {
         var me = this;
 
         if (me.tabBar) {
@@ -479,21 +479,21 @@ Ext.define('Ext.tab.Tab', {
     /**
      * @private
      */
-    onDeleteKey: function(e) {
+    onDeleteKey: function (e) {
         if (this.closable) {
             this.onCloseClick();
         }
     },
-    
+
     // @private
-    beforeClick: function(isCloseClick) {
+    beforeClick: function (isCloseClick) {
         if (!isCloseClick) {
             this.focus();
         }
     },
 
     // @private
-    activate: function(supressEvent) {
+    activate: function (supressEvent) {
         var me = this;
 
         me.active = true;
@@ -505,7 +505,7 @@ Ext.define('Ext.tab.Tab', {
     },
 
     // @private
-    deactivate: function(supressEvent) {
+    deactivate: function (supressEvent) {
         var me = this;
 
         me.active = false;
@@ -517,11 +517,11 @@ Ext.define('Ext.tab.Tab', {
     },
 
     privates: {
-        getFramingInfoCls: function(){
+        getFramingInfoCls: function () {
             return this.baseCls + '-' + this.ui + '-' + this._positionCls;
         },
 
-        wrapPrimaryEl: function(dom) {
+        wrapPrimaryEl: function (dom) {
             // Tabs don't need the hacks in Ext.dom.ButtonElement
             Ext.Button.superclass.wrapPrimaryEl.call(this, dom);
         }

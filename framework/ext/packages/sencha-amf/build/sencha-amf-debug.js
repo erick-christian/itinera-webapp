@@ -64,7 +64,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * Creates new Encoder.
      * @param {Object} config Configuration options
      */
-    constructor: function(config) {
+    constructor: function (config) {
         this.initConfig(config);
         this.clear();
     },
@@ -73,7 +73,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * The method generates a new array for encoding, so it's safe to keep a
      * reference to the old one.
      */
-    clear: function() {
+    clear: function () {
         this.bytes = [];
     },
     /**
@@ -81,31 +81,31 @@ Ext.define('Ext.data.amf.Encoder', {
      * protocol version.
      * @param {Number} protocol_version the protocol version to support
      */
-    applyFormat: function(protocol_version) {
+    applyFormat: function (protocol_version) {
         var funcs = {
-                0: {
-                    writeUndefined: this.write0Undefined,
-                    writeNull: this.write0Null,
-                    writeBoolean: this.write0Boolean,
-                    writeNumber: this.write0Number,
-                    writeString: this.write0String,
-                    writeXml: this.write0Xml,
-                    writeDate: this.write0Date,
-                    writeArray: this.write0Array,
-                    writeGenericObject: this.write0GenericObject
-                },
-                3: {
-                    writeUndefined: this.write3Undefined,
-                    writeNull: this.write3Null,
-                    writeBoolean: this.write3Boolean,
-                    writeNumber: this.write3Number,
-                    writeString: this.write3String,
-                    writeXml: this.write3Xml,
-                    writeDate: this.write3Date,
-                    writeArray: this.write3Array,
-                    writeGenericObject: this.write3GenericObject
-                }
-            }[protocol_version];
+            0: {
+                writeUndefined: this.write0Undefined,
+                writeNull: this.write0Null,
+                writeBoolean: this.write0Boolean,
+                writeNumber: this.write0Number,
+                writeString: this.write0String,
+                writeXml: this.write0Xml,
+                writeDate: this.write0Date,
+                writeArray: this.write0Array,
+                writeGenericObject: this.write0GenericObject
+            },
+            3: {
+                writeUndefined: this.write3Undefined,
+                writeNull: this.write3Null,
+                writeBoolean: this.write3Boolean,
+                writeNumber: this.write3Number,
+                writeString: this.write3String,
+                writeXml: this.write3Xml,
+                writeDate: this.write3Date,
+                writeArray: this.write3Array,
+                writeGenericObject: this.write3GenericObject
+            }
+        }[protocol_version];
         if (funcs) {
             Ext.apply(this, funcs);
             return protocol_version;
@@ -126,7 +126,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * - XML Document (identified by being instaneof Document. Can be generated with: new DOMParser()).parseFromString(xml, "text/xml");
      * @param {Object} item A primitive or object to write to the stream
      */
-    writeObject: function(item) {
+    writeObject: function (item) {
         var t = typeof (item);
         //Ext.log("Writing " + item + " of type " + t);
         if (t === "undefined") {
@@ -162,7 +162,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * Writes the AMF3 undefined value to the byte array.
      * @private
      */
-    write3Undefined: function() {
+    write3Undefined: function () {
         this.writeByte(0);
     },
     // AMF3 undefined
@@ -170,7 +170,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * Writes the AMF0 undefined value to the byte array.
      * @private
      */
-    write0Undefined: function() {
+    write0Undefined: function () {
         this.writeByte(6);
     },
     // AMF0 undefined
@@ -178,7 +178,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * Writes the AMF3 null value to the byte array.
      * @private
      */
-    write3Null: function() {
+    write3Null: function () {
         this.writeByte(1);
     },
     // AMF3 null
@@ -186,7 +186,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * Writes the AMF0 null value to the byte array.
      * @private
      */
-    write0Null: function() {
+    write0Null: function () {
         this.writeByte(5);
     },
     // AMF0 null
@@ -195,7 +195,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {boolean} item The value to write
      * @private
      */
-    write3Boolean: function(item) {
+    write3Boolean: function (item) {
         if (typeof (item) !== "boolean") {
             Ext.log.warn("Encoder: writeBoolean argument is not a boolean. Coercing.");
         }
@@ -212,7 +212,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {boolean} item The value to write
      * @private
      */
-    write0Boolean: function(item) {
+    write0Boolean: function (item) {
         if (typeof (item) !== "boolean") {
             Ext.log.warn("Encoder: writeBoolean argument is not a boolean. Coercing.");
         }
@@ -231,9 +231,9 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param item - unsigned int value
      * @private
      */
-    encode29Int: function(item) {
+    encode29Int: function (item) {
         var data = [],
-            // prepare the bytes, then send them to the array
+        // prepare the bytes, then send them to the array
             num = item,
             nibble, i;
         if (num == 0) {
@@ -268,7 +268,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param item A native numeric value, Number instance or one of Infinity, -Infinity or NaN
      * @private
      */
-    write3Number: function(item) {
+    write3Number: function (item) {
         var data;
         var maxInt = 536870911,
             minSignedInt = -268435455;
@@ -303,7 +303,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param item A native numeric value, Number instance or one of Infinity, -Infinity or NaN
      * @private
      */
-    write0Number: function(item) {
+    write0Number: function (item) {
         var data;
         if (typeof (item) !== "number" && !(item instanceof Number)) {
             Ext.log.warn("Encoder: writeNumber argument is not numeric. Can't coerce.");
@@ -323,7 +323,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {Number} c char 16-bit code to convert
      * @return {Array} byte array with the UTF 8 values
      */
-    encodeUtf8Char: function(c) {
+    encodeUtf8Char: function (c) {
         var data = [],
             val, b, i, marker;
         if (c > 1114111) {
@@ -365,7 +365,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @return {Array} byte array with string encoded in UTF-8 format
      * @private
      */
-    encodeUtf8String: function(str) {
+    encodeUtf8String: function (str) {
         var i,
             utf8Data = [];
         for (i = 0; i < str.length; i++) {
@@ -384,7 +384,7 @@ Ext.define('Ext.data.amf.Encoder', {
      *
      * @private
      */
-    encode3Utf8StringLen: function(utf8Data) {
+    encode3Utf8StringLen: function (utf8Data) {
         var len = utf8Data.length,
             data = [];
         if (len <= 268435455) {
@@ -405,7 +405,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {String} item The string to write
      * @private
      */
-    write3String: function(item) {
+    write3String: function (item) {
         if (!Ext.isString(item)) {
             Ext.log.warn("Encoder: writString argument is not a string.");
         }
@@ -432,7 +432,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {Number} byte_count 2 or 4 byte encoding
      * @return {Array} byte array with encoded number
      */
-    encodeXInt: function(value, byte_count) {
+    encodeXInt: function (value, byte_count) {
         var data = [],
             i;
         for (i = 0; i < byte_count; i++) {
@@ -446,7 +446,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {String} item The string to write
      * @private
      */
-    write0String: function(item) {
+    write0String: function (item) {
         if (!Ext.isString(item)) {
             Ext.log.warn("Encoder: writString argument is not a string.");
         }
@@ -487,7 +487,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {number} amfType Either 0x07 or 0x0B - the AMF3 object type to use
      * @private
      */
-    write3XmlWithType: function(xml, amfType) {
+    write3XmlWithType: function (xml, amfType) {
         // We accept XML Documents, or strings
         if (amfType !== 7 && amfType !== 11) {
             Ext.Error.raise("write XML with unknown AMF3 code: " + amfType);
@@ -519,7 +519,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * The writeObject method will call writeXml and not writeXmlDocument.
      * @param {Object} xml XML document (type Document typically) to write
      */
-    write3XmlDocument: function(xml) {
+    write3XmlDocument: function (xml) {
         this.write3XmlWithType(xml, 7);
     },
     /**
@@ -527,7 +527,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {Object} xml XML document (type Document typically) to write
      * @private
      */
-    write3Xml: function(xml) {
+    write3Xml: function (xml) {
         this.write3XmlWithType(xml, 11);
     },
     /**
@@ -535,7 +535,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {Object} xml XML document (type Document typically) to write
      * @private
      */
-    write0Xml: function(xml) {
+    write0Xml: function (xml) {
         // We accept XML Documents, or strings
         if (!this.isXmlDocument(xml)) {
             Ext.log.warn("Encoder: write0Xml argument is not an xml document.");
@@ -554,7 +554,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {Date} date the date object
      * @private
      */
-    write3Date: function(date) {
+    write3Date: function (date) {
         if (!(date instanceof Date)) {
             Ext.Error.raise("Serializing a non-date object as date: " + date);
         }
@@ -570,7 +570,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {Date} date the date object
      * @private
      */
-    write0Date: function(date) {
+    write0Date: function (date) {
         if (!(date instanceof Date)) {
             Ext.Error.raise("Serializing a non-date object as date: " + date);
         }
@@ -590,7 +590,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {Array} arr the array to serialize.
      * @private
      */
-    write3Array: function(arr) {
+    write3Array: function (arr) {
         if (!Ext.isArray(arr)) {
             Ext.Error.raise("Serializing a non-array object as array: " + arr);
         }
@@ -611,7 +611,7 @@ Ext.define('Ext.data.amf.Encoder', {
         this.writeByte(1);
         // equivalent to an empty UTF-8 string
         // now iterate over the array, writing each element
-        Ext.each(arr, function(x) {
+        Ext.each(arr, function (x) {
             this.writeObject(x);
         }, this);
     },
@@ -620,7 +620,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {String} key the name of the property
      * @param {Object} value to write in AMF0 format
      */
-    write0ObjectProperty: function(key, value) {
+    write0ObjectProperty: function (key, value) {
         if (!(key instanceof String) && (typeof (key) !== "string")) {
             // coerce to a string
             key = key + "";
@@ -639,7 +639,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {Array} arr the array to serialize.
      * @private
      */
-    write0Array: function(arr) {
+    write0Array: function (arr) {
         var key;
         if (!Ext.isArray(arr)) {
             Ext.Error.raise("Serializing a non-array object as array: " + arr);
@@ -684,7 +684,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * completeness and will never be called by writeObject.
      * @param {Array} arr the array to serialize.
      */
-    write0StrictArray: function(arr) {
+    write0StrictArray: function (arr) {
         if (!Ext.isArray(arr)) {
             Ext.Error.raise("Serializing a non-array object as array: " + arr);
         }
@@ -695,7 +695,7 @@ Ext.define('Ext.data.amf.Encoder', {
         var len = arr.length;
         this.writeBytes(this.encodeXInt(len, 4));
         // now iterate over the array, writing each element
-        Ext.each(arr, function(x) {
+        Ext.each(arr, function (x) {
             this.writeObject(x);
         }, this);
     },
@@ -705,7 +705,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * byte array.
      * @param {Array} arr the object to serialize.
      */
-    write3ByteArray: function(arr) {
+    write3ByteArray: function (arr) {
         if (!Ext.isArray(arr)) {
             Ext.Error.raise("Serializing a non-array object as array: " + arr);
         }
@@ -732,7 +732,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {Array} obj the object to serialize.
      * @private
      */
-    write3GenericObject: function(obj) {
+    write3GenericObject: function (obj) {
         var name;
         if (!Ext.isObject(obj)) {
             Ext.Error.raise("Serializing a non-object object: " + obj);
@@ -781,7 +781,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {Array} obj the object to serialize.
      * @private
      */
-    write0GenericObject: function(obj) {
+    write0GenericObject: function (obj) {
         var typed, amfType, key;
         if (!Ext.isObject(obj)) {
             Ext.Error.raise("Serializing a non-object object: " + obj);
@@ -815,7 +815,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {number} b Byte to write to the array
      * @private
      */
-    writeByte: function(b) {
+    writeByte: function (b) {
         if (b < 0 || b > 255) {
             Ex.Error.raise('ERROR: Value being written outside byte range: ' + b);
         }
@@ -826,7 +826,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {number} b Byte array to append to the array
      * @private
      */
-    writeBytes: function(b) {
+    writeBytes: function (b) {
         var i;
         if (!Ext.isArray(b)) {
             Ext.Error.raise("Decoder: writeBytes parameter is not an array: " + b);
@@ -844,7 +844,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @return {String} A string representing the document
      * @private
      */
-    convertXmlToString: function(xml) {
+    convertXmlToString: function (xml) {
         var str;
         if (window.XMLSerializer) {
             // this is not IE, so:
@@ -860,7 +860,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {Object} item to identify
      * @return {Boolean} true if it's an XML document, false otherwise
      */
-    isXmlDocument: function(item) {
+    isXmlDocument: function (item) {
         // We can't test if Document is defined since IE just throws an exception. Instead rely on the DOMParser object
         if (window.DOMParser) {
             if (Ext.isDefined(item.doctype)) {
@@ -904,7 +904,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @return {Array} byte array containing the encoded number
      * @private
      */
-    encodeDouble: function(v) {
+    encodeDouble: function (v) {
         var ebits = 11,
             fbits = 52;
         // double
@@ -995,7 +995,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * Writes a short UTF8 string preceded with a 16-bit length.
      * @param {String} str the string to write
      */
-    write0ShortUtf8String: function(str) {
+    write0ShortUtf8String: function (str) {
         var utf8Data = this.encodeUtf8String(str),
             lenData;
         lenData = this.encodeXInt(utf8Data.length, 2);
@@ -1011,7 +1011,7 @@ Ext.define('Ext.data.amf.Encoder', {
      *                should be an object with three fields:
      *                targetUri, responseUri, body
      */
-    writeAmfPacket: function(headers, messages) {
+    writeAmfPacket: function (headers, messages) {
         var i;
         if (this.config.format != 0) {
             Ext.Error.raise("Trying to write a packet on an AMF3 Encoder. Only AMF0 is supported!");
@@ -1048,7 +1048,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {Object} value the value to serialize. Must be an object that can be serialized by AMF
      * @private
      */
-    writeAmfHeader: function(headerName, mustUnderstand, value) {
+    writeAmfHeader: function (headerName, mustUnderstand, value) {
         if (this.config.format != 0) {
             Ext.Error.raise("Trying to write a header on an AMF3 Encoder. Only AMF0 is supported!");
         }
@@ -1075,7 +1075,7 @@ Ext.define('Ext.data.amf.Encoder', {
      * @param {Array} body the parameters to pass to the called method, wrapped in an array
      * @private
      */
-    writeAmfMessage: function(targetUri, responseUri, body) {
+    writeAmfMessage: function (targetUri, responseUri, body) {
         if (this.config.format != 0) {
             Ext.Error.raise("Trying to write a message on an AMF3 Encoder. Only AMF0 is supported!");
         }
@@ -1122,7 +1122,7 @@ Ext.define('Ext.data.amf.Encoder', {
  * For more information on working with AMF data please refer to the
  * [AMF Guide](#/guide/amf).
  */
-Ext.define('Ext.data.amf.Packet', function() {
+Ext.define('Ext.data.amf.Packet', function () {
     var twoPowN52 = Math.pow(2, -52),
         twoPow8 = Math.pow(2, 8),
         pos = 0,
@@ -1211,7 +1211,7 @@ Ext.define('Ext.data.amf.Packet', function() {
          * @param {Array} byteArray A byte array containing the encoded AMF data.
          * @return {Ext.data.amf.Packet} this AMF Packet
          */
-        decode: function(byteArray) {
+        decode: function (byteArray) {
             var me = this,
                 headers = me.headers = [],
                 messages = me.messages = [],
@@ -1240,7 +1240,7 @@ Ext.define('Ext.data.amf.Packet', function() {
             // as an unsigned 16 bit integer.
             me.version = me.readUInt(2);
             // the next 2 bytes contain the header count
-            for (headerCount = me.readUInt(2); headerCount--; ) {
+            for (headerCount = me.readUInt(2); headerCount--;) {
                 headers.push({
                     name: me.readAmf0String(),
                     mustUnderstand: me.readBoolean(),
@@ -1253,7 +1253,7 @@ Ext.define('Ext.data.amf.Packet', function() {
                 traits = me.traits = [];
             }
             // The 2 bytes immediately after the header contain the message count.
-            for (messageCount = me.readUInt(2); messageCount--; ) {
+            for (messageCount = me.readUInt(2); messageCount--;) {
                 messages.push({
                     targetURI: me.readAmf0String(),
                     responseURI: me.readAmf0String(),
@@ -1277,7 +1277,7 @@ Ext.define('Ext.data.amf.Packet', function() {
          * @param {Array} byteArray A byte array containing the encoded AMF data.
          * @return {Object} the decoded object
          */
-        decodeValue: function(byteArray) {
+        decodeValue: function (byteArray) {
             var me = this;
             bytes = me.bytes = byteArray;
             // reset the pointer
@@ -1311,7 +1311,7 @@ Ext.define('Ext.data.amf.Packet', function() {
          * @private
          * @param {String} xml
          */
-        parseXml: function(xml) {
+        parseXml: function (xml) {
             var doc;
             if (window.DOMParser) {
                 doc = (new DOMParser()).parseFromString(xml, "text/xml");
@@ -1325,7 +1325,7 @@ Ext.define('Ext.data.amf.Packet', function() {
          * Reads an AMF0 date from the byte array
          * @private
          */
-        readAmf0Date: function() {
+        readAmf0Date: function () {
             var date = new Date(this.readDouble());
             // An AMF0 date type ends with a 16 bit integer time-zone, but
             // according to the spec time-zone is "reserved, not supported,
@@ -1338,7 +1338,7 @@ Ext.define('Ext.data.amf.Packet', function() {
          * Reads an AMF0 Object from the byte array
          * @private
          */
-        readAmf0Object: function(obj) {
+        readAmf0Object: function (obj) {
             var me = this,
                 key;
             obj = obj || {};
@@ -1359,14 +1359,14 @@ Ext.define('Ext.data.amf.Packet', function() {
          * Reads an AMF0 string from the byte array
          * @private
          */
-        readAmf0String: function() {
+        readAmf0String: function () {
             // AMF0 strings begin with a 16 bit byte-length header.
             return this.readUtf8(this.readUInt(2));
         },
-        readAmf0Xml: function() {
+        readAmf0Xml: function () {
             return this.parseXml(this.readLongString());
         },
-        readAmf3Array: function() {
+        readAmf3Array: function () {
             var me = this,
                 header = me.readUInt29(),
                 count, key, array, i;
@@ -1419,7 +1419,7 @@ Ext.define('Ext.data.amf.Packet', function() {
          * Reads an AMF3 date from the byte array
          * @private
          */
-        readAmf3Date: function() {
+        readAmf3Date: function () {
             var me = this,
                 header = me.readUInt29(),
                 date;
@@ -1438,7 +1438,7 @@ Ext.define('Ext.data.amf.Packet', function() {
          * Reads an AMF3 object from the byte array
          * @private
          */
-        readAmf3Object: function() {
+        readAmf3Object: function () {
             var me = this,
                 header = me.readUInt29(),
                 members = [],
@@ -1488,7 +1488,8 @@ Ext.define('Ext.data.amf.Packet', function() {
                     dynamic = objectTraits.dynamic;
                     members = objectTraits.members;
                     memberCount = members.length;
-                } else if (headerLast3Bits === 7) {}
+                } else if (headerLast3Bits === 7) {
+                }
                 // if the 3 lease significant bits are "111" then
                 // externalizable trait data follows
                 // TODO: implement externalizable traits
@@ -1530,7 +1531,7 @@ Ext.define('Ext.data.amf.Packet', function() {
          * Reads an AMF3 string from the byte array
          * @private
          */
-        readAmf3String: function() {
+        readAmf3String: function () {
             var me = this,
                 header = me.readUInt29(),
                 value;
@@ -1556,7 +1557,7 @@ Ext.define('Ext.data.amf.Packet', function() {
          * Reads an AMF3 XMLDocument type or XML type from the byte array
          * @private
          */
-        readAmf3Xml: function() {
+        readAmf3Xml: function () {
             var me = this,
                 header = me.readUInt29(),
                 doc;
@@ -1576,14 +1577,14 @@ Ext.define('Ext.data.amf.Packet', function() {
          * Reads an AMF0 boolean from the byte array
          * @private
          */
-        readBoolean: function() {
+        readBoolean: function () {
             return !!bytes[pos++];
         },
         /**
          * Reads an AMF3 ByteArray type from the byte array
          * @private
          */
-        readByteArray: function() {
+        readByteArray: function () {
             var header = this.readUInt29(),
                 byteArray, end;
             if (header & 1) {
@@ -1609,29 +1610,29 @@ Ext.define('Ext.data.amf.Packet', function() {
          * Reads a IEEE 754 double-precision binary floating-point number
          * @private
          */
-        readDouble: function() {
+        readDouble: function () {
             var byte1 = bytes[pos++],
                 byte2 = bytes[pos++],
-                // the first bit of byte1 is the sign (0 = positive, 1 = negative.
-                // We read this bit by shifting the 7 least significant bits of
-                // byte1 off to the right.
+            // the first bit of byte1 is the sign (0 = positive, 1 = negative.
+            // We read this bit by shifting the 7 least significant bits of
+            // byte1 off to the right.
                 sign = (byte1 >> 7) ? -1 : 1,
-                // the exponent takes up the next 11 bits.
+            // the exponent takes up the next 11 bits.
                 exponent = // extract the 7 least significant bits from byte1 and then
-                // shift them left by 4 bits to make room for the 4 remaining
-                // bits from byte 2
-                (((byte1 & 127) << 4) | // add the 4 most significant bits from byte 2 to complete
-                // the exponent
-                (byte2 >> 4)),
-                // the remaining 52 bits make up the significand. read the 4
-                // least significant bytes of byte 2 to begin the significand
+                    // shift them left by 4 bits to make room for the 4 remaining
+                    // bits from byte 2
+                    (((byte1 & 127) << 4) | // add the 4 most significant bits from byte 2 to complete
+                    // the exponent
+                    (byte2 >> 4)),
+            // the remaining 52 bits make up the significand. read the 4
+            // least significant bytes of byte 2 to begin the significand
                 significand = (byte2 & 15),
-                // The most significant bit of the significand is always 1 for
-                // a normalized number, therefore it is not stored. This bit is
-                // referred to as the "hidden bit". The true bit width of the
-                // significand is 53 if you include the hidden bit. An exponent
-                // of 0 indicates that this is a subnormal number, and subnormal
-                // numbers always have a 0 hidden bit.
+            // The most significant bit of the significand is always 1 for
+            // a normalized number, therefore it is not stored. This bit is
+            // referred to as the "hidden bit". The true bit width of the
+            // significand is 53 if you include the hidden bit. An exponent
+            // of 0 indicates that this is a subnormal number, and subnormal
+            // numbers always have a 0 hidden bit.
                 hiddenBit = exponent ? 1 : 0,
                 i = 6;
             // The operands of all bitwise operators in javascript are converted
@@ -1661,17 +1662,17 @@ Ext.define('Ext.data.amf.Packet', function() {
                 return significand ? NaN : (Infinity * sign);
             }
             return sign * // The exponent is encoded using an offset binary
-            // representation with the zero offset being 0x3FF (1023),
-            // so we have to subtract 0x3FF to get the true exponent
-            Math.pow(2, exponent - 1023) * // convert the significand to its decimal value by multiplying
-            // it by 2^52 and then add the hidden bit
-            (hiddenBit + twoPowN52 * significand);
+                // representation with the zero offset being 0x3FF (1023),
+                // so we have to subtract 0x3FF to get the true exponent
+                Math.pow(2, exponent - 1023) * // convert the significand to its decimal value by multiplying
+                // it by 2^52 and then add the hidden bit
+                (hiddenBit + twoPowN52 * significand);
         },
         /**
          * Reads an AMF0 ECMA Array from the byte array
          * @private
          */
-        readEcmaArray: function() {
+        readEcmaArray: function () {
             // An ecma array type is encoded exactly like an anonymous object
             // with the exception that it has a 32 bit "count" at the beginning.
             // We handle emca arrays by just throwing away the count and then
@@ -1683,14 +1684,14 @@ Ext.define('Ext.data.amf.Packet', function() {
          * Returns false.  Used for reading the false type
          * @private
          */
-        readFalse: function() {
+        readFalse: function () {
             return false;
         },
         /**
          * Reads a long string (longer than 65535 bytes) from the byte array
          * @private
          */
-        readLongString: function() {
+        readLongString: function () {
             // long strings begin with a 32 bit byte-length header.
             return this.readUtf8(this.readUInt(4));
         },
@@ -1698,7 +1699,7 @@ Ext.define('Ext.data.amf.Packet', function() {
          * Returns null.  Used for reading the null type
          * @private
          */
-        readNull: function() {
+        readNull: function () {
             return null;
         },
         /**
@@ -1708,7 +1709,7 @@ Ext.define('Ext.data.amf.Packet', function() {
          * ecma-array) is included in the data more than once.
          * @private
          */
-        readReference: function() {
+        readReference: function () {
             // a reference type contains a single 16 bit integer that represents
             // the index of an already deserialized object in the objects array
             return objects[this.readUInt(2)];
@@ -1717,7 +1718,7 @@ Ext.define('Ext.data.amf.Packet', function() {
          * Reads an AMF0 strict array (an array with ordinal indices)
          * @private
          */
-        readStrictArray: function() {
+        readStrictArray: function () {
             var me = this,
                 len = me.readUInt(4),
                 arr = [];
@@ -1736,7 +1737,7 @@ Ext.define('Ext.data.amf.Packet', function() {
          * Reads an AMF0 typed object from the byte array
          * @private
          */
-        readTypedObject: function() {
+        readTypedObject: function () {
             var me = this,
                 className = me.readAmf0String(),
                 klass, instance, modified;
@@ -1759,7 +1760,7 @@ Ext.define('Ext.data.amf.Packet', function() {
          * a 16 bit integer, 4 to read a 32 bit integer, etc.
          * @return {Number}
          */
-        readUInt: function(byteCount) {
+        readUInt: function (byteCount) {
             var i = 1,
                 result;
             // read the first byte
@@ -1790,7 +1791,7 @@ Ext.define('Ext.data.amf.Packet', function() {
          * @private
          * @return {Number}
          */
-        readUInt29: function() {
+        readUInt29: function () {
             var value = bytes[pos++],
                 nextByte;
             if (value & 128) {
@@ -1832,9 +1833,9 @@ Ext.define('Ext.data.amf.Packet', function() {
          * @param {Number} byteLength The number of bytes to read
          * @return {String}
          */
-        readUtf8: function(byteLength) {
+        readUtf8: function (byteLength) {
             var end = pos + byteLength,
-                // the string's end position
+            // the string's end position
                 chars = [],
                 charCount = 0,
                 maxCharCount = 65535,
@@ -1950,7 +1951,7 @@ Ext.define('Ext.data.amf.Packet', function() {
          * the pointer.
          * @private
          */
-        readValue: function() {
+        readValue: function () {
             var me = this,
                 marker = bytes[pos++];
             // With the introduction of AMF3, a special type marker was added to
@@ -1969,7 +1970,7 @@ Ext.define('Ext.data.amf.Packet', function() {
          * @private
          */
         converters: {
-            'flex.messaging.io.ArrayCollection': function(obj) {
+            'flex.messaging.io.ArrayCollection': function (obj) {
                 return obj.source || [];
             }
         }
@@ -1979,13 +1980,13 @@ Ext.define('Ext.data.amf.Packet', function() {
 
 // @tag enterprise
 /**
- * The AMF Reader is used by an {@link Ext.data.amf.Proxy AMF Proxy} to read 
+ * The AMF Reader is used by an {@link Ext.data.amf.Proxy AMF Proxy} to read
  * records from a server response that contains binary data in either AMF0 or
  * AMF3 format. AMF Reader constructs an {@link Ext.data.amf.Packet AMF Packet}
  * and uses it to decode the binary data into javascript objects, then simply
  * allows its superclass ({@link Ext.data.reader.Json}) to handle converting the
  * raw javascript objects into {@link Ext.data.Model} instances.
- * 
+ *
  * For a more detailed tutorial see the [AMF Guide](#/guide/amf).
  */
 Ext.define('Ext.data.amf.Reader', {
@@ -2006,7 +2007,7 @@ Ext.define('Ext.data.amf.Reader', {
      * @param {Object} response The XMLHttpRequest response object
      * @return {Ext.data.ResultSet}
      */
-    read: function(response) {
+    read: function (response) {
         var me = this,
             bytes = response.responseBytes,
             packet, messages, resultSet;
@@ -2044,11 +2045,11 @@ Ext.define('Ext.data.amf.Reader', {
  *             url: 'some/url'
  *         }
  *     });
- *     
+ *
  * For a detailed tutorial on using AMF data see the [AMF Guide](#/guide/amf).
  *
- * **Note: **  _This functionality is only available with the purchase of 
- * Sencha Complete.  For more information about using this class, please visit 
+ * **Note: **  _This functionality is only available with the purchase of
+ * Sencha Complete.  For more information about using this class, please visit
  * our [Sencha Complete](https://www.sencha.com/products/complete/) product page._
  *
  */
@@ -2121,13 +2122,13 @@ Ext.define('Ext.data.amf.RemotingMessage', {
      * Creates new message.
      * @param {Object} config Configuration options
      */
-    constructor: function(config) {
+    constructor: function (config) {
         this.initConfig(config);
     },
     /**
      * Returns an AMFX encoded version of the message.
      */
-    encodeMessage: function() {
+    encodeMessage: function () {
         var encoder = Ext.create('Ext.data.amf.XmlEncoder'),
             cleanObj;
         cleanObj = Ext.copyTo({}, this, "$flexType,body,clientId,destination,headers,messageId,operation,source,timestamp,timeToLive", true);
@@ -2161,7 +2162,7 @@ Ext.define('Ext.data.amf.XmlDecoder', {
          * @private
          * @param {String} xml
          */
-        readXml: function(xml) {
+        readXml: function (xml) {
             var doc;
             if (window.DOMParser) {
                 doc = (new DOMParser()).parseFromString(xml, "text/xml");
@@ -2176,7 +2177,7 @@ Ext.define('Ext.data.amf.XmlDecoder', {
          * @param {HTMLElement/XMLElement} node the node
          * @return {Array} a byte array
          */
-        readByteArray: function(node) {
+        readByteArray: function (node) {
             var bytes = [],
                 c, i, str;
             str = node.firstChild.nodeValue;
@@ -2191,7 +2192,7 @@ Ext.define('Ext.data.amf.XmlDecoder', {
          * @param {Array} bytes the byte array containing one AMF3-encoded value
          * @return {Object} the decoded value
          */
-        readAMF3Value: function(bytes) {
+        readAMF3Value: function (bytes) {
             var packet;
             packet = Ext.create('Ext.data.amf.Packet');
             return packet.decodeValue(bytes);
@@ -2201,7 +2202,7 @@ Ext.define('Ext.data.amf.XmlDecoder', {
          * @param {String} messageId the message ID
          * @return {Number} the transaction ID
          */
-        decodeTidFromFlexUID: function(messageId) {
+        decodeTidFromFlexUID: function (messageId) {
             var str;
             str = messageId.substr(0, 8);
             return parseInt(str, 16);
@@ -2211,14 +2212,14 @@ Ext.define('Ext.data.amf.XmlDecoder', {
      * Creates new encoder.
      * @param {Object} config Configuration options
      */
-    constructor: function(config) {
+    constructor: function (config) {
         this.initConfig(config);
         this.clear();
     },
     /**
      * Clears the accumulated data and reference tables
      */
-    clear: function() {
+    clear: function () {
         // reset reference counters
         this.objectReferences = [];
         this.traitsReferences = [];
@@ -2229,7 +2230,7 @@ Ext.define('Ext.data.amf.XmlDecoder', {
      * @param {String} xml the xml of the message
      * @return {Object} the response object containing the message
      */
-    readAmfxMessage: function(xml) {
+    readAmfxMessage: function (xml) {
         var doc, amfx, body, i,
             resp = {};
         this.clear();
@@ -2249,7 +2250,7 @@ Ext.define('Ext.data.amf.XmlDecoder', {
         for (i = 0; i < body.childNodes.length; i++) {
             if (body.childNodes.item(i).nodeType != 1) {
                 // only process element nodes, ignore white space and text nodes
-                
+
                 continue;
             }
             resp.message = this.readValue(body.childNodes.item(i));
@@ -2263,7 +2264,7 @@ Ext.define('Ext.data.amf.XmlDecoder', {
      * @param {HTMLElement} node the node to parse
      * @return {Object} a JavaScript object or value
      */
-    readValue: function(node) {
+    readValue: function (node) {
         var val;
         if (typeof node.normalize === 'function') {
             node.normalize();
@@ -2309,7 +2310,7 @@ Ext.define('Ext.data.amf.XmlDecoder', {
      * @param {HTMLElement/XMLElement} node the node containing a string object
      * @return {String} the parsed string
      */
-    readString: function(node) {
+    readString: function (node) {
         var val;
         if (node.getAttributeNode('id')) {
             return this.stringReferences[parseInt(node.getAttribute('id'))];
@@ -2323,7 +2324,7 @@ Ext.define('Ext.data.amf.XmlDecoder', {
      * @param {HTMLElement/XMLElement} node the traits node from the XML doc
      * @return {Array} an array of ordered trait names or null if it's an externalizable object
      */
-    readTraits: function(node) {
+    readTraits: function (node) {
         var traits = [],
             i, rawtraits;
         if (node === null) {
@@ -2349,7 +2350,7 @@ Ext.define('Ext.data.amf.XmlDecoder', {
         for (i = 0; i < rawtraits.length; i++) {
             if (rawtraits.item(i).nodeType != 1) {
                 // only process element nodes, ignore white space and text nodes
-                
+
                 continue;
             }
             // this will be a string, but let the readValue function handle it nonetheless
@@ -2364,7 +2365,7 @@ Ext.define('Ext.data.amf.XmlDecoder', {
      * @param {HTMLElement/XMLElement} node the ref node
      * @return {Object} the previously instantiated object referred to by the ref node
      */
-    readObjectRef: function(node) {
+    readObjectRef: function (node) {
         var id;
         id = parseInt(node.getAttribute('id'));
         return this.objectReferences[id];
@@ -2374,7 +2375,7 @@ Ext.define('Ext.data.amf.XmlDecoder', {
      * @param {HTMLElement/XMLElement} the `<object>` node to parse
      * @return {Object} the deserialized object
      */
-    readObject: function(node) {
+    readObject: function (node) {
         var obj,
             traits = [],
             traitsNode, i, j, n, key, val,
@@ -2408,12 +2409,12 @@ Ext.define('Ext.data.amf.XmlDecoder', {
             n = node.childNodes.item(i);
             if (n.nodeType != 1) {
                 // Ignore text nodes and non-element nodes
-                
+
                 continue;
             }
             if (n.tagName == "traits") {
                 // ignore the traits node. We've already covered it.
-                
+
                 continue;
             }
             key = traits[j];
@@ -2431,7 +2432,7 @@ Ext.define('Ext.data.amf.XmlDecoder', {
      * @param {HTMLElement/XMLElement} node the array node
      * @return {Array} the deserialized array
      */
-    readArray: function(node) {
+    readArray: function (node) {
         var arr = [],
             n, i, j, l, name, val, len, childnodes, cn;
         // register array in object references table before we parse, in case of circular references
@@ -2443,7 +2444,7 @@ Ext.define('Ext.data.amf.XmlDecoder', {
             n = node.childNodes.item(l);
             if (n.nodeType != 1) {
                 // Ignore text nodes and non-element nodes
-                
+
                 continue;
             }
             if (n.tagName == "item") {
@@ -2454,7 +2455,7 @@ Ext.define('Ext.data.amf.XmlDecoder', {
                     cn = childnodes.item(j);
                     if (cn.nodeType != 1) {
                         // Ignore text nodes and non-element nodes
-                        
+
                         continue;
                     }
                     val = this.readValue(cn);
@@ -2481,7 +2482,7 @@ Ext.define('Ext.data.amf.XmlDecoder', {
      * @param {HTMLElement/XMLElement} node the `<dictionary>` node
      * @return {Object} a javascript object with the dictionary value-pair elements
      */
-    readDictionary: function(node) {
+    readDictionary: function (node) {
         // For now, handle regular objects
         var dict = {},
             key, val, i, j, n, len;
@@ -2496,12 +2497,12 @@ Ext.define('Ext.data.amf.XmlDecoder', {
             n = node.childNodes.item(i);
             if (n.nodeType != 1) {
                 // Ignore text nodes and non-element nodes
-                
+
                 continue;
             }
             if (!key) {
                 key = this.readValue(n);
-                
+
                 continue;
             }
             // next element is the value
@@ -2520,7 +2521,7 @@ Ext.define('Ext.data.amf.XmlDecoder', {
      * Converts externalizable flex objects with a source array to a regular array.
      * @private
      */
-    convertObjectWithSourceField: function(node) {
+    convertObjectWithSourceField: function (node) {
         var i, n, val;
         for (i = 0; i < node.childNodes.length; i++) {
             n = node.childNodes.item(i);
@@ -2538,13 +2539,13 @@ Ext.define('Ext.data.amf.XmlDecoder', {
      * @private
      */
     converters: {
-        'flex.messaging.io.ArrayCollection': function(decoder, node) {
+        'flex.messaging.io.ArrayCollection': function (decoder, node) {
             return decoder.convertObjectWithSourceField(node);
         },
-        'mx.collections.ArrayList': function(decoder, node) {
+        'mx.collections.ArrayList': function (decoder, node) {
             return decoder.convertObjectWithSourceField(node);
         },
-        'mx.collections.ArrayCollection': function(decoder, node) {
+        'mx.collections.ArrayCollection': function (decoder, node) {
             return decoder.convertObjectWithSourceField(node);
         }
     }
@@ -2600,7 +2601,7 @@ Ext.define('Ext.data.amf.XmlEncoder', {
          * @param {Number} id used in the first 8 chars of the id. If not provided, a random number will be used.
          * @return {String} a string-encoded opaque UID
          */
-        generateFlexUID: function(id) {
+        generateFlexUID: function (id) {
             var uid = "",
                 i, j, t;
             if (id === undefined) {
@@ -2645,45 +2646,45 @@ Ext.define('Ext.data.amf.XmlEncoder', {
      * Creates new encoder.
      * @param {Object} config Configuration options
      */
-    constructor: function(config) {
+    constructor: function (config) {
         this.initConfig(config);
         this.clear();
     },
     /**
      * Clears the accumulated data, starting with an empty string
      */
-    clear: function() {
+    clear: function () {
         this.body = "";
     },
     /**
      * Returns the encoding for undefined (which is the same as the encoding for null)
      */
-    encodeUndefined: function() {
+    encodeUndefined: function () {
         return this.encodeNull();
     },
     /**
      * Writes the undefined value to the string
      */
-    writeUndefined: function() {
+    writeUndefined: function () {
         this.write(this.encodeUndefined());
     },
     /**
      * Returns the encoding for null
      */
-    encodeNull: function() {
+    encodeNull: function () {
         return "<null />";
     },
     /**
      * Writes the null value to the string
      */
-    writeNull: function() {
+    writeNull: function () {
         this.write(this.encodeNull());
     },
     /**
      * Returns an encoded boolean
      * @param {Boolean} val a boolean value
      */
-    encodeBoolean: function(val) {
+    encodeBoolean: function (val) {
         var str;
         if (val) {
             str = "<true />";
@@ -2696,14 +2697,14 @@ Ext.define('Ext.data.amf.XmlEncoder', {
      * Writes a boolean value to the string
      * @param {Boolean} val a boolean value
      */
-    writeBoolean: function(val) {
+    writeBoolean: function (val) {
         this.write(this.encodeBoolean(val));
     },
     /**
      * Returns an encoded string
      * @param {String} str the string to encode
      */
-    encodeString: function(str) {
+    encodeString: function (str) {
         var ret;
         if (str === "") {
             ret = "<string />";
@@ -2716,42 +2717,42 @@ Ext.define('Ext.data.amf.XmlEncoder', {
      * Writes a string tag with the string content.
      * @param {String} str the string to encode
      */
-    writeString: function(str) {
+    writeString: function (str) {
         this.write(this.encodeString(str));
     },
     /**
      * Returns an encoded int
      * @param {Number} num the integer to encode
      */
-    encodeInt: function(num) {
+    encodeInt: function (num) {
         return "<int>" + num.toString() + "</int>";
     },
     /**
      * Writes a int tag with the content.
      * @param {Number} num the integer to encode
      */
-    writeInt: function(num) {
+    writeInt: function (num) {
         this.write(this.encodeInt(num));
     },
     /**
      * Returns an encoded double
      * @param {Number} num the double to encode
      */
-    encodeDouble: function(num) {
+    encodeDouble: function (num) {
         return "<double>" + num.toString() + "</double>";
     },
     /**
      * Writes a double tag with the content.
      * @param {Number} num the double to encode
      */
-    writeDouble: function(num) {
+    writeDouble: function (num) {
         this.write(this.encodeDouble(num));
     },
     /**
      * Returns an encoded number. Decides wheter to use int or double encoding.
      * @param {Number} num the number to encode
      */
-    encodeNumber: function(num) {
+    encodeNumber: function (num) {
         var maxInt = 536870911,
             minSignedInt = -268435455;
         if (typeof (num) !== "number" && !(num instanceof Number)) {
@@ -2773,21 +2774,21 @@ Ext.define('Ext.data.amf.XmlEncoder', {
      * Writes a number, deciding if to use int or double as the tag
      * @param {Number} num the number to encode
      */
-    writeNumber: function(num) {
+    writeNumber: function (num) {
         this.write(this.encodeNumber(num));
     },
     /**
      * Encode a date
      * @param {Date} date the date to encode
      */
-    encodeDate: function(date) {
+    encodeDate: function (date) {
         return "<date>" + (new Number(date)).toString() + "</date>";
     },
     /**
      * Write a date to the string
      * @param {Date} date the date to encode
      */
-    writeDate: function(date) {
+    writeDate: function (date) {
         this.write(this.encodeDate(date));
     },
     /**
@@ -2797,7 +2798,7 @@ Ext.define('Ext.data.amf.XmlEncoder', {
      * @param {Object} value the value of the element
      * @return {String} the encoded key-value pair
      */
-    encodeEcmaElement: function(key, value) {
+    encodeEcmaElement: function (key, value) {
         var str = '<item name="' + key.toString() + '">' + this.encodeObject(value) + '</item>';
         return str;
     },
@@ -2805,12 +2806,12 @@ Ext.define('Ext.data.amf.XmlEncoder', {
      * Encodes an array, marking it as an ECMA array if it has associative (non-ordinal) indices
      * @param {Array} array the array to encode
      */
-    encodeArray: function(array) {
+    encodeArray: function (array) {
         var ordinals = [],
             firstNonOrdinal,
             ecmaElements = [],
             length = array.length,
-            // length is of ordinal section only
+        // length is of ordinal section only
             i, str;
         for (i in array) {
             if (Ext.isNumeric(i) && (i % 1 == 0)) {
@@ -2861,14 +2862,14 @@ Ext.define('Ext.data.amf.XmlEncoder', {
      * Writes an array to the string, marking it as an ECMA array if it has associative (non-ordinal) indices
      * @param {Array} array the array to encode
      */
-    writeArray: function(array) {
+    writeArray: function (array) {
         this.write(this.encodeArray(array));
     },
     /**
      * Encodes an xml document into a CDATA section
      * @param {XMLElement/HTMLElement} xml an XML document or element (Document type in some browsers)
      */
-    encodeXml: function(xml) {
+    encodeXml: function (xml) {
         var str = this.convertXmlToString(xml);
         return "<xml><![CDATA[" + str + "]]></xml>";
     },
@@ -2876,7 +2877,7 @@ Ext.define('Ext.data.amf.XmlEncoder', {
      * Write an XML document to the string
      * @param {XMLElement/HTMLElement} xml an XML document or element (Document type in some browsers)
      */
-    writeXml: function(xml) {
+    writeXml: function (xml) {
         this.write(this.encodeXml(xml));
     },
     /**
@@ -2884,7 +2885,7 @@ Ext.define('Ext.data.amf.XmlEncoder', {
      * @param {Object} obj the object to encode
      * @return {String} the encoded text
      */
-    encodeGenericObject: function(obj) {
+    encodeGenericObject: function (obj) {
         var traits = [],
             values = [],
             flexType = null,
@@ -2917,14 +2918,14 @@ Ext.define('Ext.data.amf.XmlEncoder', {
      * Writes a generic object to the string. If a <tt>$flexType</tt> member is defined, list that as the object type.
      * @param {Object} obj the object to encode
      */
-    writeGenericObject: function(obj) {
+    writeGenericObject: function (obj) {
         this.write(this.encodeGenericObject(obj));
     },
     /**
      * Encodes a byte arrat in AMFX format
      * @param {Array} array the byte array to encode
      */
-    encodeByteArray: function(array) {
+    encodeByteArray: function (array) {
         var str, i, h;
         if (array.length > 0) {
             str = "<bytearray>";
@@ -2951,7 +2952,7 @@ Ext.define('Ext.data.amf.XmlEncoder', {
      * Writes an AMFX byte array to the string. This is for convenience only and is not called automatically by writeObject.
      * @param {Array} array the byte array to encode
      */
-    writeByteArray: function(array) {
+    writeByteArray: function (array) {
         this.write(this.encodeByteArray(array));
     },
     /**
@@ -2969,7 +2970,7 @@ Ext.define('Ext.data.amf.XmlEncoder', {
      * @param {Object} item A primitive or object to write to the stream
      * @return {String} the encoded object in AMFX format
      */
-    encodeObject: function(item) {
+    encodeObject: function (item) {
         var t = typeof (item);
         //Ext.log("Writing " + item + " of type " + t);
         if (t === "undefined") {
@@ -3016,14 +3017,14 @@ Ext.define('Ext.data.amf.XmlEncoder', {
      * - Generic object
      * @param {Object} item A primitive or object to write to the stream
      */
-    writeObject: function(item) {
+    writeObject: function (item) {
         this.write(this.encodeObject(item));
     },
     /**
      * Encodes an AMFX remoting message with the AMFX envelope.
      * @param {Ext.data.amf.RemotingMessage} message the message to pass on to serialize.
      */
-    encodeAmfxRemotingPacket: function(message) {
+    encodeAmfxRemotingPacket: function (message) {
         var msg, str;
         str = '<amfx ver="3" xmlns="http://www.macromedia.com/2005/amfx"><body>';
         str += message.encodeMessage();
@@ -3034,7 +3035,7 @@ Ext.define('Ext.data.amf.XmlEncoder', {
      * Writes an AMFX remoting message with the AMFX envelope to the string.
      * @param {Ext.data.amf.RemotingMessage} message the message to pass on to serialize.
      */
-    writeAmfxRemotingPacket: function(params) {
+    writeAmfxRemotingPacket: function (params) {
         this.write(this.encodeAmfxRemotingPacket(params));
     },
     /**
@@ -3043,7 +3044,7 @@ Ext.define('Ext.data.amf.XmlEncoder', {
      * @return {String} A string representing the document
      * @private
      */
-    convertXmlToString: function(xml) {
+    convertXmlToString: function (xml) {
         var str;
         if (window.XMLSerializer) {
             // this is not IE, so:
@@ -3059,7 +3060,7 @@ Ext.define('Ext.data.amf.XmlEncoder', {
      * @param {Object} item to identify
      * @return {Boolean} true if it's an XML document, false otherwise
      */
-    isXmlDocument: function(item) {
+    isXmlDocument: function (item) {
         // We can't test if Document is defined since IE just throws an exception. Instead rely on the DOMParser object
         if (window.DOMParser) {
             if (Ext.isDefined(item.doctype)) {
@@ -3078,7 +3079,7 @@ Ext.define('Ext.data.amf.XmlEncoder', {
      * @param {String} str the string to append
      * @private
      */
-    write: function(str) {
+    write: function (str) {
         this.body += str;
     }
 });
@@ -3086,30 +3087,30 @@ Ext.define('Ext.data.amf.XmlEncoder', {
 // @tag enterprise
 /**
  * @class Ext.direct.AmfRemotingProvider
- * 
+ *
  * <p>The {@link Ext.direct.AmfRemotingProvider AmfRemotingProvider}
  * allows making RPC calls to a Java object on a BlazeDS or ColdFusion using either the AMFX or the AMF protocols.</p>
- * 
+ *
  * <p>The default protocol is AMFX which works on all browsers. If you choose AMF, a flash plugin might be loaded in certain browsers that do not support posting binary data to the server, e.g. Internet Explorer version 9 or less. To choose AMF, set the {@link Ext.direct.AmfRemotingProvider#binary binary} property to true.</p>
  * <p>For AMFX, the server must be configured to expose the desired services via an HTTPEndpoint. For example, the following configuration snippet adds an HTTPEndpoint (AMFX endpoint) to the BlazeDS services-config.xml file:</p>
  * <pre><code>
-&lt;channel-definition id="my-http" class="mx.messaging.channels.HTTPChannel"&gt;
+ &lt;channel-definition id="my-http" class="mx.messaging.channels.HTTPChannel"&gt;
  &lt;endpoint url="http://{server.name}:{server.port}/{context.root}/messagebroker/http" class="flex.messaging.endpoints.HTTPEndpoint"/&gt;
-&lt;/channel-definition&gt;
+ &lt;/channel-definition&gt;
  </code></pre>
  *
  * <p>Once the HTTPEndpoint is configured, make sure the service is exposed via the channel by adding the channel (e.g. my-http) to your remoting-services.xml file.
  * For example this allows services to be accessed remotely by both AMF and AMFX:</p>
  * <pre><code>
-&lt;default-channels&gt;
+ &lt;default-channels&gt;
  &lt;channel ref="my-amf"/&gt;
  &lt;channel ref="my-http"/&gt;
-&lt;/default-channels&gt;
+ &lt;/default-channels&gt;
  * </code></pre>
- * 
+ *
  * <p>In order to make a call, you first need to declare the API to Ext direct. The following example defines local methods to the services provided by the sample Products application provided by Adobe as part of the BlazeDS 4.x binary turnkey distribution's testdrive (Sample 5: Updating Data):</p>
  * <pre><code>
-    Ext.direct.Manager.addProvider({
+ Ext.direct.Manager.addProvider({
         "url":"/samples/messagebroker/http", // URL for the HTTPEndpoint
         "type":"amfremoting",
         "endpoint": "my-http", // the name of the HTTPEndpoint channel as defined in the server's services-config.xml
@@ -3130,18 +3131,18 @@ Ext.define('Ext.data.amf.XmlEncoder', {
  * </code></pre>
  * <p>You can now call the service as follows:</p>
  <pre><code>
-product.getProducts((function(provider, response) {
+ product.getProducts((function(provider, response) {
     // do something with the response
     console.log("Got " + response.data.length + " objects");
 });
-</code></pre>
- * 
+ </code></pre>
+ *
  * Note that in case server methods require parameters of a specific class (e.g. flex.samples.product.Product), you should make sure the passed parameter has a field called $flexType set to the class name (in this case flex.Samples.product.Product). This is similar to the remote class alias definition in ActionScript.
- * 
- * 
+ *
+ *
  * <p>The following example shows how to define a binary AMF-based call:</p>
  * <pre><code>
-    Ext.direct.Manager.addProvider({
+ Ext.direct.Manager.addProvider({
         "url":"/samples/messagebroker/amf", // URL for the AMFEndpoint
         "type":"amfremoting",
         "endpoint": "my-amf", // the name of the AMFEndpoint channel as defined in the server's services-config.xml
@@ -3186,7 +3187,7 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
      * Object literal defining the server side actions and methods. For example, if
      * the Provider is configured with:
      * <pre><code>
-"actions":{ // each property within the 'actions' object represents a server side Class 
+     "actions":{ // each property within the 'actions' object represents a server side Class 
     "TestAction":[ // array of methods within each server side Class to be   
     {              // stubbed out on client
         "name":"doEcho", 
@@ -3207,12 +3208,12 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
      * In the following example a <b>client side</b> handler is used to call the
      * server side method "multiply" in the server-side "TestAction" Class:</p>
      * <pre><code>
-TestAction.multiply(
-    2, 4, // pass two arguments to server, so specify len=2
-    // callback function after the server is called
-    // result: the result returned by the server
-    //      e: Ext.direct.RemotingEvent object
-    function(result, e) {
+     TestAction.multiply(
+     2, 4, // pass two arguments to server, so specify len=2
+     // callback function after the server is called
+     // result: the result returned by the server
+     //      e: Ext.direct.RemotingEvent object
+     function(result, e) {
         var t = e.getTransaction();
         var action = t.action; // server side Class called
         var method = t.method; // server side method called
@@ -3223,11 +3224,11 @@ TestAction.multiply(
             var msg = e.message; // failure message
         }
     }
-);
+     );
      * </code></pre>
      * In the example above, the server side "multiply" function will be passed two
      * arguments (2 and 4).  The "multiply" method should return the value 8 which will be
-     * available as the <tt>result</tt> in the example above. 
+     * available as the <tt>result</tt> in the example above.
      */
     /**
      * @cfg {String/Object} namespace
@@ -3281,7 +3282,7 @@ TestAction.multiply(
      * @param {Ext.direct.Transaction} transaction
      * @param {Object} meta The meta data
      */
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this;
         me.callParent(arguments);
         me.namespace = (Ext.isString(me.namespace)) ? Ext.ns(me.namespace) : me.namespace || window;
@@ -3292,7 +3293,7 @@ TestAction.multiply(
      * Initialize the API
      * @private
      */
-    initAPI: function() {
+    initAPI: function () {
         var actions = this.actions,
             namespace = this.namespace,
             action, cls, methods, i, len, method;
@@ -3317,15 +3318,15 @@ TestAction.multiply(
      * @param {Object} method The details of the method
      * @return {Function} A JS function that will kick off the call
      */
-    createHandler: function(action, method) {
+    createHandler: function (action, method) {
         var me = this,
             handler;
         if (!method.formHandler) {
-            handler = function() {
+            handler = function () {
                 me.configureRequest(action, method, Array.prototype.slice.call(arguments, 0));
             };
         } else {
-            handler = function(form, callback, scope) {
+            handler = function (form, callback, scope) {
                 me.configureFormRequest(action, method, form, callback, scope);
             };
         }
@@ -3336,11 +3337,11 @@ TestAction.multiply(
         return handler;
     },
     // inherit docs
-    isConnected: function() {
+    isConnected: function () {
         return !!this.connected;
     },
     // inherit docs
-    connect: function() {
+    connect: function () {
         var me = this;
         if (me.url) {
             // Generate a unique ID for this client
@@ -3354,7 +3355,7 @@ TestAction.multiply(
         }
     },
     // inherit docs
-    disconnect: function() {
+    disconnect: function () {
         var me = this;
         if (me.connected) {
             me.connected = false;
@@ -3367,7 +3368,7 @@ TestAction.multiply(
      * @param {Ext.direct.Transaction} transaction The transaction
      * @param {Ext.direct.Event} event The event
      */
-    runCallback: function(transaction, event) {
+    runCallback: function (transaction, event) {
         var success = !!event.status,
             funcName = success ? 'success' : 'failure',
             callback, result;
@@ -3394,7 +3395,7 @@ TestAction.multiply(
      * React to the ajax request being completed
      * @private
      */
-    onData: function(options, success, response) {
+    onData: function (options, success, response) {
         var me = this,
             i = 0,
             len, events, event, transaction, transactions;
@@ -3438,7 +3439,7 @@ TestAction.multiply(
      * @param {Object} options The options sent to the Ajax request
      * @return {Ext.direct.Transaction} The transaction, null if not found
      */
-    getTransaction: function(options) {
+    getTransaction: function (options) {
         return options && options.tid ? Ext.direct.Manager.getTransaction(options.tid) : null;
     },
     /**
@@ -3447,7 +3448,7 @@ TestAction.multiply(
      * @param {String} action The action being executed
      * @param {Object} method The method being executed
      */
-    configureRequest: function(action, method, args) {
+    configureRequest: function (action, method, args) {
         var me = this,
             callData = method.getCallData(args),
             data = callData.data,
@@ -3474,7 +3475,7 @@ TestAction.multiply(
      * @param {Ext.direct.Transaction} transaction The transaction
      * @return {Object} The Flex remoting message structure ready to encode in an AMFX RemoteMessage
      */
-    getCallData: function(transaction) {
+    getCallData: function (transaction) {
         if (this.binary) {
             return {
                 targetUri: transaction.action + "." + transaction.method,
@@ -3500,20 +3501,20 @@ TestAction.multiply(
         }
     },
     /*
-         return {
-         action: transaction.action,
-         method: transaction.method,
-         data: transaction.data,
-         type: 'rpc',
-         tid: transaction.id
-         };
-         */
+     return {
+     action: transaction.action,
+     method: transaction.method,
+     data: transaction.data,
+     type: 'rpc',
+     tid: transaction.id
+     };
+     */
     /**
      * Sends a request to the server
      * @private
      * @param {Object/Array} data The data to send
      */
-    sendRequest: function(data) {
+    sendRequest: function (data) {
         var me = this,
             request = {
                 url: me.url,
@@ -3565,7 +3566,7 @@ TestAction.multiply(
      * @private
      * @param {Ext.direct.Transaction} transaction The transaction
      */
-    queueTransaction: function(transaction) {
+    queueTransaction: function (transaction) {
         var me = this,
             enableBuffer = false;
         // no queueing for AMFX
@@ -3587,7 +3588,7 @@ TestAction.multiply(
      * Combine any buffered requests and send them off
      * @private
      */
-    combineAndSend: function() {
+    combineAndSend: function () {
         var buffer = this.callBuffer,
             len = buffer.length;
         if (len > 0) {
@@ -3604,71 +3605,71 @@ TestAction.multiply(
      * @param {Function} callback (optional) A callback to run after the form submits
      * @param {Object} scope (optional) A scope to execute the callback in
      */
-    configureFormRequest: function(action, method, form, callback, scope) {
+    configureFormRequest: function (action, method, form, callback, scope) {
         Ext.Error.raise("Form requests are not supported for AmfRemoting");
     },
     /*
-         var me = this,
-         transaction = new Ext.direct.Transaction({
-         provider: me,
-         action: action,
-         method: method.name,
-         args: [form, callback, scope],
-         callback: scope && Ext.isFunction(callback) ? Ext.Function.bind(callback, scope) : callback,
-         isForm: true
-         }),
-         isUpload,
-         params;
+     var me = this,
+     transaction = new Ext.direct.Transaction({
+     provider: me,
+     action: action,
+     method: method.name,
+     args: [form, callback, scope],
+     callback: scope && Ext.isFunction(callback) ? Ext.Function.bind(callback, scope) : callback,
+     isForm: true
+     }),
+     isUpload,
+     params;
 
-         if (me.fireEvent('beforecall', me, transaction, method) !== false) {
-         Ext.direct.Manager.addTransaction(transaction);
-         isUpload = String(form.getAttribute("enctype")).toLowerCase() == 'multipart/form-data';
-         
-         params = {
-         extTID: transaction.id,
-         extAction: action,
-         extMethod: method.name,
-         extType: 'rpc',
-         extUpload: String(isUpload)
-         };
-         
-         // change made from typeof callback check to callback.params
-         // to support addl param passing in DirectSubmit EAC 6/2
-         Ext.apply(transaction, {
-         form: Ext.getDom(form),
-         isUpload: isUpload,
-         params: callback && Ext.isObject(callback.params) ? Ext.apply(params, callback.params) : params
-         });
-         me.fireEvent('call', me, transaction, method);
-         me.sendFormRequest(transaction);
-         }
-         */
+     if (me.fireEvent('beforecall', me, transaction, method) !== false) {
+     Ext.direct.Manager.addTransaction(transaction);
+     isUpload = String(form.getAttribute("enctype")).toLowerCase() == 'multipart/form-data';
+
+     params = {
+     extTID: transaction.id,
+     extAction: action,
+     extMethod: method.name,
+     extType: 'rpc',
+     extUpload: String(isUpload)
+     };
+
+     // change made from typeof callback check to callback.params
+     // to support addl param passing in DirectSubmit EAC 6/2
+     Ext.apply(transaction, {
+     form: Ext.getDom(form),
+     isUpload: isUpload,
+     params: callback && Ext.isObject(callback.params) ? Ext.apply(params, callback.params) : params
+     });
+     me.fireEvent('call', me, transaction, method);
+     me.sendFormRequest(transaction);
+     }
+     */
     /**
      * Sends a form request
      * @private
      * @param {Ext.direct.Transaction} transaction The transaction to send
      */
-    sendFormRequest: function(transaction) {
+    sendFormRequest: function (transaction) {
         Ext.Error.raise("Form requests are not supported for AmfRemoting");
     },
     /*
-         Ext.Ajax.request({
-         url: this.url,
-         params: transaction.params,
-         callback: this.onData,
-         scope: this,
-         form: transaction.form,
-         isUpload: transaction.isUpload,
-         transaction: transaction
-         });
-         */
+     Ext.Ajax.request({
+     url: this.url,
+     params: transaction.params,
+     callback: this.onData,
+     scope: this,
+     form: transaction.form,
+     isUpload: transaction.isUpload,
+     transaction: transaction
+     });
+     */
     /**
      * Creates a set of events based on the XHR response
      * @private
      * @param {Object} response The XHR response
      * @return {Ext.direct.Event[]} An array of Ext.direct.Event
      */
-    createEvents: function(response) {
+    createEvents: function (response) {
         var data = null,
             rawBytes = [],
             events = [],
@@ -3684,14 +3685,14 @@ TestAction.multiply(
                 data = decoder.readAmfxMessage(response.responseText);
             }
         } /*
-             // This won't be sent back unless we use a ping message, so ignore for now
-             // if we don't have the server ID yet, check for it here
-             if (!this.DSId) {
-             if (data.message.headers && data.message.headers.DSId) {
-             this.DSId = data.message.headers.DSId;
-             }
-             }
-             */
+         // This won't be sent back unless we use a ping message, so ignore for now
+         // if we don't have the server ID yet, check for it here
+         if (!this.DSId) {
+         if (data.message.headers && data.message.headers.DSId) {
+         this.DSId = data.message.headers.DSId;
+         }
+         }
+         */
         catch (e) {
             event = new Ext.direct.ExceptionEvent({
                 data: e,
@@ -3718,7 +3719,7 @@ TestAction.multiply(
      * @param {Object} response The AMFX response object
      * @return {Ext.direct.Event} The event
      */
-    createEvent: function(response) {
+    createEvent: function (response) {
         // Check targetUri to identify transaction ID and status
         var status = response.targetURI.split("/"),
             tid, event, data, statusIndex,

@@ -1,13 +1,13 @@
-sector_id,zone_id,zone_name,created_at
-100,12,Col. San Isidro,2016-03-12
-100,24,Col. Las Cruces,2016-03-12
-100,45,Col. La Fortuna,2016-03-12
-100,230,Col. Santa Rosa,2016-03-12
-200,89,Col. Soledad,2016-03-12
-200,24,Col. Las Cruces,2016-03-12
-200,45,Col. La fortuna,2016-03-12
-200,43,Col. Lagunas,2016-03-12
-200,31,Col. Las Cuatro,2016-03-12
-300,33,Col.Chivatito,2016-03-12
-300,55,Col. San Fernando,2016-03-12
-300,89,Col. Soledad,2016-03-12
+sector_code,zone_code,zone_name,is_active,created_at
+1A,12,Col. San Isidro,yes,2016-04-20 12:00:00
+1A,24,Col. Las Cruces,yes,2016-04-20 12:00:00
+1A,45,Col. La Fortuna,yes,2016-04-20 12:00:00
+1A,230,Col. Santa Rosa,yes,2016-04-20 12:00:00
+1B,89,Col. Soledad,yes,2016-04-20 12:00:00
+1B,24,Col. Las Cruces,yes,2016-04-20 12:00:00
+1B,45,Col. La fortuna,yes,2016-04-20 12:00:00
+1B,43,Col. Lagunas,yes,2016-04-20 12:00:00
+1B,31,Col. Las Cuatro,yes,2016-04-20 12:00:00
+1C,33,Col.Chivatito,yes,2016-04-20 12:00:00
+1C,55,Col. San Fernando,yes,2016-04-20 12:00:00
+1C,89,Col. Soledad,yes,2016-04-20 12:00:00

@@ -80,12 +80,12 @@ Ext.define('Ext.chart.series.sprite.Bar', {
         // Check if we have a specific orientation specified, if so, set
         // the appropriate values.
         switch (labelOrientation) {
-            case 'horizontal': 
-                labelCfg.rotationRads = 0;              
+            case 'horizontal':
+                labelCfg.rotationRads = 0;
                 labelCfg.calloutVertical = false;
                 break;
-            case 'vertical': 
-                labelCfg.rotationRads = -Math.PI * 0.5; 
+            case 'vertical':
+                labelCfg.rotationRads = -Math.PI * 0.5;
                 labelCfg.calloutVertical = true;
                 break;
         }
@@ -189,7 +189,7 @@ Ext.define('Ext.chart.series.sprite.Bar', {
             dy = surface.roundPixel(matrix.elements[5]) - 1,
             maxBarWidth = (xx < 0 ? -1 : 1) * xx - attr.minGapWidth,
             minBarWidth = ( Math.min(maxBarWidth, attr.maxBarWidth) - inGroupGapWidth * (groupCount - 1) ) / groupCount,
-            barWidth = surface.roundPixel( Math.max(attr.minBarWidth, minBarWidth) ),
+            barWidth = surface.roundPixel(Math.max(attr.minBarWidth, minBarWidth)),
             surfaceMatrix = me.surfaceMatrix,
             left, right, bottom, top, i, center,
             halfLineWidth = 0.5 * attr.lineWidth,
@@ -230,7 +230,7 @@ Ext.define('Ext.chart.series.sprite.Bar', {
             attr = sprite.attr,
             dataX = attr.dataX,
             surface = sprite.getSurface(),
-            surfaceRect = surface.getRect() || [0,0,0,0],
+            surfaceRect = surface.getRect() || [0, 0, 0, 0],
             surfaceHeight = surfaceRect[3],
             hitX, hitY,
             i, bbox,

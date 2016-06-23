@@ -10,11 +10,13 @@ namespace App\Libraries;
 
 class Wiser
 {
-    public static function isReady(){
+    public static function isReady()
+    {
         return 'Wiser::Info: Ready!</br>';
     }
 
-    public static function loadCSVFile($paramFileName){
+    public static function loadCSVFile($paramFileName)
+    {
 
         $returnValue = '';
         $errorActive = 0;
@@ -22,33 +24,32 @@ class Wiser
         $header = NULL;
         $data = array();
 
-        if(!file_exists($paramFileName) || !is_readable($paramFileName)){
+        if (!file_exists($paramFileName) || !is_readable($paramFileName)) {
             $errorActive = 1;
             $returnValue = '</p>Wiser::Error: File ' . $paramFileName . ' does not exist.</p>';
         }
 
 
-        if($errorActive == 0){
+        if ($errorActive == 0) {
 
-            if (($handle = fopen($paramFileName, 'r')) !== FALSE)
-            {
-                while (($row = fgetcsv($handle, 1000, $delimiter)) !== FALSE)
-                {
-                    if(!$header)
+            if (($handle = fopen($paramFileName , 'r')) !== FALSE) {
+                while (($row = fgetcsv($handle , 1000 , $delimiter)) !== FALSE) {
+                    if (!$header)
                         $header = $row;
                     else
-                        $data[] = array_combine($header, $row);
+                        $data[] = array_combine($header , $row);
                 }
                 fclose($handle);
             }
         }
 
 
-        if($errorActive == 1){
+        if ($errorActive == 1) {
             return $returnValue;
-        }
-        else{
+        } else {
             return $data;
         }
     }
-};
+}
+
+;

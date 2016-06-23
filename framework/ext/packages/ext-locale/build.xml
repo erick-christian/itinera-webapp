@@ -38,15 +38,15 @@
     <target name="build" depends="init,build-all"/>
 
     <target name="build-all" depends="init">
-        
+
         <for param="build.locale.dir">
             <dirset dir="${package.dir}/overrides" includes="*"/>
             <sequential>
                 <local name="build.locale"/>
-                
-                <basename file="@{build.locale.dir}" 
+
+                <basename file="@{build.locale.dir}"
                           property="build.locale"/>
-                
+
                 <echo>Building locale ${build.locale}</echo>
 
                 <concat destfile="${build.dir}/${package.name}-${build.locale}-debug.js">

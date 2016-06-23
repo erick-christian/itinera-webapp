@@ -15,12 +15,7 @@ $panel-frame-header-border-width: $panel-frame-border-width !default;
 $panel-tool-spacing: 6px !default;
 $panel-frame-padding: 0 !default;
 
-$panel-frame-header-padding:
-    max(top($panel-header-padding) + top($panel-header-border-width) - top($panel-frame-header-border-width), 0)
-    max(right($panel-header-padding) + right($panel-header-border-width) - right($panel-frame-header-border-width), 0)
-    max(bottom($panel-header-padding) - bottom($panel-frame-header-border-width), 0)
-    max(left($panel-header-padding) + left($panel-header-border-width) - left($panel-frame-header-border-width), 0)
-    !default;
+$panel-frame-header-padding: max(top($panel-header-padding) + top($panel-header-border-width) - top($panel-frame-header-border-width), 0) max(right($panel-header-padding) + right($panel-header-border-width) - right($panel-frame-header-border-width), 0) max(bottom($panel-header-padding) - bottom($panel-frame-header-border-width), 0) max(left($panel-header-padding) + left($panel-header-border-width) - left($panel-frame-header-border-width), 0) !default;
 
 $panel-header-icon-width: 16px !default;
 $panel-header-icon-height: 16px !default;

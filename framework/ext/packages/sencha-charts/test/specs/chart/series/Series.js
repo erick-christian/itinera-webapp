@@ -1,4 +1,4 @@
-describe('Ext.chart.series.Series', function() {
+describe('Ext.chart.series.Series', function () {
 
     describe('resolveListenerScope', function () {
 

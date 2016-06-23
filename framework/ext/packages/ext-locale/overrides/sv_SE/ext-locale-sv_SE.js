@@ -4,7 +4,7 @@
  * 24 April 2007
  * Changed by Cariad, 29 July 2007
  */
-Ext.onReady(function() {
+Ext.onReady(function () {
 
     if (Ext.Date) {
         Ext.Date.monthNames = ["januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december"];
@@ -12,7 +12,7 @@ Ext.onReady(function() {
         Ext.Date.dayNames = ["söndag", "måndag", "tisdag", "onsdag", "torsdag", "fredag", "lördag"];
     }
 
-   if (Ext.util && Ext.util.Format) {
+    if (Ext.util && Ext.util.Format) {
         Ext.apply(Ext.util.Format, {
             thousandSeparator: '.',
             decimalSeparator: ',',
@@ -106,7 +106,7 @@ Ext.define("Ext.locale.sv_SE.form.field.Date", {
 Ext.define("Ext.locale.sv_SE.form.field.ComboBox", {
     override: "Ext.form.field.ComboBox",
     valueNotFoundText: undefined
-}, function() {
+}, function () {
     Ext.apply(Ext.form.field.ComboBox.prototype.defaultListConfig, {
         loadingText: "Laddar..."
     });
@@ -143,10 +143,10 @@ Ext.define("Ext.locale.sv_SE.window.MessageBox", {
         cancel: "Avbryt",
         yes: "Ja",
         no: "Nej"
-    }    
+    }
 });
 
 // This is needed until we can refactor all of the locales into individual files
-Ext.define("Ext.locale.sv_SE.Component", {	
+Ext.define("Ext.locale.sv_SE.Component", {
     override: "Ext.Component"
 });

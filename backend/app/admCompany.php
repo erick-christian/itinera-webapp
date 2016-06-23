@@ -28,7 +28,7 @@ class admCompany extends Model
         'email' ,
         'website' ,
         'logo_image' ,
-        'active'
+        'is_active'
     ];
 
     /* Enable Soft Deleted */

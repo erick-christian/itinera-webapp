@@ -6,44 +6,44 @@ Ext.define('Ext.app.bindinspector.Environment', {
     requires: [
         'Ext.util.Collection'
     ],
-    
+
     /*
-    ** Utility methods
+     ** Utility methods
      */
-    getCmp: function(id) {
+    getCmp: function (id) {
         return this.components.get(id);
     },
-    
-    getVM: function(id) {
+
+    getVM: function (id) {
         return this.viewModels.get(id);
     },
-    
-    getInheritedVM: function(comp) {
+
+    getInheritedVM: function (comp) {
         var vm = comp.viewModel,
             parent = comp.parent;
-        
+
         if (vm) {
             return vm;
         }
-        
+
         if (parent) {
             return this.getInheritedVM(this.getCmp(parent));
         }
-        
+
         return null;
     },
-    
-    
+
+
     /*
-    ** Capture methods
+     ** Capture methods
      */
-    
-    captureSnapshot: function() {
+
+    captureSnapshot: function () {
         var all = Ext.ComponentManager.getAll(),
             len = all.length,
             components = [],
             i, comp;
-        
+
         this.models = {};
         for (i = 0; i < len; ++i) {
             comp = all[i];
@@ -52,7 +52,7 @@ Ext.define('Ext.app.bindinspector.Environment', {
                 components.push(this.buildComponent(comp));
             }
         }
-        
+
         return {
             isBindData: true,
             version: Ext.getVersion().version,
@@ -60,13 +60,13 @@ Ext.define('Ext.app.bindinspector.Environment', {
             components: components
         };
     },
-    
-    serializeModel: function(Model) {
+
+    serializeModel: function (Model) {
         var models = this.models,
             name = Model.entityName;
-        
+
         if (!models[name]) {
-            models[name] = Ext.Array.map(Model.getFields(), function(field) {
+            models[name] = Ext.Array.map(Model.getFields(), function (field) {
                 return {
                     name: field.getName(),
                     type: field.getType()
@@ -74,23 +74,23 @@ Ext.define('Ext.app.bindinspector.Environment', {
             });
         }
     },
-    
-    isRootComponent: function(c) {
+
+    isRootComponent: function (c) {
         var owner = c.getRefOwner();
         if (owner || c.isBindInspector || c === Ext.MessageBox || c.is('quicktip')) {
             return false;
         }
         return true;
     },
-    
-    buildComponent: function(comp) {
+
+    buildComponent: function (comp) {
         var childItems = comp.getRefItems ? comp.getRefItems() : null,
             viewModel = comp.getViewModel(),
             bind = comp.getBind(),
             id = comp.id,
             len, i, o,
             child;
-        
+
         if (bind) {
             bind = this.buildBind(bind);
         }
@@ -103,7 +103,7 @@ Ext.define('Ext.app.bindinspector.Environment', {
             reference: comp.reference || null,
             items: []
         };
-        
+
         if (childItems) {
             for (i = 0, len = childItems.length; i < len; ++i) {
                 if (childItems[i].afterRender) {
@@ -112,14 +112,14 @@ Ext.define('Ext.app.bindinspector.Environment', {
                     o.items.push(child);
                 }
             }
-        }        
+        }
         return o;
     },
-    
-    buildBind: function(bind) {
+
+    buildBind: function (bind) {
         var out = {},
             key, o, bindInfo, name, stub;
-        
+
         for (key in bind) {
             o = bind[key];
             stub = o.stub;
@@ -134,7 +134,7 @@ Ext.define('Ext.app.bindinspector.Environment', {
             if (o.isTemplateBinding) {
                 bindInfo.isTemplateBinding = true;
                 bindInfo.tokens = [];
-                Ext.Array.forEach(o.tokens, function(token) {
+                Ext.Array.forEach(o.tokens, function (token) {
                     bindInfo.tokens.push(token.split('.'));
                 }, this);
                 bindInfo.descriptor = o.tpl.text;
@@ -152,18 +152,18 @@ Ext.define('Ext.app.bindinspector.Environment', {
         }
         return out;
     },
-    
-    buildStubName: function(stub) {
+
+    buildStubName: function (stub) {
         var parent = stub.parent,
             name = '';
-        
+
         if (parent && !parent.isRootStub) {
             name = this.buildStubName(parent) + '.';
         }
         return name + stub.name;
     },
-    
-    buildViewModel: function(vm, comp) {
+
+    buildViewModel: function (vm, comp) {
         var parent = vm.getParent();
         return {
             id: vm.getId(),
@@ -173,14 +173,14 @@ Ext.define('Ext.app.bindinspector.Environment', {
             rootStub: this.buildStub(vm.getRoot())
         };
     },
-    
-    buildStub: function(stub, isLinkChild) {
+
+    buildStub: function (stub, isLinkChild) {
         var o = {},
             children = stub.children,
             isLink = stub.isLinkStub,
             outChildren = {},
             key, hasAny, child, sameTarget;
-        
+
         if (!stub.isRootStub) {
             o.name = stub.name;
             o.parent = stub.parent ? stub.parent.id : null;
@@ -202,7 +202,7 @@ Ext.define('Ext.app.bindinspector.Environment', {
             o.isLoading = false;
             o.bindCount = o.cumulativeBindCount = 0;
         }
-        
+
         if (children) {
             for (key in children) {
                 hasAny = true;
@@ -211,52 +211,52 @@ Ext.define('Ext.app.bindinspector.Environment', {
                 o.cumulativeBindCount += child.cumulativeBindCount;
             }
         }
-        
+
         if (hasAny) {
             o.children = outChildren;
-        }     
+        }
         return o;
     },
-    
-    createModel: function(entityName, data) {
+
+    createModel: function (entityName, data) {
         var Model = Ext.app.bindinspector.noconflict[entityName];
         return new Model(data);
     },
-    
-    unpackSnapshot: function(data) {
+
+    unpackSnapshot: function (data) {
         this.components = new Ext.util.Collection();
         this.viewModels = new Ext.util.Collection();
-        
-        Ext.Object.each(data.models, function(key, fields) {
+
+        Ext.Object.each(data.models, function (key, fields) {
             Ext.define('Ext.app.bindinspector.noconflict.' + key, {
                 extend: 'Ext.app.bindinspector.noconflict.BaseModel',
                 fields: fields
             });
         });
-        
-        Ext.Array.forEach(data.components, function(comp) {
+
+        Ext.Array.forEach(data.components, function (comp) {
             this.unpackComponent(comp, this.components, this.viewModels);
         }, this);
         this.rootComponents = data.components;
     },
-    
-    unpackComponent: function(comp, allComponents, allViewModels) {
+
+    unpackComponent: function (comp, allComponents, allViewModels) {
         var vm = comp.viewModel,
             items = comp.items,
             bindings = comp.bindings,
             len, i,
             parentVM,
             parentData, data, key, binding;
-        
+
         allComponents.add(comp);
-        
+
         if (bindings) {
             for (key in bindings) {
                 binding = bindings[key];
                 binding.value = this.deserializeValue(binding.value);
             }
         }
-        
+
         if (vm) {
             allViewModels.add(vm);
             parentVM = this.getVM(vm.parent);
@@ -270,18 +270,18 @@ Ext.define('Ext.app.bindinspector.Environment', {
             vm.data = data;
             this.deserializeStub(vm.rootStub);
         }
-        
+
         if (items) {
             for (i = 0, len = items.length; i < len; ++i) {
                 this.unpackComponent(items[i], allComponents, allViewModels);
             }
         }
     },
-    
-    serializeValue: function(value, checkHasOwn) {
+
+    serializeValue: function (value, checkHasOwn) {
         var info = {},
             type, key, item, childInfo, model;
-        
+
         if (value && value.constructor === Object) {
             type = 'object';
             info.value = {};
@@ -316,7 +316,7 @@ Ext.define('Ext.app.bindinspector.Environment', {
         } else if (Ext.isArray(value)) {
             type = 'array';
             info.value = [];
-            Ext.Array.forEach(value, function(item) {
+            Ext.Array.forEach(value, function (item) {
                 info.value.push(this.serializeValue(item));
             }, this);
         } else {
@@ -326,12 +326,12 @@ Ext.define('Ext.app.bindinspector.Environment', {
         info.type = type;
         return info;
     },
-    
-    deserializeValue: function(info) {
+
+    deserializeValue: function (info) {
         var type = info.type,
             raw = info.value,
             out, key;
-        
+
         if (type === 'null') {
             out = null;
         } else if (type === 'undefined') {
@@ -354,26 +354,26 @@ Ext.define('Ext.app.bindinspector.Environment', {
             };
         } else if (type === 'array') {
             out = [];
-            Ext.Array.forEach(raw, function(item) {
+            Ext.Array.forEach(raw, function (item) {
                 out.push(this.deserializeValue(item));
             }, this);
         }
         return out;
     },
-    
-    deserializeStub: function(stub) {
+
+    deserializeStub: function (stub) {
         var children = stub.children,
             linkInfo = stub.linkInfo,
             key;
-        
+
         if (stub.value) {
             stub.value = this.deserializeValue(stub.value);
         }
-        
+
         if (linkInfo) {
             linkInfo.value = this.deserializeValue(linkInfo.value);
         }
-        
+
         if (children) {
             for (key in children) {
                 this.deserializeStub(children[key]);

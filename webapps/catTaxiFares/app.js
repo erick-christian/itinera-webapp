@@ -41,14 +41,18 @@ Ext.application({
         });
 
         appLocal.fixInterface();
+
         Ext.getStore('storeTaxiFares').load();
+
     },
 
     fixInterface: function (p_winWidth, p_winHeight) {
         Ext.getCmp('formMaintenance').doLayout();
 
-        var heightGrid = Ext.getBody().getViewSize().height - 60;
+        var heightGrid = Ext.getBody().getViewSize().height - 55;
         Ext.getCmp('gridTaxiFares').setHeight(heightGrid);
+        Ext.getCmp('gridRangeFares').setHeight(heightGrid);
+
     }
 
 });

@@ -100,7 +100,7 @@ Ext.define('Ext.ProgressBarWidget', {
 
     defaultBindProperty: 'value',
 
-    doSetWidth: function(width) {
+    doSetWidth: function (width) {
         var me = this;
 
         me.callParent([width]);
@@ -108,8 +108,8 @@ Ext.define('Ext.ProgressBarWidget', {
         me.backgroundEl.setWidth(width);
         me.textEl.setWidth(width);
     },
-            
-    updateUi: function(ui, oldUi) {
+
+    updateUi: function (ui, oldUi) {
         var element = this.element,
             barEl = this.barEl,
             baseCls = this.getBaseCls() + '-';
@@ -123,7 +123,7 @@ Ext.define('Ext.ProgressBarWidget', {
         barEl.addCls(baseCls + 'bar-' + ui);
     },
 
-    updateBaseCls: function(baseCls, oldBaseCls) {
+    updateBaseCls: function (baseCls, oldBaseCls) {
         //<debug>
         if (oldBaseCls) {
             Ext.Error.raise('You cannot configure baseCls - use a subclass');
@@ -133,16 +133,16 @@ Ext.define('Ext.ProgressBarWidget', {
         this.barEl.addCls(baseCls + '-bar');
     },
 
-    updateTextCls: function(textCls) {
+    updateTextCls: function (textCls) {
         this.backgroundEl.addCls(textCls + ' ' + textCls + '-back');
         this.textEl.addCls(textCls);
     },
 
-    applyValue: function(value) {
+    applyValue: function (value) {
         return value || 0;
     },
 
-    updateValue: function(value, oldValue) {
+    updateValue: function (value, oldValue) {
         var me = this,
             barEl = me.barEl,
             textTpl = me.getTextTpl();
@@ -168,12 +168,12 @@ Ext.define('Ext.ProgressBarWidget', {
         }
     },
 
-    updateText: function(text) {
+    updateText: function (text) {
         this.backgroundEl.setHtml(text);
         this.textEl.setHtml(text);
     },
 
-    applyTextTpl: function(textTpl) {
+    applyTextTpl: function (textTpl) {
         if (!textTpl.isTemplate) {
             textTpl = new Ext.XTemplate(textTpl);
         }

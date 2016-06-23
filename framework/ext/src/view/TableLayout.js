@@ -19,7 +19,7 @@ Ext.define('Ext.view.TableLayout', {
             me.rowHeightFlusherId = me.id + '-rows';
         }
 
-        me.callParent([ ownerContext ]);
+        me.callParent([ownerContext]);
 
         // If we are in a twinned grid (locked view) then set up bidirectional links with
         // the other side's layout context. If the locked or normal side is hidden then
@@ -27,8 +27,7 @@ Ext.define('Ext.view.TableLayout', {
         // This is typically if a grid is configured with locking but starts with no locked columns.
         if (partner && partner.grid.isVisible()) {
             if (!ownerContext.lockingPartnerContext) {
-                (ownerContext.lockingPartnerContext = context.getCmp(partner)).
-                    lockingPartnerContext = ownerContext;
+                (ownerContext.lockingPartnerContext = context.getCmp(partner)).lockingPartnerContext = ownerContext;
             }
 
             ownerContext.rowHeightSynchronizer = me.owner.syncRowHeightBegin();
@@ -40,7 +39,7 @@ Ext.define('Ext.view.TableLayout', {
     },
 
     beginLayoutCycle: function (ownerContext, firstCycle) {
-        this.callParent([ ownerContext, firstCycle ]);
+        this.callParent([ownerContext, firstCycle]);
 
         if (ownerContext.syncRowHeights) {
             ownerContext.target.syncRowHeightClear(ownerContext.rowHeightSynchronizer);
@@ -65,7 +64,7 @@ Ext.define('Ext.view.TableLayout', {
         // EXTJS-14844: Even when no data rows (all.getCount() === 0) there may be summary rows to size.
         if (!owner.all.getCount() && (!bodyDom || !owner.body.child('table'))) {
             ownerContext.setProp('viewOverflowY', false);
-            me.callParent([ ownerContext ]);
+            me.callParent([ownerContext]);
             return;
         }
 
@@ -130,7 +129,7 @@ Ext.define('Ext.view.TableLayout', {
             }
         }
 
-        me.callParent([ ownerContext ]);
+        me.callParent([ownerContext]);
 
         if (!ownerContext.heightModel.shrinkWrap) {
             // If the grid is shrink wrapping, we can't be overflowing
@@ -162,7 +161,7 @@ Ext.define('Ext.view.TableLayout', {
             bodyHeight += emptyEl.offsetHeight;
         }
 
-        if (bodyDom){
+        if (bodyDom) {
             bodyHeight += bodyDom.offsetHeight;
         }
 
@@ -224,7 +223,7 @@ Ext.define('Ext.view.TableLayout', {
         }
 
         ownerContext.target.syncRowHeightFinish(flusher.synchronizer,
-                                                flusher.otherSynchronizer);
+            flusher.otherSynchronizer);
 
         flusher.flushed = true;
 
@@ -234,10 +233,10 @@ Ext.define('Ext.view.TableLayout', {
         }
     },
 
-    finishedLayout: function(ownerContext) {
+    finishedLayout: function (ownerContext) {
         var nodeContainer = Ext.fly(this.owner.getNodeContainer());
 
-        this.callParent([ ownerContext ]);
+        this.callParent([ownerContext]);
 
         if (nodeContainer) {
             nodeContainer.setWidth(ownerContext.headerContext.props.contentWidth);

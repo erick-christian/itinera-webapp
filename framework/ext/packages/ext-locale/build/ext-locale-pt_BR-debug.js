@@ -8,12 +8,12 @@
  * Updated by Juliano Tarini (jtarini)
  * 22 April 2008
  */
-Ext.onReady(function() {
+Ext.onReady(function () {
 
     if (Ext.Date) {
         Ext.Date.monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 
-        Ext.Date.getShortMonthName = function(month) {
+        Ext.Date.getShortMonthName = function (month) {
             return Ext.Date.monthNames[month].substring(0, 3);
         };
 
@@ -32,7 +32,7 @@ Ext.onReady(function() {
             Dez: 11
         };
 
-        Ext.Date.getMonthNumber = function(name) {
+        Ext.Date.getMonthNumber = function (name) {
             return Ext.Date.monthNumbers[name.substring(0, 1).toUpperCase() + name.substring(1, 3).toLowerCase()];
         };
 
@@ -140,7 +140,7 @@ Ext.define("Ext.locale.pt_BR.form.field.Date", {
 Ext.define("Ext.locale.pt_BR.form.field.ComboBox", {
     override: "Ext.form.field.ComboBox",
     valueNotFoundText: undefined
-}, function() {
+}, function () {
     Ext.apply(Ext.form.field.ComboBox.prototype.defaultListConfig, {
         loadingText: "Carregando..."
     });
@@ -157,7 +157,7 @@ Ext.define("Ext.locale.pt_BR.form.field.VTypes", {
 Ext.define("Ext.locale.pt_BR.form.field.HtmlEditor", {
     override: "Ext.form.field.HtmlEditor",
     createLinkText: 'Por favor, entre com a URL do link:'
-}, function() {
+}, function () {
     Ext.apply(Ext.form.field.HtmlEditor.prototype, {
         buttonTips: {
             bold: {
@@ -268,10 +268,10 @@ Ext.define("Ext.locale.pt_BR.window.MessageBox", {
         cancel: "Cancelar",
         yes: "Sim",
         no: "Não"
-    }    
+    }
 });
 
 // This is needed until we can refactor all of the locales into individual files
-Ext.define("Ext.locale.pt_BR.Component", {	
+Ext.define("Ext.locale.pt_BR.Component", {
     override: "Ext.Component"
 });

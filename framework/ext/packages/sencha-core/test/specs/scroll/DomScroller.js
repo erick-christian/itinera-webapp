@@ -1,4 +1,4 @@
-describe("Ext.scroll.DomScroller", function() {
+describe("Ext.scroll.DomScroller", function () {
     var el, scroller;
 
     function makeScroller(config) {
@@ -7,13 +7,13 @@ describe("Ext.scroll.DomScroller", function() {
         }, config));
     }
 
-    beforeEach(function() {
+    beforeEach(function () {
         el = Ext.getBody().createChild({
             style: 'height:100px;width:100px;'
         });
     });
 
-    afterEach(function() {
+    afterEach(function () {
         if (scroller) {
             scroller.destroy();
             scroller = null;
@@ -24,14 +24,14 @@ describe("Ext.scroll.DomScroller", function() {
         }
     });
 
-    describe("x", function() {
-        it("should set overflow-x:auto on the element by default", function() {
+    describe("x", function () {
+        it("should set overflow-x:auto on the element by default", function () {
             makeScroller();
 
             expect(el.dom.style.overflowX).toBe('auto');
         });
 
-        it("should set overflow-x:auto on the element when x is true", function() {
+        it("should set overflow-x:auto on the element when x is true", function () {
             makeScroller({
                 x: true
             });
@@ -39,7 +39,7 @@ describe("Ext.scroll.DomScroller", function() {
             expect(el.dom.style.overflowX).toBe('auto');
         });
 
-        it("should set overflow-x:auto on the element when x is 'auto'", function() {
+        it("should set overflow-x:auto on the element when x is 'auto'", function () {
             makeScroller({
                 x: 'auto'
             });
@@ -47,7 +47,7 @@ describe("Ext.scroll.DomScroller", function() {
             expect(el.dom.style.overflowX).toBe('auto');
         });
 
-        it("should set overflow-x:scroll on the element when x is 'scroll'", function() {
+        it("should set overflow-x:scroll on the element when x is 'scroll'", function () {
             makeScroller({
                 x: 'scroll'
             });
@@ -55,7 +55,7 @@ describe("Ext.scroll.DomScroller", function() {
             expect(el.dom.style.overflowX).toBe('scroll');
         });
 
-        it("should set overflow-x:hidden the element when x is false", function() {
+        it("should set overflow-x:hidden the element when x is false", function () {
             makeScroller({
                 x: false
             });
@@ -64,14 +64,14 @@ describe("Ext.scroll.DomScroller", function() {
         });
     });
 
-    describe("y", function() {
-        it("should set overflow-y:auto on the element by default", function() {
+    describe("y", function () {
+        it("should set overflow-y:auto on the element by default", function () {
             makeScroller();
 
             expect(el.dom.style.overflowY).toBe('auto');
         });
 
-        it("should set overflow-y:auto on the element when y is true", function() {
+        it("should set overflow-y:auto on the element when y is true", function () {
             makeScroller({
                 y: true
             });
@@ -79,7 +79,7 @@ describe("Ext.scroll.DomScroller", function() {
             expect(el.dom.style.overflowY).toBe('auto');
         });
 
-        it("should set overflow-y:auto on the element when y is 'auto'", function() {
+        it("should set overflow-y:auto on the element when y is 'auto'", function () {
             makeScroller({
                 y: 'auto'
             });
@@ -87,7 +87,7 @@ describe("Ext.scroll.DomScroller", function() {
             expect(el.dom.style.overflowY).toBe('auto');
         });
 
-        it("should set overflow-y:scroll on the element when y is 'scroll'", function() {
+        it("should set overflow-y:scroll on the element when y is 'scroll'", function () {
             makeScroller({
                 y: 'scroll'
             });
@@ -95,7 +95,7 @@ describe("Ext.scroll.DomScroller", function() {
             expect(el.dom.style.overflowY).toBe('scroll');
         });
 
-        it("should set overflow-y:hidden on the element when y is false", function() {
+        it("should set overflow-y:hidden on the element when y is false", function () {
             makeScroller({
                 y: false
             });
@@ -104,8 +104,8 @@ describe("Ext.scroll.DomScroller", function() {
         });
     });
 
-    describe("direction", function() {
-        it("should set overflow-x:auto and overflow-y:auto on the element when direction is 'auto'", function() {
+    describe("direction", function () {
+        it("should set overflow-x:auto and overflow-y:auto on the element when direction is 'auto'", function () {
             makeScroller({
                 direction: 'auto'
             });
@@ -114,7 +114,7 @@ describe("Ext.scroll.DomScroller", function() {
             expect(el.dom.style.overflowY).toBe('auto');
         });
 
-        it("should set overflow-x:scroll and overflow-y:scroll on the element when direction is 'both'", function() {
+        it("should set overflow-x:scroll and overflow-y:scroll on the element when direction is 'both'", function () {
             makeScroller({
                 direction: 'both'
             });
@@ -123,7 +123,7 @@ describe("Ext.scroll.DomScroller", function() {
             expect(el.dom.style.overflowY).toBe('scroll');
         });
 
-        it("should set overflow-y:auto on the element when direction is 'vertical'", function() {
+        it("should set overflow-y:auto on the element when direction is 'vertical'", function () {
             makeScroller({
                 direction: 'vertical'
             });
@@ -132,7 +132,7 @@ describe("Ext.scroll.DomScroller", function() {
             expect(el.dom.style.overflowX).toBe('hidden');
         });
 
-        it("should set overflow-x:auto on the element when direction is 'horizontal'", function() {
+        it("should set overflow-x:auto on the element when direction is 'horizontal'", function () {
             makeScroller({
                 direction: 'horizontal'
             });
@@ -142,14 +142,14 @@ describe("Ext.scroll.DomScroller", function() {
         });
     });
 
-    describe("getSize", function() {
-        beforeEach(function() {
+    describe("getSize", function () {
+        beforeEach(function () {
             el.appendChild({
                 style: 'height:200px;width:300px;'
             }, true);
         });
 
-        it("should return the content size with x:auto and y:auto", function() {
+        it("should return the content size with x:auto and y:auto", function () {
             makeScroller();
             expect(scroller.getSize()).toEqual({
                 x: 300,
@@ -157,7 +157,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should return the content size with x:scroll and y:scroll", function() {
+        it("should return the content size with x:scroll and y:scroll", function () {
             makeScroller({
                 x: 'scroll',
                 y: 'scroll'
@@ -168,7 +168,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should return the content size with x:false and y:false", function() {
+        it("should return the content size with x:false and y:false", function () {
             makeScroller({
                 x: false,
                 y: false
@@ -180,7 +180,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should return the content size with x:false and y:auto", function() {
+        it("should return the content size with x:false and y:auto", function () {
             makeScroller({
                 x: false,
                 y: true
@@ -192,7 +192,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should return the content size with x:auto and y:false", function() {
+        it("should return the content size with x:auto and y:false", function () {
             makeScroller({
                 x: true,
                 y: false
@@ -204,7 +204,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should return the content size with x:false and y:scroll", function() {
+        it("should return the content size with x:false and y:scroll", function () {
             makeScroller({
                 x: false,
                 y: 'scroll'
@@ -216,7 +216,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should return the content size with x:scroll and y:false", function() {
+        it("should return the content size with x:scroll and y:false", function () {
             makeScroller({
                 x: 'scroll',
                 y: false
@@ -229,14 +229,14 @@ describe("Ext.scroll.DomScroller", function() {
         });
     });
 
-    describe("getPosition", function() {
-        beforeEach(function() {
+    describe("getPosition", function () {
+        beforeEach(function () {
             el.appendChild({
                 style: 'height:200px;width:300px;'
             }, true);
         });
 
-        it("should return the current position", function() {
+        it("should return the current position", function () {
             makeScroller();
 
             expect(scroller.getPosition()).toEqual({
@@ -253,7 +253,7 @@ describe("Ext.scroll.DomScroller", function() {
         });
     });
 
-    describe("scrollTo", function() {
+    describe("scrollTo", function () {
         function makeOverflow(cfg) {
             el.appendChild({
                 style: 'height:200px;width:300px;'
@@ -270,7 +270,7 @@ describe("Ext.scroll.DomScroller", function() {
             makeScroller(cfg);
         }
 
-        it("should scroll on the x axis", function() {
+        it("should scroll on the x axis", function () {
             makeOverflow();
 
             scroller.scrollTo(50, 0);
@@ -281,7 +281,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should scroll on the x axis when the x axis is disabled", function() {
+        it("should scroll on the x axis when the x axis is disabled", function () {
             makeOverflow({
                 x: false
             });
@@ -294,7 +294,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should not scroll on the x axis if the content does not overflow horizontally", function() {
+        it("should not scroll on the x axis if the content does not overflow horizontally", function () {
             makeNoOverflow();
 
             scroller.scrollTo(50, 0);
@@ -305,7 +305,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should constrain to the max x position", function() {
+        it("should constrain to the max x position", function () {
             makeOverflow();
 
             scroller.scrollTo(250, 0);
@@ -316,7 +316,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should scroll on the y axis", function() {
+        it("should scroll on the y axis", function () {
             makeOverflow();
 
             scroller.scrollTo(0, 50);
@@ -327,7 +327,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should scroll on the y axis when the y axis is disabled", function() {
+        it("should scroll on the y axis when the y axis is disabled", function () {
             makeOverflow({
                 y: false
             });
@@ -340,7 +340,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should not scroll on the y axis if the content does not overflow vertically", function() {
+        it("should not scroll on the y axis if the content does not overflow vertically", function () {
             makeNoOverflow();
 
             scroller.scrollTo(0, 50);
@@ -351,7 +351,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should constrain to the max y position", function() {
+        it("should constrain to the max y position", function () {
             makeOverflow();
 
             scroller.scrollTo(0, 250);
@@ -362,7 +362,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should scroll on both axes", function() {
+        it("should scroll on both axes", function () {
             makeOverflow();
 
             scroller.scrollTo(50, 60);
@@ -373,7 +373,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should constrain to max x and y", function() {
+        it("should constrain to max x and y", function () {
             makeOverflow();
 
             scroller.scrollTo(300, 300);
@@ -384,7 +384,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should scroll to max x using Infinity", function() {
+        it("should scroll to max x using Infinity", function () {
             makeOverflow();
 
             scroller.scrollTo(Infinity, 0);
@@ -395,7 +395,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should scroll to max y using Infinity", function() {
+        it("should scroll to max y using Infinity", function () {
             makeOverflow();
 
             scroller.scrollTo(0, Infinity);
@@ -406,7 +406,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should scroll to max x and y using Infinity", function() {
+        it("should scroll to max x and y using Infinity", function () {
             makeOverflow();
 
             scroller.scrollTo(Infinity, Infinity);
@@ -417,7 +417,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should ignore x if null is passed", function() {
+        it("should ignore x if null is passed", function () {
             makeOverflow();
 
             scroller.scrollTo(10, 10);
@@ -430,7 +430,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should ignore y if null is passed", function() {
+        it("should ignore y if null is passed", function () {
             makeOverflow();
 
             scroller.scrollTo(10, 10);
@@ -443,7 +443,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should ignore x and y if both null", function() {
+        it("should ignore x and y if both null", function () {
             makeOverflow();
 
             scroller.scrollTo(10, 10);
@@ -456,7 +456,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should scroll to negative offset from max x", function() {
+        it("should scroll to negative offset from max x", function () {
             makeOverflow();
 
             scroller.scrollTo(-20, 0);
@@ -467,7 +467,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should scroll to negative offset from max y", function() {
+        it("should scroll to negative offset from max y", function () {
             makeOverflow();
 
             scroller.scrollTo(0, -20);
@@ -478,7 +478,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should scroll to negative offset from max x and y", function() {
+        it("should scroll to negative offset from max x and y", function () {
             makeOverflow();
 
             scroller.scrollTo(-20, -20);
@@ -490,14 +490,14 @@ describe("Ext.scroll.DomScroller", function() {
         });
     });
 
-    describe("scrollBy", function() {
-        beforeEach(function() {
+    describe("scrollBy", function () {
+        beforeEach(function () {
             el.appendChild({
                 style: 'height:200px;width:300px;'
             }, true);
         });
 
-        it("should set the scroll position", function() {
+        it("should set the scroll position", function () {
             makeScroller();
 
             scroller.scrollBy(20, 10);
@@ -515,7 +515,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should ignore x if null is passed", function() {
+        it("should ignore x if null is passed", function () {
             makeScroller();
 
             scroller.scrollTo(10, 10);
@@ -528,7 +528,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should ignore y if null is passed", function() {
+        it("should ignore y if null is passed", function () {
             makeScroller();
 
             scroller.scrollTo(10, 10);
@@ -541,7 +541,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should ignore x and y if both null", function() {
+        it("should ignore x and y if both null", function () {
             makeScroller();
 
             scroller.scrollTo(10, 10);
@@ -554,7 +554,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should constrain to the max x position", function() {
+        it("should constrain to the max x position", function () {
             makeScroller();
 
             scroller.scrollBy(250, 0);
@@ -565,7 +565,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should constrain to the min x position", function() {
+        it("should constrain to the min x position", function () {
             makeScroller();
 
             scroller.scrollBy(-10, 0);
@@ -576,7 +576,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should constrain to the max y position", function() {
+        it("should constrain to the max y position", function () {
             makeScroller();
 
             scroller.scrollBy(0, 250);
@@ -587,7 +587,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should constrain to the min y position", function() {
+        it("should constrain to the min y position", function () {
             makeScroller();
 
             scroller.scrollBy(0, -10);
@@ -598,7 +598,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should constrain to max x and y", function() {
+        it("should constrain to max x and y", function () {
             makeScroller();
 
             scroller.scrollBy(300, 300);
@@ -609,7 +609,7 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        it("should constrain to min x and y", function() {
+        it("should constrain to min x and y", function () {
             makeScroller();
 
             scroller.scrollBy(-10, -10);
@@ -621,26 +621,26 @@ describe("Ext.scroll.DomScroller", function() {
         });
     });
 
-    describe("getMaxPosition and getMaxUserPosition", function() {
-        beforeEach(function() {
+    describe("getMaxPosition and getMaxUserPosition", function () {
+        beforeEach(function () {
             el.appendChild({
                 style: 'height:200px;width:300px;'
             }, true);
         });
 
-        describe("with x:true and y:true", function() {
-            beforeEach(function() {
+        describe("with x:true and y:true", function () {
+            beforeEach(function () {
                 makeScroller();
             });
 
-            it("should return the maxPosition", function() {
+            it("should return the maxPosition", function () {
                 expect(scroller.getMaxPosition()).toEqual({
                     x: 200 + Ext.getScrollbarSize().height,
                     y: 100 + Ext.getScrollbarSize().width
                 });
             });
 
-            it("should return the maxUserPosition", function() {
+            it("should return the maxUserPosition", function () {
                 expect(scroller.getMaxUserPosition()).toEqual({
                     x: 200 + Ext.getScrollbarSize().height,
                     y: 100 + Ext.getScrollbarSize().width
@@ -648,22 +648,22 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        describe("with x:true and y:false", function() {
-            beforeEach(function() {
+        describe("with x:true and y:false", function () {
+            beforeEach(function () {
                 makeScroller({
                     x: true,
                     y: false
                 });
             });
 
-            it("should return the maxPosition", function() {
+            it("should return the maxPosition", function () {
                 expect(scroller.getMaxPosition()).toEqual({
                     x: 200,
                     y: 100 + Ext.getScrollbarSize().width
                 });
             });
 
-            it("should return the maxUserPosition", function() {
+            it("should return the maxUserPosition", function () {
                 expect(scroller.getMaxUserPosition()).toEqual({
                     x: 200,
                     y: 0
@@ -671,22 +671,22 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        describe("with x:false and y:true", function() {
-            beforeEach(function() {
+        describe("with x:false and y:true", function () {
+            beforeEach(function () {
                 makeScroller({
                     x: false,
                     y: true
                 })
             });
 
-            it("should return the maxPosition", function() {
+            it("should return the maxPosition", function () {
                 expect(scroller.getMaxPosition()).toEqual({
                     x: 200 + Ext.getScrollbarSize().height,
                     y: 100
                 });
             });
 
-            it("should return the maxUserPosition", function() {
+            it("should return the maxUserPosition", function () {
                 expect(scroller.getMaxUserPosition()).toEqual({
                     x: 0,
                     y: 100
@@ -694,22 +694,22 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        describe("with x:false and y:false", function() {
-            beforeEach(function() {
+        describe("with x:false and y:false", function () {
+            beforeEach(function () {
                 makeScroller({
                     x: false,
                     y: false
                 });
             });
 
-            it("should return the maxPosition", function() {
+            it("should return the maxPosition", function () {
                 expect(scroller.getMaxPosition()).toEqual({
                     x: 200,
                     y: 100
                 });
             });
 
-            it("should return the maxUserPosition", function() {
+            it("should return the maxUserPosition", function () {
                 expect(scroller.getMaxUserPosition()).toEqual({
                     x: 0,
                     y: 0
@@ -718,7 +718,7 @@ describe("Ext.scroll.DomScroller", function() {
         });
     });
 
-    describe("partnership", function() {
+    describe("partnership", function () {
         var scrollSpy, scrollSpy2, scrollSpy3, el2, el3, scroller2, scroller3;
 
         function makeScroller2() {
@@ -751,7 +751,7 @@ describe("Ext.scroll.DomScroller", function() {
             scroller3.on('scroll', scrollSpy3);
         }
 
-        beforeEach(function() {
+        beforeEach(function () {
             scrollSpy = jasmine.createSpy();
             scrollSpy2 = jasmine.createSpy();
             scrollSpy3 = jasmine.createSpy();
@@ -765,7 +765,7 @@ describe("Ext.scroll.DomScroller", function() {
             scroller.on('scroll', scrollSpy);
         });
 
-        afterEach(function() {
+        afterEach(function () {
             if (scroller2) {
                 scroller2.destroy();
                 scroller2 = null;
@@ -784,24 +784,24 @@ describe("Ext.scroll.DomScroller", function() {
             }
         });
 
-        describe("single partner", function() {
-            beforeEach(function() {
+        describe("single partner", function () {
+            beforeEach(function () {
                 makeScroller2();
             });
 
-            describe("both axes enabled", function() {
-                beforeEach(function() {
+            describe("both axes enabled", function () {
+                beforeEach(function () {
                     scroller.addPartner(scroller2);
                 });
 
-                it("should sync the partner's scroll position when the scroller is scrolled", function() {
+                it("should sync the partner's scroll position when the scroller is scrolled", function () {
                     scroller.scrollTo(10, 20);
 
-                    waitsFor(function() {
+                    waitsFor(function () {
                         return scrollSpy.wasCalled;
                     });
 
-                    runs(function() {
+                    runs(function () {
                         expect(scroller2.getPosition()).toEqual({
                             x: 10,
                             y: 20
@@ -809,14 +809,14 @@ describe("Ext.scroll.DomScroller", function() {
                     });
                 });
 
-                it("should sync the scroller's scroll position when the partner is scrolled", function() {
+                it("should sync the scroller's scroll position when the partner is scrolled", function () {
                     scroller2.scrollTo(10, 20);
 
-                    waitsFor(function() {
+                    waitsFor(function () {
                         return scrollSpy2.wasCalled;
                     });
 
-                    runs(function() {
+                    runs(function () {
                         expect(scroller.getPosition()).toEqual({
                             x: 10,
                             y: 20
@@ -825,19 +825,19 @@ describe("Ext.scroll.DomScroller", function() {
                 });
             });
 
-            describe("x-axis only", function() {
-                beforeEach(function() {
+            describe("x-axis only", function () {
+                beforeEach(function () {
                     scroller.addPartner(scroller2, 'x');
                 });
 
-                it("should sync the partner's scroll position when the scroller is scrolled", function() {
+                it("should sync the partner's scroll position when the scroller is scrolled", function () {
                     scroller.scrollTo(10, 20);
 
-                    waitsFor(function() {
+                    waitsFor(function () {
                         return scrollSpy.wasCalled;
                     });
 
-                    runs(function() {
+                    runs(function () {
                         expect(scroller2.getPosition()).toEqual({
                             x: 10,
                             y: 0
@@ -845,14 +845,14 @@ describe("Ext.scroll.DomScroller", function() {
                     });
                 });
 
-                it("should sync the scroller's scroll position when the partner is scrolled", function() {
+                it("should sync the scroller's scroll position when the partner is scrolled", function () {
                     scroller2.scrollTo(10, 20);
 
-                    waitsFor(function() {
+                    waitsFor(function () {
                         return scrollSpy2.wasCalled;
                     });
 
-                    runs(function() {
+                    runs(function () {
                         expect(scroller.getPosition()).toEqual({
                             x: 10,
                             y: 0
@@ -861,19 +861,19 @@ describe("Ext.scroll.DomScroller", function() {
                 });
             });
 
-            describe("y-axis only", function() {
-                beforeEach(function() {
+            describe("y-axis only", function () {
+                beforeEach(function () {
                     scroller.addPartner(scroller2, 'y');
                 });
 
-                it("should sync the partner's scroll position when the scroller is scrolled", function() {
+                it("should sync the partner's scroll position when the scroller is scrolled", function () {
                     scroller.scrollTo(10, 20);
 
-                    waitsFor(function() {
+                    waitsFor(function () {
                         return scrollSpy.wasCalled;
                     });
 
-                    runs(function() {
+                    runs(function () {
                         expect(scroller2.getPosition()).toEqual({
                             x: 0,
                             y: 20
@@ -881,14 +881,14 @@ describe("Ext.scroll.DomScroller", function() {
                     });
                 });
 
-                it("should sync the scroller's scroll position when the partner is scrolled", function() {
+                it("should sync the scroller's scroll position when the partner is scrolled", function () {
                     scroller2.scrollTo(10, 20);
 
-                    waitsFor(function() {
+                    waitsFor(function () {
                         return scrollSpy2.wasCalled;
                     });
 
-                    runs(function() {
+                    runs(function () {
                         expect(scroller.getPosition()).toEqual({
                             x: 0,
                             y: 20
@@ -897,17 +897,17 @@ describe("Ext.scroll.DomScroller", function() {
                 });
             });
 
-            it("should remove the partner", function() {
+            it("should remove the partner", function () {
                 scroller.addPartner(scroller2);
                 scroller.removePartner(scroller2);
 
                 scroller.scrollTo(10, 20);
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return scrollSpy.wasCalled;
                 });
 
-                runs(function() {
+                runs(function () {
                     expect(scroller2.getPosition()).toEqual({
                         x: 0,
                         y: 0
@@ -915,11 +915,11 @@ describe("Ext.scroll.DomScroller", function() {
                     scroller2.scrollTo(40, 30);
                 });
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return scrollSpy2.wasCalled;
                 });
 
-                runs(function() {
+                runs(function () {
                     expect(scroller.getPosition()).toEqual({
                         x: 10,
                         y: 20
@@ -928,8 +928,8 @@ describe("Ext.scroll.DomScroller", function() {
             });
         });
 
-        describe("multiple partners", function() {
-            beforeEach(function() {
+        describe("multiple partners", function () {
+            beforeEach(function () {
                 makeScroller2();
                 makeScroller3();
 
@@ -937,14 +937,14 @@ describe("Ext.scroll.DomScroller", function() {
                 scroller.addPartner(scroller3);
             });
 
-            it("should sync multiple partners when the scroller is scrolled", function() {
+            it("should sync multiple partners when the scroller is scrolled", function () {
                 scroller.scrollTo(10, 15);
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return scrollSpy.wasCalled;
                 });
 
-                runs(function() {
+                runs(function () {
                     expect(scroller2.getPosition()).toEqual({
                         x: 10,
                         y: 15
@@ -957,14 +957,14 @@ describe("Ext.scroll.DomScroller", function() {
                 });
             });
 
-            it("should sync scroll position when a partner is scrolled", function() {
+            it("should sync scroll position when a partner is scrolled", function () {
                 scroller3.scrollTo(50, 60);
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return scrollSpy3.wasCalled;
                 });
 
-                runs(function() {
+                runs(function () {
                     expect(scroller.getPosition()).toEqual({
                         x: 50,
                         y: 60
@@ -972,16 +972,16 @@ describe("Ext.scroll.DomScroller", function() {
                 });
             });
 
-            it("should remove a partner", function() {
+            it("should remove a partner", function () {
                 scroller.removePartner(scroller2);
 
                 scroller2.scrollTo(15, 20);
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return scrollSpy2.wasCalled;
                 });
 
-                runs(function() {
+                runs(function () {
                     expect(scroller.getPosition()).toEqual({
                         x: 0,
                         y: 0
@@ -991,11 +991,11 @@ describe("Ext.scroll.DomScroller", function() {
                     scroller3.scrollTo(30, 45);
                 });
 
-                waitsFor(function() {
-                    return(scrollSpy3.wasCalled);
+                waitsFor(function () {
+                    return (scrollSpy3.wasCalled);
                 });
 
-                runs(function() {
+                runs(function () {
                     expect(scroller.getPosition()).toEqual({
                         x: 30,
                         y: 45

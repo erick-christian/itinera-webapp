@@ -31,7 +31,6 @@ Ext.define('catTaxiFares.view.formMaintenance', {
     viewModel: {
         type: 'formmaintenance'
     },
-    height: 562,
     id: 'formMaintenance',
     itemId: 'formMaintenance',
     ui: 'green-panel',
@@ -172,12 +171,10 @@ Ext.define('catTaxiFares.view.formMaintenance', {
     items: [
         {
             xtype: 'gridpanel',
-            height: 520,
+            columnWidth: 0.5,
             id: 'gridTaxiFares',
             itemId: 'gridTaxiFares',
-            maxHeight: 520,
             ui: 'green-panel',
-            width: 920,
             title: 'Fares',
             columnLines: false,
             forceFit: false,
@@ -296,13 +293,11 @@ Ext.define('catTaxiFares.view.formMaintenance', {
         },
         {
             xtype: 'gridpanel',
-            height: 520,
-            id: 'gridRageFares',
-            itemId: 'gridRageFares',
+            columnWidth: 0.5,
+            id: 'gridRangeFares',
+            itemId: 'gridRangeFares',
             margin: '0 0 0 15',
-            maxHeight: 520,
             ui: 'green-panel',
-            width: 250,
             title: 'Ranges',
             columnLines: false,
             forceFit: false,

@@ -85,7 +85,7 @@ Ext.define('Ext.chart.axis.Category', {
     /* End Definitions */
 
     // @private constrains to datapoints between minimum and maximum only
-    doConstrain: function() {
+    doConstrain: function () {
         var me = this,
             chart = me.chart,
             store = chart.getChartStore(),
@@ -104,7 +104,7 @@ Ext.define('Ext.chart.axis.Category', {
         for (i = me.minimum; i < me.maximum; i++) {
             data.push(items[i]);
         }
-        
+
         chart.setSubStore(new Ext.data.Store({
             model: store.model,
             data: data
@@ -112,7 +112,7 @@ Ext.define('Ext.chart.axis.Category', {
     },
 
     // @private creates an array of labels to be used when rendering.
-    setLabels: function() {
+    setLabels: function () {
         var store = this.chart.getChartStore(),
             data = store.data.items,
             d, dLen, record,
@@ -138,7 +138,7 @@ Ext.define('Ext.chart.axis.Category', {
     },
 
     // @private calculates labels positions and marker positions for rendering.
-    applyData: function() {
+    applyData: function () {
         this.callParent();
         this.setLabels();
         var count = this.chart.getChartStore().getCount();

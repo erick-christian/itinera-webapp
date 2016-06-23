@@ -34,7 +34,7 @@ Ext.define('Ext.chart.Navigation', {
      * @param {Number} zoomConfig.width The width of the zoom area
      * @param {Number} zoomConfig.height The height of the zoom area
      */
-    setZoom: function(zoomConfig) {
+    setZoom: function (zoomConfig) {
         var me = this,
             axesItems = me.axes.items,
             i, ln, axis,
@@ -42,10 +42,10 @@ Ext.define('Ext.chart.Navigation', {
             xScale = bbox.width,
             yScale = bbox.height,
             zoomArea = {
-                x : zoomConfig.x - me.el.getX(),
-                y : zoomConfig.y - me.el.getY(),
-                width : zoomConfig.width,
-                height : zoomConfig.height
+                x: zoomConfig.x - me.el.getX(),
+                y: zoomConfig.y - me.el.getY(),
+                width: zoomConfig.width,
+                height: zoomConfig.height
             },
             zoomer, ends, from, to, store, count, step, length, horizontal;
 
@@ -70,10 +70,10 @@ Ext.define('Ext.chart.Navigation', {
             }
             else {
                 zoomer = {
-                    x : zoomArea.x / xScale,
-                    y : zoomArea.y / yScale,
-                    width : zoomArea.width / xScale,
-                    height : zoomArea.height / yScale
+                    x: zoomArea.x / xScale,
+                    y: zoomArea.y / yScale,
+                    width: zoomArea.width / xScale,
+                    height: zoomArea.height / yScale
                 };
                 ends = axis.calcEnds();
                 if (horizontal) {
@@ -106,7 +106,7 @@ Ext.define('Ext.chart.Navigation', {
      *
      *     myChart.restoreZoom();
      */
-    restoreZoom: function() {
+    restoreZoom: function () {
         var me = this,
             axesItems = me.axes.items,
             i, ln, axis;

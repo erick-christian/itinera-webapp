@@ -52,7 +52,7 @@ Ext.define('Ext.event.gesture.DoubleTap', {
 
     lastTapTime: 0,
 
-    onTouchStart: function(e) {
+    onTouchStart: function (e) {
         var me = this,
             lastStartPoint;
 
@@ -70,7 +70,7 @@ Ext.define('Ext.event.gesture.DoubleTap', {
         clearTimeout(me.singleTapTimer);
     },
 
-    onTouchMove: function(e) {
+    onTouchMove: function (e) {
         var me = this,
             point = e.changedTouches[0].point;
 
@@ -80,7 +80,7 @@ Ext.define('Ext.event.gesture.DoubleTap', {
         }
     },
 
-    onTouchEnd: function(e) {
+    onTouchEnd: function (e) {
         var me = this,
             maxDuration = me.getMaxDuration(),
             time = e.time,
@@ -97,7 +97,7 @@ Ext.define('Ext.event.gesture.DoubleTap', {
             duration = time - lastTapTime;
 
             if (duration <= maxDuration &&
-                    Math.abs(point.getDistanceTo(me.startPoint)) <= me.getTapDistance()) {
+                Math.abs(point.getDistanceTo(me.startPoint)) <= me.getTapDistance()) {
                 if (target !== lastTarget) {
                     return me.fail(me.self.DIFFERENT_TARGET);
                 }
@@ -124,15 +124,15 @@ Ext.define('Ext.event.gesture.DoubleTap', {
         }
     },
 
-    setSingleTapTimer: function(e) {
+    setSingleTapTimer: function (e) {
         var me = this;
 
-        me.singleTapTimer = Ext.defer(function() {
+        me.singleTapTimer = Ext.defer(function () {
             me.fireSingleTap(e);
         }, me.getMaxDuration());
     },
 
-    fireSingleTap: function(e, touch) {
+    fireSingleTap: function (e, touch) {
         this.fire('singletap', e, {
             touch: touch
         });
@@ -140,14 +140,14 @@ Ext.define('Ext.event.gesture.DoubleTap', {
         this.startPoint = null;
     },
 
-    reset: function() {
+    reset: function () {
         var me = this;
 
         me.startTime = me.lastTapTime = 0;
 
         me.lastStartPoint = me.startPoint = me.singleTapTimer = null;
     }
-}, function(DoubleTap) {
+}, function (DoubleTap) {
     var gestures = Ext.manifest.gestures;
     DoubleTap.instance = new DoubleTap(gestures && gestures.doubleTap);
 });

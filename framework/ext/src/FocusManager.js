@@ -12,7 +12,7 @@ Ext.define('Ext.FocusManager', {
      * Whether or not the FocusManager is currently enabled
      */
     enabled: true,
-    
+
     enable: Ext.emptyFn,
     disable: Ext.emptyFn
 });

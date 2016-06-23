@@ -29,7 +29,7 @@ Ext.define('Ext.chart.axis.Radial', {
      * The number of circles to draw outward from the center.
      */
 
-    drawAxis: function(init) {
+    drawAxis: function (init) {
         var chart = this.chart,
             surface = chart.surface,
             bbox = chart.chartBBox,
@@ -37,7 +37,7 @@ Ext.define('Ext.chart.axis.Radial', {
             l = store.getCount(),
             centerX = bbox.x + (bbox.width / 2),
             centerY = bbox.y + (bbox.height / 2),
-            rho = Math.min(bbox.width, bbox.height) /2,
+            rho = Math.min(bbox.width, bbox.height) / 2,
             sprites = [], sprite,
             steps = this.steps,
             i, j, pi2 = Math.PI * 2,
@@ -99,7 +99,7 @@ Ext.define('Ext.chart.axis.Radial', {
         this.drawLabel();
     },
 
-    drawLabel: function() {
+    drawLabel: function () {
         var chart = this.chart,
             seriesItems = chart.series.items,
             series,
@@ -110,7 +110,7 @@ Ext.define('Ext.chart.axis.Radial', {
             ln, record,
             centerX = bbox.x + (bbox.width / 2),
             centerY = bbox.y + (bbox.height / 2),
-            rho = Math.min(bbox.width, bbox.height) /2,
+            rho = Math.min(bbox.width, bbox.height) / 2,
             max = Math.max, round = Math.round,
             labelArray = [], label,
             fields = [], nfields,
@@ -135,7 +135,7 @@ Ext.define('Ext.chart.axis.Radial', {
             fields.push(series.yField);
             xField = series.xField;
         }
-        
+
         //get maxValue to interpolate
         for (j = 0, ln = data.length; j < ln; j++) {
             record = data[j];
@@ -176,7 +176,7 @@ Ext.define('Ext.chart.axis.Radial', {
                         text: categories[j],
                         x: centerX + dx,
                         y: centerY + dy,
-                        'text-anchor': dx * dx <= 0.001? 'middle' : (dx < 0? 'end' : 'start')
+                        'text-anchor': dx * dx <= 0.001 ? 'middle' : (dx < 0 ? 'end' : 'start')
                     });
                     label.setAttributes({
                         hidden: false
@@ -211,7 +211,7 @@ Ext.define('Ext.chart.axis.Radial', {
                             text: categories[j],
                             x: centerX + dx,
                             y: centerY + dy,
-                            'text-anchor': dx * dx <= 0.001? 'middle' : (dx < 0? 'end' : 'start')
+                            'text-anchor': dx * dx <= 0.001 ? 'middle' : (dx < 0 ? 'end' : 'start')
                         }, true);
                     }
                 }
@@ -220,7 +220,7 @@ Ext.define('Ext.chart.axis.Radial', {
         this.labelArray = labelArray;
     },
 
-    processView: function() {
+    processView: function () {
         var me = this,
             seriesItems = me.chart.series.items,
             i, ln, series, ends, fields = [];

@@ -93,15 +93,15 @@ Ext.define('Ext.chart.series.Series', {
      * @param {Ext.data.Store} store The store for the chart.
      * @return {Object} The attributes the sprite will use to render.
      */
-    renderer: function(sprite, record, attributes, index, store) {
+    renderer: function (sprite, record, attributes, index, store) {
         return attributes;
     },
 
     /**
      * @cfg {Array} shadowAttributes
      * An array with shadow attributes.
-     * 
-     * Defaults to: 
+     *
+     * Defaults to:
      *
      *     [{
      *         "stroke-width": 6,
@@ -131,11 +131,11 @@ Ext.define('Ext.chart.series.Series', {
      *         }
      *     }]
      *
-     * Each object in the array will be applied to a sprite to make up the 
-     * underlying shadow. 
+     * Each object in the array will be applied to a sprite to make up the
+     * underlying shadow.
      *
      * Only applicable when the chart's shadow property is `true`.
-     * 
+     *
      */
     shadowAttributes: null,
 
@@ -143,10 +143,10 @@ Ext.define('Ext.chart.series.Series', {
     animating: false,
 
     // @private default gutters
-    nullGutters: { lower: 0, upper: 0, verticalAxis: undefined },
+    nullGutters: {lower: 0, upper: 0, verticalAxis: undefined},
 
     // @private default padding
-    nullPadding: { left:0, right:0, width:0, bottom:0, top:0, height:0 },
+    nullPadding: {left: 0, right: 0, width: 0, bottom: 0, top: 0, height: 0},
 
     /**
      * @event itemclick
@@ -154,35 +154,35 @@ Ext.define('Ext.chart.series.Series', {
      * @param {Object} item Target item object. See {@link #getItemFromPoint} for
      * description of object properties.
      */
-    
+
     /**
      * @event itemdblclick
      * Fires when the user double clicks on a marker.
      * @param {Object} item Target item object. See {@link #getItemFromPoint} for
      * description of object properties.
      */
-    
+
     /**
      * @event itemmouseover
      * Fires when the user hovers mouse cursor over a marker.
      * @param {Object} item Target item object. See {@link #getItemFromPoint} for
      * description of object properties.
      */
-    
+
     /**
      * @event itemmouseout
      * Fires when the user moves mouse cursor out of marker.
      * @param {Object} item Target item object. See {@link #getItemFromPoint} for
      * description of object properties.
      */
-    
+
     /**
      * @event itemmousedown
      * Fires when a marker receives mousedown event.
      * @param {Object} item Target item object. See {@link #getItemFromPoint} for
      * description of object properties.
      */
-    
+
     /**
      * @event itemmouseup
      * Fires when a marker receives mouseup event.
@@ -190,7 +190,7 @@ Ext.define('Ext.chart.series.Series', {
      * description of object properties.
      */
 
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this;
         if (config) {
             Ext.apply(me, config);
@@ -211,16 +211,16 @@ Ext.define('Ext.chart.series.Series', {
             itemmouseout: me.onItemMouseOut,
             mouseleave: me.onMouseLeave
         });
-        
+
         if (me.style) {
             Ext.apply(me.seriesStyle, me.style);
         }
     },
-    
+
     initialize: Ext.emptyFn,
-    
+
     onRedraw: Ext.emptyFn,
-    
+
     /**
      * Iterate over each of the records for this series. The default implementation simply iterates
      * through the entire data store, but individual series implementations can override this to
@@ -228,7 +228,7 @@ Ext.define('Ext.chart.series.Series', {
      * @param {Function} fn The function to execute for each record.
      * @param {Object} scope Scope for the fn.
      */
-    eachRecord: function(fn, scope) {
+    eachRecord: function (fn, scope) {
         var chart = this.chart;
         chart.getChartStore().each(fn, scope);
     },
@@ -237,7 +237,7 @@ Ext.define('Ext.chart.series.Series', {
      * Return the number of records being displayed in this series. Defaults to the number of
      * records in the store; individual series implementations can override to provide custom handling.
      */
-    getRecordCount: function() {
+    getRecordCount: function () {
         var chart = this.chart,
             store = chart.getChartStore();
         return store ? store.getCount() : 0;
@@ -247,17 +247,17 @@ Ext.define('Ext.chart.series.Series', {
      * Determines whether the series item at the given index has been excluded, i.e. toggled off in the legend.
      * @param index
      */
-    isExcluded: function(index) {
+    isExcluded: function (index) {
         var excludes = this.__excludes;
         return !!(excludes && excludes[index]);
     },
 
     // @private set the bbox and clipBox for the series
-    setBBox: function(noGutter) {
+    setBBox: function (noGutter) {
         var me = this,
             chart = me.chart,
             chartBBox = chart.chartBBox,
-            maxGutters = noGutter ? { left: 0, right: 0, bottom: 0, top: 0 } : chart.maxGutters,
+            maxGutters = noGutter ? {left: 0, right: 0, bottom: 0, top: 0} : chart.maxGutters,
             clipBox, bbox;
 
         clipBox = {
@@ -278,7 +278,7 @@ Ext.define('Ext.chart.series.Series', {
     },
 
     // @private set the animation for the sprite
-    onAnimate: function(sprite, attr) {
+    onAnimate: function (sprite, attr) {
         var me = this;
         sprite.stopAnimation();
         if (me.animating) {
@@ -287,7 +287,7 @@ Ext.define('Ext.chart.series.Series', {
             me.animating = true;
             return sprite.animate(Ext.apply(Ext.applyIf(attr, me.chart.animate), {
                 // use callback, don't overwrite listeners
-                callback: function() {
+                callback: function () {
                     me.animating = false;
                     me.fireEvent('afterrender', me);
                 }
@@ -296,17 +296,17 @@ Ext.define('Ext.chart.series.Series', {
     },
 
     // @private return the gutters.
-    getGutters: function() {
+    getGutters: function () {
         return this.nullGutters;
     },
 
     // @private return the gutters.
-    getPadding: function() {
+    getPadding: function () {
         return this.nullPadding;
     },
 
     // @private wrapper for the itemmouseover event.
-    onItemMouseOver: function(item) {
+    onItemMouseOver: function (item) {
         var me = this;
         if (item.series === me) {
             if (me.highlight) {
@@ -319,7 +319,7 @@ Ext.define('Ext.chart.series.Series', {
     },
 
     // @private wrapper for the itemmouseout event.
-    onItemMouseOut: function(item) {
+    onItemMouseOut: function (item) {
         var me = this;
         if (item.series === me) {
             me.unHighlightItem();
@@ -330,7 +330,7 @@ Ext.define('Ext.chart.series.Series', {
     },
 
     // @private wrapper for the mouseleave event.
-    onMouseLeave: function() {
+    onMouseLeave: function () {
         var me = this;
         me.unHighlightItem();
         if (me.tooltip) {
@@ -351,7 +351,7 @@ Ext.define('Ext.chart.series.Series', {
      * for this data item, which can be used as e.g. a tooltip anchor point.
      * @return {Ext.draw.Sprite} return.sprite the item's rendering Sprite.
      */
-    getItemForPoint: function(x, y) {
+    getItemForPoint: function (x, y) {
         //if there are no items to query just return null.
         if (!this.items || !this.items.length || this.seriesIsHidden) {
             return null;
@@ -373,14 +373,14 @@ Ext.define('Ext.chart.series.Series', {
         return null;
     },
 
-    isItemInPoint: function(x, y, item, i) {
+    isItemInPoint: function (x, y, item, i) {
         return false;
     },
 
     /**
      * Hides all the elements in the series.
      */
-    hideAll: function() {
+    hideAll: function () {
         var me = this,
             items = me.items,
             item, len, i, j, l, sprite, shadows;
@@ -415,7 +415,7 @@ Ext.define('Ext.chart.series.Series', {
     /**
      * Shows all the elements in the series.
      */
-    showAll: function() {
+    showAll: function () {
         var me = this,
             prevAnimate = me.chart.animate;
         me.chart.animate = false;
@@ -424,13 +424,13 @@ Ext.define('Ext.chart.series.Series', {
         me.drawSeries();
         me.chart.animate = prevAnimate;
     },
-    
-    hide: function() {
+
+    hide: function () {
         if (this.items) {
             var me = this,
                 items = me.items,
                 i, j, lsh, ln, shadows;
-            
+
             if (items && items.length) {
                 for (i = 0, ln = items.length; i < ln; ++i) {
                     if (items[i].sprite) {
@@ -452,7 +452,7 @@ Ext.define('Ext.chart.series.Series', {
     /**
      * Returns a string with the color to be used for the series legend item.
      */
-    getLegendColor: function(index) {
+    getLegendColor: function (index) {
         var me = this, fill, stroke;
         if (me.seriesStyle) {
             fill = me.seriesStyle.fill;
@@ -460,11 +460,11 @@ Ext.define('Ext.chart.series.Series', {
             if (fill && fill != 'none') {
                 return fill;
             }
-            if(stroke){
+            if (stroke) {
                 return stroke;
             }
         }
-        return (me.colorArrayStyle)?me.colorArrayStyle[me.themeIdx % me.colorArrayStyle.length]:'#000';
+        return (me.colorArrayStyle) ? me.colorArrayStyle[me.themeIdx % me.colorArrayStyle.length] : '#000';
     },
 
     /**
@@ -472,7 +472,7 @@ Ext.define('Ext.chart.series.Series', {
      * @private
      * @param {Number} index The index of the current item
      */
-    visibleInLegend: function(index){
+    visibleInLegend: function (index) {
         var excludes = this.__excludes;
         if (excludes) {
             return !excludes[index];
@@ -491,7 +491,7 @@ Ext.define('Ext.chart.series.Series', {
      * @param {Number} index
      * @param {String} title
      */
-    setTitle: function(index, title) {
+    setTitle: function (index, title) {
         var me = this,
             oldTitle = me.title;
 

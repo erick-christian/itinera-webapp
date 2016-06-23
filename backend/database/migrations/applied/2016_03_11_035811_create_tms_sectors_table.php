@@ -18,24 +18,27 @@ class CreateTmsSectorsTable extends Migration
 
         Schema::create('tms_sectors' , function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
 
-            $table->integer('sector_id');
+            $table->string('sector_code');
             $table->string('sector_name');
-            $table->string('sector_state');
-            $table->string('sector_country');
-            $table->char('is_active');
-            $table->date('inactive_date');
-            $table->float('longitude');
-            $table->float('latitude');
+            $table->string('country_code');
+            $table->string('state_code');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->string('geocode_url');
+
+            $table->date('inactive_date');
+            $table->char('is_active' , 3);
+
+            /* Enable Timestamps */
+            $table->timestamps();
 
             /* Enable Soft Delete*/
             $table->softDeletes();
 
             /* Indexes */
-            $table->unique(['sector_id']);
-            $table->index(['sector_name']);
+            $table->unique(['sector_code'] , 'idxSectorCode');
+            $table->index(['sector_name'] , 'idxSectorName');
 
         });
     }

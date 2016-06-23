@@ -4,7 +4,7 @@
 Ext.define('Ext.AnimationQueue', {
     singleton: true,
 
-    constructor: function() {
+    constructor: function () {
         this.queue = [];
         this.taskQueue = [];
         this.runningQueue = [];
@@ -30,7 +30,7 @@ Ext.define('Ext.AnimationQueue', {
      * @param {Object} [scope]
      * @param {Object} [args]
      */
-    start: function(fn, scope, args) {
+    start: function (fn, scope, args) {
         this.queue.push(arguments);
 
         if (!this.isRunning) {
@@ -54,13 +54,13 @@ Ext.define('Ext.AnimationQueue', {
         }
     },
 
-    watch: function() {
+    watch: function () {
         if (this.isRunning && Ext.now() - this.lastRunTime >= 500) {
             this.run();
         }
     },
 
-    run: function() {
+    run: function () {
         if (!this.isRunning) {
             return;
         }
@@ -101,16 +101,16 @@ Ext.define('Ext.AnimationQueue', {
     onStop: Ext.emptyFn,
     //</debug>
 
-    doStart: function() {
+    doStart: function () {
         this.animationFrameId = Ext.Function.requestAnimationFrame(this.run);
         this.lastRunTime = Ext.now();
     },
 
-    doIterate: function() {
+    doIterate: function () {
         this.animationFrameId = Ext.Function.requestAnimationFrame(this.run);
     },
 
-    doStop: function() {
+    doStop: function () {
         Ext.Function.cancelAnimationFrame(this.animationFrameId);
     },
 
@@ -120,7 +120,7 @@ Ext.define('Ext.AnimationQueue', {
      * @param {Object} [scope]
      * @param {Object} [args]
      */
-    stop: function(fn, scope, args) {
+    stop: function (fn, scope, args) {
         if (!this.isRunning) {
             return;
         }
@@ -149,7 +149,7 @@ Ext.define('Ext.AnimationQueue', {
         }
     },
 
-    onIdle: function(fn, scope, args) {
+    onIdle: function (fn, scope, args) {
         var listeners = this.idleQueue,
             i, ln, listener;
 
@@ -167,7 +167,7 @@ Ext.define('Ext.AnimationQueue', {
         }
     },
 
-    unIdle: function(fn, scope, args) {
+    unIdle: function (fn, scope, args) {
         var listeners = this.idleQueue,
             i, ln, listener;
 
@@ -182,12 +182,12 @@ Ext.define('Ext.AnimationQueue', {
         return false;
     },
 
-    queueTask: function(fn, scope, args) {
+    queueTask: function (fn, scope, args) {
         this.taskQueue.push(arguments);
         this.processTaskQueue();
     },
 
-    dequeueTask: function(fn, scope, args) {
+    dequeueTask: function (fn, scope, args) {
         var listeners = this.taskQueue,
             i, ln, listener;
 
@@ -201,7 +201,7 @@ Ext.define('Ext.AnimationQueue', {
         }
     },
 
-    invoke: function(listener) {
+    invoke: function (listener) {
         var fn = listener[0],
             scope = listener[1],
             args = listener[2];
@@ -216,18 +216,18 @@ Ext.define('Ext.AnimationQueue', {
         }
     },
 
-    whenIdle: function() {
+    whenIdle: function () {
         this.isIdle = true;
         this.processIdleQueue();
     },
 
-    processIdleQueue: function() {
+    processIdleQueue: function () {
         if (!this.hasOwnProperty('idleQueueTimer')) {
             this.idleQueueTimer = Ext.defer(this.processIdleQueueItem, 1, this);
         }
     },
 
-    processIdleQueueItem: function() {
+    processIdleQueueItem: function () {
         delete this.idleQueueTimer;
 
         if (!this.isIdle) {
@@ -244,13 +244,13 @@ Ext.define('Ext.AnimationQueue', {
         }
     },
 
-    processTaskQueue: function() {
+    processTaskQueue: function () {
         if (!this.hasOwnProperty('taskQueueTimer')) {
             this.taskQueueTimer = Ext.defer(this.processTaskQueueItem, 15, this);
         }
     },
 
-    processTaskQueueItem: function() {
+    processTaskQueueItem: function () {
         delete this.taskQueueTimer;
 
         var listeners = this.taskQueue,
@@ -263,17 +263,17 @@ Ext.define('Ext.AnimationQueue', {
         }
     },
 
-    showFps: function() {
-        Ext.onInternalReady(function() {
+    showFps: function () {
+        Ext.onInternalReady(function () {
             Ext.Viewport.add([{
-                    xtype: 'component',
-                    bottom: 50,
-                    left: 0,
-                    width: 50,
-                    height: 20,
-                    html: 'Average',
-                    style: 'background-color: black; color: white; text-align: center; line-height: 20px; font-size: 8px;'
-                },
+                xtype: 'component',
+                bottom: 50,
+                left: 0,
+                width: 50,
+                height: 20,
+                html: 'Average',
+                style: 'background-color: black; color: white; text-align: center; line-height: 20px; font-size: 8px;'
+            },
                 {
                     id: '__averageFps',
                     xtype: 'component',
@@ -347,7 +347,7 @@ Ext.define('Ext.AnimationQueue', {
 
     },
 
-    resetFps: function() {
+    resetFps: function () {
         var currentFps = Ext.getCmp('__currentFps'),
             averageFps = Ext.getCmp('__averageFps'),
             minFps = Ext.getCmp('__minFps'),
@@ -357,7 +357,7 @@ Ext.define('Ext.AnimationQueue', {
             count = 0,
             sum = 0;
 
-        Ext.AnimationQueue.onFpsChanged = function(fps) {
+        Ext.AnimationQueue.onFpsChanged = function (fps) {
             count++;
 
             if (!(count % 10)) {
@@ -374,10 +374,10 @@ Ext.define('Ext.AnimationQueue', {
             maxFps.setHtml(Math.round(max));
         };
     }
-}, function() {
+}, function () {
     /*
-        Global FPS indicator. Add ?showfps to use in any application. Note that this REQUIRES true requestAnimationFrame
-        to be accurate.
+     Global FPS indicator. Add ?showfps to use in any application. Note that this REQUIRES true requestAnimationFrame
+     to be accurate.
      */
     //<debug>
     var paramsString = window.location.search.substr(1),

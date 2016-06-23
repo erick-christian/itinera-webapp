@@ -58,7 +58,7 @@ Ext.define('Ext.draw.Text', {
     autoSize: true,
     baseCls: Ext.baseCSSPrefix + 'surface ' + Ext.baseCSSPrefix + 'draw-text',
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this;
 
         me.textConfig = Ext.apply({
@@ -81,7 +81,7 @@ Ext.define('Ext.draw.Text', {
      * Accumulates a style object based upon the styles specified in document stylesheets
      * by an array of CSS selectors
      */
-    getStyles: function(selectors) {
+    getStyles: function (selectors) {
         selectors = Ext.Array.from(selectors);
         var i = 0,
             len = selectors.length,
@@ -114,11 +114,11 @@ Ext.define('Ext.draw.Text', {
      * @param {Number} degrees The clockwise angle (in degrees) from the horizontal axis
      * by which the text should be rotated.
      */
-    setAngle: function(degrees) {
+    setAngle: function (degrees) {
         var me = this,
             surface,
             sprite;
-            
+
         if (me.rendered) {
             surface = me.surface;
             sprite = surface.items.items[0];
@@ -141,11 +141,11 @@ Ext.define('Ext.draw.Text', {
      * Updates this item's text.
      * @param {String} t The text to display (html **not** accepted).
      */
-    setText: function(text) {
+    setText: function (text) {
         var me = this,
             surface,
             sprite;
-            
+
         if (me.rendered) {
             surface = me.surface;
             sprite = surface.items.items[0];
@@ -165,7 +165,7 @@ Ext.define('Ext.draw.Text', {
             }
         } else {
             me.on({
-                render: function() {
+                render: function () {
                     me.setText(text);
                 },
                 single: true

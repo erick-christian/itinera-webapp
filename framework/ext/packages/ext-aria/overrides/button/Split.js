@@ -1,11 +1,11 @@
 /** */
 Ext.define('Ext.aria.button.Split', {
     override: 'Ext.button.Split'
-    
+
     //<debug>
-    , constructor: function(config) {
+    , constructor: function (config) {
         var ownerCt = config.ownerCt;
-        
+
         // Warn unless the button belongs to a date picker,
         // the user can't do anything about that
         // Also don't warn if we're under the slicer
@@ -17,7 +17,7 @@ Ext.define('Ext.aria.button.Split', {
                 "Authoring guide: http://www.w3.org/TR/wai-aria-practices/#menubutton"
             );
         }
-        
+
         this.callParent(arguments);
     }
     //</debug>

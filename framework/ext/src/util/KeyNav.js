@@ -129,7 +129,7 @@ Ext.define('Ext.util.KeyNav', {
         }
     },
 
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this;
         if (arguments.length === 2) {
             me.legacyConstructor.apply(me, arguments);
@@ -144,7 +144,7 @@ Ext.define('Ext.util.KeyNav', {
      * @param {String/HTMLElement/Ext.dom.Element} el The element or its ID to bind to
      * @param {Object} config The config
      */
-    legacyConstructor: function(el, config) {
+    legacyConstructor: function (el, config) {
         this.doConstruction(Ext.apply({
             target: el
         }, config));
@@ -155,7 +155,7 @@ Ext.define('Ext.util.KeyNav', {
      * @private
      * @param {Object} config A configuration object as specified in the constructor.
      */
-    doConstruction: function(config) {
+    doConstruction: function (config) {
         var me = this,
             keymapCfg = {
                 target: config.target,
@@ -174,7 +174,7 @@ Ext.define('Ext.util.KeyNav', {
 
         if (config.processEvent) {
             keymapCfg.processEvent = config.processEvent;
-            keymapCfg.processEventScope = config.processEventScope||me;
+            keymapCfg.processEventScope = config.processEventScope || me;
         }
 
         // If they specified a KeyMap to use, use it
@@ -195,7 +195,7 @@ Ext.define('Ext.util.KeyNav', {
         }
     },
 
-    addBindings: function(bindings) {
+    addBindings: function (bindings) {
         var me = this,
             keyName,
             binding,
@@ -221,7 +221,7 @@ Ext.define('Ext.util.KeyNav', {
                     ctrl: binding.ctrl,
                     shift: binding.shift,
                     alt: binding.alt,
-                    handler: Ext.Function.bind(me.handleEvent, binding.scope||defaultScope, [binding.handler||binding.fn, me], true),
+                    handler: Ext.Function.bind(me.handleEvent, binding.scope || defaultScope, [binding.handler || binding.fn, me], true),
                     defaultEventAction: (binding.defaultEventAction !== undefined) ? binding.defaultEventAction : me.defaultEventAction
                 });
             }
@@ -236,7 +236,7 @@ Ext.define('Ext.util.KeyNav', {
      * @param {Function} handler The function to call
      * @param {Ext.util.KeyNav} keyNav The owning KeyNav
      */
-    handleEvent: function(keyCode, event, handler, keyNav) {
+    handleEvent: function (keyCode, event, handler, keyNav) {
         keyNav.lastKeyEvent = event;
         return handler.call(this, event);
     },
@@ -245,7 +245,7 @@ Ext.define('Ext.util.KeyNav', {
      * Destroy this KeyNav.
      * @param {Boolean} removeEl Pass `true` to remove the element associated with this KeyNav.
      */
-    destroy: function(removeEl) {
+    destroy: function (removeEl) {
         if (this.destroyKeyMap) {
             this.map.destroy(removeEl);
         }
@@ -255,7 +255,7 @@ Ext.define('Ext.util.KeyNav', {
     /**
      * Enables this KeyNav.
      */
-    enable: function() {
+    enable: function () {
         // this.map will be removed if destroyed
         if (this.map) {
             this.map.enable();
@@ -266,7 +266,7 @@ Ext.define('Ext.util.KeyNav', {
     /**
      * Disables this KeyNav.
      */
-    disable: function() {
+    disable: function () {
         // this.map will be removed if destroyed
         if (this.map) {
             this.map.disable();
@@ -278,7 +278,7 @@ Ext.define('Ext.util.KeyNav', {
      * Convenience function for setting disabled/enabled by boolean.
      * @param {Boolean} disabled
      */
-    setDisabled : function(disabled) {
+    setDisabled: function (disabled) {
         this.map.setDisabled(disabled);
         this.disabled = disabled;
     },
@@ -290,11 +290,11 @@ Ext.define('Ext.util.KeyNav', {
      *
      * @return {String} The type of event to listen for.
      */
-    getKeyEvent: function(forceKeyDown, configuredEventName) {
+    getKeyEvent: function (forceKeyDown, configuredEventName) {
         if (forceKeyDown || (Ext.supports.SpecialKeyDownRepeat && !configuredEventName)) {
             return 'keydown';
         } else {
-            return configuredEventName||this.eventName;
+            return configuredEventName || this.eventName;
         }
     }
 });

@@ -15,10 +15,10 @@ Ext.define('Ext.fx.target.CompositeSprite', {
 
     /* End Definitions */
 
-    getAttr: function(attr, val) {
-        var out     = [],
+    getAttr: function (attr, val) {
+        var out = [],
             sprites = [].concat(this.target.items),
-            length  = sprites.length,
+            length = sprites.length,
             i, sprite;
 
         for (i = 0; i < length; i++) {

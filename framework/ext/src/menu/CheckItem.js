@@ -24,12 +24,12 @@
 Ext.define('Ext.menu.CheckItem', {
     extend: 'Ext.menu.Item',
     alias: 'widget.menucheckitem',
-    
+
     /**
      * @cfg {Boolean} [checked=false]
      * True to render the menuitem initially checked.
      */
-    
+
     /**
      * @cfg {Function/String} checkHandler
      * Alternative for the {@link #checkchange} event.  Gets called with the same parameters.
@@ -40,7 +40,7 @@ Ext.define('Ext.menu.CheckItem', {
      * @cfg {Object} scope
      * Scope for the {@link #checkHandler} callback.
      */
-    
+
     /**
      * @cfg {String} group
      * Name of a radio group that the item belongs.
@@ -76,19 +76,19 @@ Ext.define('Ext.menu.CheckItem', {
      * Defaults to `false` for checkbox items, and to `true` for radio group items.
      */
     hideOnClick: false,
-    
+
     /**
      * @cfg {Boolean} [checkChangeDisabled=false]
      * True to prevent the checked item from being toggled. Any submenu will still be accessible.
      */
     checkChangeDisabled: false,
-    
+
     ariaRole: 'menuitemcheckbox',
 
     childEls: [
         'checkEl'
     ],
-    
+
     showCheckbox: true,
 
     isMenuCheckItem: true,
@@ -109,9 +109,9 @@ Ext.define('Ext.menu.CheckItem', {
      * @param {Boolean} checked
      */
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this;
-        
+
         // coerce to bool straight away
         me.checked = !!me.checked;
 
@@ -124,8 +124,8 @@ Ext.define('Ext.menu.CheckItem', {
             }
         }
     },
-    
-    beforeRender: function() {
+
+    beforeRender: function () {
         var me = this;
 
         me.callParent();
@@ -134,8 +134,8 @@ Ext.define('Ext.menu.CheckItem', {
             showCheckbox: me.showCheckbox
         });
     },
-    
-    afterRender: function() {
+
+    afterRender: function () {
         var me = this;
         me.callParent();
         me.checked = !me.checked;
@@ -144,12 +144,12 @@ Ext.define('Ext.menu.CheckItem', {
             me.disableCheckChange();
         }
     },
-    
+
     /**
      * Disables just the checkbox functionality of this menu Item. If this menu item has a submenu, that submenu
      * will still be accessible
      */
-    disableCheckChange: function() {
+    disableCheckChange: function () {
         var me = this,
             checkEl = me.checkEl;
 
@@ -164,20 +164,20 @@ Ext.define('Ext.menu.CheckItem', {
     },
 
     /**
-     * Re-enables the checkbox functionality of this menu item after having been 
+     * Re-enables the checkbox functionality of this menu item after having been
      * disabled by {@link #disableCheckChange}
      */
-    enableCheckChange: function() {
+    enableCheckChange: function () {
         var me = this,
             checkEl = me.checkEl;
-            
+
         if (checkEl) {
             checkEl.removeCls(me.disabledCls);
         }
         me.checkChangeDisabled = false;
     },
 
-    onClick: function(e) {
+    onClick: function (e) {
         var me = this;
 
         if (!me.disabled && !me.checkChangeDisabled && !(me.checked && me.group)) {
@@ -192,7 +192,7 @@ Ext.define('Ext.menu.CheckItem', {
         this.callParent([e]);
     },
 
-    onDestroy: function() {
+    onDestroy: function () {
         Ext.menu.Manager.unregisterCheckable(this);
         this.callParent(arguments);
     },
@@ -202,7 +202,7 @@ Ext.define('Ext.menu.CheckItem', {
      * @param {Boolean} checked True to check, false to un-check
      * @param {Boolean} [suppressEvents=false] True to prevent firing the checkchange events.
      */
-    setChecked: function(checked, suppressEvents) {
+    setChecked: function (checked, suppressEvents) {
         var me = this,
             checkedCls = me.checkedCls,
             uncheckedCls = me.uncheckedCls,

@@ -128,7 +128,7 @@ Ext.define('Ext.plugin.AbstractClipboard', {
             // If we have a keyMap then we have incremented the shared usage counter
             // and now need to remove ourselves.
             me.keyMap = Ext.destroy(keyMap);
-            if (! --shared.counter) {
+            if (!--shared.counter) {
                 shared.textArea = Ext.destroy(shared.textArea);
             }
         } else {
@@ -198,7 +198,7 @@ Ext.define('Ext.plugin.AbstractClipboard', {
 
             //<debug>
             if (value) {
-                for (var i = value.length; i-- > 0; ) {
+                for (var i = value.length; i-- > 0;) {
                     if (value[i] === 'system') {
                         Ext.Error.raise('Invalid clipboard format "' + value[i] + '"');
                     }
@@ -223,7 +223,7 @@ Ext.define('Ext.plugin.AbstractClipboard', {
             if (value) {
                 var formats = this.getFormats();
 
-                for (var i = value.length; i-- > 0; ) {
+                for (var i = value.length; i-- > 0;) {
                     if (value[i] !== 'system' && !formats[value[i]]) {
                         Ext.Error.raise('Invalid clipboard format "' + value[i] + '"');
                     }
@@ -323,7 +323,7 @@ Ext.define('Ext.plugin.AbstractClipboard', {
                     names = Ext.Object.getAllKeys(formats);
                 }
 
-                for (i = names.length; i-- > 0; ) {
+                for (i = names.length; i-- > 0;) {
                     data[name] = me[formats[name].get](name, erase && !i);
                 }
             }
@@ -391,7 +391,7 @@ Ext.define('Ext.plugin.AbstractClipboard', {
                 area, focusEl;
 
             if (clippy && clippy.getData) {
-                 me.doPaste(format, clippy.getData("text"));
+                me.doPaste(format, clippy.getData("text"));
             } else {
                 focusEl = Ext.Element.getActiveElement();
                 area = me.getHiddenTextArea().dom;
@@ -452,7 +452,7 @@ Ext.define('Ext.plugin.AbstractClipboard', {
             }
 
             if (memory) {
-                for (i = memory.length; i-- > 0; ) {
+                for (i = memory.length; i-- > 0;) {
                     s = memory[i];
                     map[s] = map[s] ? 3 : 2;
                 }

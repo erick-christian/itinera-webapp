@@ -29,6 +29,10 @@ Ext.application({
         Ext.create('access.view.winAccess', {renderTo: Ext.getBody()});
         Ext.QuickTips.init();
 
+        var appIcon = '../../framework/terian/image/icono_itinera.ico';
+        trex.changeAppIcon(appIcon);
+        Ext.getDoc().dom.title = 'ItineraTMS - Access';
+
         appLocal = this.getApplication();
         appLocal.prepareInterface();
     },
@@ -45,6 +49,21 @@ Ext.application({
 
         var functionSuccess = function(){
             var jsonData = trex.getInfoDataBridge('apiAccessLogin');
+            console.log(jsonData);
+
+            var objSession = new Object();
+            objSession.company_code = jsonData.sessionData.company_code;
+            objSession.company_name = jsonData.sessionData.company_name;
+            objSession.user_id = jsonData.sessionData.user_id;
+            objSession.user_name = jsonData.sessionData.user_name;
+            objSession.user_profile = jsonData.sessionData.user_profile;
+            objSession.user_email = jsonData.sessionData.user_email;
+            objSession.profile_code = jsonData.sessionData.profile_code;
+            objSession.system_code = jsonData.sessionData.system_code;
+            objSession.system_name = jsonData.sessionData.system_name;
+            objSession.system_version = jsonData.sessionData.system_version;
+
+            trex.generateSession(objSession);
             self.location="../workplace/index.html";
         };
 

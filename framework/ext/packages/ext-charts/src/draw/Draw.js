@@ -44,7 +44,7 @@ Ext.define('Ext.draw.Draw', {
         y: null
     },
 
-    is: function(o, type) {
+    is: function (o, type) {
         type = String(type).toLowerCase();
         return (type == "object" && o === Object(o)) ||
             (type == "undefined" && typeof o == type) ||
@@ -53,12 +53,12 @@ Ext.define('Ext.draw.Draw', {
             (Object.prototype.toString.call(o).toLowerCase().slice(8, -1)) == type;
     },
 
-    ellipsePath: function(sprite) {
+    ellipsePath: function (sprite) {
         var attr = sprite.attr;
         return Ext.String.format("M{0},{1}A{2},{3},0,1,1,{0},{4}A{2},{3},0,1,1,{0},{1}z", attr.x, attr.y - attr.ry, attr.rx, attr.ry, attr.y + attr.ry);
     },
 
-    rectPath: function(sprite) {
+    rectPath: function (sprite) {
         var attr = sprite.attr;
         if (attr.radius) {
             return Ext.String.format("M{0},{1}l{2},0a{3},{3},0,0,1,{3},{3}l0,{5}a{3},{3},0,0,1,{4},{3}l{6},0a{3},{3},0,0,1,{4},{4}l0,{7}a{3},{3},0,0,1,{3},{4}z", attr.x + attr.radius, attr.y, attr.width - attr.radius * 2, attr.radius, -attr.radius, attr.height - attr.radius * 2, attr.radius * 2 - attr.width, attr.radius * 2 - attr.height);
@@ -74,7 +74,7 @@ Ext.define('Ext.draw.Draw', {
     },
 
     // Convert the passed arrayPath to a proper SVG path string (d attribute)
-    pathToString: function(arrayPath) {
+    pathToString: function (arrayPath) {
         return arrayPath.join(",").replace(Ext.draw.Draw.pathToStringRE, "$1");
     },
 
@@ -120,7 +120,7 @@ Ext.define('Ext.draw.Draw', {
         path = this.path2curve(path);
         for (i = 0, ii = path.length; i < ii; i++) {
             pathi = path[i];
-            for (j = 1, jj = pathi.length; j < jj-1; j += 2) {
+            for (j = 1, jj = pathi.length; j < jj - 1; j += 2) {
                 x = matrix.x(pathi[j], pathi[j + 1]);
                 y = matrix.y(pathi[j], pathi[j + 1]);
                 pathi[j] = x;
@@ -130,7 +130,7 @@ Ext.define('Ext.draw.Draw', {
         return path;
     },
 
-    pathClone: function(pathArray) {
+    pathClone: function (pathArray) {
         var res = [],
             j, jj, i, ii;
         if (!this.is(pathArray, "array") || !this.is(pathArray && pathArray[0], "array")) { // rough assumption
@@ -192,7 +192,7 @@ Ext.define('Ext.draw.Draw', {
                         r[1] = +pathSegment[1] + x;
                         break;
                     case "M":
-                    // MoveTo
+                        // MoveTo
                         mx = +pathSegment[1] + x;
                         my = +pathSegment[2] + y;
                     default:
@@ -261,7 +261,7 @@ Ext.define('Ext.draw.Draw', {
             ii,
             jj,
             kk;
-        
+
         if (pathArray[0][0] == "M") {
             x = pathArray[0][1];
             y = pathArray[0][2];
@@ -334,19 +334,19 @@ Ext.define('Ext.draw.Draw', {
             ln = points.length,
             attrs = {x: 0, y: 0, bx: 0, by: 0, X: 0, Y: 0, qx: null, qy: null},
             i, seg, segLn, point;
-            
+
         for (i = 0; i < ln; i++) {
             points[i] = me.command2curve(points[i], attrs);
             if (points[i].length > 7) {
-                    points[i].shift();
-                    point = points[i];
-                    while (point.length) {
-                        Ext.Array.splice(points, i++, 0, ["C"].concat(Ext.Array.splice(point, 0, 6)));
-                    }
-                    Ext.Array.erase(points, i, 1);
-                    ln = points.length;
-                    i--;
+                points[i].shift();
+                point = points[i];
+                while (point.length) {
+                    Ext.Array.splice(points, i++, 0, ["C"].concat(Ext.Array.splice(point, 0, 6)));
                 }
+                Ext.Array.erase(points, i, 1);
+                ln = points.length;
+                i--;
+            }
             seg = points[i];
             segLn = seg.length;
             attrs.x = seg[segLn - 2];
@@ -356,7 +356,7 @@ Ext.define('Ext.draw.Draw', {
         }
         return points;
     },
-    
+
     interpolatePaths: function (path, path2) {
         var me = this,
             p = me.pathToAbsolute(path),
@@ -408,7 +408,7 @@ Ext.define('Ext.draw.Draw', {
         }
         return [p, p2];
     },
-    
+
     //Returns any path command as a curveto command based on the attrs passed
     command2curve: function (pathCommand, d) {
         var me = this;
@@ -459,15 +459,15 @@ Ext.define('Ext.draw.Draw', {
         var _13 = 1 / 3,
             _23 = 2 / 3;
         return [
-                _13 * x1 + _23 * ax,
-                _13 * y1 + _23 * ay,
-                _13 * x2 + _23 * ax,
-                _13 * y2 + _23 * ay,
-                x2,
-                y2
-            ];
+            _13 * x1 + _23 * ax,
+            _13 * y1 + _23 * ay,
+            _13 * x2 + _23 * ax,
+            _13 * y2 + _23 * ay,
+            x2,
+            y2
+        ];
     },
-    
+
     rotate: function (x, y, rad) {
         var cos = Math.cos(rad),
             sin = Math.sin(rad),
@@ -511,7 +511,7 @@ Ext.define('Ext.draw.Draw', {
             rx2 = rx * rx;
             ry2 = ry * ry;
             k = (large_arc_flag == sweep_flag ? -1 : 1) *
-                    msqrt(mabs((rx2 * ry2 - rx2 * y * y - ry2 * x * x) / (rx2 * y * y + ry2 * x * x)));
+                msqrt(mabs((rx2 * ry2 - rx2 * y * y - ry2 * x * x) / (rx2 * y * y + ry2 * x * x)));
             cx = k * rx * y / ry + (x1 + x2) / 2;
             cy = k * -ry * x / rx + (y1 + y2) / 2;
             f1 = masin(((y1 - cy) / ry).toFixed(7));
@@ -569,7 +569,7 @@ Ext.define('Ext.draw.Draw', {
             res = [m2, m3, m4].concat(res).join().split(",");
             newres = [];
             ln = res.length;
-            for (i = 0;  i < ln; i++) {
+            for (i = 0; i < ln; i++) {
                 newres[i] = i % 2 ? me.rotate(res[i - 1], res[i], rad).y : me.rotate(res[i], res[i + 1], rad).x;
             }
             return newres;
@@ -640,7 +640,7 @@ Ext.define('Ext.draw.Draw', {
             return {x: 0, y: 0, width: 0, height: 0};
         }
         path = this.path2curve(path);
-        var x = 0, 
+        var x = 0,
             y = 0,
             X = [],
             Y = [],
@@ -676,11 +676,11 @@ Ext.define('Ext.draw.Draw', {
         };
     },
 
-    intersectInside: function(path, cp1, cp2) {
+    intersectInside: function (path, cp1, cp2) {
         return (cp2[0] - cp1[0]) * (path[1] - cp1[1]) > (cp2[1] - cp1[1]) * (path[0] - cp1[0]);
     },
 
-    intersectIntersection: function(s, e, cp1, cp2) {
+    intersectIntersection: function (s, e, cp1, cp2) {
         var p = [],
             dcx = cp1[0] - cp2[0],
             dcy = cp1[1] - cp2[1],
@@ -695,7 +695,7 @@ Ext.define('Ext.draw.Draw', {
         return p;
     },
 
-    intersect: function(subjectPolygon, clipPolygon) {
+    intersect: function (subjectPolygon, clipPolygon) {
         var me = this,
             i = 0,
             ln = clipPolygon.length,
@@ -726,11 +726,11 @@ Ext.define('Ext.draw.Draw', {
         }
         return outputList;
     },
-    
-    bezier : function (a, b, c, d, x) {
+
+    bezier: function (a, b, c, d, x) {
         if (x === 0) {
             return a;
-        } 
+        }
         else if (x === 1) {
             return d;
         }
@@ -739,16 +739,16 @@ Ext.define('Ext.draw.Draw', {
             r = x / du;
         return d3 * (a + r * (3 * b + r * (3 * c + d * r)));
     },
-    
-    bezierDim : function (a, b, c, d) {
+
+    bezierDim: function (a, b, c, d) {
         var points = [], r,
             A, top, C, delta, bottom, s,
             min, max, i;
         // The min and max happens on boundary or b' == 0
-        if (a + 3 * c == d + 3 * b) {   
+        if (a + 3 * c == d + 3 * b) {
             r = a - b;
             r /= 2 * (a - b - b + c);
-            if ( r < 1 && r > 0) {
+            if (r < 1 && r > 0) {
                 points.push(r);
             }
         } else {
@@ -767,13 +767,13 @@ Ext.define('Ext.draw.Draw', {
             } else if (delta > 0) {
                 s = Math.sqrt(delta);
                 r = (s + top) / bottom;
-                
+
                 if (r < 1 && r > 0) {
                     points.push(r);
                 }
-                
+
                 r = (top - s) / bottom;
-                
+
                 if (r < 1 && r > 0) {
                     points.push(r);
                 }
@@ -787,7 +787,7 @@ Ext.define('Ext.draw.Draw', {
         }
         return [min, max];
     },
-    
+
     curveDim: function (p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y) {
         var x = this.bezierDim(p1x, c1x, c2x, p2x),
             y = this.bezierDim(p1y, c1y, c2y, p2y);
@@ -885,7 +885,7 @@ Ext.define('Ext.draw.Draw', {
             control2X -= abs(nextY - control2Y) * (control2X - curX) / (control2Y - curY);
             control2Y = nextY;
         }
-        
+
         return {
             x1: control1X,
             y1: control1Y,
@@ -916,7 +916,7 @@ Ext.define('Ext.draw.Draw', {
             pathip,
             pathipl,
             begl;
-        
+
         for (; i < ii; i++) {
             pathi = path[i];
             pathil = pathi.length;
@@ -990,9 +990,9 @@ Ext.define('Ext.draw.Draw', {
 
         floor = Math.floor(from / m) * m;
         if (from == floor && floor > 0) {
-            floor = Math.floor((from - (m/10)) / m) * m;
+            floor = Math.floor((from - (m / 10)) / m) * m;
         }
-        
+
         if (prettyNumbers) {
             for (i = 0; i < ln; i++) {
                 value = interval[i][0];
@@ -1030,7 +1030,7 @@ Ext.define('Ext.draw.Draw', {
             from = floor;
             stepCount = stepsMax;
         }
-        
+
         return {
             from: from,
             to: to,
@@ -1054,7 +1054,7 @@ Ext.define('Ext.draw.Draw', {
      * - to: The result end value, which may be higher than the original end value
      * - step: The fixed value size of each step, or undefined if the steps are not fixed.
      * - steps: The number of steps if the steps are fixed, or an array of step values.
-     
+
      * NOTE: Even when the steps have a fixed value, they may not divide the from/to range perfectly evenly;
      * there may be a smaller distance between the last step and the end value than between prior
      * steps, particularly when the `endsLocked` param is true. Therefore it is best to not use
@@ -1063,7 +1063,7 @@ Ext.define('Ext.draw.Draw', {
      */
     snapEndsByDate: function (from, to, stepsMax, lockEnds) {
         var selectedStep = false,
-            scales       = [
+            scales = [
                 [Ext.Date.MILLI, [1, 2, 5, 10, 20, 50, 100, 200, 250, 500]],
                 [Ext.Date.SECOND, [1, 2, 5, 10, 15, 30]],
                 [Ext.Date.MINUTE, [1, 2, 5, 10, 15, 30]],
@@ -1071,8 +1071,8 @@ Ext.define('Ext.draw.Draw', {
                 [Ext.Date.DAY, [1, 2, 7, 14]],
                 [Ext.Date.MONTH, [1, 2, 3, 6]]
             ],
-            sLen         = scales.length,
-            stop         = false,
+            sLen = scales.length,
+            stop = false,
             scale, j, yearDiff, s;
 
         // Find the most desirable scale
@@ -1082,7 +1082,7 @@ Ext.define('Ext.draw.Draw', {
                 for (j = 0; j < scale[1].length; j++) {
                     if (to < Ext.Date.add(from, scale[0], scale[1][j] * stepsMax)) {
                         selectedStep = [scale[0], scale[1][j]];
-                        stop         = true;
+                        stop = true;
                         break;
                     }
                 }
@@ -1103,7 +1103,7 @@ Ext.define('Ext.draw.Draw', {
      *
      * @param {Date} from The minimum value in the data
      * @param {Date} to The maximum value in the data
-     * @param {Array} step An array with two components: The first is the unit of the step (day, month, year, etc). 
+     * @param {Array} step An array with two components: The first is the unit of the step (day, month, year, etc).
      * The second is the number of units for the step (1, 2, etc.).
      * If the number is an integer, it represents the number of units for the step ([Ext.Date.DAY, 2] means "Every other day").
      * If the number is a fraction, it represents the number of steps per unit ([Ext.Date.DAY, 1/2] means "Twice a day").
@@ -1122,7 +1122,7 @@ Ext.define('Ext.draw.Draw', {
      * - to: The result end value, which may be higher than the original end value
      * - step: The fixed value size of each step, or undefined if the steps are not fixed.
      * - steps: The number of steps if the steps are fixed, or an array of step values.
-     
+
      * NOTE: Even when the steps have a fixed value, they may not divide the from/to range perfectly evenly;
      * there may be a smaller distance between the last step and the end value than between prior
      * steps, particularly when the `endsLocked` param is true. Therefore it is best to not use
@@ -1132,13 +1132,13 @@ Ext.define('Ext.draw.Draw', {
      * have uneven step distribution and dividing them in even intervals does not work correctly.
      */
 
-    snapEndsByDateAndStep: function(from, to, step, lockEnds) {
+    snapEndsByDateAndStep: function (from, to, step, lockEnds) {
         var fromStat = [from.getFullYear(), from.getMonth(), from.getDate(),
-            from.getHours(), from.getMinutes(), from.getSeconds(), from.getMilliseconds()],
+                from.getHours(), from.getMinutes(), from.getSeconds(), from.getMilliseconds()],
             testFrom, testTo, date, year, month, day, fractionalMonth, stepsArray,
             stepUnit = step[0], stepValue = step[1],
             steps = 0;
-        
+
         if (lockEnds) {
             testFrom = from;
         }
@@ -1146,23 +1146,23 @@ Ext.define('Ext.draw.Draw', {
             switch (stepUnit) {
                 case Ext.Date.MILLI:
                     testFrom = new Date(fromStat[0], fromStat[1], fromStat[2], fromStat[3],
-                            fromStat[4], fromStat[5], Math.floor(fromStat[6] / stepValue) * stepValue);
+                        fromStat[4], fromStat[5], Math.floor(fromStat[6] / stepValue) * stepValue);
                     break;
                 case Ext.Date.SECOND:
                     testFrom = new Date(fromStat[0], fromStat[1], fromStat[2], fromStat[3],
-                            fromStat[4], Math.floor(fromStat[5] / stepValue) * stepValue, 0);
+                        fromStat[4], Math.floor(fromStat[5] / stepValue) * stepValue, 0);
                     break;
                 case Ext.Date.MINUTE:
                     testFrom = new Date(fromStat[0], fromStat[1], fromStat[2], fromStat[3],
-                            Math.floor(fromStat[4] / stepValue) * stepValue, 0, 0);
+                        Math.floor(fromStat[4] / stepValue) * stepValue, 0, 0);
                     break;
                 case Ext.Date.HOUR:
                     testFrom = new Date(fromStat[0], fromStat[1], fromStat[2],
-                            Math.floor(fromStat[3] / stepValue) * stepValue, 0, 0, 0);
+                        Math.floor(fromStat[3] / stepValue) * stepValue, 0, 0, 0);
                     break;
                 case Ext.Date.DAY:
                     testFrom = new Date(fromStat[0], fromStat[1],
-                            Math.floor((fromStat[2] - 1) / stepValue) * stepValue + 1, 0, 0, 0, 0);
+                        Math.floor((fromStat[2] - 1) / stepValue) * stepValue + 1, 0, 0, 0, 0);
                     break;
                 case Ext.Date.MONTH:
                     testFrom = new Date(fromStat[0], Math.floor(fromStat[1] / stepValue) * stepValue, 1, 0, 0, 0, 0);
@@ -1177,7 +1177,7 @@ Ext.define('Ext.draw.Draw', {
             }
         }
 
-        fractionalMonth = ((stepUnit === Ext.Date.MONTH) && (stepValue == 1/2 || stepValue == 1/3 || stepValue == 1/4));
+        fractionalMonth = ((stepUnit === Ext.Date.MONTH) && (stepValue == 1 / 2 || stepValue == 1 / 3 || stepValue == 1 / 4));
 
         // TODO(zhangbei) : We can do it better somehow...
         testTo = new Date(testFrom);
@@ -1187,8 +1187,8 @@ Ext.define('Ext.draw.Draw', {
                 year = date.getFullYear();
                 month = date.getMonth();
                 day = date.getDate();
-                switch(stepValue) {
-                    case 1/2:   // the 1st and 15th of every month
+                switch (stepValue) {
+                    case 1 / 2:   // the 1st and 15th of every month
                         if (day >= 15) {
                             day = 1;
                             if (++month > 11) {
@@ -1200,7 +1200,7 @@ Ext.define('Ext.draw.Draw', {
                         }
                         break;
 
-                    case 1/3:   // the 1st, 10th and 20th of every month
+                    case 1 / 3:   // the 1st, 10th and 20th of every month
                         if (day >= 20) {
                             day = 1;
                             if (++month > 11) {
@@ -1217,7 +1217,7 @@ Ext.define('Ext.draw.Draw', {
                         }
                         break;
 
-                    case 1/4:   // the 1st, 8th, 15th and 22nd of every month
+                    case 1 / 4:   // the 1st, 8th, 15th and 22nd of every month
                         if (day >= 22) {
                             day = 1;
                             if (++month > 11) {
@@ -1249,7 +1249,7 @@ Ext.define('Ext.draw.Draw', {
                 steps.push(new Date(testTo));
             }
             else {
-                testTo = Ext.Date.add(testTo, stepUnit, stepValue);                
+                testTo = Ext.Date.add(testTo, stepUnit, stepValue);
                 steps++;
             }
         }
@@ -1257,21 +1257,21 @@ Ext.define('Ext.draw.Draw', {
         if (lockEnds) {
             testTo = to;
         }
-        
+
         if (stepsArray) {
             return {
-                from : +testFrom,
-                to : +testTo,
-                steps : steps   // array of steps
-            };            
+                from: +testFrom,
+                to: +testTo,
+                steps: steps   // array of steps
+            };
         }
         else {
             return {
-                from : +testFrom,
-                to : +testTo,
-                step : (testTo - testFrom) / steps,
-                steps : steps   // number of steps
-            };            
+                from: +testFrom,
+                to: +testTo,
+                step: (testTo - testFrom) / steps,
+                steps: steps   // number of steps
+            };
         }
     },
 
@@ -1279,11 +1279,11 @@ Ext.define('Ext.draw.Draw', {
         return a.offset - b.offset;
     },
 
-    rad: function(degrees) {
+    rad: function (degrees) {
         return degrees % 360 * Math.PI / 180;
     },
 
-    normalizeRadians: function(radian) {
+    normalizeRadians: function (radian) {
         var twoPi = 2 * Math.PI;
         if (radian >= 0) {
             return radian % twoPi;
@@ -1291,23 +1291,23 @@ Ext.define('Ext.draw.Draw', {
         return ((radian % twoPi) + twoPi) % twoPi;
     },
 
-    degrees: function(radian) {
+    degrees: function (radian) {
         return radian * 180 / Math.PI % 360;
     },
 
-    normalizeDegrees: function(degrees) {
+    normalizeDegrees: function (degrees) {
         if (degrees >= 0) {
             return degrees % 360;
         }
         return ((degrees % 360) + 360) % 360;
     },
 
-    withinBox: function(x, y, bbox) {
+    withinBox: function (x, y, bbox) {
         bbox = bbox || {};
         return (x >= bbox.x && x <= (bbox.x + bbox.width) && y >= bbox.y && y <= (bbox.y + bbox.height));
     },
 
-    parseGradient: function(gradient) {
+    parseGradient: function (gradient) {
         var me = this,
             type = gradient.type || 'linear',
             angle = gradient.angle || 0,

@@ -9,23 +9,23 @@ $Shortcuts = {
                     scale: 'small'
                 },
                 items: [{
-                    xtype:'splitbutton',
+                    xtype: 'splitbutton',
                     text: 'Menu Button',
                     iconCls: 'add16',
                     menu: [{text: 'Menu Item 1'}]
-                },{
-                    xtype:'splitbutton',
+                }, {
+                    xtype: 'splitbutton',
                     text: 'Cut',
                     iconCls: 'add16',
                     menu: [{text: 'Cut Menu Item'}]
-                },{
+                }, {
                     text: 'Copy',
                     iconCls: 'add16'
-                },{
+                }, {
                     text: 'Paste',
                     iconCls: 'add16',
                     menu: [{text: 'Paste Menu Item'}]
-                },{
+                }, {
                     text: 'Format',
                     iconCls: 'add16'
                 }]
@@ -41,23 +41,23 @@ $Shortcuts = {
                     scale: 'small'
                 },
                 items: [{
-                    xtype:'splitbutton',
+                    xtype: 'splitbutton',
                     text: 'Menu Button',
                     iconCls: 'add16',
                     menu: [{text: 'Menu Item 1'}]
-                },{
-                    xtype:'splitbutton',
+                }, {
+                    xtype: 'splitbutton',
                     text: 'Cut',
                     iconCls: 'add16',
                     menu: [{text: 'Cut Menu Item'}]
-                },{
+                }, {
                     text: 'Copy',
                     iconCls: 'add16'
-                },{
+                }, {
                     text: 'Paste',
                     iconCls: 'add16',
                     menu: [{text: 'Paste Menu Item'}]
-                },{
+                }, {
                     text: 'Format',
                     iconCls: 'add16'
                 }]
@@ -116,7 +116,7 @@ $Shortcuts = {
             filename: 'tab-{ui}-top',
             config: {
                 //hack for 4.0.5
-                up: function(which) {
+                up: function (which) {
                     if (which == 'tabbar') {
                         return {
                             minTabWidth: 20,
@@ -131,7 +131,7 @@ $Shortcuts = {
             filename: 'tab-{ui}-top-active',
             config: {
                 //hack for 4.0.5
-                up: function(which) {
+                up: function (which) {
                     if (which == 'tabbar') {
                         return {
                             minTabWidth: 20,
@@ -147,7 +147,7 @@ $Shortcuts = {
             filename: 'tab-{ui}-top-over',
             config: {
                 //hack for 4.0.5
-                up: function(which) {
+                up: function (which) {
                     if (which == 'tabbar') {
                         return {
                             minTabWidth: 20,
@@ -163,7 +163,7 @@ $Shortcuts = {
             filename: 'tab-{ui}-top-disabled',
             config: {
                 //hack for 4.0.5
-                up: function(which) {
+                up: function (which) {
                     if (which == 'tabbar') {
                         return {
                             minTabWidth: 20,
@@ -179,7 +179,7 @@ $Shortcuts = {
             filename: 'tab-{ui}-bottom',
             config: {
                 //hack for 4.0.5
-                up: function(which) {
+                up: function (which) {
                     if (which == 'tabbar') {
                         return {
                             minTabWidth: 20,
@@ -195,7 +195,7 @@ $Shortcuts = {
             filename: 'tab-{ui}-bottom-active',
             config: {
                 //hack for 4.0.5
-                up: function(which) {
+                up: function (which) {
                     if (which == 'tabbar') {
                         return {
                             minTabWidth: 20,
@@ -212,7 +212,7 @@ $Shortcuts = {
             filename: 'tab-{ui}-bottom-over',
             config: {
                 //hack for 4.0.5
-                up: function(which) {
+                up: function (which) {
                     if (which == 'tabbar') {
                         return {
                             minTabWidth: 20,
@@ -229,7 +229,7 @@ $Shortcuts = {
             filename: 'tab-{ui}-bottom-disabled',
             config: {
                 //hack for 4.0.5
-                up: function(which) {
+                up: function (which) {
                     if (which == 'tabbar') {
                         return {
                             minTabWidth: 20,
@@ -290,10 +290,10 @@ $Shortcuts = {
             filename: 'window-{ui}',
             title: 'Window',
             config: {
-                setup: function(window, ct) {
+                setup: function (window, ct) {
                     this.show();
                 },
-                floating: {shadow:false},
+                floating: {shadow: false},
                 height: 200,
                 width: 200,
                 x: 500,

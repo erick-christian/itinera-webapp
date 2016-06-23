@@ -1,8 +1,8 @@
 /** */
 Ext.define('Ext.aria.slider.Thumb', {
     override: 'Ext.slider.Thumb',
-    
-    move: function(v, animate) {
+
+    move: function (v, animate) {
         var me = this,
             el = me.el,
             slider = me.slider,
@@ -11,7 +11,7 @@ Ext.define('Ext.aria.slider.Thumb', {
             from;
 
         v += '%';
-        
+
         if (!animate) {
             el.dom.style[styleProp] = v;
             slider.fireEvent('move', slider, v, me);
@@ -19,18 +19,18 @@ Ext.define('Ext.aria.slider.Thumb', {
         else {
             to = {};
             to[styleProp] = v;
-            
+
             if (!Ext.supports.GetPositionPercentage) {
                 from = {};
                 from[styleProp] = el.dom.style[styleProp];
             }
-            
+
             new Ext.fx.Anim({
                 target: el,
                 duration: 350,
                 from: from,
                 to: to,
-                callback: function() {
+                callback: function () {
                     slider.fireEvent('move', slider, v, me);
                 }
             });

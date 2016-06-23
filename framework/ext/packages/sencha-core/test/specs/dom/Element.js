@@ -1,13 +1,13 @@
-describe("Ext.dom.Element", function() {
-    describe("instantiation", function() {
+describe("Ext.dom.Element", function () {
+    describe("instantiation", function () {
         var element, domEl;
 
-        beforeEach(function() {
+        beforeEach(function () {
             domEl = document.createElement('div');
             document.body.appendChild(domEl);
         });
 
-        afterEach(function() {
+        afterEach(function () {
             var el = Ext.cache[domEl.id];
 
             if (el) {
@@ -17,13 +17,13 @@ describe("Ext.dom.Element", function() {
             }
         });
 
-        it("should set dom element id if it hasn't already one", function() {
+        it("should set dom element id if it hasn't already one", function () {
             element = new Ext.dom.Element(domEl);
 
             expect(domEl.id).toBeDefined();
         });
 
-        it("should not set dom element id if it has already one", function() {
+        it("should not set dom element id if it has already one", function () {
             var id = Ext.id();
 
             domEl.id = id;
@@ -32,13 +32,13 @@ describe("Ext.dom.Element", function() {
             expect(domEl.id).toEqual(id);
         });
 
-        it("should set dom property to dom element", function() {
+        it("should set dom property to dom element", function () {
             element = new Ext.dom.Element(domEl);
 
             expect(element.dom).toBe(domEl);
         });
 
-        it("should set id property to dom id", function() {
+        it("should set id property to dom id", function () {
             var id = Ext.id();
 
             domEl.id = id;
@@ -47,7 +47,7 @@ describe("Ext.dom.Element", function() {
             expect(element.id).toEqual(id);
         });
 
-        it("should find a dom element if a string corresponding to it's id is passed as first argument", function() {
+        it("should find a dom element if a string corresponding to it's id is passed as first argument", function () {
             var id = Ext.id();
 
             domEl.id = id;
@@ -57,16 +57,17 @@ describe("Ext.dom.Element", function() {
             expect(element.dom).toBe(domEl);
         });
 
-        it("should throw error if the Element has an invalid id", function() {
+        it("should throw error if the Element has an invalid id", function () {
             function expectError(id) {
                 var dom = document.createElement('div');
                 dom.id = id;
                 document.body.appendChild(dom);
-                expect(function() {
+                expect(function () {
                     new Ext.Element(dom);
                 }).toThrow('Invalid Element "id": "' + id + '"');
                 document.body.removeChild(dom);
             }
+
             expectError('.abcdef');
             expectError('0a...');
             expectError('12345');
@@ -77,7 +78,7 @@ describe("Ext.dom.Element", function() {
     });
 
     function describeMethods(fly) {
-        describe('methods (using ' + (fly ? 'Ext.fly()' : 'new Ext.dom.Element()') + ')', function(){
+        describe('methods (using ' + (fly ? 'Ext.fly()' : 'new Ext.dom.Element()') + ')', function () {
             var domEl, element;
 
             function addElement(tag) {
@@ -85,8 +86,8 @@ describe("Ext.dom.Element", function() {
                 document.body.appendChild(domEl);
                 return fly ? Ext.fly(domEl) : Ext.get(domEl);
             }
-            
-            afterEach(function() {
+
+            afterEach(function () {
                 if (element) {
                     // Prevent console warnings
                     spyOn(Ext.Logger, 'warn');
@@ -95,87 +96,87 @@ describe("Ext.dom.Element", function() {
                 }
             });
 
-            describe("classes", function() {
-                describe("addCls", function() {
-                    beforeEach(function() {
+            describe("classes", function () {
+                describe("addCls", function () {
+                    beforeEach(function () {
                         element = addElement();
                         domEl = element.dom;
                     });
 
-                    it("should not throw an exception when className is null", function() {
-                        expect(function() {
+                    it("should not throw an exception when className is null", function () {
+                        expect(function () {
                             element.addCls(null);
                         }).not.toThrow();
                     });
 
-                    describe("return type", function() {
-                        it("should return the element when the class is null", function() {
+                    describe("return type", function () {
+                        it("should return the element when the class is null", function () {
                             expect(element.addCls(null)).toBe(element);
                         });
 
-                        it("should return the element when the class is a string", function() {
+                        it("should return the element when the class is a string", function () {
                             expect(element.addCls('foo')).toBe(element);
                         });
 
-                        it("should return the element when the class is an array", function() {
+                        it("should return the element when the class is an array", function () {
                             expect(element.addCls(['foo', 'bar'])).toBe(element);
                         });
                     });
 
-                    describe("argument types", function() {
-                        describe("with a string", function() {
-                            describe("without spaces", function() {
-                                it("should add a class to the element", function() {
+                    describe("argument types", function () {
+                        describe("with a string", function () {
+                            describe("without spaces", function () {
+                                it("should add a class to the element", function () {
                                     element.addCls('foo');
                                     expect(domEl.className).toBe('foo');
                                 });
 
-                                it("should add a class when another class already exists", function() {
+                                it("should add a class when another class already exists", function () {
                                     domEl.className = 'foo';
                                     element.addCls('bar');
                                     expect(domEl.className).toBe('foo bar');
                                 });
 
-                                it("should not duplicate the class if it exists on the element", function() {
+                                it("should not duplicate the class if it exists on the element", function () {
                                     domEl.className = 'foo';
                                     element.addCls('foo');
                                     expect(domEl.className).toBe('foo');
                                 });
 
-                                describe("prefix & suffix", function() {
-                                    describe("prefix only", function() {
-                                        it("should attach the prefix to the class", function() {
+                                describe("prefix & suffix", function () {
+                                    describe("prefix only", function () {
+                                        it("should attach the prefix to the class", function () {
                                             element.addCls('foo', 'a');
                                             expect(domEl.className).toBe('a-foo');
                                         });
 
-                                        it("should use the prefix when comparing if the class exists", function() {
+                                        it("should use the prefix when comparing if the class exists", function () {
                                             domEl.className = 'foo';
                                             element.addCls('foo', 'a');
                                             expect(domEl.className).toBe('foo a-foo');
                                         });
                                     });
 
-                                    describe("suffix only", function() {
-                                        it("should attach the suffix to the class", function() {
+                                    describe("suffix only", function () {
+                                        it("should attach the suffix to the class", function () {
                                             element.addCls('foo', null, 'b');
                                             expect(domEl.className).toBe('foo-b');
                                         });
 
-                                        it("should use the suffix when comparing if the class exists", function() {
+                                        it("should use the suffix when comparing if the class exists", function () {
                                             domEl.className = 'foo';
                                             element.addCls('foo', null, 'b');
                                             expect(domEl.className).toBe('foo foo-b');
                                         });
                                     });
 
-                                    describe("prefix and suffix", function() {
-                                        it("should attach the prefix & suffix to the class", function() {
+                                    describe("prefix and suffix", function () {
+                                        it("should attach the prefix & suffix to the class", function () {
                                             element.addCls('foo', 'a', 'b');
                                             expect(domEl.className).toBe('a-foo-b');
                                         });
 
-                                        it("should use the prefix & suffix when comparing if the class exists", function() {
+                                        it("should use the prefix & suffix when comparing if the class exists", function () {
                                             domEl.className = 'foo';
                                             element.addCls('foo', 'a', 'b');
                                             expect(domEl.className).toBe('foo a-foo-b');
@@ -184,67 +185,67 @@ describe("Ext.dom.Element", function() {
                                 });
                             });
 
-                            describe("with spaces", function() {
-                                it("should split class names by string and add them separately", function() {
+                            describe("with spaces", function () {
+                                it("should split class names by string and add them separately", function () {
                                     element.addCls('foo bar');
                                     expect(domEl.className).toBe('foo bar');
                                 });
 
-                                it("should split by multiple spaces", function() {
+                                it("should split by multiple spaces", function () {
                                     element.addCls('foo    bar           baz');
                                     expect(domEl.className).toBe('foo bar baz');
                                 });
 
-                                it("should trim leading spaces", function() {
+                                it("should trim leading spaces", function () {
                                     expect(element.addCls('     foo bar'));
                                     expect(domEl.className).toBe('foo bar');
                                 });
 
-                                it("should trim trailing spaces", function() {
+                                it("should trim trailing spaces", function () {
                                     expect(element.addCls('foo bar           '));
                                     expect(domEl.className).toBe('foo bar');
                                 });
 
-                                it("should only add new classes to the element", function() {
+                                it("should only add new classes to the element", function () {
                                     element.dom.className = 'bar';
                                     element.addCls('foo bar');
-                                    expect(domEl.className).toBe('bar foo');  
+                                    expect(domEl.className).toBe('bar foo');
                                 });
 
-                                describe("prefix & suffix", function() {
-                                    describe("prefix only", function() {
-                                        it("should attach the prefix to the class", function() {
+                                describe("prefix & suffix", function () {
+                                    describe("prefix only", function () {
+                                        it("should attach the prefix to the class", function () {
                                             element.addCls('foo bar', 'a');
                                             expect(domEl.className).toBe('a-foo a-bar');
                                         });
 
-                                        it("should use the prefix when comparing if the class exists", function() {
+                                        it("should use the prefix when comparing if the class exists", function () {
                                             domEl.className = 'foo';
                                             element.addCls('foo bar', 'a');
                                             expect(domEl.className).toBe('foo a-foo a-bar');
                                         });
                                     });
 
-                                    describe("suffix only", function() {
-                                        it("should attach the suffix to the class", function() {
+                                    describe("suffix only", function () {
+                                        it("should attach the suffix to the class", function () {
                                             element.addCls('foo bar', null, 'b');
                                             expect(domEl.className).toBe('foo-b bar-b');
                                         });
 
-                                        it("should use the suffix when comparing if the class exists", function() {
+                                        it("should use the suffix when comparing if the class exists", function () {
                                             domEl.className = 'foo';
                                             element.addCls('foo bar', null, 'b');
                                             expect(domEl.className).toBe('foo foo-b bar-b');
                                         });
                                     });
 
-                                    describe("prefix and suffix", function() {
-                                        it("should attach the prefix & suffix to the class", function() {
+                                    describe("prefix and suffix", function () {
+                                        it("should attach the prefix & suffix to the class", function () {
                                             element.addCls('foo bar', 'a', 'b');
                                             expect(domEl.className).toBe('a-foo-b a-bar-b');
                                         });
 
-                                        it("should use the prefix & suffix when comparing if the class exists", function() {
+                                        it("should use the prefix & suffix when comparing if the class exists", function () {
                                             domEl.className = 'foo';
                                             element.addCls('foo bar', 'a', 'b');
                                             expect(domEl.className).toBe('foo a-foo-b a-bar-b');
@@ -254,52 +255,52 @@ describe("Ext.dom.Element", function() {
                             });
                         });
 
-                        describe("with an array", function() {
-                            it("should add all classes to the element", function() {
+                        describe("with an array", function () {
+                            it("should add all classes to the element", function () {
                                 element.addCls(['foo', 'bar']);
                                 expect(domEl.className).toBe('foo bar');
                             });
 
-                            it("should only add new classes to the element", function() {
+                            it("should only add new classes to the element", function () {
                                 element.dom.className = 'bar';
                                 element.addCls(['foo', 'bar']);
-                                expect(domEl.className).toBe('bar foo');  
+                                expect(domEl.className).toBe('bar foo');
                             });
 
-                            describe("prefix & suffix", function() {
-                                describe("prefix only", function() {
-                                    it("should attach the prefix to the class", function() {
+                            describe("prefix & suffix", function () {
+                                describe("prefix only", function () {
+                                    it("should attach the prefix to the class", function () {
                                         element.addCls(['foo', 'bar'], 'a');
                                         expect(domEl.className).toBe('a-foo a-bar');
                                     });
 
-                                    it("should use the prefix when comparing if the class exists", function() {
+                                    it("should use the prefix when comparing if the class exists", function () {
                                         domEl.className = 'foo';
                                         element.addCls(['foo', 'bar'], 'a');
                                         expect(domEl.className).toBe('foo a-foo a-bar');
                                     });
                                 });
 
-                                describe("suffix only", function() {
-                                    it("should attach the suffix to the class", function() {
+                                describe("suffix only", function () {
+                                    it("should attach the suffix to the class", function () {
                                         element.addCls(['foo', 'bar'], null, 'b');
                                         expect(domEl.className).toBe('foo-b bar-b');
                                     });
 
-                                    it("should use the suffix when comparing if the class exists", function() {
+                                    it("should use the suffix when comparing if the class exists", function () {
                                         domEl.className = 'foo';
                                         element.addCls(['foo', 'bar'], null, 'b');
                                         expect(domEl.className).toBe('foo foo-b bar-b');
                                     });
                                 });
 
-                                describe("prefix and suffix", function() {
-                                    it("should attach the prefix & suffix to the class", function() {
+                                describe("prefix and suffix", function () {
+                                    it("should attach the prefix & suffix to the class", function () {
                                         element.addCls(['foo', 'bar'], 'a', 'b');
                                         expect(domEl.className).toBe('a-foo-b a-bar-b');
                                     });
 
-                                    it("should use the prefix & suffix when comparing if the class exists", function() {
+                                    it("should use the prefix & suffix when comparing if the class exists", function () {
                                         domEl.className = 'foo';
                                         element.addCls(['foo', 'bar'], 'a', 'b');
                                         expect(domEl.className).toBe('foo a-foo-b a-bar-b');
@@ -309,20 +310,20 @@ describe("Ext.dom.Element", function() {
                         });
                     });
 
-                    describe("matching", function() {
-                        it("should not match a leading substring as an existing class", function() {
+                    describe("matching", function () {
+                        it("should not match a leading substring as an existing class", function () {
                             domEl.className = 'foobar';
                             element.addCls('foo');
                             expect(domEl.className).toBe('foobar foo');
                         });
 
-                        it("should not match a trailing substring as an existing class", function() {
+                        it("should not match a trailing substring as an existing class", function () {
                             domEl.className = 'barfoo';
                             element.addCls('foo');
                             expect(domEl.className).toBe('barfoo foo');
                         });
 
-                        it("should not match a substring as an existing class", function() {
+                        it("should not match a substring as an existing class", function () {
                             domEl.className = 'xfooy';
                             element.addCls('foo');
                             expect(domEl.className).toBe('xfooy foo');
@@ -330,90 +331,90 @@ describe("Ext.dom.Element", function() {
                     });
                 });
 
-                describe("removeCls", function() {
-                    beforeEach(function() {
+                describe("removeCls", function () {
+                    beforeEach(function () {
                         element = addElement();
                         domEl = element.dom;
                     });
 
-                    it("should not throw an exception when className is null", function() {
-                        expect(function() {
+                    it("should not throw an exception when className is null", function () {
+                        expect(function () {
                             element.removeCls(null);
                         }).not.toThrow();
                     });
 
-                    describe("return type", function() {
-                        it("should return the element when the class is null", function() {
+                    describe("return type", function () {
+                        it("should return the element when the class is null", function () {
                             expect(element.removeCls(null)).toBe(element);
                         });
 
-                        it("should return the element when the class is a string", function() {
+                        it("should return the element when the class is a string", function () {
                             expect(element.removeCls('foo')).toBe(element);
                         });
 
-                        it("should return the element when the class is an array", function() {
+                        it("should return the element when the class is an array", function () {
                             expect(element.removeCls(['foo', 'bar'])).toBe(element);
                         });
                     });
 
-                    describe("argument types", function() {
-                        describe("with a string", function() {
-                            describe("without spaces", function() {
-                                it("should remove a class from the element", function() {
+                    describe("argument types", function () {
+                        describe("with a string", function () {
+                            describe("without spaces", function () {
+                                it("should remove a class from the element", function () {
                                     domEl.className = 'foo bar';
                                     element.removeCls('foo');
                                     expect(domEl.className).toBe('bar');
                                 });
 
-                                it("should do nothing when the class is empty", function() {
+                                it("should do nothing when the class is empty", function () {
                                     domEl.className = '';
                                     element.removeCls('bar');
                                     expect(domEl.className).toBe('');
                                 });
 
-                                it("should only remove the specified class", function() {
+                                it("should only remove the specified class", function () {
                                     domEl.className = 'foo bar baz';
                                     element.removeCls('bar');
                                     expect(domEl.className).toBe('foo baz');
                                 });
 
-                                describe("prefix & suffix", function() {
-                                    describe("prefix only", function() {
-                                        it("should attacj the prefix to the class", function() {
+                                describe("prefix & suffix", function () {
+                                    describe("prefix only", function () {
+                                        it("should attacj the prefix to the class", function () {
                                             domEl.className = 'a-foo'
                                             element.removeCls('foo', 'a');
                                             expect(domEl.className).toBe('');
                                         });
 
-                                        it("should use the prefix when comparing if the class exists", function() {
+                                        it("should use the prefix when comparing if the class exists", function () {
                                             domEl.className = 'foo';
                                             element.removeCls('foo', 'a');
                                             expect(domEl.className).toBe('foo');
                                         });
                                     });
 
-                                    describe("suffix only", function() {
-                                        it("should attach the suffix to the class", function() {
+                                    describe("suffix only", function () {
+                                        it("should attach the suffix to the class", function () {
                                             domEl.className = 'foo-b';
                                             element.removeCls('foo', null, 'b');
                                             expect(domEl.className).toBe('');
                                         });
 
-                                        it("should use the suffix when comparing if the class exists", function() {
+                                        it("should use the suffix when comparing if the class exists", function () {
                                             domEl.className = 'foo';
                                             element.removeCls('foo', null, 'b');
                                             expect(domEl.className).toBe('foo');
                                         });
                                     });
 
-                                    describe("prefix and suffix", function() {
-                                        it("should attach the prefix & suffix to the class", function() {
+                                    describe("prefix and suffix", function () {
+                                        it("should attach the prefix & suffix to the class", function () {
                                             domEl.className = 'a-foo-b';
                                             element.removeCls('foo', 'a', 'b');
                                             expect(domEl.className).toBe('');
                                         });
 
-                                        it("should use the prefix & suffix when comparing if the class exists", function() {
+                                        it("should use the prefix & suffix when comparing if the class exists", function () {
                                             domEl.className = 'foo';
                                             element.removeCls('foo', 'a', 'b');
                                             expect(domEl.className).toBe('foo');
@@ -422,74 +423,74 @@ describe("Ext.dom.Element", function() {
                                 });
                             });
 
-                            describe("with spaces", function() {
-                                it("should split class names by string and remove them separately", function() {
+                            describe("with spaces", function () {
+                                it("should split class names by string and remove them separately", function () {
                                     domEl.className = 'bar foo';
                                     element.removeCls('foo bar');
                                     expect(domEl.className).toBe('');
                                 });
 
-                                it("should split by multiple spaces", function() {
+                                it("should split by multiple spaces", function () {
                                     domEl.className = 'foo bar baz';
                                     element.removeCls('foo    bar           baz');
                                     expect(domEl.className).toBe('');
                                 });
 
-                                it("should trim leading spaces", function() {
+                                it("should trim leading spaces", function () {
                                     domEl.className = 'foo bar baz';
                                     expect(element.removeCls('     foo bar'));
                                     expect(domEl.className).toBe('baz');
                                 });
 
-                                it("should trim trailing spaces", function() {
+                                it("should trim trailing spaces", function () {
                                     domEl.className = 'foo bar baz';
                                     expect(element.removeCls('foo bar           '));
                                     expect(domEl.className).toBe('baz');
                                 });
 
-                                it("should only remove matching classes to the element", function() {
+                                it("should only remove matching classes to the element", function () {
                                     element.dom.className = 'foo bar baz';
                                     element.removeCls('foo');
-                                    expect(domEl.className).toBe('bar baz');  
+                                    expect(domEl.className).toBe('bar baz');
                                 });
 
-                                describe("prefix & suffix", function() {
-                                    describe("prefix only", function() {
-                                        it("should attach the prefix to the class", function() {
+                                describe("prefix & suffix", function () {
+                                    describe("prefix only", function () {
+                                        it("should attach the prefix to the class", function () {
                                             domEl.className = 'a-foo a-bar';
                                             element.removeCls('foo bar', 'a');
                                             expect(domEl.className).toBe('');
                                         });
 
-                                        it("should use the prefix when comparing if the class exists", function() {
+                                        it("should use the prefix when comparing if the class exists", function () {
                                             domEl.className = 'a-foo bar';
                                             element.removeCls('foo bar', 'a');
                                             expect(domEl.className).toBe('bar');
                                         });
                                     });
 
-                                    describe("suffix only", function() {
-                                        it("should attach the suffix to the class", function() {
+                                    describe("suffix only", function () {
+                                        it("should attach the suffix to the class", function () {
                                             domEl.className = 'foo-b bar-b';
                                             element.removeCls('foo bar', null, 'b');
                                             expect(domEl.className).toBe('');
                                         });
 
-                                        it("should use the suffix when comparing if the class exists", function() {
+                                        it("should use the suffix when comparing if the class exists", function () {
                                             domEl.className = 'foo-b bar';
                                             element.removeCls('foo bar', null, 'b');
                                             expect(domEl.className).toBe('bar');
                                         });
                                     });
 
-                                    describe("prefix and suffix", function() {
-                                        it("should attach the prefix & suffix to the class", function() {
+                                    describe("prefix and suffix", function () {
+                                        it("should attach the prefix & suffix to the class", function () {
                                             domEl.className = 'a-foo-b a-bar-b';
                                             element.removeCls('foo bar', 'a', 'b');
                                             expect(domEl.className).toBe('');
                                         });
 
-                                        it("should use the prefix & suffix when comparing if the class exists", function() {
+                                        it("should use the prefix & suffix when comparing if the class exists", function () {
                                             domEl.className = 'foo a-bar-b';
                                             element.removeCls('foo bar', 'a', 'b');
                                             expect(domEl.className).toBe('foo');
@@ -499,56 +500,56 @@ describe("Ext.dom.Element", function() {
                             });
                         });
 
-                        describe("with an array", function() {
-                            it("should remove all classes from the element", function() {
+                        describe("with an array", function () {
+                            it("should remove all classes from the element", function () {
                                 domEl.className = 'foo bar baz';
                                 element.removeCls(['foo', 'bar']);
                                 expect(domEl.className).toBe('baz');
                             });
 
-                            it("should only remove specified classes from the element", function() {
+                            it("should only remove specified classes from the element", function () {
                                 domEl.className = 'foo bar baz';
                                 element.removeCls(['foo', 'baz']);
-                                expect(domEl.className).toBe('bar');  
+                                expect(domEl.className).toBe('bar');
                             });
 
-                            describe("prefix & suffix", function() {
-                                describe("prefix only", function() {
-                                    it("should attach the prefix to the class", function() {
+                            describe("prefix & suffix", function () {
+                                describe("prefix only", function () {
+                                    it("should attach the prefix to the class", function () {
                                         domEl.className = 'a-foo a-bar';
                                         element.removeCls(['foo', 'bar'], 'a');
                                         expect(domEl.className).toBe('');
                                     });
 
-                                    it("should use the prefix when comparing if the class exists", function() {
+                                    it("should use the prefix when comparing if the class exists", function () {
                                         domEl.className = 'a-foo bar';
                                         element.removeCls(['foo', 'bar'], 'a');
                                         expect(domEl.className).toBe('bar');
                                     });
                                 });
 
-                                describe("suffix only", function() {
-                                    it("should attach the suffix to the class", function() {
+                                describe("suffix only", function () {
+                                    it("should attach the suffix to the class", function () {
                                         domEl.className = 'foo-b bar-b';
                                         element.removeCls(['foo', 'bar'], null, 'b');
                                         expect(domEl.className).toBe('');
                                     });
 
-                                    it("should use the suffix when comparing if the class exists", function() {
+                                    it("should use the suffix when comparing if the class exists", function () {
                                         domEl.className = 'foo-b bar';
                                         element.removeCls(['foo', 'bar'], null, 'b');
                                         expect(domEl.className).toBe('bar');
                                     });
                                 });
 
-                                describe("prefix and suffix", function() {
-                                    it("should attach the prefix & suffix to the class", function() {
+                                describe("prefix and suffix", function () {
+                                    it("should attach the prefix & suffix to the class", function () {
                                         domEl.className = 'a-foo-b a-bar-b';
                                         element.removeCls(['foo', 'bar'], 'a', 'b');
                                         expect(domEl.className).toBe('');
                                     });
 
-                                    it("should use the prefix & suffix when comparing if the class exists", function() {
+                                    it("should use the prefix & suffix when comparing if the class exists", function () {
                                         domEl.className = 'foo a-bar-b';
                                         element.removeCls(['foo', 'bar'], 'a', 'b');
                                         expect(domEl.className).toBe('foo');
@@ -558,20 +559,20 @@ describe("Ext.dom.Element", function() {
                         });
                     });
 
-                    describe("matching", function() {
-                        it("should not match a leading substring as an existing class", function() {
+                    describe("matching", function () {
+                        it("should not match a leading substring as an existing class", function () {
                             domEl.className = 'foobar';
                             element.removeCls('foo');
                             expect(domEl.className).toBe('foobar');
                         });
 
-                        it("should not match a trailing substring as an existing class", function() {
+                        it("should not match a trailing substring as an existing class", function () {
                             domEl.className = 'barfoo';
                             element.removeCls('foo');
                             expect(domEl.className).toBe('barfoo');
                         });
 
-                        it("should not match a substring as an existing class", function() {
+                        it("should not match a substring as an existing class", function () {
                             domEl.className = 'xfooy';
                             element.removeCls('foo');
                             expect(domEl.className).toBe('xfooy');
@@ -579,32 +580,32 @@ describe("Ext.dom.Element", function() {
                     });
                 });
 
-                describe("setCls", function() {
-                    beforeEach(function() {
+                describe("setCls", function () {
+                    beforeEach(function () {
                         element = addElement();
                         domEl = element.dom;
                         domEl.className = 'some cls';
                     });
 
-                    describe("argument types", function() {
-                        describe("with a string", function() {
-                            describe("without spaces", function() {
-                                it("should set the className", function() {
+                    describe("argument types", function () {
+                        describe("with a string", function () {
+                            describe("without spaces", function () {
+                                it("should set the className", function () {
                                     element.setCls('foo');
                                     expect(domEl.className).toBe('foo');
                                 });
                             });
 
-                            describe("with spaces", function() {
-                                it("should split on spaces", function() {
+                            describe("with spaces", function () {
+                                it("should split on spaces", function () {
                                     element.setCls('foo bar baz');
                                     expect(domEl.className).toBe('foo bar baz');
                                 });
                             });
                         });
 
-                        describe("with an array", function() {
-                            it("should set all classes", function() {
+                        describe("with an array", function () {
+                            it("should set all classes", function () {
                                 element.setCls(['foo', 'bar', 'baz']);
                                 expect(domEl.className).toBe('foo bar baz');
                             });
@@ -612,81 +613,81 @@ describe("Ext.dom.Element", function() {
                     });
                 });
 
-                describe("hasCls", function() {
-                    beforeEach(function() {
+                describe("hasCls", function () {
+                    beforeEach(function () {
                         element = addElement();
                         domEl = element.dom;
                     });
 
-                    it("should match if the class name is the first item", function() {
+                    it("should match if the class name is the first item", function () {
                         domEl.className = 'foo bar baz';
                         expect(element.hasCls('foo')).toBe(true);
                     });
 
-                    it("should match if the class name is the last item", function() {
+                    it("should match if the class name is the last item", function () {
                         domEl.className = 'foo bar baz';
                         expect(element.hasCls('baz')).toBe(true);
                     });
 
-                    it("should match if the class name is a middle item", function() {
+                    it("should match if the class name is a middle item", function () {
                         domEl.className = 'foo bar baz qux';
                         expect(element.hasCls('baz')).toBe(true);
                     });
 
-                    it("should match if there is only 1 class name", function() {
+                    it("should match if there is only 1 class name", function () {
                         domEl.className = 'foo';
                         expect(element.hasCls('foo')).toBe(true);
                     });
 
-                    it("should not match if there is only 1 class that is not the same", function() {
+                    it("should not match if there is only 1 class that is not the same", function () {
                         domEl.className = 'foo';
                         expect(element.hasCls('bar')).toBe(false);
                     });
 
-                    it("should not match if none of the classes match", function() {
+                    it("should not match if none of the classes match", function () {
                         domEl.className = 'foo bar baz';
                         expect(element.hasCls('asdf')).toBe(false);
                     });
 
-                    it("should not match a leading substring", function() {
+                    it("should not match a leading substring", function () {
                         domEl.className = 'foobar';
                         expect(element.hasCls('foo')).toBe(false);
                     });
 
-                    it("should not match a trailing substring", function() {
+                    it("should not match a trailing substring", function () {
                         domEl.className = 'barfoo';
                         expect(element.hasCls('foo')).toBe(false);
                     });
 
-                    it("should not match a substring as an existing class", function() {
+                    it("should not match a substring as an existing class", function () {
                         domEl.className = 'xfooy';
                         expect(element.hasCls('foo')).toBe(false);
                     });
 
-                    it("should be able to match when there's a class that matches both the class & a leading subtring", function() {
+                    it("should be able to match when there's a class that matches both the class & a leading subtring", function () {
                         domEl.className = 'foobar foo';
                         expect(element.hasCls('foo')).toBe(true);
                     });
 
-                    it("should be able to match when there's a class that matches both the class & a trailing subtring", function() {
+                    it("should be able to match when there's a class that matches both the class & a trailing subtring", function () {
                         domEl.className = 'barfoo foo';
                         expect(element.hasCls('foo')).toBe(true);
                     });
 
-                    it("should be able to match when there's a class that matches both the class & a subtring", function() {
+                    it("should be able to match when there's a class that matches both the class & a subtring", function () {
                         domEl.className = 'xfooy foo';
                         expect(element.hasCls('foo')).toBe(true);
                     });
                 });
             });
 
-            describe("set", function() {
-                beforeEach(function() {
+            describe("set", function () {
+                beforeEach(function () {
                     element = addElement('div');
                 });
 
-                it("should call Ext.core.DomHelper.applyStyles if object passed as first argument has style property", function() {
-                    var style = {width:'100px'};
+                it("should call Ext.core.DomHelper.applyStyles if object passed as first argument has style property", function () {
+                    var style = {width: '100px'};
 
                     spyOn(element, "applyStyles");
 
@@ -695,7 +696,7 @@ describe("Ext.dom.Element", function() {
                     expect(element.applyStyles).toHaveBeenCalledWith(style);
                 });
 
-                it("should set dom element className if object passed as first argument has cls property", function() {
+                it("should set dom element className if object passed as first argument has cls property", function () {
                     var cls = "x-test-class";
 
                     element.set({cls: cls});
@@ -703,7 +704,7 @@ describe("Ext.dom.Element", function() {
                     expect(element.dom.className).toEqual(cls);
                 });
 
-                it("should use setAttribute by default", function() {
+                it("should use setAttribute by default", function () {
                     spyOn(element.dom, "setAttribute");
 
                     element.set({align: "center"});
@@ -711,7 +712,7 @@ describe("Ext.dom.Element", function() {
                     expect(element.dom.setAttribute).toHaveBeenCalledWith("align", "center");
                 });
 
-                it("should be able to use expandos", function() {
+                it("should be able to use expandos", function () {
                     spyOn(element.dom, "setAttribute");
 
                     element.set({align: "center"}, false);
@@ -722,24 +723,24 @@ describe("Ext.dom.Element", function() {
 
             });
 
-            describe("is", function() {
-                beforeEach(function() {
+            describe("is", function () {
+                beforeEach(function () {
                     element = addElement('div');
                 });
 
-                it("Returns true if this element matches the passed simple selector", function() {
+                it("Returns true if this element matches the passed simple selector", function () {
                     element.set({cls: "x-test-class"});
 
                     expect(element.is("div.x-test-class")).toBe(true);
                 });
             });
 
-            describe("focus", function() {
-                beforeEach(function() {
+            describe("focus", function () {
+                beforeEach(function () {
                     element = addElement('div');
                 });
 
-                it("should focus dom element", function() {
+                it("should focus dom element", function () {
                     spyOn(element.dom, "focus");
 
                     element.focus();
@@ -747,21 +748,21 @@ describe("Ext.dom.Element", function() {
                     expect(element.dom.focus).toHaveBeenCalled();
                 });
 
-                it("should be able to defer dom element focus", function() {
+                it("should be able to defer dom element focus", function () {
                     spyOn(element.dom, "focus");
                     element.focus(1);
 
-                    waitsFor(function(){
+                    waitsFor(function () {
                         return element.dom.focus.calls.length === 1;
                     }, "element.dom.focus was never called");
 
-                    runs(function() {
+                    runs(function () {
                         expect(element.dom.focus).toHaveBeenCalled();
                     });
                 });
 
-                it("should ignore any exception", function() {
-                    element.dom.focus = function() {
+                it("should ignore any exception", function () {
+                    element.dom.focus = function () {
                         throw "error";
                     };
 
@@ -769,12 +770,12 @@ describe("Ext.dom.Element", function() {
                 });
             });
 
-            describe("blur", function() {
-                beforeEach(function() {
+            describe("blur", function () {
+                beforeEach(function () {
                     element = addElement('div');
                 });
 
-                it("should blur dom element", function() {
+                it("should blur dom element", function () {
                     spyOn(element.dom, "blur");
 
                     element.blur();
@@ -783,8 +784,8 @@ describe("Ext.dom.Element", function() {
                 });
 
 
-                it("should ignore any exception", function() {
-                    element.dom.blur = function() {
+                it("should ignore any exception", function () {
+                    element.dom.blur = function () {
                         throw "error";
                     };
 
@@ -792,35 +793,35 @@ describe("Ext.dom.Element", function() {
                 });
             });
 
-            describe("getValue", function() {
-                beforeEach(function() {
+            describe("getValue", function () {
+                beforeEach(function () {
                     element = addElement('div');
                     element.dom.value = "10";
                 });
 
-                it("should return the dom value", function() {
+                it("should return the dom value", function () {
                     expect(element.getValue()).toEqual("10");
                 });
 
-                it("should return the dom value as Number", function() {
+                it("should return the dom value as Number", function () {
                     expect(element.getValue(true)).toEqual(10);
                 });
             });
 
-            describe("listeners", function() {
+            describe("listeners", function () {
                 var options;
 
-                beforeEach(function() {
+                beforeEach(function () {
                     options = {delay: 10};
                 });
 
-                xdescribe('deprecated (EventManager)', function() {
-                    describe("addListener", function() {
-                        beforeEach(function() {
+                xdescribe('deprecated (EventManager)', function () {
+                    describe("addListener", function () {
+                        beforeEach(function () {
                             element = addElement('div');
                         });
 
-                        it("should call Ext.EventManager.on", function() {
+                        it("should call Ext.EventManager.on", function () {
                             spyOn(Ext.EventManager, "on");
 
                             element.addListener("click", Ext.emptyFn, fakeScope, options);
@@ -829,12 +830,12 @@ describe("Ext.dom.Element", function() {
                         });
                     });
 
-                    describe("removeListener", function() {
-                        beforeEach(function() {
+                    describe("removeListener", function () {
+                        beforeEach(function () {
                             element = addElement('div');
                         });
 
-                        it("should call Ext.EventManager.un", function() {
+                        it("should call Ext.EventManager.un", function () {
                             spyOn(Ext.EventManager, "un");
 
                             element.removeListener("click", Ext.emptyFn, fakeScope);
@@ -843,12 +844,12 @@ describe("Ext.dom.Element", function() {
                         });
                     });
 
-                    describe("removeAllListener", function() {
-                        beforeEach(function() {
+                    describe("removeAllListener", function () {
+                        beforeEach(function () {
                             element = addElement('div');
                         });
 
-                        it("should call Ext.EventManager.removeAll", function() {
+                        it("should call Ext.EventManager.removeAll", function () {
                             spyOn(Ext.EventManager, "removeAll");
 
                             element.removeAllListeners();
@@ -857,8 +858,8 @@ describe("Ext.dom.Element", function() {
                         });
                     });
 
-                    describe("purgeAllListener", function() {
-                        it("should call Ext.EventManager.purgeElement", function() {
+                    describe("purgeAllListener", function () {
+                        it("should call Ext.EventManager.purgeElement", function () {
                             element = addElement('div');
                             spyOn(Ext.EventManager, "purgeElement");
 
@@ -866,75 +867,77 @@ describe("Ext.dom.Element", function() {
 
                             expect(Ext.EventManager.purgeElement).toHaveBeenCalledWith(element);
                         });
-                        
+
                         // https://sencha.jira.com/browse/EXTJSIV-6713
-                        it("should work with images", function() {
+                        it("should work with images", function () {
                             element = addElement('img');
-                            
-                            expect(function() { element.purgeAllListeners(); }).not.toThrow();
+
+                            expect(function () {
+                                element.purgeAllListeners();
+                            }).not.toThrow();
                             element.destroy();
                         });
                     });
                 });
             });
 
-            describe("addUnits", function() {
-                beforeEach(function() {
+            describe("addUnits", function () {
+                beforeEach(function () {
                     element = addElement('div');
                 });
 
-                it("should return an empty string if size passed is an empty string", function() {
+                it("should return an empty string if size passed is an empty string", function () {
                     expect(element.addUnits("")).toEqual("");
                 });
 
-                it("should return auto if size passed is 'auto' string", function() {
+                it("should return auto if size passed is 'auto' string", function () {
                     expect(element.addUnits("auto")).toEqual("auto");
                 });
 
-                it("should return an empty string if size passed is undefined", function() {
+                it("should return an empty string if size passed is undefined", function () {
                     expect(element.addUnits(undefined)).toEqual("");
                 });
 
-                it("should return an empty string if size passed is null", function() {
+                it("should return an empty string if size passed is null", function () {
                     expect(element.addUnits(null)).toEqual("");
                 });
             });
 
-            describe("destroy", function() {
+            describe("destroy", function () {
                 var id, dom;
-                
-                beforeEach(function() {
+
+                beforeEach(function () {
                     element = addElement('div');
                     id = element.id;
                     dom = element.dom;
                 });
 
-                beforeEach(function() {
+                beforeEach(function () {
                     element.destroy();
                 });
 
-                it("should remove dom property", function() {
+                it("should remove dom property", function () {
                     expect(element.dom).toBe(null);
                 });
 
-                it("should should remove the cache entry", function() {
+                it("should should remove the cache entry", function () {
                     expect(id in Ext.cache).toBe(false);
                 });
 
-                it("should remove the element from the dom", function() {
+                it("should remove the element from the dom", function () {
                     expect(dom.parentNode).toBeNull();
                 });
             });
 
-            describe("hover", function() {
+            describe("hover", function () {
                 var overFn, outFn, options;
-                beforeEach(function() {
+                beforeEach(function () {
                     element = addElement('div');
-                    overFn = function() {
+                    overFn = function () {
                         return 1;
                     };
 
-                    outFn = function() {
+                    outFn = function () {
                         return 2;
                     };
 
@@ -945,28 +948,28 @@ describe("Ext.dom.Element", function() {
                     spyOn(element, "on");
                 });
 
-                describe("mouseenter event", function() {
-                    it("should add a listener on mouseenter", function() {
+                describe("mouseenter event", function () {
+                    it("should add a listener on mouseenter", function () {
                         element.hover(overFn, outFn, fakeScope, options);
 
                         expect(element.on).toHaveBeenCalledWith("mouseenter", overFn, fakeScope, options);
                     });
 
-                    it("should set scope to element.dom if it is not passed in arguments", function() {
+                    it("should set scope to element.dom if it is not passed in arguments", function () {
                         element.hover(overFn, outFn, null, options);
 
                         expect(element.on).toHaveBeenCalledWith("mouseenter", overFn, element.dom, options);
                     });
                 });
 
-                describe("mouseleave event", function() {
-                    it("should add a listener on mouseleave", function() {
+                describe("mouseleave event", function () {
+                    it("should add a listener on mouseleave", function () {
                         element.hover(overFn, outFn, fakeScope, options);
 
                         expect(element.on).toHaveBeenCalledWith("mouseleave", outFn, fakeScope, options);
                     });
 
-                    it("should set scope to element.dom if it is not passed in arguments", function() {
+                    it("should set scope to element.dom if it is not passed in arguments", function () {
                         element.hover(overFn, outFn, null, options);
 
                         expect(element.on).toHaveBeenCalledWith("mouseleave", outFn, element.dom, options);
@@ -974,13 +977,13 @@ describe("Ext.dom.Element", function() {
                 });
             });
 
-            describe("contains", function() {
+            describe("contains", function () {
                 /**
                  * TODO: Removed tests for now, need to reinstate once the refactoring is done.
                  */
             });
 
-            describe("mask", function() {
+            describe("mask", function () {
                 // Note the following specs have been disabled for IE 6 because of failures in the eye
                 // run that could not be reproduced.  They always passed locally in the test runner.
                 // The comments have been left to show the unique differences needed to get these to
@@ -1012,13 +1015,13 @@ describe("Ext.dom.Element", function() {
 
             });
 
-            xdescribe("deprecated 5.0", function() {
-                describe("getAttributeNS", function() {
-                    beforeEach(function() {
+            xdescribe("deprecated 5.0", function () {
+                describe("getAttributeNS", function () {
+                    beforeEach(function () {
                         element = addElement('div');
                     });
 
-                    it("should call element getAttribute", function() {
+                    it("should call element getAttribute", function () {
                         spyOn(element, "getAttribute");
 
                         element.getAttributeNS("ns1", "align");
@@ -1028,9 +1031,9 @@ describe("Ext.dom.Element", function() {
                 });
             });
 
-            describe("getAttribute", function() {
+            describe("getAttribute", function () {
                 var element2, element3;
-                beforeEach(function() {
+                beforeEach(function () {
                     element = addElement('div');
                     element2 = Ext.getBody().createChild({tag: "div"});
 
@@ -1049,131 +1052,131 @@ describe("Ext.dom.Element", function() {
                     }
                 });
 
-                afterEach(function() {
+                afterEach(function () {
                     element2.destroy();
                     if (element3) {
                         element3.destroy();
                     }
                 });
 
-                describe("without namespace", function() {
-                    it("should return the attribute value if it exists", function() {
+                describe("without namespace", function () {
+                    it("should return the attribute value if it exists", function () {
                         expect(element.getAttribute("qtip")).toEqual("bar");
                     });
 
-                    it("should return null if the attribute does not exist", function() {
+                    it("should return null if the attribute does not exist", function () {
                         expect(element.getAttribute("nothing")).toBeNull();
                     });
                 });
 
-                describe("with namespace", function() {
-                    it("should return null on a non-namespaced attribute", function() {
+                describe("with namespace", function () {
+                    it("should return null on a non-namespaced attribute", function () {
                         expect(element.getAttribute("qtip", "ext")).toBeNull();
                     });
 
-                    it("should return null if the attribute belong to another namespace", function() {
+                    it("should return null if the attribute belong to another namespace", function () {
                         expect(element2.getAttribute("qtip", "nothing")).toBeNull();
                     });
 
-                    it("should return the attribute value if it belongs to the namespace", function() {
+                    it("should return the attribute value if it belongs to the namespace", function () {
                         if (element3) {
                             expect(element3.getAttribute("qtip", "ext")).toEqual("foobar");
                         }
                     });
 
-                    it("should handle xml namespace", function() {
+                    it("should handle xml namespace", function () {
                         expect(element2.getAttribute("qtip", "ext")).toEqual("foo");
                     });
                 });
             });
-            
-            describe("getAttributes", function() {
-                it("should return an empty object for element with no attributes", function() {
+
+            describe("getAttributes", function () {
+                it("should return an empty object for element with no attributes", function () {
                     var empty = document.createElement('div');
-                    
+
                     var attrs = Ext.fly(empty).getAttributes();
-                    
+
                     expect(attrs).toEqual({});
-                    
+
                     Ext.fly(empty).destroy();
                 });
-                
-                it("should return all attributes", function() {
+
+                it("should return all attributes", function () {
                     var el = Ext.getBody().createChild({
                         tag: 'div',
                         foo: 42
                     });
-                    
+
                     var attrs = el.getAttributes();
-                    
+
                     expect(attrs).toEqual({
                         foo: '42',
                         id: el.id
                     });
-                    
+
                     el.destroy();
                 });
             });
 
-            describe("update", function() {
-                beforeEach(function() {
+            describe("update", function () {
+                beforeEach(function () {
                     element = addElement('div');
                     element.dom.innerHTML = "hello world";
                 });
 
-                it("should update dom element innerHTML", function() {
+                it("should update dom element innerHTML", function () {
                     element.update("foobar");
 
                     expect(element.dom).hasHTML("foobar");
                 });
 
-                it("should return element", function() {
+                it("should return element", function () {
                     expect(element.update("foobar")).toBe(element);
                 });
             });
 
-            describe("prototype aliases", function() {
-                beforeEach(function() {
+            describe("prototype aliases", function () {
+                beforeEach(function () {
                     element = addElement('div');
                 });
 
-                it("should aliases addListener with on", function() {
+                it("should aliases addListener with on", function () {
                     expect(typeof(element.on)).toEqual('function');
                 });
 
-                it("should aliases removeListener with un", function() {
+                it("should aliases removeListener with un", function () {
                     expect(typeof(element.un)).toEqual('function');
                 });
 
-                it("should aliases removeAllListeners with clearListeners", function() {
+                it("should aliases removeAllListeners with clearListeners", function () {
                     expect(typeof(element.clearListeners)).toEqual('function');
                 });
             });
 
-            describe("visibilityMode", function(){
-                beforeEach(function() {
+            describe("visibilityMode", function () {
+                beforeEach(function () {
                     element = addElement('div');
                 });
 
-                it('must be able to setVisibilityMode and getVisibilityMode', function(){
+                it('must be able to setVisibilityMode and getVisibilityMode', function () {
                     element.setVisibilityMode(Ext.dom.Element.DISPLAY);
                     expect(element.getVisibilityMode()).toBe(Ext.dom.Element.DISPLAY);
-                    
+
                     element.setVisibilityMode(Ext.dom.Element.VISIBILITY);
                     expect(element.getVisibilityMode()).toBe(Ext.dom.Element.VISIBILITY);
                 });
-                
-                it("should retain visibilityMode on flyweights", function(){
+
+                it("should retain visibilityMode on flyweights", function () {
                     Ext.fly(element.dom).setVisibilityMode(Ext.dom.Element.DISPLAY);
-                    expect(Ext.fly(element.dom).getVisibilityMode()).toBe(Ext.dom.Element.DISPLAY);    
+                    expect(Ext.fly(element.dom).getVisibilityMode()).toBe(Ext.dom.Element.DISPLAY);
                 });
             });
 
-            describe("visibility", function(){
+            describe("visibility", function () {
                 var child, grandChild,
                     modes = [Ext.dom.Element.DISPLAY, Ext.dom.Element.VISIBILITY];
 
-                beforeEach(function() {
+                beforeEach(function () {
                     element = addElement('div');
                     child = element.createChild({tag: "div"});
                     if (child) {
@@ -1185,7 +1188,7 @@ describe("Ext.dom.Element", function() {
                     }
                 });
 
-                afterEach(function() {
+                afterEach(function () {
                     if (grandChild) {
                         grandChild.destroy();
                     }
@@ -1194,7 +1197,7 @@ describe("Ext.dom.Element", function() {
                     }
                 });
 
-                it("should toggle the visibility of the element itself", function(){
+                it("should toggle the visibility of the element itself", function () {
                     for (var i in modes) {
                         element.setVisibilityMode(modes[i]);
 
@@ -1202,11 +1205,11 @@ describe("Ext.dom.Element", function() {
                         expect(element.isVisible(false)).toBe(false);
 
                         element.setVisible(true);
-                        expect(element.isVisible(false)).toBe(true);                    
+                        expect(element.isVisible(false)).toBe(true);
                     }
                 });
 
-                it("should toggle the 'deep' visibility of the grand-child", function(){
+                it("should toggle the 'deep' visibility of the grand-child", function () {
                     for (var i in modes) {
                         element.setVisibilityMode(modes[i]);
 
@@ -1219,8 +1222,8 @@ describe("Ext.dom.Element", function() {
                 });
             });
 
-            describe("getMargin", function() {
-                beforeEach(function() {
+            describe("getMargin", function () {
+                beforeEach(function () {
                     element = addElement('div');
                     element.setStyle({
                         marginTop: '1px',
@@ -1237,36 +1240,36 @@ describe("Ext.dom.Element", function() {
                     element.dom.style.marginLeft = '';
                 }
 
-                describe("with sides", function() {
-                    it("should return the top", function() {
+                describe("with sides", function () {
+                    it("should return the top", function () {
                         expect(element.getMargin('t')).toBe(1);
                     });
 
-                    it("should return the right", function() {
+                    it("should return the right", function () {
                         expect(element.getMargin('r')).toBe(11);
                     });
 
-                    it("should return the bottom", function() {
+                    it("should return the bottom", function () {
                         expect(element.getMargin('b')).toBe(21);
                     });
 
-                    it("should return the left", function() {
+                    it("should return the left", function () {
                         expect(element.getMargin('l')).toBe(31);
                     });
 
-                    it("should return the sum of the vertical margins", function() {
+                    it("should return the sum of the vertical margins", function () {
                         expect(element.getMargin('tb')).toBe(22);
                     });
 
-                    it("should return the sum of the horizontal margins", function() {
+                    it("should return the sum of the horizontal margins", function () {
                         expect(element.getMargin('lr')).toBe(42);
                     });
 
-                    it("should return the sum of all margins", function() {
+                    it("should return the sum of all margins", function () {
                         expect(element.getMargin('trbl')).toBe(64);
                     });
 
-                    it("should coerce missing margins to 0", function() {
+                    it("should coerce missing margins to 0", function () {
                         clearMargins();
                         expect(element.getMargin('t')).toBe(0);
                         expect(element.getMargin('r')).toBe(0);
@@ -1277,8 +1280,8 @@ describe("Ext.dom.Element", function() {
                     });
                 });
 
-                describe("with no sides", function() {
-                    it("should return the margins with each margin name & shortcut", function() {
+                describe("with no sides", function () {
+                    it("should return the margins with each margin name & shortcut", function () {
                         expect(element.getMargin()).toEqual({
                             t: 1,
                             top: 1,
@@ -1291,7 +1294,7 @@ describe("Ext.dom.Element", function() {
                         });
                     });
 
-                    it("should coerce missing margins to 0", function() {
+                    it("should coerce missing margins to 0", function () {
                         clearMargins();
                         expect(element.getMargin()).toEqual({
                             t: 0,
@@ -1308,16 +1311,16 @@ describe("Ext.dom.Element", function() {
             });
 
             if (!fly) {
-                describe("setVertical", function() {
-                    beforeEach(function() {
+                describe("setVertical", function () {
+                    beforeEach(function () {
                         var styleSheet = document.styleSheets[0],
                             selector = '.vert',
                             props = [
-                                    '-webkit-transform: rotate(90deg);',
-                                    '-moz-transform: rotate(90deg);',
-                                    '-o-transform: rotate(90deg);',	
-                                    'transform: rotate(90deg);',
-                                    'filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);'
+                                '-webkit-transform: rotate(90deg);',
+                                '-moz-transform: rotate(90deg);',
+                                '-o-transform: rotate(90deg);',
+                                'transform: rotate(90deg);',
+                                'filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);'
                             ].join('');
                         if (styleSheet.insertRule) {
                             styleSheet.insertRule(selector + '{' + props + '}', 1);
@@ -1331,98 +1334,98 @@ describe("Ext.dom.Element", function() {
                         element.setVertical(90, 'vert');
                     });
 
-                    afterEach(function() {
+                    afterEach(function () {
                         var styleSheet = document.styleSheets[0];
                         if (styleSheet.deleteRule) {
-                  
+
                             styleSheet.deleteRule(1);
                         } else {
                             // IE8
-                            styleSheet.removeRule(styleSheet.rules.length - 1); 
+                            styleSheet.removeRule(styleSheet.rules.length - 1);
                         }
                     });
 
-                    it("should add the css class", function() {
+                    it("should add the css class", function () {
                         expect(element.hasCls('vert')).toBe(true);
                     });
 
-                    it("should get the width using getWidth()", function() {
+                    it("should get the width using getWidth()", function () {
                         expect(element.getWidth()).toBe(30);
                     });
 
-                    it("should get the width using getStyle('width')", function() {
+                    it("should get the width using getStyle('width')", function () {
                         expect(element.getStyle('width')).toBe('30px');
                     });
 
-                    it("should get the height using getHeight", function() {
+                    it("should get the height using getHeight", function () {
                         expect(element.getHeight()).toBe(100);
                     });
 
-                    it("should get the height using getStyle('height')", function() {
+                    it("should get the height using getStyle('height')", function () {
                         expect(element.getStyle('height')).toBe('100px');
                     });
 
-                    it("should set the width using setWidth()", function() {
+                    it("should set the width using setWidth()", function () {
                         element.setWidth(200);
                         expect(element.getWidth()).toBe(200);
                     });
 
-                    it("should set the width using setStyle('width')", function() {
+                    it("should set the width using setStyle('width')", function () {
                         element.setStyle('width', '200px');
                         expect(element.getWidth()).toBe(200);
                     });
 
-                    it("should set the height using setHeight()", function() {
+                    it("should set the height using setHeight()", function () {
                         element.setHeight(200);
                         expect(element.getHeight()).toBe(200);
                     });
 
-                    it("should set the height using setStyle('height')", function() {
+                    it("should set the height using setStyle('height')", function () {
                         element.setStyle('height', '200px');
                         expect(element.getHeight()).toBe(200);
                     });
 
-                    describe("setHorizontal", function() {
-                        beforeEach(function() {
+                    describe("setHorizontal", function () {
+                        beforeEach(function () {
                             element.setHorizontal();
                         });
 
-                        it("should remove the css class", function() {
+                        it("should remove the css class", function () {
                             expect(element.hasCls('vert')).toBe(false);
                         });
 
-                        it("should get the width using getWidth()", function() {
+                        it("should get the width using getWidth()", function () {
                             expect(element.getWidth()).toBe(100);
                         });
 
-                        it("should get the width using getStyle('width')", function() {
+                        it("should get the width using getStyle('width')", function () {
                             expect(element.getStyle('width')).toBe('100px');
                         });
 
-                        it("should get the height using getHeight", function() {
+                        it("should get the height using getHeight", function () {
                             expect(element.getHeight()).toBe(30);
                         });
 
-                        it("should get the height using getStyle('height')", function() {
+                        it("should get the height using getStyle('height')", function () {
                             expect(element.getStyle('height')).toBe('30px');
                         });
 
-                        it("should set the width using setWidth()", function() {
+                        it("should set the width using setWidth()", function () {
                             element.setWidth(200);
                             expect(element.getWidth()).toBe(200);
                         });
 
-                        it("should set the width using setStyle('width')", function() {
+                        it("should set the width using setStyle('width')", function () {
                             element.setStyle('width', '200px');
                             expect(element.getWidth()).toBe(200);
                         });
 
-                        it("should set the height using setHeight()", function() {
+                        it("should set the height using setHeight()", function () {
                             element.setHeight(200);
                             expect(element.getHeight()).toBe(200);
                         });
 
-                        it("should set the height using setStyle('height')", function() {
+                        it("should set the height using setStyle('height')", function () {
                             element.setStyle('height', '200px');
                             expect(element.getHeight()).toBe(200);
                         });
@@ -1435,10 +1438,10 @@ describe("Ext.dom.Element", function() {
     describeMethods();
     describeMethods(true);
 
-    describe("class methods", function() {
+    describe("class methods", function () {
         var element, element2, domEl, domEl2, id;
 
-        beforeEach(function() {
+        beforeEach(function () {
             element = Ext.getBody().createChild({tag: "div"});
             domEl = element.dom;
 
@@ -1448,7 +1451,7 @@ describe("Ext.dom.Element", function() {
             document.body.appendChild(domEl2);
         });
 
-        afterEach(function() {
+        afterEach(function () {
             // Prevent console warnings
             spyOn(Ext.Logger, 'warn');
             element.destroy();
@@ -1460,97 +1463,97 @@ describe("Ext.dom.Element", function() {
             }
         });
 
-        describe("get", function() {
-            describe("alias", function() {
-                it("should alias Ext.dom.Element.get with Ext.get", function() {
+        describe("get", function () {
+            describe("alias", function () {
+                it("should alias Ext.dom.Element.get with Ext.get", function () {
                     spyOn(Ext.dom.Element, 'get');
                     Ext.get();
                     expect(Ext.dom.Element.get).toHaveBeenCalled();
                 });
             });
 
-            describe("passing string id as first argument", function() {
-                describe("with a dom element which is not already encapsulated", function() {
-                    it("should return a new Ext.dom.Element", function() {
+            describe("passing string id as first argument", function () {
+                describe("with a dom element which is not already encapsulated", function () {
+                    it("should return a new Ext.dom.Element", function () {
                         element2 = Ext.get(id);
 
                         expect(element2 instanceof Ext.dom.Element).toBe(true);
                     });
 
-                    it("should encapsulate the dom element in the Ext.dom.Element", function() {
+                    it("should encapsulate the dom element in the Ext.dom.Element", function () {
                         element2 = Ext.get(id);
 
                         expect(element2.dom).toBe(domEl2);
                     });
 
-                    it("should add element to Ext.cache", function() {
+                    it("should add element to Ext.cache", function () {
                         element2 = Ext.get(id);
                         expect(Ext.cache[id] === element2);
                     });
                 });
 
-                describe("with a dom element which is already encapsulated", function() {
-                    it("should return the corresponding Ext.Element", function() {
+                describe("with a dom element which is already encapsulated", function () {
+                    it("should return the corresponding Ext.Element", function () {
                         expect(Ext.get(domEl)).toBe(element);
                     });
                 });
             });
 
-            describe("passing dom element as first argument", function() {
-                describe("with a dom element which is not already encapsulated", function() {
-                    it("should return a new Ext.dom.Element", function() {
+            describe("passing dom element as first argument", function () {
+                describe("with a dom element which is not already encapsulated", function () {
+                    it("should return a new Ext.dom.Element", function () {
                         element2 = Ext.get(domEl2);
 
                         expect(element2 instanceof Ext.dom.Element).toBe(true);
                     });
 
-                    it("should encapsulate the dom element in the Ext.dom.Element", function() {
+                    it("should encapsulate the dom element in the Ext.dom.Element", function () {
                         element2 = Ext.get(domEl2);
 
                         expect(element2.dom).toBe(domEl2);
                     });
 
-                    it("should add element to Ext.cache", function() {
+                    it("should add element to Ext.cache", function () {
                         expect(Ext.cache[domEl2.id] === domEl2);
                     });
                 });
 
-                describe("with a dom element which is already encapsulated", function() {
-                    it("should return the corresponding Ext.Element", function() {
+                describe("with a dom element which is already encapsulated", function () {
+                    it("should return the corresponding Ext.Element", function () {
                         expect(Ext.get(domEl.id)).toBe(element);
                     });
                 });
             });
 
-            describe("passing an Ext.dom.Element as first argument", function() {
-                it("should return Ext.dom.Element", function() {
+            describe("passing an Ext.dom.Element as first argument", function () {
+                it("should return Ext.dom.Element", function () {
                     expect(Ext.get(element)).toBe(element);
                 });
             });
-            
-            describe("passing a Ext.dom.FlyWeight as first argument", function() {
-                it("should return Ext.dom.Element", function() {
+
+            describe("passing a Ext.dom.FlyWeight as first argument", function () {
+                it("should return Ext.dom.Element", function () {
                     var result = Ext.get(Ext.fly(domEl));
                     expect(result).toBe(element);
                     expect(result.isFly).toBeUndefined();
-                    
+
                 });
             });
 
-            describe("passing a CompositeElement as first argument", function() {
+            describe("passing a CompositeElement as first argument", function () {
                 var compositeElement;
 
-                beforeEach(function() {
+                beforeEach(function () {
                     compositeElement = Ext.select("div");
                 });
 
-                it("should return Ext.dom.Element", function() {
+                it("should return Ext.dom.Element", function () {
                     expect(Ext.get(compositeElement)).toBe(compositeElement);
                 });
             });
 
-            describe("passing an array as first argument", function() {
-                it("should call Ext.dom.Element.select", function() {
+            describe("passing an array as first argument", function () {
+                it("should call Ext.dom.Element.select", function () {
                     var arr = [domEl, domEl2];
                     spyOn(Ext.dom.Element, "select");
 
@@ -1560,28 +1563,28 @@ describe("Ext.dom.Element", function() {
                 });
             });
 
-            describe("passing document as first argument", function() {
-                it("should return an Ext.dom.Element", function() {
+            describe("passing document as first argument", function () {
+                it("should return an Ext.dom.Element", function () {
                     expect(Ext.get(document) instanceof Ext.dom.Element).toBe(true);
                 });
 
-                xit("should return a bogus Ext.dom.Element", function() {
+                xit("should return a bogus Ext.dom.Element", function () {
                     expect(Ext.get(document).id).not.toBeDefined();
                 });
 
-                it("should return an Ext.dom.Element that encapsulate document", function() {
+                it("should return an Ext.dom.Element that encapsulate document", function () {
                     expect(Ext.get(document).dom).toBe(document);
                 });
             });
 
-            it("should not wrap a documentFragment", function() {
+            it("should not wrap a documentFragment", function () {
                 var dom = document.createDocumentFragment(),
                     el = Ext.get(dom);
 
                 expect(el).toBe(null);
             });
 
-            it("should wrap the window object", function() {
+            it("should wrap the window object", function () {
                 var dom = window,
                     el = Ext.get(dom);
 
@@ -1589,7 +1592,7 @@ describe("Ext.dom.Element", function() {
                 expect(el.dom).toBe(dom);
             });
 
-            it("should wrap the document object", function() {
+            it("should wrap the document object", function () {
                 var dom = document,
                     el = Ext.get(dom);
 
@@ -1597,24 +1600,24 @@ describe("Ext.dom.Element", function() {
                 expect(el.dom).toBe(dom);
             });
 
-            describe("document and window within iframe", function() {
+            describe("document and window within iframe", function () {
                 var iframe, el;
 
-                beforeEach(function() {
+                beforeEach(function () {
                     iframe = document.createElement('iframe');
                     document.body.appendChild(iframe);
 
-                    waitsFor(function() {
+                    waitsFor(function () {
                         return !!iframe.contentWindow.document.body;
                     });
                 });
 
-                afterEach(function() {
+                afterEach(function () {
                     document.body.removeChild(iframe);
                     el.destroy();
                 });
 
-                it("should wrap an iframe's window object", function() {
+                it("should wrap an iframe's window object", function () {
                     var dom = iframe.contentWindow;
 
                     el = Ext.get(dom);
@@ -1623,7 +1626,7 @@ describe("Ext.dom.Element", function() {
                     expect(el.dom).toBe(dom);
                 });
 
-                it("should wrap an iframe's document object", function() {
+                it("should wrap an iframe's document object", function () {
                     var dom = iframe.contentWindow.document;
 
                     el = Ext.get(dom);
@@ -1633,19 +1636,19 @@ describe("Ext.dom.Element", function() {
                 });
             });
 
-            it("should not wrap a text node", function() {
+            it("should not wrap a text node", function () {
                 expect(Ext.get(document.createTextNode(('foo')))).toBe(null);
             });
         });
 
-        xdescribe("garbageCollector", function() {
+        xdescribe("garbageCollector", function () {
 
         });
 
-        describe("fly", function() {
+        describe("fly", function () {
             var flyWeight;
 
-            beforeEach(function() {
+            beforeEach(function () {
                 spyOn(Ext, "getDom").andCallThrough();
 
             });
@@ -1677,43 +1680,43 @@ describe("Ext.dom.Element", function() {
                 });
             });
 
-            describe("global flyweight", function() {
-                beforeEach(function() {
+            describe("global flyweight", function () {
+                beforeEach(function () {
                     flyWeight = Ext.fly(domEl2);
                 });
 
-                it("should return an Ext.dom.Element.Fly", function() {
+                it("should return an Ext.dom.Element.Fly", function () {
                     expect(flyWeight instanceof Ext.dom.Fly).toBe(true);
                 });
 
-                it("should not cache a dom element", function() {
+                it("should not cache a dom element", function () {
                     expect(Ext.cache[domEl2.id]).toBeUndefined();
                 });
 
-                it("should call Ext.getDom", function() {
+                it("should call Ext.getDom", function () {
                     expect(Ext.getDom).toHaveBeenCalledWith(domEl2);
                 });
             });
 
-            describe("named reusable flyweight", function() {
-                beforeEach(function() {
+            describe("named reusable flyweight", function () {
+                beforeEach(function () {
                     flyWeight = Ext.fly(domEl2, "myflyweight");
                 });
 
-                it("should return an Ext.dom.Element.Flyweight", function() {
+                it("should return an Ext.dom.Element.Flyweight", function () {
                     expect(flyWeight instanceof Ext.dom.Fly).toBe(true);
                 });
 
-                it("should not cache a dom element", function() {
+                it("should not cache a dom element", function () {
                     expect(Ext.cache[domEl2.id]).toBeUndefined();
                 });
 
-                it("should call Ext.getDom", function() {
+                it("should call Ext.getDom", function () {
                     expect(Ext.getDom).toHaveBeenCalledWith(domEl2);
                 });
             });
 
-            it("should wrap a documentFragment", function() {
+            it("should wrap a documentFragment", function () {
                 var dom = document.createDocumentFragment(),
                     el = Ext.fly(dom);
 
@@ -1721,7 +1724,7 @@ describe("Ext.dom.Element", function() {
                 expect(el.dom).toBe(dom);
             });
 
-            it("should wrap the window object", function() {
+            it("should wrap the window object", function () {
                 var dom = window,
                     el = Ext.fly(dom);
 
@@ -1729,7 +1732,7 @@ describe("Ext.dom.Element", function() {
                 expect(el.dom).toBe(dom);
             });
 
-            it("should wrap the document object", function() {
+            it("should wrap the document object", function () {
                 var dom = document,
                     el = Ext.fly(dom);
 
@@ -1737,19 +1740,19 @@ describe("Ext.dom.Element", function() {
                 expect(el.dom).toBe(dom);
             });
 
-            describe("document and window within iframe", function() {
+            describe("document and window within iframe", function () {
                 var iframe;
 
-                beforeEach(function() {
+                beforeEach(function () {
                     iframe = document.createElement('iframe');
                     document.body.appendChild(iframe);
                 });
 
-                afterEach(function() {
+                afterEach(function () {
                     document.body.removeChild(iframe);
                 });
 
-                it("should wrap an iframe's window object", function() {
+                it("should wrap an iframe's window object", function () {
                     var dom = iframe.contentWindow,
                         el = Ext.fly(dom);
 
@@ -1757,7 +1760,7 @@ describe("Ext.dom.Element", function() {
                     expect(el.dom).toBe(dom);
                 });
 
-                it("should wrap an iframe's document object", function() {
+                it("should wrap an iframe's document object", function () {
                     var dom = iframe.contentWindow.document,
                         el = Ext.fly(dom);
 
@@ -1767,78 +1770,78 @@ describe("Ext.dom.Element", function() {
                 });
             });
 
-            it("should not wrap a text node", function() {
+            it("should not wrap a text node", function () {
                 expect(Ext.fly(document.createTextNode(('foo')))).toBe(null);
             });
         });
 
-        describe("aliases", function() {
-            it("should aliases Ext.dom.Element.get with Ext.get", function() {
+        describe("aliases", function () {
+            it("should aliases Ext.dom.Element.get with Ext.get", function () {
                 spyOn(Ext.dom.Element, 'get');
                 Ext.get();
                 expect(Ext.dom.Element.get).toHaveBeenCalled();
             });
 
-            it("should aliases Ext.fly with Ext.Element.fly", function() {
+            it("should aliases Ext.fly with Ext.Element.fly", function () {
                 spyOn(Ext, 'fly');
                 Ext.Element.fly();
                 expect(Ext.fly).toHaveBeenCalled();
             });
         });
     });
-    
-    describe("getXY", function(){
+
+    describe("getXY", function () {
         var unAttached;
-        beforeEach(function(){
+        beforeEach(function () {
             unAttached = document.createElement('div');
         });
-        it("should not throw when reading unattached element", function(){
+        it("should not throw when reading unattached element", function () {
             Ext.fly(unAttached).getXY();
         });
     });
 
-    describe("Ext", function() {
+    describe("Ext", function () {
         // these specs have to live here instead of in sencha-core, because they test
         // the result of passing a Ext.Element instance to Ext.isElement() or Ext.isTextNode.
-        it("should return false when an Ext.Element instance is passed to Ext.isElement", function() {
-           expect(Ext.isElement(Ext.getBody())).toBe(false);
+        it("should return false when an Ext.Element instance is passed to Ext.isElement", function () {
+            expect(Ext.isElement(Ext.getBody())).toBe(false);
         });
 
-        it("should return false when an Ext.Element instance is passed to Ext.isTextNode", function() {
-           expect(Ext.isTextNode(Ext.getBody())).toBe(false);
+        it("should return false when an Ext.Element instance is passed to Ext.isTextNode", function () {
+            expect(Ext.isTextNode(Ext.getBody())).toBe(false);
         });
     });
 
-    describe("Ext.isGarbage", function() {
-        it("should return false if the element is the window", function() {
+    describe("Ext.isGarbage", function () {
+        it("should return false if the element is the window", function () {
             expect(Ext.isGarbage(window)).toBe(false);
         });
 
-        it("should return false if the element is the document", function() {
+        it("should return false if the element is the document", function () {
             expect(Ext.isGarbage(document)).toBe(false);
         });
 
-        it("should return false if the element is the documentElement", function() {
+        it("should return false if the element is the documentElement", function () {
             expect(Ext.isGarbage(document.documentElement)).toBe(false);
         });
 
-        it("should return false if the element is in the DOM", function() {
+        it("should return false if the element is in the DOM", function () {
             var el = Ext.getBody().createChild();
             expect(Ext.isGarbage(el.dom)).toBe(false);
             el.destroy();
         });
 
-        it("should return true if the element is not in the DOM", function() {
+        it("should return true if the element is not in the DOM", function () {
             expect(Ext.isGarbage(document.createElement('div'))).toBe(true);
         });
 
-        it("should return false if the element is in the detached body", function() {
+        it("should return false if the element is in the detached body", function () {
             var el = Ext.getDetachedBody().createChild();
             expect(Ext.isGarbage(el.dom)).toBe(false);
             el.destroy();
         });
 
-        it("should return false if the element is in the dom and the cache contains an element with the same id", function() {
+        it("should return false if the element is in the dom and the cache contains an element with the same id", function () {
             // EXTJS-13702
             var el = Ext.getBody().createChild({
                 id: 'foo'
@@ -1857,16 +1860,16 @@ describe("Ext.dom.Element", function() {
 
     });
 
-    describe("shim", function() {
+    describe("shim", function () {
         var element;
 
-        beforeEach(function() {
+        beforeEach(function () {
             element = Ext.getBody().createChild({
                 style: 'position:absolute;left:250px;top:150px;width:200px;height:100px;'
             });
         });
 
-        afterEach(function() {
+        afterEach(function () {
             if (!element.isDestroyed) {
                 element.destroy();
             }
@@ -1881,66 +1884,66 @@ describe("Ext.dom.Element", function() {
             expect(box.height).toBe(h);
         }
 
-        it("should not have a shim by default", function() {
+        it("should not have a shim by default", function () {
             expect(element.shim).toBeUndefined();
         });
 
-        it("should create a shim", function() {
+        it("should create a shim", function () {
             element.enableShim();
 
             expect(element.shim instanceof Ext.dom.Shim).toBe(true);
         });
 
-        it("should show the shim upon creation", function() {
+        it("should show the shim upon creation", function () {
             element.enableShim();
 
             expect(element.shim.el.isVisible()).toBe(true);
         });
 
-        it("should insert the shim as the previousSibling of its target", function() {
+        it("should insert the shim as the previousSibling of its target", function () {
             element.enableShim();
 
             expect(element.dom.previousSibling).toBe(element.shim.el.dom);
         });
 
-        it("should be an iframe", function() {
+        it("should be an iframe", function () {
             element.enableShim();
 
             expect(element.shim.el.dom.tagName).toBe('IFRAME');
         });
 
-        it("should have a CSS class of 'x-shim'", function() {
+        it("should have a CSS class of 'x-shim'", function () {
             element.enableShim();
 
             expect(element.shim.el).toHaveCls('x-shim');
         });
 
-        it("should have a role of 'presentation'", function() {
+        it("should have a role of 'presentation'", function () {
             element.enableShim();
 
             expect(element.shim.el.dom.getAttribute('role')).toBe('presentation');
         });
 
-        it("should have frameBorder: '0' on the iframe", function() {
+        it("should have frameBorder: '0' on the iframe", function () {
             element.enableShim();
 
             expect(element.shim.el.dom.getAttribute('frameBorder')).toBe('0');
         });
 
-        it("should set the iframe's src to Ext.SSL_SECURE_URL", function() {
+        it("should set the iframe's src to Ext.SSL_SECURE_URL", function () {
             element.enableShim();
 
             expect(element.shim.el.dom.getAttribute('src')).toBe(Ext.SSL_SECURE_URL);
         });
 
-        it("should have a tabindex of '-1'", function() {
+        it("should have a tabindex of '-1'", function () {
             // tabIndex of -1 ensures that the iframe is not focusable by the user
             element.enableShim();
 
             expect(element.shim.el.dom.getAttribute('tabindex')).toBe('-1');
         });
 
-        it("should not show the shim if the element is not visible", function() {
+        it("should not show the shim if the element is not visible", function () {
             element.hide();
 
             element.enableShim();
@@ -1948,14 +1951,14 @@ describe("Ext.dom.Element", function() {
             expect(element.shim.el).toBeUndefined();
         });
 
-        it("should not show the shim upon creation if ths isVisible parameter is false", function() {
+        it("should not show the shim upon creation if ths isVisible parameter is false", function () {
             // private api used by components to avoid an isVisible check
             element.enableShim(null, false);
 
             expect(element.shim.el).toBeUndefined();
         });
 
-        it("should hide the shim when the element is destroyed", function() {
+        it("should hide the shim when the element is destroyed", function () {
             element.enableShim();
 
             var shim = element.shim,
@@ -1969,13 +1972,13 @@ describe("Ext.dom.Element", function() {
             expect(shimEl.isDestroyed).toBeFalsy();
         });
 
-        it("should use DISPLAY visibilityMode for the shim", function() {
+        it("should use DISPLAY visibilityMode for the shim", function () {
             element.enableShim();
 
             expect(element.shim.el.getVisibilityMode()).toBe(Ext.Element.DISPLAY);
         });
 
-        it("should allow fixed positioning to be configured", function() {
+        it("should allow fixed positioning to be configured", function () {
             element.enableShim({
                 fixed: true
             });
@@ -1983,7 +1986,7 @@ describe("Ext.dom.Element", function() {
             expect(element.shim.el.getStyle('position')).toBe('fixed');
         });
 
-        it("should set the z-index of the shim when the z-index of the element is set", function() {
+        it("should set the z-index of the shim when the z-index of the element is set", function () {
             element.enableShim();
 
             element.setZIndex(174);
@@ -1991,13 +1994,13 @@ describe("Ext.dom.Element", function() {
             expect(parseInt(element.shim.el.getStyle('z-index'), 10)).toBe(174);
         });
 
-        it("should align the shim to the target element", function() {
+        it("should align the shim to the target element", function () {
             element.enableShim();
 
             expectBox(250, 150, 200, 100);
         });
 
-        it("should realign the shim using passed coordinates", function() {
+        it("should realign the shim using passed coordinates", function () {
             element.enableShim();
 
             element.shim.realign(25, 50, 75, 85);
@@ -2005,7 +2008,7 @@ describe("Ext.dom.Element", function() {
             expectBox(25, 50, 75, 85);
         });
 
-        it("should realign the shim in response to setLeft()", function() {
+        it("should realign the shim in response to setLeft()", function () {
             element.enableShim();
 
             element.setLeft(300);
@@ -2013,7 +2016,7 @@ describe("Ext.dom.Element", function() {
             expectBox(300, 150, 200, 100);
         });
 
-        it("should realign the shim in response to setTop()", function() {
+        it("should realign the shim in response to setTop()", function () {
             element.enableShim();
 
             element.setTop(300);
@@ -2021,7 +2024,7 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 300, 200, 100);
         });
 
-        it("should realign the shim in response to setLocalX()", function() {
+        it("should realign the shim in response to setLocalX()", function () {
             element.enableShim();
 
             element.setLocalX(300);
@@ -2029,7 +2032,7 @@ describe("Ext.dom.Element", function() {
             expectBox(300, 150, 200, 100);
         });
 
-        it("should realign the shim in response to setLocalY()", function() {
+        it("should realign the shim in response to setLocalY()", function () {
             element.enableShim();
 
             element.setLocalY(300);
@@ -2037,7 +2040,7 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 300, 200, 100);
         });
 
-        it("should realign the shim in response to setLocalXY()", function() {
+        it("should realign the shim in response to setLocalXY()", function () {
             element.enableShim();
 
             element.setLocalXY(300, 400);
@@ -2045,7 +2048,7 @@ describe("Ext.dom.Element", function() {
             expectBox(300, 400, 200, 100);
         });
 
-        it("should realign the shim in response to setX()", function() {
+        it("should realign the shim in response to setX()", function () {
             element.enableShim();
 
             element.setX(300);
@@ -2053,7 +2056,7 @@ describe("Ext.dom.Element", function() {
             expectBox(300, 150, 200, 100);
         });
 
-        it("should realign the shim in response to setY()", function() {
+        it("should realign the shim in response to setY()", function () {
             element.enableShim();
 
             element.setY(300);
@@ -2061,7 +2064,7 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 300, 200, 100);
         });
 
-        it("should realign the shim in response to setXY()", function() {
+        it("should realign the shim in response to setXY()", function () {
             element.enableShim();
 
             element.setXY([300, 400]);
@@ -2069,7 +2072,7 @@ describe("Ext.dom.Element", function() {
             expectBox(300, 400, 200, 100);
         });
 
-        it("should realign the shim in response to setWidth()", function() {
+        it("should realign the shim in response to setWidth()", function () {
             element.enableShim();
 
             element.setWidth(400);
@@ -2077,7 +2080,7 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 150, 400, 100);
         });
 
-        it("should realign the shim in response to setHeight()", function() {
+        it("should realign the shim in response to setHeight()", function () {
             element.enableShim();
 
             element.setHeight(400);
@@ -2085,7 +2088,7 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 150, 200, 400);
         });
 
-        it("should realign the shim in response to setSize()", function() {
+        it("should realign the shim in response to setSize()", function () {
             element.enableShim();
 
             element.setSize(450, 550);
@@ -2093,7 +2096,7 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 150, 450, 550);
         });
 
-        it("should realign the shim in response to setBox()", function() {
+        it("should realign the shim in response to setBox()", function () {
             element.enableShim();
 
             element.setBox({
@@ -2106,7 +2109,7 @@ describe("Ext.dom.Element", function() {
             expectBox(300, 400, 500, 600);
         });
 
-        it("should disable the shim", function() {
+        it("should disable the shim", function () {
             element.enableShim();
 
             var shimEl = element.shim.el;
@@ -2117,7 +2120,7 @@ describe("Ext.dom.Element", function() {
             expect(shimEl.isVisible()).toBe(false);
         });
 
-        it("should re-enable the shim after disabling", function() {
+        it("should re-enable the shim after disabling", function () {
             element.enableShim();
 
             element.disableShim();
@@ -2128,7 +2131,7 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 150, 200, 100);
         });
 
-        it("should realign the shim when re-enabling if the target el was moved", function() {
+        it("should realign the shim when re-enabling if the target el was moved", function () {
             element.enableShim();
 
             element.disableShim();
@@ -2141,7 +2144,7 @@ describe("Ext.dom.Element", function() {
             expectBox(500, 450, 50, 60);
         });
 
-        it("should hide the shim when the target element is hidden", function() {
+        it("should hide the shim when the target element is hidden", function () {
             element.enableShim();
 
             var shim = element.shim,
@@ -2153,7 +2156,7 @@ describe("Ext.dom.Element", function() {
             expect(shimEl.isVisible()).toBe(false);
         });
 
-        it("should show and realign the shim when the target element is shown", function() {
+        it("should show and realign the shim when the target element is shown", function () {
             element.hide();
 
             element.enableShim();
@@ -2164,7 +2167,7 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 150, 200, 100);
         });
 
-        it("should hide the shim when the target element is hidden using setDisplayed", function() {
+        it("should hide the shim when the target element is hidden using setDisplayed", function () {
             element.enableShim();
 
             var shim = element.shim,
@@ -2176,7 +2179,7 @@ describe("Ext.dom.Element", function() {
             expect(shimEl.isVisible()).toBe(false);
         });
 
-        it("should show and realign the shim when the target element is shown using setDisplayed", function() {
+        it("should show and realign the shim when the target element is shown using setDisplayed", function () {
             element.setDisplayed(false);
 
             element.enableShim();
@@ -2187,7 +2190,7 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 150, 200, 100);
         });
 
-        it("should disable the shim when disableShim is called", function() {
+        it("should disable the shim when disableShim is called", function () {
             element.enableShim();
 
             var shimEl = element.shim.el;
@@ -2202,7 +2205,7 @@ describe("Ext.dom.Element", function() {
             expect(element.shim.el).toBeNull();
         });
 
-        it("should enable a disabled shim when enableShim is called", function() {
+        it("should enable a disabled shim when enableShim is called", function () {
             element.enableShim();
             element.disableShim();
             element.enableShim();
@@ -2211,7 +2214,7 @@ describe("Ext.dom.Element", function() {
             expect(element.shim.el.isVisible()).toBe(true);
         });
 
-        it("should realign a disabled shim when it is re-enabled", function() {
+        it("should realign a disabled shim when it is re-enabled", function () {
             element.enableShim();
             element.disableShim();
 
@@ -2224,7 +2227,7 @@ describe("Ext.dom.Element", function() {
             expectBox(575, 325, 250, 315);
         });
 
-        it("should not attempt to hide a disabled shim when the element is hidden", function() {
+        it("should not attempt to hide a disabled shim when the element is hidden", function () {
             element.enableShim();
             element.disableShim();
 
@@ -2235,7 +2238,7 @@ describe("Ext.dom.Element", function() {
             expect(element.shim.hide).not.toHaveBeenCalled();
         });
 
-        it("should not show a disabled shim when the element is shown", function() {
+        it("should not show a disabled shim when the element is shown", function () {
             element.enableShim();
 
             element.hide();
@@ -2249,7 +2252,7 @@ describe("Ext.dom.Element", function() {
         });
     });
 
-    describe("shadow", function() {
+    describe("shadow", function () {
         var offsets = {
                 // offsets for the default 'drop' shadow
                 x: 4,
@@ -2259,9 +2262,9 @@ describe("Ext.dom.Element", function() {
             },
             element;
 
-        beforeEach(function() {
+        beforeEach(function () {
             this.addMatchers({
-                toBeWithin: function(deviation, value) {
+                toBeWithin: function (deviation, value) {
                     var actual = this.actual;
 
                     if (deviation > 0) {
@@ -2276,7 +2279,7 @@ describe("Ext.dom.Element", function() {
             });
         });
 
-        afterEach(function() {
+        afterEach(function () {
             if (!element.isDestroyed) {
                 element.destroy();
             }
@@ -2291,29 +2294,29 @@ describe("Ext.dom.Element", function() {
             expect(box.height).toBe(h + offsets.h);
         }
 
-        it("should not have a shadow by default", function() {
+        it("should not have a shadow by default", function () {
             expect(element.shadow).toBeUndefined();
         });
 
-        it("should create a shadow", function() {
+        it("should create a shadow", function () {
             element.enableShadow();
 
             expect(element.shadow instanceof Ext.dom.Shadow).toBe(true);
         });
 
-        it("should show the shadow upon creation", function() {
+        it("should show the shadow upon creation", function () {
             element.enableShadow();
 
             expect(element.shadow.el.isVisible()).toBe(true);
         });
 
-        it("should insert the shadow as the previousSibling of its target", function() {
+        it("should insert the shadow as the previousSibling of its target", function () {
             element.enableShadow();
 
             expect(element.dom.previousSibling).toBe(element.shadow.el.dom);
         });
 
-        it("should have the correct CSS class", function() {
+        it("should have the correct CSS class", function () {
             element.enableShadow();
 
             expect(element.shadow.el).toHaveCls(
@@ -2321,13 +2324,13 @@ describe("Ext.dom.Element", function() {
             );
         });
 
-        it("should have a role of 'presentation'", function() {
+        it("should have a role of 'presentation'", function () {
             element.enableShadow();
 
             expect(element.shadow.el.dom.getAttribute('role')).toBe('presentation');
         });
 
-        it("should not show the shadow if the element is not visible", function() {
+        it("should not show the shadow if the element is not visible", function () {
             element.hide();
 
             element.enableShadow();
@@ -2335,14 +2338,14 @@ describe("Ext.dom.Element", function() {
             expect(element.shadow.el).toBeUndefined();
         });
 
-        it("should not show the shadow upon creation if ths isVisible parameter is false", function() {
+        it("should not show the shadow upon creation if ths isVisible parameter is false", function () {
             // private api used by components to avoid an isVisible check
             element.enableShadow(null, false);
 
             expect(element.shadow.el).toBeUndefined();
         });
 
-        it("should hide the shadow when the element is destroyed", function() {
+        it("should hide the shadow when the element is destroyed", function () {
             element.enableShadow();
 
             var shadow = element.shadow,
@@ -2356,13 +2359,13 @@ describe("Ext.dom.Element", function() {
             expect(shadowEl.isDestroyed).toBeFalsy();
         });
 
-        it("should use DISPLAY visibilityMode for the shadow", function() {
+        it("should use DISPLAY visibilityMode for the shadow", function () {
             element.enableShadow();
 
             expect(element.shadow.el.getVisibilityMode()).toBe(Ext.Element.DISPLAY);
         });
 
-        it("should allow fixed positioning to be configured", function() {
+        it("should allow fixed positioning to be configured", function () {
             element.enableShadow({
                 fixed: true
             });
@@ -2370,7 +2373,7 @@ describe("Ext.dom.Element", function() {
             expect(element.shadow.el.getStyle('position')).toBe('fixed');
         });
 
-        it("should set the z-index of the shadow when the z-index of the element is set", function() {
+        it("should set the z-index of the shadow when the z-index of the element is set", function () {
             element.enableShadow();
 
             element.setZIndex(174);
@@ -2378,7 +2381,7 @@ describe("Ext.dom.Element", function() {
             expect(parseInt(element.shadow.el.getStyle('z-index'), 10)).toBe(174);
         });
 
-        it("should set the shadow's offset", function() {
+        it("should set the shadow's offset", function () {
             element.enableShadow({
                 offset: 10
             });
@@ -2386,7 +2389,7 @@ describe("Ext.dom.Element", function() {
             expect(element.shadow.offset).toBe(10);
         });
 
-        it("should set the shadow's mode", function() {
+        it("should set the shadow's mode", function () {
             element.enableShadow({
                 mode: 'drop'
             });
@@ -2394,13 +2397,13 @@ describe("Ext.dom.Element", function() {
             expect(element.shadow.mode).toBe('drop');
         });
 
-        it("should align the shadow to the target element", function() {
+        it("should align the shadow to the target element", function () {
             element.enableShadow();
 
             expectBox(250, 150, 200, 100);
         });
 
-        it("should realign the shadow using passed coordinates", function() {
+        it("should realign the shadow using passed coordinates", function () {
             element.enableShadow();
 
             element.shadow.realign(25, 50, 75, 85);
@@ -2408,7 +2411,7 @@ describe("Ext.dom.Element", function() {
             expectBox(25, 50, 75, 85);
         });
 
-        it("should realign the shadow in response to setLeft()", function() {
+        it("should realign the shadow in response to setLeft()", function () {
             element.enableShadow();
 
             element.setLeft(300);
@@ -2416,13 +2419,13 @@ describe("Ext.dom.Element", function() {
             expectBox(300, 150, 200, 100);
         });
 
-        it("should not constrain the shadow when the element left position is < 0", function() {
+        it("should not constrain the shadow when the element left position is < 0", function () {
             element.enableShadow();
             element.setLeft(-100);
             expectBox(-100, 150, 200, 100);
         });
 
-        it("should realign the shadow in response to setTop()", function() {
+        it("should realign the shadow in response to setTop()", function () {
             element.enableShadow();
 
             element.setTop(300);
@@ -2430,13 +2433,13 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 300, 200, 100);
         });
 
-        it("should not constrain the shadow when the element top position is < 0", function() {
+        it("should not constrain the shadow when the element top position is < 0", function () {
             element.enableShadow();
             element.setTop(-100);
             expectBox(250, -100, 200, 100);
         });
 
-        it("should realign the shadow in response to setLocalX()", function() {
+        it("should realign the shadow in response to setLocalX()", function () {
             element.enableShadow();
 
             element.setLocalX(300);
@@ -2444,7 +2447,7 @@ describe("Ext.dom.Element", function() {
             expectBox(300, 150, 200, 100);
         });
 
-        it("should realign the shadow in response to setLocalY()", function() {
+        it("should realign the shadow in response to setLocalY()", function () {
             element.enableShadow();
 
             element.setLocalY(300);
@@ -2452,7 +2455,7 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 300, 200, 100);
         });
 
-        it("should realign the shadow in response to setLocalXY()", function() {
+        it("should realign the shadow in response to setLocalXY()", function () {
             element.enableShadow();
 
             element.setLocalXY(300, 400);
@@ -2460,7 +2463,7 @@ describe("Ext.dom.Element", function() {
             expectBox(300, 400, 200, 100);
         });
 
-        it("should realign the shadow in response to setX()", function() {
+        it("should realign the shadow in response to setX()", function () {
             element.enableShadow();
 
             element.setX(300);
@@ -2468,7 +2471,7 @@ describe("Ext.dom.Element", function() {
             expectBox(300, 150, 200, 100);
         });
 
-        it("should realign the shadow in response to setY()", function() {
+        it("should realign the shadow in response to setY()", function () {
             element.enableShadow();
 
             element.setY(300);
@@ -2476,7 +2479,7 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 300, 200, 100);
         });
 
-        it("should realign the shadow in response to setXY()", function() {
+        it("should realign the shadow in response to setXY()", function () {
             element.enableShadow();
 
             element.setXY([300, 400]);
@@ -2484,7 +2487,7 @@ describe("Ext.dom.Element", function() {
             expectBox(300, 400, 200, 100);
         });
 
-        it("should realign the shadow in response to setWidth()", function() {
+        it("should realign the shadow in response to setWidth()", function () {
             element.enableShadow();
 
             element.setWidth(400);
@@ -2492,7 +2495,7 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 150, 400, 100);
         });
 
-        it("should realign the shadow in response to setHeight()", function() {
+        it("should realign the shadow in response to setHeight()", function () {
             element.enableShadow();
 
             element.setHeight(400);
@@ -2500,7 +2503,7 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 150, 200, 400);
         });
 
-        it("should realign the shadow in response to setSize()", function() {
+        it("should realign the shadow in response to setSize()", function () {
             element.enableShadow();
 
             element.setSize(450, 550);
@@ -2508,7 +2511,7 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 150, 450, 550);
         });
 
-        it("should realign the shadow in response to setBox()", function() {
+        it("should realign the shadow in response to setBox()", function () {
             element.enableShadow();
 
             element.setBox({
@@ -2521,7 +2524,7 @@ describe("Ext.dom.Element", function() {
             expectBox(300, 400, 500, 600);
         });
 
-        it("should disable the shadow", function() {
+        it("should disable the shadow", function () {
             element.enableShadow();
 
             var shadowEl = element.shadow.el;
@@ -2532,7 +2535,7 @@ describe("Ext.dom.Element", function() {
             expect(shadowEl.isVisible()).toBe(false);
         });
 
-        it("should re-enable the shadow after disabling", function() {
+        it("should re-enable the shadow after disabling", function () {
             element.enableShadow();
 
             element.disableShadow();
@@ -2543,7 +2546,7 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 150, 200, 100);
         });
 
-        it("should realign the shadow when re-enabling if the target el was moved", function() {
+        it("should realign the shadow when re-enabling if the target el was moved", function () {
             element.enableShadow();
 
             element.disableShadow();
@@ -2556,7 +2559,7 @@ describe("Ext.dom.Element", function() {
             expectBox(500, 450, 50, 60);
         });
 
-        it("should hide the shadow when the target element is hidden", function() {
+        it("should hide the shadow when the target element is hidden", function () {
             element.enableShadow();
 
             var shadow = element.shadow,
@@ -2568,7 +2571,7 @@ describe("Ext.dom.Element", function() {
             expect(shadowEl.isVisible()).toBe(false);
         });
 
-        it("should show and realign the shadow when the target element is shown", function() {
+        it("should show and realign the shadow when the target element is shown", function () {
             element.hide();
 
             element.enableShadow();
@@ -2579,7 +2582,7 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 150, 200, 100);
         });
 
-        it("should hide the shadow when the target element is hidden using setDisplayed", function() {
+        it("should hide the shadow when the target element is hidden using setDisplayed", function () {
             element.enableShadow();
 
             var shadow = element.shadow,
@@ -2591,7 +2594,7 @@ describe("Ext.dom.Element", function() {
             expect(shadowEl.isVisible()).toBe(false);
         });
 
-        it("should show and realign the shadow when the target element is shown using setDisplayed", function() {
+        it("should show and realign the shadow when the target element is shown using setDisplayed", function () {
             element.setDisplayed(false);
 
             element.enableShadow();
@@ -2602,7 +2605,7 @@ describe("Ext.dom.Element", function() {
             expectBox(250, 150, 200, 100);
         });
 
-        it("should disable the shadow when disableShadow is called", function() {
+        it("should disable the shadow when disableShadow is called", function () {
             element.enableShadow();
 
             var shadow = element.shadow.el;
@@ -2617,7 +2620,7 @@ describe("Ext.dom.Element", function() {
             expect(element.shadow.el).toBeNull();
         });
 
-        it("should enable a disabled shadow when enableShadow is called", function() {
+        it("should enable a disabled shadow when enableShadow is called", function () {
             element.enableShadow();
             element.disableShadow();
             element.enableShadow();
@@ -2626,7 +2629,7 @@ describe("Ext.dom.Element", function() {
             expect(element.shadow.el.isVisible()).toBe(true);
         });
 
-        it("should realign a disabled shadow when it is re-enabled", function() {
+        it("should realign a disabled shadow when it is re-enabled", function () {
             element.enableShadow();
             element.disableShadow();
 
@@ -2639,7 +2642,7 @@ describe("Ext.dom.Element", function() {
             expectBox(575, 325, 250, 315);
         });
 
-        it("should not attempt to hide a disabled shadow when the element is hidden", function() {
+        it("should not attempt to hide a disabled shadow when the element is hidden", function () {
             element.enableShadow();
             element.disableShadow();
 
@@ -2650,7 +2653,7 @@ describe("Ext.dom.Element", function() {
             expect(element.shadow.hide).not.toHaveBeenCalled();
         });
 
-        it("should not show a disabled shadow when the element is shown", function() {
+        it("should not show a disabled shadow when the element is shown", function () {
             element.enableShadow();
 
             element.hide();
@@ -2663,7 +2666,7 @@ describe("Ext.dom.Element", function() {
             expect(element.shadow.disabled).toBe(true);
         });
 
-        (Ext.supports.Opacity ? it : xit)("should set the opacity of the shadow when the opacity of the element is changed", function() {
+        (Ext.supports.Opacity ? it : xit)("should set the opacity of the shadow when the opacity of the element is changed", function () {
             element.enableShadow();
 
             element.setStyle('opacity', '0.5');
@@ -2671,8 +2674,8 @@ describe("Ext.dom.Element", function() {
             expect(element.shadow.el.getStyle('opacity')).toBe('0.5');
         });
 
-        describe("animate:false (default)", function() {
-            it("should hide the shadow during setWidth animation", function() {
+        describe("animate:false (default)", function () {
+            it("should hide the shadow during setWidth animation", function () {
                 var animationDone = false,
                     shadow, shadowEl;
 
@@ -2686,27 +2689,27 @@ describe("Ext.dom.Element", function() {
                 element.setWidth(400, {
                     duration: 200,
                     listeners: {
-                        afteranimate: function() {
+                        afteranimate: function () {
                             animationDone = true;
                         }
                     }
                 });
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return !shadow.el && !shadowEl.isVisible();
                 }, "Shadow was never hidden", 150);
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return animationDone;
                 }, "Animation never completed", 300);
 
-                runs(function() {
+                runs(function () {
                     expect(element.shadow.el.isVisible()).toBe(true);
                     expectBox(250, 150, 400, 100);
                 });
             });
 
-            it("should hide the shadow during setHeight animation", function() {
+            it("should hide the shadow during setHeight animation", function () {
                 var animationDone = false,
                     shadow, shadowEl;
 
@@ -2720,27 +2723,27 @@ describe("Ext.dom.Element", function() {
                 element.setHeight(500, {
                     duration: 200,
                     listeners: {
-                        afteranimate: function() {
+                        afteranimate: function () {
                             animationDone = true;
                         }
                     }
                 });
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return !shadow.el && !shadowEl.isVisible();
                 }, "Shadow was never hidden", 150);
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return animationDone;
                 }, "Animation never completed", 300);
 
-                runs(function() {
+                runs(function () {
                     expect(element.shadow.el.isVisible()).toBe(true);
                     expectBox(250, 150, 200, 500);
                 });
             });
 
-            it("should hide the shadow during setSize animation", function() {
+            it("should hide the shadow during setSize animation", function () {
                 var animationDone = false,
                     shadow, shadowEl;
 
@@ -2754,27 +2757,27 @@ describe("Ext.dom.Element", function() {
                 element.setSize(500, 400, {
                     duration: 200,
                     listeners: {
-                        afteranimate: function() {
+                        afteranimate: function () {
                             animationDone = true;
                         }
                     }
                 });
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return !shadow.el && !shadowEl.isVisible();
                 }, "Shadow was never hidden", 150);
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return animationDone;
                 }, "Animation never completed", 300);
 
-                runs(function() {
+                runs(function () {
                     expect(element.shadow.el.isVisible()).toBe(true);
                     expectBox(250, 150, 500, 400);
                 });
             });
 
-            it("should hide the shadow during setX animation", function() {
+            it("should hide the shadow during setX animation", function () {
                 var animationDone = false,
                     shadow, shadowEl;
 
@@ -2788,27 +2791,27 @@ describe("Ext.dom.Element", function() {
                 element.setX(300, {
                     duration: 200,
                     listeners: {
-                        afteranimate: function() {
+                        afteranimate: function () {
                             animationDone = true;
                         }
                     }
                 });
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return !shadow.el && !shadowEl.isVisible();
                 }, "Shadow was never hidden", 150);
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return animationDone;
                 }, "Animation never completed", 300);
 
-                runs(function() {
+                runs(function () {
                     expect(element.shadow.el.isVisible()).toBe(true);
                     expectBox(300, 150, 200, 100);
                 });
             });
 
-            it("should hide the shadow during setY animation", function() {
+            it("should hide the shadow during setY animation", function () {
                 var animationDone = false,
                     shadow, shadowEl;
 
@@ -2822,27 +2825,27 @@ describe("Ext.dom.Element", function() {
                 element.setY(350, {
                     duration: 200,
                     listeners: {
-                        afteranimate: function() {
+                        afteranimate: function () {
                             animationDone = true;
                         }
                     }
                 });
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return !shadow.el && !shadowEl.isVisible();
                 }, "Shadow was never hidden", 150);
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return animationDone;
                 }, "Animation never completed", 300);
 
-                runs(function() {
+                runs(function () {
                     expect(element.shadow.el.isVisible()).toBe(true);
                     expectBox(250, 350, 200, 100);
                 });
             });
 
-            it("should hide the shadow during setXY animation", function() {
+            it("should hide the shadow during setXY animation", function () {
                 var animationDone = false,
                     shadow, shadowEl;
 
@@ -2856,28 +2859,28 @@ describe("Ext.dom.Element", function() {
                 element.setXY([350, 400], {
                     duration: 200,
                     listeners: {
-                        afteranimate: function() {
+                        afteranimate: function () {
                             animationDone = true;
                         }
                     }
                 });
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return !shadow.el && !shadowEl.isVisible();
                 }, "Shadow was never hidden", 150);
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return animationDone;
                 }, "Animation never completed", 300);
 
-                runs(function() {
+                runs(function () {
                     expect(element.shadow.el.isVisible()).toBe(true);
                     expectBox(350, 400, 200, 100);
                 });
             });
 
-            describe("with disabled shadow", function() {
-                it("should not show the shadow after setWidth animation", function() {
+            describe("with disabled shadow", function () {
+                it("should not show the shadow after setWidth animation", function () {
                     var animationDone = false;
 
                     element.enableShadow();
@@ -2888,23 +2891,23 @@ describe("Ext.dom.Element", function() {
                     element.setWidth(400, {
                         duration: 10,
                         listeners: {
-                            afteranimate: function() {
+                            afteranimate: function () {
                                 animationDone = true;
                             }
                         }
                     });
 
-                    waitsFor(function() {
+                    waitsFor(function () {
                         return animationDone;
                     }, "Animation never completed", 100);
 
-                    runs(function() {
+                    runs(function () {
                         expect(element.shadow.show).not.toHaveBeenCalled();
                         expect(element.shadow.el).toBeNull();
                     });
                 });
 
-                it("should not show the shadow after setHeight animation", function() {
+                it("should not show the shadow after setHeight animation", function () {
                     var animationDone = false;
 
                     element.enableShadow();
@@ -2915,23 +2918,23 @@ describe("Ext.dom.Element", function() {
                     element.setHeight(400, {
                         duration: 10,
                         listeners: {
-                            afteranimate: function() {
+                            afteranimate: function () {
                                 animationDone = true;
                             }
                         }
                     });
 
-                    waitsFor(function() {
+                    waitsFor(function () {
                         return animationDone;
                     }, "Animation never completed", 100);
 
-                    runs(function() {
+                    runs(function () {
                         expect(element.shadow.show).not.toHaveBeenCalled();
                         expect(element.shadow.el).toBeNull();
                     });
                 });
 
-                it("should not show the shadow after setSize animation", function() {
+                it("should not show the shadow after setSize animation", function () {
                     var animationDone = false;
 
                     element.enableShadow();
@@ -2942,23 +2945,23 @@ describe("Ext.dom.Element", function() {
                     element.setSize(400, 500, {
                         duration: 10,
                         listeners: {
-                            afteranimate: function() {
+                            afteranimate: function () {
                                 animationDone = true;
                             }
                         }
                     });
 
-                    waitsFor(function() {
+                    waitsFor(function () {
                         return animationDone;
                     }, "Animation never completed", 100);
 
-                    runs(function() {
+                    runs(function () {
                         expect(element.shadow.show).not.toHaveBeenCalled();
                         expect(element.shadow.el).toBeNull();
                     });
                 });
 
-                it("should not show the shadow after setX animation", function() {
+                it("should not show the shadow after setX animation", function () {
                     var animationDone = false;
 
                     element.enableShadow();
@@ -2969,23 +2972,23 @@ describe("Ext.dom.Element", function() {
                     element.setX(300, {
                         duration: 10,
                         listeners: {
-                            afteranimate: function() {
+                            afteranimate: function () {
                                 animationDone = true;
                             }
                         }
                     });
 
-                    waitsFor(function() {
+                    waitsFor(function () {
                         return animationDone;
                     }, "Animation never completed", 100);
 
-                    runs(function() {
+                    runs(function () {
                         expect(element.shadow.show).not.toHaveBeenCalled();
                         expect(element.shadow.el).toBeNull();
                     });
                 });
 
-                it("should not show the shadow after setY animation", function() {
+                it("should not show the shadow after setY animation", function () {
                     var animationDone = false;
 
                     element.enableShadow();
@@ -2996,23 +2999,23 @@ describe("Ext.dom.Element", function() {
                     element.setY(300, {
                         duration: 10,
                         listeners: {
-                            afteranimate: function() {
+                            afteranimate: function () {
                                 animationDone = true;
                             }
                         }
                     });
 
-                    waitsFor(function() {
+                    waitsFor(function () {
                         return animationDone;
                     }, "Animation never completed", 100);
 
-                    runs(function() {
+                    runs(function () {
                         expect(element.shadow.show).not.toHaveBeenCalled();
                         expect(element.shadow.el).toBeNull();
                     });
                 });
 
-                it("should not show the shadow after setXY animation", function() {
+                it("should not show the shadow after setXY animation", function () {
                     var animationDone = false;
 
                     element.enableShadow();
@@ -3023,17 +3026,17 @@ describe("Ext.dom.Element", function() {
                     element.setXY([400, 350], {
                         duration: 10,
                         listeners: {
-                            afteranimate: function() {
+                            afteranimate: function () {
                                 animationDone = true;
                             }
                         }
                     });
 
-                    waitsFor(function() {
+                    waitsFor(function () {
                         return animationDone;
                     }, "Animation never completed", 100);
 
-                    runs(function() {
+                    runs(function () {
                         expect(element.shadow.show).not.toHaveBeenCalled();
                         expect(element.shadow.el).toBeNull();
                     });
@@ -3041,8 +3044,8 @@ describe("Ext.dom.Element", function() {
             });
         });
 
-        describe("animate:true", function() {
-            it("should not hide the shadow during setWidth animation", function() {
+        describe("animate:true", function () {
+            it("should not hide the shadow during setWidth animation", function () {
                 var animationDone = false;
 
                 element.enableShadow({
@@ -3056,24 +3059,24 @@ describe("Ext.dom.Element", function() {
                 element.setWidth(400, {
                     duration: 50,
                     listeners: {
-                        afteranimate: function() {
+                        afteranimate: function () {
                             animationDone = true;
                         }
                     }
                 });
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return animationDone;
                 }, "Animation never completed", 300);
 
-                runs(function() {
+                runs(function () {
                     expect(element.shadow.hide).not.toHaveBeenCalled();
                     expect(element.shadow.el.isVisible()).toBe(true);
                     expectBox(250, 150, 400, 100);
                 });
             });
 
-            it("should not hide the shadow during setHeight animation", function() {
+            it("should not hide the shadow during setHeight animation", function () {
                 var animationDone = false;
 
                 element.enableShadow({
@@ -3087,24 +3090,24 @@ describe("Ext.dom.Element", function() {
                 element.setHeight(500, {
                     duration: 50,
                     listeners: {
-                        afteranimate: function() {
+                        afteranimate: function () {
                             animationDone = true;
                         }
                     }
                 });
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return animationDone;
                 }, "Animation never completed", 300);
 
-                runs(function() {
+                runs(function () {
                     expect(element.shadow.hide).not.toHaveBeenCalled();
                     expect(element.shadow.el.isVisible()).toBe(true);
                     expectBox(250, 150, 200, 500);
                 });
             });
 
-            it("should not hide the shadow during setSize animation", function() {
+            it("should not hide the shadow during setSize animation", function () {
                 var animationDone = false;
 
                 element.enableShadow({
@@ -3118,24 +3121,24 @@ describe("Ext.dom.Element", function() {
                 element.setSize(500, 400, {
                     duration: 50,
                     listeners: {
-                        afteranimate: function() {
+                        afteranimate: function () {
                             animationDone = true;
                         }
                     }
                 });
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return animationDone;
                 }, "Animation never completed", 300);
 
-                runs(function() {
+                runs(function () {
                     expect(element.shadow.hide).not.toHaveBeenCalled();
                     expect(element.shadow.el.isVisible()).toBe(true);
                     expectBox(250, 150, 500, 400);
                 });
             });
 
-            it("should not hide the shadow during setX animation", function() {
+            it("should not hide the shadow during setX animation", function () {
                 var animationDone = false;
 
                 element.enableShadow({
@@ -3149,24 +3152,24 @@ describe("Ext.dom.Element", function() {
                 element.setX(300, {
                     duration: 50,
                     listeners: {
-                        afteranimate: function() {
+                        afteranimate: function () {
                             animationDone = true;
                         }
                     }
                 });
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return animationDone;
                 }, "Animation never completed", 300);
 
-                runs(function() {
+                runs(function () {
                     expect(element.shadow.hide).not.toHaveBeenCalled();
                     expect(element.shadow.el.isVisible()).toBe(true);
                     expectBox(300, 150, 200, 100);
                 });
             });
 
-            it("should not hide the shadow during setY animation", function() {
+            it("should not hide the shadow during setY animation", function () {
                 var animationDone = false;
 
                 element.enableShadow({
@@ -3180,24 +3183,24 @@ describe("Ext.dom.Element", function() {
                 element.setY(350, {
                     duration: 50,
                     listeners: {
-                        afteranimate: function() {
+                        afteranimate: function () {
                             animationDone = true;
                         }
                     }
                 });
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return animationDone;
                 }, "Animation never completed", 300);
 
-                runs(function() {
+                runs(function () {
                     expect(element.shadow.hide).not.toHaveBeenCalled();
                     expect(element.shadow.el.isVisible()).toBe(true);
                     expectBox(250, 350, 200, 100);
                 });
             });
 
-            it("should not hide the shadow during setXY animation", function() {
+            it("should not hide the shadow during setXY animation", function () {
                 var animationDone = false;
 
                 element.enableShadow({
@@ -3211,17 +3214,17 @@ describe("Ext.dom.Element", function() {
                 element.setXY([350, 400], {
                     duration: 50,
                     listeners: {
-                        afteranimate: function() {
+                        afteranimate: function () {
                             animationDone = true;
                         }
                     }
                 });
 
-                waitsFor(function() {
+                waitsFor(function () {
                     return animationDone;
                 }, "Animation never completed", 300);
 
-                runs(function() {
+                runs(function () {
                     expect(element.shadow.hide).not.toHaveBeenCalled();
                     expect(element.shadow.el.isVisible()).toBe(true);
                     expectBox(350, 400, 200, 100);
@@ -3230,16 +3233,16 @@ describe("Ext.dom.Element", function() {
         });
     });
 
-    describe("shim and shadow together", function() {
+    describe("shim and shadow together", function () {
         var element;
 
-        beforeEach(function() {
+        beforeEach(function () {
             element = Ext.getBody().createChild({
                 style: 'position:absolute;left:250px;top:150px;width:200px;height:100px;'
             });
         });
 
-        afterEach(function() {
+        afterEach(function () {
             element.destroy();
         });
 
@@ -3252,7 +3255,7 @@ describe("Ext.dom.Element", function() {
             expect(box.height).toBe(h);
         }
 
-        it("should place the shim before the shadow in the dom if the shadow was created first", function() {
+        it("should place the shim before the shadow in the dom if the shadow was created first", function () {
             element.enableShadow();
             element.enableShim();
 
@@ -3260,7 +3263,7 @@ describe("Ext.dom.Element", function() {
             expect(element.shadow.el.prev()).toBe(element.shim.el);
         });
 
-        it("should place the shim before the shadow in the dom if the shim was created first", function() {
+        it("should place the shim before the shadow in the dom if the shim was created first", function () {
             element.enableShim();
             element.enableShadow();
 
@@ -3268,7 +3271,7 @@ describe("Ext.dom.Element", function() {
             expect(element.shadow.el.prev()).toBe(element.shim.el);
         });
 
-        it("should have the correct dom order after hiding and showing the shim", function() {
+        it("should have the correct dom order after hiding and showing the shim", function () {
             element.enableShim();
             element.enableShadow();
 
@@ -3284,7 +3287,7 @@ describe("Ext.dom.Element", function() {
             expect(element.shadow.el.prev()).toBe(element.shim.el);
         });
 
-        it("should have the correct dom order after hiding and showing the shadow", function() {
+        it("should have the correct dom order after hiding and showing the shadow", function () {
             element.enableShim();
             element.enableShadow();
 
@@ -3300,7 +3303,7 @@ describe("Ext.dom.Element", function() {
             expect(element.shadow.el.prev()).toBe(element.shim.el);
         });
 
-        it("should size the shim to include the target and shadow with mode=='drop'", function() {
+        it("should size the shim to include the target and shadow with mode=='drop'", function () {
             element.enableShim();
             element.enableShadow({
                 mode: 'drop',
@@ -3310,7 +3313,7 @@ describe("Ext.dom.Element", function() {
             expectShimBox(250, 150, 230, 130);
         });
 
-        it("should size the shim to include the target and shadow with mode=='sides'", function() {
+        it("should size the shim to include the target and shadow with mode=='sides'", function () {
             element.enableShadow({
                 mode: 'sides',
                 offset: 30
@@ -3320,7 +3323,7 @@ describe("Ext.dom.Element", function() {
             expectShimBox(220, 150, 260, 130);
         });
 
-        it("should size the shim to include the target and shadow with mode=='frame'", function() {
+        it("should size the shim to include the target and shadow with mode=='frame'", function () {
             element.enableShim();
             element.enableShadow({
                 mode: 'frame',
@@ -3330,7 +3333,7 @@ describe("Ext.dom.Element", function() {
             expectShimBox(220, 120, 260, 160);
         });
 
-        it("should size the shim to include the target and shadow with mode=='bottom'", function() {
+        it("should size the shim to include the target and shadow with mode=='bottom'", function () {
             element.enableShadow({
                 mode: 'bottom',
                 offset: 30
@@ -3341,8 +3344,8 @@ describe("Ext.dom.Element", function() {
         });
     });
 
-    describe("using flyweights", function() {
-        it("should be able to remove a class using a fly when the className is modified directly", function() {
+    describe("using flyweights", function () {
+        it("should be able to remove a class using a fly when the className is modified directly", function () {
             var el = document.createElement('div');
             Ext.fly(el).addCls(['foo', 'bar', 'baz']);
             el.className += ' asdf';
@@ -3350,7 +3353,7 @@ describe("Ext.dom.Element", function() {
             expect(el.className.indexOf('asdf')).toBe(-1);
         });
 
-        it("should be able to check a class exists using a fly when the className is modified directly", function() {
+        it("should be able to check a class exists using a fly when the className is modified directly", function () {
             var el = document.createElement('div');
             Ext.fly(el).addCls(['foo', 'bar', 'baz']);
             el.className += ' asdf';
@@ -3358,10 +3361,10 @@ describe("Ext.dom.Element", function() {
         });
     });
 
-    describe("events", function() {
+    describe("events", function () {
         function makeSuite(delegated) {
 
-            describe("element " + (delegated ? "(with delegated listeners)" : "(with direct listeners)"), function() {
+            describe("element " + (delegated ? "(with delegated listeners)" : "(with direct listeners)"), function () {
                 var element, handler, handler2, scope, args, child, child2, grandchild;
 
                 function addListener(opt) {
@@ -3382,9 +3385,9 @@ describe("Ext.dom.Element", function() {
                     jasmine.fireMouseEvent(el || element, eventName || 'click');
                 }
 
-                beforeEach(function() {
+                beforeEach(function () {
                     handler = jasmine.createSpy();
-                    handler.andCallFake(function() {
+                    handler.andCallFake(function () {
                         scope = this;
                         args = arguments;
                     });
@@ -3396,7 +3399,7 @@ describe("Ext.dom.Element", function() {
                             {
                                 id: 'child',
                                 cls: 'child',
-                                cn: { id: 'grandchild', cls: 'grandchild' }
+                                cn: {id: 'grandchild', cls: 'grandchild'}
                             },
                             {
                                 id: 'child2'
@@ -3409,12 +3412,12 @@ describe("Ext.dom.Element", function() {
                     grandchild = document.getElementById('grandchild');
                 });
 
-                afterEach(function() {
+                afterEach(function () {
                     element.destroy();
                 });
 
-                describe("addListener", function() {
-                    it("should handle an event", function() {
+                describe("addListener", function () {
+                    it("should handle an event", function () {
                         addListener();
                         fire();
                         expect(handler.callCount).toBe(1);
@@ -3428,7 +3431,7 @@ describe("Ext.dom.Element", function() {
                         expect(scope).toBe(element);
                     });
 
-                    it("should handle an event that bubbled from a descendant element", function() {
+                    it("should handle an event that bubbled from a descendant element", function () {
                         addListener();
                         fire(grandchild);
                         expect(handler.callCount).toBe(1);
@@ -3442,23 +3445,23 @@ describe("Ext.dom.Element", function() {
                         expect(scope).toBe(element);
                     });
 
-                    it("should attach multiple handlers to the same event", function() {
+                    it("should attach multiple handlers to the same event", function () {
                         addListener();
-                        addListener({ click: handler2 });
+                        addListener({click: handler2});
                         fire();
                         expect(handler.callCount).toBe(1);
                         expect(handler2.callCount).toBe(1);
                     });
 
-                    it("should call the event handler with the correct scope when the scope option is used", function() {
+                    it("should call the event handler with the correct scope when the scope option is used", function () {
                         var obj = {};
 
-                        addListener({ scope: obj });
+                        addListener({scope: obj});
                         fire();
                         expect(scope).toBe(obj);
                     });
 
-                    it("should call the handler multiple times if the event fires more than once", function() {
+                    it("should call the handler multiple times if the event fires more than once", function () {
                         addListener();
                         fire();
                         fire();
@@ -3466,8 +3469,8 @@ describe("Ext.dom.Element", function() {
                         expect(handler.callCount).toBe(3);
                     });
 
-                    it("should remove a single listener after the first fire", function() {
-                        addListener({ single: true });
+                    it("should remove a single listener after the first fire", function () {
+                        addListener({single: true});
                         fire();
                         expect(handler.callCount).toBe(1);
                         // fire again
@@ -3476,62 +3479,62 @@ describe("Ext.dom.Element", function() {
                         expect(handler.callCount).toBe(1);
                     });
 
-                    it("should delay the listener", function() {
-                        addListener({ delay: 150 });
+                    it("should delay the listener", function () {
+                        addListener({delay: 150});
                         fire();
                         waits(100);
-                        runs(function() {
+                        runs(function () {
                             expect(handler).not.toHaveBeenCalled();
                         });
                         waits(100);
-                        runs(function() {
+                        runs(function () {
                             expect(handler).toHaveBeenCalled();
                         });
                     });
 
-                    it("should buffer the listener", function() {
-                        addListener({ buffer: 150 });
+                    it("should buffer the listener", function () {
+                        addListener({buffer: 150});
                         fire();
                         waits(100);
-                        runs(function() {
+                        runs(function () {
                             expect(handler).not.toHaveBeenCalled();
                             fire();
                         });
                         waits(100);
-                        runs(function() {
+                        runs(function () {
                             expect(handler).not.toHaveBeenCalled();
                         });
                         waits(100);
-                        runs(function() {
+                        runs(function () {
                             expect(handler).toHaveBeenCalled();
                         });
                     });
 
-                    it("should attach listeners with a delegate selector", function() {
-                        addListener({ delegate: '.grandchild' });
+                    it("should attach listeners with a delegate selector", function () {
+                        addListener({delegate: '.grandchild'});
                         fire(child);
                         expect(handler).not.toHaveBeenCalled();
                         fire(grandchild);
                         expect(handler).toHaveBeenCalled();
                     });
 
-                    it("should attach listeners with a descendant delegate selector as a direct child", function() {
-                        addListener({ delegate: '.child' });
+                    it("should attach listeners with a descendant delegate selector as a direct child", function () {
+                        addListener({delegate: '.child'});
                         fire(child2);
                         expect(handler).not.toHaveBeenCalled();
                         fire(child);
                         expect(handler).toHaveBeenCalled();
                     });
 
-                    it("should attach listeners with a direct child delegate selector", function() {
-                        addListener({ delegate: '> .child' });
+                    it("should attach listeners with a direct child delegate selector", function () {
+                        addListener({delegate: '> .child'});
                         fire(child2);
                         expect(handler).not.toHaveBeenCalled();
                         fire(child);
                         expect(handler).toHaveBeenCalled();
                     });
 
-                    it("should pass the target as the delegate item when the event occurs in a child and leave the event target untouched", function() {
+                    it("should pass the target as the delegate item when the event occurs in a child and leave the event target untouched", function () {
                         addListener({delegate: '.child'});
                         fire(grandchild);
                         expect(handler).toHaveBeenCalled();
@@ -3539,35 +3542,35 @@ describe("Ext.dom.Element", function() {
                         expect(handler.mostRecentCall.args[1]).toBe(child);
                     });
 
-                    describe("propagation", function() {
+                    describe("propagation", function () {
                         var results;
 
-                        beforeEach(function() {
+                        beforeEach(function () {
                             results = [];
                             grandchild = Ext.get('grandchild');
                             child = Ext.get('child');
                         });
 
-                        afterEach(function() {
+                        afterEach(function () {
                             grandchild.destroy();
                             child.destroy();
                         });
 
-                        it("should fire bubble listeners in bottom-up order", function() {
+                        it("should fire bubble listeners in bottom-up order", function () {
                             element.on({
-                                click: function() {
+                                click: function () {
                                     results.push(1);
                                 }
                             });
 
                             child.on({
-                                click: function() {
+                                click: function () {
                                     results.push(2);
                                 }
                             });
 
                             grandchild.on({
-                                click: function() {
+                                click: function () {
                                     results.push(3);
                                 }
                             });
@@ -3577,23 +3580,23 @@ describe("Ext.dom.Element", function() {
                             expect(results).toEqual([3, 2, 1]);
                         });
 
-                        it("should fire capture listeners in top-down order", function() {
+                        it("should fire capture listeners in top-down order", function () {
                             element.on({
-                                click: function() {
+                                click: function () {
                                     results.push(1);
                                 },
                                 capture: true
                             });
 
                             child.on({
-                                click: function() {
+                                click: function () {
                                     results.push(2);
                                 },
                                 capture: true
                             });
 
                             grandchild.on({
-                                click: function() {
+                                click: function () {
                                     results.push(3);
                                 },
                                 capture: true
@@ -3604,13 +3607,13 @@ describe("Ext.dom.Element", function() {
                             expect(results).toEqual([1, 2, 3]);
                         });
 
-                        it("should stop bubbling when stopPropagation is called", function() {
+                        it("should stop bubbling when stopPropagation is called", function () {
                             element.on({
                                 click: handler
                             });
 
                             grandchild.on({
-                                click: function(e) {
+                                click: function (e) {
                                     e.stopPropagation();
                                 }
                             });
@@ -3620,9 +3623,9 @@ describe("Ext.dom.Element", function() {
                             expect(handler).not.toHaveBeenCalled();
                         });
 
-                        it("should stop propagating when stopPropagation is called during the capture phase", function() {
+                        it("should stop propagating when stopPropagation is called during the capture phase", function () {
                             element.on({
-                                click: function(e) {
+                                click: function (e) {
                                     e.stopPropagation();
                                 },
                                 capture: true
@@ -3638,9 +3641,9 @@ describe("Ext.dom.Element", function() {
                             expect(handler).not.toHaveBeenCalled();
                         });
 
-                        it("should skip the entire bubble phase if stopPropagation is called during the capture phase", function() {
+                        it("should skip the entire bubble phase if stopPropagation is called during the capture phase", function () {
                             element.on({
-                                click: function(e) {
+                                click: function (e) {
                                     e.stopPropagation();
                                 },
                                 capture: true
@@ -3660,15 +3663,15 @@ describe("Ext.dom.Element", function() {
                             expect(handler2).not.toHaveBeenCalled();
                         });
 
-                        it("should propagate to elements that were not in the cache when propagation began", function() {
+                        it("should propagate to elements that were not in the cache when propagation began", function () {
                             // https://sencha.jira.com/browse/EXTJS-15953
-                            var parent = Ext.getBody().createChild({ cn: [{}] }, null, true),
+                            var parent = Ext.getBody().createChild({cn: [{}]}, null, true),
                                 child = parent.firstChild,
                                 parentFired = false;
 
-                            Ext.get(child).on('click', function() {
+                            Ext.get(child).on('click', function () {
                                 // Calling Ext.get() will add the parent element to the cache for the first time.
-                                Ext.get(parent).on('click', function() {
+                                Ext.get(parent).on('click', function () {
                                     parentFired = true;
                                 });
                             });
@@ -3682,83 +3685,83 @@ describe("Ext.dom.Element", function() {
                     });
                 });
 
-                describe("removeListener", function() {
-                    it("should remove the event listener", function() {
+                describe("removeListener", function () {
+                    it("should remove the event listener", function () {
                         addListener();
                         removeListener();
                         fire();
                         expect(handler).not.toHaveBeenCalled();
                     });
 
-                    it("should remove the event listener with scope", function() {
+                    it("should remove the event listener with scope", function () {
                         var scope = {};
-                        addListener({ scope: scope });
-                        removeListener({ scope: scope });
+                        addListener({scope: scope});
+                        removeListener({scope: scope});
                         fire();
                         expect(handler).not.toHaveBeenCalled();
                     });
 
-                    it("should remove multiple handlers from the same event", function() {
+                    it("should remove multiple handlers from the same event", function () {
                         addListener();
-                        addListener({ click: handler2 });
+                        addListener({click: handler2});
                         removeListener();
                         fire();
                         expect(handler).not.toHaveBeenCalled();
                         expect(handler2.callCount).toBe(1);
-                        removeListener({ click: handler2 });
+                        removeListener({click: handler2});
                         fire();
                         expect(handler2.callCount).toBe(1);
                     });
 
 
-                    it("should remove a single event listener", function() {
-                        addListener({ single: true });
+                    it("should remove a single event listener", function () {
+                        addListener({single: true});
                         removeListener();
                         fire();
                         expect(handler).not.toHaveBeenCalled();
                     });
 
-                    it("should remove a delayed event listener", function() {
-                        addListener({ delay: 50 });
+                    it("should remove a delayed event listener", function () {
+                        addListener({delay: 50});
                         removeListener();
                         fire();
                         waits(100);
-                        runs(function() {
+                        runs(function () {
                             expect(handler).not.toHaveBeenCalled();
                         });
                     });
 
-                    it("should remove a buffered event listener", function() {
-                        addListener({ buffer: 50 });
+                    it("should remove a buffered event listener", function () {
+                        addListener({buffer: 50});
                         removeListener();
                         fire();
                         waits(100);
-                        runs(function() {
+                        runs(function () {
                             expect(handler).not.toHaveBeenCalled();
                         });
                     });
 
-                    it("should remove listeners with a delegate selector", function() {
-                        addListener({ delegate: '.grandchild' });
+                    it("should remove listeners with a delegate selector", function () {
+                        addListener({delegate: '.grandchild'});
                         removeListener();
                         fire(grandchild);
                         expect(handler).not.toHaveBeenCalled();
                     });
 
-                    it("should remove a capture listener", function() {
-                        addListener({ capture: true });
+                    it("should remove a capture listener", function () {
+                        addListener({capture: true});
                         removeListener();
                         fire(grandchild);
                         expect(handler).not.toHaveBeenCalled();
                     });
 
-                    it("should remove a translated listener", function() {
+                    it("should remove a translated listener", function () {
                         var eventMap = Ext.Element.prototype.eventMap;
 
                         eventMap.foo = 'click';
 
-                        element.addListener({ foo: handler });
-                        element.removeListener({ foo: handler });
+                        element.addListener({foo: handler});
+                        element.removeListener({foo: handler});
                         fire(grandchild);
                         expect(handler).not.toHaveBeenCalled();
 
@@ -3766,8 +3769,8 @@ describe("Ext.dom.Element", function() {
                     });
                 });
 
-                describe("clearListeners", function() {
-                    it("should remove all the listeners", function() {
+                describe("clearListeners", function () {
+                    it("should remove all the listeners", function () {
                         var handler3 = jasmine.createSpy(),
                             handler4 = jasmine.createSpy();
 
@@ -3805,10 +3808,10 @@ describe("Ext.dom.Element", function() {
         makeSuite(true);
         makeSuite(false);
 
-        describe("Event Normalization", function() {
+        describe("Event Normalization", function () {
             var target, fire, events, secondaryEvents, listeners;
 
-            beforeEach(function() {
+            beforeEach(function () {
                 target = Ext.getBody().createChild();
 
                 listeners = {
@@ -3826,7 +3829,7 @@ describe("Ext.dom.Element", function() {
                 target.on(listeners);
             });
 
-            afterEach(function() {
+            afterEach(function () {
                 target.destroy();
             });
 
@@ -3837,7 +3840,7 @@ describe("Ext.dom.Element", function() {
                     end: 'pointerup'
                 };
 
-                fire = function(type) {
+                fire = function (type) {
                     jasmine.firePointerEvent(target, events[type]);
                 };
             } else if (Ext.supports.MSPointerEvents) {
@@ -3847,7 +3850,7 @@ describe("Ext.dom.Element", function() {
                     end: 'MSPointerUp'
                 };
 
-                fire = function(type) {
+                fire = function (type) {
                     jasmine.firePointerEvent(target, events[type]);
                 };
             } else if (Ext.supports.TouchEvents) {
@@ -3863,11 +3866,11 @@ describe("Ext.dom.Element", function() {
                     end: 'mouseup'
                 };
 
-                fire = function(type, secondary) {
+                fire = function (type, secondary) {
                     if (secondary) {
                         jasmine.fireMouseEvent(target, secondaryEvents[type], 100, 100);
                     } else {
-                        jasmine.fireTouchEvent(target, events[type], [{ pageX: 1, pageY: 1 }]);
+                        jasmine.fireTouchEvent(target, events[type], [{pageX: 1, pageY: 1}]);
                     }
                 };
             } else {
@@ -3877,12 +3880,12 @@ describe("Ext.dom.Element", function() {
                     end: 'mouseup'
                 };
 
-                fire = function(type) {
+                fire = function (type) {
                     jasmine.fireMouseEvent(target, events[type]);
                 };
             }
 
-            it("should fire start events", function() {
+            it("should fire start events", function () {
                 fire('start');
                 expect(listeners.pointerdown.callCount).toBe(1);
                 expect(listeners.touchstart.callCount).toBe(1);
@@ -3892,7 +3895,7 @@ describe("Ext.dom.Element", function() {
                 expect(listeners.mousedown.mostRecentCall.args[0].type).toBe('mousedown');
             });
 
-            it("should fire move events", function() {
+            it("should fire move events", function () {
                 fire('move');
                 expect(listeners.pointermove.callCount).toBe(1);
                 expect(listeners.touchmove.callCount).toBe(1);
@@ -3902,7 +3905,7 @@ describe("Ext.dom.Element", function() {
                 expect(listeners.mousemove.mostRecentCall.args[0].type).toBe('mousemove');
             });
 
-            it("should fire end events", function() {
+            it("should fire end events", function () {
                 fire('end');
                 expect(listeners.pointerup.callCount).toBe(1);
                 expect(listeners.touchend.callCount).toBe(1);
@@ -3916,7 +3919,7 @@ describe("Ext.dom.Element", function() {
                 // Touch Enabled webkit on windows 8 fires both mouse and touch events We already
                 // tested the touch events above, so make sure mouse events/ work as well.
 
-                it("should fire secondary start events", function() {
+                it("should fire secondary start events", function () {
                     fire('start', true);
                     expect(listeners.pointerdown.callCount).toBe(1);
                     expect(listeners.touchstart.callCount).toBe(1);
@@ -3926,7 +3929,7 @@ describe("Ext.dom.Element", function() {
                     expect(listeners.mousedown.mostRecentCall.args[0].type).toBe('mousedown');
                 });
 
-                it("should fire secondary move events", function() {
+                it("should fire secondary move events", function () {
                     fire('move', true);
                     expect(listeners.pointermove.callCount).toBe(1);
                     expect(listeners.touchmove.callCount).toBe(1);
@@ -3936,7 +3939,7 @@ describe("Ext.dom.Element", function() {
                     expect(listeners.mousemove.mostRecentCall.args[0].type).toBe('mousemove');
                 });
 
-                it("should fire secondary end events", function() {
+                it("should fire secondary end events", function () {
                     fire('end', true);
                     expect(listeners.pointerup.callCount).toBe(1);
                     expect(listeners.touchend.callCount).toBe(1);
@@ -3948,22 +3951,22 @@ describe("Ext.dom.Element", function() {
             }
         });
 
-        describe("delegates event order", function() {
+        describe("delegates event order", function () {
             var root, spy;
 
             function doClick(el) {
                 jasmine.fireMouseEvent(el, 'click');
             }
 
-            beforeEach(function() {
+            beforeEach(function () {
                 spy = jasmine.createSpy();
             });
 
-            afterEach(function() {
+            afterEach(function () {
                 root = spy = Ext.destroy(root);
             });
 
-            it("should fire an event when the event target matches the selector", function() {
+            it("should fire an event when the event target matches the selector", function () {
                 root = Ext.getBody().createChild({
                     children: [{
                         cls: 'foo'
@@ -3974,7 +3977,7 @@ describe("Ext.dom.Element", function() {
                 expect(spy.callCount).toBe(1);
             });
 
-            it("should not fire an event when the event target doesn't match the selector", function() {
+            it("should not fire an event when the event target doesn't match the selector", function () {
                 root = Ext.getBody().createChild({
                     children: [{
                         cls: 'foo'
@@ -3985,7 +3988,7 @@ describe("Ext.dom.Element", function() {
                 expect(spy).not.toHaveBeenCalled();
             });
 
-            it("should have the element that triggered the event as the event target", function() {
+            it("should have the element that triggered the event as the event target", function () {
                 root = Ext.getBody().createChild({
                     children: [{
                         cls: 'foo',
@@ -4000,7 +4003,7 @@ describe("Ext.dom.Element", function() {
                 expect(spy.mostRecentCall.args[0].target).toBe(bar);
             });
 
-            it("should pass the delegate target as the second parameter", function() {
+            it("should pass the delegate target as the second parameter", function () {
                 root = Ext.getBody().createChild({
                     children: [{
                         cls: 'foo',
@@ -4017,8 +4020,8 @@ describe("Ext.dom.Element", function() {
                 expect(spy.mostRecentCall.args[1]).toBe(foo);
             });
 
-            describe("event order", function() {
-                it("should fire delegate events at the 'level' of the root", function() {
+            describe("event order", function () {
+                it("should fire delegate events at the 'level' of the root", function () {
                     root = Ext.getBody().createChild({
                         children: [{
                             cls: 'foo',
@@ -4036,15 +4039,21 @@ describe("Ext.dom.Element", function() {
                         baz = root.down('.baz'),
                         order = [];
 
-                    root.on('click', function() { order.push('baz'); }, null, {delegate: '.baz'});
-                    bar.on('click', function() { order.push('bar'); });
-                    foo.on('click', function() { order.push('foo'); });
+                    root.on('click', function () {
+                        order.push('baz');
+                    }, null, {delegate: '.baz'});
+                    bar.on('click', function () {
+                        order.push('bar');
+                    });
+                    foo.on('click', function () {
+                        order.push('foo');
+                    });
 
                     doClick(baz.dom);
                     expect(order).toEqual(['bar', 'foo', 'baz']);
                 });
 
-                it("should fire delegate events in DOM order", function() {
+                it("should fire delegate events in DOM order", function () {
                     root = Ext.getBody().createChild({
                         id: 'root',
                         children: [{
@@ -4073,10 +4082,18 @@ describe("Ext.dom.Element", function() {
                         order = [];
 
 
-                    root.on('click', function() { order.push('root'); }, null, {delegate: '.foo'});
-                    child1.on('click', function() { order.push('child1'); }, null, {delegate: '.foo'});
-                    child1_1.on('click', function() { order.push('child1_1'); }, null, {delegate: '.foo'});
-                    child2.on('click', function() { order.push('child2'); }, null, {delegate: '.foo'});
+                    root.on('click', function () {
+                        order.push('root');
+                    }, null, {delegate: '.foo'});
+                    child1.on('click', function () {
+                        order.push('child1');
+                    }, null, {delegate: '.foo'});
+                    child1_1.on('click', function () {
+                        order.push('child1_1');
+                    }, null, {delegate: '.foo'});
+                    child2.on('click', function () {
+                        order.push('child2');
+                    }, null, {delegate: '.foo'});
 
                     doClick(child1_1.down('.foo', true), 'click');
                     expect(order).toEqual(['child1_1', 'child1', 'root']);
@@ -4085,31 +4102,31 @@ describe("Ext.dom.Element", function() {
             });
         });
 
-        describe('listener arguments', function() {
-            it('should fire an event with the correct signature on every element in the bubble stack', function() {
+        describe('listener arguments', function () {
+            it('should fire an event with the correct signature on every element in the bubble stack', function () {
                 https://sencha.jira.com/browse/EXTJS-15735
-                var c1 = Ext.getBody().appendChild({
-                        id: 'c1',
-                        cn: {
-                            id: 'c2',
+                    var c1 = Ext.getBody().appendChild({
+                            id: 'c1',
                             cn: {
-                                id: 'c3',
+                                id: 'c2',
                                 cn: {
-                                    id: 'c4'
+                                    id: 'c3',
+                                    cn: {
+                                        id: 'c4'
+                                    }
                                 }
                             }
-                        }
-                    }),
-                    c2 = Ext.get(c1.dom.firstChild),
-                    c3 = Ext.get(c2.dom.firstChild),
-                    c4 = Ext.get(c3.dom.firstChild),
-                    c1opts = { el: c1 },
-                    c2opts = { el: c2 },
-                    c3opts = { el: c3 },
-                    c4opts = { el: c4 },
-                    argLen;
+                        }),
+                        c2 = Ext.get(c1.dom.firstChild),
+                        c3 = Ext.get(c2.dom.firstChild),
+                        c4 = Ext.get(c3.dom.firstChild),
+                        c1opts = {el: c1},
+                        c2opts = {el: c2},
+                        c3opts = {el: c3},
+                        c4opts = {el: c4},
+                        argLen;
 
-                c1.on('click', function(e, t, o) {
+                c1.on('click', function (e, t, o) {
                     // Arg list must be same length as at start of bubble
                     expect(arguments.length).toBe(argLen);
                     // Element DOM event signature is event, target, options
@@ -4117,19 +4134,19 @@ describe("Ext.dom.Element", function() {
                     expect(t).toBe(c4.dom);
                     expect(o.el === c1).toBe(true);
                 }, null, c1opts);
-                c2.on('click', function(e, t, o) {
+                c2.on('click', function (e, t, o) {
                     expect(arguments.length).toBe(argLen);
                     expect(e.$className).toBe("Ext.event.Event");
                     expect(t).toBe(c4.dom);
                     expect(o.el === c2).toBe(true);
                 }, null, c2opts);
-                c3.on('click', function(e, t, o) {
+                c3.on('click', function (e, t, o) {
                     expect(arguments.length).toBe(argLen);
                     expect(e.$className).toBe("Ext.event.Event");
                     expect(t).toBe(c4.dom);
                     expect(o.el === c3).toBe(true);
                 }, null, c3opts);
-                c4.on('click', function(e, t, o) {
+                c4.on('click', function (e, t, o) {
                     // Arguments length should be the same in all listeners as it bubbles
                     argLen = arguments.length;
 
@@ -4143,7 +4160,7 @@ describe("Ext.dom.Element", function() {
             });
         });
 
-        it("should fire delegated, non-delegated, capture and bubble events in the correct order", function() {
+        it("should fire delegated, non-delegated, capture and bubble events in the correct order", function () {
             var parent = Ext.getBody().createChild({
                     cn: [{
                         id: 'child',
@@ -4157,27 +4174,27 @@ describe("Ext.dom.Element", function() {
                 result = [];
 
             parent.on({
-                mousedown: function() {
+                mousedown: function () {
                     result.push('p');
                 }
             });
 
             parent.on({
-                mousedown: function() {
+                mousedown: function () {
                     result.push('pc');
                 },
                 capture: true
             });
 
             parent.on({
-                mousedown: function() {
+                mousedown: function () {
                     result.push('pd');
                 },
                 delegated: false
             });
 
             parent.on({
-                mousedown: function() {
+                mousedown: function () {
                     result.push('pdc');
                 },
                 delegated: false,
@@ -4185,27 +4202,27 @@ describe("Ext.dom.Element", function() {
             });
 
             child.on({
-                mousedown: function() {
+                mousedown: function () {
                     result.push('c');
                 }
             });
 
             child.on({
-                mousedown: function() {
+                mousedown: function () {
                     result.push('cc');
                 },
                 capture: true
             });
 
             child.on({
-                mousedown: function() {
+                mousedown: function () {
                     result.push('cd');
                 },
                 delegated: false
             });
 
             child.on({
-                mousedown: function() {
+                mousedown: function () {
                     result.push('cdc');
                 },
                 delegated: false,
@@ -4213,20 +4230,20 @@ describe("Ext.dom.Element", function() {
             });
 
             grandchild.on({
-                mousedown: function() {
+                mousedown: function () {
                     result.push('g');
                 }
             });
 
             grandchild.on({
-                mousedown: function() {
+                mousedown: function () {
                     result.push('gc');
                 },
                 capture: true
             });
 
             grandchild.on({
-                mousedown: function() {
+                mousedown: function () {
                     result.push('gdc');
                 },
                 delegated: false,
@@ -4234,7 +4251,7 @@ describe("Ext.dom.Element", function() {
             });
 
             grandchild.on({
-                mousedown: function() {
+                mousedown: function () {
                     result.push('gd');
                 },
                 delegated: false
@@ -4252,7 +4269,7 @@ describe("Ext.dom.Element", function() {
             parent.destroy();
         });
 
-        it("should lowercase the event name before adding it to hasListeners", function() {
+        it("should lowercase the event name before adding it to hasListeners", function () {
             var el = Ext.getBody().createChild({});
 
             el.on('foO', 'onFoo');
@@ -4262,7 +4279,7 @@ describe("Ext.dom.Element", function() {
             el.destroy();
         });
 
-        it("should translate the event name before adding it to hasListeners", function() {
+        it("should translate the event name before adding it to hasListeners", function () {
             var el = Ext.getBody().createChild({});
 
             el.eventMap = {
@@ -4276,7 +4293,7 @@ describe("Ext.dom.Element", function() {
             el.destroy();
         });
 
-        it("should translate and lowercase the event name before adding it to hasListeners", function() {
+        it("should translate and lowercase the event name before adding it to hasListeners", function () {
             var el = Ext.getBody().createChild({});
 
             el.eventMap = {
@@ -4291,7 +4308,7 @@ describe("Ext.dom.Element", function() {
             el.destroy();
         });
 
-        it("should fire a translated event", function() {
+        it("should fire a translated event", function () {
             var el = Ext.getBody().createChild({}),
                 handler = jasmine.createSpy();
 
@@ -4307,7 +4324,7 @@ describe("Ext.dom.Element", function() {
             el.destroy();
         });
 
-        it("should fire a lowercased event", function() {
+        it("should fire a lowercased event", function () {
             var el = Ext.getBody().createChild({}),
                 handler = jasmine.createSpy();
 
@@ -4318,7 +4335,7 @@ describe("Ext.dom.Element", function() {
             el.destroy();
         });
 
-        it("should fire a translated and lowercased event", function() {
+        it("should fire a translated and lowercased event", function () {
             var el = Ext.getBody().createChild({}),
                 handler = jasmine.createSpy();
 
@@ -4334,38 +4351,41 @@ describe("Ext.dom.Element", function() {
             el.destroy();
         });
 
-        describe("options", function() {
+        describe("options", function () {
             var el;
 
-            beforeEach(function() {
+            beforeEach(function () {
                 el = Ext.getBody().createChild({});
             });
 
-            afterEach(function() {
+            afterEach(function () {
                 el.destroy();
                 el = null;
             });
 
-            it("should call preventDefault if the preventDefault option is passed", function() {
+            it("should call preventDefault if the preventDefault option is passed", function () {
                 var spy = spyOn(Ext.event.Event.prototype, 'preventDefault');
 
-                el.on('click', function() {}, null, {preventDefault: true});
+                el.on('click', function () {
+                }, null, {preventDefault: true});
                 jasmine.fireMouseEvent(el, 'click');
                 expect(spy.callCount).toBe(1);
             });
 
-            it("should call stopPropagation if the stopPropagation option is passed", function() {
+            it("should call stopPropagation if the stopPropagation option is passed", function () {
                 var spy = spyOn(Ext.event.Event.prototype, 'stopPropagation');
 
-                el.on('click', function() {}, null, {stopPropagation: true});
+                el.on('click', function () {
+                }, null, {stopPropagation: true});
                 jasmine.fireMouseEvent(el, 'click');
                 expect(spy.callCount).toBe(1);
             });
 
-            it("should call stopEvent if the stopEvent option is passed", function() {
+            it("should call stopEvent if the stopEvent option is passed", function () {
                 var spy = spyOn(Ext.event.Event.prototype, 'stopEvent');
 
-                el.on('click', function() {}, null, {stopEvent: true});
+                el.on('click', function () {
+                }, null, {stopEvent: true});
                 jasmine.fireMouseEvent(el, 'click');
                 expect(spy.callCount).toBe(1);
             });

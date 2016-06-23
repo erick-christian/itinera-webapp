@@ -195,89 +195,89 @@
 /* including package ext-charts */
 /* line 1, ../../sass/src/draw/Component.scss */
 .x-hide-visibility {
-  visibility: hidden !important;
+    visibility: hidden !important;
 }
 
 /* line 5, ../../sass/src/draw/Component.scss */
 .x-hide-display {
-  display: none !important;
+    display: none !important;
 }
 
 /* line 9, ../../sass/src/draw/Component.scss */
 .x-surface {
-  display: -moz-inline-stack;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  zoom: 1;
-  *display: inline;
-  overflow: hidden;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    *vertical-align: auto;
+    zoom: 1;
+    *display: inline;
+    overflow: hidden;
 }
 
 /* line 14, ../../sass/src/draw/Component.scss */
 .rvml {
-  behavior: url(#default#VML);
+    behavior: url(#default#VML);
 }
 
 /* line 18, ../../sass/src/draw/Component.scss */
 .x-surface tspan {
-  user-select: none;
-  -o-user-select: none;
-  -ms-user-select: none;
-  -moz-user-select: -moz-none;
-  -webkit-user-select: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -webkit-user-drag: none;
-  cursor: default;
+    user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-user-drag: none;
+    cursor: default;
 }
 
 /* line 22, ../../sass/src/draw/Component.scss */
 .x-vml-sprite {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 1px;
-  height: 1px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 1px;
 }
 
 /* line 30, ../../sass/src/draw/Component.scss */
 .x-vml-group {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 1000px;
-  height: 1000px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1000px;
+    height: 1000px;
 }
 
 /* line 38, ../../sass/src/draw/Component.scss */
 .x-vml-measure-span {
-  position: absolute;
-  left: -9999em;
-  top: -9999em;
-  padding: 0;
-  margin: 0;
-  display: inline;
+    position: absolute;
+    left: -9999em;
+    top: -9999em;
+    padding: 0;
+    margin: 0;
+    display: inline;
 }
 
 /* line 47, ../../sass/src/draw/Component.scss */
 .x-vml-base {
-  position: relative;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  display: inline-block;
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    display: inline-block;
 }
 
 /* line 55, ../../sass/src/draw/Component.scss */
 .x-vml-base {
-  position: relative;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  display: inline-block;
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    display: inline-block;
 }
 
 /* line 63, ../../sass/src/draw/Component.scss */
 svg, vml {
-  overflow: hidden;
+    overflow: hidden;
 }

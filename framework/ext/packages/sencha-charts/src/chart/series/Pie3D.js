@@ -1,12 +1,12 @@
 /**
  * @class Ext.chart.series.Pie3D
  * @extends Ext.chart.series.Polar
- * 
+ *
  * Creates a 3D Pie Chart.
  *
  * **Note:** Labels, legends, and lines are not currently available when using the
  * 3D Pie chart series.
- * 
+ *
  *     @example
  *     Ext.create({
  *        xtype: 'polar', 
@@ -112,8 +112,8 @@ Ext.define('Ext.chart.series.Pie3D', {
     getStyleByIndex: function (i) {
         var indexStyle = this.callParent([i]),
             style = this.getStyle(),
-            // 'fill' and 'color' are 'fillStyle' aliases
-            // (see Ext.draw.sprite.Sprite.inheritableStatics.def.aliases)
+        // 'fill' and 'color' are 'fillStyle' aliases
+        // (see Ext.draw.sprite.Sprite.inheritableStatics.def.aliases)
             fillStyle = indexStyle.fillStyle || indexStyle.fill || indexStyle.color,
             strokeStyle = style.strokeStyle || style.stroke;
 
@@ -129,7 +129,7 @@ Ext.define('Ext.chart.series.Pie3D', {
 
         return indexStyle;
     },
-    
+
     doUpdateStyles: function () {
         var me = this,
             sprites = me.getSprites(),
@@ -141,7 +141,7 @@ Ext.define('Ext.chart.series.Pie3D', {
 
         for (; i < ln; i += itemOffset, j++) {
             style = me.getStyleByIndex(j);
-            sprites[  i  ].setAttributes(style);
+            sprites[i].setAttributes(style);
             sprites[i + 1].setAttributes(style);
             sprites[i + 2].setAttributes(style);
             sprites[i + 3].setAttributes(style);
@@ -182,7 +182,7 @@ Ext.define('Ext.chart.series.Pie3D', {
 
         for (i = 0, lastAngle = 0; i < length; i++) {
             commonAttributes = {opacity: 1, startAngle: lastAngle, endAngle: summation[i]};
-            sprites[i * itemOffset    ].setAttributes(commonAttributes);
+            sprites[i * itemOffset].setAttributes(commonAttributes);
             sprites[i * itemOffset + 1].setAttributes(commonAttributes);
             sprites[i * itemOffset + 2].setAttributes(commonAttributes);
             sprites[i * itemOffset + 3].setAttributes(commonAttributes);

@@ -5,7 +5,7 @@ describe('Ext.util.Scheduler', function () {
     var busy, idle;
     var sorts = 0;
 
-    function setup () {
+    function setup() {
         setup = Ext.emptyFn;
 
         Item = Ext.define(null, {

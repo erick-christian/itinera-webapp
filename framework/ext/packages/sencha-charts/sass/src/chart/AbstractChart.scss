@@ -1,7 +1,6 @@
 /*
   Copied from touch/resources/themes/stylesheets/sencha-touch/base/src/chart/_AbstractChart.scss
 */
-
 // import 'user-interface' to use the 'user-select' mixin
 @import "compass/css3/user-interface";
 
@@ -34,7 +33,7 @@
   font-family: "Helvetica";
   font-size: 12px;
   position: absolute;
-  white-space:nowrap;
+  white-space: nowrap;
   border-top-left-radius: 4px;
   -webkit-border-top-left-radius: 4px;
 }
@@ -116,7 +115,7 @@
       }
     }
   }
-  
+
   &.#{$prefix}docked-left, &.#{$prefix}docked-right {
     .#{$prefix}legend-item {
       border-top: $chart-legend-item-border;

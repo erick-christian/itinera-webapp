@@ -2,23 +2,23 @@
  * A control that allows selection of multiple items in a list.
  */
 Ext.define('Ext.ux.form.MultiSelect', {
-    
+
     extend: 'Ext.form.FieldContainer',
-    
+
     mixins: [
         'Ext.util.StoreHolder',
         'Ext.form.field.Field'
     ],
-    
+
     alternateClassName: 'Ext.ux.Multiselect',
     alias: ['widget.multiselectfield', 'widget.multiselect'],
-    
+
     requires: ['Ext.panel.Panel', 'Ext.view.BoundList', 'Ext.layout.container.Fit'],
-    
+
     uses: ['Ext.view.DragZone', 'Ext.view.DropZone'],
-    
+
     layout: 'anchor',
-    
+
     /**
      * @cfg {String} [dragGroup=""] The ddgroup name for the MultiSelect DragZone.
      */
@@ -26,11 +26,11 @@ Ext.define('Ext.ux.form.MultiSelect', {
     /**
      * @cfg {String} [dropGroup=""] The ddgroup name for the MultiSelect DropZone.
      */
-    
+
     /**
      * @cfg {String} [title=""] A title for the underlying panel.
      */
-    
+
     /**
      * @cfg {Boolean} [ddReorder=false] Whether the items in the MultiSelect list are drag/drop reorderable.
      */
@@ -79,14 +79,14 @@ Ext.define('Ext.ux.form.MultiSelect', {
     blankText: 'This field is required',
 
     /**
-     * @cfg {String} [minSelectionsText="Minimum {0}item(s) required"] 
-     * Validation message displayed when {@link #minSelections} is not met. 
+     * @cfg {String} [minSelectionsText="Minimum {0}item(s) required"]
+     * Validation message displayed when {@link #minSelections} is not met.
      * The {0} token will be replaced by the value of {@link #minSelections}.
      */
     minSelectionsText: 'Minimum {0} item(s) required',
-    
+
     /**
-     * @cfg {String} [maxSelectionsText="Maximum {0}item(s) allowed"] 
+     * @cfg {String} [maxSelectionsText="Maximum {0}item(s) allowed"]
      * Validation message displayed when {@link #maxSelections} is not met
      * The {0} token will be replaced by the value of {@link #maxSelections}.
      */
@@ -98,7 +98,7 @@ Ext.define('Ext.ux.form.MultiSelect', {
      * parameters rather than a single delimited parameter, set this to `null`.
      */
     delimiter: ',',
-    
+
     /**
      * @cfg {String} [dragText="{0} Item{1}"] The text to show while dragging items.
      * {0} will be replaced by the number of items. {1} will be replaced by the plural
@@ -121,7 +121,7 @@ Ext.define('Ext.ux.form.MultiSelect', {
      * {@link #valueField value}, while the value at index 1 is assumed to be the combo {@link #displayField text}.
      * </div></li></ul></div></li></ul></div>
      */
-    
+
     ignoreSelectChange: 0,
 
     /**
@@ -130,7 +130,7 @@ Ext.define('Ext.ux.form.MultiSelect', {
      * Any configuration that is valid for BoundList can be included.
      */
 
-    initComponent: function(){
+    initComponent: function () {
         var me = this;
 
         me.items = me.setupItems();
@@ -152,7 +152,7 @@ Ext.define('Ext.ux.form.MultiSelect', {
         me.initField();
     },
 
-    setupItems: function() {
+    setupItems: function () {
         var me = this;
 
         me.boundList = Ext.create('Ext.view.BoundList', Ext.apply({
@@ -186,20 +186,20 @@ Ext.define('Ext.ux.form.MultiSelect', {
         };
     },
 
-    onSelectChange: function(selModel, selections){
+    onSelectChange: function (selModel, selections) {
         if (!this.ignoreSelectChange) {
             this.setValue(selections);
-        }    
+        }
     },
-    
-    getSelected: function(){
+
+    getSelected: function () {
         return this.boundList.getSelectionModel().getSelection();
     },
-    
+
     // compare array values
-    isEqual: function(v1, v2) {
+    isEqual: function (v1, v2) {
         var fromArray = Ext.Array.from,
-            i = 0, 
+            i = 0,
             len;
 
         v1 = fromArray(v1);
@@ -210,7 +210,7 @@ Ext.define('Ext.ux.form.MultiSelect', {
             return false;
         }
 
-        for(; i < len; i++) {
+        for (; i < len; i++) {
             if (v2[i] !== v1[i]) {
                 return false;
             }
@@ -218,11 +218,11 @@ Ext.define('Ext.ux.form.MultiSelect', {
 
         return true;
     },
-    
-    afterRender: function(){
+
+    afterRender: function () {
         var me = this,
             records;
-        
+
         me.callParent();
         if (me.selectOnRender) {
             records = me.getRecordsForValue(me.value);
@@ -232,24 +232,24 @@ Ext.define('Ext.ux.form.MultiSelect', {
                 --me.ignoreSelectChange;
             }
             delete me.toSelect;
-        }    
-        
-        if (me.ddReorder && !me.dragGroup && !me.dropGroup){
+        }
+
+        if (me.ddReorder && !me.dragGroup && !me.dropGroup) {
             me.dragGroup = me.dropGroup = 'MultiselectDD-' + Ext.id();
         }
 
-        if (me.draggable || me.dragGroup){
+        if (me.draggable || me.dragGroup) {
             me.dragZone = Ext.create('Ext.view.DragZone', {
                 view: me.boundList,
                 ddGroup: me.dragGroup,
                 dragText: me.dragText
             });
         }
-        if (me.droppable || me.dropGroup){
+        if (me.droppable || me.dropGroup) {
             me.dropZone = Ext.create('Ext.view.DropZone', {
                 view: me.boundList,
                 ddGroup: me.dropGroup,
-                handleNodeDrop: function(data, dropRecord, position) {
+                handleNodeDrop: function (data, dropRecord, position) {
                     var view = this.view,
                         store = view.getStore(),
                         records = data.records,
@@ -269,21 +269,21 @@ Ext.define('Ext.ux.form.MultiSelect', {
             });
         }
     },
-    
-    isValid : function() {
+
+    isValid: function () {
         var me = this,
             disabled = me.disabled,
             validate = me.forceValidation || !disabled;
-            
-        
+
+
         return validate ? me.validateValue(me.value) : disabled;
     },
-    
-    validateValue: function(value) {
+
+    validateValue: function (value) {
         var me = this,
             errors = me.getErrors(value),
             isValid = Ext.isEmpty(errors);
-            
+
         if (!me.preventMark) {
             if (isValid) {
                 me.clearInvalid();
@@ -294,8 +294,8 @@ Ext.define('Ext.ux.form.MultiSelect', {
 
         return isValid;
     },
-    
-    markInvalid : function(errors) {
+
+    markInvalid: function (errors) {
         // Save the message and fire the 'invalid' event
         var me = this,
             oldMsg = me.getActiveError();
@@ -312,7 +312,7 @@ Ext.define('Ext.ux.form.MultiSelect', {
      * if the value does not _pass_ validation. So simply clearing a field's errors will not necessarily allow
      * submission of forms submitted with the {@link Ext.form.action.Submit#clientValidation} option set.
      */
-    clearInvalid : function() {
+    clearInvalid: function () {
         // Clear the message and fire the 'valid' event
         var me = this,
             hadError = me.hasActiveError();
@@ -321,8 +321,8 @@ Ext.define('Ext.ux.form.MultiSelect', {
             me.updateLayout();
         }
     },
-    
-    getSubmitData: function() {
+
+    getSubmitData: function () {
         var me = this,
             data = null,
             val;
@@ -341,19 +341,19 @@ Ext.define('Ext.ux.form.MultiSelect', {
      *
      * @return {String} The value to be submitted, or `null`.
      */
-    getSubmitValue: function() {
+    getSubmitValue: function () {
         var me = this,
             delimiter = me.delimiter,
             val = me.getValue();
-        
+
         return Ext.isString(delimiter) ? val.join(delimiter) : val;
     },
-    
-    getValue: function(){
+
+    getValue: function () {
         return this.value || [];
     },
-    
-    getRecordsForValue: function(value){
+
+    getRecordsForValue: function (value) {
         var me = this,
             records = [],
             all = me.store.getRange(),
@@ -363,34 +363,34 @@ Ext.define('Ext.ux.form.MultiSelect', {
             rec,
             j,
             valueLen;
-            
+
         for (valueLen = value.length; i < valueLen; ++i) {
             for (j = 0; j < allLen; ++j) {
-                rec = all[j];   
+                rec = all[j];
                 if (rec.get(valueField) == value[i]) {
                     records.push(rec);
                 }
-            }    
+            }
         }
-            
+
         return records;
     },
-    
-    setupValue: function(value){
+
+    setupValue: function (value) {
         var delimiter = this.delimiter,
             valueField = this.valueField,
             i = 0,
             out,
             len,
             item;
-            
+
         if (Ext.isDefined(value)) {
             if (delimiter && Ext.isString(value)) {
                 value = value.split(delimiter);
             } else if (!Ext.isArray(value)) {
                 value = [value];
             }
-        
+
             for (len = value.length; i < len; ++i) {
                 item = value[i];
                 if (item && item.isModel) {
@@ -403,8 +403,8 @@ Ext.define('Ext.ux.form.MultiSelect', {
         }
         return out;
     },
-    
-    setValue: function(value){
+
+    setValue: function (value) {
         var me = this,
             selModel = me.boundList.getSelectionModel(),
             store = me.store;
@@ -420,7 +420,7 @@ Ext.define('Ext.ux.form.MultiSelect', {
 
         value = me.setupValue(value);
         me.mixins.field.setValue.call(me, value);
-        
+
         if (me.rendered) {
             ++me.ignoreSelectChange;
             selModel.deselectAll();
@@ -432,28 +432,28 @@ Ext.define('Ext.ux.form.MultiSelect', {
             me.selectOnRender = true;
         }
     },
-    
-    clearValue: function(){
-        this.setValue([]);    
+
+    clearValue: function () {
+        this.setValue([]);
     },
-    
-    onEnable: function(){
+
+    onEnable: function () {
         var list = this.boundList;
         this.callParent();
         if (list) {
             list.enable();
         }
     },
-    
-    onDisable: function(){
+
+    onDisable: function () {
         var list = this.boundList;
         this.callParent();
         if (list) {
             list.disable();
         }
     },
-    
-    getErrors : function(value) {
+
+    getErrors: function (value) {
         var me = this,
             format = Ext.String.format,
             errors = [],
@@ -473,21 +473,21 @@ Ext.define('Ext.ux.form.MultiSelect', {
         }
         return errors;
     },
-    
-    onDestroy: function(){
+
+    onDestroy: function () {
         var me = this;
-        
+
         me.bindStore(null);
         Ext.destroy(me.dragZone, me.dropZone);
         me.callParent();
     },
-    
-    onBindStore: function(store){
+
+    onBindStore: function (store) {
         var boundList = this.boundList;
-        
+
         if (boundList) {
             boundList.bindStore(store);
         }
     }
-    
+
 });

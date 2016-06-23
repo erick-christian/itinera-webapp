@@ -29,7 +29,7 @@
  * In this example we zoom the chart to that particular region. You can also get
  * a handle to a mask instance from the chart object. The `chart.mask` element is a
  * `Ext.Panel`.
- * 
+ *
  */
 Ext.define('Ext.chart.Mask', {
     mixinId: 'mask',
@@ -37,7 +37,7 @@ Ext.define('Ext.chart.Mask', {
     requires: [
         'Ext.chart.MaskLayer'
     ],
-    
+
     /**
      * @cfg {Boolean/String} mask
      * Enables selecting a region on chart. True to enable any selection,
@@ -51,24 +51,24 @@ Ext.define('Ext.chart.Mask', {
      * Creates new Mask.
      * @param {Object} [config] Config object.
      */
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this;
 
         if (config) {
             Ext.apply(me, config);
         }
         if (me.enableMask) {
-            me.on('afterrender', function() {
+            me.on('afterrender', function () {
                 //create a mask layer component
                 var comp = new Ext.chart.MaskLayer({
                     renderTo: me.el,
                     hidden: true
                 });
                 comp.el.on({
-                    'mousemove': function(e) {
+                    'mousemove': function (e) {
                         me.onMouseMove(e);
                     },
-                    'mouseup': function(e) {
+                    'mouseup': function (e) {
                         me.onMouseUp(e);
                     }
                 });
@@ -84,11 +84,11 @@ Ext.define('Ext.chart.Mask', {
                     stroke: '#00f',
                     cursor: 'crosshair'
                 });
-            }, me, { single: true });
+            }, me, {single: true});
         }
     },
 
-    onMouseUp: function(e) {
+    onMouseUp: function (e) {
         var me = this,
             bbox = me.bbox || me.chartBBox,
             sel;
@@ -107,15 +107,15 @@ Ext.define('Ext.chart.Mask', {
         }
     },
 
-    onMouseDown: function(e) {
+    onMouseDown: function (e) {
         this.handleMouseEvent(e);
     },
 
-    onMouseMove: function(e) {
+    onMouseMove: function (e) {
         this.handleMouseEvent(e);
     },
 
-    handleMouseEvent: function(e) {
+    handleMouseEvent: function (e) {
         var me = this,
             mask = me.maskType,
             bbox = me.bbox || me.chartBBox,
@@ -172,7 +172,7 @@ Ext.define('Ext.chart.Mask', {
                 me.mask.updateBox(me.maskSelection);
                 me.mask.show();
                 me.maskSprite.setAttributes({
-                    hidden: true    
+                    hidden: true
                 }, true);
             }
             else {
@@ -195,7 +195,7 @@ Ext.define('Ext.chart.Mask', {
 
     },
 
-    onMouseLeave: function(e) {
+    onMouseLeave: function (e) {
         var me = this;
         me.mouseMoved = false;
         me.mouseDown = false;

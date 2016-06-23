@@ -2,42 +2,42 @@
  * Class to act as a bridge between the MockAjax class and Ext.data.Connection
  */
 var MockAjaxManager = {
-    
+
     getXhrInstance: null,
-    
+
     /**
      * Pushes methods onto the Connection prototype to make it easier to deal with
      */
-    addMethods: function(){
+    addMethods: function () {
         var Connection = Ext.data.Connection,
             proto = Connection.prototype;
-            
+
         Connection.requestId = 0;
         MockAjaxManager.getXhrInstance = proto.getXhrInstance;
-        
+
         /**
          * Template method to create the AJAX request
          */
-        proto.getXhrInstance = function(){
-            return new MockAjax();    
+        proto.getXhrInstance = function () {
+            return new MockAjax();
         };
-        
+
         /**
          * Method to simulate a request completing
          * @param {Object} response The response
          * @param {String} id (optional) The id of the completed request
          */
-        proto.mockComplete = function(response, id){
+        proto.mockComplete = function (response, id) {
             this.mockGetRequestXHR(id).xhr.complete(response);
         };
-        
+
         /**
          * Get a particular request
          * @param {String} id (optional) The id of the request
          */
-        proto.mockGetRequestXHR = function(id){
+        proto.mockGetRequestXHR = function (id) {
             var request;
-                
+
             if (id) {
                 request = this.requests[id];
             } else {
@@ -46,16 +46,16 @@ var MockAjaxManager = {
             }
             return request ? request : null;
         };
-        
+
         /**
          * Gets all the requests from the Connection
          */
-        proto.mockGetAllRequests = function(){
+        proto.mockGetAllRequests = function () {
             var requests = this.requests,
                 id,
                 request,
                 out = [];
-                
+
             for (id in requests) {
                 if (requests.hasOwnProperty(id)) {
                     out.push(requests[id]);
@@ -65,13 +65,13 @@ var MockAjaxManager = {
         };
 
         this.originalExtAjax = Ext.Ajax;
-        Ext.Ajax = new Connection({autoAbort : false});
+        Ext.Ajax = new Connection({autoAbort: false});
     },
-    
+
     /**
      * Restore any changes made by addMethods
      */
-    removeMethods: function(){
+    removeMethods: function () {
         var proto = Ext.data.Connection.prototype;
         delete proto.mockComplete;
         delete proto.mockGetRequestXHR;
@@ -83,21 +83,21 @@ var MockAjaxManager = {
 /**
  * Simple Mock class to represent an XMLHttpRequest
  */
-var MockAjax = function(){
+var MockAjax = function () {
     /**
      * Contains all request headers
      */
     this.headers = {};
-    
+
     /**
      * Contains any options specified during sending
      */
     this.ajaxOptions = {};
-    
+
     this.readyState = 0;
-    
+
     this.status = null;
-    
+
     this.responseText = this.responseXML = null;
 };
 
@@ -109,10 +109,10 @@ MockAjax.prototype.syncDefaults = {
     status: 200,
     statusText: '',
     responseXML: null,
-    responseHeaders: {"Content-type": "application/json" }
+    responseHeaders: {"Content-type": "application/json"}
 };
 
-MockAjax.prototype.readyChange = function() {
+MockAjax.prototype.readyChange = function () {
     if (this.onreadystatechange) {
         this.onreadystatechange();
     }
@@ -126,7 +126,7 @@ MockAjax.prototype.readyChange = function() {
  * @param {Object} username
  * @param {Object} password
  */
-MockAjax.prototype.open = function(method, url, async, username, password){
+MockAjax.prototype.open = function (method, url, async, username, password) {
     var options = this.ajaxOptions;
     options.method = method;
     options.url = url;
@@ -141,7 +141,7 @@ MockAjax.prototype.open = function(method, url, async, username, password){
  * Simulate the XHR send method
  * @param {Object} data
  */
-MockAjax.prototype.send = function(data){
+MockAjax.prototype.send = function (data) {
     this.ajaxOptions.data = data;
     this.readyState = 2;
     // if it's a synchronous request, let's just assume it's already finished
@@ -155,7 +155,7 @@ MockAjax.prototype.send = function(data){
 /**
  * Simulate the XHR abort method
  */
-MockAjax.prototype.abort = function(){
+MockAjax.prototype.abort = function () {
     this.readyState = 0;
     this.readyChange();
 };
@@ -165,14 +165,14 @@ MockAjax.prototype.abort = function(){
  * @param {Object} header
  * @param {Object} value
  */
-MockAjax.prototype.setRequestHeader = function(header, value){
+MockAjax.prototype.setRequestHeader = function (header, value) {
     this.headers[header] = value;
 };
 
 /**
  * Simulate the XHR getAllResponseHeaders method
  */
-MockAjax.prototype.getAllResponseHeaders = function(){
+MockAjax.prototype.getAllResponseHeaders = function () {
     return '';
 };
 
@@ -180,25 +180,25 @@ MockAjax.prototype.getAllResponseHeaders = function(){
  * Simulate the XHR getResponseHeader method
  * @param {Object} name
  */
-MockAjax.prototype.getResponseHeader = function(name){
+MockAjax.prototype.getResponseHeader = function (name) {
     return this.headers[header];
 };
 
 /**
  * Simulate the XHR onreadystatechange method
  */
-MockAjax.prototype.onreadystatechange = function(){
+MockAjax.prototype.onreadystatechange = function () {
 };
 
 /**
  * Method for triggering a response completion
  */
-MockAjax.prototype.complete = function(response){
+MockAjax.prototype.complete = function (response) {
     this.responseText = response.responseText || '';
     this.status = response.status;
     this.statusText = response.statusText;
     this.responseXML = response.responseXML || this.xmlDOM(response.responseText);
-    this.responseHeaders = response.responseHeaders || {"Content-type": response.contentType || "application/json" };
+    this.responseHeaders = response.responseHeaders || {"Content-type": response.contentType || "application/json"};
     this.readyState = 4;
     this.readyChange();
 };
@@ -206,19 +206,20 @@ MockAjax.prototype.complete = function(response){
 /**
  * Converts string to XML DOM
  */
-MockAjax.prototype.xmlDOM = function(xml) {
+MockAjax.prototype.xmlDOM = function (xml) {
     // IE DOMParser support
     if (!window.DOMParser && window.ActiveXObject) {
         doc = new ActiveXObject('Microsoft.XMLDOM');
         doc.async = 'false';
-        DOMParser = function() {};
-        DOMParser.prototype.parseFromString = function(xmlString) {
+        DOMParser = function () {
+        };
+        DOMParser.prototype.parseFromString = function (xmlString) {
             var doc = new ActiveXObject('Microsoft.XMLDOM');
             doc.async = 'false';
             doc.loadXML(xmlString);
             return doc;
         };
-    } 
+    }
 
     try {
         return (new DOMParser()).parseFromString(xml, "text/xml");

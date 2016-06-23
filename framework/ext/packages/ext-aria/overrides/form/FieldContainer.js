@@ -2,10 +2,10 @@
 Ext.define('Ext.aria.form.FieldContainer', {
     override: 'Ext.form.FieldContainer',
 
-    ariaGetAfterRenderAttributes: function() {
+    ariaGetAfterRenderAttributes: function () {
         var me = this,
             attrs;
-        
+
         attrs = me.callParent(arguments);
 
         if (me.fieldLabel && me.labelEl) {

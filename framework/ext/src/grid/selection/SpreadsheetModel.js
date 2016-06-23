@@ -91,18 +91,18 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         },
 
         /**
-        * @cfg {Boolean} [dragSelect=true]
-        * Set to `true` to enables cell range selection by cell dragging.
-        */
+         * @cfg {Boolean} [dragSelect=true]
+         * Set to `true` to enables cell range selection by cell dragging.
+         */
         dragSelect: {
             $value: true,
             lazy: true
         },
 
         /**
-        * @cfg {Ext.grid.selection.Selection} [selected]
-        * Pass an instance of one of the subclasses of {@link Ext.grid.selection.Selection}.
-        */
+         * @cfg {Ext.grid.selection.Selection} [selected]
+         * Pass an instance of one of the subclasses of {@link Ext.grid.selection.Selection}.
+         */
         selected: null
     },
 
@@ -208,7 +208,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
     /**
      * @private
      */
-    bindComponent: function(view) {
+    bindComponent: function (view) {
         var me = this,
             viewListeners,
             lockedGrid;
@@ -228,7 +228,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
                 if (lockedGrid) {
                     me.hasLockedHeader = true;
                     me.onViewCreated(lockedGrid, lockedGrid.getView());
-                } 
+                }
                 // Otherwise, get back to us when the view is fully created so that we can tweak its headerCt
                 else {
                     view.grid.on({
@@ -267,13 +267,13 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
      * This should be used when checkboxSelect is set to false.
      * @protected
      */
-    getCheckboxHeaderConfig: function() {
+    getCheckboxHeaderConfig: function () {
         var me = this,
             showCheck = me.showHeaderCheckbox !== false;
 
         return {
             isCheckerHd: showCheck,
-            text : '&#160;',
+            text: '&#160;',
             clickTargetName: 'el',
             width: me.checkboxHeaderWidth,
             sortable: false,
@@ -285,7 +285,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
             tdCls: me.tdCls,
             cls: showCheck ? Ext.baseCSSPrefix + 'column-header-checkbox ' : '',
             defaultRenderer: me.checkboxRenderer.bind(me),
-            editRenderer:  '&#160;',
+            editRenderer: '&#160;',
             locked: me.hasLockedHeader
         };
     },
@@ -303,8 +303,8 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
     /**
      * @private
      */
-    onHeaderClick: function(headerCt, header, e) {
-    // Template method. See base class
+    onHeaderClick: function (headerCt, header, e) {
+        // Template method. See base class
         var me = this,
             sel = me.selected;
 
@@ -329,7 +329,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
     /**
      * @private
      */
-    updateHeaderState: function() {
+    updateHeaderState: function () {
         // check to see if all records are selected
         var me = this,
             store = me.view.dataSource,
@@ -337,7 +337,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
             views = me.views,
             sel = me.selected,
             isChecked = sel && sel.isRows && !store.isBufferedStore && storeCount > 0 && (storeCount === sel.getCount()),
-            checkHd  = me.checkColumn,
+            checkHd = me.checkColumn,
             cls = me.checkerOnCls;
 
         if (views && views.length) {
@@ -358,7 +358,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
      * @param {Object[]} columns
      * @private
      */
-    onReconfigure: function(grid, store, columns) {
+    onReconfigure: function (grid, store, columns) {
         if (columns) {
             this.addCheckbox(this.views[0]);
         }
@@ -381,11 +381,11 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
      * at the time the context object is created. Column movement, sorting or filtering might changed where the cell is.
      * @private
      */
-    getCellContext: function(record, column) {
+    getCellContext: function (record, column) {
         return new Ext.grid.CellContext(this.view.ownerGrid.getView()).setPosition(record, column);
     },
 
-    select: function(records, keepExisting, suppressEvent) {
+    select: function (records, keepExisting, suppressEvent) {
         // API docs re inherited
         var me = this,
             sel = me.selected,
@@ -403,7 +403,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         } else if (!keepExisting) {
             sel.clear();
         }
-        
+
         if (!Ext.isArray(records)) {
             records = [records];
         }
@@ -426,7 +426,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         }
     },
 
-    deselect: function(records, suppressEvent) {
+    deselect: function (records, suppressEvent) {
         // API docs are inherited
         var me = this,
             sel = me.selected,
@@ -519,13 +519,13 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
      * @param {Boolean} [suppressEvent] Pass `true` to prevent firing the
      * `{@link #selectionchange}` event.
      */
-    selectCells: function(rangeStart, rangeEnd, suppressEvent) {
+    selectCells: function (rangeStart, rangeEnd, suppressEvent) {
         var me = this,
             view = me.view.ownerGrid.view,
             sel;
 
         rangeStart = rangeStart.isCellContext ? rangeStart.clone() : new Ext.grid.CellContext(view).setPosition(rangeStart);
-        rangeEnd   = rangeEnd.isCellContext   ? rangeEnd.clone()   : new Ext.grid.CellContext(view).setPosition(rangeEnd);
+        rangeEnd = rangeEnd.isCellContext ? rangeEnd.clone() : new Ext.grid.CellContext(view).setPosition(rangeEnd);
 
         me.resetSelection(true);
 
@@ -594,7 +594,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
      */
     deselectAll: function (suppressEvent) {
         var sel = this.selected;
-        
+
         if (sel && sel.getCount()) {
             sel.clear();
             if (!suppressEvent) {
@@ -610,7 +610,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
      * @param {Boolean} [suppressEvent] Pass `true` to prevent firing the
      * `{@link #selectionchange}` event.
      */
-    selectRows: function(rows, keepSelection, suppressEvent) {
+    selectRows: function (rows, keepSelection, suppressEvent) {
         var me = this,
             sel = me.selected,
             isSelectingRows = sel && !sel.isRows,
@@ -633,7 +633,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         }
     },
 
-    isSelected: function(record) {
+    isSelected: function (record) {
         // API docs are inherited.
         return this.isRowSelected(record);
     },
@@ -645,7 +645,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
      * @param {Boolean} [suppressEvent] Pass `true` to prevent firing the
      * `{@link #selectionchange}` event.
      */
-    selectColumn: function(column, keepSelection, suppressEvent) {
+    selectColumn: function (column, keepSelection, suppressEvent) {
         var me = this,
             selData = me.selected,
             view = column.getView();
@@ -675,7 +675,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
      * @param {Boolean} [suppressEvent] Pass `true` to prevent firing the
      * `{@link #selectionchange}` event.
      */
-    deselectColumn: function(column, suppressEvent) {
+    deselectColumn: function (column, suppressEvent) {
         var me = this,
             selData = me.getSelected();
 
@@ -688,7 +688,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         }
     },
 
-    getSelection: function() {
+    getSelection: function () {
         // API docs are inherited.
         // Superclass returns array of selected records
         var selData = this.selected;
@@ -699,7 +699,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         return [];
     },
 
-    destroy: function() {
+    destroy: function () {
         var me = this,
             scrollEls = me.scrollEls;
 
@@ -718,7 +718,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
          * @return {Object}
          * @private
          */
-        getViewListeners: function() {
+        getViewListeners: function () {
             return {
                 beforerefresh: this.onBeforeViewRefresh,
                 keyup: {
@@ -732,7 +732,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         /**
          * @private
          */
-        onViewKeyUp: function(e) {
+        onViewKeyUp: function (e) {
             var sel = this.selected;
 
             // Released the shift key, terminate a keyboard based range selection
@@ -745,7 +745,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         /**
          * @private
          */
-        onColumnsChanged: function() {
+        onColumnsChanged: function () {
             var selData = this.selected,
                 rowRange,
                 colCount,
@@ -774,7 +774,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         /**
          * @private
          */
-        onBeforeViewRefresh: function(view) {
+        onBeforeViewRefresh: function (view) {
             var selData = this.selected;
 
             // Allow cell preselection to survive, but not cell selection from a prior refresh
@@ -788,7 +788,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         /**
          * @private
          */
-        resetSelection: function(suppressEvent) {
+        resetSelection: function (suppressEvent) {
             var sel = this.selected;
 
             if (sel) {
@@ -799,7 +799,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
             }
         },
 
-        onViewCreated: function(grid, view) {
+        onViewCreated: function (grid, view) {
             var me = this,
                 ownerGrid = view.ownerGrid,
                 headerCt = view.headerCt,
@@ -813,7 +813,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
                     me.numbererColumn = headerCt.add(0, {
                         xtype: 'rownumberer',
                         width: me.rowNumbererHeaderWidth,
-                        editRenderer:  '&#160;',
+                        editRenderer: '&#160;',
                         tdCls: me.rowNumbererTdCls,
                         cls: me.rowNumbererHeaderCls,
                         locked: me.hasLockedHeader
@@ -846,7 +846,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
          * Initialize drag selection support
          * @private
          */
-        onViewRender: function(view) {
+        onViewRender: function (view) {
             var me = this,
                 el = view.getEl();
 
@@ -873,7 +873,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
          * Plumbing for drag selection of cell range
          * @private
          */
-        handleMouseDown: function(view, td, cellIndex, record, tr, rowIdx, e) {
+        handleMouseDown: function (view, td, cellIndex, record, tr, rowIdx, e) {
             var me = this,
                 sel = me.selected,
                 header = e.position.column,
@@ -882,7 +882,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
 
             // Ignore right click and shit and alt modifiers.
             // Also ignore touchstart. We cannot drag select using touches.
-            if (e.button || e.shiftKey || e.altKey || e.pointerType ==='touch') {
+            if (e.button || e.shiftKey || e.altKey || e.pointerType === 'touch') {
                 return;
             }
 
@@ -918,7 +918,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
                 me.lastOverRecord = me.lastOverColumn = null;
 
                 // Add the listener after the view has potentially been corrected
-                Ext.getBody().on('mouseup', me.onMouseUp, me, { single: true, view: sel.view });
+                Ext.getBody().on('mouseup', me.onMouseUp, me, {single: true, view: sel.view});
 
                 // Only begin the drag process if configured to select what they asked for
                 if (startDragSelect) {
@@ -934,7 +934,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
          * @param opts
          * @private
          */
-        onMouseMove: function(e, target, opts) {
+        onMouseMove: function (e, target, opts) {
             var me = this,
                 view = opts.view,
                 record,
@@ -998,7 +998,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
          * @param opts
          * @private
          */
-        onMouseUp: function(e, target, opts) {
+        onMouseUp: function (e, target, opts) {
             var me = this,
                 view = opts.view;
 
@@ -1019,7 +1019,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
          * @param {Boolean} initial True if we're binding for the first time.
          * @private
          */
-        addCheckbox: function(view, initial) {
+        addCheckbox: function (view, initial) {
             var me = this,
                 checkbox = me.checkboxColumnIndex,
                 headerCt = view.headerCt;
@@ -1044,16 +1044,16 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
          * @param {Ext.event.Event} navigateEvent The event which caused navigation.
          * @private
          */
-        onNavigate: function(navigateEvent) {
+        onNavigate: function (navigateEvent) {
             var me = this,
-                // Use outermost view. May be lockable
+            // Use outermost view. May be lockable
                 view = navigateEvent.view.ownerGrid.view,
                 record = navigateEvent.record,
                 sel = me.selected,
 
-                // Create a new Context based upon the outermost View.
-                // NavigationModel works on local views. TODO: remove this step when NavModel is fixed to use outermost view in locked grid.
-                // At that point, we can use navigateEvent.position
+            // Create a new Context based upon the outermost View.
+            // NavigationModel works on local views. TODO: remove this step when NavModel is fixed to use outermost view in locked grid.
+            // At that point, we can use navigateEvent.position
                 pos = new Ext.grid.CellContext(view).setPosition(record, navigateEvent.column),
                 keyEvent = navigateEvent.keyEvent,
                 keyCode = keyEvent.getKey(),
@@ -1075,7 +1075,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
             }
 
             // Ctrl/A key - Deselect current selection, or select all if no selection
-            if (keyEvent.ctrlKey && keyEvent.keyCode === keyEvent.A ) {
+            if (keyEvent.ctrlKey && keyEvent.keyCode === keyEvent.A) {
                 // No selection, or only one, select all
                 if (!sel || sel.getCount() < 2) {
                     me.selectAll();
@@ -1129,7 +1129,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
                             sel = me.selected = new Ext.grid.selection.Rows(view);
                         }
 
-                        if (keyEvent.ctrlKey ||  pos.column === me.checkColumn) {
+                        if (keyEvent.ctrlKey || pos.column === me.checkColumn) {
                             if (sel.contains(record)) {
                                 sel.remove(record);
                             } else {
@@ -1175,7 +1175,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
          * @return {Boolean}
          * @private
          */
-        isRowSelected: function(record) {
+        isRowSelected: function (record) {
             var me = this,
                 sel = me.selected;
 
@@ -1194,7 +1194,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
          * @return {Boolean}
          * @private
          */
-        isColumnSelected: function(column) {
+        isColumnSelected: function (column) {
             var me = this,
                 sel = me.selected;
 
@@ -1216,7 +1216,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
          * @return {Boolean}
          * @private
          */
-        isCellSelected: function(view, row, column) {
+        isCellSelected: function (view, row, column) {
             var me = this,
                 testPos,
                 sel = me.selected;
@@ -1249,7 +1249,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         /**
          * @private
          */
-        applySelected: function(selected) {
+        applySelected: function (selected) {
             // Must override base class's applier which creates a Collection
             //<debug>
             if (selected && !(selected.isRows || selected.isCells || selected.isColumns)) {
@@ -1262,7 +1262,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         /**
          * @private
          */
-        updateSelected: function(selected, oldSelected) {
+        updateSelected: function (selected, oldSelected) {
             var view,
                 columns,
                 len,
@@ -1289,7 +1289,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
 
                     if (len) {
                         cell = new Ext.grid.CelContext(view);
-                        view.store.each(function(rec) {
+                        view.store.each(function (rec) {
                             cell.setRow(rec);
                             for (i = 0; i < len; i++) {
                                 cell.setColumn(columns[i]);
@@ -1309,7 +1309,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
          * Show/hide the extra column headers depending upon rowSelection.
          * @private
          */
-        updateRowSelect: function(rowSelect) {
+        updateRowSelect: function (rowSelect) {
             var me = this,
                 sel = me.selected,
                 view = me.view;
@@ -1330,7 +1330,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
                         me.numbererColumn = view.headerCt.add(0, {
                             xtype: 'rownumberer',
                             width: me.rowNumbererHeaderWidth,
-                            editRenderer:  '&#160;',
+                            editRenderer: '&#160;',
                             tdCls: me.rowNumbererTdCls,
                             cls: me.rowNumbererHeaderCls,
                             locked: me.hasLockedHeader
@@ -1356,7 +1356,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
          * column click.
          * @private
          */
-        updateColumnSelect: function(columnSelect) {
+        updateColumnSelect: function (columnSelect) {
             var me = this,
                 sel = me.selected,
                 views = me.views,
@@ -1380,7 +1380,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         /**
          * @private
          */
-        updateCellSelect: function(cellSelect) {
+        updateCellSelect: function (cellSelect) {
             var me = this,
                 sel = me.selected;
 
@@ -1401,7 +1401,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         /**
          * @private
          */
-        onIdChanged: function(store, rec, oldId, newId) {
+        onIdChanged: function (store, rec, oldId, newId) {
             var sel = this.selected;
 
             if (sel && sel.isRows && sel.selectedRecords) {
@@ -1413,7 +1413,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
          * Called when a page is added to BufferedStore.
          * @private
          */
-        onPageAdd: function(pageMap, pageNumber, records) {
+        onPageAdd: function (pageMap, pageNumber, records) {
             var sel = this.selected,
                 len = records.length,
                 i,
@@ -1434,7 +1434,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         /**
          * @private
          */
-        refresh: function() {
+        refresh: function () {
             var sel = this.getSelected();
 
             // Refreshing the selected record Collection based upon a possible
@@ -1447,7 +1447,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         /**
          * @private
          */
-        onStoreAdd: function() {
+        onStoreAdd: function () {
             var sel = this.getSelected();
 
             // Updating on store mutation is only valid if we are selecting records.
@@ -1460,14 +1460,14 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         /**
          * @private
          */
-        onStoreClear: function() {
+        onStoreClear: function () {
             this.resetSelection();
         },
 
         /**
          * @private
          */
-        onStoreLoad: function() {
+        onStoreLoad: function () {
             var sel = this.getSelected();
 
             // Updating on store mutation is only valid if we are selecting records.
@@ -1480,7 +1480,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         /**
          * @private
          */
-        onStoreRefresh: function() {
+        onStoreRefresh: function () {
             var sel = this.selected;
 
             // Ensure that records which are no longer in the new store are pruned if configured to do so.
@@ -1494,7 +1494,7 @@ Ext.define('Ext.grid.selection.SpreadsheetModel', {
         /**
          * @private
          */
-        onStoreRemove: function() {
+        onStoreRemove: function () {
             var sel = this.getSelected();
 
             // Updating on store mutation is only valid if we are selecting records.

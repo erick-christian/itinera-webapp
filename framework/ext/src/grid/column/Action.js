@@ -82,8 +82,8 @@ Ext.define('Ext.grid.column.Action', {
      */
     /**
      * @cfg {Object} scope
-     * The scope (`this` reference) in which the `{@link #handler}`, 
-     * `{@link #getClass}`, `{@link #cfg-isDisabled}` and `{@link #getTip}` functions 
+     * The scope (`this` reference) in which the `{@link #handler}`,
+     * `{@link #getClass}`, `{@link #cfg-isDisabled}` and `{@link #getTip}` functions
      * are executed.
      * Defaults to this Column.
      */
@@ -107,7 +107,7 @@ Ext.define('Ext.grid.column.Action', {
      * any possible floating window (like a message box) raised in the handler. This will prevent closing the
      * window when pressing the Escape button since it will no longer contain a focused component.
      */
-     stopSelection: true,
+    stopSelection: true,
     /**
      * @cfg {Function} getClass
      * A function which returns the CSS class to apply to the icon image.
@@ -121,7 +121,7 @@ Ext.define('Ext.grid.column.Action', {
      * @cfg {Number} getClass.colIndex The column index.
      * @cfg {Ext.data.Store} getClass.store The Store which is providing the data Model.
      */
-    
+
     /**
      * @cfg {Function} isDisabled A function which determines whether the action item for any row is disabled and returns `true` or `false`.
      * @cfg {Ext.view.Table} isDisabled.view The owning TableView.
@@ -130,15 +130,15 @@ Ext.define('Ext.grid.column.Action', {
      * @cfg {Object} isDisabled.item The clicked item (or this Column if multiple {@link #cfg-items} were not configured).
      * @cfg {Ext.data.Model} isDisabled.record The Record underlying the row.
      */
-    
+
     /**
      * @cfg {Function} getTip A function which returns the tooltip string for any row.
-     * 
-     * *Note*: Outside of an Ext.application() use of this config requires 
+     *
+     * *Note*: Outside of an Ext.application() use of this config requires
      * {@link Ext.tip.QuickTipManager#init} to be called.
-     * 
+     *
      *     Ext.tip.QuickTipManager.init();
-     *     
+     *
      *     Ext.create('Ext.data.Store', {
      *         storeId: 'employeeStore',
      *         fields: ['firstname', 'grade'],
@@ -150,7 +150,7 @@ Ext.define('Ext.grid.column.Action', {
      *             grade: 100
      *         }]
      *     });
-     *     
+     *
      *     Ext.create('Ext.grid.Panel', {
      *         title: 'Action Column Demo',
      *         store: Ext.data.StoreManager.lookup('employeeStore'),
@@ -182,25 +182,25 @@ Ext.define('Ext.grid.column.Action', {
      *         width: 250,
      *         renderTo: document.body
      *     });
-     * 
+     *
      * @param {Object} value The value of the column's configured field (if any).
      * @param {Object} metadata An object in which you may set the following attributes:
      * @param {String} metadata.tdCls A CSS class name to add to the cell's TD element.
-     * 
+     *
      *     metadata.tdCls = "custom-cell-cls";
-     * 
-     * @param {String} metadata.tdAttr An HTML attribute definition string to apply to 
+     *
+     * @param {String} metadata.tdAttr An HTML attribute definition string to apply to
      * the data container element _within_ the table cell.
-     * 
+     *
      *     metadata.tdCls = tdAttr = "*";
      *     // * see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
      *     // be aware that setting cell attributes may override the cell layout
      *     // provided by the framework
-     * 
+     *
      * @param {String} metadata.tdStyle An inline style for the table cell
-     * 
+     *
      *     metadata.tdStyle = "background-color:red;";
-     * 
+     *
      * @param {Ext.data.Model} record The Record providing the data.
      * @param {Number} rowIndex The row index.
      * @param {Number} colIndex The column index.
@@ -293,10 +293,10 @@ Ext.define('Ext.grid.column.Action', {
 
     actionIconCls: Ext.baseCSSPrefix + 'action-col-icon',
 
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this,
             cfg = Ext.apply({}, config),
-            // Items may be defined on the prototype
+        // Items may be defined on the prototype
             items = cfg.items || me.items || [me],
             hasGetClass,
             i,
@@ -327,7 +327,7 @@ Ext.define('Ext.grid.column.Action', {
         }
     },
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this;
         me.callParent();
         if (me.sortable && !me.dataIndex) {
@@ -337,7 +337,7 @@ Ext.define('Ext.grid.column.Action', {
 
     // Renderer closure iterates through items creating an <img> element for each and tagging with an identifying
     // class name x-action-col-{n}
-    defaultRenderer: function(v, cellValues, record, rowIdx, colIdx, store, view) {
+    defaultRenderer: function (v, cellValues, record, rowIdx, colIdx, store, view) {
         var me = this,
             prefix = Ext.baseCSSPrefix,
             scope = me.origScope || me,
@@ -375,7 +375,7 @@ Ext.define('Ext.grid.column.Action', {
         return ret;
     },
 
-    updater: function(cell, value, record, view, dataSource) {
+    updater: function (cell, value, record, view, dataSource) {
         var cellValues = {};
         cell.firstChild.innerHTML = this.defaultRenderer(value, cellValues, record, null, null, dataSource, view);
         Ext.fly(cell).addCls(cellValues.tdCls);
@@ -386,7 +386,7 @@ Ext.define('Ext.grid.column.Action', {
      * @param {Number/Ext.grid.column.Action} index
      * @param {Boolean} [silent=false]
      */
-    enableAction: function(index, silent) {
+    enableAction: function (index, silent) {
         var me = this;
 
         if (!index) {
@@ -406,7 +406,7 @@ Ext.define('Ext.grid.column.Action', {
      * @param {Number/Ext.grid.column.Action} index
      * @param {Boolean} [silent=false]
      */
-    disableAction: function(index, silent) {
+    disableAction: function (index, silent) {
         var me = this;
 
         if (!index) {
@@ -421,7 +421,7 @@ Ext.define('Ext.grid.column.Action', {
         }
     },
 
-    beforeDestroy: function() {
+    beforeDestroy: function () {
         // Don't delete the items, if we're subclassed with items then we'll be
         // left with an items array.
         this.renderer = this.items = null;
@@ -434,7 +434,7 @@ Ext.define('Ext.grid.column.Action', {
      * Also fires any configured click handlers. By default, cancels the mousedown event to prevent selection.
      * Returns the event handler's status to allow canceling of GridView's bubbling process.
      */
-    processEvent : function(type, view, cell, recordIndex, cellIndex, e, record, row){
+    processEvent: function (type, view, cell, recordIndex, cellIndex, e, record, row) {
         var me = this,
             target = e.getTarget(),
             key = type === 'keydown' && e.getKey(),
@@ -476,17 +476,17 @@ Ext.define('Ext.grid.column.Action', {
         return me.callParent(arguments);
     },
 
-    cascade: function(fn, scope) {
-        fn.call(scope||this, this);
+    cascade: function (fn, scope) {
+        fn.call(scope || this, this);
     },
 
     // Private override because this cannot function as a Container, and it has an items property which is an Array, NOT a MixedCollection.
-    getRefItems: function() {
+    getRefItems: function () {
         return [];
     },
 
     privates: {
-        getFocusables: function() {
+        getFocusables: function () {
             // Override is here to prevent the default behaviour which tries to access
             // this.items.items, which will be null.
             return [];

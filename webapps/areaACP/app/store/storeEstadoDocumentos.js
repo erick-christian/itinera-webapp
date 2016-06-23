@@ -20,7 +20,7 @@ Ext.define('areaACP.store.storeEstadoDocumentos', {
         'areaACP.model.modelEstadoDocumentos'
     ],
 
-    constructor: function(cfg) {
+    constructor: function (cfg) {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({

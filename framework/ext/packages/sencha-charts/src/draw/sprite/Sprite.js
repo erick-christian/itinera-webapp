@@ -216,7 +216,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
                  * The central coordinate of the sprite's scale operation on the y-axis.
                  */
                 scalingCenterY: "number",
-                
+
                 constrainGradients: "bool"
             },
 
@@ -274,7 +274,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
                 scalingY: 1,
                 scalingCenterX: null,
                 scalingCenterY: null,
-                
+
                 constrainGradients: false
             },
 
@@ -312,7 +312,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
                 scalingY: "transform",
                 scalingCenterX: "transform",
                 scalingCenterY: "transform",
-                
+
                 constrainGradients: "canvas"
             },
 
@@ -388,7 +388,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
         me.id = config.id || Ext.id(null, 'ext-sprite-');
         me.attr = {};
         me.mixins.observable.constructor.apply(me, arguments);
-        
+
         var modifiers = Ext.Array.from(config.modifiers, true);
         me.prepareModifiers(modifiers);
         me.initializeAttributes();

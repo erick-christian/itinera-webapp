@@ -50,7 +50,7 @@
 
     //Add easeIn, easeOut, easeInOut options to all easing equations.
     addEasing = function (easing, params) {
-        params = params && params.length ? params : [ params ];
+        params = params && params.length ? params : [params];
         return Ext.apply(easing, {
 
             easeIn: function (pos) {

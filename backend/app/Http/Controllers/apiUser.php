@@ -34,18 +34,18 @@ class apiUser extends Controller
         $availableInfo = true;
 
         $apiMessage = Translator::translate(
-            'Spanish',
+            'Spanish' ,
             'apiUser' ,
-            'InformationPrepared',
+            'InformationPrepared' ,
             'InformationPrepared');
 
         $objCountReg = new \stdClass();
         $objCountReg->total = $numUsers;
 
         Emissary::success($availableInfo);
-        Emissary::addMessage('info-api', $apiMessage);
-        Emissary::addData('users', $users);
-        Emissary::addData('numUsers', $objCountReg);
+        Emissary::addMessage('info-api' , $apiMessage);
+        Emissary::addData('users' , $users);
+        Emissary::addData('numUsers' , $objCountReg);
 
         $objReturn = Emissary::getEnvelope();
         return json_encode($objReturn);
@@ -65,14 +65,14 @@ class apiUser extends Controller
         $availableInfo = true;
 
         $apiMessage = Translator::translate(
-            'Spanish',
-            'apiUser',
-            'showUser',
+            'Spanish' ,
+            'apiUser' ,
+            'showUser' ,
             'showUser');
 
         Emissary::success($availableInfo);
-        Emissary::addMessage('info-api', $apiMessage);
-        Emissary::addData('Users', $User);
+        Emissary::addMessage('info-api' , $apiMessage);
+        Emissary::addData('Users' , $User);
 
         $objReturn = Emissary::getEnvelope();
         return json_encode($objReturn);
@@ -160,5 +160,5 @@ class apiUser extends Controller
 
         $objReturn = Emissary::getEnvelope();
         return json_encode($objReturn);
-    }    
+    }
 }

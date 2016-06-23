@@ -150,7 +150,7 @@ Ext.define('Ext.grid.plugin.CellEditing', {
      *  @param {Mixed}                  context.originalValue The original value before being edited.
      */
 
-    init: function(grid) {
+    init: function (grid) {
         var me = this,
             lockingPartner = me.lockingPartner;
 
@@ -161,19 +161,19 @@ Ext.define('Ext.grid.plugin.CellEditing', {
             if (lockingPartner.editors) {
                 me.editors = lockingPartner.editors;
             } else {
-                me.editors = lockingPartner.editors = new Ext.util.MixedCollection(false, function(editor) {
+                me.editors = lockingPartner.editors = new Ext.util.MixedCollection(false, function (editor) {
                     return editor.editorId;
                 });
             }
         } else {
-            me.editors = new Ext.util.MixedCollection(false, function(editor) {
+            me.editors = new Ext.util.MixedCollection(false, function (editor) {
                 return editor.editorId;
             });
         }
     },
 
     // Ensure editors are cleaned up.
-    beforeGridHeaderDestroy: function(headerCt) {
+    beforeGridHeaderDestroy: function (headerCt) {
         var me = this,
             columns = me.grid.getColumnManager().getColumns(),
             len = columns.length,
@@ -199,19 +199,19 @@ Ext.define('Ext.grid.plugin.CellEditing', {
         }
     },
 
-    onReconfigure: function(grid, store, columns){
+    onReconfigure: function (grid, store, columns) {
         // Only reconfigure editors if passed a new set of columns
         if (columns) {
             this.editors.clear();
         }
-        this.callParent();    
+        this.callParent();
     },
 
     /**
      * @private
      * Component calls destroy on all its plugins at destroy time.
      */
-    destroy: function() {
+    destroy: function () {
         var me = this;
         if (me.editors) {
             me.editors.each(Ext.destroy, Ext);
@@ -222,8 +222,8 @@ Ext.define('Ext.grid.plugin.CellEditing', {
 
     // @private
     // Template method called from base class's initEvents
-    initCancelTriggers: function() {
-        var me   = this,
+    initCancelTriggers: function () {
+        var me = this,
             grid = me.grid;
 
         me.mon(grid, {
@@ -233,7 +233,7 @@ Ext.define('Ext.grid.plugin.CellEditing', {
         });
     },
 
-    isCellEditable: function(record, columnHeader) {
+    isCellEditable: function (record, columnHeader) {
         var me = this,
             context = me.getEditingContext(record, columnHeader);
 
@@ -252,7 +252,7 @@ Ext.define('Ext.grid.plugin.CellEditing', {
      * @param {Ext.grid.column.Column/Number} columnHeader The Column object defining the column to be edited, or index of the column.
      * @return {Boolean} `true` if editing was started, `false` otherwise.
      */
-    startEdit: function(record, columnHeader, /* private */ context) {
+    startEdit: function (record, columnHeader, /* private */ context) {
         var me = this,
             useCurrentActiveEditor,
             isFieldEditable,
@@ -334,7 +334,7 @@ Ext.define('Ext.grid.plugin.CellEditing', {
         }
     },
 
-    showEditor: function(ed, context, value) {
+    showEditor: function (ed, context, value) {
         var me = this,
             record = context.record,
             view = context.view,
@@ -391,7 +391,7 @@ Ext.define('Ext.grid.plugin.CellEditing', {
         }
     },
 
-    completeEdit: function(remainVisible) {
+    completeEdit: function (remainVisible) {
         var activeEd = this.getActiveEditor();
         if (activeEd) {
             activeEd.completeEdit(remainVisible);
@@ -399,52 +399,52 @@ Ext.define('Ext.grid.plugin.CellEditing', {
     },
 
     // internal getters/setters
-    setEditingContext: function(context) {
+    setEditingContext: function (context) {
         this.context = context;
         if (this.lockingPartner) {
             this.lockingPartner.context = context;
         }
     },
 
-    setActiveEditor: function(ed) {
+    setActiveEditor: function (ed) {
         this.activeEditor = ed;
         if (this.lockingPartner) {
             this.lockingPartner.activeEditor = ed;
         }
     },
 
-    getActiveEditor: function() {
+    getActiveEditor: function () {
         return this.activeEditor;
     },
 
-    setActiveColumn: function(column) {
+    setActiveColumn: function (column) {
         this.activeColumn = column;
         if (this.lockingPartner) {
             this.lockingPartner.activeColumn = column;
         }
     },
 
-    getActiveColumn: function() {
+    getActiveColumn: function () {
         return this.activeColumn;
     },
 
-    setActiveRecord: function(record) {
+    setActiveRecord: function (record) {
         this.activeRecord = record;
         if (this.lockingPartner) {
             this.lockingPartner.activeRecord = record;
         }
     },
 
-    getActiveRecord: function() {
+    getActiveRecord: function () {
         return this.activeRecord;
     },
 
-    getEditor: function(record, column) {
+    getEditor: function (record, column) {
         var me = this,
             editors = me.editors,
             editorId = column.getItemId(),
             editor = editors.getByKey(editorId),
-            // Add to top level grid if we are editing one side of a locking system
+        // Add to top level grid if we are editing one side of a locking system
             editorOwner = me.grid.ownerLockable || me.grid;
 
         if (!editor) {
@@ -499,17 +499,17 @@ Ext.define('Ext.grid.plugin.CellEditing', {
         return editor;
     },
 
-    onColumnRemoved: function(column) {
+    onColumnRemoved: function (column) {
         var me = this,
             context = me.context,
             editor,
-            // Editor is owned by top level grid if we are editing one side of a locking system
+        // Editor is owned by top level grid if we are editing one side of a locking system
             editorOwner = me.grid.ownerLockable || me.grid;
 
         // If the column was being edited, when plucked out of the grid, cancel the edit.
         if (context && context.column === column) {
             me.cancelEdit();
-        }   
+        }
 
         // Remove the CellEditor of that column from the grid, and no longer listen for events from it.
         column.un('removed', me.onColumnRemoved, me);
@@ -525,7 +525,7 @@ Ext.define('Ext.grid.plugin.CellEditing', {
     },
 
     // inherit docs
-    setColumnField: function(column, field) {
+    setColumnField: function (column, field) {
         var ed = this.editors.getByKey(column.getItemId());
         Ext.destroy(ed, column.field);
         this.editors.removeAtKey(column.getItemId());
@@ -538,7 +538,7 @@ Ext.define('Ext.grid.plugin.CellEditing', {
      * @param {Ext.grid.column.Column} column
      * @private
      */
-    getCell: function(record, column) {
+    getCell: function (record, column) {
         return this.grid.getView().getCell(record, column);
     },
 
@@ -547,11 +547,11 @@ Ext.define('Ext.grid.plugin.CellEditing', {
      * @param {Ext.form.field.Field} ed The Editor
      * @param {HTMLElement} field The Editor's input field
      * @param {Ext.event.Event} e the key event.
-     * 
+     *
      */
-    onSpecialKey: function(ed, field, e) {
+    onSpecialKey: function (ed, field, e) {
         var sm;
- 
+
         if (e.getKey() === e.TAB) {
             e.stopEvent();
             e.position = this.context;
@@ -567,7 +567,7 @@ Ext.define('Ext.grid.plugin.CellEditing', {
         }
     },
 
-    onEditComplete : function(ed, value, startValue) {
+    onEditComplete: function (ed, value, startValue) {
         var me = this,
             activeColumn = me.getActiveColumn(),
             context = me.context,
@@ -603,7 +603,7 @@ Ext.define('Ext.grid.plugin.CellEditing', {
     /**
      * Cancels any active editing.
      */
-    cancelEdit: function() {
+    cancelEdit: function () {
         var me = this,
             context = me.context,
             view,
@@ -643,24 +643,24 @@ Ext.define('Ext.grid.plugin.CellEditing', {
      * Starts editing by position (row/column)
      * @param {Object} position A position with keys of row and column.
      * Example usage:
-     * 
+     *
      *     cellEditing.startEditByPosition({
      *         row: 3,
      *         column: 2
      *     });
      */
-    startEditByPosition: function(position) {
+    startEditByPosition: function (position) {
         var me = this,
             cm = me.grid.getColumnManager(),
             index;
-            
+
         // If a raw {row:0, column:0} object passed.
         // The historic API is that column indices INCLUDE hidden columns, so use getColumnManager.
         if (!position.isCellContext) {
             position.column = me.grid.getColumnManager().getColumns()[position.column];
             position.record = me.view.dataSource.getAt(position.row);
         }
-        
+
         // Coerce the edit column to the closest visible column. This typically
         // only needs to be done when called programmatically, since the position
         // is handled by walkCells, which is called before this is invoked.

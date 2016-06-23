@@ -18,7 +18,7 @@ Ext.define('Ext.scroll.Scroller', {
     extend: 'Ext.Evented',
     alias: 'scroller.scroller',
 
-    mixins: [ 'Ext.mixin.Factoryable' ],
+    mixins: ['Ext.mixin.Factoryable'],
 
     uses: [
         'Ext.scroll.TouchScroller',
@@ -182,12 +182,12 @@ Ext.define('Ext.scroll.Scroller', {
          * @param {Object} config Configuration options for the Scroller
          * @return {Ext.scroll.Scroller}
          */
-        create: function(config) {
+        create: function (config) {
             return Ext.Factory.scroller(config, Ext.supports.Touch ? 'touch' : 'dom');
         }
     },
 
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this;
 
         me.callParent([config]);
@@ -205,7 +205,7 @@ Ext.define('Ext.scroll.Scroller', {
      * @param {Ext.scroll.Scroller} partner
      * @param {String} [axis='both'] The axis to synchronize (`'x'`, '`y`', or '`both`')
      */
-    addPartner: function(partner, axis) {
+    addPartner: function (partner, axis) {
         var me = this,
             partners = me._partners || (me._partners = {}),
             otherPartners = partner._partners || (partner._partners = {});
@@ -221,7 +221,7 @@ Ext.define('Ext.scroll.Scroller', {
         };
     },
 
-    applyElement: function(element) {
+    applyElement: function (element) {
         var el;
 
         if (element) {
@@ -255,7 +255,7 @@ Ext.define('Ext.scroll.Scroller', {
     updateX: Ext.emptyFn,
     updateY: Ext.emptyFn,
 
-    updateElement: function(element) {
+    updateElement: function (element) {
         element.on('scroll', 'onDomScroll', this);
     },
 
@@ -301,7 +301,7 @@ Ext.define('Ext.scroll.Scroller', {
      * @return {Ext.scroll.Scroller} this
      * @chainable
      */
-    refresh: function() {
+    refresh: function () {
         this.fireEvent('refresh', this);
         return this;
     },
@@ -311,7 +311,7 @@ Ext.define('Ext.scroll.Scroller', {
      * @param {Ext.scroll.Scroller} partner
      * @private
      */
-    removePartner: function(partner) {
+    removePartner: function (partner) {
         var partners = this._partners,
             otherPartners = partner._partners;
 
@@ -347,7 +347,7 @@ Ext.define('Ext.scroll.Scroller', {
      * @param {Boolean/Object} animate Animate flag/config object if the delta values were
      * passed separately.
      */
-    scrollBy: function(deltaX, deltaY, animate) {
+    scrollBy: function (deltaX, deltaY, animate) {
         var position = this.getPosition();
 
         if (deltaX) {
@@ -379,7 +379,7 @@ Ext.define('Ext.scroll.Scroller', {
      * hex color to use for highlighting (defaults to yellow = '#ffff9c')
      * @private
      */
-    scrollIntoView: function(el, hscroll, animate, highlight) {
+    scrollIntoView: function (el, hscroll, animate, highlight) {
         var me = this,
             position = me.getPosition(),
             newPosition, newX, newY,
@@ -439,7 +439,7 @@ Ext.define('Ext.scroll.Scroller', {
      * @return {Ext.scroll.Scroller} this
      * @chainable
      */
-    scrollTo: function(x, y, animate) {
+    scrollTo: function (x, y, animate) {
         var maxPosition;
 
         if (x) {
@@ -468,7 +468,7 @@ Ext.define('Ext.scroll.Scroller', {
         this.doScrollTo(x, y, animate);
     },
 
-    updateDirection: function(direction) {
+    updateDirection: function (direction) {
         var me = this,
             x, y;
 
@@ -526,7 +526,7 @@ Ext.define('Ext.scroll.Scroller', {
                  * provided for compatibility.
                  * @deprecated 5.0
                  */
-                getScroller: function() {
+                getScroller: function () {
                     return this;
                 }
             }
@@ -541,7 +541,7 @@ Ext.define('Ext.scroll.Scroller', {
                  * @chainable
                  * @deprecated 5.1.0 Use scrollTo instead
                  */
-                scrollToTop: function(animate) {
+                scrollToTop: function (animate) {
                     return this.scrollTo(0, 0, animate);
                 },
 
@@ -553,7 +553,7 @@ Ext.define('Ext.scroll.Scroller', {
                  * @chainable
                  * @deprecated 5.1.0 Use scrollTo instead
                  */
-                scrollToEnd: function(animate) {
+                scrollToEnd: function (animate) {
                     return this.scrollTo(Infinity, Infinity, animate);
                 }
             }
@@ -562,12 +562,12 @@ Ext.define('Ext.scroll.Scroller', {
 
     privates: {
         // hook for rtl mode to convert an x coordinate to RTL space.
-        convertX: function(x) {
+        convertX: function (x) {
             return x;
         },
 
         // highlights an element after it has been scrolled into view
-        doHighlight: function(el, highlight) {
+        doHighlight: function (el, highlight) {
             if (highlight !== true) { // handle hex color
                 Ext.fly(el).highlight(highlight);
             } else {
@@ -575,7 +575,7 @@ Ext.define('Ext.scroll.Scroller', {
             }
         },
 
-        fireScrollStart: function(x, y) {
+        fireScrollStart: function (x, y) {
             var me = this,
                 component = me.component;
 
@@ -592,7 +592,7 @@ Ext.define('Ext.scroll.Scroller', {
             Ext.GlobalEvents.fireEvent('scrollstart', me, x, y);
         },
 
-        fireScroll: function(x, y) {
+        fireScroll: function (x, y) {
             var me = this,
                 component = me.component;
 
@@ -609,7 +609,7 @@ Ext.define('Ext.scroll.Scroller', {
             Ext.GlobalEvents.fireEvent('scroll', me, x, y);
         },
 
-        fireScrollEnd: function(x, y) {
+        fireScrollEnd: function (x, y) {
             var me = this,
                 component = me.component;
 
@@ -626,7 +626,7 @@ Ext.define('Ext.scroll.Scroller', {
             Ext.GlobalEvents.fireEvent('scrollend', me, x, y);
         },
 
-        initXStyle: function() {
+        initXStyle: function () {
             var element = this.getElement(),
                 x = this.getX();
 
@@ -641,7 +641,7 @@ Ext.define('Ext.scroll.Scroller', {
             }
         },
 
-        initYStyle: function() {
+        initYStyle: function () {
             var element = this.getElement(),
                 y = this.getY();
 
@@ -656,7 +656,7 @@ Ext.define('Ext.scroll.Scroller', {
             }
         },
 
-        invokePartners: function(method, x, y) {
+        invokePartners: function (method, x, y) {
             var partners = this._partners,
                 partner,
                 id;
@@ -669,11 +669,11 @@ Ext.define('Ext.scroll.Scroller', {
             }
         },
 
-        suspendPartnerSync: function() {
+        suspendPartnerSync: function () {
             this.suspendSync = (this.suspendSync || 0) + 1;
         },
 
-        resumePartnerSync: function() {
+        resumePartnerSync: function () {
             if (this.suspendSync) {
                 this.suspendSync--;
             }
@@ -685,7 +685,7 @@ Ext.define('Ext.scroll.Scroller', {
         // independently of the TouchScroller (via user mousewheel or clicking scrollbar).
         // When this happens we need to sync up the scroll position of the TouchScroller
         // and fire scroll events
-        onDomScroll: function() {
+        onDomScroll: function () {
             var me = this,
                 position = me.getPosition(),
                 x = position.x,
@@ -703,7 +703,7 @@ Ext.define('Ext.scroll.Scroller', {
             me.onDomScrollEnd();
         },
 
-        onDomScrollEnd: function() {
+        onDomScrollEnd: function () {
             var me = this,
                 position = me.getPosition(),
                 x = position.x,
@@ -717,7 +717,7 @@ Ext.define('Ext.scroll.Scroller', {
             me.fireScrollEnd(x, y);
         },
 
-        onPartnerScroll: function(partner, x, y) {
+        onPartnerScroll: function (partner, x, y) {
             var axis = partner._partners[this.getId()].axis;
 
             if (axis) {
@@ -748,13 +748,13 @@ Ext.define('Ext.scroll.Scroller', {
             }
         },
 
-        onPartnerScrollStart: function() {
+        onPartnerScrollStart: function () {
             // When a partner starts scrolling, he's going to be the one in charge,
             // so we must not sync back
             this.suspendPartnerSync();
         },
 
-        onPartnerScrollEnd: function() {
+        onPartnerScrollEnd: function () {
             // When the scrolling partner stops, we can resume syncing
             this.resumePartnerSync();
         }

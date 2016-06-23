@@ -255,9 +255,9 @@ Ext.define('Ext.draw.engine.Canvas', {
      */
     createCanvas: function () {
         var canvas = Ext.Element.create({
-                tag: 'canvas',
-                cls: Ext.baseCSSPrefix + 'surface-canvas'
-            });
+            tag: 'canvas',
+            cls: Ext.baseCSSPrefix + 'surface-canvas'
+        });
 
         // Emulate Canvas in IE8 with VML.
         window['G_vmlCanvasManager'] && G_vmlCanvasManager.initElement(canvas.dom);

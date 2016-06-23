@@ -22,9 +22,9 @@ Ext.define('Ext.resizer.Splitter', {
 
     renderTpl: [
         '<tpl if="collapsible===true">',
-            '<div id="{id}-collapseEl" data-ref="collapseEl" role="presentation" class="', Ext.baseCSSPrefix, 'collapse-el ',
-                Ext.baseCSSPrefix, 'layout-split-{collapseDir}{childElCls}">&#160;',
-            '</div>',
+        '<div id="{id}-collapseEl" data-ref="collapseEl" role="presentation" class="', Ext.baseCSSPrefix, 'collapse-el ',
+        Ext.baseCSSPrefix, 'layout-split-{collapseDir}{childElCls}">&#160;',
+        '</div>',
         '</tpl>'
     ],
 
@@ -32,7 +32,7 @@ Ext.define('Ext.resizer.Splitter', {
 
     baseCls: Ext.baseCSSPrefix + 'splitter',
     collapsedClsInternal: Ext.baseCSSPrefix + 'splitter-collapsed',
-    
+
     // Default to tree, allow internal classes to disable resizing
     canResize: true,
 
@@ -97,21 +97,21 @@ Ext.define('Ext.resizer.Splitter', {
 
     /**
      * @cfg {Number} size
-     * The size of the splitter. This becomes the height for vertical splitters and 
+     * The size of the splitter. This becomes the height for vertical splitters and
      * width for horizontal splitters.
      */
     size: 5,
-    
+
     /**
      * @cfg {Object} [tracker]
      * Any configuration options to be passed to the underlying {@link Ext.resizer.SplitterTracker}.
      */
     tracker: null,
-    
+
     ariaRole: 'separator',
-    
+
     focusable: true,
-    
+
     tabIndex: 0,
 
     /**
@@ -128,7 +128,7 @@ Ext.define('Ext.resizer.Splitter', {
         }, this.tracker);
     },
 
-    beforeRender: function() {
+    beforeRender: function () {
         var me = this,
             target = me.getCollapseTarget(),
             collapsible = me.collapsible;
@@ -150,7 +150,7 @@ Ext.define('Ext.resizer.Splitter', {
         me.protoEl.unselectable();
     },
 
-    onRender: function() {
+    onRender: function () {
         var me = this,
             collapseEl;
 
@@ -178,7 +178,7 @@ Ext.define('Ext.resizer.Splitter', {
         if (me.canResize) {
             me.tracker = Ext.create(me.getTrackerConfig());
             // Relay the most important events to our owner (could open wider later):
-            me.relayEvents(me.tracker, [ 'beforedragstart', 'dragstart', 'dragend' ]);
+            me.relayEvents(me.tracker, ['beforedragstart', 'dragstart', 'dragend']);
         }
 
         collapseEl = me.collapseEl;
@@ -187,7 +187,7 @@ Ext.define('Ext.resizer.Splitter', {
         }
     },
 
-    getCollapseDirection: function() {
+    getCollapseDirection: function () {
         var me = this,
             dir = me.collapseDirection,
             collapseTarget, idx, items, type;
@@ -226,29 +226,29 @@ Ext.define('Ext.resizer.Splitter', {
         return dir;
     },
 
-    getCollapseTarget: function() {
+    getCollapseTarget: function () {
         var me = this;
 
         return me.collapseTarget.isComponent ? me.collapseTarget
-                    : me.collapseTarget === 'prev' ? me.previousSibling() : me.nextSibling();
+            : me.collapseTarget === 'prev' ? me.previousSibling() : me.nextSibling();
     },
-    
-    setCollapseEl: function(display){
+
+    setCollapseEl: function (display) {
         var el = this.collapseEl;
         if (el) {
             el.setDisplayed(display);
         }
     },
-    
-    onBeforeTargetExpand: function(target) {
-        this.setCollapseEl('none');
-    },
-    
-    onBeforeTargetCollapse: function(){
+
+    onBeforeTargetExpand: function (target) {
         this.setCollapseEl('none');
     },
 
-    onTargetCollapse: function(target) {
+    onBeforeTargetCollapse: function () {
+        this.setCollapseEl('none');
+    },
+
+    onTargetCollapse: function (target) {
         var me = this;
 
         // Only add the collapsed class if the collapse was from our target (not bubbled from below as in a Dashboard Column)
@@ -259,9 +259,9 @@ Ext.define('Ext.resizer.Splitter', {
         me.setCollapseEl('');
     },
 
-    onTargetExpand: function(target) {
+    onTargetExpand: function (target) {
         var me = this;
-        
+
         me.el.removeCls(me.collapsedClsInternal + ' ' + (me.collapsedCls || ''));
         me.setCollapseEl('');
     },
@@ -341,14 +341,14 @@ Ext.define('Ext.resizer.Splitter', {
             me.applyOrientation();
         }
     },
-    
+
     updateOrientation: function () {
         delete this.collapseDirection; // recompute
         this.getCollapseDirection();
         this.applyCollapseDirection();
     },
 
-    toggleTargetCmp: function(e, t) {
+    toggleTargetCmp: function (e, t) {
         var cmp = this.getCollapseTarget(),
             placeholder = cmp.placeholder,
             toggle;
@@ -376,15 +376,15 @@ Ext.define('Ext.resizer.Splitter', {
     /*
      * Work around IE bug. %age margins do not get recalculated on element resize unless repaint called.
      */
-    setSize: function() {
+    setSize: function () {
         var me = this;
         me.callParent(arguments);
         if (Ext.isIE && me.el) {
             me.el.repaint();
         }
     },
-    
-    beforeDestroy: function(){
+
+    beforeDestroy: function () {
         Ext.destroy(this.tracker);
         this.callParent();
     }

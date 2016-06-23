@@ -24,18 +24,18 @@
  *
  * Some other useful configuration options when using {@link #grow} are {@link #growMin} and {@link #growMax}.
  * These allow you to set the minimum and maximum grow heights for the textarea.
- * 
+ *
  * **NOTE:** In some browsers, carriage returns ('\r', not to be confused with new lines)
  * will be automatically stripped out the value is set to the textarea. Since we cannot
  * use any reasonable method to attempt to re-insert these, they will automatically be
  * stripped out to ensure the behaviour is consistent across browser.
  */
 Ext.define('Ext.form.field.TextArea', {
-    extend:'Ext.form.field.Text',
+    extend: 'Ext.form.field.Text',
     alias: ['widget.textareafield', 'widget.textarea'],
     alternateClassName: 'Ext.form.TextArea',
     requires: [
-        'Ext.XTemplate', 
+        'Ext.XTemplate',
         'Ext.util.DelayedTask'
     ],
 
@@ -51,16 +51,16 @@ Ext.define('Ext.form.field.TextArea', {
     //
     fieldSubTpl: [
         '<textarea id="{id}" role="{role}" {inputAttrTpl}',
-            '<tpl if="name"> name="{name}"</tpl>',
-            '<tpl if="placeholder"> placeholder="{placeholder}"</tpl>',
-            '<tpl if="maxLength !== undefined"> maxlength="{maxLength}"</tpl>',
-            '<tpl if="readOnly"> readonly="readonly"</tpl>',
-            '<tpl if="disabled"> disabled="disabled"</tpl>',
-            '<tpl if="tabIdx != null"> tabindex="{tabIdx}"</tpl>',
-            ' class="{fieldCls} {typeCls} {typeCls}-{ui} {inputCls}" ',
-            '<tpl if="fieldStyle"> style="{fieldStyle}"</tpl>',
-            ' autocomplete="off">\n',
-            '<tpl if="value">{[Ext.util.Format.htmlEncode(values.value)]}</tpl>',
+        '<tpl if="name"> name="{name}"</tpl>',
+        '<tpl if="placeholder"> placeholder="{placeholder}"</tpl>',
+        '<tpl if="maxLength !== undefined"> maxlength="{maxLength}"</tpl>',
+        '<tpl if="readOnly"> readonly="readonly"</tpl>',
+        '<tpl if="disabled"> disabled="disabled"</tpl>',
+        '<tpl if="tabIdx != null"> tabindex="{tabIdx}"</tpl>',
+        ' class="{fieldCls} {typeCls} {typeCls}-{ui} {inputCls}" ',
+        '<tpl if="fieldStyle"> style="{fieldStyle}"</tpl>',
+        ' autocomplete="off">\n',
+        '<tpl if="value">{[Ext.util.Format.htmlEncode(values.value)]}</tpl>',
         '</textarea>',
         {
             disableFormats: true
@@ -100,7 +100,7 @@ Ext.define('Ext.form.field.TextArea', {
      * relevant when {@link #grow} is true. Equivalent to setting overflow: hidden.
      */
     preventScrollbars: false,
-    
+
     returnRe: /\r/g,
 
     inputCls: Ext.baseCSSPrefix + 'form-textarea',
@@ -108,7 +108,7 @@ Ext.define('Ext.form.field.TextArea', {
     extraFieldBodyCls: Ext.baseCSSPrefix + 'form-textarea-body',
 
     //<debug>
-    constructor: function(config) {
+    constructor: function (config) {
         this.callParent([config]);
         if (this.cols) {
             Ext.log.warn('Ext.form.field.TextArea "cols" config was removed in Ext 5.0. Please specify a "width" or use a layout instead.');
@@ -121,14 +121,14 @@ Ext.define('Ext.form.field.TextArea', {
     //</debug>
 
     // private
-    getSubTplData: function(fieldData) {
+    getSubTplData: function (fieldData) {
         var me = this,
             fieldStyle = me.getFieldStyle(),
             ret = me.callParent(arguments);
 
         if (me.grow) {
             if (me.preventScrollbars) {
-                ret.fieldStyle = (fieldStyle||'') + ';overflow:hidden;height:' + me.growMin + 'px';
+                ret.fieldStyle = (fieldStyle || '') + ';overflow:hidden;height:' + me.growMin + 'px';
             }
         }
 
@@ -145,34 +145,34 @@ Ext.define('Ext.form.field.TextArea', {
             me.inputEl.on('paste', me.onPaste, me);
         }
     },
-    
+
     // The following overrides deal with an issue whereby some browsers
     // will strip carriage returns from the textarea input, while others
     // will not. Since there's no way to be sure where to insert returns,
     // the best solution is to strip them out in all cases to ensure that
     // the behaviour is consistent in a cross browser fashion. As such,
     // we override in all cases when setting the value to control this.
-    transformRawValue: function(value){
+    transformRawValue: function (value) {
         return this.stripReturns(value);
     },
-    
-    getValue: function(){
-        return this.stripReturns(this.callParent());    
+
+    getValue: function () {
+        return this.stripReturns(this.callParent());
     },
-    
-    valueToRaw: function(value){
+
+    valueToRaw: function (value) {
         value = this.stripReturns(value);
         return this.callParent([value]);
     },
-    
-    stripReturns: function(value){
+
+    stripReturns: function (value) {
         if (value && typeof value === 'string') {
             value = value.replace(this.returnRe, '');
         }
         return value;
     },
 
-    onPaste: function(){
+    onPaste: function () {
         var me = this;
         if (!me.pasteTask) {
             me.pasteTask = new Ext.util.DelayedTask(me.pasteCheck, me);
@@ -180,12 +180,12 @@ Ext.define('Ext.form.field.TextArea', {
         // since we can't get the paste data, we'll give the area a chance to populate
         me.pasteTask.delay(1);
     },
-    
-    pasteCheck: function(){
+
+    pasteCheck: function () {
         var me = this,
             value = me.getValue(),
             max = me.maxLength;
-            
+
         if (value.length > max) {
             value = value.substr(0, max);
             me.setValue(value);
@@ -193,15 +193,15 @@ Ext.define('Ext.form.field.TextArea', {
     },
 
     // private
-    fireKey: function(e) {
+    fireKey: function (e) {
         var me = this,
             key = e.getKey(),
             value;
-            
+
         if (e.isSpecialKey() && (me.enterIsSpecial || (key !== e.ENTER || e.hasModifier()))) {
             me.fireEvent('specialkey', me, e);
         }
-        
+
         if (me.needsMaxCheck && key !== e.BACKSPACE && key !== e.DELETE && !e.isNavKeyPress() && !me.isCutCopyPasteSelectAll(e, key)) {
             value = me.getValue();
             if (value.length >= me.maxLength) {
@@ -209,8 +209,8 @@ Ext.define('Ext.form.field.TextArea', {
             }
         }
     },
-    
-    isCutCopyPasteSelectAll: function(e, key) {
+
+    isCutCopyPasteSelectAll: function (e, key) {
         if (e.ctrlKey) {
             return key === e.A || key === e.C || key === e.V || key === e.X;
         }
@@ -222,7 +222,7 @@ Ext.define('Ext.form.field.TextArea', {
      * field height allowed. This only takes effect if {@link #grow} = true, and fires the
      * {@link #autosize} event if the height changes.
      */
-    autoSize: function() {
+    autoSize: function () {
         var me = this,
             inputEl, height, curWidth, value;
 
@@ -253,12 +253,12 @@ Ext.define('Ext.form.field.TextArea', {
         }
     },
 
-    beforeDestroy: function(){
+    beforeDestroy: function () {
         var task = this.pasteTask;
         if (task) {
             task.cancel();
             this.pasteTask = null;
-        }    
+        }
         this.callParent();
     }
 });

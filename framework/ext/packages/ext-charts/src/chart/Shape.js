@@ -97,7 +97,7 @@ Ext.define('Ext.chart.Shape', {
             type: 'text',
             x: x + size * Math.sin(angle) - 10, // Shift here, Not sure why.
             y: y + size * Math.cos(angle) + 5,
-            text:  text,
+            text: text,
             'font-size': size * 12 / 40,
             stroke: 'none',
             fill: '#fff'

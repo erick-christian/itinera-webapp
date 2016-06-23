@@ -44,7 +44,7 @@ Ext.define('Ext.chart.series.StackedCartesian', {
 
     animatingSprites: 0,
 
-    themeColorCount: function() {
+    themeColorCount: function () {
         var me = this,
             yField = me.getYField();
         return Ext.isArray(yField) ? yField.length : 1;

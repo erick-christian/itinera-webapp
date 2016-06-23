@@ -1,6 +1,6 @@
 /**
  * @class Ext.fx.target.Component
- * 
+ *
  * This class represents a animation target for a {@link Ext.Component}. In general this class will not be
  * created directly, the {@link Ext.Component} will be passed to the animation and
  * and the appropriate target will be created.
@@ -8,54 +8,54 @@
 Ext.define('Ext.fx.target.Component', {
 
     /* Begin Definitions */
-   
+
     extend: 'Ext.fx.target.Target',
-    
+
     /* End Definitions */
 
     type: 'component',
 
     // Methods to call to retrieve unspecified "from" values from a target Component
     getPropMethod: {
-        top: function() {
+        top: function () {
             return this.getPosition(true)[1];
         },
-        left: function() {
+        left: function () {
             return this.getPosition(true)[0];
         },
-        x: function() {
+        x: function () {
             return this.getPosition()[0];
         },
-        y: function() {
+        y: function () {
             return this.getPosition()[1];
         },
-        height: function() {
+        height: function () {
             return this.getHeight();
         },
-        width: function() {
+        width: function () {
             return this.getWidth();
         },
-        opacity: function() {
+        opacity: function () {
             return this.el.getStyle('opacity');
         }
     },
 
     setMethods: {
-        top:     'setPosition',
-        left:    'setPosition',
-        x:       'setPagePosition',
-        y:       'setPagePosition',
-        height:  'setSize',
-        width:   'setSize',
+        top: 'setPosition',
+        left: 'setPosition',
+        x: 'setPagePosition',
+        y: 'setPagePosition',
+        height: 'setSize',
+        width: 'setSize',
         opacity: 'setOpacity'
     },
 
     // Read the named attribute from the target Component. Use the defined getter for the attribute
-    getAttr: function(attr, val) {
+    getAttr: function (attr, val) {
         return [[this.target, val !== undefined ? val : this.getPropMethod[attr].call(this.target)]];
     },
 
-    setAttr: function(targetData, isFirstFrame, isLastFrame) {
+    setAttr: function (targetData, isFirstFrame, isLastFrame) {
         var me = this,
             ln = targetData.length,
             attrs, attr, o, i, j, targets, left, top, w, h,

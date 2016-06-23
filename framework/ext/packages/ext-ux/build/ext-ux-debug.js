@@ -35,22 +35,22 @@ Ext.define('Ext.ux.colorpick.Selection', {
         color: null,
         previousColor: null
     },
-    applyColor: function(color) {
+    applyColor: function (color) {
         var c = color;
         if (Ext.isString(c)) {
             c = Ext.ux.colorpick.ColorUtils.parseColor(color);
         }
         return c;
     },
-    applyValue: function(color) {
+    applyValue: function (color) {
         // Transform whatever incoming color we get to the proper format
         var c = Ext.ux.colorpick.ColorUtils.parseColor(color);
         return this.formatColor(c);
     },
-    formatColor: function(color) {
+    formatColor: function (color) {
         return Ext.ux.colorpick.ColorUtils.formats[this.getFormat()](color);
     },
-    updateColor: function(color) {
+    updateColor: function (color) {
         var me = this;
         // If the "color" is changed (via internal changes in the UI), update "value" as
         // well. Since these are always tracking each other, we guard against the case
@@ -61,7 +61,7 @@ Ext.define('Ext.ux.colorpick.Selection', {
             me.syncing = false;
         }
     },
-    updateValue: function(value, oldValue) {
+    updateValue: function (value, oldValue) {
         var me = this;
         // If the "value" is changed, update "color" as well. Since these are always
         // tracking each other, we guard against the case where we are being updated
@@ -75,15 +75,15 @@ Ext.define('Ext.ux.colorpick.Selection', {
     }
 });
 
-Ext.define('Ext.ux.colorpick.ColorUtils', function(ColorUtils) {
+Ext.define('Ext.ux.colorpick.ColorUtils', function (ColorUtils) {
     var oldIE = Ext.isIE && Ext.ieVersion < 10;
     return {
         singleton: true,
-        constructor: function() {
+        constructor: function () {
             ColorUtils = this;
         },
         backgroundTpl: oldIE ? 'filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, ' + 'startColorstr=\'#{alpha}{hex}\', endColorstr=\'#{alpha}{hex}\');' : 'background: {rgba};',
-        setBackground: oldIE ? function(el, color) {
+        setBackground: oldIE ? function (el, color) {
             if (el) {
                 var tpl = Ext.XTemplate.getTpl(ColorUtils, 'backgroundTpl'),
                     data = {
@@ -93,7 +93,7 @@ Ext.define('Ext.ux.colorpick.ColorUtils', function(ColorUtils) {
                     bgStyle = tpl.apply(data);
                 el.applyStyles(bgStyle);
             }
-        } : function(el, color) {
+        } : function (el, color) {
             if (el) {
                 var tpl = Ext.XTemplate.getTpl(ColorUtils, 'backgroundTpl'),
                     data = {
@@ -111,11 +111,11 @@ Ext.define('Ext.ux.colorpick.ColorUtils', function(ColorUtils) {
         // for the return result
         formats: {
             // "FFAA00"
-            HEX6: function(colorO) {
+            HEX6: function (colorO) {
                 return ColorUtils.rgb2hex(colorO.r, colorO.g, colorO.b);
             },
             // "FFAA00FF" (last 2 are opacity)
-            HEX8: function(colorO) {
+            HEX8: function (colorO) {
                 var hex = ColorUtils.rgb2hex(colorO.r, colorO.g, colorO.b),
                     opacityHex = Math.round(colorO.a * 255).toString(16);
                 if (opacityHex.length < 2) {
@@ -151,7 +151,7 @@ Ext.define('Ext.ux.colorpick.ColorUtils', function(ColorUtils) {
          * @return {Number} return.s The saturation component (0-1).
          * @return {Number} return.v The value component (0-1).
          */
-        parseColor: function(color) {
+        parseColor: function (color) {
             if (!color) {
                 return null;
             }
@@ -240,7 +240,7 @@ Ext.define('Ext.ux.colorpick.ColorUtils', function(ColorUtils) {
          * @param rgba
          * @return {String}
          */
-        getRGBAString: function(rgba) {
+        getRGBAString: function (rgba) {
             return "rgba(" + rgba.r + "," + rgba.g + "," + rgba.b + "," + rgba.a + ")";
         },
         /**
@@ -248,7 +248,7 @@ Ext.define('Ext.ux.colorpick.ColorUtils', function(ColorUtils) {
          * @param rgb
          * @return {String}
          */
-        getRGBString: function(rgb) {
+        getRGBString: function (rgb) {
             return "rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")";
         },
         /**
@@ -261,7 +261,7 @@ Ext.define('Ext.ux.colorpick.ColorUtils', function(ColorUtils) {
          * @param v
          * @return {Object} An object with "r", "g" and "b" color properties.
          */
-        hsv2rgb: function(h, s, v) {
+        hsv2rgb: function (h, s, v) {
             h = h * 360;
             if (h === 360) {
                 h = 0;
@@ -270,10 +270,10 @@ Ext.define('Ext.ux.colorpick.ColorUtils', function(ColorUtils) {
             var hprime = h / 60;
             var x = c * (1 - Math.abs(hprime % 2 - 1));
             var rgb = [
-                    0,
-                    0,
-                    0
-                ];
+                0,
+                0,
+                0
+            ];
             switch (Math.floor(hprime)) {
                 case 0:
                     rgb = [
@@ -341,7 +341,7 @@ Ext.define('Ext.ux.colorpick.ColorUtils', function(ColorUtils) {
          * @param {Number} b The blue component (0-255).
          * @return {Object} An object with "h", "s" and "v" color properties.
          */
-        rgb2hsv: function(r, g, b) {
+        rgb2hsv: function (r, g, b) {
             r = r / 255;
             g = g / 255;
             b = b / 255;
@@ -384,7 +384,7 @@ Ext.define('Ext.ux.colorpick.ColorUtils', function(ColorUtils) {
          * @param b
          * @return {String}
          */
-        rgb2hex: function(r, g, b) {
+        rgb2hex: function (r, g, b) {
             r = r.toString(16);
             g = g.toString(16);
             b = b.toString(16);
@@ -1137,17 +1137,17 @@ Ext.define('Ext.ux.colorpick.ColorUtils', function(ColorUtils) {
             ]
         }
     };
-}, function(ColorUtils) {
+}, function (ColorUtils) {
     var formats = ColorUtils.formats,
         lowerized = {};
-    formats['#HEX6'] = function(color) {
+    formats['#HEX6'] = function (color) {
         return '#' + formats.HEX6(color);
     };
-    formats['#HEX8'] = function(color) {
+    formats['#HEX8'] = function (color) {
         return '#' + formats.HEX8(color);
     };
-    Ext.Object.each(formats, function(name, fn) {
-        lowerized[name.toLowerCase()] = function(color) {
+    Ext.Object.each(formats, function (name, fn) {
+        lowerized[name.toLowerCase()] = function (color) {
             var ret = fn(color);
             return ret.toLowerCase();
         };
@@ -1162,7 +1162,7 @@ Ext.define('Ext.ux.colorpick.ColorMapController', {
         'Ext.ux.colorpick.ColorUtils'
     ],
     // After the component is rendered
-    onFirstBoxReady: function() {
+    onFirstBoxReady: function () {
         var me = this,
             colorMap = me.getView(),
             dragHandle = colorMap.down('#dragHandle'),
@@ -1183,10 +1183,10 @@ Ext.define('Ext.ux.colorpick.ColorMapController', {
     // Fires when handle is dragged; propagates "handledrag" event on the ColorMap
     // with parameters "percentX" and "percentY", both 0-1, representing the handle
     // position on the color map, relative to the container
-    onHandleDrag: function(componentDragger, e) {
+    onHandleDrag: function (componentDragger, e) {
         var me = this,
             container = me.getView(),
-            // the Color Map
+        // the Color Map
             dragHandle = container.down('#dragHandle'),
             x = dragHandle.getX() - container.getX(),
             y = dragHandle.getY() - container.getY(),
@@ -1205,7 +1205,7 @@ Ext.define('Ext.ux.colorpick.ColorMapController', {
         container.fireEvent('handledrag', xRatio, yRatio);
     },
     // Whenever we mousedown over the colormap area
-    onMouseDown: function(e) {
+    onMouseDown: function (e) {
         var me = this,
             container = me.getView(),
             dragHandle = container.down('#dragHandle');
@@ -1217,7 +1217,7 @@ Ext.define('Ext.ux.colorpick.ColorMapController', {
         dragHandle.dd.onMouseDown(e, dragHandle.dd.el);
     },
     // Whenever we start a drag over the colormap area
-    onDragStart: function(e) {
+    onDragStart: function (e) {
         var me = this,
             container = me.getView(),
             dragHandle = container.down('#dragHandle');
@@ -1226,10 +1226,10 @@ Ext.define('Ext.ux.colorpick.ColorMapController', {
     },
     // Whenever the map is clicked (but not the drag handle) we need to position
     // the drag handle to the point of click
-    onMapClick: function(e) {
+    onMapClick: function (e) {
         var me = this,
             container = me.getView(),
-            // the Color Map
+        // the Color Map
             dragHandle = container.down('#dragHandle'),
             cXY = container.getXY(),
             eXY = e.getXY(),
@@ -1245,13 +1245,13 @@ Ext.define('Ext.ux.colorpick.ColorMapController', {
     // Whenever the underlying binding data is changed we need to 
     // update position of the dragger; active drag state has been
     // accounted for earlier
-    onColorBindingChanged: function(selectedColor) {
+    onColorBindingChanged: function (selectedColor) {
         var me = this,
             vm = me.getViewModel(),
             rgba = vm.get('selectedColor'),
             hsv,
             container = me.getView(),
-            // the Color Map
+        // the Color Map
             dragHandle = container.down('#dragHandle'),
             containerEl = container.getEl(),
             containerWidth = containerEl.getWidth(),
@@ -1274,7 +1274,7 @@ Ext.define('Ext.ux.colorpick.ColorMapController', {
     // Whenever only Hue changes we can update the 
     // background color of the color map
     // Param "hue" has value of 0-1
-    onHueBindingChanged: function(hue) {
+    onHueBindingChanged: function (hue) {
         var me = this,
             vm = me.getViewModel(),
             fullColorRGB, hex;
@@ -1327,7 +1327,7 @@ Ext.define('Ext.ux.colorpick.ColorMap', {
             scope: 'controller'
         }
     },
-    afterRender: function() {
+    afterRender: function () {
         var me = this,
             src = me.mapGradientUrl,
             el = me.el;
@@ -1359,7 +1359,7 @@ Ext.define('Ext.ux.colorpick.ColorMap', {
         });
     },
     // Called via data binding whenever selectedColor changes; fires "colorbindingchanged"
-    setPosition: function(data) {
+    setPosition: function (data) {
         var me = this,
             dragHandle = me.down('#dragHandle');
         // Too early in the render cycle? Skip event
@@ -1373,7 +1373,7 @@ Ext.define('Ext.ux.colorpick.ColorMap', {
         me.fireEvent('colorbindingchanged', data);
     },
     // Called via data binding whenever selectedColor.h changes; fires "huebindingchanged" event
-    setHue: function(hue) {
+    setHue: function (hue) {
         var me = this;
         // Too early in the render cycle? Skip event
         if (!me.getEl()) {
@@ -1429,7 +1429,7 @@ Ext.define('Ext.ux.colorpick.SelectorModel', {
     formulas: {
         // Hexadecimal representation of the color
         hex: {
-            get: function(get) {
+            get: function (get) {
                 var r = get('selectedColor.r').toString(16),
                     g = get('selectedColor.g').toString(16),
                     b = get('selectedColor.b').toString(16),
@@ -1437,17 +1437,17 @@ Ext.define('Ext.ux.colorpick.SelectorModel', {
                 result = Ext.ux.colorpick.ColorUtils.rgb2hex(r, g, b);
                 return '#' + result;
             },
-            set: function(hex) {
+            set: function (hex) {
                 var rgb = Ext.ux.colorpick.ColorUtils.hex2rgb(hex);
                 this.changeRGB(rgb);
             }
         },
         // "R" in "RGB"
         red: {
-            get: function(get) {
+            get: function (get) {
                 return get('selectedColor.r');
             },
-            set: function(r) {
+            set: function (r) {
                 this.changeRGB({
                     r: r
                 });
@@ -1455,10 +1455,10 @@ Ext.define('Ext.ux.colorpick.SelectorModel', {
         },
         // "G" in "RGB"
         green: {
-            get: function(get) {
+            get: function (get) {
                 return get('selectedColor.g');
             },
-            set: function(g) {
+            set: function (g) {
                 this.changeRGB({
                     g: g
                 });
@@ -1466,10 +1466,10 @@ Ext.define('Ext.ux.colorpick.SelectorModel', {
         },
         // "B" in "RGB"
         blue: {
-            get: function(get) {
+            get: function (get) {
                 return get('selectedColor.b');
             },
-            set: function(b) {
+            set: function (b) {
                 this.changeRGB({
                     b: b
                 });
@@ -1477,10 +1477,10 @@ Ext.define('Ext.ux.colorpick.SelectorModel', {
         },
         // "H" in HSV
         hue: {
-            get: function(get) {
+            get: function (get) {
                 return get('selectedColor.h') * 360;
             },
-            set: function(hue) {
+            set: function (hue) {
                 this.changeHSV({
                     h: hue / 360
                 });
@@ -1488,10 +1488,10 @@ Ext.define('Ext.ux.colorpick.SelectorModel', {
         },
         // "S" in HSV
         saturation: {
-            get: function(get) {
+            get: function (get) {
                 return get('selectedColor.s') * 100;
             },
-            set: function(saturation) {
+            set: function (saturation) {
                 this.changeHSV({
                     s: saturation / 100
                 });
@@ -1499,22 +1499,22 @@ Ext.define('Ext.ux.colorpick.SelectorModel', {
         },
         // "V" in HSV
         value: {
-            get: function(get) {
+            get: function (get) {
                 var v = get('selectedColor.v');
                 return v * 100;
             },
-            set: function(value) {
+            set: function (value) {
                 this.changeHSV({
                     v: value / 100
                 });
             }
         },
         alpha: {
-            get: function(data) {
+            get: function (data) {
                 var a = data('selectedColor.a');
                 return a * 100;
             },
-            set: function(alpha) {
+            set: function (alpha) {
                 this.set('selectedColor', Ext.applyIf({
                     a: alpha / 100
                 }, this.data.selectedColor));
@@ -1522,7 +1522,7 @@ Ext.define('Ext.ux.colorpick.SelectorModel', {
         }
     },
     // formulas
-    changeHSV: function(hsv) {
+    changeHSV: function (hsv) {
         Ext.applyIf(hsv, this.data.selectedColor);
         var rgb = Ext.ux.colorpick.ColorUtils.hsv2rgb(hsv.h, hsv.s, hsv.v);
         hsv.r = rgb.r;
@@ -1530,7 +1530,7 @@ Ext.define('Ext.ux.colorpick.SelectorModel', {
         hsv.b = rgb.b;
         this.set('selectedColor', hsv);
     },
-    changeRGB: function(rgb) {
+    changeRGB: function (rgb) {
         Ext.applyIf(rgb, this.data.selectedColor);
         var hsv = Ext.ux.colorpick.ColorUtils.rgb2hsv(rgb.r, rgb.g, rgb.b);
         rgb.h = hsv.h;
@@ -1546,15 +1546,15 @@ Ext.define('Ext.ux.colorpick.SelectorController', {
     requires: [
         'Ext.ux.colorpick.ColorUtils'
     ],
-    initViewModel: function() {
+    initViewModel: function () {
         var me = this,
             view = me.getView();
         // And ensure that the
-        view.childViewModel.bind('{selectedColor}', function(color) {
+        view.childViewModel.bind('{selectedColor}', function (color) {
             view.setColor(color);
         });
     },
-    destroy: function() {
+    destroy: function () {
         var me = this,
             view = me.getView(),
             childViewModel = view.childViewModel;
@@ -1564,7 +1564,7 @@ Ext.define('Ext.ux.colorpick.SelectorController', {
         }
         me.callParent();
     },
-    changeHSV: function(hsv) {
+    changeHSV: function (hsv) {
         var view = this.getView(),
             color = view.getColor(),
             rgb;
@@ -1578,31 +1578,31 @@ Ext.define('Ext.ux.colorpick.SelectorController', {
     // Updates Saturation/Value in the model based on ColorMap; params:
     // xPercent - where is the handle relative to the color map width
     // yPercent - where is the handle relative to the color map height
-    onColorMapHandleDrag: function(xPercent, yPercent) {
+    onColorMapHandleDrag: function (xPercent, yPercent) {
         this.changeHSV({
             s: xPercent,
             v: 1 - yPercent
         });
     },
     // Updates HSV Value in the model and downstream RGB settings
-    onValueSliderHandleDrag: function(yPercent) {
+    onValueSliderHandleDrag: function (yPercent) {
         this.changeHSV({
             v: 1 - yPercent
         });
     },
     // Updates HSV Saturation in the model and downstream RGB settings
-    onSaturationSliderHandleDrag: function(yPercent) {
+    onSaturationSliderHandleDrag: function (yPercent) {
         this.changeHSV({
             s: 1 - yPercent
         });
     },
     // Updates Hue in the model and downstream RGB settings
-    onHueSliderHandleDrag: function(yPercent) {
+    onHueSliderHandleDrag: function (yPercent) {
         this.changeHSV({
             h: 1 - yPercent
         });
     },
-    onAlphaSliderHandleDrag: function(yPercent) {
+    onAlphaSliderHandleDrag: function (yPercent) {
         var view = this.getView(),
             color = view.getColor(),
             newColor = Ext.applyIf({
@@ -1611,19 +1611,19 @@ Ext.define('Ext.ux.colorpick.SelectorController', {
         view.setColor(newColor);
         view.el.repaint();
     },
-    onPreviousColorSelected: function(comp, color) {
+    onPreviousColorSelected: function (comp, color) {
         var view = this.getView();
         view.setColor(color);
     },
-    onOK: function() {
+    onOK: function () {
         var me = this,
             view = me.getView();
         view.fireEvent('ok', view, view.getValue());
     },
-    onCancel: function() {
+    onCancel: function () {
         this.fireViewEvent('cancel', this.getView());
     },
-    onResize: function() {
+    onResize: function () {
         var me = this,
             view = me.getView(),
             vm = view.childViewModel,
@@ -1664,16 +1664,16 @@ Ext.define('Ext.ux.colorpick.ColorPreview', {
     //eo hack
     cls: 'x-colorpreview',
     height: 256,
-    onRender: function() {
+    onRender: function () {
         var me = this;
         me.callParent(arguments);
         me.mon(me.el.down('.btn'), 'click', me.onClick, me);
     },
-    onClick: function() {
+    onClick: function () {
         this.fireEvent('click', this, this.color);
     },
     // Called via databinding - update background color whenever ViewModel changes
-    setColor: function(color) {
+    setColor: function (color) {
         var me = this,
             el = me.getEl();
         // Too early in rendering cycle; skip
@@ -1684,8 +1684,8 @@ Ext.define('Ext.ux.colorpick.ColorPreview', {
         me.applyBgStyle(color);
     },
     bgStyleTpl: Ext.create('Ext.XTemplate', Ext.isIE && Ext.ieVersion < 10 ? 'filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=\'#{hexAlpha}{hex}\', endColorstr=\'#{hexAlpha}{hex}\');' : /* IE6-9 */
-    'background: {rgba};'),
-    applyBgStyle: function(color) {
+        'background: {rgba};'),
+    applyBgStyle: function (color) {
         var me = this,
             colorUtils = Ext.ux.colorpick.ColorUtils,
             el = me.getEl().down('.filter'),
@@ -1706,7 +1706,7 @@ Ext.define('Ext.ux.colorpick.SliderController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.colorpick-slidercontroller',
     // After the component is rendered
-    boxReady: function(view) {
+    boxReady: function (view) {
         var me = this,
             container = me.getDragContainer(),
             dragHandle = me.getDragHandle(),
@@ -1719,16 +1719,16 @@ Ext.define('Ext.ux.colorpick.SliderController', {
         // event handlers
         dd.on('drag', me.onHandleDrag, me);
     },
-    getDragHandle: function() {
+    getDragHandle: function () {
         return this.view.lookupReference('dragHandle');
     },
-    getDragContainer: function() {
+    getDragContainer: function () {
         return this.view.lookupReference('dragHandleContainer');
     },
     // Fires when handle is dragged; fires "handledrag" event on the slider
     // with parameter  "percentY" 0-1, representing the handle position on the slider
     // relative to the height
-    onHandleDrag: function(e) {
+    onHandleDrag: function (e) {
         var me = this,
             view = me.getView(),
             container = me.getDragContainer(),
@@ -1744,7 +1744,7 @@ Ext.define('Ext.ux.colorpick.SliderController', {
         view.fireEvent('handledrag', yRatio);
     },
     // Whenever we mousedown over the slider area
-    onMouseDown: function(e) {
+    onMouseDown: function (e) {
         var me = this,
             dragHandle = me.getDragHandle(),
             y = e.getY();
@@ -1756,13 +1756,13 @@ Ext.define('Ext.ux.colorpick.SliderController', {
         dragHandle.dd.onMouseDown(e, dragHandle.dd.el);
     },
     // Whenever we start a drag over the colormap area
-    onDragStart: function(e) {
+    onDragStart: function (e) {
         var me = this,
             dragHandle = me.getDragHandle();
         // tie into the default dd mechanism
         dragHandle.dd.onDragStart(e, dragHandle.dd.el);
     },
-    onMouseUp: function() {
+    onMouseUp: function () {
         var dragHandle = this.getDragHandle();
         dragHandle.dd.dragEnded = true;
     }
@@ -1812,13 +1812,13 @@ Ext.define('Ext.ux.colorpick.Slider', {
         }
     },
     // Called via data binding whenever selectedColor.h changes;
-    setHue: function() {
+    setHue: function () {
         Ext.Error.raise('Must implement setHue() in a child class!');
     },
-    getDragHandle: function() {
+    getDragHandle: function () {
         return this.lookupReference('dragHandle');
     },
-    getDragContainer: function() {
+    getDragContainer: function () {
         return this.lookupReference('dragHandleContainer');
     }
 });
@@ -1842,7 +1842,7 @@ Ext.define('Ext.ux.colorpick.SliderAlpha', {
     'background: linear-gradient(to bottom, rgba({r}, {g}, {b}, 1) 0%, rgba({r}, {g}, {b}, 0) 100%);'),
     /* W3C */
     // Called via data binding whenever selectedColor.a changes; param is 0-100
-    setAlpha: function(value) {
+    setAlpha: function (value) {
         var me = this,
             container = me.getDragContainer(),
             dragHandle = me.getDragHandle(),
@@ -1866,7 +1866,7 @@ Ext.define('Ext.ux.colorpick.SliderAlpha', {
         });
     },
     // Called via data binding whenever selectedColor.h changes; hue param is 0-1
-    setColor: function(color) {
+    setColor: function (color) {
         var me = this,
             container = me.getDragContainer(),
             hex, el;
@@ -1902,7 +1902,7 @@ Ext.define('Ext.ux.colorpick.SliderSaturation', {
     'background: linear-gradient(to bottom, #{hex} 0%,#ffffff 100%);'),
     /* W3C */
     // Called via data binding whenever selectedColor.s changes; saturation param is 0-100
-    setSaturation: function(saturation) {
+    setSaturation: function (saturation) {
         var me = this,
             container = me.getDragContainer(),
             dragHandle = me.getDragHandle(),
@@ -1926,7 +1926,7 @@ Ext.define('Ext.ux.colorpick.SliderSaturation', {
         });
     },
     // Called via data binding whenever selectedColor.h changes; hue param is 0-1
-    setHue: function(hue) {
+    setHue: function (hue) {
         var me = this,
             container = me.getDragContainer(),
             rgb, hex;
@@ -1962,7 +1962,7 @@ Ext.define('Ext.ux.colorpick.SliderValue', {
     'background: linear-gradient(to bottom, #{hex} 0%,#000000 100%);'),
     /* W3C */
     // Called via data binding whenever selectedColor.v changes; value param is 0-100
-    setValue: function(value) {
+    setValue: function (value) {
         var me = this,
             container = me.getDragContainer(),
             dragHandle = me.getDragHandle(),
@@ -1986,7 +1986,7 @@ Ext.define('Ext.ux.colorpick.SliderValue', {
         });
     },
     // Called via data binding whenever selectedColor.h changes; hue param is 0-1
-    setHue: function(hue) {
+    setHue: function (hue) {
         var me = this,
             container = me.getDragContainer(),
             rgb, hex;
@@ -2011,7 +2011,7 @@ Ext.define('Ext.ux.colorpick.SliderHue', {
     extend: 'Ext.ux.colorpick.Slider',
     alias: 'widget.colorpickersliderhue',
     cls: Ext.baseCSSPrefix + 'colorpicker-hue',
-    afterRender: function() {
+    afterRender: function () {
         var me = this,
             src = me.gradientUrl,
             el = me.el;
@@ -2041,7 +2041,7 @@ Ext.define('Ext.ux.colorpick.SliderHue', {
         });
     },
     // Called via data binding whenever selectedColor.h changes; hue param is 0-1
-    setHue: function(hue) {
+    setHue: function (hue) {
         var me = this,
             container = me.getDragContainer(),
             dragHandle = me.getDragHandle(),
@@ -2124,7 +2124,7 @@ Ext.define('Ext.ux.colorpick.Selector', {
     ],
     /**
      * @cfg fieldWidth {Number} Width of the text fields on the container (excluding HEX);
-     * since the width of the slider containers is the same as the text field under it 
+     * since the width of the slider containers is the same as the text field under it
      * (it's the same vbox column), changing this value will also affect the spacing between
      * the sliders.
      */
@@ -2166,7 +2166,7 @@ Ext.define('Ext.ux.colorpick.Selector', {
     listeners: {
         resize: 'onResize'
     },
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this,
             childViewModel = Ext.Factory.viewModel('colorpick-selectormodel');
         // Since this component needs to present its value as a thing to which users can
@@ -2182,17 +2182,17 @@ Ext.define('Ext.ux.colorpick.Selector', {
         ];
         me.callParent(arguments);
     },
-    updateColor: function(color) {
+    updateColor: function (color) {
         var me = this;
         me.mixins.colorselection.updateColor.call(me, color);
         me.childViewModel.set('selectedColor', color);
     },
-    updatePreviousColor: function(color) {
+    updatePreviousColor: function (color) {
         this.childViewModel.set('previousColor', color);
     },
     // Splits up view declaration for readability
     // "Map" and HEX/R/G/B fields
-    getMapAndHexRGBFields: function(childViewModel) {
+    getMapAndHexRGBFields: function (childViewModel) {
         var me = this,
             fieldMargin = {
                 top: 0,
@@ -2236,7 +2236,7 @@ Ext.define('Ext.ux.colorpick.Selector', {
                         labelAlign: 'top',
                         labelSeparator: '',
                         allowBlank: false,
-                        onChange: function() {
+                        onChange: function () {
                             // prevent data binding propagation if bad value
                             if (this.isValid()) {
                                 // this is kind of dirty and ideally we would extend these fields
@@ -2291,7 +2291,7 @@ Ext.define('Ext.ux.colorpick.Selector', {
     },
     // Splits up view declaration for readability
     // Slider and H field 
-    getSliderAndHField: function(childViewModel) {
+    getSliderAndHField: function (childViewModel) {
         var me = this;
         return {
             xtype: 'container',
@@ -2332,7 +2332,7 @@ Ext.define('Ext.ux.colorpick.Selector', {
     },
     // Splits up view declaration for readability
     // Slider and S field 
-    getSliderAndSField: function(childViewModel) {
+    getSliderAndSField: function (childViewModel) {
         var me = this;
         return {
             xtype: 'container',
@@ -2377,7 +2377,7 @@ Ext.define('Ext.ux.colorpick.Selector', {
     },
     // Splits up view declaration for readability
     // Slider and V field 
-    getSliderAndVField: function(childViewModel) {
+    getSliderAndVField: function (childViewModel) {
         var me = this;
         return {
             xtype: 'container',
@@ -2418,7 +2418,7 @@ Ext.define('Ext.ux.colorpick.Selector', {
     },
     // Splits up view declaration for readability
     // Slider and A field 
-    getSliderAndAField: function(childViewModel) {
+    getSliderAndAField: function (childViewModel) {
         var me = this;
         return {
             xtype: 'container',
@@ -2465,20 +2465,20 @@ Ext.define('Ext.ux.colorpick.Selector', {
     },
     // Splits up view declaration for readability
     // Preview current/previous color squares and OK and Cancel buttons
-    getPreviewAndButtons: function(childViewModel, config) {
+    getPreviewAndButtons: function (childViewModel, config) {
         // selected color preview is always shown
         var items = [
-                {
-                    xtype: 'colorpickercolorpreview',
-                    flex: 1,
-                    bind: {
-                        color: {
-                            bindTo: '{selectedColor}',
-                            deep: true
-                        }
+            {
+                xtype: 'colorpickercolorpreview',
+                flex: 1,
+                bind: {
+                    color: {
+                        bindTo: '{selectedColor}',
+                        deep: true
                     }
                 }
-            ];
+            }
+        ];
         // previous color preview is optional
         if (config.showPreviousColor) {
             items.push({
@@ -2532,10 +2532,10 @@ Ext.define('Ext.ux.colorpick.ButtonController', {
         'Ext.ux.colorpick.Selector',
         'Ext.ux.colorpick.ColorUtils'
     ],
-    afterRender: function(view) {
+    afterRender: function (view) {
         view.updateColor(view.getColor());
     },
-    destroy: function() {
+    destroy: function () {
         var view = this.getView(),
             colorPickerWindow = view.colorPickerWindow;
         if (colorPickerWindow) {
@@ -2544,7 +2544,7 @@ Ext.define('Ext.ux.colorpick.ButtonController', {
         }
         this.callParent();
     },
-    getPopup: function() {
+    getPopup: function () {
         var view = this.getView(),
             popup = view.colorPickerWindow,
             selector;
@@ -2562,7 +2562,7 @@ Ext.define('Ext.ux.colorpick.ButtonController', {
         return popup;
     },
     // When button is clicked show the color picker window
-    onClick: function() {
+    onClick: function () {
         var me = this,
             view = me.getView(),
             color = view.getColor(),
@@ -2572,19 +2572,19 @@ Ext.define('Ext.ux.colorpick.ButtonController', {
         colorPicker.setPreviousColor(color);
         popup.showBy(view, 'tl-br?');
     },
-    onColorPickerOK: function(picker) {
+    onColorPickerOK: function (picker) {
         var view = this.getView(),
             color = picker.getColor(),
             cpWin = view.colorPickerWindow;
         cpWin.hide();
         view.setColor(color);
     },
-    onColorPickerCancel: function() {
+    onColorPickerCancel: function () {
         var view = this.getView(),
             cpWin = view.colorPickerWindow;
         cpWin.hide();
     },
-    syncColor: function(color) {
+    syncColor: function (color) {
         var view = this.getView();
         Ext.ux.colorpick.ColorUtils.setBackground(view.filterEl, color);
     }
@@ -2665,7 +2665,7 @@ Ext.define('Ext.ux.colorpick.Button', {
      * @param {String} color The value of the selected color as per specified {@link #format}.
      * @param {String} previousColor The previous color value.
      */
-    updateColor: function(color) {
+    updateColor: function (color) {
         var me = this,
             cp = me.colorPicker;
         me.mixins.colorselection.updateColor.call(me, color);
@@ -2675,7 +2675,7 @@ Ext.define('Ext.ux.colorpick.Button', {
         }
     },
     // Sets this.format and color picker's setFormat()
-    updateFormat: function(format) {
+    updateFormat: function (format) {
         var cp = this.colorPicker;
         if (cp) {
             cp.setFormat(format);
@@ -2759,12 +2759,12 @@ Ext.define('Ext.ux.colorpick.Field', {
      */
     // NOTE: Since much of the logic of a picker class is overriding methods from the
     // base class, we don't bother to split out the small remainder as a controller.
-    afterRender: function() {
+    afterRender: function () {
         this.callParent();
         this.updateValue(this.value);
     },
     // override as required by parent pickerfield
-    createPicker: function() {
+    createPicker: function () {
         var me = this,
             popup = me.getPopup(),
             picker;
@@ -2781,19 +2781,19 @@ Ext.define('Ext.ux.colorpick.Field', {
         return me.colorPickerWindow;
     },
     // When the Ok button is clicked on color picker, preserve the previous value
-    onColorPickerOK: function(colorPicker) {
+    onColorPickerOK: function (colorPicker) {
         this.setColor(colorPicker.getColor());
         this.collapse();
     },
-    onColorPickerCancel: function() {
+    onColorPickerCancel: function () {
         this.collapse();
     },
-    onExpand: function() {
+    onExpand: function () {
         var color = this.getColor();
         this.colorPicker.setPreviousColor(color);
     },
     // Expects value formatted as per "format" config
-    setValue: function(color) {
+    setValue: function (color) {
         var me = this,
             c = me.applyValue(color);
         me.callParent([
@@ -2804,13 +2804,13 @@ Ext.define('Ext.ux.colorpick.Field', {
         me.updateValue(c);
     },
     // Sets this.format and color picker's setFormat()
-    updateFormat: function(format) {
+    updateFormat: function (format) {
         var cp = this.colorPicker;
         if (cp) {
             cp.setFormat(format);
         }
     },
-    updateValue: function(color) {
+    updateValue: function (color) {
         var me = this,
             c;
         // If the "value" is changed, update "color" as well. Since these are always
@@ -3013,7 +3013,7 @@ Ext.define('Ext.ux.rating.Picker', {
     trackOverCls: 'u' + Ext.baseCSSPrefix + 'rating-picker-track-over',
     //-------------------------------------------------------------------------
     // Config Appliers
-    applyGlyphs: function(value) {
+    applyGlyphs: function (value) {
         if (typeof value === 'string') {
             if (value.length !== 2) {
                 Ext.Error.raise('Expected 2 characters for "glyphs" not "' + value + '".');
@@ -3030,16 +3030,16 @@ Ext.define('Ext.ux.rating.Picker', {
         }
         return value;
     },
-    applyOverStyle: function(style) {
+    applyOverStyle: function (style) {
         this.trackerEl.applyStyles(style);
     },
-    applySelectedStyle: function(style) {
+    applySelectedStyle: function (style) {
         this.valueEl.applyStyles(style);
     },
-    applyStyle: function(style) {
+    applyStyle: function (style) {
         this.element.applyStyles(style);
     },
-    applyTooltip: function(tip) {
+    applyTooltip: function (tip) {
         if (tip && typeof tip !== 'function') {
             if (!tip.isTemplate) {
                 tip = new Ext.XTemplate(tip);
@@ -3048,11 +3048,11 @@ Ext.define('Ext.ux.rating.Picker', {
         }
         return tip;
     },
-    applyTrackingValue: function(value) {
+    applyTrackingValue: function (value) {
         return this.applyValue(value);
     },
     // same rounding as normal value
-    applyValue: function(v) {
+    applyValue: function (v) {
         if (v !== null) {
             var rounding = this.getRounding(),
                 limit = this.getLimit(),
@@ -3064,38 +3064,38 @@ Ext.define('Ext.ux.rating.Picker', {
     },
     //-------------------------------------------------------------------------
     // Event Handlers
-    onClick: function(event) {
+    onClick: function (event) {
         var value = this.valueFromEvent(event);
         this.setValue(value);
     },
-    onMouseEnter: function() {
+    onMouseEnter: function () {
         this.element.addCls(this.overCls);
     },
-    onMouseLeave: function() {
+    onMouseLeave: function () {
         this.element.removeCls(this.overCls);
     },
-    onMouseMove: function(event) {
+    onMouseMove: function (event) {
         var value = this.valueFromEvent(event);
         this.setTrackingValue(value);
     },
     //-------------------------------------------------------------------------
     // Config Updaters
-    updateFamily: function(family) {
+    updateFamily: function (family) {
         this.element.setStyle('fontFamily', "'" + family + "'");
     },
-    updateGlyphs: function() {
+    updateGlyphs: function () {
         this.refreshGlyphs();
     },
-    updateLimit: function() {
+    updateLimit: function () {
         this.refreshGlyphs();
     },
-    updateScale: function(size) {
+    updateScale: function (size) {
         this.element.setStyle('fontSize', size);
     },
-    updateTooltip: function() {
+    updateTooltip: function () {
         this.refreshTooltip();
     },
-    updateTooltipText: function(text) {
+    updateTooltipText: function (text) {
         var innerEl = this.innerEl,
             QuickTips = Ext.tip && Ext.tip.QuickTipManager,
             tip = QuickTips && QuickTips.tip,
@@ -3112,17 +3112,17 @@ Ext.define('Ext.ux.rating.Picker', {
             }
         }
     },
-    updateTrackingValue: function(value) {
+    updateTrackingValue: function (value) {
         var me = this,
             trackerEl = me.trackerEl,
             newWidth = me.valueToPercent(value);
         trackerEl.setStyle('width', newWidth);
         me.refreshTooltip();
     },
-    updateTrackOver: function(trackOver) {
+    updateTrackOver: function (trackOver) {
         this.element[trackOver ? 'addCls' : 'removeCls'](this.trackOverCls);
     },
-    updateValue: function(value, oldValue) {
+    updateValue: function (value, oldValue) {
         var me = this,
             animate = me.getAnimate(),
             valueEl = me.valueEl,
@@ -3170,13 +3170,13 @@ Ext.define('Ext.ux.rating.Picker', {
     // To avoid multiple updates to the DOM (one for each config), we simply mark
     // the rendering as invalid and post-process these flags on the tail of any
     // bulk updates.
-    afterCachedConfig: function() {
+    afterCachedConfig: function () {
         // Now that we are done setting up the initial values we need to refresh the
         // DOM before we allow Ext.Widget's implementation to cloneNode on it.
         this.refresh();
         return this.callParent(arguments);
     },
-    initConfig: function(instanceConfig) {
+    initConfig: function (instanceConfig) {
         this.isConfiguring = true;
         this.callParent([
             instanceConfig
@@ -3186,7 +3186,7 @@ Ext.define('Ext.ux.rating.Picker', {
         // for one or more configs that affect the DOM (such as "glyphs" and "limit").
         this.refresh();
     },
-    setConfig: function() {
+    setConfig: function () {
         var me = this;
         // Since we could be updating multiple configs, save any updates that need
         // multiple values for afterwards.
@@ -3198,7 +3198,7 @@ Ext.define('Ext.ux.rating.Picker', {
         return me;
     },
     //-------------------------------------------------------------------------
-    destroy: function() {
+    destroy: function () {
         var me = this,
             tip = me.tip;
         if (tip) {
@@ -3213,7 +3213,7 @@ Ext.define('Ext.ux.rating.Picker', {
          * @return {HTMLTextNode} The text node.
          * @private
          */
-        getGlyphTextNode: function(dom) {
+        getGlyphTextNode: function (dom) {
             var node = dom.lastChild;
             // We want all our text nodes to be at the end of the child list, most
             // especially the text node on the innerEl. That text node affects the
@@ -3225,7 +3225,7 @@ Ext.define('Ext.ux.rating.Picker', {
             }
             return node;
         },
-        getTooltipData: function() {
+        getTooltipData: function () {
             var me = this;
             return {
                 component: me,
@@ -3238,7 +3238,7 @@ Ext.define('Ext.ux.rating.Picker', {
          * Forcibly refreshes both glyph and tooltip rendering.
          * @private
          */
-        refresh: function() {
+        refresh: function () {
             var me = this;
             if (me.invalidGlyphs) {
                 me.refreshGlyphs(true);
@@ -3253,7 +3253,7 @@ Ext.define('Ext.ux.rating.Picker', {
          * @param {Boolean} now Pass `true` to force the refresh to happen now.
          * @private
          */
-        refreshGlyphs: function(now) {
+        refreshGlyphs: function (now) {
             var me = this,
                 later = !now && (me.isConfiguring || me.isReconfiguring),
                 el, glyphs, limit, on, off, trackerEl, valueEl;
@@ -3263,7 +3263,7 @@ Ext.define('Ext.ux.rating.Picker', {
                 trackerEl = me.getGlyphTextNode(me.trackerEl.dom);
                 glyphs = me.getGlyphs();
                 limit = me.getLimit();
-                for (on = off = ''; limit--; ) {
+                for (on = off = ''; limit--;) {
                     off += glyphs[0];
                     on += glyphs[1];
                 }
@@ -3279,7 +3279,7 @@ Ext.define('Ext.ux.rating.Picker', {
          * @param {Boolean} now Pass `true` to force the refresh to happen now.
          * @private
          */
-        refreshTooltip: function(now) {
+        refreshTooltip: function (now) {
             var me = this,
                 later = !now && (me.isConfiguring || me.isReconfiguring),
                 tooltip = me.getTooltip(),
@@ -3300,7 +3300,7 @@ Ext.define('Ext.ux.rating.Picker', {
          * @return {Number} The rating based on the given event coordinates.
          * @private
          */
-        valueFromEvent: function(event) {
+        valueFromEvent: function (event) {
             var me = this,
                 el = me.innerEl,
                 ex = event.getX(),
@@ -3325,7 +3325,7 @@ Ext.define('Ext.ux.rating.Picker', {
          * @return {String} The width percentage to represent the given value.
          * @private
          */
-        valueToPercent: function(value) {
+        valueToPercent: function (value) {
             value = (value / this.getLimit()) * 100;
             return value + '%';
         }

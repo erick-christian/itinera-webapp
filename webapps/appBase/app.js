@@ -14,9 +14,7 @@
  */
 
 // @require @packageOverrides
-Ext.Loader.setConfig({
-
-});
+Ext.Loader.setConfig({});
 
 
 Ext.application({
@@ -25,9 +23,9 @@ Ext.application({
     ],
     name: 'appBase',
 
-    launch: function() {
+    launch: function () {
         Ext.create('appBase.view.MyForm', {renderTo: Ext.getBody()});
-                terian.carga();
+        terian.carga();
     }
 
 });

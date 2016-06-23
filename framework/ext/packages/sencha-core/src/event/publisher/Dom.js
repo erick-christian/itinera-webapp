@@ -96,7 +96,7 @@ Ext.define('Ext.event.publisher.Dom', {
         mouseleave: 1
     },
 
-    constructor: function() {
+    constructor: function () {
         var me = this;
 
         me.bubbleSubscribers = {};
@@ -116,7 +116,7 @@ Ext.define('Ext.event.publisher.Dom', {
         me.callParent();
     },
 
-    registerEvents: function() {
+    registerEvents: function () {
         var me = this,
             publishersByEvent = Ext.event.publisher.Publisher.publishersByEvent,
             domEvents = me.handledDomEvents,
@@ -133,7 +133,7 @@ Ext.define('Ext.event.publisher.Dom', {
         this.callParent();
     },
 
-    onReady: function() {
+    onReady: function () {
         var me = this,
             domEvents = me.handledDomEvents,
             ln, i;
@@ -152,7 +152,7 @@ Ext.define('Ext.event.publisher.Dom', {
         Ext.getWin().on('unload', me.destroy, me);
     },
 
-    initHandlers: function() {
+    initHandlers: function () {
         var me = this;
 
         me.onDelegatedEvent = Ext.bind(me.onDelegatedEvent, me);
@@ -160,21 +160,21 @@ Ext.define('Ext.event.publisher.Dom', {
         me.onDirectCaptureEvent = Ext.bind(me.onDirectCaptureEvent, me);
     },
 
-    addDelegatedListener: function(eventName) {
+    addDelegatedListener: function (eventName) {
         this.delegatedListeners[eventName] = 1;
         this.target.addEventListener(
             eventName, this.onDelegatedEvent, !!this.captureEvents[eventName]
         );
     },
 
-    removeDelegatedListener: function(eventName) {
+    removeDelegatedListener: function (eventName) {
         delete this.delegatedListeners[eventName];
         this.target.removeEventListener(
             eventName, this.onDelegatedEvent, !!this.captureEvents[eventName]
         );
     },
 
-    addDirectListener: function(eventName, element, capture) {
+    addDirectListener: function (eventName, element, capture) {
         element.dom.addEventListener(
             eventName,
             capture ? this.onDirectCaptureEvent : this.onDirectEvent,
@@ -182,7 +182,7 @@ Ext.define('Ext.event.publisher.Dom', {
         );
     },
 
-    removeDirectListener: function(eventName, element, capture) {
+    removeDirectListener: function (eventName, element, capture) {
         element.dom.removeEventListener(
             eventName,
             capture ? this.onDirectCaptureEvent : this.onDirectEvent,
@@ -190,7 +190,7 @@ Ext.define('Ext.event.publisher.Dom', {
         );
     },
 
-    subscribe: function(element, eventName, delegated, capture) {
+    subscribe: function (element, eventName, delegated, capture) {
         var me = this,
             subscribers, id;
 
@@ -226,7 +226,7 @@ Ext.define('Ext.event.publisher.Dom', {
         }
     },
 
-    unsubscribe: function(element, eventName, delegated, capture) {
+    unsubscribe: function (element, eventName, delegated, capture) {
         var me = this,
             captureSubscribers, bubbleSubscribers, subscribers, id;
 
@@ -262,7 +262,7 @@ Ext.define('Ext.event.publisher.Dom', {
         }
     },
 
-    getPropagatingTargets: function(target) {
+    getPropagatingTargets: function (target) {
         var currentNode = target,
             targets = [],
             parentNode;
@@ -286,7 +286,7 @@ Ext.define('Ext.event.publisher.Dom', {
         return targets;
     },
 
-    publish: function(eventName, target, e) {
+    publish: function (eventName, target, e) {
         var me = this,
             targets, el, i, ln;
 
@@ -338,7 +338,7 @@ Ext.define('Ext.event.publisher.Dom', {
         }
     },
 
-    fire: function(element, eventName, e, direct, capture) {
+    fire: function (element, eventName, e, direct, capture) {
         var event;
 
         if (element.hasListeners[eventName]) {
@@ -363,7 +363,7 @@ Ext.define('Ext.event.publisher.Dom', {
         }
     },
 
-    onDelegatedEvent: function(e) {
+    onDelegatedEvent: function (e) {
         if (Ext.elevateFunction) {
             // using [e] is faster than using arguments in most browsers
             // http://jsperf.com/passing-arguments
@@ -373,7 +373,7 @@ Ext.define('Ext.event.publisher.Dom', {
         }
     },
 
-    doDelegatedEvent: function(e, invokeAfter) {
+    doDelegatedEvent: function (e, invokeAfter) {
         var me = this,
             timeStamp = e.timeStamp;
 
@@ -403,7 +403,7 @@ Ext.define('Ext.event.publisher.Dom', {
      * @param {Event} e
      * @private
      */
-    onDirectEvent: function(e) {
+    onDirectEvent: function (e) {
         if (Ext.elevateFunction) {
             // using [e] is faster than using arguments in most browsers
             // http://jsperf.com/passing-arguments
@@ -415,7 +415,7 @@ Ext.define('Ext.event.publisher.Dom', {
 
     // When eventPhase is AT_TARGET there's no way to know if we are handling a capture
     // or bubble listener, hence the need for this separate handler fn
-    onDirectCaptureEvent: function(e) {
+    onDirectCaptureEvent: function (e) {
         if (Ext.elevateFunction) {
             // using [e] is faster than using arguments in most browsers
             // http://jsperf.com/passing-arguments
@@ -425,7 +425,7 @@ Ext.define('Ext.event.publisher.Dom', {
         }
     },
 
-    doDirectEvent: function(e, capture) {
+    doDirectEvent: function (e, capture) {
         var me = this,
             currentTarget = e.currentTarget,
             timeStamp = e.timeStamp;
@@ -449,10 +449,10 @@ Ext.define('Ext.event.publisher.Dom', {
         me.afterEvent(e);
     },
 
-    beforeEvent: function(e) {
+    beforeEvent: function (e) {
         var browserEvent = e.browserEvent,
-            // use full class name, not me.self, so that Dom and Gesture publishers will
-            // both place flags on the same object.
+        // use full class name, not me.self, so that Dom and Gesture publishers will
+        // both place flags on the same object.
             self = Ext.event.publisher.Dom,
             touches, touch;
 
@@ -469,11 +469,11 @@ Ext.define('Ext.event.publisher.Dom', {
         }
     },
 
-    afterEvent: function(e) {
+    afterEvent: function (e) {
         var browserEvent = e.browserEvent,
             type = browserEvent.type,
-            // use full class name, not me.self, so that Dom and Gesture publishers will
-            // both place flags on the same object.
+        // use full class name, not me.self, so that Dom and Gesture publishers will
+        // both place flags on the same object.
             self = Ext.event.publisher.Dom,
             GlobalEvents = Ext.GlobalEvents;
 
@@ -512,11 +512,11 @@ Ext.define('Ext.event.publisher.Dom', {
      * @return {Boolean}
      * @private
      */
-    isEventBlocked: function(e) {
+    isEventBlocked: function (e) {
         var me = this,
             type = e.type,
-            // use full class name, not me.self, so that Dom and Gesture publishers will
-            // both look for flags on the same object.
+        // use full class name, not me.self, so that Dom and Gesture publishers will
+        // both look for flags on the same object.
             self = Ext.event.publisher.Dom,
             now = Ext.now();
 
@@ -529,7 +529,7 @@ Ext.define('Ext.event.publisher.Dom', {
             // events are received varies depending on the browser, device, and application
             // so we use 1 second to be safe
             (me.blockedCompatibilityMouseEvents[type] &&
-                (now - self.lastScreenPointerEventTime < 1000)) ||
+            (now - self.lastScreenPointerEventTime < 1000)) ||
 
             (Ext.supports.TouchEvents && e.self.mouseEvents[e.type] &&
             // some browsers (e.g. webkit on Windows 8 with touch screen) emulate mouse
@@ -566,7 +566,7 @@ Ext.define('Ext.event.publisher.Dom', {
             (Ext.now() - self.lastTouchEndTime) < 1000);
     },
 
-    destroy: function() {
+    destroy: function () {
         var eventName;
 
         for (eventName in this.delegatedListeners) {
@@ -583,7 +583,7 @@ Ext.define('Ext.event.publisher.Dom', {
      * Applications will not typically need to use this method, but it is useful for
      * Unit-testing situations where a clean slate is required for each test.
      */
-    reset: function() {
+    reset: function () {
         // use full class name, not me.self, so that Dom and Gesture publishers will
         // both reset flags on the same object.
         var self = Ext.event.publisher.Dom;
@@ -594,13 +594,12 @@ Ext.define('Ext.event.publisher.Dom', {
         self.lastScreenPointerEventTime = self.lastTouchEndTime = self.lastTouchStartX =
             self.lastTouchStartY = undefined;
     }
-}, function(Dom) {
+}, function (Dom) {
     var doc = document,
         defaultView = doc.defaultView,
         prototype = Dom.prototype;
 
-    if ((Ext.os.is.iOS && Ext.os.version.getMajor() < 5) || Ext.browser.is.AndroidStock ||
-        !(defaultView && defaultView.addEventListener)) {
+    if ((Ext.os.is.iOS && Ext.os.version.getMajor() < 5) || Ext.browser.is.AndroidStock || !(defaultView && defaultView.addEventListener)) {
         // Delegated listeners will get attached to the document object because
         // attaching to the window object will not work.  In IE8 this is needed because
         // events do not bubble up to the window - bubbling stops at the document

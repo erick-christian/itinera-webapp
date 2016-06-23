@@ -214,7 +214,7 @@ Ext.define('Ext.draw.engine.Vml', {
         };
 
         this.applyAttrs(sprite);
-        this.applyTransformations(sprite);        
+        this.applyTransformations(sprite);
         sprite.fireEvent("render", sprite);
         return sprite.el;
     },
@@ -639,7 +639,7 @@ Ext.define('Ext.draw.engine.Vml', {
             items,
             iLen,
             i;
-        
+
         me.callParent();
 
         if (viewBox && (width || height)) {
@@ -819,15 +819,15 @@ Ext.define('Ext.draw.engine.Vml', {
         else {
             domStyle.filter = matrix.toFilter();
             domStyle.left = Math.min(
-                matrix.x(bbox.x, bbox.y),
-                matrix.x(bbox.x + bbox.width, bbox.y),
-                matrix.x(bbox.x, bbox.y + bbox.height),
-                matrix.x(bbox.x + bbox.width, bbox.y + bbox.height)) + 'px';
+                    matrix.x(bbox.x, bbox.y),
+                    matrix.x(bbox.x + bbox.width, bbox.y),
+                    matrix.x(bbox.x, bbox.y + bbox.height),
+                    matrix.x(bbox.x + bbox.width, bbox.y + bbox.height)) + 'px';
             domStyle.top = Math.min(
-                matrix.y(bbox.x, bbox.y),
-                matrix.y(bbox.x + bbox.width, bbox.y),
-                matrix.y(bbox.x, bbox.y + bbox.height),
-                matrix.y(bbox.x + bbox.width, bbox.y + bbox.height)) + 'px';
+                    matrix.y(bbox.x, bbox.y),
+                    matrix.y(bbox.x + bbox.width, bbox.y),
+                    matrix.y(bbox.x, bbox.y + bbox.height),
+                    matrix.y(bbox.x + bbox.width, bbox.y + bbox.height)) + 'px';
         }
     },
 

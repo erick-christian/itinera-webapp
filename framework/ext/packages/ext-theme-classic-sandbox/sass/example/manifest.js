@@ -64,12 +64,13 @@ $Manifest = {
             config: {
                 width: 100,
                 height: 40,
-                setup: function(component, ct) {
+                setup: function (component, ct) {
                     component.render(ct);
                     component.showBy(ct);
                     ct.setHeight(component.height);
                 },
-                hide: function(){}
+                hide: function () {
+                }
             }
         },
         {
@@ -80,12 +81,13 @@ $Manifest = {
                 baseCls: Ext.baseCSSPrefix + 'form-invalid-tip',
                 width: 100,
                 height: 40,
-                setup: function(component, ct) {
+                setup: function (component, ct) {
                     component.render(ct);
                     component.showBy(ct);
                     ct.setHeight(component.height);
                 },
-                hide: function(){}
+                hide: function () {
+                }
             }
         },
 
@@ -99,14 +101,14 @@ $Manifest = {
             config: {
                 text: 'test',
                 //hack for 4.0.5
-                up: function(which) {
+                up: function (which) {
                     if (which == "tablepanel") {
                         return {
                             sortableColumns: true
                         };
                     }
                 },
-                afterRender: function() {
+                afterRender: function () {
                     var me = this,
                         el = me.el;
 
@@ -125,14 +127,14 @@ $Manifest = {
             config: {
                 text: 'test',
                 //hack for 4.0.5
-                up: function(which) {
+                up: function (which) {
                     if (which == "tablepanel") {
                         return {
                             sortableColumns: true
                         };
                     }
                 },
-                afterRender: function() {
+                afterRender: function () {
                     var me = this,
                         el = me.el;
 

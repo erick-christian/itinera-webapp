@@ -54,7 +54,7 @@ Ext.define('Ext.form.RadioGroup', {
     requires: [
         'Ext.form.field.Radio'
     ],
-    
+
     mixins: [
         'Ext.util.FocusableContainer'
     ],
@@ -69,37 +69,37 @@ Ext.define('Ext.form.RadioGroup', {
      * If allowBlank = false and no items are selected at validation time, {@link #blankText} will
      * be used as the error text.
      */
-    allowBlank : true,
+    allowBlank: true,
     //<locale>
     /**
      * @cfg {String} blankText
      * Error text to display if the {@link #allowBlank} validation fails
      */
-    blankText : 'You must select one item in this group',
+    blankText: 'You must select one item in this group',
     //</locale>
 
     // private
-    defaultType : 'radiofield',
+    defaultType: 'radiofield',
 
     // private
-    groupCls : Ext.baseCSSPrefix + 'form-radio-group',
-    
+    groupCls: Ext.baseCSSPrefix + 'form-radio-group',
+
     ariaRole: 'radiogroup',
-    
-    getBoxes: function(query, root) {
-        return (root || this).query('[isRadio]' + (query||''));
+
+    getBoxes: function (query, root) {
+        return (root || this).query('[isRadio]' + (query || ''));
     },
-    
-    checkChange: function() {
+
+    checkChange: function () {
         var value = this.getValue(),
             key = Ext.Object.getKeys(value)[0];
-            
+
         // If the value is an array we skip out here because it's during a change
         // between multiple items, so we never want to fire a change
         if (Ext.isArray(value[key])) {
             return;
         }
-        this.callParent(arguments);    
+        this.callParent(arguments);
     },
 
     /**
@@ -137,7 +137,7 @@ Ext.define('Ext.form.RadioGroup', {
      * @param {Object} value The map from names to values to be set.
      * @return {Ext.form.RadioGroup} this
      */
-    setValue: function(value) {
+    setValue: function (value) {
         var cbValue, first, formId, radios,
             i, len, name;
 
@@ -159,25 +159,25 @@ Ext.define('Ext.form.RadioGroup', {
         }
         return this;
     },
-    
+
     privates: {
-        getFocusables: function() {
+        getFocusables: function () {
             return this.getBoxes();
         },
-        
-        initDefaultFocusable: function(beforeRender) {
+
+        initDefaultFocusable: function (beforeRender) {
             var me = this,
                 checked, item;
 
             checked = me.getChecked();
-        
+
             // In a Radio group, only one button is supposed to be checked
             //<debug>
             if (checked.length > 1) {
                 Ext.log.error("RadioGroup " + me.id + " has more than one checked button");
             }
             //</debug>
-        
+
             // If we have a checked button, it gets the initial childTabIndex,
             // otherwise the first button gets it
             if (checked.length) {
@@ -186,46 +186,46 @@ Ext.define('Ext.form.RadioGroup', {
             else {
                 item = me.findNextFocusableChild(null, true, null, beforeRender);
             }
-            
+
             if (item) {
                 me.activateFocusable(item);
             }
-            
+
             return item;
         },
-        
-        onFocusableContainerFocusLeave: function() {
+
+        onFocusableContainerFocusLeave: function () {
             this.clearFocusables();
             this.initDefaultFocusable();
         },
-        
-        doFocusableChildAdd: function(child) {
+
+        doFocusableChildAdd: function (child) {
             var me = this,
                 mixin = me.mixins.focusablecontainer,
                 boxes, i, len;
-            
+
             boxes = child.isContainer ? me.getBoxes('', child) : [child];
-            
+
             for (i = 0, len = boxes.length; i < len; i++) {
                 mixin.doFocusableChildAdd.call(me, boxes[i]);
             }
         },
-        
-        doFocusableChildRemove: function(child) {
+
+        doFocusableChildRemove: function (child) {
             var me = this,
                 mixin = me.mixins.focusablecontainer,
                 boxes, i, len;
-            
+
             boxes = child.isContainer ? me.getBoxes('', child) : [child];
-            
+
             for (i = 0, len = boxes.length; i < len; i++) {
                 mixin.doFocusableChildRemove.call(me, boxes[i]);
             }
         },
-    
-        focusChild: function(radio, forward, e) {
+
+        focusChild: function (radio, forward, e) {
             var nextRadio = this.mixins.focusablecontainer.focusChild.apply(this, arguments);
-        
+
             // Ctrl-arrow does not select the radio that is going to be focused
             if (!e.ctrlKey) {
                 nextRadio.setValue(true);

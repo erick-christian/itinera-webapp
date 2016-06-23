@@ -3,14 +3,14 @@
  */
 Ext.define('Ext.chart.MaskLayer', {
     extend: 'Ext.Component',
-    
-    constructor: function(config) {
+
+    constructor: function (config) {
         config = Ext.apply(config || {}, {
             style: 'position:absolute;background-color:#ff9;cursor:crosshair;opacity:0.5;border:1px solid #00f;'
         });
-        this.callParent([config]);    
+        this.callParent([config]);
     },
-    
+
     //'mousedown',
     //'mouseup',
     //'mousemove',
@@ -18,7 +18,7 @@ Ext.define('Ext.chart.MaskLayer', {
     //'mouseleave'
 
     privates: {
-        initDraggable: function() {
+        initDraggable: function () {
             this.callParent(arguments);
             this.dd.onStart = function (e) {
                 var me = this,

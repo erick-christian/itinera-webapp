@@ -497,11 +497,11 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "dataIndex": "car_id",
-                        "id": "car_id",
-                        "itemId": "car_id",
+                        "dataIndex": "car_code",
+                        "id": "car_code",
+                        "itemId": "car_code",
                         "minWidth": null,
-                        "text": "Car ID"
+                        "text": "Car Code"
                     },
                     "name": "MyColumn",
                     "designerId": "0885592b-b7fa-449a-93a8-04a2ad80f4f7"
@@ -531,9 +531,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "dataIndex": "maker",
-                        "id": "maker",
-                        "itemId": "maker",
+                        "dataIndex": "carmaker_code",
+                        "id": "carmaker",
+                        "itemId": "carmaker",
                         "maxWidth": 200,
                         "minWidth": null,
                         "text": "Maker",
@@ -864,7 +864,136 @@
                         "width": 260
                     },
                     "name": "MyPagingToolbar",
-                    "designerId": "f8ad3edb-a023-4171-b676-66533467f616"
+                    "designerId": "f8ad3edb-a023-4171-b676-66533467f616",
+                    "cn": [
+                        {
+                            "type": "Ext.toolbar.Separator",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": null,
+                                "width": 50
+                            },
+                            "name": "MySeparator2",
+                            "designerId": "341bb016-b09d-4936-8b78-ad4d736c0a13"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "designer|displayName": "btnCreateUserCar",
+                                "iconCls": "ion-ios-compose icon16",
+                                "id": "btnCreateUserCar",
+                                "itemId": "btnCreateUserCar",
+                                "layout|flex": null,
+                                "text": null,
+                                "width": 40
+                            },
+                            "name": "MyButton2",
+                            "designerId": "3ff74fd0-a79f-46fe-b842-ca964034b1ab",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "    var winUserCar = Ext.getCmp('winUserCar');",
+                                            "",
+                                            "    if(!winUserCar){",
+                                            "        winUserCar = Ext.create('widget.winUserCar');",
+                                            "        winUserCar.show();",
+                                            "        trex.hideScrollBars();",
+                                            "    }"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "2adb8c10-23af-4e08-8548-6f3c64c60c95"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "iconCls": "ion-edit icon16",
+                                "layout|flex": null,
+                                "text": null,
+                                "tooltip": [
+                                    "'create'"
+                                ],
+                                "width": 40
+                            },
+                            "name": "MyButton10",
+                            "designerId": "1e00f46a-eb39-48f0-bdb6-665d5fd50ea5",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "    var winUserCar = Ext.getCmp('winUserCar');",
+                                            "",
+                                            "    if(!winUserCar){",
+                                            "        winUserCar = Ext.create('widget.winUserCar');",
+                                            "        winUserCar.show();",
+                                            "        trex.hideScrollBars();",
+                                            "    }"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "dd240122-7980-4725-be62-6e2646f461f8"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "iconCls": "ion-android-delete icon16",
+                                "layout|flex": null,
+                                "text": null,
+                                "tooltip": [
+                                    "'create'"
+                                ],
+                                "width": 40
+                            },
+                            "name": "MyButton11",
+                            "designerId": "704445c3-16aa-4852-8b5f-cdbad5c66365"
+                        }
+                    ]
                 },
                 {
                     "type": "basiceventbinding",
@@ -1061,10 +1190,130 @@
                         "id": "pagingToolbar3",
                         "itemId": "pagingToolbar2",
                         "store": "storeEventCar",
-                        "width": 260
+                        "width": 30
                     },
                     "name": "MyPagingToolbar",
-                    "designerId": "ec8e2090-e2d7-43b1-8c1e-0bc8c11db565"
+                    "designerId": "ec8e2090-e2d7-43b1-8c1e-0bc8c11db565",
+                    "cn": [
+                        {
+                            "type": "Ext.toolbar.Separator",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": null,
+                                "width": 50
+                            },
+                            "name": "MySeparator3",
+                            "designerId": "fd5d2c45-8852-4be8-94f1-22ce8e484a95"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "iconCls": "ion-ios-compose icon16",
+                                "layout|flex": null,
+                                "text": null,
+                                "width": 40
+                            },
+                            "name": "MyButton12",
+                            "designerId": "99ab9b45-4eca-4825-b44a-dbf47f7ebc0e",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "    var winEventCar = Ext.getCmp('winEventCar');",
+                                            "",
+                                            "    if(!winEventCar){",
+                                            "        winEventCar = Ext.create('widget.winEventCar');",
+                                            "        winEventCar.show();",
+                                            "        trex.hideScrollBars();",
+                                            "    }"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "1bb6978a-e8a1-41b3-8e87-46cdfd27b716"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "iconCls": "ion-edit icon16",
+                                "layout|flex": null,
+                                "text": null,
+                                "width": 40
+                            },
+                            "name": "MyButton13",
+                            "designerId": "cb1a51bd-3888-4a7a-ac3e-8be6fd422250",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "    var winEventCar = Ext.getCmp('winEventCar');",
+                                            "",
+                                            "    if(!winEventCar){",
+                                            "        winEventCar = Ext.create('widget.winEventCar');",
+                                            "        winEventCar.show();",
+                                            "        trex.hideScrollBars();",
+                                            "    }"
+                                        ]
+                                    },
+                                    "name": "handler",
+                                    "designerId": "bac23ca9-9f9f-474f-b3e2-2563813f31d1"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "iconCls": "ion-android-delete icon16",
+                                "layout|flex": null,
+                                "text": null,
+                                "width": 40
+                            },
+                            "name": "MyButton14",
+                            "designerId": "95320816-81b9-4250-b4bc-ede613abd539"
+                        }
+                    ]
                 },
                 {
                     "type": "basiceventbinding",

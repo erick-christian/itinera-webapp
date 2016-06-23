@@ -10,7 +10,7 @@ Ext.define('Ext.chart.Tip', {
 
     /* End Definitions */
 
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this,
             surface,
             sprites,
@@ -25,7 +25,7 @@ Ext.define('Ext.chart.Tip', {
             });
             me.tooltip = new Ext.tip.ToolTip(me.tipConfig);
             me.chart.surface.on('mousemove', me.tooltip.onMouseMove, me.tooltip);
-            me.chart.surface.on('mouseleave', function() {
+            me.chart.surface.on('mouseleave', function () {
                 me.hideTip();
             });
             if (me.tipConfig.surface) {
@@ -45,7 +45,7 @@ Ext.define('Ext.chart.Tip', {
         }
     },
 
-    showTip: function(item) {
+    showTip: function (item) {
         var me = this,
             tooltip,
             spriteTip,
@@ -86,13 +86,13 @@ Ext.define('Ext.chart.Tip', {
         tooltip.trackMouse = trackMouse;
     },
 
-    hideTip: function(item) {
+    hideTip: function (item) {
         var tooltip = this.tooltip;
         if (!tooltip) {
             return;
         }
         clearTimeout(this.tipTimeout);
-        this.tipTimeout = Ext.defer(function() {
+        this.tipTimeout = Ext.defer(function () {
             tooltip.delayHide();
         }, 1);
     }

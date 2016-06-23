@@ -95,7 +95,7 @@ Ext.define('Ext.chart.Legend', {
      * Whether or not the legend should be displayed.
      */
     visible: true,
-    
+
     /**
      * @cfg {Boolean} update
      * If set to true the legend will be refreshed when the chart is.
@@ -183,7 +183,7 @@ Ext.define('Ext.chart.Legend', {
      * Creates new Legend.
      * @param {Object} config  (optional) Config object.
      */
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this;
         if (config) {
             Ext.apply(me, config);
@@ -203,17 +203,17 @@ Ext.define('Ext.chart.Legend', {
     /**
      * @private Create all the sprites for the legend
      */
-    create: function() {
+    create: function () {
         var me = this,
             seriesItems = me.chart.series.items,
             i, ln, series;
 
         me.createBox();
-        
+
         if (me.rebuild !== false) {
             me.createItems();
         }
-        
+
         if (!me.created && me.isDisplayed()) {
             me.created = true;
 
@@ -224,15 +224,15 @@ Ext.define('Ext.chart.Legend', {
             }
         }
     },
-    
+
     init: Ext.emptyFn,
 
     /**
      * @private Redraws the Legend
      */
-    redraw: function() {
+    redraw: function () {
         var me = this;
-        
+
         me.create();
         me.updatePosition();
     },
@@ -241,14 +241,14 @@ Ext.define('Ext.chart.Legend', {
      * @private Determine whether the legend should be displayed. Looks at the legend's 'visible' config,
      * and also the 'showInLegend' config for each of the series.
      */
-    isDisplayed: function() {
+    isDisplayed: function () {
         return this.visible && this.chart.series.findIndex('showInLegend', true) !== -1;
     },
 
     /**
      * @private Create the series markers and labels
      */
-    createItems: function() {
+    createItems: function () {
         var me = this,
             seriesItems = me.chart.series.items,
             items = me.items,
@@ -256,28 +256,28 @@ Ext.define('Ext.chart.Legend', {
 
         //remove all legend items
         me.removeItems();
-        
+
         // Create all the item labels
         for (i = 0, li = seriesItems.length; i < li; i++) {
             series = seriesItems[i];
-            
+
             if (series.showInLegend) {
                 fields = [].concat(series.yField);
-                
+
                 for (j = 0, lj = fields.length; j < lj; j++) {
                     item = me.createLegendItem(series, j);
                     items.push(item);
                 }
             }
         }
-        
+
         me.alignItems();
     },
-    
+
     /**
      * @private Removes all legend items.
      */
-    removeItems: function() {
+    removeItems: function () {
         var me = this,
             items = me.items,
             len = items ? items.length : 0,
@@ -288,27 +288,27 @@ Ext.define('Ext.chart.Legend', {
                 items[i].destroy();
             }
         }
-        
+
         //empty array
         items.length = [];
     },
-    
+
     /**
      * @private
      * Positions all items within Legend box.
      */
-    alignItems: function() {
+    alignItems: function () {
         var me = this,
             padding = me.padding,
             vertical = me.isVertical,
             mfloor = Math.floor,
             dim, maxWidth, maxHeight, totalWidth, totalHeight;
-        
+
         dim = me.updateItemDimensions();
 
-        maxWidth    = dim.maxWidth;
-        maxHeight   = dim.maxHeight;
-        totalWidth  = dim.totalWidth;
+        maxWidth = dim.maxWidth;
+        maxHeight = dim.maxHeight;
+        totalWidth = dim.totalWidth;
         totalHeight = dim.totalHeight;
 
         // Store the collected dimensions for later
@@ -316,8 +316,8 @@ Ext.define('Ext.chart.Legend', {
         me.width = mfloor((vertical ? maxWidth : totalWidth) + padding * 2) + 10
         me.height = mfloor((vertical ? totalHeight : maxHeight) + padding * 2);
     },
-    
-    updateItemDimensions: function() {
+
+    updateItemDimensions: function () {
         var me = this,
             items = me.items,
             padding = me.padding,
@@ -336,40 +336,40 @@ Ext.define('Ext.chart.Legend', {
         // properly in relation to the previous item
         for (i = 0, l = items.length; i < l; i++) {
             item = items[i];
-                
+
             bbox = item.getBBox();
 
             //always measure from x=0, since not all markers go all the way to the left
-            width  = bbox.width;
+            width = bbox.width;
             height = bbox.height;
 
             spacing = (i === 0 ? 0 : itemSpacing);
-            
+
             // Set the item's position relative to the legend box
             item.x = padding + mfloor(vertical ? 0 : totalWidth + spacing);
             item.y = padding + mfloor(vertical ? totalHeight + spacing : 0) + height / 2;
 
             // Collect cumulative dimensions
-            totalWidth  += spacing + width;
+            totalWidth += spacing + width;
             totalHeight += spacing + height;
-            maxWidth     = mmax(maxWidth, width);
-            maxHeight    = mmax(maxHeight, height);
+            maxWidth = mmax(maxWidth, width);
+            maxHeight = mmax(maxHeight, height);
         }
 
         return {
-            totalWidth:  totalWidth,
+            totalWidth: totalWidth,
             totalHeight: totalHeight,
-            maxWidth:    maxWidth,
-            maxHeight:   maxHeight
+            maxWidth: maxWidth,
+            maxHeight: maxHeight
         };
     },
-    
+
     /**
      * @private Creates single Legend Item
      */
-    createLegendItem: function(series, yFieldIndex) {
+    createLegendItem: function (series, yFieldIndex) {
         var me = this;
-        
+
         return new Ext.chart.LegendItem({
             legend: me,
             series: series,
@@ -377,11 +377,11 @@ Ext.define('Ext.chart.Legend', {
             yFieldIndex: yFieldIndex
         });
     },
-    
+
     /**
      * @private Get the bounds for the legend's outer box
      */
-    getBBox: function() {
+    getBBox: function () {
         var me = this;
         return {
             x: Math.round(me.x) - me.boxStrokeWidth / 2,
@@ -394,7 +394,7 @@ Ext.define('Ext.chart.Legend', {
     /**
      * @private Create the box around the legend items
      */
-    createBox: function() {
+    createBox: function () {
         var me = this,
             box, bbox;
 
@@ -412,7 +412,7 @@ Ext.define('Ext.chart.Legend', {
             me.boxSprite = false;
             return;
         }
-        
+
         box = me.boxSprite = me.chart.surface.add(Ext.apply({
             type: 'rect',
             stroke: me.boxStroke,
@@ -427,7 +427,7 @@ Ext.define('Ext.chart.Legend', {
     /**
      * @private Calculates Legend position with respect to other Chart elements.
      */
-    calcPosition: function() {
+    calcPosition: function () {
         var me = this,
             x, y,
             legendWidth = me.width,
@@ -443,7 +443,7 @@ Ext.define('Ext.chart.Legend', {
             mfloor = Math.floor;
 
         // Find the position based on the dimensions
-        switch(me.position) {
+        switch (me.position) {
             case "left":
                 x = insets;
                 y = mfloor(chartY + chartHeight / 2 - legendHeight / 2);
@@ -464,14 +464,14 @@ Ext.define('Ext.chart.Legend', {
                 x = mfloor(me.origX) + insets;
                 y = mfloor(me.origY) + insets;
         }
-        
-        return { x: x, y: y };
+
+        return {x: x, y: y};
     },
-    
+
     /**
      * @private Update the position of all the legend's sprites to match its current x/y values
      */
-    updatePosition: function() {
+    updatePosition: function () {
         var me = this,
             items = me.items,
             pos, i, l, bbox;
@@ -479,7 +479,7 @@ Ext.define('Ext.chart.Legend', {
         if (me.isDisplayed()) {
             // Find the position based on the dimensions
             pos = me.calcPosition();
-            
+
             me.x = pos.x;
             me.y = pos.y;
 
@@ -504,40 +504,40 @@ Ext.define('Ext.chart.Legend', {
                 if (!me.boxSprite) {
                     me.createBox();
                 }
-                
+
                 // Update the position of the outer box
                 me.boxSprite.setAttributes(bbox, true);
                 me.boxSprite.show(true);
             }
         }
     },
-    
+
     /** toggle
      * @param {Boolean} show Whether to show or hide the legend.
      *
      */
-    toggle: function(show) {
-      var me = this,
-          i = 0,
-          items = me.items,
-          len = items.length;
+    toggle: function (show) {
+        var me = this,
+            i = 0,
+            items = me.items,
+            len = items.length;
 
-      if (me.boxSprite) {
-          if (show) {
-              me.boxSprite.show(true);
-          } else {
-              me.boxSprite.hide(true);
-          }
-      }
+        if (me.boxSprite) {
+            if (show) {
+                me.boxSprite.show(true);
+            } else {
+                me.boxSprite.hide(true);
+            }
+        }
 
-      for (; i < len; ++i) {
-          if (show) {
-            items[i].show(true);
-          } else {
-              items[i].hide(true);
-          }
-      }
+        for (; i < len; ++i) {
+            if (show) {
+                items[i].show(true);
+            } else {
+                items[i].hide(true);
+            }
+        }
 
-      me.visible = show;
+        me.visible = show;
     }
 });

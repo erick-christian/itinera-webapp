@@ -28,15 +28,15 @@
         "installStatus": "Not Installed"
     },
     "xdsVersion": "3.5.0",
-    "xdsBuild": 203,
+    "xdsBuild": 268,
     "schemaVersion": 1,
     "upgradeVersion": 310000000001,
     "framework": "ext51",
     "viewOrderMap": {
         "view": [
-            "5c2bf61e-97f6-4bdc-afcc-2033f4af19e2",
-            "5e3f613a-6c44-4406-98ff-6605d659f309",
-            "90f529ec-cef6-4e5e-8ecd-90f2f2e6eb5b"
+            "b2211294-cf51-4972-b132-d451e20778fc",
+            "5ec3312b-0fc0-4c13-9660-aa4d8c3ccd86",
+            "9aa4ed4c-53e6-4312-83a1-20133c3d3917"
         ],
         "store": [],
         "controller": [],
@@ -48,6 +48,7 @@
             "25627977-1df1-46a1-8400-f04a79f26d12",
             "5295f65f-fee1-4146-b45b-727bb714b7ba",
             "1e6c4aa5-39a0-459d-a40d-2867d64926be",
+            "bf7c6e8e-234f-4662-9a08-e43f30bef3c3",
             "5645def3-1f97-4c7c-9b89-f8b2b2aedbad",
             "f7997127-84a8-4002-b3aa-9f049b3c3688"
         ],

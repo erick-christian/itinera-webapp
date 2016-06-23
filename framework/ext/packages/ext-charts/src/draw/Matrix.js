@@ -9,7 +9,7 @@ Ext.define('Ext.draw.Matrix', {
 
     /* End Definitions */
 
-    constructor: function(a, b, c, d, e, f) {
+    constructor: function (a, b, c, d, e, f) {
         if (a != null) {
             this.matrix = [[a, c, e], [b, d, f], [0, 0, 1]];
         }
@@ -18,7 +18,7 @@ Ext.define('Ext.draw.Matrix', {
         }
     },
 
-    add: function(a, b, c, d, e, f) {
+    add: function (a, b, c, d, e, f) {
         var me = this,
             out = [[], [], []],
             matrix = [[a, c, e], [b, d, f], [0, 0, 1]],
@@ -39,7 +39,7 @@ Ext.define('Ext.draw.Matrix', {
         me.matrix = out;
     },
 
-    prepend: function(a, b, c, d, e, f) {
+    prepend: function (a, b, c, d, e, f) {
         var me = this,
             out = [[], [], []],
             matrix = [[a, c, e], [b, d, f], [0, 0, 1]],
@@ -60,7 +60,7 @@ Ext.define('Ext.draw.Matrix', {
         me.matrix = out;
     },
 
-    invert: function() {
+    invert: function () {
         var matrix = this.matrix,
             a = matrix[0][0],
             b = matrix[1][0],
@@ -72,7 +72,7 @@ Ext.define('Ext.draw.Matrix', {
         return new Ext.draw.Matrix(d / x, -b / x, -c / x, a / x, (c * f - d * e) / x, (b * e - a * f) / x);
     },
 
-    clone: function() {
+    clone: function () {
         var matrix = this.matrix,
             a = matrix[0][0],
             b = matrix[1][0],
@@ -83,11 +83,11 @@ Ext.define('Ext.draw.Matrix', {
         return new Ext.draw.Matrix(a, b, c, d, e, f);
     },
 
-    translate: function(x, y) {
+    translate: function (x, y) {
         this.prepend(1, 0, 0, 1, x, y);
     },
 
-    scale: function(x, y, cx, cy) {
+    scale: function (x, y, cx, cy) {
         var me = this;
         if (y == null) {
             y = x;
@@ -95,7 +95,7 @@ Ext.define('Ext.draw.Matrix', {
         me.add(x, 0, 0, y, cx * (1 - x), cy * (1 - y));
     },
 
-    rotate: function(a, x, y) {
+    rotate: function (a, x, y) {
         a = Ext.draw.Draw.rad(a);
         var me = this,
             cos = +Math.cos(a).toFixed(9),
@@ -103,31 +103,31 @@ Ext.define('Ext.draw.Matrix', {
         me.add(cos, sin, -sin, cos, x - cos * x + sin * y, -(sin * x) + y - cos * y);
     },
 
-    x: function(x, y) {
+    x: function (x, y) {
         var matrix = this.matrix;
         return x * matrix[0][0] + y * matrix[0][1] + matrix[0][2];
     },
 
-    y: function(x, y) {
+    y: function (x, y) {
         var matrix = this.matrix;
         return x * matrix[1][0] + y * matrix[1][1] + matrix[1][2];
     },
 
-    get: function(i, j) {
-        return + this.matrix[i][j].toFixed(4);
+    get: function (i, j) {
+        return +this.matrix[i][j].toFixed(4);
     },
 
-    toString: function() {
+    toString: function () {
         var me = this;
         return [me.get(0, 0), me.get(0, 1), me.get(1, 0), me.get(1, 1), 0, 0].join();
     },
 
-    toSvg: function() {
+    toSvg: function () {
         var me = this;
         return "matrix(" + [me.get(0, 0), me.get(1, 0), me.get(0, 1), me.get(1, 1), me.get(0, 2), me.get(1, 2)].join() + ")";
     },
 
-    toFilter: function(dx, dy) {
+    toFilter: function (dx, dy) {
         var me = this;
         dx = dx || 0;
         dy = dy || 0;
@@ -136,7 +136,7 @@ Ext.define('Ext.draw.Matrix', {
             ", Dx=" + (me.get(0, 2) + dx) + ", Dy=" + (me.get(1, 2) + dy) + ")";
     },
 
-    offset: function() {
+    offset: function () {
         var matrix = this.matrix;
         return [(matrix[0][2] || 0).toFixed(4), (matrix[1][2] || 0).toFixed(4)];
     },
@@ -146,11 +146,13 @@ Ext.define('Ext.draw.Matrix', {
         function norm(a) {
             return a[0] * a[0] + a[1] * a[1];
         }
+
         function normalize(a) {
             var mag = Math.sqrt(norm(a));
             a[0] /= mag;
             a[1] /= mag;
         }
+
         var matrix = this.matrix,
             out = {
                 translateX: matrix[0][2],

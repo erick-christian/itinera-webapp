@@ -1,7 +1,7 @@
-describe("Ext.util.Base64", function() {
+describe("Ext.util.Base64", function () {
 
-    describe("encode", function() {
-        it("should encode string to base64 represenatation", function() {
+    describe("encode", function () {
+        it("should encode string to base64 represenatation", function () {
             expect(Ext.util.Base64.encode("abcdefghijklmnopqrstuvwxyz")).toBe("YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo=");
             expect(Ext.util.Base64.encode("ABCDEFGHIJKLMNOPQRSTUVWXYZ")).toBe("QUJDREVGR0hJSktMTU5PUFFSU1RVVldYWVo=");
             expect(Ext.util.Base64.encode("0123456789")).toBe("MDEyMzQ1Njc4OQ==");
@@ -11,8 +11,8 @@ describe("Ext.util.Base64", function() {
         });
     });
 
-    describe("decode", function() {
-        it("should decode base64 string", function() {
+    describe("decode", function () {
+        it("should decode base64 string", function () {
             expect(Ext.util.Base64.decode("YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo=")).toBe("abcdefghijklmnopqrstuvwxyz");
             expect(Ext.util.Base64.decode("QUJDREVGR0hJSktMTU5PUFFSU1RVVldYWVo=")).toBe("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
             expect(Ext.util.Base64.decode("MDEyMzQ1Njc4OQ==")).toBe("0123456789");

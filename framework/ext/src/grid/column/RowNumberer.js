@@ -83,7 +83,7 @@ Ext.define('Ext.grid.column.RowNumberer', {
     rowspan: undefined,
 
     // private
-    defaultRenderer: function(value, metaData, record, rowIdx, colIdx, dataSource, view) {
+    defaultRenderer: function (value, metaData, record, rowIdx, colIdx, dataSource, view) {
         var rowspan = this.rowspan,
             page = dataSource.currentPage,
             result = view.store.indexOf(record);
@@ -98,7 +98,7 @@ Ext.define('Ext.grid.column.RowNumberer', {
         return result + 1;
     },
 
-    updater: function(cell, value, record, view, dataSource) {
+    updater: function (cell, value, record, view, dataSource) {
         cell.firstChild.innerHTML = this.defaultRenderer(value, null, record, null, null, dataSource, view);
     }
 });

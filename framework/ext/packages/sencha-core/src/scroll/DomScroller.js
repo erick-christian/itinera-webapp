@@ -8,7 +8,7 @@ Ext.define('Ext.scroll.DomScroller', {
 
     isDomScroller: true,
 
-    getMaxPosition: function() {
+    getMaxPosition: function () {
         var element = this.getElement(),
             x = 0,
             y = 0,
@@ -26,7 +26,7 @@ Ext.define('Ext.scroll.DomScroller', {
         };
     },
 
-    getMaxUserPosition: function() {
+    getMaxUserPosition: function () {
         var me = this,
             element = me.getElement(),
             x = 0,
@@ -49,7 +49,7 @@ Ext.define('Ext.scroll.DomScroller', {
         };
     },
 
-    getPosition: function() {
+    getPosition: function () {
         var element = this.getElement(),
             x = 0,
             y = 0,
@@ -67,7 +67,7 @@ Ext.define('Ext.scroll.DomScroller', {
         };
     },
 
-    getSize: function() {
+    getSize: function () {
         var element = this.getElement(),
             size, dom;
 
@@ -89,22 +89,22 @@ Ext.define('Ext.scroll.DomScroller', {
 
     setSize: Ext.emptyFn,
 
-    updateElement: function(element, oldElement) {
+    updateElement: function (element, oldElement) {
         this.initXStyle();
         this.initYStyle();
         this.callParent([element, oldElement]);
     },
 
-    updateX: function(x) {
+    updateX: function (x) {
         this.initXStyle();
     },
 
-    updateY: function(y) {
+    updateY: function (y) {
         this.initYStyle();
     },
 
     privates: {
-        doScrollTo: function(x, y, animate) {
+        doScrollTo: function (x, y, animate) {
             var me = this,
                 element = me.getElement(),
                 maxPosition, dom, to, xInf, yInf;
@@ -156,11 +156,11 @@ Ext.define('Ext.scroll.DomScroller', {
         },
 
         // rtl hook
-        getElementScroll: function(element) {
+        getElementScroll: function (element) {
             return element.getScroll();
         },
 
-        stopAnimation: function() {
+        stopAnimation: function () {
             var anim = this.getElement().getActiveAnimation();
             if (anim) {
                 anim.end();

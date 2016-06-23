@@ -8,9 +8,103 @@
     "userConfig": {
         "name": "workplace",
         "views": [
-            "formWorkplace"
+            "winWorkplace"
         ]
     },
     "name": "Application",
-    "designerId": "application"
+    "designerId": "application",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "loadCompanyData",
+                "implHandler": [
+                    "var apiController  = 'apiCompany';",
+                    "var apiMethod      = 'showCompany';",
+                    "var objJsonData    = new Object();",
+                    "objJsonData.CompanyID = 1;",
+                    "",
+                    "var objJsonRequest = new Object();",
+                    "objJsonRequest.apiController = apiController;",
+                    "objJsonRequest.apiMethod     = apiMethod;",
+                    "objJsonRequest.apiData       = JSON.stringify(objJsonData);",
+                    "",
+                    "var functionSuccess = function(){",
+                    "    var jsonData = trex.getInfoDataBridge(apiController);",
+                    "",
+                    "    trex.writeElement('lblCompany'    ,trex.getSessionData('company_name'));",
+                    "    trex.writeElement('lblUserName'   ,trex.getSessionData('user_name'));",
+                    "    trex.writeElement('lblSystemName' ,trex.getSessionData('system_name'));",
+                    "    trex.writeElement('lblProfile'    ,trex.getSessionData('user_profile'));",
+                    "    trex.writeElement('lblVersion'    ,trex.getSessionData('system_version'));",
+                    "",
+                    "};",
+                    "",
+                    "var functionFailure = function(){",
+                    "    var jsonData = trex.getInfoDataBridge(apiController);",
+                    "};",
+                    "",
+                    "trex.doDataBridge(objJsonRequest,",
+                    "                  functionSuccess,",
+                    "                  null,",
+                    "                  functionFailure,",
+                    "                  null);"
+                ]
+            },
+            "name": "loadCompanyData",
+            "designerId": "f4e99112-8d5e-427e-af84-55b9730bc7ea"
+        },
+        {
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "launch",
+                "implHandler": [
+                    "var appIcon = '../../framework/terian/image/icono_itinera.ico';",
+                    "trex.changeAppIcon(appIcon);",
+                    "Ext.getDoc().dom.title = 'ItineraTMS - Workplace'; ",
+                    "appLocal = this.getApplication();",
+                    "appLocal.loadCompanyData();",
+                    "appLocal.renderInterface();"
+                ]
+            },
+            "name": "launch",
+            "designerId": "46b4fb32-4449-44f3-8338-f1a125dcfa8b"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "renderInterface",
+                "implHandler": [
+                    "Ext.getCmp('formWorkplace').doLayout();",
+                    "var heightWindow = Ext.getBody().getViewSize().height;",
+                    "var widthWindow  = Ext.getBody().getViewSize().width;",
+                    "console.log('Dimensiones: ');",
+                    "console.log(heightWindow);",
+                    "console.log(widthWindow);",
+                    "Ext.getCmp('formWorkplace').setHeight(heightWindow);",
+                    "",
+                    "",
+                    "",
+                    "//Ext.getCmp('gridPedidoVenta').setHeight(alturaGrid);"
+                ]
+            },
+            "name": "renderInterface",
+            "designerId": "54d37114-89da-4312-8680-b252392c54c5"
+        }
+    ]
 }

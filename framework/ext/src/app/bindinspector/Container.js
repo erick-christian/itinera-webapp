@@ -14,9 +14,9 @@ Ext.define('Ext.app.bindinspector.Container', {
 
     isBindInspector: true,
     referenceHolder: true,
-    
+
     layout: 'border',
-    
+
     cls: Ext.baseCSSPrefix + 'bindinspector-container',
     //pickerCls: Ext.baseCSSPrefix + 'bindinspector-target-menu',
     //pickerPreviewBindingsCls: Ext.baseCSSPrefix + 'bindinspector-preview-bind',
@@ -43,7 +43,7 @@ Ext.define('Ext.app.bindinspector.Container', {
         }]
     },
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this;
 
         Ext.data.schema.Schema.get('Ext_app_bindinspector').clear();
@@ -153,7 +153,7 @@ Ext.define('Ext.app.bindinspector.Container', {
         Ext.Array.forEach(consumerNodes.concat(sourceVMs), function (node) {
             query.push(node.getId());
         });
-        
+
         // filter to find the matching binding consumer components and source VMs
         componentList.expand();
         componentList.filterComponentTree(null, query);
@@ -191,13 +191,13 @@ Ext.define('Ext.app.bindinspector.Container', {
     },
 
     // on component dblclick (or clicking the 'open in own tab button') open the component's bindings view in its own tab
-    onComponentDblclick: function(tree, rec, node)  {
+    onComponentDblclick: function (tree, rec, node) {
         var id = rec.id,
             tabId = 'bindtab-' + id,
             tabs = this.lookupReference('tabs'),
             tab = tabs.items.get(tabId),
             component, reference;
-        
+
         if (!tab) {
             component = this.env.getCmp(id);
             reference = component.reference;
@@ -210,7 +210,7 @@ Ext.define('Ext.app.bindinspector.Container', {
                 component: component
             });
         }
-        
+
         tabs.setActiveTab(tab);
     },
 

@@ -21,15 +21,31 @@ Ext.Loader.setConfig({
 
 Ext.application({
     models: [
-        'modCustomer'
+        'modelCustomer',
+        'modelCustAddres',
+        'modelCountry',
+        'modelCity',
+        'modelState',
+        'modelBranchOfficeClient',
+        'modelRegion'
     ],
     stores: [
-        'storeCustomer'
+        'storeCustomer',
+        'storeCustAddress',
+        'storeCountry',
+        'storeCity',
+        'storeState',
+        'storeBranchOfficeClient',
+        'storeRegion'
     ],
     views: [
         'formMaintenance',
         'winCustomer',
-        'MyWindow'
+        'winCustAddress',
+        'winCountrySearch',
+        'winCitySearch',
+        'winStateSearch',
+        'winRegionSearch'
     ],
     name: 'catCustomer',
 
@@ -47,8 +63,8 @@ Ext.application({
     fixInterface: function(p_winWidth, p_winHeight) {
         Ext.getCmp('formMaintenance').doLayout();
 
-        var heightGrid = Ext.getBody().getViewSize().height - 60;
-        Ext.getCmp('gridCustomers').setHeight(heightGrid);
+        var heightGrid = Ext.getBody().getViewSize().height - 410;
+        Ext.getCmp('gridCustAddress').setHeight(heightGrid);
     }
 
 });

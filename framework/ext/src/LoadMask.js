@@ -41,7 +41,7 @@ Ext.define('Ext.LoadMask', {
     uses: ['Ext.data.StoreManager'],
 
     /* End Definitions */
-    
+
     /**
      * @property {Boolean} isLoadMask
      * `true` in this class to identify an object as an instantiated LoadMask, or subclass thereof.
@@ -92,11 +92,11 @@ Ext.define('Ext.LoadMask', {
     // @private
     cls: Ext.baseCSSPrefix + 'mask',
     componentCls: Ext.baseCSSPrefix + 'border-box',
-    
+
     ariaRole: 'status',
     focusable: true,
     tabIndex: 0,
-    
+
     autoEl: {
         tag: 'div',
         role: 'status'
@@ -110,12 +110,12 @@ Ext.define('Ext.LoadMask', {
 
     renderTpl: [
         '<div id="{id}-msgWrapEl" data-ref="msgWrapEl" class="{[values.$comp.msgWrapCls]}">',
-            '<div id="{id}-msgEl" data-ref="msgEl" class="{[values.$comp.msgCls]} ',
-                Ext.baseCSSPrefix, 'mask-msg-inner {childElCls}">',
-                '<div id="{id}-msgTextEl" data-ref="msgTextEl" class="',
-                    Ext.baseCSSPrefix, 'mask-msg-text',
-                    '{childElCls}">{msg}</div>',
-            '</div>',
+        '<div id="{id}-msgEl" data-ref="msgEl" class="{[values.$comp.msgCls]} ',
+        Ext.baseCSSPrefix, 'mask-msg-inner {childElCls}">',
+        '<div id="{id}-msgTextEl" data-ref="msgTextEl" class="',
+        Ext.baseCSSPrefix, 'mask-msg-text',
+        '{childElCls}">{msg}</div>',
+        '</div>',
         '</div>'
     ],
 
@@ -123,7 +123,7 @@ Ext.define('Ext.LoadMask', {
      * Creates new LoadMask.
      * @param {Object} [config] The config object.
      */
-    constructor : function(config) {
+    constructor: function (config) {
         var me = this,
             comp;
 
@@ -138,14 +138,14 @@ Ext.define('Ext.LoadMask', {
         } else {
             comp = config.target;
         }
-        
+
         //<debug>
         if (config.maskCls) {
             Ext.log.warn('Ext.LoadMask property maskCls is deprecated, use msgWrapCls instead');
             config.msgWrapCls = config.msgWrapCls || config.maskCls;
         }
         //</debug>
-        
+
         // Must apply configs early so that renderTo can be calculated correctly.
         me.callParent([config]);
 
@@ -178,22 +178,22 @@ Ext.define('Ext.LoadMask', {
         }
     },
 
-    initRenderData: function() {
+    initRenderData: function () {
         var result = this.callParent(arguments);
         result.msg = this.msg || '';
         return result;
     },
-    
-    onRender: function() {
+
+    onRender: function () {
         this.callParent(arguments);
-        
+
         // In versions prior to 5.1, maskEl was rendered outside of the
         // LoadMask's main el and had a reference to it; we keep this
         // reference for backwards compatibility.
         this.maskEl = this.el;
     },
 
-    bindComponent: function(comp) {
+    bindComponent: function (comp) {
         var me = this,
             listeners = {
                 scope: this,
@@ -212,7 +212,7 @@ Ext.define('Ext.LoadMask', {
         }
 
         me.mon(comp, listeners);
-        
+
         // Subscribe to the observer that manages the hierarchy
         // Only needed if we had to be rendered outside of the target
         if (me.external) {
@@ -226,7 +226,7 @@ Ext.define('Ext.LoadMask', {
         }
     },
 
-    onComponentAdded: function(owner) {
+    onComponentAdded: function (owner) {
         var me = this;
         delete me.activeOwner;
         me.floatParent = owner;
@@ -247,7 +247,7 @@ Ext.define('Ext.LoadMask', {
         }
     },
 
-    onComponentRemoved: function(owner) {
+    onComponentRemoved: function (owner) {
         var me = this,
             activeOwner = me.activeOwner,
             floatOwner = me.floatOwner;
@@ -263,11 +263,11 @@ Ext.define('Ext.LoadMask', {
         delete me.floatOwner;
     },
 
-    afterRender: function() {
+    afterRender: function () {
         var me = this;
-        
+
         me.callParent(arguments);
-        
+
         // In IE8-11, clicking on an inner msgEl will focus it, despite
         // it having no tabindex attribute and thus being canonically
         // non-focusable. Placing unselectable="on" attribute will make
@@ -282,23 +282,23 @@ Ext.define('Ext.LoadMask', {
         // Ensure the element does not get garbage collected from under us.
         this.el.skipGarbageCollection = true;
     },
-    
-    onMouseDown: function(e) {
+
+    onMouseDown: function (e) {
         var el = this.el;
-        
+
         if (e.within(el)) {
             e.preventDefault();
             el.focus();
         }
     },
 
-    onOwnerToFront: function(owner, zIndex) {
+    onOwnerToFront: function (owner, zIndex) {
         this.el.setStyle('zIndex', zIndex + 1);
     },
 
     // Only called if we are rendered external to the target.
     // Best we can do is show.
-    onContainerShow: function(container) {
+    onContainerShow: function (container) {
         if (!this.isHierarchicallyHidden()) {
             this.onComponentShow();
         }
@@ -306,7 +306,7 @@ Ext.define('Ext.LoadMask', {
 
     // Only called if we are rendered external to the target.
     // Best we can do is hide.
-    onContainerHide: function(container) {
+    onContainerHide: function (container) {
         if (this.isHierarchicallyHidden()) {
             this.onComponentHide();
         }
@@ -314,7 +314,7 @@ Ext.define('Ext.LoadMask', {
 
     // Only called if we are rendered external to the target.
     // Best we can do is show.
-    onContainerExpand: function(container) {
+    onContainerExpand: function (container) {
         if (!this.isHierarchicallyHidden()) {
             this.onComponentShow();
         }
@@ -322,13 +322,13 @@ Ext.define('Ext.LoadMask', {
 
     // Only called if we are rendered external to the target.
     // Best we can do is hide.
-    onContainerCollapse: function(container) {
+    onContainerCollapse: function (container) {
         if (this.isHierarchicallyHidden()) {
             this.onComponentHide();
         }
     },
 
-    onComponentHide: function() {
+    onComponentHide: function () {
         var me = this;
 
         if (me.rendered && me.isVisible()) {
@@ -337,7 +337,7 @@ Ext.define('Ext.LoadMask', {
         }
     },
 
-    onComponentShow: function() {
+    onComponentShow: function () {
         if (this.showNext) {
             this.show();
         }
@@ -348,10 +348,10 @@ Ext.define('Ext.LoadMask', {
      * @private
      * Called when this LoadMask's Component is resized. The toFront method rebases and resizes the modal mask.
      */
-    sizeMask: function() {
+    sizeMask: function () {
         var me = this,
-            // Need to use the closest floating component (if it exists) as the basis
-            // for our z-index positioning
+        // Need to use the closest floating component (if it exists) as the basis
+        // for our z-index positioning
             target = me.activeOwner || me.target,
             boxTarget = me.external ? me.getOwner().el : me.getMaskTarget();
 
@@ -365,7 +365,7 @@ Ext.define('Ext.LoadMask', {
                 }
                 me.el.setSize(boxTarget.getSize()).alignTo(boxTarget, 'tl-tl');
             }
-            
+
             // Always need to center the message wrap
             me.msgWrapEl.center(me.el);
         }
@@ -375,7 +375,7 @@ Ext.define('Ext.LoadMask', {
      * Changes the data store bound to this LoadMask.
      * @param {Ext.data.Store} store The store to bind to this LoadMask
      */
-    bindStore : function(store, initial) {
+    bindStore: function (store, initial) {
         var me = this;
         me.mixins.storeholder.bindStore.apply(me, arguments);
         store = me.store;
@@ -384,7 +384,7 @@ Ext.define('Ext.LoadMask', {
         }
     },
 
-    getStoreListeners: function(store) {
+    getStoreListeners: function (store) {
         var load = this.onLoad,
             beforeLoad = this.onBeforeLoad,
             result = {
@@ -407,18 +407,18 @@ Ext.define('Ext.LoadMask', {
         return result;
     },
 
-    onDisable : function() {
+    onDisable: function () {
         this.callParent(arguments);
         if (this.loading) {
             this.onLoad();
         }
     },
 
-    getOwner: function() {
+    getOwner: function () {
         return this.ownerCt || this.ownerCmp || this.floatParent;
     },
 
-    getMaskTarget: function() {
+    getMaskTarget: function () {
         var owner = this.getOwner();
         if (this.isElement) {
             return this.target;
@@ -427,7 +427,7 @@ Ext.define('Ext.LoadMask', {
     },
 
     // @private
-    onBeforeLoad : function() {
+    onBeforeLoad: function () {
         var me = this,
             owner = me.getOwner(),
             origin;
@@ -441,7 +441,7 @@ Ext.define('Ext.LoadMask', {
             } else {
                 // The code below is a 'run-once' interceptor.
                 origin = owner.afterComponentLayout;
-                owner.afterComponentLayout = function() {
+                owner.afterComponentLayout = function () {
                     owner.afterComponentLayout = origin;
                     origin.apply(owner, arguments);
                     me.maybeShow();
@@ -450,7 +450,7 @@ Ext.define('Ext.LoadMask', {
         }
     },
 
-    maybeShow: function() {
+    maybeShow: function () {
         var me = this,
             owner = me.getOwner();
 
@@ -462,41 +462,41 @@ Ext.define('Ext.LoadMask', {
         }
     },
 
-    hide: function() {
+    hide: function () {
         var me = this,
             ownerCt = me.ownerCt;
-        
+
         // Element support to be deprecated
         if (me.isElement) {
             ownerCt.unmask();
             me.fireEvent('hide', this);
-            
+
             return;
         }
-        
+
         ownerCt.enableTabbing();
         ownerCt.setMasked(false);
-        
+
         delete me.showNext;
-        
+
         return me.callParent(arguments);
     },
 
-    show: function() {
+    show: function () {
         var me = this;
 
         // Element support to be deprecated
         if (me.isElement) {
             me.ownerCt.mask(this.useMsg ? this.msg : '', this.msgCls);
             me.fireEvent('show', this);
-            
+
             return;
         }
 
         return me.callParent(arguments);
     },
 
-    afterShow: function() {
+    afterShow: function () {
         var me = this,
             ownerCt = me.ownerCt,
             el = me.el;
@@ -526,7 +526,7 @@ Ext.define('Ext.LoadMask', {
 
         ownerCt.disableTabbing();
         ownerCt.setMasked(true);
-        
+
         // Owner's disabled tabbing will also make the mask
         // untabbable since it is rendered within the target
         el.restoreTabbableState();
@@ -540,12 +540,12 @@ Ext.define('Ext.LoadMask', {
     },
 
     // @private
-    onLoad : function() {
+    onLoad: function () {
         this.loading = false;
         this.hide();
     },
 
-    beforeDestroy: function() {
+    beforeDestroy: function () {
         // We don't have a real ownerCt, so clear it out here to prevent
         // spurious warnings when we are destroyed
         this.ownerCt = null;
@@ -553,7 +553,7 @@ Ext.define('Ext.LoadMask', {
         this.callParent();
     },
 
-    onDestroy: function() {
+    onDestroy: function () {
         var me = this;
 
         if (me.isElement) {
@@ -562,9 +562,9 @@ Ext.define('Ext.LoadMask', {
 
         me.callParent();
     },
-    
+
     privates: {
-        getFocusEl: function() {
+        getFocusEl: function () {
             return this.el;
         }
     }

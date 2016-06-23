@@ -75,8 +75,8 @@ Ext.define('Ext.overrides.event.Event', {
 
                     if (event.initMouseEvent) {
                         event.initMouseEvent(type, bubbles, cancelable, view, detail,
-                                    clientX, clientY, clientX, clientY, ctrlKey, altKey,
-                                    shiftKey, metaKey, button, relatedTarget);
+                            clientX, clientY, clientX, clientY, ctrlKey, altKey,
+                            shiftKey, metaKey, button, relatedTarget);
                     } else { // old Safari
                         event = doc.createEvent('UIEvents');
                         event.initEvent(type, bubbles, cancelable);
@@ -110,7 +110,7 @@ Ext.define('Ext.overrides.event.Event', {
                 }
             };
         } else if (document.createEventObject) { // else if (IE)
-            crazyIEButtons = { 0: 1, 1: 4, 2: 2 };
+            crazyIEButtons = {0: 1, 1: 4, 2: 2};
 
             API = {
                 createHtmlEvent: function (doc, type, bubbles, cancelable) {
@@ -157,12 +157,12 @@ Ext.define('Ext.overrides.event.Event', {
         // HTMLEvents
 
         Ext.Object.each({
-                load:   [false, false],
+                load: [false, false],
                 unload: [false, false],
                 select: [true, false],
                 change: [true, false],
                 submit: [true, true],
-                reset:  [true, false],
+                reset: [true, false],
                 resize: [true, false],
                 scroll: [true, false]
             },
@@ -177,14 +177,14 @@ Ext.define('Ext.overrides.event.Event', {
         //----------------
         // MouseEvents
 
-        function createMouseEventDispatcher (type, detail) {
+        function createMouseEventDispatcher(type, detail) {
             var cancelable = (type !== 'mousemove');
             return function (targetEl, srcEvent) {
                 var xy = srcEvent.getXY(),
                     e = API.createMouseEvent(targetEl.ownerDocument, type, true, cancelable,
-                                detail, xy[0], xy[1], srcEvent.ctrlKey, srcEvent.altKey,
-                                srcEvent.shiftKey, srcEvent.metaKey, srcEvent.button,
-                                srcEvent.relatedTarget);
+                        detail, xy[0], xy[1], srcEvent.ctrlKey, srcEvent.altKey,
+                        srcEvent.shiftKey, srcEvent.metaKey, srcEvent.button,
+                        srcEvent.relatedTarget);
                 API.fireEvent(targetEl, type, e);
             };
         }
@@ -198,11 +198,11 @@ Ext.define('Ext.overrides.event.Event', {
         // UIEvents
 
         Ext.Object.each({
-                focusin:  [true, false],
+                focusin: [true, false],
                 focusout: [true, false],
                 activate: [true, true],
-                focus:    [false, false],
-                blur:     [false, false]
+                focus: [false, false],
+                blur: [false, false]
             },
             function (name, value) {
                 var bubbles = value[0], cancelable = value[1];
@@ -221,7 +221,7 @@ Ext.define('Ext.overrides.event.Event', {
             API = {};
         }
 
-        function cannotInject (target, srcEvent) {
+        function cannotInject(target, srcEvent) {
             //<debug>
             // TODO log something
             //</debug>
@@ -236,7 +236,7 @@ Ext.define('Ext.overrides.event.Event', {
         };
     }()), // call to produce method
 
-    preventDefault: function() {
+    preventDefault: function () {
         var me = this,
             event = me.browserEvent,
             parentEvent = me.parentEvent,
@@ -271,7 +271,7 @@ Ext.define('Ext.overrides.event.Event', {
                     unselectable = target.getAttribute('unselectable');
                     if (unselectable !== 'on') {
                         target.setAttribute('unselectable', 'on');
-                        Ext.defer(function() {
+                        Ext.defer(function () {
                             target.setAttribute('unselectable', unselectable);
                         }, 1);
                     }
@@ -289,7 +289,7 @@ Ext.define('Ext.overrides.event.Event', {
         return me;
     },
 
-    stopPropagation: function() {
+    stopPropagation: function () {
         var me = this,
             event = me.browserEvent;
 
@@ -317,21 +317,21 @@ Ext.define('Ext.overrides.event.Event', {
                  * @return {Ext.event.Event} The cloned copy
                  * @deprecated 5.0.0
                  */
-                clone: function() {
+                clone: function () {
                     return new this.self(this.browserEvent, this);
                 }
             }
         }
     }
-}, function() {
+}, function () {
     var Event = this,
         btnMap,
-        onKeyDown = function(e) {
+        onKeyDown = function (e) {
             if (e.keyCode === 9) {
                 Event.forwardTab = !e.shiftKey;
             }
         },
-        onKeyUp = function(e) {
+        onKeyUp = function (e) {
             if (e.keyCode === 9) {
                 delete Event.forwardTab;
             }
@@ -358,7 +358,7 @@ Ext.define('Ext.overrides.event.Event', {
                  * @private
                  * @static
                  */
-                enableIEAsync: function(browserEvent) {
+                enableIEAsync: function (browserEvent) {
                     var name,
                         fakeEvent = {};
 
@@ -370,14 +370,14 @@ Ext.define('Ext.overrides.event.Event', {
                 }
             },
 
-            constructor: function(event, info, touchesMap, identifiers) {
+            constructor: function (event, info, touchesMap, identifiers) {
                 var me = this;
                 me.callParent([event, info, touchesMap, identifiers]);
                 me.button = btnMap[event.button];
 
                 if (event.type === 'contextmenu') {
                     me.button = 2; // IE8/9 reports click as 0, so we can at least attempt to infer here
-                }   
+                }
 
                 // IE8 can throw an error when trying to access properties on a browserEvent
                 // object when the event has been buffered or delayed.  Cache them here
@@ -394,11 +394,11 @@ Ext.define('Ext.overrides.event.Event', {
              * @inheritdoc Ext.event.Event#static-enableIEAsync
              * @private
              */
-            enableIEAsync: function(browserEvent) {
+            enableIEAsync: function (browserEvent) {
                 this.browserEvent = this.self.enableIEAsync(browserEvent);
             },
 
-            getRelatedTarget: function(selector, maxDepth, returnEl) {
+            getRelatedTarget: function (selector, maxDepth, returnEl) {
                 var me = this,
                     type, target;
 
@@ -422,17 +422,17 @@ Ext.define('Ext.overrides.event.Event', {
         // and pass this information in the focus/blur event if it happens
         // between keydown/keyup pair.
         document.attachEvent('onkeydown', onKeyDown);
-        document.attachEvent('onkeyup',   onKeyUp);
-        
-        window.attachEvent('onunload', function() {
+        document.attachEvent('onkeyup', onKeyUp);
+
+        window.attachEvent('onunload', function () {
             document.detachEvent('onkeydown', onKeyDown);
-            document.detachEvent('onkeyup',   onKeyUp);
+            document.detachEvent('onkeyup', onKeyUp);
         });
     }
     else
 //</feature>
     if (document.addEventListener) {
         document.addEventListener('keydown', onKeyDown, true);
-        document.addEventListener('keyup',   onKeyUp,   true);
+        document.addEventListener('keyup', onKeyUp, true);
     }
 });

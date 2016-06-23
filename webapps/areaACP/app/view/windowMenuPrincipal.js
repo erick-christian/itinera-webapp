@@ -34,7 +34,7 @@ Ext.define('areaACP.view.windowMenuPrincipal', {
     closable: false,
     maximized: true,
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this;
 
         Ext.applyIf(me, {
@@ -49,9 +49,9 @@ Ext.define('areaACP.view.windowMenuPrincipal', {
                         },
                         {
                             xtype: 'button',
-                            handler: function(button, e) {
+                            handler: function (button, e) {
                                 sessionStorage.clear();
-                                self.location="../acceso/index.html";
+                                self.location = "../acceso/index.html";
                             },
                             id: 'btnCerrarSesion',
                             itemId: 'btnCerrarSesion',
@@ -161,35 +161,35 @@ Ext.define('areaACP.view.windowMenuPrincipal', {
                             items: [
                                 {
                                     xtype: 'button',
-                                    handler: function(button, e) {
+                                    handler: function (button, e) {
                                         var winConteoProduccion = Ext.getCmp('winConteoProduccion');
 
-                                        if(!winConteoProduccion){
+                                        if (!winConteoProduccion) {
                                             winConteoProduccion = new Ext.Window({
-                                                title       : "ACP - Conteo de la Producción",
-                                                titlebar    : false,
-                                                minWidth    : 950,
-                                                minWidth    : 950,
-                                                minHeight   : 650,
-                                                maximized   : false,
-                                                maximizable : false,
-                                                draggable   : false,
-                                                closable    : false,
-                                                modal       : true,
-                                                id          : 'winConteoProduccion',
-                                                itemId      : 'winConteoProduccion',
-                                                layout      : 'fit',
-                                                items : [{
-                                                    xtype   : "component",
-                                                    autoEl  : {
-                                                        tag : "iframe",
-                                                        src : "../conteoProduccion/index.html",
-                                                        layout      : 'column'
+                                                title: "ACP - Conteo de la Producción",
+                                                titlebar: false,
+                                                minWidth: 950,
+                                                minWidth: 950,
+                                                minHeight: 650,
+                                                maximized: false,
+                                                maximizable: false,
+                                                draggable: false,
+                                                closable: false,
+                                                modal: true,
+                                                id: 'winConteoProduccion',
+                                                itemId: 'winConteoProduccion',
+                                                layout: 'fit',
+                                                items: [{
+                                                    xtype: "component",
+                                                    autoEl: {
+                                                        tag: "iframe",
+                                                        src: "../conteoProduccion/index.html",
+                                                        layout: 'column'
                                                     }
                                                 }],
-                                                listeners:{
+                                                listeners: {
                                                     resize: {
-                                                        fn: function(){
+                                                        fn: function () {
                                                         }
                                                     }
                                                 }
@@ -200,11 +200,11 @@ Ext.define('areaACP.view.windowMenuPrincipal', {
 
                                         winConteoProduccionAbre();
 
-                                        function winConteoProduccionAbre(){
+                                        function winConteoProduccionAbre() {
                                             winConteoProduccion.show();
                                         }
 
-                                        function winConteoProduccionCierra(){
+                                        function winConteoProduccionCierra() {
                                             winConteoProduccion.close();
                                         }
                                     },
@@ -221,34 +221,34 @@ Ext.define('areaACP.view.windowMenuPrincipal', {
                                 },
                                 {
                                     xtype: 'button',
-                                    handler: function(button, e) {
+                                    handler: function (button, e) {
                                         var winConteoProduccion = Ext.getCmp('winConteoProduccion');
 
-                                        if(!winConteoProduccion){
+                                        if (!winConteoProduccion) {
                                             winConteoProduccion = new Ext.Window({
-                                                title       : "ACP - Conteo de la Producción",
-                                                titlebar    : false,
-                                                minWidth    : 950,
-                                                minHeight   : 600,
-                                                maximized   : true,
-                                                maximizable : false,
-                                                draggable   : false,
-                                                closable    : false,
-                                                modal       : true,
-                                                id          : 'winConteoProduccion',
-                                                itemId      : 'winConteoProduccion',
-                                                layout      : 'fit',
-                                                items : [{
-                                                    xtype   : "component",
-                                                    autoEl  : {
-                                                        tag : "iframe",
-                                                        src : "../ConteoCorrugadora/index.html",
-                                                        layout      : 'fit'
+                                                title: "ACP - Conteo de la Producción",
+                                                titlebar: false,
+                                                minWidth: 950,
+                                                minHeight: 600,
+                                                maximized: true,
+                                                maximizable: false,
+                                                draggable: false,
+                                                closable: false,
+                                                modal: true,
+                                                id: 'winConteoProduccion',
+                                                itemId: 'winConteoProduccion',
+                                                layout: 'fit',
+                                                items: [{
+                                                    xtype: "component",
+                                                    autoEl: {
+                                                        tag: "iframe",
+                                                        src: "../ConteoCorrugadora/index.html",
+                                                        layout: 'fit'
                                                     }
                                                 }],
-                                                listeners:{
+                                                listeners: {
                                                     resize: {
-                                                        fn: function(){
+                                                        fn: function () {
                                                         }
                                                     }
                                                 }
@@ -259,11 +259,11 @@ Ext.define('areaACP.view.windowMenuPrincipal', {
 
                                         winConteoProduccionAbre();
 
-                                        function winConteoProduccionAbre(){
+                                        function winConteoProduccionAbre() {
                                             winConteoProduccion.show();
                                         }
 
-                                        function winConteoProduccionCierra(){
+                                        function winConteoProduccionCierra() {
                                             winConteoProduccion.close();
                                         }
                                     },
@@ -292,34 +292,34 @@ Ext.define('areaACP.view.windowMenuPrincipal', {
                             items: [
                                 {
                                     xtype: 'button',
-                                    handler: function(button, e) {
+                                    handler: function (button, e) {
                                         var winCatalogoMaquina = Ext.getCmp('winCatalogoMaquina');
 
-                                        if(!winCatalogoMaquina){
+                                        if (!winCatalogoMaquina) {
                                             winCatalogoMaquina = new Ext.Window({
-                                                title       : "ACP - Catalogo de Maquinas",
-                                                titlebar    : false,
-                                                minWidth    : 950,
-                                                minHeight   : 600,
-                                                maximized   : true,
-                                                maximizable : false,
-                                                draggable   : false,
-                                                closable    : false,
-                                                modal       : true,
-                                                id          : 'winCatalogoMaquina',
-                                                itemId      : 'winCatalogoMaquina',
-                                                layout      : 'fit',
-                                                items : [{
-                                                    xtype   : "component",
-                                                    autoEl  : {
-                                                        tag : "iframe",
-                                                        src : "../CatalogoMaquina/index.html",
-                                                        layout      : 'fit'
+                                                title: "ACP - Catalogo de Maquinas",
+                                                titlebar: false,
+                                                minWidth: 950,
+                                                minHeight: 600,
+                                                maximized: true,
+                                                maximizable: false,
+                                                draggable: false,
+                                                closable: false,
+                                                modal: true,
+                                                id: 'winCatalogoMaquina',
+                                                itemId: 'winCatalogoMaquina',
+                                                layout: 'fit',
+                                                items: [{
+                                                    xtype: "component",
+                                                    autoEl: {
+                                                        tag: "iframe",
+                                                        src: "../CatalogoMaquina/index.html",
+                                                        layout: 'fit'
                                                     }
                                                 }],
-                                                listeners:{
+                                                listeners: {
                                                     resize: {
-                                                        fn: function(){
+                                                        fn: function () {
                                                         }
                                                     }
                                                 }
@@ -330,11 +330,11 @@ Ext.define('areaACP.view.windowMenuPrincipal', {
 
                                         winCatalogoMaquinaAbre();
 
-                                        function winCatalogoMaquinaAbre(){
+                                        function winCatalogoMaquinaAbre() {
                                             winCatalogoMaquina.show();
                                         }
 
-                                        function winCatalogoMaquinaCierra(){
+                                        function winCatalogoMaquinaCierra() {
                                             winCatalogoMaquina.close();
                                         }
                                     },
@@ -351,34 +351,34 @@ Ext.define('areaACP.view.windowMenuPrincipal', {
                                 },
                                 {
                                     xtype: 'button',
-                                    handler: function(button, e) {
+                                    handler: function (button, e) {
                                         var winCatalogoMaquina = Ext.getCmp('winCatalogoMaquina');
 
-                                        if(!winCatalogoMaquina){
+                                        if (!winCatalogoMaquina) {
                                             winCatalogoMaquina = new Ext.Window({
-                                                title       : "ACP - Catalogo de Maquinas",
-                                                titlebar    : false,
-                                                minWidth    : 950,
-                                                minHeight   : 600,
-                                                maximized   : true,
-                                                maximizable : false,
-                                                draggable   : false,
-                                                closable    : false,
-                                                modal       : true,
-                                                id          : 'winCatalogoMaquina',
-                                                itemId      : 'winCatalogoMaquina',
-                                                layout      : 'fit',
-                                                items : [{
-                                                    xtype   : "component",
-                                                    autoEl  : {
-                                                        tag : "iframe",
-                                                        src : "../CatalogoMicroboard/index.html",
-                                                        layout      : 'fit'
+                                                title: "ACP - Catalogo de Maquinas",
+                                                titlebar: false,
+                                                minWidth: 950,
+                                                minHeight: 600,
+                                                maximized: true,
+                                                maximizable: false,
+                                                draggable: false,
+                                                closable: false,
+                                                modal: true,
+                                                id: 'winCatalogoMaquina',
+                                                itemId: 'winCatalogoMaquina',
+                                                layout: 'fit',
+                                                items: [{
+                                                    xtype: "component",
+                                                    autoEl: {
+                                                        tag: "iframe",
+                                                        src: "../CatalogoMicroboard/index.html",
+                                                        layout: 'fit'
                                                     }
                                                 }],
-                                                listeners:{
+                                                listeners: {
                                                     resize: {
-                                                        fn: function(){
+                                                        fn: function () {
                                                         }
                                                     }
                                                 }
@@ -389,11 +389,11 @@ Ext.define('areaACP.view.windowMenuPrincipal', {
 
                                         winCatalogoMaquinaAbre();
 
-                                        function winCatalogoMaquinaAbre(){
+                                        function winCatalogoMaquinaAbre() {
                                             winCatalogoMaquina.show();
                                         }
 
-                                        function winCatalogoMaquinaCierra(){
+                                        function winCatalogoMaquinaCierra() {
                                             winCatalogoMaquina.close();
                                         }
                                     },
@@ -418,7 +418,7 @@ Ext.define('areaACP.view.windowMenuPrincipal', {
         me.callParent(arguments);
     },
 
-    onFormInformacionResize: function(component, width, height, oldWidth, oldHeight, eOpts) {
+    onFormInformacionResize: function (component, width, height, oldWidth, oldHeight, eOpts) {
         var alturaForm = Ext.getCmp('windowMenuPrincipal').height - 180;
         Ext.getCmp('tabpanelPrincipal').setHeight(alturaForm);
     }

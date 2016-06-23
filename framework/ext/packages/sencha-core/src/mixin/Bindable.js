@@ -90,15 +90,15 @@ Ext.define('Ext.mixin.Bindable', {
 
         /**
          * @cfg {String/String[]/Object} publishes
-         * One or more names of config properties that this component should publish 
+         * One or more names of config properties that this component should publish
          * to its ViewModel. Generally speaking, only properties defined in a class config
-         * block (including ancestor config blocks and mixins) are eligible for publishing 
-         * to the viewModel. Some components override this and publish their most useful 
-         * configs by default. 
-         * 
-         * **Note:** We'll discuss publishing properties **not** found in the config block below. 
-         * 
-         * Values determined to be invalid by component (often form fields and model validations) 
+         * block (including ancestor config blocks and mixins) are eligible for publishing
+         * to the viewModel. Some components override this and publish their most useful
+         * configs by default.
+         *
+         * **Note:** We'll discuss publishing properties **not** found in the config block below.
+         *
+         * Values determined to be invalid by component (often form fields and model validations)
          * will not be published to the ViewModel.
          *
          * This config uses the `{@link #cfg-reference}` to determine the name of the data
@@ -157,17 +157,17 @@ Ext.define('Ext.mixin.Bindable', {
          *          }
          *      }
          *
-         * In some cases, users may want to publish a property to the viewModel that is not found in a class 
-         * config block. In these situations, you may utilize {@link #publishState} if the property has a 
+         * In some cases, users may want to publish a property to the viewModel that is not found in a class
+         * config block. In these situations, you may utilize {@link #publishState} if the property has a
          * setter method.  Let's use {@link Ext.form.Labelable#setFieldLabel setFieldLabel} as an example:
          *
          *       setFieldLabel: function(fieldLabel) {
          *           this.callParent(arguments);
          *           this.publishState('fieldLabel', fieldLabel);
-         *       }        
-         * 
+         *       }
+         *
          * With the above chunk of code, fieldLabel may now be published to the viewModel.
-         * 
+         *
          * @since 5.0.0
          */
         publishes: {
@@ -304,8 +304,8 @@ Ext.define('Ext.mixin.Bindable', {
         var me = this,
             reference = me.getReference(),
             controller = me.getController(),
-            // Don't instantiate the view model here, we only need to know that
-            // it exists
+        // Don't instantiate the view model here, we only need to know that
+        // it exists
             viewModel = me.getConfig('viewModel', true),
             session = me.getConfig('session', true),
             defaultListenerScope = me.getDefaultListenerScope();
@@ -348,14 +348,14 @@ Ext.define('Ext.mixin.Bindable', {
     /**
      * Gets the controller that controls this view. May be a controller that belongs
      * to a view higher in the hierarchy.
-     * 
+     *
      * @param {Boolean} [skipThis=false] `true` to not consider the controller directly attached
      * to this view (if it exists).
      * @return {Ext.app.ViewController} The controller. `null` if no controller is found.
      *
      * @since 5.0.1
      */
-    lookupController: function(skipThis) {
+    lookupController: function (skipThis) {
         return this.getInheritedConfig('controller', skipThis) || null;
     },
 
@@ -502,7 +502,7 @@ Ext.define('Ext.mixin.Bindable', {
             // re-used across all instances.
             if (cfg && !me.hasOwnProperty(updateName = cfg.names.update)) {
                 me[updateName] = cfg.bindableUpdater ||
-                                (cfg.root.bindableUpdater = me.makeBindableUpdater(cfg));
+                    (cfg.root.bindableUpdater = me.makeBindableUpdater(cfg));
             }
         },
 
@@ -533,8 +533,8 @@ Ext.define('Ext.mixin.Bindable', {
             if (Ext.isString(binds)) {
                 //<debug>
                 if (!me.defaultBindProperty) {
-                    Ext.Error.raise(me.$className + ' has no defaultBindProperty - '+
-                                    'Please specify a bind object');
+                    Ext.Error.raise(me.$className + ' has no defaultBindProperty - ' +
+                        'Please specify a bind object');
                 }
                 //</debug>
 
@@ -560,7 +560,7 @@ Ext.define('Ext.mixin.Bindable', {
                     //<debug>
                     if (!me[b._config.names.set]) {
                         Ext.Error.raise('Cannot bind ' + property + ' on ' + me.$className +
-                                        ' - missing a ' + b._config.names.set + ' method.');
+                            ' - missing a ' + b._config.names.set + ' method.');
                     }
                     //</debug>
                 }
@@ -597,7 +597,7 @@ Ext.define('Ext.mixin.Bindable', {
             var validIdRe = this.validRefRe || Ext.validIdRe;
             if (reference && !validIdRe.test(reference)) {
                 Ext.Error.raise('Invalid reference "' + reference + '" for ' + this.getId() +
-                                ' - not a valid identifier');
+                    ' - not a valid identifier');
             }
             return reference;
         },
@@ -726,7 +726,7 @@ Ext.define('Ext.mixin.Bindable', {
             --binding.syncing;
         },
 
-        removeBindings: function() {
+        removeBindings: function () {
             var bindings = this.bind,
                 key, binding;
 

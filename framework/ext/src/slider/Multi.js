@@ -29,11 +29,11 @@ Ext.define('Ext.slider.Multi', {
         'Ext.util.Format',
         'Ext.Template'
     ],
-    
+
     focusable: true,
     needArrowKeys: true,
     tabIndex: 0,
-    
+
     focusCls: 'slider-focus',
 
     childEls: [
@@ -47,14 +47,14 @@ Ext.define('Ext.slider.Multi', {
         '<tpl if="tabIdx != null"> tabindex="{tabIdx}"</tpl>',
         '<tpl if="isVertical"> aria-orientation="vertical"<tpl else> aria-orientation="horizontal"</tpl>',
         '>',
-            '<div id="{cmpId}-endEl" data-ref="endEl" class="' + Ext.baseCSSPrefix + 'slider-end" role="presentation">',
-                '<div id="{cmpId}-innerEl" data-ref="innerEl" class="' + Ext.baseCSSPrefix + 'slider-inner" role="presentation">',
-                    '{%this.renderThumbs(out, values)%}',
-                '</div>',
-            '</div>',
+        '<div id="{cmpId}-endEl" data-ref="endEl" class="' + Ext.baseCSSPrefix + 'slider-end" role="presentation">',
+        '<div id="{cmpId}-innerEl" data-ref="innerEl" class="' + Ext.baseCSSPrefix + 'slider-inner" role="presentation">',
+        '{%this.renderThumbs(out, values)%}',
+        '</div>',
+        '</div>',
         '</div>',
         {
-            renderThumbs: function(out, values) {
+            renderThumbs: function (out, values) {
                 var me = values.$comp,
                     i = 0,
                     thumbs = me.thumbs,
@@ -142,13 +142,13 @@ Ext.define('Ext.slider.Multi', {
      * the click event's 'top' property is compared to these numbers and the click only considered a change request if it falls within them. e.g. if the 'top'
      * value of the click event is 4 or 16, the click is not considered a change request as it falls outside of the [5, 15] range
      */
-    clickRange: [5,15],
+    clickRange: [5, 15],
 
     /**
      * @cfg {Boolean} clickToChange
      * Determines whether or not clicking on the Slider axis will change the slider.
      */
-    clickToChange : true,
+    clickToChange: true,
 
     /**
      * @cfg {Object/Boolean} animate
@@ -178,7 +178,7 @@ Ext.define('Ext.slider.Multi', {
      * True to use an {@link Ext.slider.Tip} to display tips for the value. This option may also
      * provide a configuration object for an {@link Ext.slider.Tip}.
      */
-    useTips : true,
+    useTips: true,
 
     /**
      * @cfg {Function} [tipText=undefined]
@@ -189,7 +189,7 @@ Ext.define('Ext.slider.Multi', {
      * @cfg {Ext.slider.Thumb} tipText.thumb The Thumb that the Tip is attached to
      * @cfg {String} tipText.return The text to display in the tip
      */
-    tipText : null,
+    tipText: null,
 
     ariaRole: 'slider',
 
@@ -245,10 +245,10 @@ Ext.define('Ext.slider.Multi', {
      */
 
     // private override
-    initValue: function() {
+    initValue: function () {
         var me = this,
             extValueFrom = Ext.valueFrom,
-            // Fallback for initial values: values config -> value config -> minValue config -> 0
+        // Fallback for initial values: values config -> value config -> minValue config -> 0
             values = extValueFrom(me.values, [extValueFrom(me.value, extValueFrom(me.minValue, 0))]),
             i = 0,
             len = values.length;
@@ -263,7 +263,7 @@ Ext.define('Ext.slider.Multi', {
     },
 
     // private override
-    initComponent : function() {
+    initComponent: function () {
         var me = this,
             tipPlug,
             hasTip,
@@ -290,7 +290,7 @@ Ext.define('Ext.slider.Multi', {
             }
 
             plugins = me.plugins = me.plugins || [];
-            pLen    = plugins.length;
+            pLen = plugins.length;
 
             for (p = 0; p < pLen; p++) {
                 if (plugins[p].isSliderTip) {
@@ -310,15 +310,15 @@ Ext.define('Ext.slider.Multi', {
      * @param {Number} [value=0] The initial value to set on the thumb.
      * @return {Ext.slider.Thumb} The thumb
      */
-    addThumb: function(value) {
+    addThumb: function (value) {
         var me = this,
             thumb = new Ext.slider.Thumb({
-                ownerCt     : me,
-                value       : value,
-                slider      : me,
-                index       : me.thumbs.length,
-                constrain   : me.constrainThumbs,
-                disabled    : !!me.readOnly
+                ownerCt: me,
+                value: value,
+                slider: me,
+                index: me.thumbs.length,
+                constrain: me.constrainThumbs,
+                disabled: !!me.readOnly
             });
 
         me.thumbs.push(thumb);
@@ -339,7 +339,7 @@ Ext.define('Ext.slider.Multi', {
      * range, which can result in the user not being able to move any of them.
      * @param {Ext.slider.Thumb} topThumb The thumb to move to the top
      */
-    promoteThumb: function(topThumb) {
+    promoteThumb: function (topThumb) {
         var thumbs = this.thumbStack || (this.thumbStack = Ext.Array.slice(this.thumbs)),
             ln = thumbs.length,
             zIndex = 10000, i;
@@ -358,7 +358,7 @@ Ext.define('Ext.slider.Multi', {
     },
 
     // private override
-    getSubTplData : function(fieldData) {
+    getSubTplData: function (fieldData) {
         var me = this;
 
         return Ext.apply(me.callParent(arguments), {
@@ -373,7 +373,7 @@ Ext.define('Ext.slider.Multi', {
         });
     },
 
-    onRender : function() {
+    onRender: function () {
         var me = this,
             thumbs = me.thumbs,
             len = thumbs.length,
@@ -393,15 +393,15 @@ Ext.define('Ext.slider.Multi', {
      * @private
      * Adds keyboard and mouse listeners on this.el. Ignores click events on the internal focus element.
      */
-    initEvents : function() {
+    initEvents: function () {
         var me = this;
-        
+
         me.callParent();
-        
+
         me.mon(me.el, {
-            scope    : me,
+            scope: me,
             mousedown: me.onMouseDown,
-            keydown  : me.onKeyDown
+            keydown: me.onKeyDown
         });
     },
 
@@ -416,7 +416,7 @@ Ext.define('Ext.slider.Multi', {
      * If the point is outside the range of the Slider's track, the return value is `undefined`
      * @param {Number[]} xy The point to calculate the track point for
      */
-    getTrackpoint : function(xy) {
+    getTrackpoint: function (xy) {
         var me = this,
             vertical = me.vertical,
             sliderTrack = me.innerEl,
@@ -436,7 +436,7 @@ Ext.define('Ext.slider.Multi', {
     },
 
     transformTrackPoints: Ext.identityFn,
-    
+
     // Base field checkChange method will fire 'change' event with signature common to all fields,
     // but Slider fires the same event with different signature. Hence we disable checkChange here
     // to avoid breakage.
@@ -448,7 +448,7 @@ Ext.define('Ext.slider.Multi', {
      * this calculates the new value of the slider and tells the implementation (Horizontal or Vertical) to move the thumb
      * @param {Ext.event.Event} e The click event
      */
-    onMouseDown : function(e) {
+    onMouseDown: function (e) {
         var me = this,
             thumbClicked = false,
             i = 0,
@@ -480,7 +480,7 @@ Ext.define('Ext.slider.Multi', {
      * Only changes the value if the click was within this.clickRange.
      * @param {Number} trackPoint local pixel offset **from the origin** (left for horizontal and bottom for vertical) along the Slider's axis at which the click event occured.
      */
-    onClickChange : function(trackPoint) {
+    onClickChange: function (trackPoint) {
         var me = this,
             thumb, index;
 
@@ -501,7 +501,7 @@ Ext.define('Ext.slider.Multi', {
      * @param {Number} trackPoint local pixel position along the Slider's axis to find the Thumb for
      * @return {Object} The closest thumb object and its distance from the click event
      */
-    getNearest: function(trackPoint) {
+    getNearest: function (trackPoint) {
         var me = this,
             clickValue = me.reversePixelValue(trackPoint),
             nearestDistance = me.getRange() + 5, //add a small fudge for the end of the slider
@@ -516,7 +516,7 @@ Ext.define('Ext.slider.Multi', {
         for (; i < len; i++) {
             thumb = me.thumbs[i];
             value = thumb.value;
-            dist  = Math.abs(value - clickValue);
+            dist = Math.abs(value - clickValue);
 
             if (Math.abs(dist) <= nearestDistance) {
                 nearest = thumb;
@@ -532,7 +532,7 @@ Ext.define('Ext.slider.Multi', {
      * by this.keyIncrement. If DOWN or LEFT it is moved left. Pressing CTRL moves the slider to the end in either direction
      * @param {Ext.event.Event} e The Event object
      */
-    onKeyDown : function(e) {
+    onKeyDown: function (e) {
         /*
          * The behaviour for keyboard handling with multiple thumbs is currently undefined.
          * There's no real sane default for it, so leave it like this until we come up
@@ -542,25 +542,25 @@ Ext.define('Ext.slider.Multi', {
             k,
             val;
 
-        if(me.disabled || me.thumbs.length !== 1) {
+        if (me.disabled || me.thumbs.length !== 1) {
             e.preventDefault();
             return;
         }
         k = e.getKey();
 
-        switch(k) {
+        switch (k) {
             case e.UP:
             case e.RIGHT:
                 e.stopEvent();
                 val = e.ctrlKey ? me.maxValue : me.getValue(0) + me.keyIncrement;
                 me.setValue(0, val, undefined, true);
-            break;
+                break;
             case e.DOWN:
             case e.LEFT:
                 e.stopEvent();
                 val = e.ctrlKey ? me.minValue : me.getValue(0) - me.keyIncrement;
                 me.setValue(0, val, undefined, true);
-            break;
+                break;
         }
     },
 
@@ -570,7 +570,7 @@ Ext.define('Ext.slider.Multi', {
      * @param {Number} value Raw number value
      * @return {Number} The raw value rounded to the correct d.p. and constrained within the set max and min values
      */
-    normalizeValue : function(v) {
+    normalizeValue: function (v) {
         var me = this,
             snapFn = me.zeroBasedSnapping ? 'snap' : 'snapInRange';
 
@@ -585,7 +585,7 @@ Ext.define('Ext.slider.Multi', {
      * value will be changed.
      * @param {Number} val The new minimum value
      */
-    setMinValue : function(val) {
+    setMinValue: function (val) {
         var me = this,
             thumbs = me.thumbs,
             len = thumbs.length,
@@ -607,7 +607,7 @@ Ext.define('Ext.slider.Multi', {
      * value will be changed.
      * @param {Number} val The new maximum value
      */
-    setMaxValue : function(val) {
+    setMaxValue: function (val) {
         var me = this,
             thumbs = me.thumbs,
             len = thumbs.length,
@@ -644,7 +644,7 @@ Ext.define('Ext.slider.Multi', {
      * will be used.
      * @return {Ext.slider.Multi} this
      */
-    setValue : function(index, value, animate, changeComplete) {
+    setValue: function (index, value, animate, changeComplete) {
         var me = this,
             thumbs = me.thumbs,
             thumb, len, i, values;
@@ -691,7 +691,7 @@ Ext.define('Ext.slider.Multi', {
      * @private
      * Given a value within this Slider's range, calculates a Thumb's percentage CSS position to map that value.
      */
-    calculateThumbPosition : function(v) {
+    calculateThumbPosition: function (v) {
         var me = this,
             minValue = me.minValue,
             pos = (v - minValue) / me.getRange() * 100;
@@ -709,7 +709,7 @@ Ext.define('Ext.slider.Multi', {
      * the ratio is 2
      * @return {Number} The ratio of pixels to mapped values
      */
-    getRatio : function() {
+    getRatio: function () {
         var me = this,
             innerEl = me.innerEl,
             trackLength = me.vertical ? innerEl.getHeight() : innerEl.getWidth(),
@@ -718,7 +718,7 @@ Ext.define('Ext.slider.Multi', {
         return valueRange === 0 ? trackLength : (trackLength / valueRange);
     },
 
-    getRange: function(){
+    getRange: function () {
         return this.maxValue - this.minValue;
     },
 
@@ -730,7 +730,7 @@ Ext.define('Ext.slider.Multi', {
      * @param {Number} pos The position along the slider to return a mapped value for
      * @return {Number} The mapped value for the given position
      */
-    reversePixelValue : function(pos) {
+    reversePixelValue: function (pos) {
         return this.minValue + (pos / this.getRatio());
     },
 
@@ -742,12 +742,12 @@ Ext.define('Ext.slider.Multi', {
      * @param {Number} pos The percentage along the slider track to return a mapped value for
      * @return {Number} The mapped value for the given position
      */
-    reversePercentageValue : function(pos) {
+    reversePercentageValue: function (pos) {
         return this.minValue + this.getRange() * (pos / 100);
     },
 
     //private
-    onDisable: function() {
+    onDisable: function () {
         var me = this,
             i = 0,
             thumbs = me.thumbs,
@@ -764,7 +764,7 @@ Ext.define('Ext.slider.Multi', {
 
             thumb.disable();
 
-            if(Ext.isIE) {
+            if (Ext.isIE) {
                 //IE breaks when using overflow visible and opacity other than 1.
                 //Create a place holder for the thumb and display it.
                 xy = el.getXY();
@@ -785,7 +785,7 @@ Ext.define('Ext.slider.Multi', {
     },
 
     //private
-    onEnable: function() {
+    onEnable: function () {
         var me = this,
             i = 0,
             thumbs = me.thumbs,
@@ -819,7 +819,7 @@ Ext.define('Ext.slider.Multi', {
      * {@link #value}. This will be called automatically when the Slider is resized by a layout, but if it is rendered
      * auto width, this method can be called from another resize handler to sync the Slider if necessary.
      */
-    syncThumbs : function() {
+    syncThumbs: function () {
         if (this.rendered) {
             var thumbs = this.thumbs,
                 length = thumbs.length,
@@ -837,7 +837,7 @@ Ext.define('Ext.slider.Multi', {
      * @return {Number/Number[]} The current value of the slider at the given index, or an array of all thumb values if
      * no index is given.
      */
-    getValue : function(index) {
+    getValue: function (index) {
         return Ext.isNumber(index) ? this.thumbs[index].value : this.getValues();
     },
 
@@ -845,7 +845,7 @@ Ext.define('Ext.slider.Multi', {
      * Returns an array of values - one for the location of each thumb
      * @return {Number[]} The set of thumb values
      */
-    getValues: function() {
+    getValues: function () {
         var values = [],
             i = 0,
             thumbs = this.thumbs,
@@ -858,16 +858,16 @@ Ext.define('Ext.slider.Multi', {
         return values;
     },
 
-    getSubmitValue: function() {
+    getSubmitValue: function () {
         var me = this;
         return (me.disabled || !me.submitValue) ? null : me.getValue();
     },
 
-    reset: function() {
+    reset: function () {
         var me = this,
             arr = [].concat(me.originalValue),
-            a     = 0,
-            aLen  = arr.length,
+            a = 0,
+            aLen = arr.length,
             val;
 
         for (; a < aLen; a++) {
@@ -881,7 +881,7 @@ Ext.define('Ext.slider.Multi', {
         delete me.wasValid;
     },
 
-    setReadOnly: function(readOnly){
+    setReadOnly: function (readOnly) {
         var me = this,
             thumbs = me.thumbs,
             len = thumbs.length,
@@ -902,11 +902,11 @@ Ext.define('Ext.slider.Multi', {
     },
 
     // private
-    beforeDestroy: function() {
-        var me     = this,
+    beforeDestroy: function () {
+        var me = this,
             thumbs = me.thumbs,
-            t      = 0,
-            tLen   = thumbs.length,
+            t = 0,
+            tLen = thumbs.length,
             thumb;
 
         if (me.rendered) {

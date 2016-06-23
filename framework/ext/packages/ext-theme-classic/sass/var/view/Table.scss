@@ -2,8 +2,7 @@
 $grid-row-cell-font-size: ceil($font-size * .9) !default;
 $grid-cell-inner-padding: 3px 6px 4px !default;
 
-$grid-row-cell-border-color: #ededed
-    adjust-color($base-color, $hue: 0deg, $saturation: -55.556%, $lightness: -2.549%) !default;
+$grid-row-cell-border-color: #ededed adjust-color($base-color, $hue: 0deg, $saturation: -55.556%, $lightness: -2.549%) !default;
 
 // special cells
 $grid-cell-special-background-color: #f6f6f6 !default;

@@ -464,7 +464,7 @@ Ext.define('Ext.view.View', {
      * @param {Ext.dom.Element} node The previously highlighted node.
      */
 
-    afterRender: function() {
+    afterRender: function () {
         var me = this;
 
         me.callParent();
@@ -489,7 +489,7 @@ Ext.define('Ext.view.View', {
         return this.dataRowSelector || this.itemSelector;
     },
 
-    handleMouseOver: function(e) {
+    handleMouseOver: function (e) {
         var me = this,
         // this.getTargetSelector() can be used as a template method, e.g., in features.
             itemSelector = me.getTargetSelector(),
@@ -538,13 +538,13 @@ Ext.define('Ext.view.View', {
         }
     },
 
-    handleEvent: function(e) {
+    handleEvent: function (e) {
         var me = this,
             isKeyEvent = me.keyEventRe.test(e.type),
             nm = me.getNavigationModel();
 
         e.view = me;
-        
+
         if (isKeyEvent) {
             e.item = nm.getItem();
             e.record = nm.getRecord();
@@ -562,7 +562,7 @@ Ext.define('Ext.view.View', {
         if (me.processUIEvent(e) !== false) {
             me.processSpecialEvent(e);
         }
-        
+
         // We need to prevent default action on navigation keys
         // that can cause View element scroll unless the event is from an input field.
         // We MUST prevent browser's default action on SPACE which is to focus the event's target element.
@@ -579,7 +579,7 @@ Ext.define('Ext.view.View', {
     processContainerEvent: Ext.emptyFn,
     processSpecialEvent: Ext.emptyFn,
 
-    processUIEvent: function(e) {
+    processUIEvent: function (e) {
 
         // If the target event has been removed from the body (data update causing view DOM to be updated),
         // do not process. isAncestor uses native methods to check.
@@ -643,14 +643,14 @@ Ext.define('Ext.view.View', {
     },
 
     // @private
-    onItemMouseEnter: function(record, item, index, e) {
+    onItemMouseEnter: function (record, item, index, e) {
         if (this.trackOver) {
             this.highlightItem(item);
         }
     },
 
     // @private
-    onItemMouseLeave : function(record, item, index, e) {
+    onItemMouseLeave: function (record, item, index, e) {
         if (this.trackOver) {
             this.clearHighlight();
         }
@@ -705,13 +705,13 @@ Ext.define('Ext.view.View', {
     onBeforeContainerKeyPress: Ext.emptyFn,
 
     // @private
-    
-    setHighlightedItem: function(item){
+
+    setHighlightedItem: function (item) {
         var me = this,
             highlighted = me.highlightedItem,
             overItemCls = me.overItemCls;
 
-        if (highlighted !== item){
+        if (highlighted !== item) {
             if (highlighted) {
                 Ext.fly(highlighted).removeCls(overItemCls);
                 //<feature legacyBrowser>
@@ -751,18 +751,18 @@ Ext.define('Ext.view.View', {
      * handle stepping through the list via keyboard navigation.
      * @param {HTMLElement} item The item to highlight
      */
-    highlightItem: function(item) {
+    highlightItem: function (item) {
         this.setHighlightedItem(item);
     },
 
     /**
      * Un-highlights the currently highlighted item, if any.
      */
-    clearHighlight: function() {
+    clearHighlight: function () {
         this.setHighlightedItem(undefined);
     },
 
-    handleUpdate: function(store, record){
+    handleUpdate: function (store, record) {
         var me = this,
             node,
             newNode,
@@ -782,7 +782,7 @@ Ext.define('Ext.view.View', {
         }
     },
 
-    refresh: function() {
+    refresh: function () {
         this.clearHighlight();
         this.callParent(arguments);
     },
@@ -791,13 +791,13 @@ Ext.define('Ext.view.View', {
      * Focuses a node in the view.
      * @param {Ext.data.Model} rec The record associated to the node that is to be focused.
      */
-    focusNode: function(rec){
-        var me          = this,
-            node        = me.getNode(rec),
-            el          = me.el,
+    focusNode: function (rec) {
+        var me = this,
+            node = me.getNode(rec),
+            el = me.el,
             adjustmentY = 0,
             adjustmentX = 0,
-            elRegion    = el.getRegion(),
+            elRegion = el.getRegion(),
             nodeRegion;
 
         // Viewable region must not include scrollbars, so use
@@ -809,7 +809,7 @@ Ext.define('Ext.view.View', {
             // node is above
             if (nodeRegion.top < elRegion.top) {
                 adjustmentY = nodeRegion.top - elRegion.top;
-            // node is below
+                // node is below
             } else if (nodeRegion.bottom > elRegion.bottom) {
                 adjustmentY = nodeRegion.bottom - elRegion.bottom;
             }
@@ -817,7 +817,7 @@ Ext.define('Ext.view.View', {
             // node is left
             if (nodeRegion.left < elRegion.left) {
                 adjustmentX = nodeRegion.left - elRegion.left;
-            // node is right
+                // node is right
             } else if (nodeRegion.right > elRegion.right) {
                 adjustmentX = nodeRegion.right - elRegion.right;
             }
@@ -868,7 +868,7 @@ Ext.define('Ext.view.View', {
         //<feature legacyBrowser>
         // Work around for an issue in IE8 where the focus/over/selected borders do not
         // get updated where applied using adjacent sibling selectors.
-        repaintBorder: function(rowIdx) {
+        repaintBorder: function (rowIdx) {
             var node = this.getNode(rowIdx);
 
             if (node) {

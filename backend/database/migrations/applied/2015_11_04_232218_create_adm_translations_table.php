@@ -14,7 +14,7 @@ class CreateAdmTranslationsTable extends Migration
     {
         //Table Creation
         //Schema::drop('adm_translations');
-        Schema::create('adm_translations', function (Blueprint $table) {
+        Schema::create('adm_translations' , function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->char('interface');
@@ -41,7 +41,7 @@ class CreateAdmTranslationsTable extends Migration
 
             /* Indexes */
             $table->unique('id');
-            $table->unique(['interface','widget']);
+            $table->unique(['interface' , 'widget']);
             $table->index(['interface']);
             $table->index('literal');
             $table->index('translation01');

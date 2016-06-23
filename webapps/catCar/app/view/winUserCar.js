@@ -183,8 +183,8 @@ Ext.define('catCar.view.winUserCar', {
                 {
                     xtype: 'button',
                     handler: function (button, e) {
-                        var winSector = Ext.getCmp('winSector');
-                        winSector.close();
+                        var winUserCar = Ext.getCmp('winUserCar');
+                        winUserCar.close();
                     },
                     id: 'btnCloseSector1',
                     itemId: 'btnCloseSector',

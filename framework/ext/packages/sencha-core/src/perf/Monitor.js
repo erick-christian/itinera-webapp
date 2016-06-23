@@ -87,8 +87,8 @@ Ext.define('Ext.perf.Monitor', {
         return ret;
     },
 
-    reset: function(){
-        Ext.each(this.accumulators, function(accum){
+    reset: function () {
+        Ext.each(this.accumulators, function (accum) {
             var me = accum;
             me.count = me.childCount = me.depth = me.maxDepth = 0;
             me.pure = {
@@ -137,11 +137,11 @@ Ext.define('Ext.perf.Monitor', {
         if (!config) {
             config = {
                 /*insertHtml: {
-                    'Ext.dom.Helper': 'insertHtml'
-                },*/
+                 'Ext.dom.Helper': 'insertHtml'
+                 },*/
                 /*xtplCompile: {
-                    'Ext.XTemplateCompiler': 'compile'
-                },*/
+                 'Ext.XTemplateCompiler': 'compile'
+                 },*/
 //                doInsert: {
 //                    'Ext.Template': 'doInsert'
 //                },

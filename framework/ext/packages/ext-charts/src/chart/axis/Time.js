@@ -93,12 +93,12 @@ Ext.define('Ext.chart.axis.Time', {
         if (df) {
             if (label.renderer) {
                 f = label.renderer;
-                label.renderer = function(v) {
+                label.renderer = function (v) {
                     v = f(v);
                     return Ext.Date.format(new Date(f(v)), df);
                 };
             } else {
-                label.renderer = function(v) {
+                label.renderer = function (v) {
                     return Ext.Date.format(new Date(v >> 0), df);
                 };
             }
@@ -114,17 +114,17 @@ Ext.define('Ext.chart.axis.Time', {
         if (me.toDate) {
             me.maximum = +me.toDate;
         }
-        if(me.constrain){
+        if (me.constrain) {
             me.doConstrain();
         }
-     },
+    },
 
     // @private modifies the store and creates the labels for the axes.
-    calcEnds: function() {
+    calcEnds: function () {
         var me = this, range, step = me.step;
         if (step) {
             range = me.getRange();
-            range = Ext.draw.Draw.snapEndsByDateAndStep(new Date(range.min), new Date(range.max), Ext.isNumber(step) ? [Date.MILLI, step]: step);
+            range = Ext.draw.Draw.snapEndsByDateAndStep(new Date(range.min), new Date(range.max), Ext.isNumber(step) ? [Date.MILLI, step] : step);
             if (me.minimum) {
                 range.from = me.minimum;
             }
@@ -136,5 +136,5 @@ Ext.define('Ext.chart.axis.Time', {
             return me.callParent(arguments);
         }
     }
- });
+});
 

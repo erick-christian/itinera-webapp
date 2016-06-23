@@ -119,7 +119,7 @@
  *
  * Specifying the `cellmodel` changes a couple of things. Firstly, clicking on a cell now
  * selects just that cell (using a {@link Ext.selection.RowModel rowmodel} will select the
- * entire row), and secondly the keyboard navigation will walk from cell to cell instead 
+ * entire row), and secondly the keyboard navigation will walk from cell to cell instead
  * of row to row. Cell-based selection models are usually used in conjunction with
  * editing.
  *

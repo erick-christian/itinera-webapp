@@ -14,7 +14,8 @@ class apiCustomer extends Controller
 
     protected $request;
 
-    public function __construct(Request $request){
+    public function __construct(Request $request)
+    {
         $this->request = $request;
     }
 
@@ -30,7 +31,7 @@ class apiCustomer extends Controller
 
         $objApiData = json_decode($this->request->input('apiData'));
         $start = $objApiData->{'start'};
-        $page  = $objApiData->{'page'};
+        $page = $objApiData->{'page'};
         $limit = $objApiData->{'limit'};
 
         $numCustomers = admCustomer::count();
@@ -40,18 +41,18 @@ class apiCustomer extends Controller
         $availableInfo = true;
 
         $apiMessage = Translator::translate(
-            'Spanish',
-            'apiAccessLogin',
-            'InformationPrepared',
+            'Spanish' ,
+            'apiAccessLogin' ,
+            'InformationPrepared' ,
             'InformationPrepared');
 
         $objCountReg = new \stdClass();
         $objCountReg->total = $numCustomers;
 
         Emissary::success($availableInfo);
-        Emissary::addMessage('info-api',$apiMessage);
-        Emissary::addData('customers',$customers);
-        Emissary::addData('numCustomers',$objCountReg);
+        Emissary::addMessage('info-api' , $apiMessage);
+        Emissary::addData('customers' , $customers);
+        Emissary::addData('numCustomers' , $objCountReg);
 
         $objReturn = Emissary::getEnvelope();
         return json_encode($objReturn);
@@ -71,14 +72,14 @@ class apiCustomer extends Controller
         $availableInfo = true;
 
         $apiMessage = Translator::translate(
-            'Spanish',
-            'apiAccessLogin',
-            'InformationPrepared',
+            'Spanish' ,
+            'apiAccessLogin' ,
+            'InformationPrepared' ,
             'InformationPrepared');
 
         Emissary::success($availableInfo);
-        Emissary::addMessage('info-api',$apiMessage);
-        Emissary::addData('customers',$customer);
+        Emissary::addMessage('info-api' , $apiMessage);
+        Emissary::addData('customers' , $customer);
 
         $objReturn = Emissary::getEnvelope();
         return json_encode($objReturn);
@@ -93,11 +94,11 @@ class apiCustomer extends Controller
         $objApiData = json_decode($this->request->input('apiData'));
 
         $customer = new admCustomer;
+        $customer->short_name = $objApiData->{'tfShortName'};
         $customer->company       = $objApiData->{'tfCompany'};
         $customer->tax_id        = $objApiData->{'tfTaxId'};
-        $customer->short_name    = $objApiData->{'tfShortName'};
         $customer->password      = $objApiData->{'tfPassword'};
-        $customer->active        = $objApiData->{'chActive'};
+        $customer->is_active = $objApiData->{'chActive'};
         $customer->address       = $objApiData->{'tfAddress'};
         $customer->zip_code      = $objApiData->{'tfZipCode'};
         $customer->region        = $objApiData->{'tfRegion'};
@@ -105,7 +106,7 @@ class apiCustomer extends Controller
         $customer->country_code = $objApiData->{'tfCountry'};
         $customer->contact_name  = $objApiData->{'tfContactName'};
         $customer->contact_phone = $objApiData->{'tfContactPhone'};
-        $customer->email         = $objApiData->{'tfEmail'};
+        $customer->contact_email = $objApiData->{'tfEmail'};
         $customer->phone         = $objApiData->{'tfPhone'};
         $customer->website       = $objApiData->{'tfWebsite'};
         $customer->latitude      = $objApiData->{'tfLatitude'};
@@ -118,14 +119,14 @@ class apiCustomer extends Controller
         $availableInfo = true;
 
         $apiMessage = Translator::translate(
-            'Spanish',
-            'general',
-            'RecordCreated',
+            'Spanish' ,
+            'general' ,
+            'RecordCreated' ,
             'RecordCreated');
 
         Emissary::success($availableInfo);
-        Emissary::addMessage('info-api',$apiMessage);
-        Emissary::addData('customers',$customer);
+        Emissary::addMessage('info-api' , $apiMessage);
+        Emissary::addData('customers' , $customer);
 
         $objReturn = Emissary::getEnvelope();
         return json_encode($objReturn);
@@ -150,13 +151,13 @@ class apiCustomer extends Controller
         $availableInfo = true;
 
         $apiMessage = Translator::translate(
-            'Spanish',
-            'general',
-            'RecordDeleted',
+            'Spanish' ,
+            'general' ,
+            'RecordDeleted' ,
             'RecordDeleted');
 
         Emissary::success($availableInfo);
-        Emissary::addMessage('info-api',$apiMessage);
+        Emissary::addMessage('info-api' , $apiMessage);
 
         $objReturn = Emissary::getEnvelope();
         return json_encode($objReturn);

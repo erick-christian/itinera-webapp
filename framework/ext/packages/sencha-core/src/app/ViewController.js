@@ -2,10 +2,10 @@
  * A view controller is a controller that can be attached to a specific view
  * instance so it can manage the view and it's child components. Each instance of the view
  * will have a new view controller, so the instances are isolated.
- * 
+ *
  * When a controller is specified on a view, the view automatically becomes a {@link Ext.container.Container#referenceHolder},
  * so it will receive inline events declared on the view. Sample usage:
- * 
+ *
  *     @example
  *     Ext.define('User', {
  *        extend: 'Ext.data.Model',
@@ -68,7 +68,7 @@
  *             return num;
  *         }
  *     });
- *   
+ *
  *     Ext.define('UserList', {
  *         extend: 'Ext.grid.Panel',
  *         controller: 'userlist',
@@ -104,26 +104,26 @@
  *             text: 'Phone'
  *         }]
  *     });
- *   
+ *
  *     Ext.onReady(function() {
  *         new UserList({
  *             renderTo: Ext.getBody(),
  *             width: 400,
  *             height: 200
  *         });
- *     }); 
+ *     });
  */
 Ext.define('Ext.app.ViewController', {
     extend: 'Ext.app.BaseController',
-    
+
     requires: [
         'Ext.app.domain.View'
     ],
-    
+
     mixins: [
         'Ext.mixin.Factoryable'
     ],
-    
+
     isViewController: true,
 
     factoryConfig: { // configure Factoryable
@@ -134,7 +134,7 @@ Ext.define('Ext.app.ViewController', {
         closeViewAction: 'destroy'
     },
 
-    constructor: function() {
+    constructor: function () {
         this.compDomain = new Ext.app.domain.View(this);
         this.callParent(arguments);
     },
@@ -165,7 +165,7 @@ Ext.define('Ext.app.ViewController', {
     /**
      * Destroy the view controller.
      */
-    destroy: function() {
+    destroy: function () {
         var me = this,
             domain = me.compDomain;
 
@@ -194,7 +194,7 @@ Ext.define('Ext.app.ViewController', {
         }
     },
 
-    control: function(selectors, listeners) {
+    control: function (selectors, listeners) {
         var obj = selectors;
         if (Ext.isString(selectors)) {
             obj = {};
@@ -203,8 +203,8 @@ Ext.define('Ext.app.ViewController', {
 
         this.compDomain.listen(obj, this);
     },
-    
-    listen: function(to, controller) {
+
+    listen: function (to, controller) {
         var component = to.component;
         if (component) {
             to = Ext.apply({}, to);
@@ -226,15 +226,15 @@ Ext.define('Ext.app.ViewController', {
      * Get the view for this controller.
      * @return {Ext.Component} The view.
      */
-    getView: function() {
+    getView: function () {
         return this.view;
     },
-    
+
     /**
      * Get a reference to a component set with the {@link Ext.Component#reference}
      * configuration.
      * @param {String} key The key for the reference
-     * 
+     *
      * @return {Ext.Component} The component, `null` if the reference doesn't exist.
      *
      * @since 5.0.0
@@ -247,7 +247,7 @@ Ext.define('Ext.app.ViewController', {
     /**
      * Get a {@link Ext.data.Session} attached to the view for this controller.
      * See {@link Ext.Component#lookupSession}.
-     * 
+     *
      * @return {Ext.data.Session} The session. `null` if no session is found.
      *
      * @since 5.0.0
@@ -260,7 +260,7 @@ Ext.define('Ext.app.ViewController', {
     /**
      * Get a {@link Ext.app.ViewModel} attached to the view for this controller.
      * See {@link Ext.Component#lookupViewModel}.
-     * 
+     *
      * @return {Ext.app.ViewModel} The ViewModel. `null` if no ViewModel is found.
      *
      * @since 5.0.0
@@ -274,12 +274,12 @@ Ext.define('Ext.app.ViewController', {
      * Get a {@link Ext.data.Store} attached to the {@link #getViewModel ViewModel} attached to
      * this controller. See {@link Ext.app.ViewModel#getStore}.
      * @param {String} name The name of the store.
-     * @return {Ext.data.Store} The store. `null` if no store is found, or there is no 
+     * @return {Ext.data.Store} The store. `null` if no store is found, or there is no
      * {@link Ext.app.ViewModel} attached to the view for this controller.
      *
      * @since 5.0.0
      */
-    getStore: function(name) {
+    getStore: function (name) {
         var viewModel = this.getViewModel();
         return viewModel ? viewModel.getStore(name) : null;
     },
@@ -291,7 +291,7 @@ Ext.define('Ext.app.ViewController', {
      * @return {Boolean} returns false if any of the handlers return false otherwise it returns true.
      * @protected
      */
-    fireViewEvent: function(eventName) {
+    fireViewEvent: function (eventName) {
         var view = this.view,
             result = false;
 
@@ -305,7 +305,7 @@ Ext.define('Ext.app.ViewController', {
     privates: {
         view: null,
 
-        ensureId: function() {
+        ensureId: function () {
             var id = this.getId();
             if (!id) {
                 this.setId(Ext.id(null, 'controller-'));
@@ -323,14 +323,14 @@ Ext.define('Ext.app.ViewController', {
                 view.attachReference(component);
             }
         },
-        
+
         /**
          * Clear a reference to a component
          * @param {Ext.Component} ref The component to reference
-         * 
+         *
          * @private
          */
-        clearReference: function(ref) {
+        clearReference: function (ref) {
             var view = this.view;
             if (view) {
                 view.clearReference(ref);
@@ -358,7 +358,7 @@ Ext.define('Ext.app.ViewController', {
          *
          * @private
          */
-        setView: function(view) {
+        setView: function (view) {
             this.view = view;
 
             if (!this.beforeInit.$nullFn) {

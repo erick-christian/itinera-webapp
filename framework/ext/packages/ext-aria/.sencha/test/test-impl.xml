@@ -40,9 +40,9 @@ this file in most cases.
                 dir="cmd-test.specs.dir">
             test
             console
-                -launch=false
-                -configFile
-                    ${cmd-test.specs.test-json}
+            -launch=false
+            -configFile
+            ${cmd-test.specs.test-json}
         </x-sencha-command>
     </target>
     <target name="-after-test-console"/>
@@ -59,7 +59,7 @@ this file in most cases.
             test
             run
             -configFile
-                ${cmd-test.specs.test-json}
+            ${cmd-test.specs.test-json}
         </x-sencha-command>
     </target>
     <target name="-after-test-run"/>

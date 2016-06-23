@@ -5,7 +5,7 @@ Ext.define('Ext.classic.toolbar.Toolbar', {
 
 Ext.define('ExtThemeCodaxyCore.panel.Panel', {
     override: 'Ext.panel.Panel',
-    initComponent: function() {
+    initComponent: function () {
         this.callParent();
         var me = this,
             header = me.header,
@@ -24,7 +24,7 @@ Ext.define('ExtThemeCodaxyCore.panel.Panel', {
 
 Ext.define('ExtThemeCodaxyCore.tab.Panel', {
     override: 'Ext.tab.Panel',
-    initComponent: function() {
+    initComponent: function () {
         this.callParent();
         if (this.tabBarHeaderPosition >= 0) {
             this.cls = 'cx-header-tabbar ' + this.cls;
@@ -49,18 +49,18 @@ Ext.define('Ext.window.WindowActiveCls', {
     shadow: false,
     ghost: false,
     ui: 'blue-window-active',
-    setActive: function(active, newActive) {
+    setActive: function (active, newActive) {
         this.callParent(arguments);
         var me = this;
-        if (!me.el)  {
+        if (!me.el) {
             return;
         }
-        
+
         if (Ext.getVersion().version >= '4.2.2.1144') {
-            if (me.id.indexOf('window') == 0 && me.id.indexOf('-ghost') > 0)  {
+            if (me.id.indexOf('window') == 0 && me.id.indexOf('-ghost') > 0) {
                 return;
             }
-            
+
         }
         var paw = Ext.window.Window._activeWindow;
         if (active) {
@@ -70,10 +70,10 @@ Ext.define('Ext.window.WindowActiveCls', {
                 paw.removeCls('x-window-active');
             }
         } else {
-            if (me != paw)  {
+            if (me != paw) {
                 me.removeCls('x-window-active');
             }
-            
+
         }
     }
 });

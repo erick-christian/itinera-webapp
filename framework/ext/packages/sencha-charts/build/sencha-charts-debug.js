@@ -11,29 +11,29 @@ Ext.define('Ext.draw.ContainerBase', {
     // Adds a listener to this draw container's element. If the element does not yet exist
     // addition of the listener will be deferred until onRender.  Useful when listeners
     // need to be attached during initConfig.
-    addElementListener: function() {
+    addElementListener: function () {
         var me = this,
             args = arguments;
         if (me.rendered) {
             me.el.on.apply(me.el, args);
         } else {
-            me.on('render', function() {
+            me.on('render', function () {
                 me.el.on.apply(me.el, args);
             });
         }
     },
-    removeElementListener: function() {
+    removeElementListener: function () {
         var me = this,
             args = arguments;
         if (me.rendered) {
             me.el.un.apply(me.el, args);
         }
     },
-    afterRender: function() {
+    afterRender: function () {
         this.callParent(arguments);
         this.initAnimator();
     },
-    getItems: function() {
+    getItems: function () {
         var me = this,
             items = me.items;
         if (!items || !items.isMixedCollection) {
@@ -44,23 +44,23 @@ Ext.define('Ext.draw.ContainerBase', {
         }
         return me.items;
     },
-    onRender: function() {
+    onRender: function () {
         this.callParent(arguments);
         this.element = this.el;
         this.innerElement = this.body;
     },
-    setItems: function(items) {
+    setItems: function (items) {
         this.items = items;
         return items;
     },
-    setSurfaceSize: function(width, height) {
+    setSurfaceSize: function (width, height) {
         this.resizeHandler({
             width: width,
             height: height
         });
         this.renderFrame();
     },
-    onResize: function(width, height, oldWidth, oldHeight) {
+    onResize: function (width, height, oldWidth, oldHeight) {
         var me = this;
         me.callParent([
             width,
@@ -73,7 +73,7 @@ Ext.define('Ext.draw.ContainerBase', {
             height: height
         });
     },
-    preview: function() {
+    preview: function () {
         var image = this.getImage();
         new Ext.window.Window({
             title: 'Chart Preview',
@@ -96,13 +96,13 @@ Ext.define('Ext.draw.ContainerBase', {
                     cls: Ext.baseCSSPrefix + 'chart-image',
                     src: image.data,
                     listeners: {
-                        afterrender: function() {
+                        afterrender: function () {
                             var me = this,
                                 img = me.imgEl.dom,
                                 ratio = image.type === 'svg' ? 1 : (window['devicePixelRatio'] || 1),
                                 size;
                             if (!img.naturalWidth || !img.naturalHeight) {
-                                img.onload = function() {
+                                img.onload = function () {
                                     var width = img.naturalWidth,
                                         height = img.naturalHeight;
                                     me.setWidth(Math.floor(width / ratio));
@@ -120,7 +120,7 @@ Ext.define('Ext.draw.ContainerBase', {
         });
     },
     privates: {
-        getTargetEl: function() {
+        getTargetEl: function () {
             return this.innerElement;
         }
     }
@@ -164,10 +164,10 @@ Ext.define('Ext.draw.Color', {
      * @param {Number} blue Blue component (0..255)
      * @param {Number} [alpha=1] (optional) Alpha component (0..1)
      */
-    constructor: function(red, green, blue, alpha) {
+    constructor: function (red, green, blue, alpha) {
         this.setRGB(red, green, blue, alpha);
     },
-    setRGB: function(red, green, blue, alpha) {
+    setRGB: function (red, green, blue, alpha) {
         var me = this;
         me.r = Math.min(255, Math.max(0, red));
         me.g = Math.min(255, Math.max(0, green));
@@ -185,7 +185,7 @@ Ext.define('Ext.draw.Color', {
      *
      * @return {Number}
      */
-    getGrayscale: function() {
+    getGrayscale: function () {
         // http://en.wikipedia.org/wiki/Grayscale#Converting_color_to_grayscale
         return this.r * 0.3 + this.g * 0.59 + this.b * 0.11;
     },
@@ -193,7 +193,7 @@ Ext.define('Ext.draw.Color', {
      * Get the equivalent HSL components of the color.
      * @return {Number[]}
      */
-    getHSL: function() {
+    getHSL: function () {
         var me = this,
             r = me.r / 255,
             g = me.g / 255,
@@ -231,7 +231,7 @@ Ext.define('Ext.draw.Color', {
      * Get the equivalent HSV components of the color.
      * @return {Number[]}
      */
-    getHSV: function() {
+    getHSV: function () {
         var me = this,
             r = me.r / 255,
             g = me.g / 255,
@@ -273,7 +273,7 @@ Ext.define('Ext.draw.Color', {
      * @param {Number} l Lightness component [0..1]
      * @return {Ext.draw.Color}
      */
-    setHSL: function(h, s, l) {
+    setHSL: function (h, s, l) {
         var me = this,
             abs = Math.abs,
             c, x, m;
@@ -326,7 +326,7 @@ Ext.define('Ext.draw.Color', {
      * @param {Number} v Value component [0..1]
      * @return {Ext.draw.Color}
      */
-    setHSV: function(h, s, v) {
+    setHSV: function (h, s, v) {
         var me = this,
             c, x, m;
         h = (h % 360 + 360) % 360;
@@ -375,7 +375,7 @@ Ext.define('Ext.draw.Color', {
      * @param {Number} [factor=0.2] Lighter factor (0..1).
      * @return {Ext.draw.Color}
      */
-    createLighter: function(factor) {
+    createLighter: function (factor) {
         if (!factor && factor !== 0) {
             factor = this.lightnessFactor;
         }
@@ -388,19 +388,19 @@ Ext.define('Ext.draw.Color', {
      * @param {Number} [factor=0.2] Darker factor (0..1).
      * @return {Ext.draw.Color}
      */
-    createDarker: function(factor) {
+    createDarker: function (factor) {
         if (!factor && factor !== 0) {
             factor = this.lightnessFactor;
         }
         return this.createLighter(-factor);
     },
     /**
-     * toString() returns a color in hex format ('#rrggbb') if the alpha is 1. If the 
+     * toString() returns a color in hex format ('#rrggbb') if the alpha is 1. If the
      * alpha is less than one, toString() returns the color in RGBA format ('rgba(255,0,0,0.3)').
-     * 
+     *
      * @return {String}
      */
-    toString: function() {
+    toString: function () {
         var me = this,
             round = Math.round;
         if (me.a === 1) {
@@ -418,11 +418,11 @@ Ext.define('Ext.draw.Color', {
             ].join('');
         } else {
             return 'rgba(' + [
-                round(me.r),
-                round(me.g),
-                round(me.b),
-                me.a === 0 ? 0 : me.a.toFixed(15)
-            ].join(', ') + ')';
+                    round(me.r),
+                    round(me.g),
+                    round(me.b),
+                    me.a === 0 ? 0 : me.a.toFixed(15)
+                ].join(', ') + ')';
         }
     },
     // Even though things like 'rgba(0,0,0,0)' will probably get converted to
@@ -437,7 +437,7 @@ Ext.define('Ext.draw.Color', {
      * Can also be an Array, in this case the function handles the first member.
      * @return {String} The color in hexadecimal format.
      */
-    toHex: function(color) {
+    toHex: function (color) {
         if (Ext.isArray(color)) {
             color = color[0];
         }
@@ -461,8 +461,8 @@ Ext.define('Ext.draw.Color', {
     /**
      * Parse the string and set the current color.
      *
-     * Supported formats: 
-     * 
+     * Supported formats:
+     *
      * + '#rrggbb'
      * + '#rgb', 'rgb(r,g,b)'
      * + 'rgba(r,g,b,a)'
@@ -473,7 +473,7 @@ Ext.define('Ext.draw.Color', {
      * @param {String} Color Color as string.
      * @return this
      */
-    setFromString: function(str) {
+    setFromString: function (str) {
         var values, r, g, b,
             a = 1,
             parse = parseInt;
@@ -516,7 +516,7 @@ Ext.define('Ext.draw.Color', {
         this.a = a;
         return this;
     }
-}, function() {
+}, function () {
     var flyColor = new this();
     this.addStatics({
         /**
@@ -532,7 +532,7 @@ Ext.define('Ext.draw.Color', {
          * @return {Ext.draw.Color}
          * @static
          */
-        fly: function(r, g, b, a) {
+        fly: function (r, g, b, a) {
             switch (arguments.length) {
                 case 1:
                     flyColor.setFromString(r);
@@ -698,7 +698,7 @@ Ext.define('Ext.draw.Color', {
          * @return {Ext.draw.Color}
          * @static
          */
-        fromHSL: function(h, s, l) {
+        fromHSL: function (h, s, l) {
             return (new this(0, 0, 0, 0)).setHSL(h, s, l);
         },
         /**
@@ -710,14 +710,14 @@ Ext.define('Ext.draw.Color', {
          * @return {Ext.draw.Color}
          * @static
          */
-        fromHSV: function(h, s, v) {
+        fromHSV: function (h, s, v) {
             return (new this(0, 0, 0, 0)).setHSL(h, s, v);
         },
         /**
          * Parse the string and create a new color.
          *
-         * Supported formats: 
-         * 
+         * Supported formats:
+         *
          * + '#rrggbb'
          * + '#rgb', 'rgb(r,g,b)'
          * + 'rgba(r,g,b,a)'
@@ -729,7 +729,7 @@ Ext.define('Ext.draw.Color', {
          * @return {Ext.draw.Color}
          * @static
          */
-        fromString: function(string) {
+        fromString: function (string) {
             return (new this(0, 0, 0, 0)).setFromString(string);
         },
         /**
@@ -760,7 +760,7 @@ Ext.define('Ext.draw.Color', {
          * @return {Ext.draw.Color}
          * @static
          */
-        create: function(arg) {
+        create: function (arg) {
             if (arg instanceof this) {
                 return arg;
             } else if (Ext.isArray(arg)) {
@@ -785,13 +785,15 @@ Ext.define('Ext.draw.Color', {
  * before an intermidiate value can be computed (parseInitial), or the computed value
  * needs to be processed before it can be used as a valid attribute value (serve).
  */
-Ext.define('Ext.draw.sprite.AnimationParser', function() {
+Ext.define('Ext.draw.sprite.AnimationParser', function () {
     function compute(from, to, delta) {
         return from + (to - from) * delta;
     }
+
     function isNotNumber(n) {
         return isNaN(parseFloat(n)) || !isFinite(n);
     }
+
     return {
         singleton: true,
         attributeRe: /^url\(#([a-zA-Z\-]+)\)$/,
@@ -799,7 +801,7 @@ Ext.define('Ext.draw.sprite.AnimationParser', function() {
             'Ext.draw.Color'
         ],
         color: {
-            parseInitial: function(color1, color2) {
+            parseInitial: function (color1, color2) {
                 if (Ext.isString(color1)) {
                     color1 = Ext.draw.Color.create(color1);
                 }
@@ -828,7 +830,7 @@ Ext.define('Ext.draw.sprite.AnimationParser', function() {
                     ];
                 }
             },
-            compute: function(from, to, delta) {
+            compute: function (from, to, delta) {
                 if (!Ext.isArray(from) || !Ext.isArray(to)) {
                     return to || from;
                 } else {
@@ -840,16 +842,16 @@ Ext.define('Ext.draw.sprite.AnimationParser', function() {
                     ];
                 }
             },
-            serve: function(array) {
+            serve: function (array) {
                 var color = Ext.draw.Color.fly(array[0], array[1], array[2], array[3]);
                 return color.toString();
             }
         },
         number: {
-            parse: function(n) {
+            parse: function (n) {
                 return n === null ? null : +n;
             },
-            compute: function(from, to, delta) {
+            compute: function (from, to, delta) {
                 if (!Ext.isNumber(from) || !Ext.isNumber(to)) {
                     return to || from;
                 } else {
@@ -858,7 +860,7 @@ Ext.define('Ext.draw.sprite.AnimationParser', function() {
             }
         },
         angle: {
-            parseInitial: function(from, to) {
+            parseInitial: function (from, to) {
                 if (to - from > Math.PI) {
                     to -= Math.PI * 2;
                 } else if (to - from < -Math.PI) {
@@ -869,7 +871,7 @@ Ext.define('Ext.draw.sprite.AnimationParser', function() {
                     to
                 ];
             },
-            compute: function(from, to, delta) {
+            compute: function (from, to, delta) {
                 if (!Ext.isNumber(from) || !Ext.isNumber(to)) {
                     return to || from;
                 } else {
@@ -878,7 +880,7 @@ Ext.define('Ext.draw.sprite.AnimationParser', function() {
             }
         },
         path: {
-            parseInitial: function(from, to) {
+            parseInitial: function (from, to) {
                 var fromStripes = from.toStripes(),
                     toStripes = to.toStripes(),
                     i, j,
@@ -928,7 +930,7 @@ Ext.define('Ext.draw.sprite.AnimationParser', function() {
                     toStripes
                 ];
             },
-            compute: function(fromStripes, toStripes, delta) {
+            compute: function (fromStripes, toStripes, delta) {
                 if (delta >= 1) {
                     return toStripes.path;
                 }
@@ -950,7 +952,7 @@ Ext.define('Ext.draw.sprite.AnimationParser', function() {
             }
         },
         data: {
-            compute: function(from, to, delta, target) {
+            compute: function (from, to, delta, target) {
                 var lf = from.length - 1,
                     lt = to.length - 1,
                     len = Math.max(lf, lt),
@@ -981,7 +983,7 @@ Ext.define('Ext.draw.sprite.AnimationParser', function() {
             }
         },
         text: {
-            compute: function(from, to, delta) {
+            compute: function (from, to, delta) {
                 return from.substr(0, Math.round(from.length * (1 - delta))) + to.substr(Math.round(to.length * (1 - delta)));
             }
         },
@@ -990,20 +992,20 @@ Ext.define('Ext.draw.sprite.AnimationParser', function() {
     };
 });
 
-(function() {
+(function () {
     if (!Ext.global.Float32Array) {
         // Typed Array polyfill
-        var Float32Array = function(array) {
-                if (typeof array === 'number') {
-                    this.length = array;
-                } else if ('length' in array) {
-                    this.length = array.length;
-                    for (var i = 0,
-                        len = array.length; i < len; i++) {
-                        this[i] = +array[i];
-                    }
+        var Float32Array = function (array) {
+            if (typeof array === 'number') {
+                this.length = array;
+            } else if ('length' in array) {
+                this.length = array.length;
+                for (var i = 0,
+                         len = array.length; i < len; i++) {
+                    this[i] = +array[i];
                 }
-            };
+            }
+        };
         Float32Array.prototype = [];
         Ext.global.Float32Array = Float32Array;
     }
@@ -1021,7 +1023,7 @@ Ext.define('Ext.draw.Draw', {
      * @param {Mixed} a
      * @return {Mixed}
      */
-    reflectFn: function(a) {
+    reflectFn: function (a) {
         return a;
     },
     /**
@@ -1029,7 +1031,7 @@ Ext.define('Ext.draw.Draw', {
      * @param {Number} degrees
      * @return {Number}
      */
-    rad: function(degrees) {
+    rad: function (degrees) {
         return (degrees % 360) * this.radian;
     },
     /**
@@ -1037,7 +1039,7 @@ Ext.define('Ext.draw.Draw', {
      * @param {Number} radian
      * @return {Number}
      */
-    degrees: function(radian) {
+    degrees: function (radian) {
         return (radian / this.radian) % 360;
     },
     /**
@@ -1047,7 +1049,7 @@ Ext.define('Ext.draw.Draw', {
      * @param {Number} [padding]
      * @return {Boolean}
      */
-    isBBoxIntersect: function(bbox1, bbox2, padding) {
+    isBBoxIntersect: function (bbox1, bbox2, padding) {
         padding = padding || 0;
         return (Math.max(bbox1.x, bbox2.x) - padding > Math.min(bbox1.x + bbox1.width, bbox2.x + bbox2.width)) || (Math.max(bbox1.y, bbox2.y) - padding > Math.min(bbox1.y + bbox1.height, bbox2.y + bbox2.height));
     },
@@ -1058,7 +1060,7 @@ Ext.define('Ext.draw.Draw', {
      * @param bbox
      * @return {Boolean}
      */
-    isPointInBBox: function(x, y, bbox) {
+    isPointInBBox: function (x, y, bbox) {
         return !!bbox && x >= bbox.x && x <= (bbox.x + bbox.width) && y >= bbox.y && y <= (bbox.y + bbox.height);
     },
     /**
@@ -1067,7 +1069,7 @@ Ext.define('Ext.draw.Draw', {
      *
      * @param {Array} points Array of numbers.
      */
-    spline: function(points) {
+    spline: function (points) {
         var i, j,
             ln = points.length,
             nd, d, y, ny,
@@ -1122,7 +1124,7 @@ Ext.define('Ext.draw.Draw', {
      *                  are the control point for the curve toward the previous path point, and
      *                  x2 and y2 are the control point for the curve toward the next path point.
      */
-    getAnchors: function(prevX, prevY, curX, curY, nextX, nextY, value) {
+    getAnchors: function (prevX, prevY, curX, curY, nextX, nextY, value) {
         value = value || 4;
         var PI = Math.PI,
             halfPI = PI / 2,
@@ -1189,7 +1191,7 @@ Ext.define('Ext.draw.Draw', {
      * @param value A value to control the smoothness of the curve.
      * @return {Object} Object holding two arrays, for x and y coordinates of the curve.
      */
-    smooth: function(dataX, dataY, value) {
+    smooth: function (dataX, dataY, value) {
         var ln = dataX.length,
             prevX, prevY, curX, curY, nextX, nextY, x, y,
             smoothX = [],
@@ -1233,11 +1235,11 @@ Ext.define('Ext.draw.Draw', {
      * Work around for iOS.
      * Nested 3d-transforms seems to prevent the redraw inside it until some event is fired.
      */
-    updateIOS: Ext.os.is.iOS ? function() {
+    updateIOS: Ext.os.is.iOS ? function () {
         var el = Ext.getBody().createChild({
-                style: 'position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px; background: rgba(0,0,0,0.001); z-index: 100000'
-            });
-        Ext.draw.Animator.schedule(function() {
+            style: 'position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px; background: rgba(0,0,0,0.001); z-index: 100000'
+        });
+        Ext.draw.Animator.schedule(function () {
             el.destroy();
         });
     } : Ext.emptyFn
@@ -1259,7 +1261,7 @@ Ext.define('Ext.draw.gradient.Gradient', {
          */
         stops: []
     },
-    applyStops: function(newStops) {
+    applyStops: function (newStops) {
         var stops = [],
             ln = newStops.length,
             i, stop, color;
@@ -1274,17 +1276,17 @@ Ext.define('Ext.draw.gradient.Gradient', {
                 color: color.toString()
             });
         }
-        stops.sort(function(a, b) {
+        stops.sort(function (a, b) {
             return a.offset - b.offset;
         });
         return stops;
     },
-    onClassExtended: function(subClass, member) {
+    onClassExtended: function (subClass, member) {
         if (!member.alias && member.type) {
             member.alias = 'gradient.' + member.type;
         }
     },
-    constructor: function(config) {
+    constructor: function (config) {
         this.initConfig(config);
     },
     /**
@@ -1306,7 +1308,7 @@ Ext.define('Ext.draw.gradient.GradientDefinition', {
     singleton: true,
     urlStringRe: /^url\(#([\w\-]+)\)$/,
     gradients: {},
-    add: function(gradients) {
+    add: function (gradients) {
         var store = this.gradients,
             i, n, gradient;
         for (i = 0 , n = gradients.length; i < n; i++) {
@@ -1316,7 +1318,7 @@ Ext.define('Ext.draw.gradient.GradientDefinition', {
             }
         }
     },
-    get: function(str) {
+    get: function (str) {
         var store = this.gradients,
             match = str.match(this.urlStringRe),
             gradient;
@@ -1343,18 +1345,18 @@ Ext.define('Ext.draw.sprite.AttributeParser', {
         'Ext.draw.Color',
         'Ext.draw.gradient.GradientDefinition'
     ],
-    "default": function(n) {
+    "default": function (n) {
         return n;
     },
-    string: function(n) {
+    string: function (n) {
         return String(n);
     },
-    number: function(n) {
+    number: function (n) {
         if (!isNaN(n)) {
             return n;
         }
     },
-    angle: function(n) {
+    angle: function (n) {
         if (!isNaN(n)) {
             n %= Math.PI * 2;
             if (n < -Math.PI) {
@@ -1366,17 +1368,17 @@ Ext.define('Ext.draw.sprite.AttributeParser', {
             return n;
         }
     },
-    data: function(n) {
+    data: function (n) {
         if (Ext.isArray(n)) {
             return n.slice();
         } else if (n instanceof Float32Array) {
             return new Float32Array(n);
         }
     },
-    bool: function(n) {
+    bool: function (n) {
         return !!n;
     },
-    color: function(n) {
+    color: function (n) {
         if (n instanceof Ext.draw.Color) {
             return n.toString();
         } else if (n instanceof Ext.draw.gradient.Gradient) {
@@ -1403,12 +1405,12 @@ Ext.define('Ext.draw.sprite.AttributeParser', {
             return Ext.draw.Color.NONE;
         }
     },
-    limited: function(low, hi) {
-        return function(n) {
+    limited: function (low, hi) {
+        return function (n) {
             return isNaN(n) ? undefined : Math.min(Math.max(+n, low), hi);
         };
     },
-    limited01: function(n) {
+    limited01: function (n) {
         return isNaN(n) ? undefined : Math.min(Math.max(+n, 0), 1);
     },
     /**
@@ -1416,14 +1418,14 @@ Ext.define('Ext.draw.sprite.AttributeParser', {
      * one of the given attributes.
      * @return {Function}
      */
-    enums: function() {
+    enums: function () {
         var enums = {},
             args = Array.prototype.slice.call(arguments, 0),
             i, ln;
         for (i = 0 , ln = args.length; i < ln; i++) {
             enums[args[i]] = true;
         }
-        return function(n) {
+        return function (n) {
             return n in enums ? n : undefined;
         };
     }
@@ -1526,18 +1528,18 @@ Ext.define('Ext.draw.sprite.AttributeDefinition', {
          */
         processorFactoryRe: /^(\w+)\(([\w\-,]*)\)$/
     },
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this;
         me.initConfig(config);
     },
-    applyDefaults: function(defaults, oldDefaults) {
+    applyDefaults: function (defaults, oldDefaults) {
         oldDefaults = Ext.apply(oldDefaults || {}, this.normalize(defaults));
         return oldDefaults;
     },
-    applyAliases: function(aliases, oldAliases) {
+    applyAliases: function (aliases, oldAliases) {
         return Ext.apply(oldAliases || {}, aliases);
     },
-    applyProcessors: function(processors, oldProcessors) {
+    applyProcessors: function (processors, oldProcessors) {
         this.getAnimationProcessors();
         // Apply custom animation processors first.
         var result = oldProcessors || {},
@@ -1559,7 +1561,7 @@ Ext.define('Ext.draw.sprite.AttributeDefinition', {
                         fn = defaultProcessor[fn];
                     }
                 } else {
-                    
+
                     continue;
                 }
             }
@@ -1570,7 +1572,7 @@ Ext.define('Ext.draw.sprite.AttributeDefinition', {
         }
         return result;
     },
-    applyAnimationProcessors: function(animationProcessors, oldAnimationProcessors) {
+    applyAnimationProcessors: function (animationProcessors, oldAnimationProcessors) {
         var parser = Ext.draw.sprite.AnimationParser,
             name, item;
         if (!oldAnimationProcessors) {
@@ -1595,10 +1597,10 @@ Ext.define('Ext.draw.sprite.AttributeDefinition', {
         }
         return oldAnimationProcessors;
     },
-    updateDirtyTriggers: function(dirtyTriggers) {
+    updateDirtyTriggers: function (dirtyTriggers) {
         this.setTriggers(dirtyTriggers);
     },
-    applyTriggers: function(triggers, oldTriggers) {
+    applyTriggers: function (triggers, oldTriggers) {
         if (!oldTriggers) {
             oldTriggers = {};
         }
@@ -1607,10 +1609,10 @@ Ext.define('Ext.draw.sprite.AttributeDefinition', {
         }
         return oldTriggers;
     },
-    applyUpdaters: function(updaters, oldUpdaters) {
+    applyUpdaters: function (updaters, oldUpdaters) {
         return Ext.apply(oldUpdaters || {}, updaters);
     },
-    batchedNormalize: function(batchedChanges, keepUnrecognized) {
+    batchedNormalize: function (batchedChanges, keepUnrecognized) {
         if (!batchedChanges) {
             return {};
         }
@@ -1658,7 +1660,7 @@ Ext.define('Ext.draw.sprite.AttributeDefinition', {
                     normalized.rotationRads = rotation.rads;
                 } else if ('degrees' in rotation) {
                     if (Ext.isArray(rotation.degrees)) {
-                        normalized.rotationRads = Ext.Array.map(rotation.degrees, function(deg) {
+                        normalized.rotationRads = Ext.Array.map(rotation.degrees, function (deg) {
                             return Ext.draw.Draw.rad(deg);
                         });
                     } else {
@@ -1698,7 +1700,7 @@ Ext.define('Ext.draw.sprite.AttributeDefinition', {
         for (name in batchedChanges) {
             val = batchedChanges[name];
             if (typeof val === 'undefined') {
-                
+
                 continue;
             } else if (Ext.isArray(val)) {
                 if (name in aliases) {
@@ -1738,7 +1740,7 @@ Ext.define('Ext.draw.sprite.AttributeDefinition', {
      * @param {Boolean} keepUnrecognized If 'true', unknown attributes will be passed through as normalized values.
      * @return {Object} The normalized values.
      */
-    normalize: function(changes, keepUnrecognized) {
+    normalize: function (changes, keepUnrecognized) {
         if (!changes) {
             return {};
         }
@@ -1820,7 +1822,7 @@ Ext.define('Ext.draw.sprite.AttributeDefinition', {
         for (name in changes) {
             val = changes[name];
             if (typeof val === 'undefined') {
-                
+
                 continue;
             }
             if (name in aliases) {
@@ -1837,10 +1839,10 @@ Ext.define('Ext.draw.sprite.AttributeDefinition', {
         }
         return normalized;
     },
-    setBypassingNormalization: function(attr, modifierStack, changes) {
+    setBypassingNormalization: function (attr, modifierStack, changes) {
         return modifierStack.pushDown(attr, changes);
     },
-    set: function(attr, modifierStack, changes) {
+    set: function (attr, modifierStack, changes) {
         changes = this.normalize(changes);
         return this.setBypassingNormalization(attr, modifierStack, changes);
     }
@@ -1854,9 +1856,9 @@ Ext.define('Ext.draw.sprite.AttributeDefinition', {
  *   1. Ext.draw.Matrix is not read only.
  *   2. Using Number as its components rather than floats.
  *
- * Using this class helps to reduce the severe numeric 
+ * Using this class helps to reduce the severe numeric
  * [problem with HTML Canvas and SVG transformation](http://stackoverflow.com/questions/8784405/large-numbers-in-html-canvas-translate-result-in-strange-behavior)
- * 
+ *
  * There's also no way to get current transformation matrix [in Canvas](http://stackoverflow.com/questions/7395813/html5-canvas-get-transform-matrix).
  */
 Ext.define('Ext.draw.Matrix', {
@@ -1874,7 +1876,7 @@ Ext.define('Ext.draw.Matrix', {
          * @param {Number} x1p
          * @param {Number} y1p
          */
-        createAffineMatrixFromTwoPair: function(x0, y0, x1, y1, x0p, y0p, x1p, y1p) {
+        createAffineMatrixFromTwoPair: function (x0, y0, x1, y1, x0p, y0p, x1p, y1p) {
             var dx = x1 - x0,
                 dy = y1 - y0,
                 dxp = x1p - x0p,
@@ -1898,7 +1900,7 @@ Ext.define('Ext.draw.Matrix', {
          * @param {Number} x1p
          * @param {Number} y1p
          */
-        createPanZoomFromTwoPair: function(x0, y0, x1, y1, x0p, y0p, x1p, y1p) {
+        createPanZoomFromTwoPair: function (x0, y0, x1, y1, x0p, y0p, x1p, y1p) {
             if (arguments.length === 2) {
                 return this.createPanZoomFromTwoPair.apply(this, x0.concat(y0));
             }
@@ -1925,13 +1927,13 @@ Ext.define('Ext.draw.Matrix', {
          * @param {Array} elements
          * @return {Ext.draw.Matrix}
          */
-        fly: (function() {
+        fly: (function () {
             var flyMatrix = null,
-                simplefly = function(elements) {
+                simplefly = function (elements) {
                     flyMatrix.elements = elements;
                     return flyMatrix;
                 };
-            return function(elements) {
+            return function (elements) {
                 if (!flyMatrix) {
                     flyMatrix = new Ext.draw.Matrix();
                 }
@@ -1946,7 +1948,7 @@ Ext.define('Ext.draw.Matrix', {
          * @param {Mixed} mat
          * @return {Ext.draw.Matrix}
          */
-        create: function(mat) {
+        create: function (mat) {
             if (mat instanceof this) {
                 return mat;
             }
@@ -1963,7 +1965,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Number} dx Offset of x
      * @param {Number} dy Offset of y
      */
-    constructor: function(xx, xy, yx, yy, dx, dy) {
+    constructor: function (xx, xy, yx, yy, dx, dy) {
         if (xx && xx.length === 6) {
             this.elements = xx.slice();
         } else if (xx !== undefined) {
@@ -1999,7 +2001,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Number} dy Offset of y.
      * @return {Ext.draw.Matrix} this
      */
-    prepend: function(xx, xy, yx, yy, dx, dy) {
+    prepend: function (xx, xy, yx, yy, dx, dy) {
         var elements = this.elements,
             xx0 = elements[0],
             xy0 = elements[1],
@@ -2022,7 +2024,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Ext.draw.Matrix} matrix
      * @return {Ext.draw.Matrix} this
      */
-    prependMatrix: function(matrix) {
+    prependMatrix: function (matrix) {
         return this.prepend.apply(this, matrix.elements);
     },
     /**
@@ -2038,7 +2040,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Number} dy Offset of y.
      * @return {Ext.draw.Matrix} this
      */
-    append: function(xx, xy, yx, yy, dx, dy) {
+    append: function (xx, xy, yx, yy, dx, dy) {
         var elements = this.elements,
             xx0 = elements[0],
             xy0 = elements[1],
@@ -2062,7 +2064,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Ext.draw.Matrix} matrix
      * @return {Ext.draw.Matrix} this
      */
-    appendMatrix: function(matrix) {
+    appendMatrix: function (matrix) {
         return this.append.apply(this, matrix.elements);
     },
     /**
@@ -2075,7 +2077,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Number} dy
      * @return {Ext.draw.Matrix} this
      */
-    set: function(xx, xy, yx, yy, dx, dy) {
+    set: function (xx, xy, yx, yy, dx, dy) {
         var elements = this.elements;
         elements[0] = xx;
         elements[1] = xy;
@@ -2093,7 +2095,7 @@ Ext.define('Ext.draw.Matrix', {
      *
      * @return {Ext.draw.Matrix}
      */
-    inverse: function(target) {
+    inverse: function (target) {
         var elements = this.elements,
             a = elements[0],
             b = elements[1],
@@ -2121,7 +2123,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Boolean} [prepend] If `true`, this will transformation be prepended to the matrix.
      * @return {Ext.draw.Matrix} this
      */
-    translate: function(x, y, prepend) {
+    translate: function (x, y, prepend) {
         if (prepend) {
             return this.prepend(1, 0, 0, 1, x, y);
         } else {
@@ -2138,7 +2140,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Boolean} [prepend] If `true`, this will transformation be prepended to the matrix.
      * @return {Ext.draw.Matrix} this
      */
-    scale: function(sx, sy, scx, scy, prepend) {
+    scale: function (sx, sy, scx, scy, prepend) {
         var me = this;
         // null or undefined
         if (sy == null) {
@@ -2165,7 +2167,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Boolean} [prepend] If `true`, this will transformation be prepended to the matrix.
      * @return {Ext.draw.Matrix} this
      */
-    rotate: function(angle, rcx, rcy, prepend) {
+    rotate: function (angle, rcx, rcy, prepend) {
         var me = this,
             cos = Math.cos(angle),
             sin = Math.sin(angle);
@@ -2185,7 +2187,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Boolean} [prepend] If `true`, this will transformation be prepended to the matrix.
      * @return {Ext.draw.Matrix} this
      */
-    rotateFromVector: function(x, y, prepend) {
+    rotateFromVector: function (x, y, prepend) {
         var me = this,
             d = Math.sqrt(x * x + y * y),
             cos = x / d,
@@ -2200,21 +2202,21 @@ Ext.define('Ext.draw.Matrix', {
      * Clone this matrix.
      * @return {Ext.draw.Matrix}
      */
-    clone: function() {
+    clone: function () {
         return new Ext.draw.Matrix(this.elements);
     },
     /**
      * Horizontally flip the matrix
      * @return {Ext.draw.Matrix} this
      */
-    flipX: function() {
+    flipX: function () {
         return this.append(-1, 0, 0, 1, 0, 0);
     },
     /**
      * Vertically flip the matrix
      * @return {Ext.draw.Matrix} this
      */
-    flipY: function() {
+    flipY: function () {
         return this.append(1, 0, 0, -1, 0, 0);
     },
     /**
@@ -2222,7 +2224,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Number} angle
      * @return {Ext.draw.Matrix} this
      */
-    skewX: function(angle) {
+    skewX: function (angle) {
         return this.append(1, Math.tan(angle), 0, -1, 0, 0);
     },
     /**
@@ -2230,14 +2232,14 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Number} angle
      * @return {Ext.draw.Matrix} this
      */
-    skewY: function(angle) {
+    skewY: function (angle) {
         return this.append(1, 0, Math.tan(angle), -1, 0, 0);
     },
     /**
      * Reset the matrix to identical.
      * @return {Ext.draw.Matrix} this
      */
-    reset: function() {
+    reset: function () {
         return this.set(1, 0, 0, 1, 0, 0);
     },
     /**
@@ -2245,7 +2247,7 @@ Ext.define('Ext.draw.Matrix', {
      * Split Matrix to `{{devicePixelRatio,c,0},{b,devicePixelRatio,0},{0,0,1}}.{{xx,0,dx},{0,yy,dy},{0,0,1}}`
      * @return {Object} Object with b,c,d=devicePixelRatio,xx,yy,dx,dy
      */
-    precisionCompensate: function(devicePixelRatio, comp) {
+    precisionCompensate: function (devicePixelRatio, comp) {
         var elements = this.elements,
             x2x = elements[0],
             x2y = elements[1],
@@ -2267,7 +2269,7 @@ Ext.define('Ext.draw.Matrix', {
      * Split Matrix to `{{1,c,0},{b,d,0},{0,0,1}}.{{xx,0,dx},{0,xx,dy},{0,0,1}}`
      * @return {Object} Object with b,c,d,xx,yy=xx,dx,dy
      */
-    precisionCompensateRect: function(devicePixelRatio, comp) {
+    precisionCompensateRect: function (devicePixelRatio, comp) {
         var elements = this.elements,
             x2x = elements[0],
             x2y = elements[1],
@@ -2290,7 +2292,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Number} y
      * @return {Number} x component of the result.
      */
-    x: function(x, y) {
+    x: function (x, y) {
         var elements = this.elements;
         return x * elements[0] + y * elements[2] + elements[4];
     },
@@ -2300,7 +2302,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Number} y
      * @return {Number} y component of the result.
      */
-    y: function(x, y) {
+    y: function (x, y) {
         var elements = this.elements;
         return x * elements[1] + y * elements[3] + elements[5];
     },
@@ -2310,7 +2312,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Number} j
      * @return {String}
      */
-    get: function(i, j) {
+    get: function (i, j) {
         return +this.elements[i + j * 2].toFixed(4);
     },
     /**
@@ -2318,7 +2320,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Array} point
      * @return {Array}
      */
-    transformPoint: function(point) {
+    transformPoint: function (point) {
         var elements = this.elements;
         return [
             point[0] * elements[0] + point[1] * elements[2] + elements[4],
@@ -2333,7 +2335,7 @@ Ext.define('Ext.draw.Matrix', {
      *
      * @return {Object} Object with x, y, width and height.
      */
-    transformBBox: function(bbox, radius, target) {
+    transformBBox: function (bbox, radius, target) {
         var elements = this.elements,
             l = bbox.x,
             t = bbox.y,
@@ -2375,7 +2377,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Array} list
      * @return {Array} list
      */
-    transformList: function(list) {
+    transformList: function (list) {
         var elements = this.elements,
             xx = elements[0],
             yx = elements[2],
@@ -2398,7 +2400,7 @@ Ext.define('Ext.draw.Matrix', {
      * Determines whether this matrix is an identity matrix (no transform).
      * @return {Boolean}
      */
-    isIdentity: function() {
+    isIdentity: function () {
         var elements = this.elements;
         return elements[0] === 1 && elements[1] === 0 && elements[2] === 0 && elements[3] === 1 && elements[4] === 0 && elements[5] === 0;
     },
@@ -2407,7 +2409,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Ext.draw.Matrix} matrix
      * @return {Boolean}
      */
-    equals: function(matrix) {
+    equals: function (matrix) {
         var elements = this.elements,
             elements2 = matrix.elements;
         return elements[0] === elements2[0] && elements[1] === elements2[1] && elements[2] === elements2[2] && elements[3] === elements2[3] && elements[4] === elements2[4] && elements[5] === elements2[5];
@@ -2416,7 +2418,7 @@ Ext.define('Ext.draw.Matrix', {
      * Create an array of elements by horizontal order (xx,yx,dx,yx,yy,dy).
      * @return {Array}
      */
-    toArray: function() {
+    toArray: function () {
         var elements = this.elements;
         return [
             elements[0],
@@ -2431,7 +2433,7 @@ Ext.define('Ext.draw.Matrix', {
      * Create an array of elements by vertical order (xx,xy,yx,yy,dx,dy).
      * @return {Array|String}
      */
-    toVerticalArray: function() {
+    toVerticalArray: function () {
         return this.elements.slice();
     },
     /**
@@ -2439,7 +2441,7 @@ Ext.define('Ext.draw.Matrix', {
      * The numbers are rounded to keep only 4 decimals.
      * @return {Array}
      */
-    toString: function() {
+    toString: function () {
         var me = this;
         return [
             me.get(0, 0),
@@ -2455,7 +2457,7 @@ Ext.define('Ext.draw.Matrix', {
      * @param {Object} ctx
      * @return {Ext.draw.Matrix} this
      */
-    toContext: function(ctx) {
+    toContext: function (ctx) {
         ctx.transform.apply(ctx, this.elements);
         return this;
     },
@@ -2463,7 +2465,7 @@ Ext.define('Ext.draw.Matrix', {
      * Return a string that can be used as transform attribute in SVG.
      * @return {String}
      */
-    toSvg: function() {
+    toSvg: function () {
         var elements = this.elements;
         // The reason why we cannot use `.join` is the `1e5` form is not accepted in svg.
         return "matrix(" + elements[0].toFixed(9) + ',' + elements[1].toFixed(9) + ',' + elements[2].toFixed(9) + ',' + elements[3].toFixed(9) + ',' + elements[4].toFixed(9) + ',' + elements[5].toFixed(9) + ")";
@@ -2472,7 +2474,7 @@ Ext.define('Ext.draw.Matrix', {
      * Get the x scale of the matrix.
      * @return {Number}
      */
-    getScaleX: function() {
+    getScaleX: function () {
         var elements = this.elements;
         return Math.sqrt(elements[0] * elements[0] + elements[2] * elements[2]);
     },
@@ -2480,7 +2482,7 @@ Ext.define('Ext.draw.Matrix', {
      * Get the y scale of the matrix.
      * @return {Number}
      */
-    getScaleY: function() {
+    getScaleY: function () {
         var elements = this.elements;
         return Math.sqrt(elements[1] * elements[1] + elements[3] * elements[3]);
     },
@@ -2488,49 +2490,49 @@ Ext.define('Ext.draw.Matrix', {
      * Get x-to-x component of the matrix
      * @return {Number}
      */
-    getXX: function() {
+    getXX: function () {
         return this.elements[0];
     },
     /**
      * Get x-to-y component of the matrix.
      * @return {Number}
      */
-    getXY: function() {
+    getXY: function () {
         return this.elements[1];
     },
     /**
      * Get y-to-x component of the matrix.
      * @return {Number}
      */
-    getYX: function() {
+    getYX: function () {
         return this.elements[2];
     },
     /**
      * Get y-to-y component of the matrix.
      * @return {Number}
      */
-    getYY: function() {
+    getYY: function () {
         return this.elements[3];
     },
     /**
      * Get offset x component of the matrix.
      * @return {Number}
      */
-    getDX: function() {
+    getDX: function () {
         return this.elements[4];
     },
     /**
      * Get offset y component of the matrix.
      * @return {Number}
      */
-    getDY: function() {
+    getDY: function () {
         return this.elements[5];
     },
     /**
      * Split a transformation matrix into Scale, Rotate, Translate components.
      * @return {Object}
      */
-    split: function() {
+    split: function () {
         var el = this.elements,
             xx = el[0],
             xy = el[1],
@@ -2545,17 +2547,18 @@ Ext.define('Ext.draw.Matrix', {
         out.rotation = Math.atan2(xy, yy);
         return out;
     }
-}, function() {
+}, function () {
     function registerName(properties, name, i) {
         properties[name] = {
-            get: function() {
+            get: function () {
                 return this.elements[i];
             },
-            set: function(val) {
+            set: function (val) {
                 this.elements[i] = val;
             }
         };
     }
+
     // Compatibility with SVGMatrix.
     if (Object.defineProperties) {
         var properties = {};
@@ -2612,15 +2615,15 @@ Ext.define('Ext.draw.modifier.Modifier', {
          */
         sprite: null
     },
-    constructor: function(config) {
+    constructor: function (config) {
         this.mixins.observable.constructor.call(this, config);
     },
-    updateNext: function(next) {
+    updateNext: function (next) {
         if (next) {
             next.setPrevious(this);
         }
     },
-    updatePrevious: function(prev) {
+    updatePrevious: function (prev) {
         if (prev) {
             prev.setNext(this);
         }
@@ -2631,7 +2634,7 @@ Ext.define('Ext.draw.modifier.Modifier', {
      * @param {Object} attr The attribute to be validated. Note that it may be already initialized, so do
      * not override properties that have already been used.
      */
-    prepareAttributes: function(attr) {
+    prepareAttributes: function (attr) {
         if (this._previous) {
             this._previous.prepareAttributes(attr);
         }
@@ -2641,7 +2644,7 @@ Ext.define('Ext.draw.modifier.Modifier', {
      * @param {Object} attributes The source attributes.
      * @param {Object} changes The changes to be popped up.
      */
-    popUp: function(attributes, changes) {
+    popUp: function (attributes, changes) {
         if (this._next) {
             this._next.popUp(attributes, changes);
         } else {
@@ -2654,7 +2657,7 @@ Ext.define('Ext.draw.modifier.Modifier', {
      * @param {Object} changes The changes to make. This object might be changed unexpectedly inside the method.
      * @return {Mixed}
      */
-    pushDown: function(attr, changes) {
+    pushDown: function (attr, changes) {
         if (this._previous) {
             return this._previous.pushDown(attr, changes);
         } else {
@@ -2692,7 +2695,7 @@ Ext.define('Ext.draw.modifier.Target', {
     /**
      * @inheritdoc
      */
-    prepareAttributes: function(attr) {
+    prepareAttributes: function (attr) {
         var previous = this.getPrevious();
         if (previous) {
             previous.prepareAttributes(attr);
@@ -2709,21 +2712,21 @@ Ext.define('Ext.draw.modifier.Target', {
             };
             attr.dirty = true;
             /*
-            Maps updaters that have to be called to the attributes that triggered the update.
-            It is basically a reversed `triggers` map (see Ext.draw.sprite.AttributeDefinition),
-            but only for those attributes that have changed.
-            Pending updaters are called by the Ext.draw.sprite.Sprite.callUpdaters method.
+             Maps updaters that have to be called to the attributes that triggered the update.
+             It is basically a reversed `triggers` map (see Ext.draw.sprite.AttributeDefinition),
+             but only for those attributes that have changed.
+             Pending updaters are called by the Ext.draw.sprite.Sprite.callUpdaters method.
 
-            The 'canvas' updater is a special kind of updater that is not actually a function
-            but a flag indicating that the attribute should be applied directly to a canvas
-            context.
-            */
+             The 'canvas' updater is a special kind of updater that is not actually a function
+             but a flag indicating that the attribute should be applied directly to a canvas
+             context.
+             */
             attr.pendingUpdaters = {};
             /*
-            Holds the attributes that triggered the canvas update (attr.pendingUpdaters.canvas).
-            Canvas attributes are applied directly to a canvas context
-            by the sprite.useAttributes method.
-            */
+             Holds the attributes that triggered the canvas update (attr.pendingUpdaters.canvas).
+             Canvas attributes are applied directly to a canvas context
+             by the sprite.useAttributes method.
+             */
             attr.canvasAttributes = {};
             attr.matrix = new Ext.draw.Matrix();
             attr.inverseMatrix = new Ext.draw.Matrix();
@@ -2736,7 +2739,7 @@ Ext.define('Ext.draw.modifier.Target', {
      * @param {Object} attr The source attributes.
      * @param {Object} changes The modifier changes.
      */
-    applyChanges: function(attr, changes) {
+    applyChanges: function (attr, changes) {
         Ext.apply(attr, changes);
         var sprite = this.getSprite(),
             pendingUpdaters = attr.pendingUpdaters,
@@ -2787,13 +2790,13 @@ Ext.define('Ext.draw.modifier.Target', {
     /**
      * @inheritdoc
      */
-    popUp: function(attr, changes) {
+    popUp: function (attr, changes) {
         this.applyChanges(attr, changes);
     },
     /**
      * @inheritdoc
      */
-    pushDown: function(attr, changes) {
+    pushDown: function (attr, changes) {
         var previous = this.getPrevious();
         if (previous) {
             changes = previous.pushDown(attr, changes);
@@ -2803,7 +2806,7 @@ Ext.define('Ext.draw.modifier.Target', {
     }
 });
 
-(function() {
+(function () {
     var pow = Math.pow,
         sin = Math.sin,
         cos = Math.cos,
@@ -2819,26 +2822,26 @@ Ext.define('Ext.draw.modifier.Target', {
     ];
     //create other easing equations
     easings = {
-        pow: function(p, x) {
+        pow: function (p, x) {
             return pow(p, x[0] || 6);
         },
-        expo: function(p) {
+        expo: function (p) {
             return pow(2, 8 * (p - 1));
         },
-        circ: function(p) {
+        circ: function (p) {
             return 1 - sqrt(1 - p * p);
         },
-        sine: function(p) {
+        sine: function (p) {
             return 1 - sin((1 - p) * pi / 2);
         },
-        back: function(p, n) {
+        back: function (p, n) {
             n = n || 1.616;
             return p * p * ((n + 1) * p - n);
         },
-        bounce: function(p) {
+        bounce: function (p) {
             var value;
             for (var a = 0,
-                b = 1; 1; a += b , b /= 2) {
+                     b = 1; 1; a += b , b /= 2) {
                 if (p >= (7 - 4 * a) / 11) {
                     value = b * b - pow((11 - 6 * a - 11 * p) / 4, 2);
                     break;
@@ -2846,30 +2849,30 @@ Ext.define('Ext.draw.modifier.Target', {
             }
             return value;
         },
-        elastic: function(p, x) {
+        elastic: function (p, x) {
             return pow(2, 10 * --p) * cos(20 * p * pi * (x || 1) / 3);
         }
     };
     //Add easeIn, easeOut, easeInOut options to all easing equations.
-    addEasing = function(easing, params) {
+    addEasing = function (easing, params) {
         params = params && params.length ? params : [
             params
         ];
         return Ext.apply(easing, {
-            easeIn: function(pos) {
+            easeIn: function (pos) {
                 return easing(pos, params);
             },
-            easeOut: function(pos) {
+            easeOut: function (pos) {
                 return 1 - easing(1 - pos, params);
             },
-            easeInOut: function(pos) {
+            easeInOut: function (pos) {
                 return (pos <= 0.5) ? easing(2 * pos, params) / 2 : (2 - easing(2 * (1 - pos), params)) / 2;
             }
         });
     };
     //Append the polynomial equations with easing support to the EasingPrototype.
-    createPoly = function(times) {
-        return function(p) {
+    createPoly = function (times) {
+        return function (p) {
             return pow(p, times);
         };
     };
@@ -2877,7 +2880,7 @@ Ext.define('Ext.draw.modifier.Target', {
         easings[poly[i]] = createPoly(i + 2);
     }
     //Add linear interpolator
-    easings.linear = function(x) {
+    easings.linear = function (x) {
         return x;
     };
     for (easing in easings) {
@@ -2907,26 +2910,26 @@ Ext.define('Ext.draw.modifier.Target', {
             easeOut: easings.quad.easeOut,
             easeInOut: easings.quad.easeInOut,
             backIn: easings.back,
-            backOut: function(x, n) {
+            backOut: function (x, n) {
                 return 1 - easings.back(1 - x, n);
             },
-            backInOut: function(x, n) {
+            backInOut: function (x, n) {
                 if (x < 0.5) {
                     return easings.back(x * 2, n) * 0.5;
                 } else {
                     return 1 - easings.back((1 - x) * 2, n) * 0.5;
                 }
             },
-            elasticIn: function(x, n) {
+            elasticIn: function (x, n) {
                 return 1 - easings.elastic(1 - x, n);
             },
             elasticOut: easings.elastic,
             bounceIn: easings.bounce,
-            bounceOut: function(x) {
+            bounceOut: function (x) {
                 return 1 - easings.bounce(1 - x);
             }
         }
-    }, function() {
+    }, function () {
         Ext.apply(this, easings);
     });
 })();
@@ -2951,7 +2954,7 @@ Ext.define('Ext.draw.Animator', {
      *  Cross platform `animationTime` implementation.
      *  @return {Number}
      */
-    animationTime: function() {
+    animationTime: function () {
         return Ext.AnimationQueue.frameStartTime - this.frameStartTimeOffset;
     },
     /**
@@ -2959,7 +2962,7 @@ Ext.define('Ext.draw.Animator', {
      *
      * @param {Object} animation The animation descriptor to add to the pool.
      */
-    add: function(animation) {
+    add: function (animation) {
         var me = this;
         if (!me.contains(animation)) {
             me.animations.push(animation);
@@ -2974,7 +2977,7 @@ Ext.define('Ext.draw.Animator', {
      * TODO: This is broken when called within `step` method.
      * @param {Object} animation The animation to remove from the pool.
      */
-    remove: function(animation) {
+    remove: function (animation) {
         var me = this,
             animations = me.animations,
             i = 0,
@@ -2995,14 +2998,14 @@ Ext.define('Ext.draw.Animator', {
      * @param {Object} animation The animation to check for.
      * @return {Boolean}
      */
-    contains: function(animation) {
+    contains: function (animation) {
         return Ext.Array.indexOf(this.animations, animation) > -1;
     },
     /**
      * Returns `true` or `false` whether the pool is empty or not.
      * @return {Boolean}
      */
-    empty: function() {
+    empty: function () {
         return this.animations.length === 0;
     },
     /**
@@ -3010,7 +3013,7 @@ Ext.define('Ext.draw.Animator', {
      *
      * @param {Number} frameTime The frame's start time, in milliseconds.
      */
-    step: function(frameTime) {
+    step: function (frameTime) {
         var me = this,
             animations = me.animations,
             animation,
@@ -3035,7 +3038,7 @@ Ext.define('Ext.draw.Animator', {
      * @param {Object} scope
      * @return {String} The ID of the scheduled callback.
      */
-    schedule: function(callback, scope) {
+    schedule: function (callback, scope) {
         scope = scope || this;
         var id = 'frameCallback' + (this.frameCallbackId++);
         if (Ext.isString(callback)) {
@@ -3057,7 +3060,7 @@ Ext.define('Ext.draw.Animator', {
      * @param {Object} scope
      * @return {String/null} The ID of the scheduled callback or null, if that callback has already been scheduled.
      */
-    scheduleIf: function(callback, scope) {
+    scheduleIf: function (callback, scope) {
         scope = scope || this;
         var frameCallbacks = Ext.draw.Animator.frameCallbacks,
             cb, id;
@@ -3076,7 +3079,7 @@ Ext.define('Ext.draw.Animator', {
      * Cancel a registered one-time callback
      * @param {String} id
      */
-    cancel: function(id) {
+    cancel: function (id) {
         if (Ext.draw.Animator.frameCallbacks[id] && Ext.draw.Animator.frameCallbacks[id].once) {
             this.scheduled--;
             delete Ext.draw.Animator.frameCallbacks[id];
@@ -3089,7 +3092,7 @@ Ext.define('Ext.draw.Animator', {
      * @param {Object} scope
      * @return {String}
      */
-    addFrameCallback: function(callback, scope) {
+    addFrameCallback: function (callback, scope) {
         scope = scope || this;
         if (Ext.isString(callback)) {
             callback = scope[callback];
@@ -3105,13 +3108,13 @@ Ext.define('Ext.draw.Animator', {
      * Unregister a recursive callback.
      * @param {String} id
      */
-    removeFrameCallback: function(id) {
+    removeFrameCallback: function (id) {
         delete Ext.draw.Animator.frameCallbacks[id];
     },
     /**
      * @private
      */
-    fireFrameCallbacks: function() {
+    fireFrameCallbacks: function () {
         var callbacks = this.frameCallbacks,
             id, fn, cb;
         for (id in callbacks) {
@@ -3127,7 +3130,7 @@ Ext.define('Ext.draw.Animator', {
             }
         }
     },
-    handleFrame: function() {
+    handleFrame: function () {
         this.step(this.animationTime());
         this.fireFrameCallbacks();
         if (!this.scheduled && this.empty()) {
@@ -3135,7 +3138,7 @@ Ext.define('Ext.draw.Animator', {
             this.running = false;
         }
     },
-    ignite: function() {
+    ignite: function () {
         if (!this.running) {
             this.running = true;
             Ext.AnimationQueue.start(this.handleFrame, this);
@@ -3169,7 +3172,7 @@ Ext.define('Ext.draw.modifier.Animation', {
          * @cfg {Function} easing
          * Default easing function.
          */
-        easing: function(x) {
+        easing: function (x) {
             return x;
         },
         /**
@@ -3208,7 +3211,7 @@ Ext.define('Ext.draw.modifier.Animation', {
          */
         customDuration: null
     },
-    constructor: function() {
+    constructor: function () {
         this.anyAnimation = false;
         this.anySpecialAnimations = false;
         this.animating = 0;
@@ -3218,7 +3221,7 @@ Ext.define('Ext.draw.modifier.Animation', {
     /**
      * @inheritdoc
      */
-    prepareAttributes: function(attr) {
+    prepareAttributes: function (attr) {
         if (!attr.hasOwnProperty('timers')) {
             attr.animating = false;
             attr.timers = {};
@@ -3234,20 +3237,20 @@ Ext.define('Ext.draw.modifier.Animation', {
             this._previous.prepareAttributes(attr.animationOriginal);
         }
     },
-    updateSprite: function(sprite) {
+    updateSprite: function (sprite) {
         this.setConfig(sprite.config.fx);
     },
-    updateDuration: function(duration) {
+    updateDuration: function (duration) {
         this.anyAnimation = duration > 0;
     },
-    applyEasing: function(easing) {
+    applyEasing: function (easing) {
         if (typeof easing === 'string') {
             return Ext.draw.TimingFunctions.easingMap[easing];
         } else {
             return easing;
         }
     },
-    applyCustomEasings: function(newEasings, oldEasings) {
+    applyCustomEasings: function (newEasings, oldEasings) {
         oldEasings = oldEasings || {};
         var any, key, attrs, easing, i, ln;
         for (key in newEasings) {
@@ -3274,7 +3277,7 @@ Ext.define('Ext.draw.modifier.Animation', {
      * @param {String/Array} attrs The source attribute(s).
      * @param {String} easing The special easings.
      */
-    setEasingOn: function(attrs, easing) {
+    setEasingOn: function (attrs, easing) {
         attrs = Ext.Array.from(attrs).slice();
         var customEasings = {},
             ln = attrs.length,
@@ -3288,7 +3291,7 @@ Ext.define('Ext.draw.modifier.Animation', {
      * Remove special easings on the given attributes.
      * @param {String/Array} attrs The source attribute(s).
      */
-    clearEasingOn: function(attrs) {
+    clearEasingOn: function (attrs) {
         attrs = Ext.Array.from(attrs, true);
         var i = 0,
             ln = attrs.length;
@@ -3296,7 +3299,7 @@ Ext.define('Ext.draw.modifier.Animation', {
             delete this._customEasings[attrs[i]];
         }
     },
-    applyCustomDurations: function(newDurations, oldDurations) {
+    applyCustomDurations: function (newDurations, oldDurations) {
         oldDurations = oldDurations || {};
         var any, key, duration, attrs, i, ln;
         for (key in newDurations) {
@@ -3317,7 +3320,7 @@ Ext.define('Ext.draw.modifier.Animation', {
      * @deprecated
      * @since 5.0.1.
      */
-    applyCustomDuration: function(newDuration, oldDuration) {
+    applyCustomDuration: function (newDuration, oldDuration) {
         if (newDuration) {
             this.getCustomDurations();
             this.setCustomDurations(newDuration);
@@ -3332,7 +3335,7 @@ Ext.define('Ext.draw.modifier.Animation', {
      * @param {String/Array} attrs The source attributes.
      * @param {Number} duration The special duration.
      */
-    setDurationOn: function(attrs, duration) {
+    setDurationOn: function (attrs, duration) {
         attrs = Ext.Array.from(attrs).slice();
         var customDurations = {},
             i = 0,
@@ -3346,7 +3349,7 @@ Ext.define('Ext.draw.modifier.Animation', {
      * Remove special easings on the given attributes.
      * @param {Object} attrs The source attributes.
      */
-    clearDurationOn: function(attrs) {
+    clearDurationOn: function (attrs) {
         attrs = Ext.Array.from(attrs, true);
         var i = 0,
             ln = attrs.length;
@@ -3360,7 +3363,7 @@ Ext.define('Ext.draw.modifier.Animation', {
      * @param {Object} attr The source attributes.
      * @param {Boolean} animating The animating flag.
      */
-    setAnimating: function(attr, animating) {
+    setAnimating: function (attr, animating) {
         var me = this,
             pool = me.animatingPool;
         if (attr.animating !== animating) {
@@ -3372,7 +3375,7 @@ Ext.define('Ext.draw.modifier.Animation', {
                 }
                 me.animating++;
             } else {
-                for (var i = pool.length; i--; ) {
+                for (var i = pool.length; i--;) {
                     if (pool[i] === attr) {
                         pool.splice(i, 1);
                     }
@@ -3388,7 +3391,7 @@ Ext.define('Ext.draw.modifier.Animation', {
      * @param {Object} changes The changes that popped up from lower modifier.
      * @return {Object} The changes to pop up.
      */
-    setAttrs: function(attr, changes) {
+    setAttrs: function (attr, changes) {
         var timers = attr.timers,
             parsers = this._sprite.self.def._animationProcessors,
             defaultEasing = this._easing,
@@ -3464,7 +3467,7 @@ Ext.define('Ext.draw.modifier.Animation', {
                         animationOriginal[name] = newValue;
                         delete changes[name];
                         ignite = true;
-                        
+
                         continue;
                     } else {
                         delete animationOriginal[name];
@@ -3490,7 +3493,7 @@ Ext.define('Ext.draw.modifier.Animation', {
      * @param {Object} attr The source attributes.
      * @return {Object} The changes to pop up.
      */
-    updateAttributes: function(attr) {
+    updateAttributes: function (attr) {
         if (!attr.animating) {
             return {};
         }
@@ -3532,7 +3535,7 @@ Ext.define('Ext.draw.modifier.Animation', {
     /**
      * @inheritdoc
      */
-    pushDown: function(attr, changes) {
+    pushDown: function (attr, changes) {
         changes = this.callParent([
             attr.animationOriginal,
             changes
@@ -3542,7 +3545,7 @@ Ext.define('Ext.draw.modifier.Animation', {
     /**
      * @inheritdoc
      */
-    popUp: function(attr, changes) {
+    popUp: function (attr, changes) {
         attr = attr.prototype;
         changes = this.setAttrs(attr, changes);
         if (this._next) {
@@ -3552,7 +3555,7 @@ Ext.define('Ext.draw.modifier.Animation', {
         }
     },
     // This is called as an animated object in `Ext.draw.Animator`.
-    step: function(frameTime) {
+    step: function (frameTime) {
         var me = this,
             pool = me.animatingPool.slice(),
             attributes, i, ln;
@@ -3573,7 +3576,7 @@ Ext.define('Ext.draw.modifier.Animation', {
     /**
      * Stop all animations affected by this modifier.
      */
-    stop: function() {
+    stop: function () {
         this.step();
         var me = this,
             pool = me.animatingPool,
@@ -3585,7 +3588,7 @@ Ext.define('Ext.draw.modifier.Animation', {
         me.animating = 0;
         Ext.draw.Animator.remove(me);
     },
-    destroy: function() {
+    destroy: function () {
         var me = this;
         me.animatingPool.length = 0;
         me.animating = 0;
@@ -3614,7 +3617,7 @@ Ext.define('Ext.draw.modifier.Highlight', {
         highlightStyle: null
     },
     preFx: true,
-    applyHighlightStyle: function(style, oldStyle) {
+    applyHighlightStyle: function (style, oldStyle) {
         oldStyle = oldStyle || {};
         if (this.getSprite()) {
             Ext.apply(oldStyle, this.getSprite().self.def.normalize(style));
@@ -3626,7 +3629,7 @@ Ext.define('Ext.draw.modifier.Highlight', {
     /**
      * @inheritdoc
      */
-    prepareAttributes: function(attr) {
+    prepareAttributes: function (attr) {
         if (!attr.hasOwnProperty('highlightOriginal')) {
             attr.highlighted = false;
             attr.highlightOriginal = Ext.Object.chain(attr);
@@ -3639,7 +3642,7 @@ Ext.define('Ext.draw.modifier.Highlight', {
             this._previous.prepareAttributes(attr.highlightOriginal);
         }
     },
-    updateSprite: function(sprite, oldSprite) {
+    updateSprite: function (sprite, oldSprite) {
         if (sprite) {
             if (this.getHighlightStyle()) {
                 this._highlightStyle = sprite.self.def.normalize(this.getHighlightStyle());
@@ -3665,7 +3668,7 @@ Ext.define('Ext.draw.modifier.Highlight', {
      * @param {Object} changes The modifier changes.
      * @return {*} The filtered changes.
      */
-    filterChanges: function(attr, changes) {
+    filterChanges: function (attr, changes) {
         var me = this,
             highlightOriginal = attr.highlightOriginal,
             style = me.getHighlightStyle(),
@@ -3694,7 +3697,7 @@ Ext.define('Ext.draw.modifier.Highlight', {
     /**
      * @inheritdoc
      */
-    pushDown: function(attr, changes) {
+    pushDown: function (attr, changes) {
         var highlightStyle = this.getHighlightStyle(),
             highlightOriginal = attr.highlightOriginal,
             removeFromInstance = highlightOriginal.removeFromInstance,
@@ -3785,7 +3788,7 @@ Ext.define('Ext.draw.modifier.Highlight', {
     /**
      * @inheritdoc
      */
-    popUp: function(attr, changes) {
+    popUp: function (attr, changes) {
         changes = this.filterChanges(attr, changes);
         Ext.draw.modifier.Modifier.prototype.popUp.call(this, attr, changes);
     }
@@ -4062,7 +4065,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
                 constrainGradients: "canvas"
             },
             updaters: {
-                bbox: function(attr) {
+                bbox: function (attr) {
                     var hasRotation = attr.rotationRads !== 0,
                         hasScaling = attr.scalingX !== 1 || attr.scalingY !== 1,
                         noRotationCenter = attr.rotationCenterX === null || attr.rotationCenterY === null,
@@ -4075,10 +4078,10 @@ Ext.define('Ext.draw.sprite.Sprite', {
                         });
                     }
                 },
-                zIndex: function(attr) {
+                zIndex: function (attr) {
                     attr.dirtyZIndex = true;
                 },
-                transform: function(attr) {
+                transform: function (attr) {
                     attr.dirtyTransform = true;
                     attr.bbox.transform.dirty = true;
                 }
@@ -4098,7 +4101,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
          */
         surface: null
     },
-    onClassExtended: function(subClass, data) {
+    onClassExtended: function (subClass, data) {
         // The `def` here is no longer a config, but an instance
         // of the AttributeDefinition class created with that config,
         // which can now be retrieved from `initialConfig`.
@@ -4113,7 +4116,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
             subClass.def = Ext.create('Ext.draw.sprite.AttributeDefinition', initCfg);
         }
     },
-    constructor: function(config) {
+    constructor: function (config) {
         if (Ext.getClassName(this) === 'Ext.draw.sprite.Sprite') {
             throw 'Ext.draw.sprite.Sprite is an abstract class';
         }
@@ -4134,17 +4137,17 @@ Ext.define('Ext.draw.sprite.Sprite', {
         }
         me.setAttributes(config);
     },
-    getDirty: function() {
+    getDirty: function () {
         return this.attr.dirty;
     },
-    setDirty: function(dirty) {
+    setDirty: function (dirty) {
         if ((this.attr.dirty = dirty)) {
             if (this._parent) {
                 this._parent.setDirty(true);
             }
         }
     },
-    addModifier: function(modifier, reinitializeAttributes) {
+    addModifier: function (modifier, reinitializeAttributes) {
         var me = this;
         if (!(modifier instanceof Ext.draw.modifier.Modifier)) {
             modifier = Ext.factory(modifier, null, null, 'modifier');
@@ -4164,7 +4167,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
         }
         return modifier;
     },
-    prepareModifiers: function(additionalModifiers) {
+    prepareModifiers: function (additionalModifiers) {
         // Set defaults
         var me = this,
             i, ln;
@@ -4180,7 +4183,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
             me.addModifier(additionalModifiers[i], false);
         }
     },
-    initializeAttributes: function() {
+    initializeAttributes: function () {
         var me = this;
         me.topModifier.prepareAttributes(me.attr);
     },
@@ -4189,7 +4192,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
      * Calls updaters triggered by changes to sprite attributes.
      * @param attr The attributes of a sprite or its instance.
      */
-    callUpdaters: function(attr) {
+    callUpdaters: function (attr) {
         var me = this,
             pendingUpdaters = attr.pendingUpdaters,
             updaters = me.self.def.getUpdaters(),
@@ -4244,9 +4247,10 @@ Ext.define('Ext.draw.sprite.Sprite', {
      * @param {String[]} [triggers] Attributes that triggered the update. An optional parameter.
      * If used, the `updaters` parameter will be treated an array of updaters to be called.
      */
-    scheduleUpdaters: function(attr, updaters, triggers) {
+    scheduleUpdaters: function (attr, updaters, triggers) {
         var pendingUpdaters = attr.pendingUpdaters,
             updater;
+
         function schedule() {
             if (updater in pendingUpdaters) {
                 if (triggers.length) {
@@ -4256,9 +4260,10 @@ Ext.define('Ext.draw.sprite.Sprite', {
                 pendingUpdaters[updater] = triggers;
             }
         }
+
         if (triggers) {
             for (var i = 0,
-                ln = updaters.length; i < ln; i++) {
+                     ln = updaters.length; i < ln; i++) {
                 updater = updaters[i];
                 schedule();
             }
@@ -4277,7 +4282,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
      * @param {Boolean} [avoidCopy] `true` to avoid copying the `changes` object.
      * The content of object may be destroyed.
      */
-    setAttributes: function(changes, bypassNormalization, avoidCopy) {
+    setAttributes: function (changes, bypassNormalization, avoidCopy) {
         //if (changes && 'fillStyle' in changes) {
         //    console.groupCollapsed('set fillStyle', this.getId(), this.attr.part);
         //    console.trace();
@@ -4303,7 +4308,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
      * @param {Boolean} [avoidCopy] `true` to avoid copying the `changes` object.
      * The content of object may be destroyed.
      */
-    setAttributesBypassingNormalization: function(changes, avoidCopy) {
+    setAttributesBypassingNormalization: function (changes, avoidCopy) {
         return this.setAttributes(changes, true, avoidCopy);
     },
     /**
@@ -4311,7 +4316,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
      *
      * @param {Boolean} [isWithoutTransform] Whether to calculate the bounding box with the current transforms or not.
      */
-    getBBox: function(isWithoutTransform) {
+    getBBox: function (isWithoutTransform) {
         var me = this,
             attr = me.attr,
             bbox = attr.bbox,
@@ -4348,7 +4353,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
      * @param {Object} transform Target object.
      * @param {Object} plain Auxiliary object providing information of plain object.
      */
-    updateTransformedBBox: function(transform, plain) {
+    updateTransformedBBox: function (transform, plain) {
         this.attr.matrix.transformBBox(plain, 0, transform);
     },
     /**
@@ -4356,7 +4361,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
      * @param {Boolean} isWithoutTransform
      * @return {Array}
      */
-    getBBoxCenter: function(isWithoutTransform) {
+    getBBoxCenter: function (isWithoutTransform) {
         var bbox = this.getBBox(isWithoutTransform);
         if (bbox) {
             return [
@@ -4375,7 +4380,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
      * @return {Ext.draw.sprite.Sprite} this
      * @chainable
      */
-    hide: function() {
+    hide: function () {
         this.attr.hidden = true;
         this.setDirty(true);
         return this;
@@ -4385,7 +4390,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
      * @return {Ext.draw.sprite.Sprite} this
      * @chainable
      */
-    show: function() {
+    show: function () {
         this.attr.hidden = false;
         this.setDirty(true);
         return this;
@@ -4395,7 +4400,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
      * @param {Object} ctx Context to apply sprite's attributes to.
      * @param {Array} rect The rect of the context to be affected by gradients.
      */
-    useAttributes: function(ctx, rect) {
+    useAttributes: function (ctx, rect) {
         this.applyTransformations();
         var attr = this.attr,
             canvasAttributes = attr.canvasAttributes,
@@ -4434,7 +4439,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
         }
         this.setGradientBBox(ctx, rect);
     },
-    setGradientBBox: function(ctx, rect) {
+    setGradientBBox: function (ctx, rect) {
         var attr = this.attr;
         if (attr.constrainGradients) {
             ctx.setGradientBBox({
@@ -4453,7 +4458,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
      * Calculates forward and inverse transform matrices.
      * @param {Boolean} force Forces recalculation of transform matrices even when sprite's transform attributes supposedly haven't changed.
      */
-    applyTransformations: function(force) {
+    applyTransformations: function (force) {
         if (!force && !this.attr.dirtyTransform) {
             return;
         }
@@ -4515,7 +4520,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
      * @return {Object} A hit result object that contains more information about what
      * exactly was hit or null if nothing was hit.
      */
-    hitTest: function(point, options) {
+    hitTest: function (point, options) {
         var x = point[0],
             y = point[1],
             bbox = this.getBBox();
@@ -4526,7 +4531,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
         }
         return null;
     },
-    repaint: function() {
+    repaint: function () {
         var surface = this.getSurface();
         if (surface) {
             surface.renderFrame();
@@ -4535,7 +4540,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
     /**
      * Removes the sprite and clears all listeners.
      */
-    destroy: function() {
+    destroy: function () {
         var me = this,
             modifier = me.topModifier,
             curr;
@@ -4551,7 +4556,7 @@ Ext.define('Ext.draw.sprite.Sprite', {
         }
         this.callParent();
     }
-}, function() {
+}, function () {
     // onClassCreated
     // Create one AttributeDefinition instance per sprite class when a class is created
     // and replace the `def` config with the instance that was created using that config.
@@ -4580,7 +4585,7 @@ Ext.define('Ext.draw.Path', {
      * @constructor
      * @param {String} pathString
      */
-    constructor: function(pathString) {
+    constructor: function (pathString) {
         var me = this;
         me.commands = [];
         // Stores command letters from the SVG path data ('d' attribute).
@@ -4600,7 +4605,7 @@ Ext.define('Ext.draw.Path', {
     /**
      * Clear the path.
      */
-    clear: function() {
+    clear: function () {
         var me = this;
         me.params.length = 0;
         me.commands.length = 0;
@@ -4612,7 +4617,7 @@ Ext.define('Ext.draw.Path', {
     /**
      * @private
      */
-    dirt: function() {
+    dirt: function () {
         this.svgString = '';
     },
     /**
@@ -4620,7 +4625,7 @@ Ext.define('Ext.draw.Path', {
      * @param {Number} x
      * @param {Number} y
      */
-    moveTo: function(x, y) {
+    moveTo: function (x, y) {
         var me = this;
         if (!me.cursor) {
             me.cursor = [
@@ -4641,7 +4646,7 @@ Ext.define('Ext.draw.Path', {
      * @param {Number} x
      * @param {Number} y
      */
-    lineTo: function(x, y) {
+    lineTo: function (x, y) {
         var me = this;
         if (!me.cursor) {
             me.cursor = [
@@ -4667,7 +4672,7 @@ Ext.define('Ext.draw.Path', {
      * @param {Number} x
      * @param {Number} y
      */
-    bezierCurveTo: function(cx1, cy1, cx2, cy2, x, y) {
+    bezierCurveTo: function (cx1, cy1, cx2, cy2, x, y) {
         var me = this;
         if (!me.cursor) {
             me.moveTo(cx1, cy1);
@@ -4685,7 +4690,7 @@ Ext.define('Ext.draw.Path', {
      * @param {Number} x
      * @param {Number} y
      */
-    quadraticCurveTo: function(cx, cy, x, y) {
+    quadraticCurveTo: function (cx, cy, x, y) {
         var me = this;
         if (!me.cursor) {
             me.moveTo(cx, cy);
@@ -4695,7 +4700,7 @@ Ext.define('Ext.draw.Path', {
     /**
      * Close this path with a straight line.
      */
-    closePath: function() {
+    closePath: function () {
         var me = this;
         if (me.cursor) {
             me.commands.push('Z');
@@ -4715,7 +4720,7 @@ Ext.define('Ext.draw.Path', {
      * @param {Number} [ry]
      * @param {Number} [rotation]
      */
-    arcTo: function(x1, y1, x2, y2, rx, ry, rotation) {
+    arcTo: function (x1, y1, x2, y2, rx, ry, rotation) {
         var me = this;
         if (ry === undefined) {
             ry = rx;
@@ -4813,7 +4818,7 @@ Ext.define('Ext.draw.Path', {
      * @param {Number} endAngle
      * @param {Number} anticlockwise
      */
-    ellipse: function(cx, cy, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise) {
+    ellipse: function (cx, cy, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise) {
         var me = this,
             params = me.params,
             start = params.length,
@@ -4868,7 +4873,7 @@ Ext.define('Ext.draw.Path', {
      * @param {Number} endAngle
      * @param {Number} anticlockwise
      */
-    arc: function(x, y, radius, startAngle, endAngle, anticlockwise) {
+    arc: function (x, y, radius, startAngle, endAngle, anticlockwise) {
         this.ellipse(x, y, radius, radius, 0, startAngle, endAngle, anticlockwise);
     },
     /**
@@ -4879,7 +4884,7 @@ Ext.define('Ext.draw.Path', {
      * @param {Number} width
      * @param {Number} height
      */
-    rect: function(x, y, width, height) {
+    rect: function (x, y, width, height) {
         if (width == 0 || height == 0) {
             return;
         }
@@ -4902,7 +4907,7 @@ Ext.define('Ext.draw.Path', {
      * @param {Number} theta2
      * @return {Number}
      */
-    approximateArc: function(result, cx, cy, rx, ry, phi, theta1, theta2) {
+    approximateArc: function (result, cx, cy, rx, ry, phi, theta1, theta2) {
         var cosPhi = Math.cos(phi),
             sinPhi = Math.sin(phi),
             cosTheta1 = Math.cos(theta1),
@@ -4956,7 +4961,7 @@ Ext.define('Ext.draw.Path', {
      * @param {Number} x2
      * @param {Number} y2
      */
-    arcSvg: function(rx, ry, rotation, fA, fS, x2, y2) {
+    arcSvg: function (rx, ry, rotation, fA, fS, x2, y2) {
         if (rx < 0) {
             rx = -rx;
         }
@@ -5011,7 +5016,7 @@ Ext.define('Ext.draw.Path', {
      * Feed the path from svg path string.
      * @param {String} pathString
      */
-    fromSvgString: function(pathString) {
+    fromSvgString: function (pathString) {
         if (!pathString) {
             return;
         }
@@ -5059,7 +5064,7 @@ Ext.define('Ext.draw.Path', {
         }
         parts.length = partLength;
         me.clear();
-        for (i = 0; i < parts.length; ) {
+        for (i = 0; i < parts.length;) {
             lastCommand = part;
             part = parts[i];
             relative = (part.toUpperCase() !== part);
@@ -5071,7 +5076,8 @@ Ext.define('Ext.draw.Path', {
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.lineTo(lastX = +parts[i], lastY = +parts[i + 1]);
                         i += 2;
-                    };
+                    }
+                    ;
                     break;
                 case 'L':
                     me.lineTo(lastX = +parts[i], lastY = +parts[i + 1]);
@@ -5079,19 +5085,22 @@ Ext.define('Ext.draw.Path', {
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.lineTo(lastX = +parts[i], lastY = +parts[i + 1]);
                         i += 2;
-                    };
+                    }
+                    ;
                     break;
                 case 'A':
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.arcSvg(+parts[i], +parts[i + 1], +parts[i + 2] * Math.PI / 180, +parts[i + 3], +parts[i + 4], lastX = +parts[i + 5], lastY = +parts[i + 6]);
                         i += 7;
-                    };
+                    }
+                    ;
                     break;
                 case 'C':
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.bezierCurveTo(+parts[i], +parts[i + 1], lastControlX = +parts[i + 2], lastControlY = +parts[i + 3], lastX = +parts[i + 4], lastY = +parts[i + 5]);
                         i += 6;
-                    };
+                    }
+                    ;
                     break;
                 case 'Z':
                     me.closePath();
@@ -5102,7 +5111,8 @@ Ext.define('Ext.draw.Path', {
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.lineTo(lastX += +parts[i], lastY += +parts[i + 1]);
                         i += 2;
-                    };
+                    }
+                    ;
                     break;
                 case 'l':
                     me.lineTo(lastX += +parts[i], lastY += +parts[i + 1]);
@@ -5110,19 +5120,22 @@ Ext.define('Ext.draw.Path', {
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.lineTo(lastX += +parts[i], lastY += +parts[i + 1]);
                         i += 2;
-                    };
+                    }
+                    ;
                     break;
                 case 'a':
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.arcSvg(+parts[i], +parts[i + 1], +parts[i + 2] * Math.PI / 180, +parts[i + 3], +parts[i + 4], lastX += +parts[i + 5], lastY += +parts[i + 6]);
                         i += 7;
-                    };
+                    }
+                    ;
                     break;
                 case 'c':
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.bezierCurveTo(lastX + (+parts[i]), lastY + (+parts[i + 1]), lastControlX = lastX + (+parts[i + 2]), lastControlY = lastY + (+parts[i + 3]), lastX += +parts[i + 4], lastY += +parts[i + 5]);
                         i += 6;
-                    };
+                    }
+                    ;
                     break;
                 case 'z':
                     me.closePath();
@@ -5131,77 +5144,91 @@ Ext.define('Ext.draw.Path', {
                     if (!(lastCommand === 'c' || lastCommand === 'C' || lastCommand === 's' || lastCommand === 'S')) {
                         lastControlX = lastX;
                         lastControlY = lastY;
-                    };
+                    }
+                    ;
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.bezierCurveTo(lastX + lastX - lastControlX, lastY + lastY - lastControlY, lastControlX = lastX + (+parts[i]), lastControlY = lastY + (+parts[i + 1]), lastX += +parts[i + 2], lastY += +parts[i + 3]);
                         i += 4;
-                    };
+                    }
+                    ;
                     break;
                 case 'S':
                     if (!(lastCommand === 'c' || lastCommand === 'C' || lastCommand === 's' || lastCommand === 'S')) {
                         lastControlX = lastX;
                         lastControlY = lastY;
-                    };
+                    }
+                    ;
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.bezierCurveTo(lastX + lastX - lastControlX, lastY + lastY - lastControlY, lastControlX = +parts[i], lastControlY = +parts[i + 1], lastX = (+parts[i + 2]), lastY = (+parts[i + 3]));
                         i += 4;
-                    };
+                    }
+                    ;
                     break;
                 case 'q':
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.quadraticCurveTo(lastControlX = lastX + (+parts[i]), lastControlY = lastY + (+parts[i + 1]), lastX += +parts[i + 2], lastY += +parts[i + 3]);
                         i += 4;
-                    };
+                    }
+                    ;
                     break;
                 case 'Q':
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.quadraticCurveTo(lastControlX = +parts[i], lastControlY = +parts[i + 1], lastX = +parts[i + 2], lastY = +parts[i + 3]);
                         i += 4;
-                    };
+                    }
+                    ;
                     break;
                 case 't':
                     if (!(lastCommand === 'q' || lastCommand === 'Q' || lastCommand === 't' || lastCommand === 'T')) {
                         lastControlX = lastX;
                         lastControlY = lastY;
-                    };
+                    }
+                    ;
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.quadraticCurveTo(lastControlX = lastX + lastX - lastControlX, lastControlY = lastY + lastY - lastControlY, lastX += +parts[i + 1], lastY += +parts[i + 2]);
                         i += 2;
-                    };
+                    }
+                    ;
                     break;
                 case 'T':
                     if (!(lastCommand === 'q' || lastCommand === 'Q' || lastCommand === 't' || lastCommand === 'T')) {
                         lastControlX = lastX;
                         lastControlY = lastY;
-                    };
+                    }
+                    ;
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.quadraticCurveTo(lastControlX = lastX + lastX - lastControlX, lastControlY = lastY + lastY - lastControlY, lastX = (+parts[i + 1]), lastY = (+parts[i + 2]));
                         i += 2;
-                    };
+                    }
+                    ;
                     break;
                 case 'h':
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.lineTo(lastX += +parts[i], lastY);
                         i++;
-                    };
+                    }
+                    ;
                     break;
                 case 'H':
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.lineTo(lastX = +parts[i], lastY);
                         i++;
-                    };
+                    }
+                    ;
                     break;
                 case 'v':
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.lineTo(lastX, lastY += +parts[i]);
                         i++;
-                    };
+                    }
+                    ;
                     break;
                 case 'V':
                     while (i < partLength && !paramCounts.hasOwnProperty(parts[i])) {
                         me.lineTo(lastX, lastY = +parts[i]);
                         i++;
-                    };
+                    }
+                    ;
                     break;
             }
         }
@@ -5210,7 +5237,7 @@ Ext.define('Ext.draw.Path', {
      * Clone this path.
      * @return {Ext.draw.Path}
      */
-    clone: function() {
+    clone: function () {
         var me = this,
             path = new Ext.draw.Path();
         path.params = me.params.slice(0);
@@ -5225,7 +5252,7 @@ Ext.define('Ext.draw.Path', {
      * Transform the current path by a matrix.
      * @param {Ext.draw.Matrix} matrix
      */
-    transform: function(matrix) {
+    transform: function (matrix) {
         if (matrix.isIdentity()) {
             return;
         }
@@ -5253,7 +5280,7 @@ Ext.define('Ext.draw.Path', {
      *
      * @return {Object} Object with x, y, width and height
      */
-    getDimension: function(target) {
+    getDimension: function (target) {
         if (!target) {
             target = {};
         }
@@ -5306,7 +5333,7 @@ Ext.define('Ext.draw.Path', {
      *
      * @return {Object} An object with x, y, width and height.
      */
-    getDimensionWithTransform: function(matrix, target) {
+    getDimensionWithTransform: function (matrix, target) {
         if (!this.commands || !this.commands.length) {
             if (!target) {
                 target = {};
@@ -5374,7 +5401,7 @@ Ext.define('Ext.draw.Path', {
      * @param {Number} x2
      * @param {Number} y2
      */
-    expandDimension: function(target, x1, y1, cx1, cy1, cx2, cy2, x2, y2) {
+    expandDimension: function (target, x1, y1, cx1, cy1, cx2, cy2, x2, y2) {
         var me = this,
             l = target.left,
             r = target.right,
@@ -5401,7 +5428,7 @@ Ext.define('Ext.draw.Path', {
      * @param {Number} d
      * @param {Number} dim
      */
-    curveDimension: function(a, b, c, d, dim) {
+    curveDimension: function (a, b, c, d, dim) {
         var qa = 3 * (-a + 3 * (b - c) + d),
             qb = 6 * (a - 2 * b + c),
             qc = -3 * (a - b),
@@ -5457,7 +5484,7 @@ Ext.define('Ext.draw.Path', {
      * @param {Number} t
      * @return {Number}
      */
-    interpolate: function(a, b, c, d, t) {
+    interpolate: function (a, b, c, d, t) {
         if (t === 0) {
             return a;
         }
@@ -5471,7 +5498,7 @@ Ext.define('Ext.draw.Path', {
      * Reconstruct path from cubic bezier curve stripes.
      * @param {Array} stripes
      */
-    fromStripes: function(stripes) {
+    fromStripes: function (stripes) {
         var me = this,
             i = 0,
             ln = stripes.length,
@@ -5497,7 +5524,7 @@ Ext.define('Ext.draw.Path', {
      * @param {Array} [target] The optional array to receive the result.
      * @return {Array}
      */
-    toStripes: function(target) {
+    toStripes: function (target) {
         var stripes = target || [],
             curr, x, y, lastX, lastY, startX, startY, i, j,
             commands = this.commands,
@@ -5533,7 +5560,7 @@ Ext.define('Ext.draw.Path', {
      * @private
      * Update cache for svg string of this path.
      */
-    updateSvgString: function() {
+    updateSvgString: function () {
         var result = [],
             commands = this.commands,
             params = this.params,
@@ -5565,7 +5592,7 @@ Ext.define('Ext.draw.Path', {
      * Return an svg path string for this path.
      * @return {String}
      */
-    toString: function() {
+    toString: function () {
         if (!this.svgString) {
             this.updateSvgString();
         }
@@ -5587,7 +5614,7 @@ Ext.define('Ext.draw.overrides.Path', {
      * @return {Boolean}
      * @member Ext.draw.Path
      */
-    isPointInPath: function(x, y) {
+    isPointInPath: function (x, y) {
         var me = this,
             commands = me.commands,
             solver = Ext.draw.PathUtil,
@@ -5607,7 +5634,8 @@ Ext.define('Ext.draw.overrides.Path', {
                         if (solver.linesIntersection(firstX, firstY, lastX, lastY, origin.x, origin.y, x, y)) {
                             count += 1;
                         }
-                    };
+                    }
+                    ;
                     firstX = lastX = params[j];
                     firstY = lastY = params[j + 1];
                     j += 2;
@@ -5615,7 +5643,8 @@ Ext.define('Ext.draw.overrides.Path', {
                 case 'L':
                     if (solver.linesIntersection(lastX, lastY, params[j], params[j + 1], origin.x, origin.y, x, y)) {
                         count += 1;
-                    };
+                    }
+                    ;
                     lastX = params[j];
                     lastY = params[j + 1];
                     j += 2;
@@ -5631,7 +5660,8 @@ Ext.define('Ext.draw.overrides.Path', {
                         if (solver.linesIntersection(firstX, firstY, lastX, lastY, origin.x, origin.y, x, y)) {
                             count += 1;
                         }
-                    };
+                    }
+                    ;
                     break;
             }
         }
@@ -5644,7 +5674,7 @@ Ext.define('Ext.draw.overrides.Path', {
      * @return {Boolean}
      * @member Ext.draw.Path
      */
-    isPointOnPath: function(x, y) {
+    isPointOnPath: function (x, y) {
         var me = this,
             commands = me.commands,
             solver = Ext.draw.PathUtil,
@@ -5662,7 +5692,8 @@ Ext.define('Ext.draw.overrides.Path', {
                         if (solver.pointOnLine(firstX, firstY, lastX, lastY, x, y)) {
                             return true;
                         }
-                    };
+                    }
+                    ;
                     firstX = lastX = params[j];
                     firstY = lastY = params[j + 1];
                     j += 2;
@@ -5670,7 +5701,8 @@ Ext.define('Ext.draw.overrides.Path', {
                 case 'L':
                     if (solver.pointOnLine(lastX, lastY, params[j], params[j + 1], x, y)) {
                         return true;
-                    };
+                    }
+                    ;
                     lastX = params[j];
                     lastY = params[j + 1];
                     j += 2;
@@ -5678,7 +5710,8 @@ Ext.define('Ext.draw.overrides.Path', {
                 case 'C':
                     if (solver.pointOnCubic(lastX, params[j], params[j + 2], params[j + 4], lastY, params[j + 1], params[j + 3], params[j + 5], x, y)) {
                         return true;
-                    };
+                    }
+                    ;
                     lastX = params[j + 4];
                     lastY = params[j + 5];
                     j += 6;
@@ -5688,7 +5721,8 @@ Ext.define('Ext.draw.overrides.Path', {
                         if (solver.pointOnLine(firstX, firstY, lastX, lastY, x, y)) {
                             return true;
                         }
-                    };
+                    }
+                    ;
                     break;
             }
         }
@@ -5712,7 +5746,7 @@ Ext.define('Ext.draw.overrides.Path', {
      * @return {Array}
      * @member Ext.draw.Path
      */
-    getSegmentIntersections: function(x1, y1, x2, y2, x3, y3, x4, y4) {
+    getSegmentIntersections: function (x1, y1, x2, y2, x3, y3, x4, y4) {
         var me = this,
             count = arguments.length,
             solver = Ext.draw.PathUtil,
@@ -5734,14 +5768,16 @@ Ext.define('Ext.draw.overrides.Path', {
                                 points = solver.linesIntersection(firstX, firstY, lastX, lastY, x1, y1, x2, y2);
                                 if (points) {
                                     intersections.push(points);
-                                };
+                                }
+                                ;
                                 break;
                             case 8:
                                 points = solver.cubicLineIntersections(x1, x2, x3, x4, y1, y2, y3, y4, firstX, firstY, lastX, lastY);
                                 intersections.push.apply(intersections, points);
                                 break;
                         }
-                    };
+                    }
+                    ;
                     firstX = lastX = params[j];
                     firstY = lastY = params[j + 1];
                     j += 2;
@@ -5752,13 +5788,15 @@ Ext.define('Ext.draw.overrides.Path', {
                             points = solver.linesIntersection(lastX, lastY, params[j], params[j + 1], x1, y1, x2, y2);
                             if (points) {
                                 intersections.push(points);
-                            };
+                            }
+                            ;
                             break;
                         case 8:
                             points = solver.cubicLineIntersections(x1, x2, x3, x4, y1, y2, y3, y4, lastX, lastY, params[j], params[j + 1]);
                             intersections.push.apply(intersections, points);
                             break;
-                    };
+                    }
+                    ;
                     lastX = params[j];
                     lastY = params[j + 1];
                     j += 2;
@@ -5773,7 +5811,8 @@ Ext.define('Ext.draw.overrides.Path', {
                             points = solver.cubicsIntersections(lastX, params[j], params[j + 2], params[j + 4], lastY, params[j + 1], params[j + 3], params[j + 5], x1, x2, x3, x4, y1, y2, y3, y4);
                             intersections.push.apply(intersections, points);
                             break;
-                    };
+                    }
+                    ;
                     lastX = params[j + 4];
                     lastY = params[j + 5];
                     j += 6;
@@ -5785,20 +5824,22 @@ Ext.define('Ext.draw.overrides.Path', {
                                 points = solver.linesIntersection(firstX, firstY, lastX, lastY, x1, y1, x2, y2);
                                 if (points) {
                                     intersections.push(points);
-                                };
+                                }
+                                ;
                                 break;
                             case 8:
                                 points = solver.cubicLineIntersections(x1, x2, x3, x4, y1, y2, y3, y4, firstX, firstY, lastX, lastY);
                                 intersections.push.apply(intersections, points);
                                 break;
                         }
-                    };
+                    }
+                    ;
                     break;
             }
         }
         return intersections;
     },
-    getIntersections: function(path) {
+    getIntersections: function (path) {
         var me = this,
             commands = me.commands,
             params = me.params,
@@ -5815,7 +5856,8 @@ Ext.define('Ext.draw.overrides.Path', {
                     if (firstX !== null) {
                         points = path.getSegmentIntersections.call(path, firstX, firstY, lastX, lastY);
                         intersections.push.apply(intersections, points);
-                    };
+                    }
+                    ;
                     firstX = lastX = params[j];
                     firstY = lastY = params[j + 1];
                     j += 2;
@@ -5838,7 +5880,8 @@ Ext.define('Ext.draw.overrides.Path', {
                     if (firstX !== null) {
                         points = path.getSegmentIntersections.call(path, firstX, firstY, lastX, lastY);
                         intersections.push.apply(intersections, points);
-                    };
+                    }
+                    ;
                     break;
             }
         }
@@ -5895,7 +5938,7 @@ Ext.define('Ext.draw.sprite.Path', {
                 /**
                  * @cfg {String} path The SVG based path string used by the sprite.
                  */
-                path: function(n, o) {
+                path: function (n, o) {
                     if (!(n instanceof Ext.draw.Path)) {
                         n = new Ext.draw.Path(n);
                     }
@@ -5910,7 +5953,7 @@ Ext.define('Ext.draw.sprite.Path', {
                 path: 'bbox'
             },
             updaters: {
-                path: function(attr) {
+                path: function (attr) {
                     var path = attr.path;
                     if (!path || path.bindAttr !== attr) {
                         path = new Ext.draw.Path();
@@ -5928,17 +5971,17 @@ Ext.define('Ext.draw.sprite.Path', {
             }
         }
     },
-    updatePlainBBox: function(plain) {
+    updatePlainBBox: function (plain) {
         if (this.attr.path) {
             this.attr.path.getDimension(plain);
         }
     },
-    updateTransformedBBox: function(transform) {
+    updateTransformedBBox: function (transform) {
         if (this.attr.path) {
             this.attr.path.getDimensionWithTransform(this.attr.matrix, transform);
         }
     },
-    render: function(surface, ctx) {
+    render: function (surface, ctx) {
         var mat = this.attr.matrix,
             attr = this.attr;
         if (!attr.path || attr.path.params.length === 0) {
@@ -5953,7 +5996,7 @@ Ext.define('Ext.draw.sprite.Path', {
             debug.xray && this.renderXRay(surface, ctx);
         }
     },
-    renderBBox: function(surface, ctx) {
+    renderBBox: function (surface, ctx) {
         var bbox = this.getBBox();
         ctx.beginPath();
         ctx.moveTo(bbox.x, bbox.y);
@@ -5966,7 +6009,7 @@ Ext.define('Ext.draw.sprite.Path', {
         ctx.lineWidth = 0.5;
         ctx.stroke();
     },
-    renderXRay: function(surface, ctx) {
+    renderXRay: function (surface, ctx) {
         var attr = this.attr,
             mat = attr.matrix,
             imat = attr.inverseMatrix,
@@ -6043,7 +6086,8 @@ Ext.define('Ext.draw.sprite.Path', {
      * @param {Object} attr The attribute object. Note: DO NOT use the `sprite.attr` instead of this
      * if you want to work with instancing.
      */
-    updatePath: function(path, attr) {}
+    updatePath: function (path, attr) {
+    }
 });
 
 /**
@@ -6061,7 +6105,7 @@ Ext.define('Ext.draw.overrides.sprite.Path', {
      * @return {Boolean}
      * @member Ext.draw.sprite.Path
      */
-    isPointInPath: function(x, y) {
+    isPointInPath: function (x, y) {
         var attr = this.attr;
         if (attr.fillStyle === Ext.draw.Color.RGBA_NONE) {
             return this.isPointOnPath(x, y);
@@ -6086,7 +6130,7 @@ Ext.define('Ext.draw.overrides.sprite.Path', {
      * @return {Boolean}
      * @member Ext.draw.sprite.Path
      */
-    isPointOnPath: function(x, y) {
+    isPointOnPath: function (x, y) {
         var attr = this.attr,
             path = attr.path,
             matrix = attr.matrix,
@@ -6104,7 +6148,7 @@ Ext.define('Ext.draw.overrides.sprite.Path', {
     /**
      * @inheritdoc
      */
-    hitTest: function(point, options) {
+    hitTest: function (point, options) {
         var me = this,
             attr = me.attr,
             path = attr.path,
@@ -6163,7 +6207,7 @@ Ext.define('Ext.draw.overrides.sprite.Path', {
      * @return {Array}
      * @member Ext.draw.sprite.Path
      */
-    getIntersections: function(path) {
+    getIntersections: function (path) {
         if (!(path.isSprite && path.isPath)) {
             return [];
         }
@@ -6253,7 +6297,7 @@ Ext.define('Ext.draw.sprite.Circle', {
             }
         }
     },
-    updatePlainBBox: function(plain) {
+    updatePlainBBox: function (plain) {
         var attr = this.attr,
             cx = attr.cx,
             cy = attr.cy,
@@ -6263,7 +6307,7 @@ Ext.define('Ext.draw.sprite.Circle', {
         plain.width = r + r;
         plain.height = r + r;
     },
-    updateTransformedBBox: function(transform) {
+    updateTransformedBBox: function (transform) {
         var attr = this.attr,
             cx = attr.cx,
             cy = attr.cy,
@@ -6279,7 +6323,7 @@ Ext.define('Ext.draw.sprite.Circle', {
         transform.width = w + w;
         transform.height = h + h;
     },
-    updatePath: function(path, attr) {
+    updatePath: function (path, attr) {
         path.arc(attr.cx, attr.cy, attr.r, 0, Math.PI * 2, false);
     }
 });
@@ -6287,7 +6331,7 @@ Ext.define('Ext.draw.sprite.Circle', {
 /**
  * @class Ext.draw.sprite.Arc
  * @extend Ext.draw.sprite.Circle
- * 
+ *
  *  A sprite that represents a circular arc.
  *
  *     @example
@@ -6346,7 +6390,7 @@ Ext.define('Ext.draw.sprite.Arc', {
             }
         }
     },
-    updatePath: function(path, attr) {
+    updatePath: function (path, attr) {
         path.arc(attr.cx, attr.cy, attr.r, attr.startAngle, attr.endAngle, attr.anticlockwise);
     }
 });
@@ -6395,7 +6439,7 @@ Ext.define('Ext.draw.sprite.Arrow', {
             }
         }
     },
-    updatePath: function(path, attr) {
+    updatePath: function (path, attr) {
         var s = attr.size * 1.5,
             x = attr.x - attr.lineWidth / 2,
             y = attr.y;
@@ -6419,7 +6463,7 @@ Ext.define('Ext.draw.sprite.Arrow', {
 /**
  * @class Ext.draw.sprite.Composite
  * @extends Ext.draw.sprite.Sprite
- * 
+ *
  * Represents a group of sprites.
  */
 Ext.define('Ext.draw.sprite.Composite', {
@@ -6430,7 +6474,7 @@ Ext.define('Ext.draw.sprite.Composite', {
     config: {
         sprites: []
     },
-    constructor: function() {
+    constructor: function () {
         this.sprites = [];
         this.sprites.map = {};
         this.callParent(arguments);
@@ -6439,7 +6483,7 @@ Ext.define('Ext.draw.sprite.Composite', {
      * Adds a sprite to the composite.
      * @param {Ext.draw.sprite.Sprite|Object} sprite
      */
-    add: function(sprite) {
+    add: function (sprite) {
         if (!sprite) {
             return null;
         }
@@ -6451,7 +6495,7 @@ Ext.define('Ext.draw.sprite.Composite', {
         var me = this,
             attr = me.attr,
             oldTransformations = sprite.applyTransformations;
-        sprite.applyTransformations = function() {
+        sprite.applyTransformations = function () {
             if (sprite.attr.dirtyTransform) {
                 attr.dirtyTransform = true;
                 attr.bbox.plain.dirty = true;
@@ -6465,9 +6509,9 @@ Ext.define('Ext.draw.sprite.Composite', {
         attr.bbox.transform.dirty = true;
         return sprite;
     },
-    updateSurface: function(surface) {
+    updateSurface: function (surface) {
         for (var i = 0,
-            ln = this.sprites.length; i < ln; i++) {
+                 ln = this.sprites.length; i < ln; i++) {
             this.sprites[i].setSurface(surface);
         }
     },
@@ -6475,7 +6519,7 @@ Ext.define('Ext.draw.sprite.Composite', {
      * Adds a list of sprites to the composite.
      * @param {Ext.draw.sprite.Sprite[]|Object[]|Ext.draw.sprite.Sprite|Object} sprites
      */
-    addAll: function(sprites) {
+    addAll: function (sprites) {
         if (sprites.isSprite || sprites.type) {
             this.add(sprites);
         } else if (Ext.isArray(sprites)) {
@@ -6488,7 +6532,7 @@ Ext.define('Ext.draw.sprite.Composite', {
     /**
      * Updates the bounding box of the composite, which contains the bounding box of all sprites in the composite.
      */
-    updatePlainBBox: function(plain) {
+    updatePlainBBox: function (plain) {
         var me = this,
             left = Infinity,
             right = -Infinity,
@@ -6520,7 +6564,7 @@ Ext.define('Ext.draw.sprite.Composite', {
     /**
      * Renders all sprites contained in the composite to the surface.
      */
-    render: function(surface, ctx, rect) {
+    render: function (surface, ctx, rect) {
         var mat = this.attr.matrix,
             i, ln;
         mat.toContext(ctx);
@@ -6574,7 +6618,7 @@ Ext.define('Ext.draw.sprite.Cross', {
             }
         }
     },
-    updatePath: function(path, attr) {
+    updatePath: function (path, attr) {
         var s = attr.size / 1.7,
             x = attr.x - attr.lineWidth / 2,
             y = attr.y;
@@ -6650,7 +6694,7 @@ Ext.define('Ext.draw.sprite.Diamond', {
             }
         }
     },
-    updatePath: function(path, attr) {
+    updatePath: function (path, attr) {
         var s = attr.size * 1.25,
             x = attr.x - attr.lineWidth / 2,
             y = attr.y;
@@ -6675,7 +6719,7 @@ Ext.define('Ext.draw.sprite.Diamond', {
 /**
  * @class Ext.draw.sprite.Ellipse
  * @extends Ext.draw.sprite.Path
- * 
+ *
  * A sprite that represents an ellipse.
  *
  *     @example
@@ -6747,7 +6791,7 @@ Ext.define("Ext.draw.sprite.Ellipse", {
             }
         }
     },
-    updatePlainBBox: function(plain) {
+    updatePlainBBox: function (plain) {
         var attr = this.attr,
             cx = attr.cx,
             cy = attr.cy,
@@ -6758,7 +6802,7 @@ Ext.define("Ext.draw.sprite.Ellipse", {
         plain.width = rx + rx;
         plain.height = ry + ry;
     },
-    updateTransformedBBox: function(transform) {
+    updateTransformedBBox: function (transform) {
         var attr = this.attr,
             cx = attr.cx,
             cy = attr.cy,
@@ -6781,7 +6825,7 @@ Ext.define("Ext.draw.sprite.Ellipse", {
         transform.width = w + w;
         transform.height = h + h;
     },
-    updatePath: function(path, attr) {
+    updatePath: function (path, attr) {
         path.ellipse(attr.cx, attr.cy, attr.rx, attr.ry, attr.axisRotation, 0, Math.PI * 2, false);
     }
 });
@@ -6849,7 +6893,7 @@ Ext.define('Ext.draw.sprite.EllipticalArc', {
             }
         }
     },
-    updatePath: function(path, attr) {
+    updatePath: function (path, attr) {
         path.ellipse(attr.cx, attr.cy, attr.rx, attr.ry, attr.axisRotation, attr.startAngle, attr.endAngle, attr.anticlockwise);
     }
 });
@@ -6921,17 +6965,17 @@ Ext.define('Ext.draw.sprite.Rect', {
             }
         }
     },
-    updatePlainBBox: function(plain) {
+    updatePlainBBox: function (plain) {
         var attr = this.attr;
         plain.x = attr.x;
         plain.y = attr.y;
         plain.width = attr.width;
         plain.height = attr.height;
     },
-    updateTransformedBBox: function(transform, plain) {
+    updateTransformedBBox: function (transform, plain) {
         this.attr.matrix.transformBBox(plain, this.attr.radius, transform);
     },
-    updatePath: function(path, attr) {
+    updatePath: function (path, attr) {
         var x = attr.x,
             y = attr.y,
             width = attr.width,
@@ -6952,7 +6996,7 @@ Ext.define('Ext.draw.sprite.Rect', {
 /**
  * @class Ext.draw.sprite.Image
  * @extends Ext.draw.sprite.Rect
- * 
+ *
  * A sprite that represents an image.
  */
 Ext.define("Ext.draw.sprite.Image", {
@@ -6989,7 +7033,7 @@ Ext.define("Ext.draw.sprite.Image", {
             }
         }
     },
-    render: function(surface, ctx) {
+    render: function (surface, ctx) {
         var me = this,
             attr = me.attr,
             mat = attr.matrix,
@@ -7018,7 +7062,7 @@ Ext.define("Ext.draw.sprite.Image", {
             };
             imageLoader.width = width;
             imageLoader.height = height;
-            imageLoader.onload = function() {
+            imageLoader.onload = function () {
                 if (!loadingStub.done) {
                     loadingStub.done = true;
                     for (i = 0; i < loadingStub.pendingSprites.length; i++) {
@@ -7055,7 +7099,7 @@ Ext.define('Ext.draw.sprite.Instancing', {
         template: null
     },
     instances: null,
-    applyTemplate: function(template) {
+    applyTemplate: function (template) {
         if (!Ext.isObject(template)) {
             Ext.Error.raise("A template of an instancing sprite must either be " + "a sprite instance or a valid config object from which a template " + "sprite will be created.");
         } else if (template.isInstancing || template.isComposite) {
@@ -7071,7 +7115,7 @@ Ext.define('Ext.draw.sprite.Instancing', {
         template.setParent(this);
         return template;
     },
-    updateTemplate: function(template, oldTemplate) {
+    updateTemplate: function (template, oldTemplate) {
         if (oldTemplate) {
             delete oldTemplate.ownAttr;
         }
@@ -7083,31 +7127,31 @@ Ext.define('Ext.draw.sprite.Instancing', {
         template.attr.children = this.instances = [];
         this.position = 0;
     },
-    updateSurface: function(surface) {
+    updateSurface: function (surface) {
         var template = this.getTemplate();
         if (template) {
             template.setSurface(surface);
         }
     },
-    get: function(index) {
+    get: function (index) {
         return this.instances[index];
     },
-    getCount: function() {
+    getCount: function () {
         return this.instances.length;
     },
-    clearAll: function() {
+    clearAll: function () {
         this.instances.length = 0;
         this.position = 0;
     },
     /**
      * Creates a new sprite instance.
-     * 
+     *
      * @param {Object} config The configuration of the instance.
      * @param {Boolean} [bypassNormalization] 'true' to bypass attribute normalization.
      * @param {Boolean} [avoidCopy] 'true' to avoid copying the `config` object.
      * @return {Object} The attributes of the instance.
      */
-    createInstance: function(config, bypassNormalization, avoidCopy) {
+    createInstance: function (config, bypassNormalization, avoidCopy) {
         var template = this.getTemplate(),
             originalAttr = template.attr,
             attr = Ext.Object.chain(originalAttr);
@@ -7122,10 +7166,10 @@ Ext.define('Ext.draw.sprite.Instancing', {
     },
     /**
      * Not supported.
-     * 
+     *
      * @return {null}
      */
-    getBBox: function() {
+    getBBox: function () {
         return null;
     },
     /**
@@ -7135,7 +7179,7 @@ Ext.define('Ext.draw.sprite.Instancing', {
      * @param {Boolean} [isWithoutTransform] 'true' to not apply sprite transforms to the bounding box.
      * @return {Object} The bounding box for the instance.
      */
-    getBBoxFor: function(index, isWithoutTransform) {
+    getBBoxFor: function (index, isWithoutTransform) {
         var template = this.getTemplate(),
             originalAttr = template.attr,
             bbox;
@@ -7144,7 +7188,7 @@ Ext.define('Ext.draw.sprite.Instancing', {
         template.attr = originalAttr;
         return bbox;
     },
-    render: function(surface, ctx, clipRect, rect) {
+    render: function (surface, ctx, clipRect, rect) {
         if (!this.getTemplate()) {
             Ext.Error.raise('An instancing sprite must have a template.');
         }
@@ -7165,7 +7209,7 @@ Ext.define('Ext.draw.sprite.Instancing', {
         }
         for (i = 0; i < ln; i++) {
             if (instances[i].hidden) {
-                
+
                 continue;
             }
             ctx.save();
@@ -7178,12 +7222,12 @@ Ext.define('Ext.draw.sprite.Instancing', {
     },
     /**
      * Sets the attributes for the instance at the given index.
-     * 
+     *
      * @param {Number} index the index of the instance
      * @param {Object} changes the attributes to change
      * @param {Boolean} [bypassNormalization] 'true' to avoid attribute normalization
      */
-    setAttributesFor: function(index, changes, bypassNormalization) {
+    setAttributesFor: function (index, changes, bypassNormalization) {
         var template = this.getTemplate(),
             originalAttr = template.attr,
             attr = this.instances[index];
@@ -7199,7 +7243,7 @@ Ext.define('Ext.draw.sprite.Instancing', {
         template.topModifier.pushDown(attr, changes);
         template.attr = originalAttr;
     },
-    destroy: function() {
+    destroy: function () {
         this.callParent();
         this.instances.length = 0;
         this.instances = null;
@@ -7256,7 +7300,7 @@ Ext.define('Ext.draw.sprite.Line', {
             }
         }
     },
-    updatePlainBBox: function(plain) {
+    updatePlainBBox: function (plain) {
         var attr = this.attr,
             fromX = Math.min(attr.fromX, attr.toX),
             fromY = Math.min(attr.fromY, attr.toY),
@@ -7267,7 +7311,7 @@ Ext.define('Ext.draw.sprite.Line', {
         plain.width = toX - fromX;
         plain.height = toY - fromY;
     },
-    render: function(surface, ctx) {
+    render: function (surface, ctx) {
         var attr = this.attr,
             matrix = this.attr.matrix;
         matrix.toContext(ctx);
@@ -7322,7 +7366,7 @@ Ext.define('Ext.draw.sprite.Plus', {
             }
         }
     },
-    updatePath: function(path, attr) {
+    updatePath: function (path, attr) {
         var s = attr.size / 1.3,
             x = attr.x - attr.lineWidth / 2,
             y = attr.y;
@@ -7357,7 +7401,7 @@ Ext.define('Ext.draw.sprite.Plus', {
 /**
  * @class Ext.draw.sprite.Sector
  * @extends Ext.draw.sprite.Path
- * 
+ *
  * A sprite representing a pie slice.
  *
  *     @example
@@ -7437,10 +7481,10 @@ Ext.define('Ext.draw.sprite.Sector', {
             }
         }
     },
-    getMidAngle: function() {
+    getMidAngle: function () {
         return this.midAngle || 0;
     },
-    updatePath: function(path, attr) {
+    updatePath: function (path, attr) {
         var startAngle = Math.min(attr.startAngle, attr.endAngle),
             endAngle = Math.max(attr.startAngle, attr.endAngle),
             midAngle = this.midAngle = (startAngle + endAngle) * 0.5,
@@ -7498,7 +7542,7 @@ Ext.define('Ext.draw.sprite.Square', {
                 size: 'size'
             },
             updaters: {
-                size: function(attr) {
+                size: function (attr) {
                     var size = attr.size,
                         halfLineWidth = attr.lineWidth / 2;
                     this.setAttributes({
@@ -7568,24 +7612,24 @@ Ext.define('Ext.draw.TextMeasurer', {
      * @return {Number} return.width
      * @return {Number} return.height
      */
-    actualMeasureText: function(text, font) {
+    actualMeasureText: function (text, font) {
         var me = Ext.draw.TextMeasurer,
             measureDiv = me.measureDiv,
             FARAWAY = 100000,
             size;
         if (!measureDiv) {
             var parent = Ext.Element.create({
-                    // Tell the spec runner to ignore this element when checking if the dom is clean.
-                    'data-sticky': true,
-                    style: {
-                        "overflow": "hidden",
-                        "position": "relative",
-                        "float": "left",
-                        // DO NOT REMOVE THE QUOTE OR IT WILL BREAK COMPRESSOR
-                        "width": 0,
-                        "height": 0
-                    }
-                });
+                // Tell the spec runner to ignore this element when checking if the dom is clean.
+                'data-sticky': true,
+                style: {
+                    "overflow": "hidden",
+                    "position": "relative",
+                    "float": "left",
+                    // DO NOT REMOVE THE QUOTE OR IT WILL BREAK COMPRESSOR
+                    "width": 0,
+                    "height": 0
+                }
+            });
             me.measureDiv = measureDiv = Ext.Element.create({
                 style: {
                     "position": 'absolute',
@@ -7623,7 +7667,7 @@ Ext.define('Ext.draw.TextMeasurer', {
      * @return {Number} return.width
      * @return {Number} return.height
      */
-    measureTextSingleLine: function(text, font) {
+    measureTextSingleLine: function (text, font) {
         if (this.precise) {
             return this.preciseMeasureTextSingleLine(text, font);
         }
@@ -7655,7 +7699,7 @@ Ext.define('Ext.draw.TextMeasurer', {
         };
     },
     // A more precise but slower version of the measureTextSingleLine method.
-    preciseMeasureTextSingleLine: function(text, font) {
+    preciseMeasureTextSingleLine: function (text, font) {
         text = text.toString();
         var measureDiv = this.measureDiv || (this.measureDiv = Ext.getBody().createChild(this.measureDivTpl).down('div'));
         measureDiv.setStyle({
@@ -7674,7 +7718,7 @@ Ext.define('Ext.draw.TextMeasurer', {
      * @return {Number} return.height
      * @return {Object} return.sizes Results of individual line measurements, in case of multiline text.
      */
-    measureText: function(text, font) {
+    measureText: function (text, font) {
         var lines = text.split('\n'),
             ln = lines.length,
             height = 0,
@@ -7769,7 +7813,7 @@ Ext.define('Ext.draw.sprite.Text', {
                  * @cfg {String/Number} [fontSize='10px']
                  * The size of the font displayed.
                  */
-                fontSize: function(n) {
+                fontSize: function (n) {
                     if (!isNaN(n)) {
                         return +n + 'px';
                     } else if (n.match(Ext.dom.Element.unitRe)) {
@@ -7790,8 +7834,8 @@ Ext.define('Ext.draw.sprite.Text', {
                  * @cfg {String} [fontWeight='']
                  * The weight of the font displayed. {normal, bold, bolder, lighter}
                  */
-                fontWeight: (function(fontWeights) {
-                    return function(n) {
+                fontWeight: (function (fontWeights) {
+                    return function (n) {
                         if (!n) {
                             return '';
                         } else if (n === 'normal') {
@@ -7820,8 +7864,8 @@ Ext.define('Ext.draw.sprite.Text', {
                  * @cfg {String} [textAlign='start']
                  * The alignment of the text displayed. {left, right, center, start, end}
                  */
-                textAlign: (function(textAligns) {
-                    return function(n) {
+                textAlign: (function (textAligns) {
+                    return function (n) {
                         return textAligns[n] || 'center';
                     };
                 })({
@@ -7836,8 +7880,8 @@ Ext.define('Ext.draw.sprite.Text', {
                  * @cfg {String} [textBaseline="alphabetic"]
                  * The baseline of the text displayed. {top, hanging, middle, alphabetic, ideographic, bottom}
                  */
-                textBaseline: (function(textBaselines) {
-                    return function(n) {
+                textBaseline: (function (textBaselines) {
+                    return function (n) {
                         return textBaselines[n] || 'alphabetic';
                     };
                 })({
@@ -7892,12 +7936,12 @@ Ext.define('Ext.draw.sprite.Text', {
                 text: 'bbox'
             },
             updaters: {
-                'font-short-hand': (function(dispatcher) {
-                    return function(attrs) {
+                'font-short-hand': (function (dispatcher) {
+                    return function (attrs) {
                         // TODO: Do this according to http://www.w3.org/TR/CSS21/fonts.html#font-shorthand
                         var value = attrs.font,
                             parts, part, i, ln, dispKey;
-                        value = value.replace(Ext.draw.sprite.Text.shortHand1Re, function(a, arg1) {
+                        value = value.replace(Ext.draw.sprite.Text.shortHand1Re, function (a, arg1) {
                             return arg1.replace(Ext.draw.sprite.Text.shortHand2Re, '$$$$');
                         });
                         value = value.replace(Ext.draw.sprite.Text.shortHand3Re, ',');
@@ -7933,7 +7977,7 @@ Ext.define('Ext.draw.sprite.Text', {
                     '900': 'fontWeight',
                     'small-caps': 'fontVariant'
                 }),
-                font: function(attrs) {
+                font: function (attrs) {
                     var font = '';
                     if (attrs.fontWeight) {
                         font += attrs.fontWeight + ' ';
@@ -7957,7 +8001,7 @@ Ext.define('Ext.draw.sprite.Text', {
             }
         }
     },
-    constructor: function(config) {
+    constructor: function (config) {
         if (config && config.font) {
             config = Ext.clone(config);
             for (var key in config) {
@@ -7973,7 +8017,7 @@ Ext.define('Ext.draw.sprite.Text', {
     // because in that case the position of the sprite depends not just on
     // the value of its 'x' attribute, but also on the width of the surface
     // the sprite belongs to.
-    getBBox: function(isWithoutTransform) {
+    getBBox: function (isWithoutTransform) {
         var me = this,
             plain = me.attr.bbox.plain,
             surface = me.getSurface();
@@ -8001,7 +8045,7 @@ Ext.define('Ext.draw.sprite.Text', {
         center: 'center',
         end: 'start'
     },
-    updatePlainBBox: function(plain, useOldSize) {
+    updatePlainBBox: function (plain, useOldSize) {
         var me = this,
             attr = me.attr,
             x = attr.x,
@@ -8053,24 +8097,28 @@ Ext.define('Ext.draw.sprite.Text', {
                         lineWidth = sizes[i].width;
                         dx.push(-(blockWidth - lineWidth));
                     }
-                };
+                }
+                ;
                 break;
             case 'end':
                 x -= blockWidth;
                 if (isRtl) {
                     break;
-                };
+                }
+                ;
                 for (; i < ln; i++) {
                     lineWidth = sizes[i].width;
                     dx.push(blockWidth - lineWidth);
-                };
+                }
+                ;
                 break;
             case 'center':
                 x -= blockWidth * 0.5;
                 for (; i < ln; i++) {
                     lineWidth = sizes[i].width;
                     dx.push((isRtl ? -1 : 1) * (blockWidth - lineWidth) * 0.5);
-                };
+                }
+                ;
                 break;
         }
         attr.textAlignOffsets = dx;
@@ -8079,12 +8127,12 @@ Ext.define('Ext.draw.sprite.Text', {
         plain.width = blockWidth;
         plain.height = blockHeight;
     },
-    setText: function(text) {
+    setText: function (text) {
         this.setAttributes({
             text: text
         }, true);
     },
-    setElementStyles: function(element, styles) {
+    setElementStyles: function (element, styles) {
         var stylesCache = element.stylesCache || (element.stylesCache = {}),
             style = element.dom.style,
             name;
@@ -8094,7 +8142,7 @@ Ext.define('Ext.draw.sprite.Text', {
             }
         }
     },
-    renderBBox: function(surface, ctx) {
+    renderBBox: function (surface, ctx) {
         var bbox = this.getBBox(true);
         ctx.beginPath();
         ctx.moveTo(bbox.x, bbox.y);
@@ -8107,7 +8155,7 @@ Ext.define('Ext.draw.sprite.Text', {
         ctx.lineWidth = 0.5;
         ctx.stroke();
     },
-    render: function(surface, ctx, rect) {
+    render: function (surface, ctx, rect) {
         var me = this,
             attr = me.attr,
             mat = Ext.draw.Matrix.fly(attr.matrix.elements.slice(0)),
@@ -8148,8 +8196,8 @@ Ext.define('Ext.draw.sprite.Text', {
 });
 
 /**
- * A veritical line sprite. The x and y configs set the center of the line with the size 
- * value determining the height of the line (the line will be twice the height of 'size' 
+ * A veritical line sprite. The x and y configs set the center of the line with the size
+ * value determining the height of the line (the line will be twice the height of 'size'
  * since 'size' is added to above and below 'y' to set the line endpoints).
  *
  *     @example
@@ -8199,7 +8247,7 @@ Ext.define('Ext.draw.sprite.Tick', {
                 size: 'tick'
             },
             updaters: {
-                tick: function(attr) {
+                tick: function (attr) {
                     var size = attr.size * 1.5,
                         halfLineWidth = attr.lineWidth / 2,
                         x = attr.x,
@@ -8233,7 +8281,7 @@ Ext.define('Ext.draw.sprite.Tick', {
  *            fillStyle: '#1F6D91'
  *        }]
  *     });
- * 
+ *
  */
 Ext.define('Ext.draw.sprite.Triangle', {
     extend: 'Ext.draw.sprite.Path',
@@ -8261,7 +8309,7 @@ Ext.define('Ext.draw.sprite.Triangle', {
             }
         }
     },
-    updatePath: function(path, attr) {
+    updatePath: function (path, attr) {
         var s = attr.size * 2.2,
             x = attr.x,
             y = attr.y;
@@ -8315,28 +8363,28 @@ Ext.define('Ext.draw.gradient.Linear', {
          */
         radians: 0
     },
-    applyRadians: function(radians, oldRadians) {
+    applyRadians: function (radians, oldRadians) {
         if (Ext.isNumber(radians)) {
             return radians;
         }
         return oldRadians;
     },
-    applyDegrees: function(degrees, oldDegrees) {
+    applyDegrees: function (degrees, oldDegrees) {
         if (Ext.isNumber(degrees)) {
             return degrees;
         }
         return oldDegrees;
     },
-    updateRadians: function(radians) {
+    updateRadians: function (radians) {
         this.setDegrees(Ext.draw.Draw.degrees(radians));
     },
-    updateDegrees: function(degrees) {
+    updateDegrees: function (degrees) {
         this.setRadians(Ext.draw.Draw.rad(degrees));
     },
     /**
      * @inheritdoc
      */
-    generateGradient: function(ctx, bbox) {
+    generateGradient: function (ctx, bbox) {
         var angle = this.getRadians(),
             cos = Math.cos(angle),
             sin = Math.sin(angle),
@@ -8417,15 +8465,15 @@ Ext.define('Ext.draw.gradient.Radial', {
             r: 1
         }
     },
-    applyStart: function(newStart, oldStart) {
+    applyStart: function (newStart, oldStart) {
         if (!oldStart) {
             return newStart;
         }
         var circle = {
-                x: oldStart.x,
-                y: oldStart.y,
-                r: oldStart.r
-            };
+            x: oldStart.x,
+            y: oldStart.y,
+            r: oldStart.r
+        };
         if ('x' in newStart) {
             circle.x = newStart.x;
         } else if ('centerX' in newStart) {
@@ -8443,15 +8491,15 @@ Ext.define('Ext.draw.gradient.Radial', {
         }
         return circle;
     },
-    applyEnd: function(newEnd, oldEnd) {
+    applyEnd: function (newEnd, oldEnd) {
         if (!oldEnd) {
             return newEnd;
         }
         var circle = {
-                x: oldEnd.x,
-                y: oldEnd.y,
-                r: oldEnd.r
-            };
+            x: oldEnd.x,
+            y: oldEnd.y,
+            r: oldEnd.r
+        };
         if ('x' in newEnd) {
             circle.x = newEnd.x;
         } else if ('centerX' in newEnd) {
@@ -8472,7 +8520,7 @@ Ext.define('Ext.draw.gradient.Radial', {
     /**
      * @inheritdoc
      */
-    generateGradient: function(ctx, bbox) {
+    generateGradient: function (ctx, bbox) {
         var start = this.getStart(),
             end = this.getEnd(),
             w = bbox.width * 0.5,
@@ -8587,8 +8635,8 @@ Ext.define('Ext.draw.Surface', {
                      * @param {Array} list
                      * @return {Array} Sorted array.
                      */
-                    stableSort: function(list) {
-                        return Ext.Array.sort(list, function(a, b) {
+                    stableSort: function (list) {
+                        return Ext.Array.sort(list, function (a, b) {
                             return a.attr.zIndex - b.attr.zIndex;
                         });
                     }
@@ -8629,7 +8677,7 @@ Ext.define('Ext.draw.Surface', {
     },
     isSurface: true,
     dirtyPredecessor: 0,
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this;
         me.predecessors = [];
         me.successors = [];
@@ -8650,14 +8698,14 @@ Ext.define('Ext.draw.Surface', {
      * @param {Number} num The number to align.
      * @return {Number} The resultant alignment.
      */
-    roundPixel: function(num) {
+    roundPixel: function (num) {
         return Math.round(this.devicePixelRatio * num) / this.devicePixelRatio;
     },
     /**
      * Mark the surface to render after another surface is updated.
      * @param {Ext.draw.Surface} surface The surface to wait for.
      */
-    waitFor: function(surface) {
+    waitFor: function (surface) {
         var me = this,
             predecessors = me.predecessors;
         if (!Ext.Array.contains(predecessors, surface)) {
@@ -8668,7 +8716,7 @@ Ext.define('Ext.draw.Surface', {
             }
         }
     },
-    setDirty: function(dirty) {
+    setDirty: function (dirty) {
         if (this._dirty !== dirty) {
             var successors = this.successors,
                 successor, i,
@@ -8688,7 +8736,7 @@ Ext.define('Ext.draw.Surface', {
             this._dirty = dirty;
         }
     },
-    applyElement: function(newElement, oldElement) {
+    applyElement: function (newElement, oldElement) {
         if (oldElement) {
             oldElement.set(newElement);
         } else {
@@ -8697,7 +8745,7 @@ Ext.define('Ext.draw.Surface', {
         this.setDirty(true);
         return oldElement;
     },
-    applyBackground: function(background, oldBackground) {
+    applyBackground: function (background, oldBackground) {
         this.setDirty(true);
         if (Ext.isString(background)) {
             background = {
@@ -8706,7 +8754,7 @@ Ext.define('Ext.draw.Surface', {
         }
         return Ext.factory(background, Ext.draw.sprite.Rect, oldBackground);
     },
-    applyRect: function(rect, oldRect) {
+    applyRect: function (rect, oldRect) {
         if (oldRect && rect[0] === oldRect[0] && rect[1] === oldRect[1] && rect[2] === oldRect[2] && rect[3] === oldRect[3]) {
             return;
         }
@@ -8726,7 +8774,7 @@ Ext.define('Ext.draw.Surface', {
             ];
         }
     },
-    updateRect: function(rect) {
+    updateRect: function (rect) {
         var me = this,
             l = rect[0],
             t = rect[1],
@@ -8749,7 +8797,7 @@ Ext.define('Ext.draw.Surface', {
     /**
      * Reset the matrix of the surface.
      */
-    resetTransform: function() {
+    resetTransform: function () {
         this.matrix.set(1, 0, 0, 1, 0, 0);
         this.inverseMatrix.set(1, 0, 0, 1, 0, 0);
         this.setDirty(true);
@@ -8760,7 +8808,7 @@ Ext.define('Ext.draw.Surface', {
      * @param {String|Number} id
      * @return {Ext.draw.sprite.Sprite}
      */
-    get: function(id) {
+    get: function (id) {
         return this.map[id] || this.items[id];
     },
     /**
@@ -8780,7 +8828,7 @@ Ext.define('Ext.draw.Surface', {
      *     drawContainer.renderFrame();
      *
      */
-    add: function() {
+    add: function () {
         var me = this,
             args = Array.prototype.slice.call(arguments),
             argIsArray = Ext.isArray(args[0]),
@@ -8830,7 +8878,7 @@ Ext.define('Ext.draw.Surface', {
      * @param {Ext.draw.sprite.Sprite} sprite
      * @param {Boolean} [destroySprite=false]
      */
-    remove: function(sprite, destroySprite) {
+    remove: function (sprite, destroySprite) {
         if (sprite) {
             delete this.map[sprite.getId()];
             if (destroySprite) {
@@ -8853,7 +8901,7 @@ Ext.define('Ext.draw.Surface', {
      *
      * @param {Boolean} [destroySprites=false]
      */
-    removeAll: function(destroySprites) {
+    removeAll: function (destroySprites) {
         var items = this.getItems(),
             i = items.length,
             item;
@@ -8874,7 +8922,7 @@ Ext.define('Ext.draw.Surface', {
         this.dirtyZIndex = true;
     },
     // @private
-    applyItems: function(items) {
+    applyItems: function (items) {
         if (this.getItems()) {
             this.removeAll(true);
         }
@@ -8884,12 +8932,12 @@ Ext.define('Ext.draw.Surface', {
      * @private
      * Initialize and apply defaults to surface items.
      */
-    prepareItems: function(items) {
+    prepareItems: function (items) {
         items = [].concat(items);
         // Make sure defaults are applied and item is initialized
         var me = this,
             item, i, ln, j,
-            removeSprite = function(sprite) {
+            removeSprite = function (sprite) {
                 this.remove(sprite, false);
             };
         for (i = 0 , ln = items.length; i < ln; i++) {
@@ -8906,7 +8954,7 @@ Ext.define('Ext.draw.Surface', {
      * @private Creates an item and appends it to the surface. Called
      * as an internal method when calling `add`.
      */
-    createItem: function(config) {
+    createItem: function (config) {
         return Ext.create(config.xclass || 'sprite.' + config.type, config);
     },
     /**
@@ -8915,7 +8963,7 @@ Ext.define('Ext.draw.Surface', {
      * @param {Boolean} [isWithoutTransform=false]
      * @return {{x: Number, y: Number, width: number, height: number}}
      */
-    getBBox: function(sprites, isWithoutTransform) {
+    getBBox: function (sprites, isWithoutTransform) {
         var sprites = Ext.Array.from(sprites),
             left = Infinity,
             right = -Infinity,
@@ -8953,16 +9001,16 @@ Ext.define('Ext.draw.Surface', {
     ],
     // Converts event's page coordinates into surface coordinates.
     // Note: surface's x-coordinates always go LTR, regardless of RTL mode.
-    getEventXY: function(e) {
+    getEventXY: function (e) {
         var me = this,
             isRtl = me.getInherited().rtl,
             pageXY = e.getXY(),
-            // Event position in page coordinates.
+        // Event position in page coordinates.
             container = me.el.up(),
             xy = container.getXY(),
-            // Surface container position in page coordinates.
+        // Surface container position in page coordinates.
             rect = me.getRect() || me.emptyRect,
-            // Surface position in surface container coordinates (LTR).
+        // Surface position in surface container coordinates (LTR).
             result = [],
             width;
         if (isRtl) {
@@ -8984,7 +9032,7 @@ Ext.define('Ext.draw.Surface', {
      * @private
      * Order the items by their z-index if any of that has been changed since last sort.
      */
-    orderByZIndex: function() {
+    orderByZIndex: function () {
         var me = this,
             items = me.getItems(),
             dirtyZIndex = false,
@@ -8998,7 +9046,7 @@ Ext.define('Ext.draw.Surface', {
             }
             if (dirtyZIndex) {
                 // sort by zIndex
-                Ext.Array.sort(items, function(a, b) {
+                Ext.Array.sort(items, function (a, b) {
                     return a.attr.zIndex - b.attr.zIndex;
                 });
                 this.setDirty(true);
@@ -9011,10 +9059,10 @@ Ext.define('Ext.draw.Surface', {
     /**
      * Force the element to redraw.
      */
-    repaint: function() {
+    repaint: function () {
         var me = this;
         me.repaint = Ext.emptyFn;
-        Ext.defer(function() {
+        Ext.defer(function () {
             delete me.repaint;
             me.element.repaint();
         }, 1);
@@ -9022,7 +9070,7 @@ Ext.define('Ext.draw.Surface', {
     /**
      * Triggers the re-rendering of the canvas.
      */
-    renderFrame: function() {
+    renderFrame: function () {
         if (!this.element) {
             return;
         }
@@ -9089,7 +9137,7 @@ Ext.define('Ext.draw.Surface', {
      * Returns 'true' if the surface is dirty.
      * @return {Boolean} 'true' if the surface is dirty
      */
-    getDirty: function() {
+    getDirty: function () {
         return this._dirty;
     },
     /**
@@ -9100,7 +9148,7 @@ Ext.define('Ext.draw.Surface', {
      *
      *      drawContainer.surface.destroy();
      */
-    destroy: function() {
+    destroy: function () {
         var me = this;
         me.removeAll();
         me.setBackground(null);
@@ -9124,7 +9172,7 @@ Ext.define('Ext.draw.overrides.Surface', {
      * exactly was hit or null if nothing was hit.
      * @member Ext.draw.Surface
      */
-    hitTest: function(point, options) {
+    hitTest: function (point, options) {
         var me = this,
             sprites = me.getItems(),
             i, sprite, result;
@@ -9150,7 +9198,7 @@ Ext.define('Ext.draw.overrides.Surface', {
      * exactly was hit or null if nothing was hit.
      * @member Ext.draw.Surface
      */
-    hitTestEvent: function(event, options) {
+    hitTestEvent: function (event, options) {
         var xy = this.getEventXY(event);
         return this.hitTest(xy, options);
     }
@@ -9207,7 +9255,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
     "shadowColor": "none",
     "globalCompositeOperation": "src",
     urlStringRe: /^url\(#([\w\-]+)\)$/,
-    constructor: function(SvgSurface) {
+    constructor: function (SvgSurface) {
         this.surface = SvgSurface;
         this.state = [];
         this.matrix = new Ext.draw.Matrix();
@@ -9217,7 +9265,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
     /**
      * Clears the context.
      */
-    clear: function() {
+    clear: function () {
         this.group = this.surface.mainGroup;
         this.position = 0;
         this.path = null;
@@ -9227,7 +9275,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {String} tag
      * @return {*}
      */
-    getElement: function(tag) {
+    getElement: function (tag) {
         return this.surface.getSvgElement(this.group, tag, this.position++);
     },
     /**
@@ -9237,7 +9285,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      *
      * @param element {HTMLElement|Ext.dom.Element|String} DOM element.
      */
-    removeElement: function(element) {
+    removeElement: function (element) {
         var element = Ext.fly(element),
             fill, stroke, fillMatch, strokeMatch, gradients, gradient, key;
         if (!element) {
@@ -9271,7 +9319,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
     /**
      * Pushes the context state to the state stack.
      */
-    save: function() {
+    save: function () {
         var toSave = this.toSave,
             obj = {},
             group = this.getElement('g'),
@@ -9291,7 +9339,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
     /**
      * Pops the state stack and restores the state.
      */
-    restore: function() {
+    restore: function () {
         var toSave = this.toSave,
             obj = this.state.pop(),
             children = this.group.dom.childNodes,
@@ -9320,16 +9368,16 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} dx
      * @param {Number} dy
      */
-    transform: function(xx, yx, xy, yy, dx, dy) {
+    transform: function (xx, yx, xy, yy, dx, dy) {
         if (this.path) {
             var inv = Ext.draw.Matrix.fly([
-                    xx,
-                    yx,
-                    xy,
-                    yy,
-                    dx,
-                    dy
-                ]).inverse();
+                xx,
+                yx,
+                xy,
+                yy,
+                dx,
+                dy
+            ]).inverse();
             this.path.transform(inv);
         }
         this.matrix.append(xx, yx, xy, yy, dx, dy);
@@ -9343,7 +9391,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} dx
      * @param {Number} dy
      */
-    setTransform: function(xx, yx, xy, yy, dx, dy) {
+    setTransform: function (xx, yx, xy, yy, dx, dy) {
         if (this.path) {
             this.path.transform(this.matrix);
         }
@@ -9355,14 +9403,14 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} x The horizontal scaling factor, where 1 equals unity or 100% scale.
      * @param {Number} y The vertical scaling factor.
      */
-    scale: function(x, y) {
+    scale: function (x, y) {
         this.transform(x, 0, 0, y, 0, 0);
     },
     /**
      * Rotates the current context coordinates (that is, a transformation matrix).
      * @param {Number} angle The rotation angle, in radians.
      */
-    rotate: function(angle) {
+    rotate: function (angle) {
         var xx = Math.cos(angle),
             yx = Math.sin(angle),
             xy = -Math.sin(angle),
@@ -9374,16 +9422,16 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} x The value to add to horizontal (or x) coordinates.
      * @param {Number} y The value to add to vertical (or y) coordinates.
      */
-    translate: function(x, y) {
+    translate: function (x, y) {
         this.transform(1, 0, 0, 1, x, y);
     },
-    setGradientBBox: function(bbox) {
+    setGradientBBox: function (bbox) {
         this.bbox = bbox;
     },
     /**
      * Resets the current default path.
      */
-    beginPath: function() {
+    beginPath: function () {
         this.path = new Ext.draw.Path();
     },
     /**
@@ -9391,7 +9439,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} x
      * @param {Number} y
      */
-    moveTo: function(x, y) {
+    moveTo: function (x, y) {
         if (!this.path) {
             this.beginPath();
         }
@@ -9403,7 +9451,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} x
      * @param {Number} y
      */
-    lineTo: function(x, y) {
+    lineTo: function (x, y) {
         if (!this.path) {
             this.beginPath();
         }
@@ -9417,7 +9465,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} width
      * @param {Number} height
      */
-    rect: function(x, y, width, height) {
+    rect: function (x, y, width, height) {
         this.moveTo(x, y);
         this.lineTo(x + width, y);
         this.lineTo(x + width, y + height);
@@ -9431,7 +9479,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} width
      * @param {Number} height
      */
-    strokeRect: function(x, y, width, height) {
+    strokeRect: function (x, y, width, height) {
         this.beginPath();
         this.rect(x, y, width, height);
         this.stroke();
@@ -9443,7 +9491,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} width
      * @param {Number} height
      */
-    fillRect: function(x, y, width, height) {
+    fillRect: function (x, y, width, height) {
         this.beginPath();
         this.rect(x, y, width, height);
         this.fill();
@@ -9451,7 +9499,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
     /**
      * Marks the current subpath as closed, and starts a new subpath with a point the same as the start and end of the newly closed subpath.
      */
-    closePath: function() {
+    closePath: function () {
         if (!this.path) {
             this.beginPath();
         }
@@ -9468,7 +9516,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} x2
      * @param {Number} y2
      */
-    arcSvg: function(r1, r2, rotation, large, swipe, x2, y2) {
+    arcSvg: function (r1, r2, rotation, large, swipe, x2, y2) {
         if (!this.path) {
             this.beginPath();
         }
@@ -9484,7 +9532,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} endAngle
      * @param {Number} anticlockwise
      */
-    arc: function(x, y, radius, startAngle, endAngle, anticlockwise) {
+    arc: function (x, y, radius, startAngle, endAngle, anticlockwise) {
         if (!this.path) {
             this.beginPath();
         }
@@ -9502,7 +9550,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} endAngle
      * @param {Number} anticlockwise
      */
-    ellipse: function(x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise) {
+    ellipse: function (x, y, radiusX, radiusY, rotation, startAngle, endAngle, anticlockwise) {
         if (!this.path) {
             this.beginPath();
         }
@@ -9521,7 +9569,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} radiusY
      * @param {Number} rotation
      */
-    arcTo: function(x1, y1, x2, y2, radiusX, radiusY, rotation) {
+    arcTo: function (x1, y1, x2, y2, radiusX, radiusY, rotation) {
         if (!this.path) {
             this.beginPath();
         }
@@ -9537,7 +9585,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} x3
      * @param {Number} y3
      */
-    bezierCurveTo: function(x1, y1, x2, y2, x3, y3) {
+    bezierCurveTo: function (x1, y1, x2, y2, x3, y3) {
         if (!this.path) {
             this.beginPath();
         }
@@ -9550,7 +9598,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} x
      * @param {Number} y
      */
-    strokeText: function(text, x, y) {
+    strokeText: function (text, x, y) {
         text = String(text);
         if (this.strokeStyle) {
             var element = this.getElement('text'),
@@ -9588,7 +9636,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} x
      * @param {Number} y
      */
-    fillText: function(text, x, y) {
+    fillText: function (text, x, y) {
         text = String(text);
         if (this.fillStyle) {
             var element = this.getElement('text'),
@@ -9624,7 +9672,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} dw
      * @param {Number} dh
      */
-    drawImage: function(image, sx, sy, sw, sh, dx, dy, dw, dh) {
+    drawImage: function (image, sx, sy, sw, sh, dx, dy, dw, dh) {
         var me = this,
             element = me.getElement('image'),
             x = sx,
@@ -9653,7 +9701,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
     /**
      * Fills the subpaths of the current default path or the given path with the current fill style.
      */
-    fill: function() {
+    fill: function () {
         if (!this.path) {
             return;
         }
@@ -9679,7 +9727,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
     /**
      * Strokes the subpaths of the current default path or the given path with the current stroke style.
      */
-    stroke: function() {
+    stroke: function () {
         if (!this.path) {
             return;
         }
@@ -9725,7 +9773,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Boolean} [transformFillStroke] Indicate whether to transform fill and stroke. If this is not
      *      given, then uses `attr.transformFillStroke` instead.
      */
-    fillStroke: function(attr, transformFillStroke) {
+    fillStroke: function (attr, transformFillStroke) {
         var ctx = this,
             fillStyle = ctx.fillStyle,
             strokeStyle = ctx.strokeStyle,
@@ -9744,13 +9792,13 @@ Ext.define('Ext.draw.engine.SvgContext', {
             ctx.stroke();
         }
     },
-    appendPath: function(path) {
+    appendPath: function (path) {
         this.path = path.clone();
     },
-    setLineDash: function(lineDash) {
+    setLineDash: function (lineDash) {
         this.lineDash = lineDash;
     },
-    getLineDash: function() {
+    getLineDash: function () {
         return this.lineDash;
     },
     /**
@@ -9761,7 +9809,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} y1
      * @return {Ext.draw.engine.SvgContext.Gradient}
      */
-    createLinearGradient: function(x0, y0, x1, y1) {
+    createLinearGradient: function (x0, y0, x1, y1) {
         var me = this,
             element = me.surface.getNextDef('linearGradient'),
             gradients = me.group.dom.gradients || (me.group.dom.gradients = {}),
@@ -9788,7 +9836,7 @@ Ext.define('Ext.draw.engine.SvgContext', {
      * @param {Number} r1
      * @return {Ext.draw.engine.SvgContext.Gradient}
      */
-    createRadialGradient: function(x0, y0, r0, x1, y1, r1) {
+    createRadialGradient: function (x0, y0, r0, x1, y1, r1) {
         var me = this,
             element = me.surface.getNextDef('radialGradient'),
             gradients = me.group.dom.gradients || (me.group.dom.gradients = {}),
@@ -9813,7 +9861,7 @@ Ext.define("Ext.draw.engine.SvgContext.Gradient", {
     statics: {
         map: {}
     },
-    constructor: function(ctx, surface, element, compression) {
+    constructor: function (ctx, surface, element, compression) {
         var map = this.statics().map,
             oldInstance;
         // Because of the way Ext.draw.engine.Svg.getNextDef works,
@@ -9835,7 +9883,7 @@ Ext.define("Ext.draw.engine.SvgContext.Gradient", {
      * @param {Number} offset
      * @param {String} color
      */
-    addColorStop: function(offset, color) {
+    addColorStop: function (offset, color) {
         var stop = this.surface.getSvgElement(this.element, 'stop', this.position++),
             compression = this.compression;
         this.surface.setElementAttributes(stop, {
@@ -9844,7 +9892,7 @@ Ext.define("Ext.draw.engine.SvgContext.Gradient", {
             "stop-opacity": Ext.draw.Color.fly(color).a.toFixed(15)
         });
     },
-    toString: function() {
+    toString: function () {
         var children = this.element.dom.childNodes;
         // Removing surplus stops in case existing gradient element with more stops was reused.
         while (children.length > this.position) {
@@ -9852,7 +9900,7 @@ Ext.define("Ext.draw.engine.SvgContext.Gradient", {
         }
         return 'url(#' + this.element.getId() + ')';
     },
-    destroy: function() {
+    destroy: function () {
         var map = this.statics().map,
             element = this.element;
         if (element) {
@@ -9883,7 +9931,7 @@ Ext.define('Ext.draw.engine.Svg', {
          */
         highPrecision: false
     },
-    getElementConfig: function() {
+    getElementConfig: function () {
         //TODO:ps In the Ext world, use renderTpl to create the children
         return {
             reference: 'element',
@@ -9912,7 +9960,7 @@ Ext.define('Ext.draw.engine.Svg', {
             ]
         };
     },
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this;
         me.callParent([
             config
@@ -9929,7 +9977,7 @@ Ext.define('Ext.draw.engine.Svg', {
      * @param {String} type The type of the SVG DOM element.
      * @return {*} The created element.
      */
-    createSvgNode: function(type) {
+    createSvgNode: function (type) {
         var node = document.createElementNS("http://www.w3.org/2000/svg", type);
         return Ext.get(node);
     },
@@ -9942,7 +9990,7 @@ Ext.define('Ext.draw.engine.Svg', {
      * @param {Number} position The position of the element in the DOM.
      * @return {Ext.dom.Element} The SVG element.
      */
-    getSvgElement: function(group, tag, position) {
+    getSvgElement: function (group, tag, position) {
         var element;
         if (group.dom.childNodes.length > position) {
             element = group.dom.childNodes[position];
@@ -9967,7 +10015,7 @@ Ext.define('Ext.draw.engine.Svg', {
      * @param {Ext.dom.Element} element The DOM element to be applied.
      * @param {Object} attributes The attributes to apply to the element.
      */
-    setElementAttributes: function(element, attributes) {
+    setElementAttributes: function (element, attributes) {
         var dom = element.dom,
             cache = element.cache,
             name, value;
@@ -9985,13 +10033,13 @@ Ext.define('Ext.draw.engine.Svg', {
      * @param {String} tagName The type of reference element.
      * @return {Ext.dom.Element} The reference element.
      */
-    getNextDef: function(tagName) {
+    getNextDef: function (tagName) {
         return this.getSvgElement(this.defElement, tagName, this.defPosition++);
     },
     /**
      * @inheritdoc
      */
-    clearTransform: function() {
+    clearTransform: function () {
         var me = this;
         me.mainGroup.set({
             transform: me.matrix.toSvg()
@@ -10000,14 +10048,14 @@ Ext.define('Ext.draw.engine.Svg', {
     /**
      * @inheritdoc
      */
-    clear: function() {
+    clear: function () {
         this.ctx.clear();
         this.defPosition = 0;
     },
     /**
      * @inheritdoc
      */
-    renderSprite: function(sprite) {
+    renderSprite: function (sprite) {
         var me = this,
             rect = me.getRect(),
             ctx = me.ctx;
@@ -10020,17 +10068,17 @@ Ext.define('Ext.draw.engine.Svg', {
         sprite.preRender(this);
         sprite.useAttributes(ctx, rect);
         if (false === sprite.render(this, ctx, [
-            0,
-            0,
-            rect[2],
-            rect[3]
-        ])) {
+                0,
+                0,
+                rect[2],
+                rect[3]
+            ])) {
             return false;
         }
         sprite.setDirty(false);
         ctx.restore();
     },
-    flatten: function(size, surfaces) {
+    flatten: function (size, surfaces) {
         var svg = '<?xml version="1.0" standalone="yes"?>',
             className = Ext.getClassName(this),
             surface, rect, i;
@@ -10038,7 +10086,7 @@ Ext.define('Ext.draw.engine.Svg', {
         for (i = 0; i < surfaces.length; i++) {
             surface = surfaces[i];
             if (Ext.getClassName(surface) !== className) {
-                
+
                 continue;
             }
             rect = surface.getRect();
@@ -10058,7 +10106,7 @@ Ext.define('Ext.draw.engine.Svg', {
      * @param {Object} node DOM element to serialize.
      * @return {String}
      */
-    serializeNode: function(node) {
+    serializeNode: function (node) {
         var result = '',
             i, n, attr, child;
         if (node.nodeType === document.TEXT_NODE) {
@@ -10084,7 +10132,7 @@ Ext.define('Ext.draw.engine.Svg', {
     /**
      * Destroys the Canvas element and prepares it for Garbage Collection.
      */
-    destroy: function(path, matrix, band) {
+    destroy: function (path, matrix, band) {
         var me = this;
         me.ctx.destroy();
         me.mainGroup.destroy();
@@ -10092,7 +10140,7 @@ Ext.define('Ext.draw.engine.Svg', {
         delete me.ctx;
         me.callParent(arguments);
     },
-    remove: function(sprite, destroySprite) {
+    remove: function (sprite, destroySprite) {
         if (sprite && sprite.element) {
             //if sprite has an associated svg element remove it from the surface
             if (this.ctx) {
@@ -10147,7 +10195,7 @@ Ext.draw.engine.excanvas = true;
 // * Optimize. There is always room for speed improvements.
 // Only add this code if we do not already have a canvas implementation
 if (!document.createElement('canvas').getContext) {
-    (function() {
+    (function () {
         // alias some functions to make (compiled) code shorter
         var m = Math;
         var mr = m.round;
@@ -10159,47 +10207,53 @@ if (!document.createElement('canvas').getContext) {
         var Z = 10;
         var Z2 = Z / 2;
         var IE_VERSION = +navigator.userAgent.match(/MSIE ([\d.]+)?/)[1];
+
         /**
-   * This funtion is assigned to the <canvas></canvas> elements as element.getContext().
-   * @this {HTMLElement}
-   * @return {CanvasRenderingContext2D_}
-   */
+         * This funtion is assigned to the <canvas></canvas> elements as element.getContext().
+         * @this {HTMLElement}
+         * @return {CanvasRenderingContext2D_}
+         */
         function getContext() {
             return this.context_ || (this.context_ = new CanvasRenderingContext2D_(this));
         }
+
         var slice = Array.prototype.slice;
+
         /**
-   * Binds a function to an object. The returned function will always use the
-   * passed in {@code obj} as {@code this}.
-   *
-   * Example:
-   *
-   *   g = bind(f, obj, a, b)
-   *   g(c, d) // will do f.call(obj, a, b, c, d)
-   *
-   * @param {Function} f The function to bind the object to
-   * @param {Object} obj The object that should act as this when the function
-   *     is called
-   * @param {*} var_args Rest arguments that will be used as the initial
-   *     arguments when the function is called
-   * @return {Function} A new function that has bound this
-   */
+         * Binds a function to an object. The returned function will always use the
+         * passed in {@code obj} as {@code this}.
+         *
+         * Example:
+         *
+         *   g = bind(f, obj, a, b)
+         *   g(c, d) // will do f.call(obj, a, b, c, d)
+         *
+         * @param {Function} f The function to bind the object to
+         * @param {Object} obj The object that should act as this when the function
+         *     is called
+         * @param {*} var_args Rest arguments that will be used as the initial
+         *     arguments when the function is called
+         * @return {Function} A new function that has bound this
+         */
         function bind(f, obj, var_args) {
             var a = slice.call(arguments, 2);
-            return function() {
+            return function () {
                 return f.apply(obj, a.concat(slice.call(arguments)));
             };
         }
+
         function encodeHtmlAttribute(s) {
             return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
         }
+
         function addNamespace(doc, prefix, urn) {
-            Ext.onReady(function() {
+            Ext.onReady(function () {
                 if (!doc.namespaces[prefix]) {
                     doc.namespaces.add(prefix, urn, '#default#VML');
                 }
             });
         }
+
         function addNamespacesAndStylesheet(doc) {
             addNamespace(doc, 'g_vml_', 'urn:schemas-microsoft-com:vml');
             addNamespace(doc, 'g_o_', 'urn:schemas-microsoft-com:office:office');
@@ -10208,66 +10262,68 @@ if (!document.createElement('canvas').getContext) {
                 var ss = doc.createStyleSheet();
                 ss.owningElement.id = 'ex_canvas_';
                 ss.cssText = 'canvas{display:inline-block;overflow:hidden;' + // default size is 300x150 in Gecko and Opera
-                'text-align:left;width:300px;height:150px}';
+                    'text-align:left;width:300px;height:150px}';
             }
         }
+
         // Add namespaces and stylesheet at startup.
         addNamespacesAndStylesheet(document);
         var G_vmlCanvasManager_ = {
-                init: function(opt_doc) {
-                    var doc = opt_doc || document;
-                    // Create a dummy element so that IE will allow canvas elements to be
-                    // recognized.
-                    doc.createElement('canvas');
-                    doc.attachEvent('onreadystatechange', bind(this.init_, this, doc));
-                },
-                init_: function(doc) {
-                    // find all canvas elements
-                    var els = doc.getElementsByTagName('canvas');
-                    for (var i = 0; i < els.length; i++) {
-                        this.initElement(els[i]);
-                    }
-                },
-                /**
-     * Public initializes a canvas element so that it can be used as canvas
-     * element from now on. This is called automatically before the page is
-     * loaded but if you are creating elements using createElement you need to
-     * make sure this is called on the element.
-     * @param {HTMLElement} el The canvas element to initialize.
-     * @return {HTMLElement} the element that was created.
-     */
-                initElement: function(el) {
-                    if (!el.getContext) {
-                        el.getContext = getContext;
-                        // Add namespaces and stylesheet to document of the element.
-                        addNamespacesAndStylesheet(el.ownerDocument);
-                        // Remove fallback content. There is no way to hide text nodes so we
-                        // just remove all childNodes. We could hide all elements and remove
-                        // text nodes but who really cares about the fallback content.
-                        el.innerHTML = '';
-                        // do not use inline function because that will leak memory
-                        el.attachEvent('onpropertychange', onPropertyChange);
-                        el.attachEvent('onresize', onResize);
-                        var attrs = el.attributes;
-                        if (attrs.width && attrs.width.specified) {
-                            // TODO: use runtimeStyle and coordsize
-                            // el.getContext().setWidth_(attrs.width.nodeValue);
-                            el.style.width = attrs.width.nodeValue + 'px';
-                        } else {
-                            el.width = el.clientWidth;
-                        }
-                        if (attrs.height && attrs.height.specified) {
-                            // TODO: use runtimeStyle and coordsize
-                            // el.getContext().setHeight_(attrs.height.nodeValue);
-                            el.style.height = attrs.height.nodeValue + 'px';
-                        } else {
-                            el.height = el.clientHeight;
-                        }
-                    }
-                    //el.getContext().setCoordsize_()
-                    return el;
+            init: function (opt_doc) {
+                var doc = opt_doc || document;
+                // Create a dummy element so that IE will allow canvas elements to be
+                // recognized.
+                doc.createElement('canvas');
+                doc.attachEvent('onreadystatechange', bind(this.init_, this, doc));
+            },
+            init_: function (doc) {
+                // find all canvas elements
+                var els = doc.getElementsByTagName('canvas');
+                for (var i = 0; i < els.length; i++) {
+                    this.initElement(els[i]);
                 }
-            };
+            },
+            /**
+             * Public initializes a canvas element so that it can be used as canvas
+             * element from now on. This is called automatically before the page is
+             * loaded but if you are creating elements using createElement you need to
+             * make sure this is called on the element.
+             * @param {HTMLElement} el The canvas element to initialize.
+             * @return {HTMLElement} the element that was created.
+             */
+            initElement: function (el) {
+                if (!el.getContext) {
+                    el.getContext = getContext;
+                    // Add namespaces and stylesheet to document of the element.
+                    addNamespacesAndStylesheet(el.ownerDocument);
+                    // Remove fallback content. There is no way to hide text nodes so we
+                    // just remove all childNodes. We could hide all elements and remove
+                    // text nodes but who really cares about the fallback content.
+                    el.innerHTML = '';
+                    // do not use inline function because that will leak memory
+                    el.attachEvent('onpropertychange', onPropertyChange);
+                    el.attachEvent('onresize', onResize);
+                    var attrs = el.attributes;
+                    if (attrs.width && attrs.width.specified) {
+                        // TODO: use runtimeStyle and coordsize
+                        // el.getContext().setWidth_(attrs.width.nodeValue);
+                        el.style.width = attrs.width.nodeValue + 'px';
+                    } else {
+                        el.width = el.clientWidth;
+                    }
+                    if (attrs.height && attrs.height.specified) {
+                        // TODO: use runtimeStyle and coordsize
+                        // el.getContext().setHeight_(attrs.height.nodeValue);
+                        el.style.height = attrs.height.nodeValue + 'px';
+                    } else {
+                        el.height = el.clientHeight;
+                    }
+                }
+                //el.getContext().setCoordsize_()
+                return el;
+            }
+        };
+
         function onPropertyChange(e) {
             var el = e.srcElement;
             switch (e.propertyName) {
@@ -10284,6 +10340,7 @@ if (!document.createElement('canvas').getContext) {
                     break;
             }
         }
+
         function onResize(e) {
             var el = e.srcElement;
             if (el.firstChild) {
@@ -10291,6 +10348,7 @@ if (!document.createElement('canvas').getContext) {
                 el.firstChild.style.height = el.clientHeight + 'px';
             }
         }
+
         G_vmlCanvasManager_.init();
         // precompute "00" to "FF"
         var decToHex = [];
@@ -10318,6 +10376,7 @@ if (!document.createElement('canvas').getContext) {
                 ]
             ];
         }
+
         function matrixMultiply(m1, m2) {
             var result = createMatrixIdentity();
             for (var x = 0; x < 3; x++) {
@@ -10331,6 +10390,7 @@ if (!document.createElement('canvas').getContext) {
             }
             return result;
         }
+
         function copyState(o1, o2) {
             o2.fillStyle = o1.fillStyle;
             o2.lineCap = o1.lineCap;
@@ -10351,139 +10411,141 @@ if (!document.createElement('canvas').getContext) {
             o2.arcScaleY_ = o1.arcScaleY_;
             o2.lineScale_ = o1.lineScale_;
         }
+
         var colorData = {
-                aliceblue: '#F0F8FF',
-                antiquewhite: '#FAEBD7',
-                aquamarine: '#7FFFD4',
-                azure: '#F0FFFF',
-                beige: '#F5F5DC',
-                bisque: '#FFE4C4',
-                black: '#000000',
-                blanchedalmond: '#FFEBCD',
-                blueviolet: '#8A2BE2',
-                brown: '#A52A2A',
-                burlywood: '#DEB887',
-                cadetblue: '#5F9EA0',
-                chartreuse: '#7FFF00',
-                chocolate: '#D2691E',
-                coral: '#FF7F50',
-                cornflowerblue: '#6495ED',
-                cornsilk: '#FFF8DC',
-                crimson: '#DC143C',
-                cyan: '#00FFFF',
-                darkblue: '#00008B',
-                darkcyan: '#008B8B',
-                darkgoldenrod: '#B8860B',
-                darkgray: '#A9A9A9',
-                darkgreen: '#006400',
-                darkgrey: '#A9A9A9',
-                darkkhaki: '#BDB76B',
-                darkmagenta: '#8B008B',
-                darkolivegreen: '#556B2F',
-                darkorange: '#FF8C00',
-                darkorchid: '#9932CC',
-                darkred: '#8B0000',
-                darksalmon: '#E9967A',
-                darkseagreen: '#8FBC8F',
-                darkslateblue: '#483D8B',
-                darkslategray: '#2F4F4F',
-                darkslategrey: '#2F4F4F',
-                darkturquoise: '#00CED1',
-                darkviolet: '#9400D3',
-                deeppink: '#FF1493',
-                deepskyblue: '#00BFFF',
-                dimgray: '#696969',
-                dimgrey: '#696969',
-                dodgerblue: '#1E90FF',
-                firebrick: '#B22222',
-                floralwhite: '#FFFAF0',
-                forestgreen: '#228B22',
-                gainsboro: '#DCDCDC',
-                ghostwhite: '#F8F8FF',
-                gold: '#FFD700',
-                goldenrod: '#DAA520',
-                grey: '#808080',
-                greenyellow: '#ADFF2F',
-                honeydew: '#F0FFF0',
-                hotpink: '#FF69B4',
-                indianred: '#CD5C5C',
-                indigo: '#4B0082',
-                ivory: '#FFFFF0',
-                khaki: '#F0E68C',
-                lavender: '#E6E6FA',
-                lavenderblush: '#FFF0F5',
-                lawngreen: '#7CFC00',
-                lemonchiffon: '#FFFACD',
-                lightblue: '#ADD8E6',
-                lightcoral: '#F08080',
-                lightcyan: '#E0FFFF',
-                lightgoldenrodyellow: '#FAFAD2',
-                lightgreen: '#90EE90',
-                lightgrey: '#D3D3D3',
-                lightpink: '#FFB6C1',
-                lightsalmon: '#FFA07A',
-                lightseagreen: '#20B2AA',
-                lightskyblue: '#87CEFA',
-                lightslategray: '#778899',
-                lightslategrey: '#778899',
-                lightsteelblue: '#B0C4DE',
-                lightyellow: '#FFFFE0',
-                limegreen: '#32CD32',
-                linen: '#FAF0E6',
-                magenta: '#FF00FF',
-                mediumaquamarine: '#66CDAA',
-                mediumblue: '#0000CD',
-                mediumorchid: '#BA55D3',
-                mediumpurple: '#9370DB',
-                mediumseagreen: '#3CB371',
-                mediumslateblue: '#7B68EE',
-                mediumspringgreen: '#00FA9A',
-                mediumturquoise: '#48D1CC',
-                mediumvioletred: '#C71585',
-                midnightblue: '#191970',
-                mintcream: '#F5FFFA',
-                mistyrose: '#FFE4E1',
-                moccasin: '#FFE4B5',
-                navajowhite: '#FFDEAD',
-                oldlace: '#FDF5E6',
-                olivedrab: '#6B8E23',
-                orange: '#FFA500',
-                orangered: '#FF4500',
-                orchid: '#DA70D6',
-                palegoldenrod: '#EEE8AA',
-                palegreen: '#98FB98',
-                paleturquoise: '#AFEEEE',
-                palevioletred: '#DB7093',
-                papayawhip: '#FFEFD5',
-                peachpuff: '#FFDAB9',
-                peru: '#CD853F',
-                pink: '#FFC0CB',
-                plum: '#DDA0DD',
-                powderblue: '#B0E0E6',
-                rosybrown: '#BC8F8F',
-                royalblue: '#4169E1',
-                saddlebrown: '#8B4513',
-                salmon: '#FA8072',
-                sandybrown: '#F4A460',
-                seagreen: '#2E8B57',
-                seashell: '#FFF5EE',
-                sienna: '#A0522D',
-                skyblue: '#87CEEB',
-                slateblue: '#6A5ACD',
-                slategray: '#708090',
-                slategrey: '#708090',
-                snow: '#FFFAFA',
-                springgreen: '#00FF7F',
-                steelblue: '#4682B4',
-                tan: '#D2B48C',
-                thistle: '#D8BFD8',
-                tomato: '#FF6347',
-                turquoise: '#40E0D0',
-                violet: '#EE82EE',
-                wheat: '#F5DEB3',
-                whitesmoke: '#F5F5F5',
-                yellowgreen: '#9ACD32'
-            };
+            aliceblue: '#F0F8FF',
+            antiquewhite: '#FAEBD7',
+            aquamarine: '#7FFFD4',
+            azure: '#F0FFFF',
+            beige: '#F5F5DC',
+            bisque: '#FFE4C4',
+            black: '#000000',
+            blanchedalmond: '#FFEBCD',
+            blueviolet: '#8A2BE2',
+            brown: '#A52A2A',
+            burlywood: '#DEB887',
+            cadetblue: '#5F9EA0',
+            chartreuse: '#7FFF00',
+            chocolate: '#D2691E',
+            coral: '#FF7F50',
+            cornflowerblue: '#6495ED',
+            cornsilk: '#FFF8DC',
+            crimson: '#DC143C',
+            cyan: '#00FFFF',
+            darkblue: '#00008B',
+            darkcyan: '#008B8B',
+            darkgoldenrod: '#B8860B',
+            darkgray: '#A9A9A9',
+            darkgreen: '#006400',
+            darkgrey: '#A9A9A9',
+            darkkhaki: '#BDB76B',
+            darkmagenta: '#8B008B',
+            darkolivegreen: '#556B2F',
+            darkorange: '#FF8C00',
+            darkorchid: '#9932CC',
+            darkred: '#8B0000',
+            darksalmon: '#E9967A',
+            darkseagreen: '#8FBC8F',
+            darkslateblue: '#483D8B',
+            darkslategray: '#2F4F4F',
+            darkslategrey: '#2F4F4F',
+            darkturquoise: '#00CED1',
+            darkviolet: '#9400D3',
+            deeppink: '#FF1493',
+            deepskyblue: '#00BFFF',
+            dimgray: '#696969',
+            dimgrey: '#696969',
+            dodgerblue: '#1E90FF',
+            firebrick: '#B22222',
+            floralwhite: '#FFFAF0',
+            forestgreen: '#228B22',
+            gainsboro: '#DCDCDC',
+            ghostwhite: '#F8F8FF',
+            gold: '#FFD700',
+            goldenrod: '#DAA520',
+            grey: '#808080',
+            greenyellow: '#ADFF2F',
+            honeydew: '#F0FFF0',
+            hotpink: '#FF69B4',
+            indianred: '#CD5C5C',
+            indigo: '#4B0082',
+            ivory: '#FFFFF0',
+            khaki: '#F0E68C',
+            lavender: '#E6E6FA',
+            lavenderblush: '#FFF0F5',
+            lawngreen: '#7CFC00',
+            lemonchiffon: '#FFFACD',
+            lightblue: '#ADD8E6',
+            lightcoral: '#F08080',
+            lightcyan: '#E0FFFF',
+            lightgoldenrodyellow: '#FAFAD2',
+            lightgreen: '#90EE90',
+            lightgrey: '#D3D3D3',
+            lightpink: '#FFB6C1',
+            lightsalmon: '#FFA07A',
+            lightseagreen: '#20B2AA',
+            lightskyblue: '#87CEFA',
+            lightslategray: '#778899',
+            lightslategrey: '#778899',
+            lightsteelblue: '#B0C4DE',
+            lightyellow: '#FFFFE0',
+            limegreen: '#32CD32',
+            linen: '#FAF0E6',
+            magenta: '#FF00FF',
+            mediumaquamarine: '#66CDAA',
+            mediumblue: '#0000CD',
+            mediumorchid: '#BA55D3',
+            mediumpurple: '#9370DB',
+            mediumseagreen: '#3CB371',
+            mediumslateblue: '#7B68EE',
+            mediumspringgreen: '#00FA9A',
+            mediumturquoise: '#48D1CC',
+            mediumvioletred: '#C71585',
+            midnightblue: '#191970',
+            mintcream: '#F5FFFA',
+            mistyrose: '#FFE4E1',
+            moccasin: '#FFE4B5',
+            navajowhite: '#FFDEAD',
+            oldlace: '#FDF5E6',
+            olivedrab: '#6B8E23',
+            orange: '#FFA500',
+            orangered: '#FF4500',
+            orchid: '#DA70D6',
+            palegoldenrod: '#EEE8AA',
+            palegreen: '#98FB98',
+            paleturquoise: '#AFEEEE',
+            palevioletred: '#DB7093',
+            papayawhip: '#FFEFD5',
+            peachpuff: '#FFDAB9',
+            peru: '#CD853F',
+            pink: '#FFC0CB',
+            plum: '#DDA0DD',
+            powderblue: '#B0E0E6',
+            rosybrown: '#BC8F8F',
+            royalblue: '#4169E1',
+            saddlebrown: '#8B4513',
+            salmon: '#FA8072',
+            sandybrown: '#F4A460',
+            seagreen: '#2E8B57',
+            seashell: '#FFF5EE',
+            sienna: '#A0522D',
+            skyblue: '#87CEEB',
+            slateblue: '#6A5ACD',
+            slategray: '#708090',
+            slategrey: '#708090',
+            snow: '#FFFAFA',
+            springgreen: '#00FF7F',
+            steelblue: '#4682B4',
+            tan: '#D2B48C',
+            thistle: '#D8BFD8',
+            tomato: '#FF6347',
+            turquoise: '#40E0D0',
+            violet: '#EE82EE',
+            wheat: '#F5DEB3',
+            whitesmoke: '#F5F5F5',
+            yellowgreen: '#9ACD32'
+        };
+
         function getRgbHslContent(styleString) {
             var start = styleString.indexOf('(', 3);
             var end = styleString.indexOf(')', start + 1);
@@ -10494,19 +10556,22 @@ if (!document.createElement('canvas').getContext) {
             }
             return parts;
         }
+
         function percent(s) {
             return parseFloat(s) / 100;
         }
+
         function clamp(v, min, max) {
             return Math.min(max, Math.max(min, v));
         }
+
         function hslToRgb(parts) {
             var r, g, b, h, s, l;
             h = parseFloat(parts[0]) / 360 % 360;
-            if (h < 0)  {
+            if (h < 0) {
                 h++;
             }
-            
+
             s = clamp(percent(parts[1]), 0, 1);
             l = clamp(percent(parts[2]), 0, 1);
             if (s == 0) {
@@ -10521,30 +10586,33 @@ if (!document.createElement('canvas').getContext) {
             }
             return '#' + decToHex[Math.floor(r * 255)] + decToHex[Math.floor(g * 255)] + decToHex[Math.floor(b * 255)];
         }
+
         function hueToRgb(m1, m2, h) {
-            if (h < 0)  {
+            if (h < 0) {
                 h++;
             }
-            
-            if (h > 1)  {
+
+            if (h > 1) {
                 h--;
             }
-            
-            if (6 * h < 1)  {
+
+            if (6 * h < 1) {
                 return m1 + (m2 - m1) * 6 * h;
             }
-            else if (2 * h < 1)  {
+            else if (2 * h < 1) {
                 return m2;
             }
-            else if (3 * h < 2)  {
+            else if (3 * h < 2) {
                 return m1 + (m2 - m1) * (2 / 3 - h) * 6;
             }
-            else  {
+            else {
                 return m1;
             }
-            
+
         }
+
         var processStyleCache = {};
+
         function processStyle(styleString) {
             if (styleString in processStyleCache) {
                 return processStyleCache[styleString];
@@ -10579,15 +10647,17 @@ if (!document.createElement('canvas').getContext) {
                 alpha: alpha
             };
         }
+
         var DEFAULT_STYLE = {
-                style: 'normal',
-                variant: 'normal',
-                weight: 'normal',
-                size: 10,
-                family: 'sans-serif'
-            };
+            style: 'normal',
+            variant: 'normal',
+            weight: 'normal',
+            size: 10,
+            family: 'sans-serif'
+        };
         // Internal text style cache
         var fontStyleCache = {};
+
         function processFontStyle(styleString) {
             if (fontStyleCache[styleString]) {
                 return fontStyleCache[styleString];
@@ -10596,7 +10666,8 @@ if (!document.createElement('canvas').getContext) {
             var style = el.style;
             try {
                 style.font = styleString;
-            } catch (ex) {}
+            } catch (ex) {
+            }
             // Ignore failures to set to invalid font.
             return fontStyleCache[styleString] = {
                 style: style.fontStyle || DEFAULT_STYLE.style,
@@ -10606,6 +10677,7 @@ if (!document.createElement('canvas').getContext) {
                 family: style.fontFamily || DEFAULT_STYLE.family
             };
         }
+
         function getComputedStyle(style, element) {
             var computedStyle = {};
             for (var p in style) {
@@ -10632,24 +10704,28 @@ if (!document.createElement('canvas').getContext) {
             computedStyle.size *= 0.981;
             return computedStyle;
         }
+
         function buildStyle(style) {
             return style.style + ' ' + style.variant + ' ' + style.weight + ' ' + style.size + 'px ' + style.family;
         }
+
         var lineCapMap = {
-                'butt': 'flat',
-                'round': 'round'
-            };
+            'butt': 'flat',
+            'round': 'round'
+        };
+
         function processLineCap(lineCap) {
             return lineCapMap[lineCap] || 'square';
         }
+
         /**
-   * @class CanvasRenderingContext2D_
-   * This class implements CanvasRenderingContext2D interface as described by
-   * the WHATWG.
-   * @param {HTMLElement} canvasElement The element that the 2D context should
-   * be associated with
-   * @private
-   */
+         * @class CanvasRenderingContext2D_
+         * This class implements CanvasRenderingContext2D interface as described by
+         * the WHATWG.
+         * @param {HTMLElement} canvasElement The element that the 2D context should
+         * be associated with
+         * @private
+         */
         //
         function CanvasRenderingContext2D_(canvasElement) {
             this.m_ = createMatrixIdentity();
@@ -10683,20 +10759,21 @@ if (!document.createElement('canvas').getContext) {
             this.arcScaleY_ = 1;
             this.lineScale_ = 1;
         }
+
         var contextPrototype = CanvasRenderingContext2D_.prototype;
-        contextPrototype.clearRect = function() {
+        contextPrototype.clearRect = function () {
             if (this.textMeasureEl_) {
                 this.textMeasureEl_.removeNode(true);
                 this.textMeasureEl_ = null;
             }
             this.element_.innerHTML = '';
         };
-        contextPrototype.beginPath = function() {
+        contextPrototype.beginPath = function () {
             // TODO: Branch current matrix so that save/restore has no effect
             //       as per safari docs.
             this.currentPath_ = [];
         };
-        contextPrototype.moveTo = function(aX, aY) {
+        contextPrototype.moveTo = function (aX, aY) {
             var p = getCoords(this, aX, aY);
             this.currentPath_.push({
                 type: 'moveTo',
@@ -10706,7 +10783,7 @@ if (!document.createElement('canvas').getContext) {
             this.currentX_ = p.x;
             this.currentY_ = p.y;
         };
-        contextPrototype.lineTo = function(aX, aY) {
+        contextPrototype.lineTo = function (aX, aY) {
             var p = getCoords(this, aX, aY);
             this.currentPath_.push({
                 type: 'lineTo',
@@ -10716,7 +10793,7 @@ if (!document.createElement('canvas').getContext) {
             this.currentX_ = p.x;
             this.currentY_ = p.y;
         };
-        contextPrototype.bezierCurveTo = function(aCP1x, aCP1y, aCP2x, aCP2y, aX, aY) {
+        contextPrototype.bezierCurveTo = function (aCP1x, aCP1y, aCP2x, aCP2y, aX, aY) {
             var p = getCoords(this, aX, aY);
             var cp1 = getCoords(this, aCP1x, aCP1y);
             var cp2 = getCoords(this, aCP2x, aCP2y);
@@ -10736,22 +10813,23 @@ if (!document.createElement('canvas').getContext) {
             self.currentX_ = p.x;
             self.currentY_ = p.y;
         }
-        contextPrototype.quadraticCurveTo = function(aCPx, aCPy, aX, aY) {
+
+        contextPrototype.quadraticCurveTo = function (aCPx, aCPy, aX, aY) {
             // the following is lifted almost directly from
             // http://developer.mozilla.org/en/docs/Canvas_tutorial:Drawing_shapes
             var cp = getCoords(this, aCPx, aCPy);
             var p = getCoords(this, aX, aY);
             var cp1 = {
-                    x: this.currentX_ + 2 / 3 * (cp.x - this.currentX_),
-                    y: this.currentY_ + 2 / 3 * (cp.y - this.currentY_)
-                };
+                x: this.currentX_ + 2 / 3 * (cp.x - this.currentX_),
+                y: this.currentY_ + 2 / 3 * (cp.y - this.currentY_)
+            };
             var cp2 = {
-                    x: cp1.x + (p.x - this.currentX_) / 3,
-                    y: cp1.y + (p.y - this.currentY_) / 3
-                };
+                x: cp1.x + (p.x - this.currentX_) / 3,
+                y: cp1.y + (p.y - this.currentY_) / 3
+            };
             bezierCurveTo(this, cp1, cp2, p);
         };
-        contextPrototype.arc = function(aX, aY, aRadius, aStartAngle, aEndAngle, aClockwise) {
+        contextPrototype.arc = function (aX, aY, aRadius, aStartAngle, aEndAngle, aClockwise) {
             aRadius *= Z;
             var arcType = aClockwise ? 'at' : 'wa';
             var xStart = aX + mc(aStartAngle) * aRadius - Z2;
@@ -10778,14 +10856,14 @@ if (!document.createElement('canvas').getContext) {
                 yEnd: pEnd.y
             });
         };
-        contextPrototype.rect = function(aX, aY, aWidth, aHeight) {
+        contextPrototype.rect = function (aX, aY, aWidth, aHeight) {
             this.moveTo(aX, aY);
             this.lineTo(aX + aWidth, aY);
             this.lineTo(aX + aWidth, aY + aHeight);
             this.lineTo(aX, aY + aHeight);
             this.closePath();
         };
-        contextPrototype.strokeRect = function(aX, aY, aWidth, aHeight) {
+        contextPrototype.strokeRect = function (aX, aY, aWidth, aHeight) {
             var oldPath = this.currentPath_;
             this.beginPath();
             this.moveTo(aX, aY);
@@ -10796,7 +10874,7 @@ if (!document.createElement('canvas').getContext) {
             this.stroke();
             this.currentPath_ = oldPath;
         };
-        contextPrototype.fillRect = function(aX, aY, aWidth, aHeight) {
+        contextPrototype.fillRect = function (aX, aY, aWidth, aHeight) {
             var oldPath = this.currentPath_;
             this.beginPath();
             this.moveTo(aX, aY);
@@ -10807,7 +10885,7 @@ if (!document.createElement('canvas').getContext) {
             this.fill();
             this.currentPath_ = oldPath;
         };
-        contextPrototype.createLinearGradient = function(aX0, aY0, aX1, aY1) {
+        contextPrototype.createLinearGradient = function (aX0, aY0, aX1, aY1) {
             var gradient = new CanvasGradient_('gradient');
             gradient.x0_ = aX0;
             gradient.y0_ = aY0;
@@ -10815,7 +10893,7 @@ if (!document.createElement('canvas').getContext) {
             gradient.y1_ = aY1;
             return gradient;
         };
-        contextPrototype.createRadialGradient = function(aX0, aY0, aR0, aX1, aY1, aR1) {
+        contextPrototype.createRadialGradient = function (aX0, aY0, aR0, aX1, aY1, aR1) {
             var gradient = new CanvasGradient_('gradientradial');
             gradient.x0_ = aX0;
             gradient.y0_ = aY0;
@@ -10825,7 +10903,7 @@ if (!document.createElement('canvas').getContext) {
             gradient.r1_ = aR1;
             return gradient;
         };
-        contextPrototype.drawImage = function(image, var_args) {
+        contextPrototype.drawImage = function (image, var_args) {
             var dx, dy, dw, dh, sx, sy, sw, sh;
             // to find the original width we overide the width and height
             var oldRuntimeWidth = image.runtimeStyle.width;
@@ -10873,29 +10951,29 @@ if (!document.createElement('canvas').getContext) {
             vmlStr.push('" >', '<g_vml_:image src="', image.src, '"', ' style="width:', Z * dw, 'px;', ' height:', Z * dh, 'px"', ' cropleft="', sx / w, '"', ' croptop="', sy / h, '"', ' cropright="', (w - sx - sw) / w, '"', ' cropbottom="', (h - sy - sh) / h, '"', ' />', '</g_vml_:group>');
             this.element_.insertAdjacentHTML('BeforeEnd', vmlStr.join(''));
         };
-        contextPrototype.setLineDash = function(lineDash) {
+        contextPrototype.setLineDash = function (lineDash) {
             if (lineDash.length === 1) {
                 lineDash = lineDash.slice();
                 lineDash[1] = lineDash[0];
             }
             this.lineDash = lineDash;
         };
-        contextPrototype.getLineDash = function() {
+        contextPrototype.getLineDash = function () {
             return this.lineDash;
         };
-        contextPrototype.stroke = function(aFill) {
+        contextPrototype.stroke = function (aFill) {
             var lineStr = [];
             var W = 10;
             var H = 10;
             lineStr.push('<g_vml_:shape', ' filled="', !!aFill, '"', ' style="position:absolute;width:', W, 'px;height:', H, 'px;left:0px;top:0px;"', ' coordorigin="0,0"', ' coordsize="', Z * W, ',', Z * H, '"', ' stroked="', !aFill, '"', ' path="');
             var min = {
-                    x: null,
-                    y: null
-                };
+                x: null,
+                y: null
+            };
             var max = {
-                    x: null,
-                    y: null
-                };
+                x: null,
+                y: null
+            };
             for (var i = 0; i < this.currentPath_.length; i++) {
                 var p = this.currentPath_[i];
                 var c;
@@ -10959,6 +11037,7 @@ if (!document.createElement('canvas').getContext) {
             }
             lineStr.push('<g_vml_:stroke', ' opacity="', opacity, '"', ' joinstyle="', ctx.lineJoin, '"', ' dashstyle="', ctx.lineDash.join(' '), '"', ' miterlimit="', ctx.miterLimit, '"', ' endcap="', processLineCap(ctx.lineCap), '"', ' weight="', lineWidth, 'px"', ' color="', color, '" />');
         }
+
         function appendFill(ctx, lineStr, min, max) {
             var fillStyle = ctx.fillStyle;
             var arcScaleX = ctx.arcScaleX_;
@@ -10969,9 +11048,9 @@ if (!document.createElement('canvas').getContext) {
                 // TODO: Gradients transformed with the transformation matrix.
                 var angle = 0;
                 var focus = {
-                        x: 0,
-                        y: 0
-                    };
+                    x: 0,
+                    y: 0
+                };
                 // additional offset
                 var shift = 0;
                 // scale factor for offset
@@ -11010,7 +11089,7 @@ if (!document.createElement('canvas').getContext) {
                 // We need to sort the color stops in ascending order by offset,
                 // otherwise IE won't interpret it correctly.
                 var stops = fillStyle.colors_;
-                stops.sort(function(cs1, cs2) {
+                stops.sort(function (cs1, cs2) {
                     return cs1.offset - cs2.offset;
                 });
                 var length = stops.length;
@@ -11031,8 +11110,8 @@ if (!document.createElement('canvas').getContext) {
                     var deltaLeft = -min.x;
                     var deltaTop = -min.y;
                     lineStr.push('<g_vml_:fill', ' position="', deltaLeft / width * arcScaleX * arcScaleX, ',', deltaTop / height * arcScaleY * arcScaleY, '"', ' type="tile"', // TODO: Figure out the correct size to fit the scale.
-                    //' size="', w, 'px ', h, 'px"',
-                    ' src="', fillStyle.src_, '" />');
+                        //' size="', w, 'px ', h, 'px"',
+                        ' src="', fillStyle.src_, '" />');
                 }
             } else {
                 var a = processStyle(ctx.fillStyle);
@@ -11041,12 +11120,13 @@ if (!document.createElement('canvas').getContext) {
                 lineStr.push('<g_vml_:fill color="', color, '" opacity="', opacity, '" />');
             }
         }
-        contextPrototype.fill = function() {
+
+        contextPrototype.fill = function () {
             // Calling `$stroke` here because otherwise we'd call not the native ctx.stroke,
             // but our override from Ext.draw.engine.Canvas.statics.contextOverrides.
             this.$stroke(true);
         };
-        contextPrototype.closePath = function() {
+        contextPrototype.closePath = function () {
             this.currentPath_.push({
                 type: 'close'
             });
@@ -11058,14 +11138,15 @@ if (!document.createElement('canvas').getContext) {
                 y: Z * (aX * m[0][1] + aY * m[1][1] + m[2][1]) - Z2
             };
         }
-        contextPrototype.save = function() {
+
+        contextPrototype.save = function () {
             var o = {};
             copyState(this, o);
             this.aStack_.push(o);
             this.mStack_.push(this.m_);
             this.m_ = matrixMultiply(createMatrixIdentity(), this.m_);
         };
-        contextPrototype.restore = function() {
+        contextPrototype.restore = function () {
             if (this.aStack_.length) {
                 copyState(this.aStack_.pop(), this);
                 this.m_ = this.mStack_.pop();
@@ -11074,6 +11155,7 @@ if (!document.createElement('canvas').getContext) {
         function matrixIsFinite(m) {
             return isFinite(m[0][0]) && isFinite(m[0][1]) && isFinite(m[1][0]) && isFinite(m[1][1]) && isFinite(m[2][0]) && isFinite(m[2][1]);
         }
+
         function setM(ctx, m, updateLineScale) {
             if (!matrixIsFinite(m)) {
                 return;
@@ -11088,116 +11170,117 @@ if (!document.createElement('canvas').getContext) {
                 ctx.lineScale_ = sqrt(abs(det));
             }
         }
-        contextPrototype.translate = function(aX, aY) {
+
+        contextPrototype.translate = function (aX, aY) {
             var m1 = [
-                    [
-                        1,
-                        0,
-                        0
-                    ],
-                    [
-                        0,
-                        1,
-                        0
-                    ],
-                    [
-                        aX,
-                        aY,
-                        1
-                    ]
-                ];
+                [
+                    1,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    1,
+                    0
+                ],
+                [
+                    aX,
+                    aY,
+                    1
+                ]
+            ];
             setM(this, matrixMultiply(m1, this.m_), false);
         };
-        contextPrototype.rotate = function(aRot) {
+        contextPrototype.rotate = function (aRot) {
             var c = mc(aRot);
             var s = ms(aRot);
             var m1 = [
-                    [
-                        c,
-                        s,
-                        0
-                    ],
-                    [
-                        -s,
-                        c,
-                        0
-                    ],
-                    [
-                        0,
-                        0,
-                        1
-                    ]
-                ];
+                [
+                    c,
+                    s,
+                    0
+                ],
+                [
+                    -s,
+                    c,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    1
+                ]
+            ];
             setM(this, matrixMultiply(m1, this.m_), false);
         };
-        contextPrototype.scale = function(aX, aY) {
+        contextPrototype.scale = function (aX, aY) {
             this.arcScaleX_ *= aX;
             this.arcScaleY_ *= aY;
             var m1 = [
-                    [
-                        aX,
-                        0,
-                        0
-                    ],
-                    [
-                        0,
-                        aY,
-                        0
-                    ],
-                    [
-                        0,
-                        0,
-                        1
-                    ]
-                ];
+                [
+                    aX,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    aY,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    1
+                ]
+            ];
             setM(this, matrixMultiply(m1, this.m_), true);
         };
-        contextPrototype.transform = function(m11, m12, m21, m22, dx, dy) {
+        contextPrototype.transform = function (m11, m12, m21, m22, dx, dy) {
             var m1 = [
-                    [
-                        m11,
-                        m12,
-                        0
-                    ],
-                    [
-                        m21,
-                        m22,
-                        0
-                    ],
-                    [
-                        dx,
-                        dy,
-                        1
-                    ]
-                ];
+                [
+                    m11,
+                    m12,
+                    0
+                ],
+                [
+                    m21,
+                    m22,
+                    0
+                ],
+                [
+                    dx,
+                    dy,
+                    1
+                ]
+            ];
             setM(this, matrixMultiply(m1, this.m_), true);
         };
-        contextPrototype.setTransform = function(m11, m12, m21, m22, dx, dy) {
+        contextPrototype.setTransform = function (m11, m12, m21, m22, dx, dy) {
             var m = [
-                    [
-                        m11,
-                        m12,
-                        0
-                    ],
-                    [
-                        m21,
-                        m22,
-                        0
-                    ],
-                    [
-                        dx,
-                        dy,
-                        1
-                    ]
-                ];
+                [
+                    m11,
+                    m12,
+                    0
+                ],
+                [
+                    m21,
+                    m22,
+                    0
+                ],
+                [
+                    dx,
+                    dy,
+                    1
+                ]
+            ];
             setM(this, m, true);
         };
         /**
-   * The text drawing function.
-   * The maxWidth argument isn't taken in account, since no browser supports
-   * it yet.
-   */
-        contextPrototype.drawText_ = function(text, x, y, maxWidth, stroke) {
+         * The text drawing function.
+         * The maxWidth argument isn't taken in account, since no browser supports
+         * it yet.
+         */
+        contextPrototype.drawText_ = function (text, x, y, maxWidth, stroke) {
             var m = this.m_,
                 delta = 1000,
                 left = 0,
@@ -11269,13 +11352,13 @@ if (!document.createElement('canvas').getContext) {
             lineStr.push('<g_vml_:skew on="t" matrix="', skewM, '" ', ' offset="', skewOffset, '" origin="', left, ' 0" />', '<g_vml_:path textpathok="true" />', '<g_vml_:textpath on="true" string="', encodeHtmlAttribute(text), '" style="v-text-align:', textAlign, ';font:', encodeHtmlAttribute(fontStyleString), '" /></g_vml_:line>');
             this.element_.insertAdjacentHTML('beforeEnd', lineStr.join(''));
         };
-        contextPrototype.fillText = function(text, x, y, maxWidth) {
+        contextPrototype.fillText = function (text, x, y, maxWidth) {
             this.drawText_(text, x, y, maxWidth, false);
         };
-        contextPrototype.strokeText = function(text, x, y, maxWidth) {
+        contextPrototype.strokeText = function (text, x, y, maxWidth) {
             this.drawText_(text, x, y, maxWidth, true);
         };
-        contextPrototype.measureText = function(text) {
+        contextPrototype.measureText = function (text) {
             if (!this.textMeasureEl_) {
                 var s = '<span style="position:absolute;' + 'top:-20000px;left:0;padding:0;margin:0;border:none;' + 'white-space:pre;"></span>';
                 this.element_.insertAdjacentHTML('beforeEnd', s);
@@ -11291,11 +11374,13 @@ if (!document.createElement('canvas').getContext) {
             };
         };
         /******** STUBS ********/
-        contextPrototype.clip = function() {};
+        contextPrototype.clip = function () {
+        };
         // TODO: Implement
-        contextPrototype.arcTo = function() {};
+        contextPrototype.arcTo = function () {
+        };
         // TODO: Implement
-        contextPrototype.createPattern = function(image, repetition) {
+        contextPrototype.createPattern = function (image, repetition) {
             return new CanvasPattern_(image, repetition);
         };
         // Gradient / Pattern Stubs
@@ -11309,7 +11394,8 @@ if (!document.createElement('canvas').getContext) {
             this.r1_ = 0;
             this.colors_ = [];
         }
-        CanvasGradient_.prototype.addColorStop = function(aOffset, aColor) {
+
+        CanvasGradient_.prototype.addColorStop = function (aOffset, aColor) {
             aColor = processStyle(aColor);
             this.colors_.push({
                 offset: aOffset,
@@ -11337,9 +11423,11 @@ if (!document.createElement('canvas').getContext) {
             this.width_ = image.width;
             this.height_ = image.height;
         }
+
         function throwException(s) {
             throw new DOMException_(s);
         }
+
         function assertImageIsValid(img) {
             if (!img || img.nodeType != 1 || img.tagName != 'IMG') {
                 throwException('TYPE_MISMATCH_ERR');
@@ -11348,10 +11436,12 @@ if (!document.createElement('canvas').getContext) {
                 throwException('INVALID_STATE_ERR');
             }
         }
+
         function DOMException_(s) {
             this.code = this[s];
             this.message = s + ': DOM Exception ' + this.code;
         }
+
         var p = DOMException_.prototype = new Error();
         p.INDEX_SIZE_ERR = 1;
         p.DOMSTRING_SIZE_ERR = 2;
@@ -11411,14 +11501,14 @@ Ext.define('Ext.draw.engine.Canvas', {
             /**
              * @ignore
              */
-            setGradientBBox: function(bbox) {
+            setGradientBBox: function (bbox) {
                 this.bbox = bbox;
             },
             /**
              * Fills the subpaths of the current default path or the given path with the current fill style.
              * @ignore
              */
-            fill: function() {
+            fill: function () {
                 var fillStyle = this.fillStyle,
                     fillGradient = this.fillGradient,
                     fillOpacity = this.fillOpacity,
@@ -11444,7 +11534,7 @@ Ext.define('Ext.draw.engine.Canvas', {
              * Strokes the subpaths of the current default path or the given path with the current stroke style.
              * @ignore
              */
-            stroke: function() {
+            stroke: function () {
                 var strokeStyle = this.strokeStyle,
                     strokeGradient = this.strokeGradient,
                     strokeOpacity = this.strokeOpacity,
@@ -11469,7 +11559,7 @@ Ext.define('Ext.draw.engine.Canvas', {
             /**
              * @ignore
              */
-            fillStroke: function(attr, transformFillStroke) {
+            fillStroke: function (attr, transformFillStroke) {
                 var ctx = this,
                     fillStyle = this.fillStyle,
                     fillOpacity = this.fillOpacity,
@@ -11500,7 +11590,7 @@ Ext.define('Ext.draw.engine.Canvas', {
              * the setLineDash method and the lineDashOffset property.
              * @param dashList An even number of non-negative numbers specifying a dash list.
              */
-            setLineDash: function(dashList) {
+            setLineDash: function (dashList) {
                 if (this.$setLineDash) {
                     this.$setLineDash(dashList);
                 }
@@ -11512,7 +11602,7 @@ Ext.define('Ext.draw.engine.Canvas', {
              * to the path, connected to the previous point by a straight line.
              * @ignore
              */
-            ellipse: function(cx, cy, rx, ry, rotation, start, end, anticlockwise) {
+            ellipse: function (cx, cy, rx, ry, rotation, start, end, anticlockwise) {
                 var cos = Math.cos(rotation),
                     sin = Math.sin(rotation);
                 this.transform(cos * rx, sin * rx, -sin * ry, cos * ry, cx, cy);
@@ -11523,7 +11613,7 @@ Ext.define('Ext.draw.engine.Canvas', {
              * Uses the given path commands to begin a new path on the canvas.
              * @ignore
              */
-            appendPath: function(path) {
+            appendPath: function (path) {
                 var me = this,
                     i = 0,
                     j = 0,
@@ -11551,11 +11641,11 @@ Ext.define('Ext.draw.engine.Canvas', {
                     }
                 }
             },
-            save: function() {
+            save: function () {
                 var toSave = this.toSave,
                     ln = toSave.length,
                     obj = ln && {},
-                    // Don't allocate memory if we don't have to.
+                // Don't allocate memory if we don't have to.
                     i = 0,
                     key;
                 for (; i < ln; i++) {
@@ -11567,7 +11657,7 @@ Ext.define('Ext.draw.engine.Canvas', {
                 this.state.push(obj);
                 this.$save();
             },
-            restore: function() {
+            restore: function () {
                 var obj = this.state.pop(),
                     key;
                 if (obj) {
@@ -11609,11 +11699,11 @@ Ext.define('Ext.draw.engine.Canvas', {
      *
      * Creates the canvas element.
      */
-    createCanvas: function() {
+    createCanvas: function () {
         var canvas = Ext.Element.create({
-                tag: 'canvas',
-                cls: Ext.baseCSSPrefix + 'surface-canvas'
-            });
+            tag: 'canvas',
+            cls: Ext.baseCSSPrefix + 'surface-canvas'
+        });
         // Emulate Canvas in IE8 with VML.
         window['G_vmlCanvasManager'] && G_vmlCanvasManager.initElement(canvas.dom);
         var overrides = Ext.draw.engine.Canvas.contextOverrides,
@@ -11645,11 +11735,11 @@ Ext.define('Ext.draw.engine.Canvas', {
     // because otherwise the created canvas will be cached along with the
     // surface's markup and used as a template for future surface
     // instances.
-    afterCachedConfig: function() {
+    afterCachedConfig: function () {
         this.callParent();
         this.createCanvas();
     },
-    updateHighPrecision: function(highPrecision) {
+    updateHighPrecision: function (highPrecision) {
         var contexts = this.contexts,
             ln = contexts.length,
             i, context;
@@ -11692,7 +11782,7 @@ Ext.define('Ext.draw.engine.Canvas', {
      * Clears canvas of compensation for canvas' use of single precision floating point.
      * @param {CanvasRenderingContext2D} ctx The canvas context.
      */
-    disablePrecisionCompensation: function(ctx) {
+    disablePrecisionCompensation: function (ctx) {
         var regularOverrides = Ext.draw.engine.Canvas.contextOverrides,
             precisionOverrides = this.precisionNames,
             ln = precisionOverrides.length,
@@ -11710,7 +11800,7 @@ Ext.define('Ext.draw.engine.Canvas', {
      * Compensate for canvas' use of single precision floating point.
      * @param {CanvasRenderingContext2D} ctx The canvas context.
      */
-    enablePrecisionCompensation: function(ctx) {
+    enablePrecisionCompensation: function (ctx) {
         var surface = this,
             xx = 1,
             yy = 1,
@@ -11726,67 +11816,67 @@ Ext.define('Ext.draw.engine.Canvas', {
          * @ignore
          */
         var precisionOverrides = {
-                toSave: surface.toSave,
-                /**
+            toSave: surface.toSave,
+            /**
              * Adds a new closed subpath to the path, representing the given rectangle.
              * @return {*}
              * @ignore
              */
-                rect: function(x, y, w, h) {
-                    return originalCtx.rect.call(this, x * xx + dx, y * yy + dy, w * xx, h * yy);
-                },
-                /**
+            rect: function (x, y, w, h) {
+                return originalCtx.rect.call(this, x * xx + dx, y * yy + dy, w * xx, h * yy);
+            },
+            /**
              * Paints the given rectangle onto the canvas, using the current fill style.
              * @ignore
              */
-                fillRect: function(x, y, w, h) {
-                    this.updatePrecisionCompensateRect();
-                    originalCtx.fillRect.call(this, x * xx + dx, y * yy + dy, w * xx, h * yy);
-                    this.updatePrecisionCompensate();
-                },
-                /**
+            fillRect: function (x, y, w, h) {
+                this.updatePrecisionCompensateRect();
+                originalCtx.fillRect.call(this, x * xx + dx, y * yy + dy, w * xx, h * yy);
+                this.updatePrecisionCompensate();
+            },
+            /**
              * Paints the box that outlines the given rectangle onto the canvas, using the current stroke style.
              * @ignore
              */
-                strokeRect: function(x, y, w, h) {
-                    this.updatePrecisionCompensateRect();
-                    originalCtx.strokeRect.call(this, x * xx + dx, y * yy + dy, w * xx, h * yy);
-                    this.updatePrecisionCompensate();
-                },
-                /**
+            strokeRect: function (x, y, w, h) {
+                this.updatePrecisionCompensateRect();
+                originalCtx.strokeRect.call(this, x * xx + dx, y * yy + dy, w * xx, h * yy);
+                this.updatePrecisionCompensate();
+            },
+            /**
              * Clears all pixels on the canvas in the given rectangle to transparent black.
              * @ignore
              */
-                clearRect: function(x, y, w, h) {
-                    return originalCtx.clearRect.call(this, x * xx + dx, y * yy + dy, w * xx, h * yy);
-                },
-                /**
+            clearRect: function (x, y, w, h) {
+                return originalCtx.clearRect.call(this, x * xx + dx, y * yy + dy, w * xx, h * yy);
+            },
+            /**
              * Creates a new subpath with the given point.
              * @ignore
              */
-                moveTo: function(x, y) {
-                    return originalCtx.moveTo.call(this, x * xx + dx, y * yy + dy);
-                },
-                /**
+            moveTo: function (x, y) {
+                return originalCtx.moveTo.call(this, x * xx + dx, y * yy + dy);
+            },
+            /**
              * Adds the given point to the current subpath, connected to the previous one by a straight line.
              * @ignore
              */
-                lineTo: function(x, y) {
-                    return originalCtx.lineTo.call(this, x * xx + dx, y * yy + dy);
-                },
-                /**
+            lineTo: function (x, y) {
+                return originalCtx.lineTo.call(this, x * xx + dx, y * yy + dy);
+            },
+            /**
              * Adds points to the subpath such that the arc described by the circumference of the
              * circle described by the arguments, starting at the given start angle and ending at
              * the given end angle, going in the given direction (defaulting to clockwise), is added
              * to the path, connected to the previous point by a straight line.
              * @ignore
              */
-                arc: function(x, y, radius, startAngle, endAngle, anticlockwise) {
-                    this.updatePrecisionCompensateRect();
-                    originalCtx.arc.call(this, x * xx + dx, y * xx + dy, radius * xx, startAngle, endAngle, anticlockwise);
-                    this.updatePrecisionCompensate();
-                },
-                /**
+            arc: function (x, y, radius, startAngle, endAngle, anticlockwise) {
+                this.updatePrecisionCompensateRect();
+                originalCtx.arc.call(this, x * xx + dx, y * xx + dy, radius * xx, startAngle, endAngle, anticlockwise);
+                this.updatePrecisionCompensate();
+            },
+            /**
              * Adds an arc with the given control points and radius to the current subpath,
              * connected to the previous point by a straight line.  If two radii are provided, the
              * first controls the width of the arc's ellipse, and the second controls the height. If
@@ -11796,196 +11886,196 @@ Ext.define('Ext.draw.engine.Canvas', {
              * of the ellipse relative to the x-axis.
              * @ignore
              */
-                arcTo: function(x1, y1, x2, y2, radius) {
-                    this.updatePrecisionCompensateRect();
-                    originalCtx.arcTo.call(this, x1 * xx + dx, y1 * yy + dy, x2 * xx + dx, y2 * yy + dy, radius * xx);
-                    this.updatePrecisionCompensate();
-                },
-                /**
+            arcTo: function (x1, y1, x2, y2, radius) {
+                this.updatePrecisionCompensateRect();
+                originalCtx.arcTo.call(this, x1 * xx + dx, y1 * yy + dy, x2 * xx + dx, y2 * yy + dy, radius * xx);
+                this.updatePrecisionCompensate();
+            },
+            /**
              * Pushes the context state to the state stack.
              * @ignore
              */
-                save: function() {
-                    transStack.push(matrix);
-                    matrix = matrix.clone();
-                    regularOverrides.save.call(this);
-                    originalCtx.save.call(this);
-                },
-                /**
+            save: function () {
+                transStack.push(matrix);
+                matrix = matrix.clone();
+                regularOverrides.save.call(this);
+                originalCtx.save.call(this);
+            },
+            /**
              * Pops the state stack and restores the state.
              * @ignore
              */
-                restore: function() {
-                    matrix = transStack.pop();
-                    regularOverrides.restore.call(this);
-                    originalCtx.restore.call(this);
-                    this.updatePrecisionCompensate();
-                },
-                /**
+            restore: function () {
+                matrix = transStack.pop();
+                regularOverrides.restore.call(this);
+                originalCtx.restore.call(this);
+                this.updatePrecisionCompensate();
+            },
+            /**
              * @ignore
              */
-                updatePrecisionCompensate: function() {
-                    matrix.precisionCompensate(surface.devicePixelRatio, comp);
-                    xx = comp.xx;
-                    yy = comp.yy;
-                    dx = comp.dx;
-                    dy = comp.dy;
-                    originalCtx.setTransform.call(this, surface.devicePixelRatio, comp.b, comp.c, comp.d, 0, 0);
-                },
-                /**
+            updatePrecisionCompensate: function () {
+                matrix.precisionCompensate(surface.devicePixelRatio, comp);
+                xx = comp.xx;
+                yy = comp.yy;
+                dx = comp.dx;
+                dy = comp.dy;
+                originalCtx.setTransform.call(this, surface.devicePixelRatio, comp.b, comp.c, comp.d, 0, 0);
+            },
+            /**
              * @ignore
              */
-                updatePrecisionCompensateRect: function() {
-                    matrix.precisionCompensateRect(surface.devicePixelRatio, comp);
-                    xx = comp.xx;
-                    yy = comp.yy;
-                    dx = comp.dx;
-                    dy = comp.dy;
-                    originalCtx.setTransform.call(this, surface.devicePixelRatio, comp.b, comp.c, comp.d, 0, 0);
-                },
-                /**
+            updatePrecisionCompensateRect: function () {
+                matrix.precisionCompensateRect(surface.devicePixelRatio, comp);
+                xx = comp.xx;
+                yy = comp.yy;
+                dx = comp.dx;
+                dy = comp.dy;
+                originalCtx.setTransform.call(this, surface.devicePixelRatio, comp.b, comp.c, comp.d, 0, 0);
+            },
+            /**
              * Changes the transformation matrix to the matrix given by the arguments as described below.
              * @ignore
              */
-                setTransform: function(x2x, x2y, y2x, y2y, newDx, newDy) {
-                    matrix.set(x2x, x2y, y2x, y2y, newDx, newDy);
-                    this.updatePrecisionCompensate();
-                },
-                /**
+            setTransform: function (x2x, x2y, y2x, y2y, newDx, newDy) {
+                matrix.set(x2x, x2y, y2x, y2y, newDx, newDy);
+                this.updatePrecisionCompensate();
+            },
+            /**
              * Changes the transformation matrix to apply the matrix given by the arguments as described below.
              * @ignore
              */
-                transform: function(x2x, x2y, y2x, y2y, newDx, newDy) {
-                    matrix.append(x2x, x2y, y2x, y2y, newDx, newDy);
-                    this.updatePrecisionCompensate();
-                },
-                /**
+            transform: function (x2x, x2y, y2x, y2y, newDx, newDy) {
+                matrix.append(x2x, x2y, y2x, y2y, newDx, newDy);
+                this.updatePrecisionCompensate();
+            },
+            /**
              * Scales the transformation matrix.
              * @return {*}
              * @ignore
              */
-                scale: function(sx, sy) {
-                    this.transform(sx, 0, 0, sy, 0, 0);
-                },
-                /**
+            scale: function (sx, sy) {
+                this.transform(sx, 0, 0, sy, 0, 0);
+            },
+            /**
              * Translates the transformation matrix.
              * @return {*}
              * @ignore
              */
-                translate: function(dx, dy) {
-                    this.transform(1, 0, 0, 1, dx, dy);
-                },
-                /**
+            translate: function (dx, dy) {
+                this.transform(1, 0, 0, 1, dx, dy);
+            },
+            /**
              * Rotates the transformation matrix.
              * @return {*}
              * @ignore
              */
-                rotate: function(radians) {
-                    var cos = Math.cos(radians),
-                        sin = Math.sin(radians);
-                    this.transform(cos, sin, -sin, cos, 0, 0);
-                },
-                /**
+            rotate: function (radians) {
+                var cos = Math.cos(radians),
+                    sin = Math.sin(radians);
+                this.transform(cos, sin, -sin, cos, 0, 0);
+            },
+            /**
              * Adds the given point to the current subpath, connected to the previous one by a
              * quadratic Bézier curve with the given control point.
              * @return {*}
              * @ignore
              */
-                quadraticCurveTo: function(cx, cy, x, y) {
-                    originalCtx.quadraticCurveTo.call(this, cx * xx + dx, cy * yy + dy, x * xx + dx, y * yy + dy);
-                },
-                /**
+            quadraticCurveTo: function (cx, cy, x, y) {
+                originalCtx.quadraticCurveTo.call(this, cx * xx + dx, cy * yy + dy, x * xx + dx, y * yy + dy);
+            },
+            /**
              * Adds the given point to the current subpath, connected to the previous one by a cubic
              * Bézier curve with the given control points.
              * @return {*}
              * @ignore
              */
-                bezierCurveTo: function(c1x, c1y, c2x, c2y, x, y) {
-                    originalCtx.bezierCurveTo.call(this, c1x * xx + dx, c1y * yy + dy, c2x * xx + dx, c2y * yy + dy, x * xx + dx, y * yy + dy);
-                },
-                /**
+            bezierCurveTo: function (c1x, c1y, c2x, c2y, x, y) {
+                originalCtx.bezierCurveTo.call(this, c1x * xx + dx, c1y * yy + dy, c2x * xx + dx, c2y * yy + dy, x * xx + dx, y * yy + dy);
+            },
+            /**
              * Returns an object that represents a linear gradient that paints along the line given
              * by the coordinates represented by the arguments.
              * @return {*}
              * @ignore
              */
-                createLinearGradient: function(x0, y0, x1, y1) {
-                    this.updatePrecisionCompensateRect();
-                    var grad = originalCtx.createLinearGradient.call(this, x0 * xx + dx, y0 * yy + dy, x1 * xx + dx, y1 * yy + dy);
-                    this.updatePrecisionCompensate();
-                    return grad;
-                },
-                /**
+            createLinearGradient: function (x0, y0, x1, y1) {
+                this.updatePrecisionCompensateRect();
+                var grad = originalCtx.createLinearGradient.call(this, x0 * xx + dx, y0 * yy + dy, x1 * xx + dx, y1 * yy + dy);
+                this.updatePrecisionCompensate();
+                return grad;
+            },
+            /**
              * Returns a CanvasGradient object that represents a radial gradient that paints along
              * the cone given by the circles represented by the arguments.  If either of the radii
              * are negative, throws an IndexSizeError exception.
              * @return {*}
              * @ignore
              */
-                createRadialGradient: function(x0, y0, r0, x1, y1, r1) {
-                    this.updatePrecisionCompensateRect();
-                    var grad = originalCtx.createLinearGradient.call(this, x0 * xx + dx, y0 * xx + dy, r0 * xx, x1 * xx + dx, y1 * xx + dy, r1 * xx);
-                    this.updatePrecisionCompensate();
-                    return grad;
-                },
-                /**
+            createRadialGradient: function (x0, y0, r0, x1, y1, r1) {
+                this.updatePrecisionCompensateRect();
+                var grad = originalCtx.createLinearGradient.call(this, x0 * xx + dx, y0 * xx + dy, r0 * xx, x1 * xx + dx, y1 * xx + dy, r1 * xx);
+                this.updatePrecisionCompensate();
+                return grad;
+            },
+            /**
              * Fills the given text at the given position. If a maximum width is provided, the text
              * will be scaled to fit that width if necessary.
              * @ignore
              */
-                fillText: function(text, x, y, maxWidth) {
-                    originalCtx.setTransform.apply(this, matrix.elements);
-                    if (typeof maxWidth === 'undefined') {
-                        originalCtx.fillText.call(this, text, x, y);
-                    } else {
-                        originalCtx.fillText.call(this, text, x, y, maxWidth);
-                    }
-                    this.updatePrecisionCompensate();
-                },
-                /**
+            fillText: function (text, x, y, maxWidth) {
+                originalCtx.setTransform.apply(this, matrix.elements);
+                if (typeof maxWidth === 'undefined') {
+                    originalCtx.fillText.call(this, text, x, y);
+                } else {
+                    originalCtx.fillText.call(this, text, x, y, maxWidth);
+                }
+                this.updatePrecisionCompensate();
+            },
+            /**
              * Strokes the given text at the given position. If a
              * maximum width is provided, the text will be scaled to
              * fit that width if necessary.
              * @ignore
              */
-                strokeText: function(text, x, y, maxWidth) {
-                    originalCtx.setTransform.apply(this, matrix.elements);
-                    if (typeof maxWidth === 'undefined') {
-                        originalCtx.strokeText.call(this, text, x, y);
-                    } else {
-                        originalCtx.strokeText.call(this, text, x, y, maxWidth);
-                    }
-                    this.updatePrecisionCompensate();
-                },
-                /**
+            strokeText: function (text, x, y, maxWidth) {
+                originalCtx.setTransform.apply(this, matrix.elements);
+                if (typeof maxWidth === 'undefined') {
+                    originalCtx.strokeText.call(this, text, x, y);
+                } else {
+                    originalCtx.strokeText.call(this, text, x, y, maxWidth);
+                }
+                this.updatePrecisionCompensate();
+            },
+            /**
              * Fills the subpaths of the current default path or the given path with the current fill style.
              * @ignore
              */
-                fill: function() {
-                    var fillGradient = this.fillGradient,
-                        bbox = this.bbox;
-                    this.updatePrecisionCompensateRect();
-                    if (fillGradient && bbox) {
-                        this.fillStyle = fillGradient.generateGradient(this, bbox);
-                    }
-                    originalCtx.fill.call(this);
-                    this.updatePrecisionCompensate();
-                },
-                /**
+            fill: function () {
+                var fillGradient = this.fillGradient,
+                    bbox = this.bbox;
+                this.updatePrecisionCompensateRect();
+                if (fillGradient && bbox) {
+                    this.fillStyle = fillGradient.generateGradient(this, bbox);
+                }
+                originalCtx.fill.call(this);
+                this.updatePrecisionCompensate();
+            },
+            /**
              * Strokes the subpaths of the current default path or the given path with the current stroke style.
              * @ignore
              */
-                stroke: function() {
-                    var strokeGradient = this.strokeGradient,
-                        bbox = this.bbox;
-                    this.updatePrecisionCompensateRect();
-                    if (strokeGradient && bbox) {
-                        this.strokeStyle = strokeGradient.generateGradient(this, bbox);
-                    }
-                    originalCtx.stroke.call(this);
-                    this.updatePrecisionCompensate();
-                },
-                /**
+            stroke: function () {
+                var strokeGradient = this.strokeGradient,
+                    bbox = this.bbox;
+                this.updatePrecisionCompensateRect();
+                if (strokeGradient && bbox) {
+                    this.strokeStyle = strokeGradient.generateGradient(this, bbox);
+                }
+                originalCtx.stroke.call(this);
+                this.updatePrecisionCompensate();
+            },
+            /**
              * Draws the given image onto the canvas.  If the first argument isn't an img, canvas,
              * or video element, throws a TypeMismatchError exception. If the image has no image
              * data, throws an InvalidStateError exception. If the one of the source rectangle
@@ -11994,23 +12084,23 @@ Ext.define('Ext.draw.engine.Canvas', {
              * @return {*}
              * @ignore
              */
-                drawImage: function(img_elem, arg1, arg2, arg3, arg4, dst_x, dst_y, dw, dh) {
-                    switch (arguments.length) {
-                        case 3:
-                            return originalCtx.drawImage.call(this, img_elem, arg1 * xx + dx, arg2 * yy + dy);
-                        case 5:
-                            return originalCtx.drawImage.call(this, img_elem, arg1 * xx + dx, arg2 * yy + dy, arg3 * xx, arg4 * yy);
-                        case 9:
-                            return originalCtx.drawImage.call(this, img_elem, arg1, arg2, arg3, arg4, dst_x * xx + dx, dst_y * yy * dy, dw * xx, dh * yy);
-                    }
+            drawImage: function (img_elem, arg1, arg2, arg3, arg4, dst_x, dst_y, dw, dh) {
+                switch (arguments.length) {
+                    case 3:
+                        return originalCtx.drawImage.call(this, img_elem, arg1 * xx + dx, arg2 * yy + dy);
+                    case 5:
+                        return originalCtx.drawImage.call(this, img_elem, arg1 * xx + dx, arg2 * yy + dy, arg3 * xx, arg4 * yy);
+                    case 9:
+                        return originalCtx.drawImage.call(this, img_elem, arg1, arg2, arg3, arg4, dst_x * xx + dx, dst_y * yy * dy, dw * xx, dh * yy);
                 }
-            };
+            }
+        };
         Ext.apply(ctx, precisionOverrides);
         this.setDirty(true);
     },
     // Continue docs for the Canvas class
     /** @class Ext.draw.engine.Canvas */
-    updateRect: function(rect) {
+    updateRect: function (rect) {
         this.callParent([
             rect
         ]);
@@ -12054,7 +12144,7 @@ Ext.define('Ext.draw.engine.Canvas', {
     /**
      * @inheritdoc
      */
-    clearTransform: function() {
+    clearTransform: function () {
         var me = this,
             activeCanvases = me.activeCanvases,
             i, ctx;
@@ -12069,7 +12159,7 @@ Ext.define('Ext.draw.engine.Canvas', {
      * @private
      * @inheritdoc
      */
-    renderSprite: function(sprite) {
+    renderSprite: function (sprite) {
         var me = this,
             rect = me.getRect(),
             surfaceMatrix = me.matrix,
@@ -12110,25 +12200,25 @@ Ext.define('Ext.draw.engine.Canvas', {
             right = left + width;
             if (bbox) {
                 if (bbox.x > right || bbox.x + bbox.width < left || bbox.y > bottom || bbox.y + bbox.height < top) {
-                    
+
                     continue;
                 }
             }
             ctx.save();
             sprite.useAttributes(ctx, rect);
             if (false === sprite.render(me, ctx, [
-                left,
-                top,
-                width,
-                bottom - top
-            ], rect)) {
+                    left,
+                    top,
+                    width,
+                    bottom - top
+                ], rect)) {
                 return false;
             }
             ctx.restore();
         }
         sprite.setDirty(false);
     },
-    flatten: function(size, surfaces) {
+    flatten: function (size, surfaces) {
         var canvas = document.createElement('canvas'),
             className = Ext.getClassName(this),
             ratio = this.devicePixelRatio,
@@ -12139,7 +12229,7 @@ Ext.define('Ext.draw.engine.Canvas', {
         for (i = 0; i < surfaces.length; i++) {
             surface = surfaces[i];
             if (Ext.getClassName(surface) !== className) {
-                
+
                 continue;
             }
             rect = surface.getRect();
@@ -12150,7 +12240,7 @@ Ext.define('Ext.draw.engine.Canvas', {
             type: 'png'
         };
     },
-    applyDefaults: function(ctx) {
+    applyDefaults: function (ctx) {
         var none = Ext.draw.Color.RGBA_NONE;
         ctx.strokeStyle = none;
         ctx.fillStyle = none;
@@ -12161,7 +12251,7 @@ Ext.define('Ext.draw.engine.Canvas', {
     /**
      * @inheritdoc
      */
-    clear: function() {
+    clear: function () {
         var me = this,
             activeCanvases = this.activeCanvases,
             i, canvas, ctx;
@@ -12176,7 +12266,7 @@ Ext.define('Ext.draw.engine.Canvas', {
     /**
      * Destroys the Canvas element and prepares it for Garbage Collection.
      */
-    destroy: function() {
+    destroy: function () {
         var me = this,
             i,
             ln = me.canvases.length;
@@ -12190,14 +12280,14 @@ Ext.define('Ext.draw.engine.Canvas', {
         me.callParent(arguments);
     },
     privates: {
-        initElement: function() {
+        initElement: function () {
             this.callParent();
             this.canvases = [];
             this.contexts = [];
             this.activeCanvases = 0;
         }
     }
-}, function() {
+}, function () {
     if (Ext.os.is.Android4 && Ext.browser.is.Chrome) {
         this.prototype.splitThreshold = 3000;
     } else if (Ext.os.is.Android) {
@@ -12246,9 +12336,9 @@ Ext.define('Ext.draw.Container', {
     ],
     /**
      * @cfg {String} [engine="Ext.draw.engine.Canvas"]
-     * Defines the engine (type of surface) used to render draw container contents.  
-     * 
-     * The render engine is selected automatically depending on the platform used. Priority 
+     * Defines the engine (type of surface) used to render draw container contents.
+     *
+     * The render engine is selected automatically depending on the platform used. Priority
      * is given to the {@link Ext.draw.engine.Canvas} engine due to its performance advantage.
      *
      * You may also set the engine config to be `Ext.draw.engine.Svg` if so desired.
@@ -12327,7 +12417,7 @@ Ext.define('Ext.draw.Container', {
          *           x: 100,
          *           y: 100
          *      }]
-         * 
+         *
          */
         sprites: null,
         /**
@@ -12393,7 +12483,7 @@ Ext.define('Ext.draw.Container', {
     supportedOptions: {
         version: Ext.isNumber,
         data: Ext.isString,
-        format: function(format) {
+        format: function (format) {
             return Ext.Array.indexOf(this.supportedFormats, format) >= 0;
         },
         filename: Ext.isString,
@@ -12403,10 +12493,10 @@ Ext.define('Ext.draw.Container', {
         pdf: Ext.isObject,
         jpeg: Ext.isObject
     },
-    initAnimator: function() {
+    initAnimator: function () {
         this.frameCallbackId = Ext.draw.Animator.addFrameCallback('renderFrame', this);
     },
-    applyGradients: function(gradients) {
+    applyGradients: function (gradients) {
         var result = [],
             i, n, gradient, offset;
         if (!Ext.isArray(gradients)) {
@@ -12415,7 +12505,7 @@ Ext.define('Ext.draw.Container', {
         for (i = 0 , n = gradients.length; i < n; i++) {
             gradient = gradients[i];
             if (!Ext.isObject(gradient)) {
-                
+
                 continue;
             }
             // ExtJS only supported linear gradients, so we didn't have to specify their type
@@ -12428,7 +12518,7 @@ Ext.define('Ext.draw.Container', {
             }
             // Convert ExtJS stops object to Touch stops array
             if (Ext.isObject(gradient.stops)) {
-                gradient.stops = (function(stops) {
+                gradient.stops = (function (stops) {
                     var result = [],
                         stop;
                     for (offset in stops) {
@@ -12444,7 +12534,7 @@ Ext.define('Ext.draw.Container', {
         Ext.draw.gradient.GradientDefinition.add(result);
         return result;
     },
-    applySprites: function(sprites) {
+    applySprites: function (sprites) {
         // Never update
         if (!sprites) {
             return;
@@ -12470,14 +12560,14 @@ Ext.define('Ext.draw.Container', {
      * @param {Number} height
      */
     onPlaceWatermark: Ext.emptyFn,
-    onBodyResize: function() {
+    onBodyResize: function () {
         var el = this.element;
         if (!el) {
             return;
         }
         this.setBodySize(el.getSize());
     },
-    setBodySize: function(size) {
+    setBodySize: function (size) {
         var me = this,
             resizeHandler = me.getResizeHandler(),
             result;
@@ -12488,8 +12578,8 @@ Ext.define('Ext.draw.Container', {
             me.onPlaceWatermark(size.width, size.height);
         }
     },
-    resizeHandler: function(size) {
-        this.getItems().each(function(surface) {
+    resizeHandler: function (size) {
+        this.getItems().each(function (surface) {
             surface.setRect([
                 0,
                 0,
@@ -12503,7 +12593,7 @@ Ext.define('Ext.draw.Container', {
      * @param {String} [id="main"]
      * @return {Ext.draw.Surface}
      */
-    getSurface: function(id) {
+    getSurface: function (id) {
         id = this.getId() + '-' + (id || 'main');
         var me = this,
             surfaces = me.getItems(),
@@ -12520,7 +12610,7 @@ Ext.define('Ext.draw.Container', {
     /**
      * Render all the surfaces in the container.
      */
-    renderFrame: function() {
+    renderFrame: function () {
         var me = this,
             surfaces = me.getItems(),
             i, ln, item;
@@ -12540,7 +12630,7 @@ Ext.define('Ext.draw.Container', {
      * @return {String} return.data Image element, byte stream or DataURL.
      * @return {String} return.type The type of the data (e.g. 'png' or 'svg').
      */
-    getImage: function(format) {
+    getImage: function (format) {
         var size = this.innerElement.getSize(),
             surfaces = Array.prototype.slice.call(this.items.items),
             image, imageElement,
@@ -12645,7 +12735,7 @@ Ext.define('Ext.draw.Container', {
      *
      * @return {Boolean} True if request was successfully sent to the server.
      */
-    download: function(config) {
+    download: function (config) {
         var me = this,
             inputs = [],
             markup, name, value;
@@ -12707,14 +12797,14 @@ Ext.define('Ext.draw.Container', {
      * (i.e. generated from a draw container that uses 'Ext.draw.engine.Svg' engine).
      * And some platforms may not have the means of viewing successfully saved SVG images.
      */
-    destroy: function() {
+    destroy: function () {
         var callbackId = this.frameCallbackId;
         if (callbackId) {
             Ext.draw.Animator.removeFrameCallback(callbackId);
         }
         this.callParent();
     }
-}, function() {
+}, function () {
     if (location.search.match('svg')) {
         Ext.draw.Container.prototype.engine = 'Ext.draw.engine.Svg';
     } else if ((Ext.os.is.BlackBerry && Ext.os.version.getMajor() === 10) || (Ext.browser.is.AndroidStock4 && (Ext.os.version.getMinor() === 1 || Ext.os.version.getMinor() === 2 || Ext.os.version.getMinor() === 3))) {
@@ -12978,25 +13068,25 @@ Ext.define('Ext.chart.theme.Base', {
         '#7c7474',
         '#a66111'
     ],
-    constructor: function(config) {
+    constructor: function (config) {
         this.initConfig(config);
         this.resolveDefaults();
     },
     defaultRegEx: /^default([+\-/\*]\d+(?:\.\d+)?)?$/,
     defaultOperators: {
-        '*': function(v1, v2) {
+        '*': function (v1, v2) {
             return v1 * v2;
         },
-        '+': function(v1, v2) {
+        '+': function (v1, v2) {
             return v1 + v2;
         },
-        '-': function(v1, v2) {
+        '-': function (v1, v2) {
             return v1 - v2;
         }
     },
-    resolveDefaults: function() {
+    resolveDefaults: function () {
         var me = this;
-        Ext.onReady(function() {
+        Ext.onReady(function () {
             var sprites = Ext.clone(me.getSprites()),
                 axis = Ext.clone(me.getAxis()),
                 series = Ext.clone(me.getSeries()),
@@ -13030,7 +13120,7 @@ Ext.define('Ext.chart.theme.Base', {
             me.setSeries(series);
         });
     },
-    replaceDefaults: function(target) {
+    replaceDefaults: function (target) {
         var me = this,
             defaults = me.superclass.defaults,
             defaultRegEx = me.defaultRegEx,
@@ -13050,7 +13140,7 @@ Ext.define('Ext.chart.theme.Base', {
             }
         }
     },
-    applyBaseColor: function(baseColor) {
+    applyBaseColor: function (baseColor) {
         var midColor, midL;
         if (baseColor) {
             midColor = baseColor.isColor ? baseColor : Ext.draw.Color.fromString(baseColor);
@@ -13075,10 +13165,10 @@ Ext.define('Ext.chart.theme.Base', {
         }
         return baseColor;
     },
-    applyColors: function(newColors) {
+    applyColors: function (newColors) {
         return newColors || this.colorDefaults;
     },
-    updateUseGradients: function(useGradients) {
+    updateUseGradients: function (useGradients) {
         if (useGradients) {
             this.updateGradients({
                 type: 'linear',
@@ -13086,14 +13176,14 @@ Ext.define('Ext.chart.theme.Base', {
             });
         }
     },
-    updateBackground: function(background) {
+    updateBackground: function (background) {
         if (background) {
             var chart = this.getChart();
             chart.defaults.background = background;
             this.setChart(chart);
         }
     },
-    updateGradients: function(gradients) {
+    updateGradients: function (gradients) {
         var colors = this.getColors(),
             items = [],
             gradient, midColor, color, i, ln;
@@ -13120,7 +13210,7 @@ Ext.define('Ext.chart.theme.Base', {
             this.setColors(items);
         }
     },
-    applySeriesThemes: function(newSeriesThemes) {
+    applySeriesThemes: function (newSeriesThemes) {
         // Init the 'colors' config with solid colors generated from the 'baseColor'.
         this.getBaseColor();
         // Init the 'gradients' config with a hardcoded value, if the legacy 'useGradients'
@@ -13133,7 +13223,7 @@ Ext.define('Ext.chart.theme.Base', {
         if (!newSeriesThemes) {
             newSeriesThemes = {
                 fillStyle: Ext.Array.clone(colors),
-                strokeStyle: Ext.Array.map(colors, function(value) {
+                strokeStyle: Ext.Array.map(colors, function (value) {
                     var color = Ext.draw.Color.fromString(value.stops ? value.stops[0].color : value);
                     return color.createDarker(0.15).toString();
                 })
@@ -13158,14 +13248,14 @@ Ext.define('Ext.chart.theme.Default', {
 /**
  * @class Ext.chart.Markers
  * @extends Ext.draw.sprite.Instancing
- * 
+ *
  * Marker sprite. A specialized version of instancing sprite that groups instances.
  * Putting a marker is grouped by its category id. Clearing removes that category.
  */
 Ext.define('Ext.chart.Markers', {
     extend: 'Ext.draw.sprite.Instancing',
     defaultCategory: 'default',
-    constructor: function() {
+    constructor: function () {
         this.callParent(arguments);
         // `categories` maps category names to a map that maps instance index in category to its global index:
         // categoryName: {instanceIndexInCategory: globalInstanceIndex}
@@ -13183,7 +13273,7 @@ Ext.define('Ext.chart.Markers', {
      * Clears the markers in the category.
      * @param {String} category
      */
-    clear: function(category) {
+    clear: function (category) {
         category = category || this.defaultCategory;
         if (!(category in this.revisions)) {
             this.revisions[category] = 1;
@@ -13199,7 +13289,7 @@ Ext.define('Ext.chart.Markers', {
      * @param {Boolean} [bypassNormalization]
      * @param {Boolean} [keepRevision]
      */
-    putMarkerFor: function(category, attr, index, bypassNormalization, keepRevision) {
+    putMarkerFor: function (category, attr, index, bypassNormalization, keepRevision) {
         category = category || this.defaultCategory;
         var me = this,
             categoryInstances = me.categories[category] || (me.categories[category] = {}),
@@ -13225,7 +13315,7 @@ Ext.define('Ext.chart.Markers', {
      * @param {Mixed} index
      * @param {Boolean} [isWithoutTransform]
      */
-    getMarkerBBoxFor: function(category, index, isWithoutTransform) {
+    getMarkerBBoxFor: function (category, index, isWithoutTransform) {
         if (category in this.categories) {
             var categoryInstances = this.categories[category];
             if (index in categoryInstances) {
@@ -13233,10 +13323,10 @@ Ext.define('Ext.chart.Markers', {
             }
         }
     },
-    getBBox: function() {
+    getBBox: function () {
         return null;
     },
-    render: function(surface, ctx, clipRect) {
+    render: function (surface, ctx, clipRect) {
         var me = this,
             revisions = me.revisions,
             mat = me.attr.matrix,
@@ -13249,7 +13339,7 @@ Ext.define('Ext.chart.Markers', {
         for (i = 0 , ln = me.instances.length; i < ln; i++) {
             instance = me.get(i);
             if (instance.hidden || instance.revision !== revisions[instance.category]) {
-                
+
                 continue;
             }
             ctx.save();
@@ -13270,7 +13360,7 @@ Ext.define('Ext.chart.Markers', {
  */
 Ext.define('Ext.chart.label.Callout', {
     extend: 'Ext.draw.modifier.Modifier',
-    prepareAttributes: function(attr) {
+    prepareAttributes: function (attr) {
         if (!attr.hasOwnProperty('calloutOriginal')) {
             attr.calloutOriginal = Ext.Object.chain(attr);
             // No __proto__, nor getPrototypeOf in IE8,
@@ -13281,7 +13371,7 @@ Ext.define('Ext.chart.label.Callout', {
             this._previous.prepareAttributes(attr.calloutOriginal);
         }
     },
-    setAttrs: function(attr, changes) {
+    setAttrs: function (attr, changes) {
         var callout = attr.callout,
             origin = attr.calloutOriginal,
             bbox = attr.bbox.plain,
@@ -13356,11 +13446,11 @@ Ext.define('Ext.chart.label.Callout', {
         }
         return changes;
     },
-    pushDown: function(attr, changes) {
+    pushDown: function (attr, changes) {
         changes = Ext.draw.modifier.Modifier.prototype.pushDown.call(this, attr.calloutOriginal, changes);
         return this.setAttrs(attr, changes);
     },
-    popUp: function(attr, changes) {
+    popUp: function (attr, changes) {
         attr = attr.prototype;
         changes = this.setAttrs(attr, changes);
         if (this._next) {
@@ -13430,7 +13520,7 @@ Ext.define('Ext.chart.label.Label', {
                 display: 'hidden'
             },
             updaters: {
-                hidden: function(attrs) {
+                hidden: function (attrs) {
                     attrs.hidden = attrs.display === 'none';
                 }
             }
@@ -13457,12 +13547,12 @@ Ext.define('Ext.chart.label.Label', {
          */
         calloutLine: true
     },
-    applyCalloutLine: function(calloutLine) {
+    applyCalloutLine: function (calloutLine) {
         if (calloutLine) {
             return Ext.apply({}, calloutLine);
         }
     },
-    prepareModifiers: function() {
+    prepareModifiers: function () {
         this.callParent(arguments);
         this.calloutModifier = new Ext.chart.label.Callout({
             sprite: this
@@ -13470,7 +13560,7 @@ Ext.define('Ext.chart.label.Label', {
         this.fx.setNext(this.calloutModifier);
         this.calloutModifier.setNext(this.topModifier);
     },
-    render: function(surface, ctx) {
+    render: function (surface, ctx) {
         var me = this,
             attr = me.attr,
             calloutColor = attr.calloutColor;
@@ -13733,9 +13823,9 @@ Ext.define('Ext.chart.series.Series', {
         /**
          * @cfg {Array} colors
          * An array of color values which is used, in order of appearance, by the series. Each series
-         * can request one or more colors from the array. Radar, Scatter or Line charts require just 
-         * one color each. Candlestick and OHLC require two (1 for drops + 1 for rises). Pie charts  
-         * and Stacked charts (like Column or Pie charts) require one color for each data category 
+         * can request one or more colors from the array. Radar, Scatter or Line charts require just
+         * one color each. Candlestick and OHLC require two (1 for drops + 1 for rises). Pie charts
+         * and Stacked charts (like Column or Pie charts) require one color for each data category
          * they represent, so one color for each slice of a Pie chart or each segment of a Column chart.
          * It overrides the colors that are provided by the current theme.
          */
@@ -13909,7 +13999,7 @@ Ext.define('Ext.chart.series.Series', {
          */
         highlightCfg: {
             // Make custom highlightCfg's in subclasses replace this one.
-            merge: function(value) {
+            merge: function (value) {
                 return value;
             },
             $value: {
@@ -13948,7 +14038,7 @@ Ext.define('Ext.chart.series.Series', {
      * A Pie chart needs one color per slice while a Stacked Bar chart needs one per segment.
      * An OHLC chart needs 2 colors (one for drops, one for rises), and most other charts need just 1 color.
      */
-    themeColorCount: function() {
+    themeColorCount: function () {
         return 1;
     },
     /**
@@ -13956,10 +14046,10 @@ Ext.define('Ext.chart.series.Series', {
      * Returns the number of markers this series needs.
      * Currently, only the Line, Scatter and Radar series use markers - and they need just one each.
      */
-    themeMarkerCount: function() {
+    themeMarkerCount: function () {
         return 0;
     },
-    getFields: function(fieldCategory) {
+    getFields: function (fieldCategory) {
         var me = this,
             fields = [],
             fieldsItem, i, ln;
@@ -13973,7 +14063,7 @@ Ext.define('Ext.chart.series.Series', {
         }
         return fields;
     },
-    applyAnimation: function(newAnimation, oldAnimation) {
+    applyAnimation: function (newAnimation, oldAnimation) {
         if (!newAnimation) {
             newAnimation = {
                 duration: 0
@@ -13986,7 +14076,7 @@ Ext.define('Ext.chart.series.Series', {
         }
         return oldAnimation ? Ext.apply({}, newAnimation, oldAnimation) : newAnimation;
     },
-    updateTitle: function(newTitle) {
+    updateTitle: function (newTitle) {
         var me = this,
             chart = me.getChart();
         if (!chart || chart.isInitializing) {
@@ -14009,7 +14099,7 @@ Ext.define('Ext.chart.series.Series', {
             }
         }
     },
-    applyHighlight: function(highlight, oldHighlight) {
+    applyHighlight: function (highlight, oldHighlight) {
         if (Ext.isObject(highlight)) {
             highlight = Ext.merge({}, this.config.highlightCfg, highlight);
         } else if (highlight === true) {
@@ -14017,10 +14107,10 @@ Ext.define('Ext.chart.series.Series', {
         }
         return Ext.apply(oldHighlight || {}, highlight);
     },
-    applyItemInstancing: function(instancing, oldInstancing) {
+    applyItemInstancing: function (instancing, oldInstancing) {
         return Ext.merge(oldInstancing || {}, instancing);
     },
-    setAttributesForItem: function(item, change) {
+    setAttributesForItem: function (item, change) {
         if (item && item.sprite) {
             if (item.sprite.itemsMarker && item.category === 'items') {
                 item.sprite.putMarker(item.category, change, item.index, false, true);
@@ -14034,7 +14124,7 @@ Ext.define('Ext.chart.series.Series', {
             }
         }
     },
-    getBBoxForItem: function(item) {
+    getBBoxForItem: function (item) {
         if (item && item.sprite) {
             if (item.sprite.itemsMarker && item.category === 'items') {
                 return item.sprite.getMarkerBBox(item.category, item.index);
@@ -14046,7 +14136,7 @@ Ext.define('Ext.chart.series.Series', {
         }
         return null;
     },
-    applyHighlightItem: function(newHighlightItem, oldHighlightItem) {
+    applyHighlightItem: function (newHighlightItem, oldHighlightItem) {
         if (newHighlightItem === oldHighlightItem) {
             return;
         }
@@ -14057,7 +14147,7 @@ Ext.define('Ext.chart.series.Series', {
         }
         return newHighlightItem;
     },
-    updateHighlightItem: function(newHighlightItem, oldHighlightItem) {
+    updateHighlightItem: function (newHighlightItem, oldHighlightItem) {
         this.setAttributesForItem(oldHighlightItem, {
             highlighted: false
         });
@@ -14065,7 +14155,7 @@ Ext.define('Ext.chart.series.Series', {
             highlighted: true
         });
     },
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this;
         me.getId();
         me.sprites = [];
@@ -14088,22 +14178,22 @@ Ext.define('Ext.chart.series.Series', {
         me.mixins.observable.constructor.call(me, config);
         me.initBindable();
     },
-    lookupViewModel: function(skipThis) {
+    lookupViewModel: function (skipThis) {
         var chart = this.getChart();
         return chart ? chart.lookupViewModel(skipThis) : null;
     },
-    applyTooltip: function(tooltip, oldTooltip) {
+    applyTooltip: function (tooltip, oldTooltip) {
         var chart = this.getChart(),
             interactions = chart.getInteractions(),
             i, hasItemHighlight;
         var config = Ext.apply({}, tooltip, {
-                renderer: Ext.emptyFn,
-                constrainPosition: true,
-                shrinkWrapDock: true,
-                autoHide: true,
-                offsetX: 10,
-                offsetY: 10
-            });
+            renderer: Ext.emptyFn,
+            constrainPosition: true,
+            shrinkWrapDock: true,
+            autoHide: true,
+            offsetX: 10,
+            offsetY: 10
+        });
         for (i = 0; i < interactions.length; i++) {
             if (interactions[i].type === 'itemhighlight') {
                 hasItemHighlight = true;
@@ -14118,7 +14208,7 @@ Ext.define('Ext.chart.series.Series', {
         }
         return new Ext.tip.ToolTip(config);
     },
-    showTip: function(item, xy) {
+    showTip: function (item, xy) {
         var me = this,
             tooltip = me.getTooltip(),
             sprite, surface, surfaceEl, pos, point, bbox, x, y, config, isRtl;
@@ -14155,24 +14245,24 @@ Ext.define('Ext.chart.series.Series', {
         tooltip.config.renderer.call(tooltip, item.record, item);
         tooltip.show(xy);
     },
-    hideTip: function(item) {
+    hideTip: function (item) {
         var me = this,
             tooltip = me.getTooltip();
         if (!tooltip) {
             return;
         }
         clearTimeout(me.tooltipTimeout);
-        me.tooltipTimeout = Ext.defer(function() {
+        me.tooltipTimeout = Ext.defer(function () {
             tooltip.hide();
         }, 1);
     },
-    applyStore: function(store) {
+    applyStore: function (store) {
         return store && Ext.StoreManager.lookup(store);
     },
-    getStore: function() {
+    getStore: function () {
         return this._store || this.getChart() && this.getChart().getStore();
     },
-    updateStore: function(newStore, oldStore) {
+    updateStore: function (newStore, oldStore) {
         var me = this,
             chart = this.getChart(),
             chartStore = chart && chart.getStore(),
@@ -14201,28 +14291,28 @@ Ext.define('Ext.chart.series.Series', {
             me.onDataChanged();
         }
     },
-    onStoreChange: function(store, oldStore) {
+    onStoreChange: function (store, oldStore) {
         if (!this._store) {
             this.updateStore(store, oldStore);
         }
     },
-    coordinate: function(direction, directionOffset, directionCount) {
+    coordinate: function (direction, directionOffset, directionCount) {
         var me = this,
             store = me.getStore(),
             hidden = me.getHidden(),
             items = store.getData().items,
-            // TODO: in this.processData we check if we have the getX(Y)Axis method,
-            // TODO: if we don't, we call coordinateX(Y) instead, which calls this method,
-            // TODO: but here we just call getX(Y)Axis even though it doesn't exist
-            // TODO: (check cartesian charts without axes)
+        // TODO: in this.processData we check if we have the getX(Y)Axis method,
+        // TODO: if we don't, we call coordinateX(Y) instead, which calls this method,
+        // TODO: but here we just call getX(Y)Axis even though it doesn't exist
+        // TODO: (check cartesian charts without axes)
             axis = me['get' + direction + 'Axis'](),
             range = {
                 min: Infinity,
                 max: -Infinity
             },
             fieldCategory = me['fieldCategory' + direction] || [
-                direction
-            ],
+                    direction
+                ],
             fields = me.getFields(fieldCategory),
             i, field, data,
             style = {},
@@ -14257,13 +14347,13 @@ Ext.define('Ext.chart.series.Series', {
      * @param {Ext.chart.axis.Axis} axis
      * @return {Array}
      */
-    coordinateData: function(items, field, axis) {
+    coordinateData: function (items, field, axis) {
         var data = [],
             length = items.length,
             layout = axis && axis.getLayout(),
-            coord = axis ? function(x, field, idx, items) {
+            coord = axis ? function (x, field, idx, items) {
                 return layout.getCoordFor(x, field, idx, items);
-            } : function(x) {
+            } : function (x) {
                 return +x;
             },
             i, x;
@@ -14273,7 +14363,7 @@ Ext.define('Ext.chart.series.Series', {
         }
         return data;
     },
-    getRangeOfData: function(data, range) {
+    getRangeOfData: function (data, range) {
         var i,
             length = data.length,
             value,
@@ -14291,7 +14381,7 @@ Ext.define('Ext.chart.series.Series', {
         range.min = min;
         range.max = max;
     },
-    updateLabelData: function() {
+    updateLabelData: function () {
         var me = this,
             store = me.getStore(),
             items = store.getData().items,
@@ -14317,13 +14407,13 @@ Ext.define('Ext.chart.series.Series', {
             });
         }
     },
-    updateLabelField: function(labelField) {
+    updateLabelField: function (labelField) {
         var labelTpl = this.getLabel().getTemplate();
         if (!labelTpl.config.field) {
             labelTpl.setField(labelField);
         }
     },
-    processData: function() {
+    processData: function () {
         if (!this.getStore()) {
             return;
         }
@@ -14338,7 +14428,7 @@ Ext.define('Ext.chart.series.Series', {
                 axis = me['get' + direction + 'Axis']();
                 if (axis) {
                     axis.processData(me);
-                    
+
                     continue;
                 }
             }
@@ -14348,7 +14438,7 @@ Ext.define('Ext.chart.series.Series', {
         }
         me.updateLabelData();
     },
-    applyBackground: function(background) {
+    applyBackground: function (background) {
         if (this.getChart()) {
             this.getSurface().setBackground(background);
             return this.getSurface().getBackground();
@@ -14356,7 +14446,7 @@ Ext.define('Ext.chart.series.Series', {
             return background;
         }
     },
-    updateChart: function(newChart, oldChart) {
+    updateChart: function (newChart, oldChart) {
         var me = this,
             store = me._store;
         if (oldChart) {
@@ -14388,7 +14478,7 @@ Ext.define('Ext.chart.series.Series', {
             }
         }
     },
-    onAxesChange: function(chart) {
+    onAxesChange: function (chart) {
         var me = this,
             axes = chart.getAxes(),
             axis,
@@ -14414,7 +14504,7 @@ Ext.define('Ext.chart.series.Series', {
         for (i = 0 , ln = directions.length; i < ln; i++) {
             direction = directions[i];
             if (me['get' + direction + 'Axis']()) {
-                
+
                 continue;
             }
             if (directionToAxesMap[direction]) {
@@ -14435,7 +14525,7 @@ Ext.define('Ext.chart.series.Series', {
      * returns the first matching axis for the series in that direction,
      * or undefined if a match wasn't found.
      */
-    findMatchingAxis: function(directionAxes, directionFields) {
+    findMatchingAxis: function (directionAxes, directionFields) {
         var axis, axisFields, i, j;
         for (i = 0; i < directionAxes.length; i++) {
             axis = directionAxes[i];
@@ -14453,19 +14543,19 @@ Ext.define('Ext.chart.series.Series', {
             }
         }
     },
-    onChartDetached: function(oldChart) {
+    onChartDetached: function (oldChart) {
         var me = this;
         me.fireEvent('chartdetached', oldChart, me);
         oldChart.un('storechange', 'onStoreChange', me);
     },
-    onChartAttached: function(chart) {
+    onChartAttached: function (chart) {
         var me = this;
         me.setBackground(me.getBackground());
         me.fireEvent('chartattached', chart, me);
         chart.on('storechange', 'onStoreChange', me);
         me.processData();
     },
-    updateOverlaySurface: function(overlaySurface) {
+    updateOverlaySurface: function (overlaySurface) {
         var me = this;
         if (overlaySurface) {
             if (me.getLabel()) {
@@ -14473,7 +14563,7 @@ Ext.define('Ext.chart.series.Series', {
             }
         }
     },
-    applyLabel: function(newLabel, oldLabel) {
+    applyLabel: function (newLabel, oldLabel) {
         if (!oldLabel) {
             oldLabel = new Ext.chart.Markers({
                 zIndex: 10
@@ -14484,7 +14574,7 @@ Ext.define('Ext.chart.series.Series', {
         }
         return oldLabel;
     },
-    createItemInstancingSprite: function(sprite, itemInstancing) {
+    createItemInstancingSprite: function (sprite, itemInstancing) {
         var me = this,
             template,
             markers = new Ext.chart.Markers();
@@ -14507,13 +14597,13 @@ Ext.define('Ext.chart.series.Series', {
         me.getSurface().add(markers);
         return markers;
     },
-    getDefaultSpriteConfig: function() {
+    getDefaultSpriteConfig: function () {
         return {
             type: this.seriesType,
             renderer: this.getRenderer()
         };
     },
-    updateRenderer: function(renderer) {
+    updateRenderer: function (renderer) {
         var me = this,
             chart = me.getChart(),
             sprites;
@@ -14532,7 +14622,7 @@ Ext.define('Ext.chart.series.Series', {
             }
         }
     },
-    createSprite: function() {
+    createSprite: function () {
         var me = this,
             surface = me.getSurface(),
             itemInstancing = me.getItemInstancing(),
@@ -14577,7 +14667,7 @@ Ext.define('Ext.chart.series.Series', {
      * Returns sprites the are used to draw this series.
      */
     getSprites: Ext.emptyFn,
-    onDataChanged: function() {
+    onDataChanged: function () {
         var me = this,
             chart = me.getChart(),
             chartStore = chart && chart.getStore(),
@@ -14586,13 +14676,13 @@ Ext.define('Ext.chart.series.Series', {
             me.processData();
         }
     },
-    isXType: function(xtype) {
+    isXType: function (xtype) {
         return xtype === 'series';
     },
-    getItemId: function() {
+    getItemId: function () {
         return this.getId();
     },
-    applyThemeStyle: function(theme, oldTheme) {
+    applyThemeStyle: function (theme, oldTheme) {
         var me = this,
             fill, stroke;
         fill = theme && theme.subStyle && theme.subStyle.fillStyle;
@@ -14607,7 +14697,7 @@ Ext.define('Ext.chart.series.Series', {
         }
         return Ext.apply(oldTheme || {}, theme);
     },
-    applyStyle: function(style, oldStyle) {
+    applyStyle: function (style, oldStyle) {
         // TODO: Incremental setter
         var cls = Ext.ClassManager.get(Ext.ClassManager.getNameByAlias('sprite.' + this.seriesType));
         if (cls && cls.def) {
@@ -14615,14 +14705,14 @@ Ext.define('Ext.chart.series.Series', {
         }
         return Ext.apply(oldStyle || {}, style);
     },
-    applySubStyle: function(subStyle, oldSubStyle) {
+    applySubStyle: function (subStyle, oldSubStyle) {
         var cls = Ext.ClassManager.get(Ext.ClassManager.getNameByAlias('sprite.' + this.seriesType));
         if (cls && cls.def) {
             subStyle = cls.def.batchedNormalize(subStyle, true);
         }
         return Ext.merge(oldSubStyle || {}, subStyle);
     },
-    applyMarker: function(marker, oldMarker) {
+    applyMarker: function (marker, oldMarker) {
         var type = (marker && marker.type) || (oldMarker && oldMarker.type) || 'circle',
             cls = Ext.ClassManager.get(Ext.ClassManager.getNameByAlias('sprite.' + type));
         if (cls && cls.def) {
@@ -14631,7 +14721,7 @@ Ext.define('Ext.chart.series.Series', {
         }
         return Ext.merge(oldMarker || {}, marker);
     },
-    applyMarkerSubStyle: function(marker, oldMarker) {
+    applyMarkerSubStyle: function (marker, oldMarker) {
         var type = (marker && marker.type) || (oldMarker && oldMarker.type) || 'circle',
             cls = Ext.ClassManager.get(Ext.ClassManager.getNameByAlias('sprite.' + type));
         if (cls && cls.def) {
@@ -14639,7 +14729,7 @@ Ext.define('Ext.chart.series.Series', {
         }
         return Ext.merge(oldMarker || {}, marker);
     },
-    updateHidden: function(hidden) {
+    updateHidden: function (hidden) {
         var me = this;
         me.getColors();
         me.getSubStyle();
@@ -14660,7 +14750,7 @@ Ext.define('Ext.chart.series.Series', {
      * @param index Used for stacked series.
      *              If present, only the component with the specified index will change visibility.
      */
-    updateLegendStore: function(hidden, index) {
+    updateLegendStore: function (hidden, index) {
         var me = this,
             chart = me.getChart(),
             legendStore = chart.getLegendStore(),
@@ -14668,7 +14758,7 @@ Ext.define('Ext.chart.series.Series', {
             record;
         if (legendStore) {
             if (arguments.length > 1) {
-                record = legendStore.findBy(function(rec) {
+                record = legendStore.findBy(function (rec) {
                     return rec.get('series') === id && rec.get('index') === index;
                 });
                 if (record !== -1) {
@@ -14687,7 +14777,7 @@ Ext.define('Ext.chart.series.Series', {
      * @param {Number} index
      * @param {Boolean} value
      */
-    setHiddenByIndex: function(index, value) {
+    setHiddenByIndex: function (index, value) {
         var me = this;
         if (Ext.isArray(me.getHidden())) {
             me.getHidden()[index] = value;
@@ -14697,13 +14787,13 @@ Ext.define('Ext.chart.series.Series', {
             me.setHidden(value);
         }
     },
-    getStrokeColorsFromFillColors: function(colors) {
+    getStrokeColorsFromFillColors: function (colors) {
         var me = this,
             darker = me.getUseDarkerStrokeColor(),
             darkerRatio = (Ext.isNumber(darker) ? darker : me.darkerStrokeRatio),
             strokeColors;
         if (darker) {
-            strokeColors = Ext.Array.map(colors, function(color) {
+            strokeColors = Ext.Array.map(colors, function (color) {
                 color = Ext.isString(color) ? color : color.stops[0].color;
                 color = Ext.draw.Color.fromString(color);
                 return color.createDarker(darkerRatio).toString();
@@ -14713,7 +14803,7 @@ Ext.define('Ext.chart.series.Series', {
         }
         return strokeColors;
     },
-    updateThemeColors: function(colors) {
+    updateThemeColors: function (colors) {
         var me = this,
             theme = me.getThemeStyle(),
             fillColors = Ext.Array.clone(colors),
@@ -14727,7 +14817,7 @@ Ext.define('Ext.chart.series.Series', {
         me.doUpdateStyles();
     },
     themeOnlyIfConfigured: {},
-    updateTheme: function(theme) {
+    updateTheme: function (theme) {
         var me = this,
             seriesTheme = theme.getSeries(),
             initialConfig = me.getInitialConfig(),
@@ -14747,7 +14837,7 @@ Ext.define('Ext.chart.series.Series', {
                 isUnusedConfig = initialValue === defaultConfig[key];
                 if (isObjValue) {
                     if (isUnusedConfig && themeOnlyIfConfigured[key]) {
-                        
+
                         continue;
                     }
                     value = Ext.merge({}, value, initialValue);
@@ -14765,25 +14855,25 @@ Ext.define('Ext.chart.series.Series', {
      * the series' "colors" config, nor the series' "style" config, but they do override
      * the colors from the theme's "seriesThemes" config.
      */
-    updateChartColors: function(colors) {
+    updateChartColors: function (colors) {
         var me = this;
         if (!me.getColors()) {
             me.updateThemeColors(colors);
         }
     },
-    updateColors: function(colors) {
+    updateColors: function (colors) {
         this.updateThemeColors(colors);
     },
-    updateStyle: function() {
+    updateStyle: function () {
         this.doUpdateStyles();
     },
-    updateSubStyle: function() {
+    updateSubStyle: function () {
         this.doUpdateStyles();
     },
-    updateThemeStyle: function() {
+    updateThemeStyle: function () {
         this.doUpdateStyles();
     },
-    doUpdateStyles: function() {
+    doUpdateStyles: function () {
         var me = this,
             sprites = me.sprites,
             itemInstancing = me.getItemInstancing(),
@@ -14804,14 +14894,14 @@ Ext.define('Ext.chart.series.Series', {
             }
         }
     },
-    getStyleWithTheme: function() {
+    getStyleWithTheme: function () {
         var me = this,
             theme = me.getThemeStyle(),
             seriesThemeStyle = (theme && theme.style) || {},
             style = Ext.applyIf(Ext.apply({}, me.getStyle()), seriesThemeStyle);
         return style;
     },
-    getSubStyleWithTheme: function() {
+    getSubStyleWithTheme: function () {
         var me = this,
             theme = me.getThemeStyle(),
             seriesThemeSubStyle = (theme && theme.subStyle) || {},
@@ -14832,7 +14922,7 @@ Ext.define('Ext.chart.series.Series', {
     //         style = Ext.applyIf(Ext.apply({}, me.getMarkerSubStyle()), seriesThemeStyle);
     //     return style;
     // },
-    getStyleByIndex: function(i) {
+    getStyleByIndex: function (i) {
         var me = this,
             theme = me.getThemeStyle(),
             style, themeStyle, subStyle, themeSubStyle,
@@ -14847,7 +14937,7 @@ Ext.define('Ext.chart.series.Series', {
         Ext.apply(result, subStyle);
         return result;
     },
-    getMarkerStyleByIndex: function(i) {
+    getMarkerStyleByIndex: function (i) {
         var me = this,
             theme = me.getThemeStyle(),
             style, themeStyle, subStyle, themeSubStyle, markerStyle, themeMarkerStyle, markerSubStyle, themeMarkerSubStyle,
@@ -14870,7 +14960,7 @@ Ext.define('Ext.chart.series.Series', {
         Ext.apply(result, markerSubStyle);
         return result;
     },
-    styleDataForIndex: function(style, i) {
+    styleDataForIndex: function (style, i) {
         var value, name,
             result = {};
         if (style) {
@@ -14901,7 +14991,7 @@ Ext.define('Ext.chart.series.Series', {
      * @return {Number} return.subSprite the index if sprite is an instancing sprite.
      */
     getItemForPoint: Ext.emptyFn,
-    getItemByIndex: function(index) {
+    getItemByIndex: function (index) {
         if (this.getSprites()) {
             var me = this,
                 sprite = me.getSprites()[0],
@@ -14920,15 +15010,15 @@ Ext.define('Ext.chart.series.Series', {
             }
         }
     },
-    onSpriteAnimationStart: function(sprite) {
+    onSpriteAnimationStart: function (sprite) {
         this.fireEvent('animationstart', this, sprite);
     },
-    onSpriteAnimationEnd: function(sprite) {
+    onSpriteAnimationEnd: function (sprite) {
         this.fireEvent('animationend', this, sprite);
     },
     // Override the Observable's method to redirect listener scope
     // resolution to the chart.
-    resolveListenerScope: function(defaultScope) {
+    resolveListenerScope: function (defaultScope) {
         var me = this,
             namedScope = Ext._namedScopes[defaultScope],
             chart = me.getChart(),
@@ -14960,7 +15050,7 @@ Ext.define('Ext.chart.series.Series', {
      * @param {String} target.series
      * @param {Number} target.index
      */
-    provideLegendInfo: function(target) {
+    provideLegendInfo: function (target) {
         target.push({
             name: this.getTitle() || this.getId(),
             mark: 'black',
@@ -14969,10 +15059,10 @@ Ext.define('Ext.chart.series.Series', {
             index: 0
         });
     },
-    destroy: function() {
+    destroy: function () {
         var me = this,
             store = me._store,
-            // Peek at the config so we don't create one just to destroy it
+        // Peek at the config so we don't create one just to destroy it
             tooltip = me.getConfig('tooltip', true),
             sprites = me.getSprites(),
             sprite, i, ln;
@@ -15034,7 +15124,7 @@ Ext.define('Ext.chart.interactions.Abstract', {
      */
     throttleGap: 0,
     stopAnimationBeforeSync: false,
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this;
         me.mixins.observable.constructor.call(me, config);
         me.getId();
@@ -15045,7 +15135,7 @@ Ext.define('Ext.chart.interactions.Abstract', {
      * A method to be implemented by subclasses where all event attachment should occur.
      */
     initialize: Ext.emptyFn,
-    updateChart: function(newChart, oldChart) {
+    updateChart: function (newChart, oldChart) {
         var me = this;
         if (oldChart === newChart) {
             return;
@@ -15057,7 +15147,7 @@ Ext.define('Ext.chart.interactions.Abstract', {
             me.addChartListener();
         }
     },
-    updateEnabled: function(enabled) {
+    updateEnabled: function (enabled) {
         var me = this,
             chart = me.getChart();
         if (chart) {
@@ -15079,7 +15169,7 @@ Ext.define('Ext.chart.interactions.Abstract', {
      * @param {Event} e
      * @return {Object} the item object or null if none found.
      */
-    getItemForEvent: function(e) {
+    getItemForEvent: function (e) {
         var me = this,
             chart = me.getChart(),
             chartXY = chart.getEventXY(e);
@@ -15090,7 +15180,7 @@ Ext.define('Ext.chart.interactions.Abstract', {
      * @param {Event} e
      * @return {Array} array of matching item objects
      */
-    getItemsForEvent: function(e) {
+    getItemsForEvent: function (e) {
         var me = this,
             chart = me.getChart(),
             chartXY = chart.getEventXY(e);
@@ -15099,7 +15189,7 @@ Ext.define('Ext.chart.interactions.Abstract', {
     /**
      * @private
      */
-    addChartListener: function() {
+    addChartListener: function () {
         var me = this,
             chart = me.getChart(),
             gestures = me.getGestures(),
@@ -15109,38 +15199,41 @@ Ext.define('Ext.chart.interactions.Abstract', {
         }
         function insertGesture(name, fn) {
             chart.addElementListener(name, // wrap the handler so it does not fire if the event is locked by another interaction
-            me.listeners[name] = function(e) {
-                var locks = me.getLocks(),
-                    result;
-                if (me.getEnabled() && (!(name in locks) || locks[name] === me)) {
-                    result = (Ext.isFunction(fn) ? fn : me[fn]).apply(this, arguments);
-                    if (result === false && e && e.stopPropagation) {
-                        e.stopPropagation();
+                me.listeners[name] = function (e) {
+                    var locks = me.getLocks(),
+                        result;
+                    if (me.getEnabled() && (!(name in locks) || locks[name] === me)) {
+                        result = (Ext.isFunction(fn) ? fn : me[fn]).apply(this, arguments);
+                        if (result === false && e && e.stopPropagation) {
+                            e.stopPropagation();
+                        }
+                        return result;
                     }
-                    return result;
-                }
-            }, me);
+                }, me);
         }
+
         me.listeners = me.listeners || {};
         for (gesture in gestures) {
             insertGesture(gesture, gestures[gesture]);
         }
     },
-    removeChartListener: function(chart) {
+    removeChartListener: function (chart) {
         var me = this,
             gestures = me.getGestures(),
             gesture;
+
         function removeGesture(name) {
             chart.removeElementListener(name, me.listeners[name]);
             delete me.listeners[name];
         }
+
         if (me.listeners) {
             for (gesture in gestures) {
                 removeGesture(gesture);
             }
         }
     },
-    lockEvents: function() {
+    lockEvents: function () {
         var me = this,
             locks = me.getLocks(),
             args = Array.prototype.slice.call(arguments),
@@ -15149,7 +15242,7 @@ Ext.define('Ext.chart.interactions.Abstract', {
             locks[args[i]] = me;
         }
     },
-    unlockEvents: function() {
+    unlockEvents: function () {
         var locks = this.getLocks(),
             args = Array.prototype.slice.call(arguments),
             i = args.length;
@@ -15157,18 +15250,18 @@ Ext.define('Ext.chart.interactions.Abstract', {
             delete locks[args[i]];
         }
     },
-    getLocks: function() {
+    getLocks: function () {
         var chart = this.getChart();
         return chart.lockedEvents || (chart.lockedEvents = {});
     },
-    isMultiTouch: function() {
+    isMultiTouch: function () {
         if (Ext.browser.is.IE10) {
             return true;
         }
         return !(Ext.browser.is.AndroidStock2 || Ext.os.is.Desktop);
     },
     initializeDefaults: Ext.emptyFn,
-    doSync: function() {
+    doSync: function () {
         var me = this,
             chart = me.getChart();
         if (me.syncTimer) {
@@ -15184,26 +15277,26 @@ Ext.define('Ext.chart.interactions.Abstract', {
         }
         me.syncThrottle = Date.now() + me.throttleGap;
     },
-    sync: function() {
+    sync: function () {
         var me = this;
         if (me.throttleGap && Ext.frameStartTime < me.syncThrottle) {
             if (me.syncTimer) {
                 return;
             }
-            me.syncTimer = Ext.defer(function() {
+            me.syncTimer = Ext.defer(function () {
                 me.doSync();
             }, me.throttleGap);
         } else {
             me.doSync();
         }
     },
-    getItemId: function() {
+    getItemId: function () {
         return this.getId();
     },
-    isXType: function(xtype) {
+    isXType: function (xtype) {
         return xtype === 'interaction';
     },
-    destroy: function() {
+    destroy: function () {
         var me = this,
             chart = me.getChart();
         me.removeChartListener(chart);
@@ -15211,7 +15304,7 @@ Ext.define('Ext.chart.interactions.Abstract', {
         delete me.listeners;
         me.callParent();
     }
-}, function() {
+}, function () {
     if (Ext.browser.is.AndroidStock2) {
         this.prototype.throttleGap = 20;
     } else if (Ext.os.is.Android4) {
@@ -15235,7 +15328,7 @@ Ext.define('Ext.chart.MarkerHolder', {
         }
     },
     isMarkerHolder: true,
-    constructor: function() {
+    constructor: function () {
         this.boundMarkers = {};
         this.cleanRedraw = false;
     },
@@ -15244,7 +15337,7 @@ Ext.define('Ext.chart.MarkerHolder', {
      * @param {String} name
      * @param {Ext.chart.Markers} marker
      */
-    bindMarker: function(name, marker) {
+    bindMarker: function (name, marker) {
         if (marker) {
             if (!this.boundMarkers[name]) {
                 this.boundMarkers[name] = [];
@@ -15252,10 +15345,10 @@ Ext.define('Ext.chart.MarkerHolder', {
             Ext.Array.include(this.boundMarkers[name], marker);
         }
     },
-    getBoundMarker: function(name) {
+    getBoundMarker: function (name) {
         return this.boundMarkers[name];
     },
-    preRender: function() {
+    preRender: function () {
         var me = this,
             id = me.getId(),
             boundMarkers = me.boundMarkers,
@@ -15284,7 +15377,7 @@ Ext.define('Ext.chart.MarkerHolder', {
         me.surfaceMatrix = matrix;
         me.inverseSurfaceMatrix = matrix.inverse(me.inverseSurfaceMatrix);
     },
-    putMarker: function(name, attr, index, bypassNormalization, keepRevision) {
+    putMarker: function (name, attr, index, bypassNormalization, keepRevision) {
         var boundMarkersItem, i, ln,
             id = this.getId();
         if (this.boundMarkers[name]) {
@@ -15293,14 +15386,14 @@ Ext.define('Ext.chart.MarkerHolder', {
             }
         }
     },
-    getMarkerBBox: function(name, index, isWithoutTransform) {
+    getMarkerBBox: function (name, index, isWithoutTransform) {
         var boundMarker = this.boundMarkers[name],
             id = this.getId();
         if (boundMarker) {
             return boundMarker[0].getMarkerBBoxFor(id, index, isWithoutTransform);
         }
     },
-    destroy: function() {
+    destroy: function () {
         var boundMarkers = this.boundMarkers,
             name, markers, i, marker;
         for (name in boundMarkers) {
@@ -15506,7 +15599,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
                 enlargeEstStepSizeByText: 'layout'
             },
             updaters: {
-                layout: function() {
+                layout: function () {
                     this.doLayout();
                 }
             }
@@ -15545,14 +15638,14 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
     },
     thickness: 0,
     stepSize: 0,
-    getBBox: function() {
+    getBBox: function () {
         return null;
     },
-    doDefaultRender: function(v) {
+    doDefaultRender: function (v) {
         // 'this' pointer in this case is a layoutContext
         return this.segmenter.renderer(v, this);
     },
-    doLayout: function() {
+    doLayout: function () {
         var me = this,
             chart = me.getAxis().getChart();
         if (chart.isInitializing) {
@@ -15594,7 +15687,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
             me.setLayoutContext(context);
         }
     },
-    iterate: function(snaps, fn) {
+    iterate: function (snaps, fn) {
         var i, position, id, axis, floatingAxes, floatingValues,
             some = Ext.Array.some,
             abs = Math.abs,
@@ -15621,10 +15714,11 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
             }
             // Don't render ticks in axes intersection points.
             function isTickVisible(position) {
-                return !floatingValues.length || some(floatingValues, function(value) {
-                    return abs(value - position) > threshold;
-                });
+                return !floatingValues.length || some(floatingValues, function (value) {
+                        return abs(value - position) > threshold;
+                    });
             }
+
             if (snaps.min < snaps.from && isTickVisible(snaps.min)) {
                 fn.call(this, snaps.min, snaps.min, -1, snaps);
             }
@@ -15639,7 +15733,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
             }
         }
     },
-    renderTicks: function(surface, ctx, layout, clipRect) {
+    renderTicks: function (surface, ctx, layout, clipRect) {
         var me = this,
             attr = me.attr,
             docked = attr.position,
@@ -15656,51 +15750,51 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
         if (majorTicks) {
             switch (docked) {
                 case 'right':
-                    function getRightTickFn(size) {
-                        return function(position, labelText, i) {
-                            position = surface.roundPixel(position * yy + dy) + halfLineWidth;
-                            ctx.moveTo(0, position);
-                            ctx.lineTo(size, position);
-                        };
+                function getRightTickFn(size) {
+                    return function (position, labelText, i) {
+                        position = surface.roundPixel(position * yy + dy) + halfLineWidth;
+                        ctx.moveTo(0, position);
+                        ctx.lineTo(size, position);
                     };
+                };
                     me.iterate(majorTicks, getRightTickFn(majorTickSize));
                     minorTicks && me.iterate(minorTicks, getRightTickFn(minorTickSize));
                     break;
                 case 'left':
-                    function getLeftTickFn(size) {
-                        return function(position, labelText, i) {
-                            position = surface.roundPixel(position * yy + dy) + halfLineWidth;
-                            ctx.moveTo(clipRect[2] - size, position);
-                            ctx.lineTo(clipRect[2], position);
-                        };
+                function getLeftTickFn(size) {
+                    return function (position, labelText, i) {
+                        position = surface.roundPixel(position * yy + dy) + halfLineWidth;
+                        ctx.moveTo(clipRect[2] - size, position);
+                        ctx.lineTo(clipRect[2], position);
                     };
+                };
                     me.iterate(majorTicks, getLeftTickFn(majorTickSize));
                     minorTicks && me.iterate(minorTicks, getLeftTickFn(minorTickSize));
                     break;
                 case 'bottom':
-                    function getBottomTickFn(size) {
-                        return function(position, labelText, i) {
-                            position = surface.roundPixel(position * xx + dx) - halfLineWidth;
-                            ctx.moveTo(position, 0);
-                            ctx.lineTo(position, size);
-                        };
+                function getBottomTickFn(size) {
+                    return function (position, labelText, i) {
+                        position = surface.roundPixel(position * xx + dx) - halfLineWidth;
+                        ctx.moveTo(position, 0);
+                        ctx.lineTo(position, size);
                     };
+                };
                     me.iterate(majorTicks, getBottomTickFn(majorTickSize));
                     minorTicks && me.iterate(minorTicks, getBottomTickFn(minorTickSize));
                     break;
                 case 'top':
-                    function getTopTickFn(size) {
-                        return function(position, labelText, i) {
-                            position = surface.roundPixel(position * xx + dx) - halfLineWidth;
-                            ctx.moveTo(position, clipRect[3]);
-                            ctx.lineTo(position, clipRect[3] - size);
-                        };
+                function getTopTickFn(size) {
+                    return function (position, labelText, i) {
+                        position = surface.roundPixel(position * xx + dx) - halfLineWidth;
+                        ctx.moveTo(position, clipRect[3]);
+                        ctx.lineTo(position, clipRect[3] - size);
                     };
+                };
                     me.iterate(majorTicks, getTopTickFn(majorTickSize));
                     minorTicks && me.iterate(minorTicks, getTopTickFn(minorTickSize));
                     break;
                 case 'angular':
-                    me.iterate(majorTicks, function(position, labelText, i) {
+                    me.iterate(majorTicks, function (position, labelText, i) {
                         position = position / (attr.max + 1) * Math.PI * 2 + attr.baseRotation;
                         ctx.moveTo(attr.centerX + (attr.length) * Math.cos(position), attr.centerY + (attr.length) * Math.sin(position));
                         ctx.lineTo(attr.centerX + (attr.length + majorTickSize) * Math.cos(position), attr.centerY + (attr.length + majorTickSize) * Math.sin(position));
@@ -15708,7 +15802,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
                     break;
                 case 'gauge':
                     var gaugeAngles = me.getGaugeAngles();
-                    me.iterate(majorTicks, function(position, labelText, i) {
+                    me.iterate(majorTicks, function (position, labelText, i) {
                         position = (position - attr.min) / (attr.max - attr.min + 1) * attr.totalAngle - attr.totalAngle + gaugeAngles.start;
                         ctx.moveTo(attr.centerX + (attr.length) * Math.cos(position), attr.centerY + (attr.length) * Math.sin(position));
                         ctx.lineTo(attr.centerX + (attr.length + majorTickSize) * Math.cos(position), attr.centerY + (attr.length + majorTickSize) * Math.sin(position));
@@ -15717,7 +15811,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
             }
         }
     },
-    renderLabels: function(surface, ctx, layout, clipRect) {
+    renderLabels: function (surface, ctx, layout, clipRect) {
         var me = this,
             attr = me.attr,
             halfLineWidth = 0.5 * attr.lineWidth,
@@ -15768,7 +15862,8 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
                         default:
                             // 'center'
                             translation = surface.roundPixel(titlePadding + (clipRect[2] - titlePadding - tickPadding) / 2 + dx) - halfLineWidth;
-                    };
+                    }
+                    ;
                     label.setAttributes({
                         translationX: translation
                     }, true, true);
@@ -15785,7 +15880,8 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
                         default:
                             // 'center'
                             translation = surface.roundPixel(tickPadding + (clipRect[2] - tickPadding - titlePadding) / 2 + dx) + halfLineWidth;
-                    };
+                    }
+                    ;
                     label.setAttributes({
                         translationX: translation
                     }, true, true);
@@ -15820,7 +15916,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
             }
             // TODO: there are better ways to detect collision.
             if (docked === 'left' || docked === 'right') {
-                me.iterate(majorTicks, function(position, labelText, i) {
+                me.iterate(majorTicks, function (position, labelText, i) {
                     if (labelText === undefined) {
                         return;
                     }
@@ -15845,7 +15941,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
                     }
                 });
             } else if (docked === 'top' || docked === 'bottom') {
-                me.iterate(majorTicks, function(position, labelText, i) {
+                me.iterate(majorTicks, function (position, labelText, i) {
                     if (labelText === undefined) {
                         return;
                     }
@@ -15870,7 +15966,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
                     }
                 });
             } else if (docked === 'radial') {
-                me.iterate(majorTicks, function(position, labelText, i) {
+                me.iterate(majorTicks, function (position, labelText, i) {
                     if (labelText === undefined) {
                         return;
                     }
@@ -15895,7 +15991,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
                 });
             } else if (docked === 'angular') {
                 labelOffset = attr.majorTickSize + attr.lineWidth * 0.5 + (parseInt(label.attr.fontSize, 10) || 10) / 2;
-                me.iterate(majorTicks, function(position, labelText, i) {
+                me.iterate(majorTicks, function (position, labelText, i) {
                     if (labelText === undefined) {
                         return;
                     }
@@ -15922,7 +16018,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
                 });
             } else if (docked === 'gauge') {
                 var gaugeAngles = me.getGaugeAngles();
-                me.iterate(majorTicks, function(position, labelText, i) {
+                me.iterate(majorTicks, function (position, labelText, i) {
                     if (labelText === undefined) {
                         return;
                     }
@@ -15964,7 +16060,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
             }
         }
     },
-    renderAxisLine: function(surface, ctx, layout, clipRect) {
+    renderAxisLine: function (surface, ctx, layout, clipRect) {
         var me = this,
             attr = me.attr,
             halfLineWidth = attr.lineWidth * 0.5,
@@ -16002,7 +16098,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
             }
         }
     },
-    getGaugeAngles: function() {
+    getGaugeAngles: function () {
         var me = this,
             angle = me.attr.totalAngle,
             offset;
@@ -16017,7 +16113,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
             end: offset - angle
         };
     },
-    renderGridLines: function(surface, ctx, layout, clipRect) {
+    renderGridLines: function (surface, ctx, layout, clipRect) {
         var me = this,
             axis = me.getAxis(),
             attr = me.attr,
@@ -16036,7 +16132,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
             if (majorTicks) {
                 if (position === 'left' || position === 'right') {
                     lastAnchor = attr.min * yy + dy + endGap + startGap;
-                    me.iterate(majorTicks, function(position, labelText, i) {
+                    me.iterate(majorTicks, function (position, labelText, i) {
                         anchor = position * yy + dy + endGap;
                         me.putMarker(alignment + '-' + (i % 2 ? 'odd' : 'even'), {
                             y: anchor,
@@ -16058,7 +16154,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
                             width: lastAnchor
                         }, -1, true);
                     }
-                    me.iterate(majorTicks, function(position, labelText, i) {
+                    me.iterate(majorTicks, function (position, labelText, i) {
                         anchor = position * xx + dx + startGap;
                         me.putMarker(alignment + '-' + (i % 2 ? 'odd' : 'even'), {
                             x: anchor,
@@ -16073,7 +16169,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
                         width: lastAnchor - anchor
                     }, j, true);
                 } else if (position === 'radial') {
-                    me.iterate(majorTicks, function(position, labelText, i) {
+                    me.iterate(majorTicks, function (position, labelText, i) {
                         if (!position) {
                             return;
                         }
@@ -16085,7 +16181,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
                         lastAnchor = anchor;
                     });
                 } else if (position === 'angular') {
-                    me.iterate(majorTicks, function(position, labelText, i) {
+                    me.iterate(majorTicks, function (position, labelText, i) {
                         if (!attr.length) {
                             return;
                         }
@@ -16103,7 +16199,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
             }
         }
     },
-    renderLimits: function() {
+    renderLimits: function () {
         var me = this,
             axis = me.getAxis(),
             limits = Ext.Array.from(axis.getLimits());
@@ -16189,7 +16285,7 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
                 !limit.line && (limit.line = {});
                 value = Ext.isString(limit.value) ? axis.getCoordFor(limit.value) : limit.value;
                 if (value > attr.max) {
-                    
+
                     continue;
                 }
                 value = value / attr.max * attr.length;
@@ -16236,15 +16332,16 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
                     });
                 }
             }
-        } else if (position === 'gauge') {}
+        } else if (position === 'gauge') {
+        }
     },
-    doThicknessChanged: function() {
+    doThicknessChanged: function () {
         var axis = this.getAxis();
         if (axis) {
             axis.onThicknessChanged();
         }
     },
-    render: function(surface, ctx, clipRect) {
+    render: function (surface, ctx, clipRect) {
         var me = this,
             layout = me.getLayoutContext();
         if (layout) {
@@ -16261,19 +16358,19 @@ Ext.define('Ext.chart.axis.sprite.Axis', {
     }
 });
 /*
-    Moved TODO comments to bottom
-    TODO(touch-2.2): Split different types of axis into different sprite classes.
-*/
+ Moved TODO comments to bottom
+ TODO(touch-2.2): Split different types of axis into different sprite classes.
+ */
 
 /**
  * @abstract
  * @class Ext.chart.axis.segmenter.Segmenter
- * 
+ *
  * Interface for a segmenter in an Axis. A segmenter defines the operations you can do to a specific
  * data type.
- * 
+ *
  * See {@link Ext.chart.axis.Axis}.
- * 
+ *
  */
 Ext.define('Ext.chart.axis.segmenter.Segmenter', {
     config: {
@@ -16282,30 +16379,30 @@ Ext.define('Ext.chart.axis.segmenter.Segmenter', {
          */
         axis: null
     },
-    constructor: function(config) {
+    constructor: function (config) {
         this.initConfig(config);
     },
     /**
      * This method formats the value.
-     * 
+     *
      * @param {*} value The value to format.
      * @param {Object} context Axis layout context.
      * @return {String}
      */
-    renderer: function(value, context) {
+    renderer: function (value, context) {
         return String(value);
     },
     /**
      * Convert from any data into the target type.
      * @param {*} value The value to convert from
-     * @return {*} The converted value. 
+     * @return {*} The converted value.
      */
-    from: function(value) {
+    from: function (value) {
         return value;
     },
     /**
      * Returns the difference between the min and max value based on the given unit scale.
-     * 
+     *
      * @param {*} min The smaller value.
      * @param {*} max The larger value.
      * @param {*} unit The unit scale. Unit can be any type.
@@ -16316,7 +16413,7 @@ Ext.define('Ext.chart.axis.segmenter.Segmenter', {
      * Align value with step of units.
      * For example, for the date segmenter, if the unit is "Month" and step is 3, the value will be aligned by
      * seasons.
-     * 
+     *
      * @param {*} value The value to be aligned.
      * @param {Number} step The step of units.
      * @param {*} unit The unit.
@@ -16324,7 +16421,7 @@ Ext.define('Ext.chart.axis.segmenter.Segmenter', {
      */
     align: Ext.emptyFn,
     /**
-     * Add `step` `unit`s to the value. 
+     * Add `step` `unit`s to the value.
      * @param {*} value  The value to be added.
      * @param {Number} step The step of units. Negative value are allowed.
      * @param {*} unit The unit.
@@ -16332,7 +16429,7 @@ Ext.define('Ext.chart.axis.segmenter.Segmenter', {
     add: Ext.emptyFn,
     /**
      * Given a start point and estimated step size of a range, determine the preferred step size.
-     * 
+     *
      * @param {*} start The start point of range.
      * @param {*} estStepSize The estimated step size.
      * @return {Object} Return the step size by an object of step x unit.
@@ -16345,27 +16442,27 @@ Ext.define('Ext.chart.axis.segmenter.Segmenter', {
 /**
  * @class Ext.chart.axis.segmenter.Names
  * @extends Ext.chart.axis.segmenter.Segmenter
- * 
+ *
  * Names data type. Names will be calculated as their indices in the methods in this class.
  * The `preferredStep` always return `{ unit: 1, step: 1 }` to indicate "show every item".
- * 
+ *
  */
 Ext.define('Ext.chart.axis.segmenter.Names', {
     extend: 'Ext.chart.axis.segmenter.Segmenter',
     alias: 'segmenter.names',
-    renderer: function(value, context) {
+    renderer: function (value, context) {
         return value;
     },
-    diff: function(min, max, unit) {
+    diff: function (min, max, unit) {
         return Math.floor(max - min);
     },
-    align: function(value, step, unit) {
+    align: function (value, step, unit) {
         return Math.floor(value);
     },
-    add: function(value, step, unit) {
+    add: function (value, step, unit) {
         return value + step;
     },
-    preferredStep: function(min, estStepSize, minIdx, data) {
+    preferredStep: function (min, estStepSize, minIdx, data) {
         return {
             unit: 1,
             step: 1
@@ -16376,26 +16473,26 @@ Ext.define('Ext.chart.axis.segmenter.Names', {
 /**
  * @class Ext.chart.axis.segmenter.Numeric
  * @extends Ext.chart.axis.segmenter.Segmenter
- * 
+ *
  * Numeric data type.
  */
 Ext.define('Ext.chart.axis.segmenter.Numeric', {
     extend: 'Ext.chart.axis.segmenter.Segmenter',
     alias: 'segmenter.numeric',
     isNumeric: true,
-    renderer: function(value, context) {
+    renderer: function (value, context) {
         return value.toFixed(Math.max(0, context.majorTicks.unit.fixes));
     },
-    diff: function(min, max, unit) {
+    diff: function (min, max, unit) {
         return Math.floor((max - min) / unit.scale);
     },
-    align: function(value, step, unit) {
+    align: function (value, step, unit) {
         return Math.floor(value / (unit.scale * step)) * unit.scale * step;
     },
-    add: function(value, step, unit) {
+    add: function (value, step, unit) {
         return value + step * unit.scale;
     },
-    preferredStep: function(min, estStepSize) {
+    preferredStep: function (min, estStepSize) {
         // Getting an order of magnitude of the estStepSize with a common logarithm.
         var order = Math.floor(Math.log(estStepSize) * Math.LOG10E),
             scale = Math.pow(10, order);
@@ -16428,7 +16525,7 @@ Ext.define('Ext.chart.axis.segmenter.Numeric', {
      * @return {Number} return.step The step count of units.
      * @return {Object} return.unit The unit.
      */
-    exactStep: function(min, estStepSize) {
+    exactStep: function (min, estStepSize) {
         var order = Math.floor(Math.log(estStepSize) * Math.LOG10E),
             scale = Math.pow(10, order);
         return {
@@ -16440,7 +16537,7 @@ Ext.define('Ext.chart.axis.segmenter.Numeric', {
             step: estStepSize
         };
     },
-    adjustByMajorUnit: function(step, scale, range) {
+    adjustByMajorUnit: function (step, scale, range) {
         var min = range[0],
             max = range[1],
             increment = step * scale,
@@ -16458,7 +16555,7 @@ Ext.define('Ext.chart.axis.segmenter.Numeric', {
 /**
  * @class Ext.chart.axis.segmenter.Time
  * @extends Ext.chart.axis.segmenter.Segmenter
- * 
+ *
  * Time data type.
  */
 Ext.define('Ext.chart.axis.segmenter.Time', {
@@ -16471,7 +16568,7 @@ Ext.define('Ext.chart.axis.segmenter.Time', {
          */
         step: null
     },
-    renderer: function(value, context) {
+    renderer: function (value, context) {
         var ExtDate = Ext.Date;
         switch (context.majorTicks.unit) {
             case 'y':
@@ -16483,10 +16580,10 @@ Ext.define('Ext.chart.axis.segmenter.Time', {
         }
         return ExtDate.format(value, 'Y-m-d\nH:i:s');
     },
-    from: function(value) {
+    from: function (value) {
         return new Date(value);
     },
-    diff: function(min, max, unit) {
+    diff: function (min, max, unit) {
         if (isFinite(min)) {
             min = new Date(min);
         }
@@ -16495,7 +16592,7 @@ Ext.define('Ext.chart.axis.segmenter.Time', {
         }
         return Ext.Date.diff(min, max, unit);
     },
-    align: function(date, step, unit) {
+    align: function (date, step, unit) {
         if (unit === 'd' && step >= 7) {
             date = Ext.Date.align(date, 'd', step);
             date.setDate(date.getDate() - date.getDay() + 1);
@@ -16504,7 +16601,7 @@ Ext.define('Ext.chart.axis.segmenter.Time', {
             return Ext.Date.align(date, unit, step);
         }
     },
-    add: function(value, step, unit) {
+    add: function (value, step, unit) {
         return Ext.Date.add(new Date(value), unit, step);
     },
     stepUnits: [
@@ -16565,7 +16662,7 @@ Ext.define('Ext.chart.axis.segmenter.Time', {
             500
         ]
     ],
-    preferredStep: function(min, estStepSize) {
+    preferredStep: function (min, estStepSize) {
         if (this.getStep()) {
             return this.getStep();
         }
@@ -16623,14 +16720,14 @@ Ext.define('Ext.chart.axis.layout.Layout', {
          */
         axis: null
     },
-    constructor: function(config) {
+    constructor: function (config) {
         this.mixins.observable.constructor.call(this, config);
     },
     /**
      * Processes the data of the series bound to the axis.
      * @param {Ext.chart.series.Series} series The bound series.
      */
-    processData: function(series) {
+    processData: function (series) {
         var me = this,
             axis = me.getAxis(),
             direction = axis.getDirection(),
@@ -16648,7 +16745,7 @@ Ext.define('Ext.chart.axis.layout.Layout', {
      * Calculates the position of major ticks for the axis.
      * @param {Object} context
      */
-    calculateMajorTicks: function(context) {
+    calculateMajorTicks: function (context) {
         var me = this,
             attr = context.attr,
             range = attr.max - attr.min,
@@ -16666,7 +16763,7 @@ Ext.define('Ext.chart.axis.layout.Layout', {
      * Calculates the position of sub ticks for the axis.
      * @param {Object} context
      */
-    calculateMinorTicks: function(context) {
+    calculateMinorTicks: function (context) {
         if (this.snapMinorEnds) {
             context.minorTicks = this.snapMinorEnds(context);
         }
@@ -16676,7 +16773,7 @@ Ext.define('Ext.chart.axis.layout.Layout', {
      * @param {Object} context
      * @return {*}
      */
-    calculateLayout: function(context) {
+    calculateLayout: function (context) {
         var me = this,
             attr = context.attr;
         if (attr.length === 0) {
@@ -16704,7 +16801,7 @@ Ext.define('Ext.chart.axis.layout.Layout', {
      * @param {Number} trimMin
      * @param {Number} trimMax
      */
-    trimByRange: function(context, out, trimMin, trimMax) {
+    trimByRange: function (context, out, trimMin, trimMax) {
         var segmenter = context.segmenter,
             unit = out.unit,
             beginIdx = segmenter.diff(out.from, trimMin, unit),
@@ -16741,7 +16838,7 @@ Ext.define('Ext.chart.axis.layout.Discrete', {
     extend: 'Ext.chart.axis.layout.Layout',
     alias: 'axisLayout.discrete',
     isDiscrete: true,
-    processData: function() {
+    processData: function () {
         var me = this,
             axis = me.getAxis(),
             seriesList = axis.boundSeries,
@@ -16781,7 +16878,7 @@ Ext.define('Ext.chart.axis.layout.Discrete', {
     /**
      * @inheritdoc
      */
-    calculateLayout: function(context) {
+    calculateLayout: function (context) {
         context.data = this.labels;
         this.callParent([
             context
@@ -16790,7 +16887,7 @@ Ext.define('Ext.chart.axis.layout.Discrete', {
     /**
      * @inheritdoc
      */
-    calculateMajorTicks: function(context) {
+    calculateMajorTicks: function (context) {
         var me = this,
             attr = context.attr,
             data = context.data,
@@ -16808,7 +16905,7 @@ Ext.define('Ext.chart.axis.layout.Discrete', {
     /**
      * @inheritdoc
      */
-    snapEnds: function(context, min, max, estStepSize) {
+    snapEnds: function (context, min, max, estStepSize) {
         estStepSize = Math.ceil(estStepSize);
         var steps = Math.floor((max - min) / estStepSize),
             data = context.data;
@@ -16820,10 +16917,10 @@ Ext.define('Ext.chart.axis.layout.Discrete', {
             step: estStepSize,
             steps: steps,
             unit: 1,
-            getLabel: function(current) {
+            getLabel: function (current) {
                 return data[this.from + this.step * current];
             },
-            get: function(current) {
+            get: function (current) {
                 return this.from + this.step * current;
             }
         };
@@ -16831,7 +16928,7 @@ Ext.define('Ext.chart.axis.layout.Discrete', {
     /**
      * @inheritdoc
      */
-    trimByRange: function(context, out, trimMin, trimMax) {
+    trimByRange: function (context, out, trimMin, trimMax) {
         var unit = out.unit,
             beginIdx = Math.ceil((trimMin - out.from) / unit) * unit,
             endIdx = Math.floor((trimMax - out.from) / unit) * unit,
@@ -16855,7 +16952,7 @@ Ext.define('Ext.chart.axis.layout.Discrete', {
         }
         out.steps = end - begin;
     },
-    getCoordFor: function(value, field, idx, items) {
+    getCoordFor: function (value, field, idx, items) {
         this.labels.push(value);
         return this.labels.length - 1;
     }
@@ -16864,13 +16961,13 @@ Ext.define('Ext.chart.axis.layout.Discrete', {
 /**
  * @class Ext.chart.axis.layout.CombineDuplicate
  * @extends Ext.chart.axis.layout.Discrete
- * 
+ *
  * Discrete processor that combines duplicate data points.
  */
 Ext.define('Ext.chart.axis.layout.CombineDuplicate', {
     extend: 'Ext.chart.axis.layout.Discrete',
     alias: 'axisLayout.combineDuplicate',
-    getCoordFor: function(value, field, idx, items) {
+    getCoordFor: function (value, field, idx, items) {
         if (!(value in this.labelMap)) {
             var result = this.labelMap[value] = this.labels.length;
             this.labels.push(value);
@@ -16883,7 +16980,7 @@ Ext.define('Ext.chart.axis.layout.CombineDuplicate', {
 /**
  * @class Ext.chart.axis.layout.Continuous
  * @extends Ext.chart.axis.layout.Layout
- * 
+ *
  * Processor for axis data that can be interpolated.
  */
 Ext.define('Ext.chart.axis.layout.Continuous', {
@@ -16893,17 +16990,17 @@ Ext.define('Ext.chart.axis.layout.Continuous', {
         adjustMinimumByMajorUnit: false,
         adjustMaximumByMajorUnit: false
     },
-    getCoordFor: function(value, field, idx, items) {
+    getCoordFor: function (value, field, idx, items) {
         return +value;
     },
     /**
      * @inheritdoc
      */
-    snapEnds: function(context, min, max, estStepSize) {
+    snapEnds: function (context, min, max, estStepSize) {
         var segmenter = context.segmenter,
             axis = this.getAxis(),
             majorTickSteps = axis.getMajorTickSteps(),
-            // if specific number of steps requested and the segmenter can do such segmentation
+        // if specific number of steps requested and the segmenter can do such segmentation
             out = majorTickSteps && segmenter.exactStep ? segmenter.exactStep(min, (max - min) / majorTickSteps) : segmenter.preferredStep(min, estStepSize),
             unit = out.unit,
             step = out.step,
@@ -16917,12 +17014,12 @@ Ext.define('Ext.chart.axis.layout.Continuous', {
             step: step,
             steps: steps,
             unit: unit,
-            get: function(current) {
+            get: function (current) {
                 return segmenter.add(this.from, this.step * current, unit);
             }
         };
     },
-    snapMinorEnds: function(context) {
+    snapMinorEnds: function (context) {
         var majorTicks = context.majorTicks,
             minorTickSteps = this.getAxis().getMinorTickSteps(),
             segmenter = context.segmenter,
@@ -16944,9 +17041,9 @@ Ext.define('Ext.chart.axis.layout.Continuous', {
             step: step,
             steps: steps,
             unit: unit,
-            get: function(current) {
+            get: function (current) {
                 return (current % minorTickSteps + offset + 1 !== 0) ? // don't render minor tick in major tick position
-                segmenter.add(this.from, this.step * current, unit) : null;
+                    segmenter.add(this.from, this.step * current, unit) : null;
             }
         };
     }
@@ -17270,7 +17367,7 @@ Ext.define('Ext.chart.axis.Axis', {
         /**
          * @cfg {Number|Object}
          * If `floating` is a number, then it's a percentage displacement of the axis from its initial {@link #position}
-         * in the direction opposite to the axis' direction. For instance, '{position:"left", floating:75}' displays a vertical 
+         * in the direction opposite to the axis' direction. For instance, '{position:"left", floating:75}' displays a vertical
          * axis at 3/4 of the chart, starting from the left. It is equivalent to '{position:"right", floating:25}'.
          * If `floating` is an object, then `floating.value` is the position of this axis along another axis,
          * defined by `floating.alongAxis`, where `alongAxis` is an ID, an {@link Ext.chart.AbstractChart#axes} config index,
@@ -17310,18 +17407,18 @@ Ext.define('Ext.chart.axis.Axis', {
     /**
      * @private
      * @property {Array} range
-     * The full data range of the axis. Should not be set directly.  Clear it to `null` 
+     * The full data range of the axis. Should not be set directly.  Clear it to `null`
      * and use `getRange` to update.
      */
     range: null,
     xValues: [],
     yValues: [],
     masterAxis: null,
-    applyRotation: function(rotation) {
+    applyRotation: function (rotation) {
         var twoPie = Math.PI * 2;
         return (rotation % twoPie + Math.PI) % twoPie - Math.PI;
     },
-    updateRotation: function(rotation) {
+    updateRotation: function (rotation) {
         var sprites = this.getSprites(),
             position = this.getPosition();
         if (!this.getHidden() && position === 'angular' && sprites[0]) {
@@ -17330,7 +17427,7 @@ Ext.define('Ext.chart.axis.Axis', {
             });
         }
     },
-    applyTitle: function(title, oldTitle) {
+    applyTitle: function (title, oldTitle) {
         var surface;
         if (Ext.isString(title)) {
             title = {
@@ -17347,7 +17444,7 @@ Ext.define('Ext.chart.axis.Axis', {
         }
         return oldTitle;
     },
-    applyFloating: function(floating, oldFloating) {
+    applyFloating: function (floating, oldFloating) {
         if (floating === null) {
             floating = {
                 value: null,
@@ -17367,7 +17464,7 @@ Ext.define('Ext.chart.axis.Axis', {
         }
         return oldFloating;
     },
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this,
             id;
         me.sprites = [];
@@ -17395,7 +17492,7 @@ Ext.define('Ext.chart.axis.Axis', {
      * @private
      * @return {String}
      */
-    getAlignment: function() {
+    getAlignment: function () {
         switch (this.getPosition()) {
             case 'left':
             case 'right':
@@ -17413,7 +17510,7 @@ Ext.define('Ext.chart.axis.Axis', {
      * @private
      * @return {String}
      */
-    getGridAlignment: function() {
+    getGridAlignment: function () {
         switch (this.getPosition()) {
             case 'left':
             case 'right':
@@ -17431,7 +17528,7 @@ Ext.define('Ext.chart.axis.Axis', {
      * @private
      * Get the surface for drawing the series sprites
      */
-    getSurface: function() {
+    getSurface: function () {
         var me = this,
             chart = me.getChart();
         if (chart && !me.surface) {
@@ -17464,7 +17561,7 @@ Ext.define('Ext.chart.axis.Axis', {
         }
         return me.surface;
     },
-    applyGrid: function(grid) {
+    applyGrid: function (grid) {
         // Returning an empty object here if grid was set to 'true' so that
         // config merging in the theme works properly.
         if (grid === true) {
@@ -17472,7 +17569,7 @@ Ext.define('Ext.chart.axis.Axis', {
         }
         return grid;
     },
-    updateGrid: function(grid) {
+    updateGrid: function (grid) {
         var me = this,
             chart = me.getChart();
         if (!chart) {
@@ -17524,7 +17621,7 @@ Ext.define('Ext.chart.axis.Axis', {
     /**
      * @private
      */
-    renderLimits: function() {
+    renderLimits: function () {
         this.getSprites()[0].renderLimits();
     },
     /**
@@ -17537,16 +17634,16 @@ Ext.define('Ext.chart.axis.Axis', {
      * @param {Ext.util.MixedCollection} [items]
      * @return {Number}
      */
-    getCoordFor: function(value, field, idx, items) {
+    getCoordFor: function (value, field, idx, items) {
         return this.getLayout().getCoordFor(value, field, idx, items);
     },
-    applyPosition: function(pos) {
+    applyPosition: function (pos) {
         return pos.toLowerCase();
     },
-    applyLength: function(length, oldLength) {
+    applyLength: function (length, oldLength) {
         return length > 0 ? length : oldLength;
     },
-    applyLabel: function(newText, oldText) {
+    applyLabel: function (newText, oldText) {
         if (!oldText) {
             oldText = new Ext.draw.sprite.Text({});
         }
@@ -17556,29 +17653,29 @@ Ext.define('Ext.chart.axis.Axis', {
         oldText.setAttributes(newText);
         return oldText;
     },
-    applyLayout: function(layout, oldLayout) {
+    applyLayout: function (layout, oldLayout) {
         layout = Ext.factory(layout, null, oldLayout, 'axisLayout');
         layout.setAxis(this);
         return layout;
     },
-    applySegmenter: function(segmenter, oldSegmenter) {
+    applySegmenter: function (segmenter, oldSegmenter) {
         segmenter = Ext.factory(segmenter, null, oldSegmenter, 'segmenter');
         segmenter.setAxis(this);
         return segmenter;
     },
-    updateMinimum: function() {
+    updateMinimum: function () {
         this.range = null;
     },
-    updateMaximum: function() {
+    updateMaximum: function () {
         this.range = null;
     },
-    hideLabels: function() {
+    hideLabels: function () {
         this.getSprites()[0].setDirty(true);
         this.setLabel({
             hidden: true
         });
     },
-    showLabels: function() {
+    showLabels: function () {
         this.getSprites()[0].setDirty(true);
         this.setLabel({
             hidden: false
@@ -17587,10 +17684,10 @@ Ext.define('Ext.chart.axis.Axis', {
     /**
      * Invokes renderFrame on this axis's surface(s)
      */
-    renderFrame: function() {
+    renderFrame: function () {
         this.getSurface().renderFrame();
     },
-    updateChart: function(newChart, oldChart) {
+    updateChart: function (newChart, oldChart) {
         var me = this,
             surface;
         if (oldChart) {
@@ -17608,7 +17705,7 @@ Ext.define('Ext.chart.axis.Axis', {
             me.fireEvent('chartattached', newChart, me);
         }
     },
-    applyBackground: function(background) {
+    applyBackground: function (background) {
         var rect = Ext.ClassManager.getByAlias('sprite.rect');
         return rect.def.normalize(background);
     },
@@ -17616,21 +17713,21 @@ Ext.define('Ext.chart.axis.Axis', {
      * @protected
      * Invoked when data has changed.
      */
-    processData: function() {
+    processData: function () {
         this.getLayout().processData();
         this.range = null;
     },
-    getDirection: function() {
+    getDirection: function () {
         return this.getChart().getDirectionForAxis(this.getPosition());
     },
-    isSide: function() {
+    isSide: function () {
         var position = this.getPosition();
         return position === 'left' || position === 'right';
     },
-    applyFields: function(fields) {
+    applyFields: function (fields) {
         return Ext.Array.from(fields);
     },
-    applyVisibleRange: function(visibleRange, oldVisibleRange) {
+    applyVisibleRange: function (visibleRange, oldVisibleRange) {
         // If it is in reversed order swap them
         if (visibleRange[0] > visibleRange[1]) {
             var temp = visibleRange[0];
@@ -17655,10 +17752,10 @@ Ext.define('Ext.chart.axis.Axis', {
         }
         return visibleRange;
     },
-    updateVisibleRange: function(visibleRange) {
+    updateVisibleRange: function (visibleRange) {
         this.fireEvent('visiblerangechange', this, visibleRange);
     },
-    onSeriesChange: function(chart) {
+    onSeriesChange: function (chart) {
         var me = this,
             series = chart.getSeries(),
             getAxisMethod = 'get' + me.getDirection() + 'Axis',
@@ -17680,12 +17777,14 @@ Ext.define('Ext.chart.axis.Axis', {
             me.getLayout().processData();
         }
     },
-    linkAxis: function(masterAxis) {
+    linkAxis: function (masterAxis) {
         var me = this;
+
         function link(action, slave, master) {
             master.getLayout()[action]('datachange', 'onDataChange', slave);
             master[action]('rangechange', 'onMasterAxisRangeChange', slave);
         }
+
         if (me.masterAxis) {
             link('un', me, me.masterAxis);
             me.masterAxis = null;
@@ -17703,13 +17802,13 @@ Ext.define('Ext.chart.axis.Axis', {
             me.masterAxis = masterAxis;
         }
     },
-    onDataChange: function(data) {
+    onDataChange: function (data) {
         this.getLayout().labels = data;
     },
-    onMasterAxisRangeChange: function(masterAxis, range) {
+    onMasterAxisRangeChange: function (masterAxis, range) {
         this.range = range;
     },
-    applyRange: function(newRange) {
+    applyRange: function (newRange) {
         if (!newRange) {
             return this.dataRange.slice(0);
         } else {
@@ -17723,7 +17822,7 @@ Ext.define('Ext.chart.axis.Axis', {
      * Get the range derived from all the bound series.
      * @return {Array}
      */
-    getRange: function() {
+    getRange: function () {
         var me = this,
             getRangeMethod = 'get' + me.getDirection() + 'Range';
         if (me.range) {
@@ -17836,7 +17935,7 @@ Ext.define('Ext.chart.axis.Axis', {
         return me.range;
     },
     // @private
-    clearRange: function() {
+    clearRange: function () {
         delete this.hasClearRangePending;
         this.range = null;
     },
@@ -17844,7 +17943,7 @@ Ext.define('Ext.chart.axis.Axis', {
      * Expands the range of the axis
      * based on the range of other axes with the same direction (if any).
      */
-    reconcileRange: function() {
+    reconcileRange: function () {
         var me = this,
             axes = me.getChart().getAxes(),
             direction = me.getDirection(),
@@ -17856,7 +17955,7 @@ Ext.define('Ext.chart.axis.Axis', {
             axis = axes[i];
             range = axis.getRange();
             if (axis === me || axis.getDirection() !== direction || !range || !axis.getReconcileRange()) {
-                
+
                 continue;
             }
             if (range[0] < me.range[0]) {
@@ -17867,7 +17966,7 @@ Ext.define('Ext.chart.axis.Axis', {
             }
         }
     },
-    applyStyle: function(style, oldStyle) {
+    applyStyle: function (style, oldStyle) {
         var cls = Ext.ClassManager.getByAlias('sprite.' + this.seriesType);
         if (cls && cls.def) {
             style = cls.def.normalize(style);
@@ -17878,7 +17977,7 @@ Ext.define('Ext.chart.axis.Axis', {
     themeOnlyIfConfigured: {
         grid: true
     },
-    updateTheme: function(theme) {
+    updateTheme: function (theme) {
         var me = this,
             axisTheme = theme.getAxis(),
             position = me.getPosition(),
@@ -17899,7 +17998,7 @@ Ext.define('Ext.chart.axis.Axis', {
                 isUnusedConfig = initialValue === defaultConfig[key];
                 if (isObjValue) {
                     if (isUnusedConfig && themeOnlyIfConfigured[key]) {
-                        
+
                         continue;
                     }
                     value = Ext.merge({}, value, initialValue);
@@ -17910,7 +18009,7 @@ Ext.define('Ext.chart.axis.Axis', {
             }
         }
     },
-    updateCenter: function(center) {
+    updateCenter: function (center) {
         var sprites = this.getSprites(),
             axisSprite = sprites[0],
             centerX = center[0],
@@ -17938,7 +18037,7 @@ Ext.define('Ext.chart.axis.Axis', {
             });
         }
     },
-    getSprites: function() {
+    getSprites: function () {
         if (!this.getChart()) {
             return;
         }
@@ -17998,7 +18097,7 @@ Ext.define('Ext.chart.axis.Axis', {
         }
         return me.sprites;
     },
-    updateTitleSprite: function() {
+    updateTitleSprite: function () {
         if (!this.sprites[0] || isNaN(this.getLength())) {
             return;
         }
@@ -18062,42 +18161,42 @@ Ext.define('Ext.chart.axis.Axis', {
             }
         }
     },
-    onThicknessChanged: function() {
+    onThicknessChanged: function () {
         this.getChart().onThicknessChanged();
     },
-    getThickness: function() {
+    getThickness: function () {
         if (this.getHidden()) {
             return 0;
         }
         return (this.sprites[0] && this.sprites[0].thickness || 1) + this.titleOffset + this.getMargin();
     },
-    onAnimationStart: function() {
+    onAnimationStart: function () {
         this.animating++;
         if (this.animating === 1) {
             this.fireEvent('animationstart', this);
         }
     },
-    onAnimationEnd: function() {
+    onAnimationEnd: function () {
         this.animating--;
         if (this.animating === 0) {
             this.fireEvent('animationend', this);
         }
     },
     // Methods used in ComponentQuery and controller
-    getItemId: function() {
+    getItemId: function () {
         return this.getId();
     },
-    getAncestorIds: function() {
+    getAncestorIds: function () {
         return [
             this.getChart().getId()
         ];
     },
-    isXType: function(xtype) {
+    isXType: function (xtype) {
         return xtype === 'axis';
     },
     // Override the Observable's method to redirect listener scope
     // resolution to the chart.
-    resolveListenerScope: function(defaultScope) {
+    resolveListenerScope: function (defaultScope) {
         var me = this,
             namedScope = Ext._namedScopes[defaultScope],
             chart = me.getChart(),
@@ -18117,7 +18216,7 @@ Ext.define('Ext.chart.axis.Axis', {
         }
         return scope;
     },
-    destroy: function() {
+    destroy: function () {
         var chart = this.getChart();
         if (chart) {
             chart.un('redraw', this.renderLimits, this);
@@ -18156,7 +18255,7 @@ Ext.define('Ext.chart.LegendBase', {
         itemSelector: 'div.' + Ext.baseCSSPrefix + 'legend-item',
         docked: 'bottom'
     },
-    setDocked: function(docked) {
+    setDocked: function (docked) {
         var me = this,
             panel = me.ownerCt,
             layout;
@@ -18177,15 +18276,15 @@ Ext.define('Ext.chart.LegendBase', {
             panel.setDocked(docked);
         }
     },
-    setStore: function(store) {
+    setStore: function (store) {
         this.bindStore(store);
     },
-    clearViewEl: function() {
+    clearViewEl: function () {
         this.callParent(arguments);
         // The legend-container div is not removed automatically.
         Ext.removeNode(this.getNodeContainer());
     },
-    onItemClick: function(record, item, index, e) {
+    onItemClick: function (record, item, index, e) {
         this.callParent(arguments);
         this.toggleItem(index);
     }
@@ -18213,7 +18312,7 @@ Ext.define('Ext.chart.Legend', {
          */
         toggleable: true
     },
-    toggleItem: function(index) {
+    toggleItem: function (index) {
         if (!this.getToggleable()) {
             return;
         }
@@ -18437,20 +18536,20 @@ Ext.define('Ext.chart.AbstractChart', {
          *
          *   - **any {@link Ext.data.Store Store} class / subclass**
          *   - **an {@link Ext.data.Store#storeId ID of a store}**
-         *   - **a {@link Ext.data.Store Store} config object**.  When passing a config you can 
-         *     specify the store type by alias.  Passing a config object with a store type will 
+         *   - **a {@link Ext.data.Store Store} config object**.  When passing a config you can
+         *     specify the store type by alias.  Passing a config object with a store type will
          *     dynamically create a new store of that type when the chart is instantiated.
          *
          * For example:
-         * 
+         *
          *     Ext.define('MyApp.store.Customer', {
          *         extend: 'Ext.data.Store',
          *         alias: 'store.customerstore',
          *     
          *         fields: ['name', 'value']
          *     });
-         *     
-         *     
+         *
+         *
          *     Ext.create({
          *         xtype: 'cartesian',
          *         renderTo: document.body,
@@ -18692,7 +18791,7 @@ Ext.define('Ext.chart.AbstractChart', {
     },
     animating: 0,
     layoutSuspended: 0,
-    applyAnimation: function(newAnimation, oldAnimation) {
+    applyAnimation: function (newAnimation, oldAnimation) {
         if (!newAnimation) {
             newAnimation = {
                 duration: 0
@@ -18705,7 +18804,7 @@ Ext.define('Ext.chart.AbstractChart', {
         }
         return oldAnimation ? Ext.apply({}, newAnimation, oldAnimation) : newAnimation;
     },
-    applyInsetPadding: function(padding, oldPadding) {
+    applyInsetPadding: function (padding, oldPadding) {
         if (!Ext.isObject(padding)) {
             return Ext.util.Format.parseBox(padding);
         } else if (!oldPadding) {
@@ -18714,7 +18813,7 @@ Ext.define('Ext.chart.AbstractChart', {
             return Ext.apply(oldPadding, padding);
         }
     },
-    suspendAnimation: function() {
+    suspendAnimation: function () {
         this.animationSuspended++;
         if (this.animationSuspended === 1) {
             var series = this.getSeries(),
@@ -18726,7 +18825,7 @@ Ext.define('Ext.chart.AbstractChart', {
             }
         }
     },
-    resumeAnimation: function() {
+    resumeAnimation: function () {
         this.animationSuspended--;
         if (this.animationSuspended === 0) {
             var series = this.getSeries(),
@@ -18738,7 +18837,7 @@ Ext.define('Ext.chart.AbstractChart', {
             }
         }
     },
-    suspendChartLayout: function() {
+    suspendChartLayout: function () {
         this.layoutSuspended++;
         if (this.layoutSuspended === 1) {
             if (this.scheduledLayoutId) {
@@ -18749,7 +18848,7 @@ Ext.define('Ext.chart.AbstractChart', {
             }
         }
     },
-    resumeChartLayout: function() {
+    resumeChartLayout: function () {
         this.layoutSuspended--;
         if (this.layoutSuspended === 0) {
             if (this.layoutInSuspension) {
@@ -18760,7 +18859,7 @@ Ext.define('Ext.chart.AbstractChart', {
     /**
      * Cancel a scheduled layout.
      */
-    cancelLayout: function() {
+    cancelLayout: function () {
         if (this.scheduledLayoutId) {
             Ext.draw.Animator.cancel(this.scheduledLayoutId);
             this.scheduledLayoutId = null;
@@ -18769,20 +18868,20 @@ Ext.define('Ext.chart.AbstractChart', {
     /**
      * Schedule a layout at next frame.
      */
-    scheduleLayout: function() {
+    scheduleLayout: function () {
         var me = this;
         if (me.rendered && !me.scheduledLayoutId) {
             me.scheduledLayoutId = Ext.draw.Animator.schedule('doScheduleLayout', me);
         }
     },
-    doScheduleLayout: function() {
+    doScheduleLayout: function () {
         if (this.layoutSuspended) {
             this.layoutInSuspension = true;
         } else {
             this.performLayout();
         }
     },
-    getAnimation: function() {
+    getAnimation: function () {
         // This prevents series from animating into view on chart's first render.
         // Unless series have their own animation config.
         if (this.resizing || this.animationSuspended) {
@@ -18793,7 +18892,7 @@ Ext.define('Ext.chart.AbstractChart', {
             return this.callParent();
         }
     },
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this;
         me.itemListeners = {};
         me.surfaceMap = {};
@@ -18806,13 +18905,13 @@ Ext.define('Ext.chart.AbstractChart', {
         me.getSurface('overlay').waitFor(me.getSurface('series'));
         me.resumeChartLayout();
     },
-    applySprites: function(sprites) {
+    applySprites: function (sprites) {
         var surface = this.getSurface('chart');
         sprites = Ext.Array.from(sprites);
         surface.removeAll(true);
         surface.add(sprites);
     },
-    initItems: function() {
+    initItems: function () {
         var items = this.items,
             i, ln, item;
         if (items && !items.isMixedCollection) {
@@ -18832,7 +18931,7 @@ Ext.define('Ext.chart.AbstractChart', {
     },
     // noOptimize is needed because in the ext build we have a parent method to call,
     // but in touch we do not so we need to suppress the cmd warning during optimized build
-    applyBackground: function(newBackground, oldBackground) {
+    applyBackground: function (newBackground, oldBackground) {
         var surface = this.getSurface('background'),
             width, height, isUpdateOld;
         if (newBackground) {
@@ -18888,10 +18987,10 @@ Ext.define('Ext.chart.AbstractChart', {
      * This information is collected from all the series.
      * @return {Ext.data.Store}
      */
-    getLegendStore: function() {
+    getLegendStore: function () {
         return this.legendStore;
     },
-    refreshLegendStore: function() {
+    refreshLegendStore: function () {
         if (this.getLegendStore()) {
             var i, ln,
                 series = this.getSeries(),
@@ -18908,7 +19007,7 @@ Ext.define('Ext.chart.AbstractChart', {
             this.getLegendStore().setData(legendData);
         }
     },
-    resetLegendStore: function() {
+    resetLegendStore: function () {
         if (this.getLegendStore()) {
             var data = this.getLegendStore().getData().items,
                 i,
@@ -18922,7 +19021,7 @@ Ext.define('Ext.chart.AbstractChart', {
             }
         }
     },
-    onUpdateLegendStore: function(store, record) {
+    onUpdateLegendStore: function (store, record) {
         var series = this.getSeries(),
             seriesItem;
         if (record && series) {
@@ -18933,11 +19032,11 @@ Ext.define('Ext.chart.AbstractChart', {
             }
         }
     },
-    resizeHandler: function(size) {
+    resizeHandler: function (size) {
         this.scheduleLayout();
         return false;
     },
-    applyMainRect: function(newRect, rect) {
+    applyMainRect: function (newRect, rect) {
         if (!rect) {
             return newRect;
         }
@@ -18950,12 +19049,12 @@ Ext.define('Ext.chart.AbstractChart', {
         }
     },
     /**
-     * @method getAxis Returns an axis instance based on the type of data passed. 
+     * @method getAxis Returns an axis instance based on the type of data passed.
      * @param {String/Number/Ext.chart.axis.Axis} axis You may request an axis by passing
      * an id, the number of the array key returned by {@link #getAxes}, or an axis instance.
      * @return {Ext.chart.axis.Axis} The axis requested
      */
-    getAxis: function(axis) {
+    getAxis: function (axis) {
         if (axis instanceof Ext.chart.axis.Axis) {
             return axis;
         } else if (Ext.isNumber(axis)) {
@@ -18966,7 +19065,7 @@ Ext.define('Ext.chart.AbstractChart', {
             return null;
         }
     },
-    getSurface: function(name, type) {
+    getSurface: function (name, type) {
         name = name || 'main';
         type = type || name;
         var me = this,
@@ -18986,7 +19085,7 @@ Ext.define('Ext.chart.AbstractChart', {
         }
         return surface;
     },
-    applyAxes: function(newAxes, oldAxes) {
+    applyAxes: function (newAxes, oldAxes) {
         var me = this,
             positions = {
                 left: 'right',
@@ -19006,7 +19105,7 @@ Ext.define('Ext.chart.AbstractChart', {
         for (i = 0 , ln = newAxes.length; i < ln; i++) {
             axis = newAxes[i];
             if (!axis) {
-                
+
                 continue;
             }
             if (axis instanceof Ext.chart.axis.Axis) {
@@ -19018,7 +19117,7 @@ Ext.define('Ext.chart.AbstractChart', {
                 if (Ext.isNumber(linkedTo)) {
                     axis = Ext.merge({}, newAxes[linkedTo], axis);
                 } else if (Ext.isString(linkedTo)) {
-                    Ext.Array.each(newAxes, function(item) {
+                    Ext.Array.each(newAxes, function (item) {
                         if (item.id === axis.linkedTo) {
                             axis = Ext.merge({}, item, axis);
                             return false;
@@ -19050,10 +19149,10 @@ Ext.define('Ext.chart.AbstractChart', {
         me.resizing--;
         return result;
     },
-    updateAxes: function(newAxes) {
+    updateAxes: function (newAxes) {
         this.scheduleLayout();
     },
-    circularCopyArray: function(inArray, startIndex, count) {
+    circularCopyArray: function (inArray, startIndex, count) {
         var outArray = [],
             i,
             len = inArray && inArray.length;
@@ -19064,7 +19163,7 @@ Ext.define('Ext.chart.AbstractChart', {
         }
         return outArray;
     },
-    circularCopyObject: function(inObject, startIndex, count) {
+    circularCopyObject: function (inObject, startIndex, count) {
         var me = this,
             name, value,
             outObject = {};
@@ -19082,7 +19181,7 @@ Ext.define('Ext.chart.AbstractChart', {
         }
         return outObject;
     },
-    getColors: function() {
+    getColors: function () {
         var me = this,
             configColors = me.config.colors,
             theme = me.getTheme();
@@ -19091,8 +19190,8 @@ Ext.define('Ext.chart.AbstractChart', {
         }
         return configColors || (theme && theme.getColors());
     },
-    applyColors: function(newColors) {
-        newColors = Ext.Array.map(newColors, function(color) {
+    applyColors: function (newColors) {
+        newColors = Ext.Array.map(newColors, function (color) {
             if (Ext.isString(color)) {
                 return color;
             } else {
@@ -19101,7 +19200,7 @@ Ext.define('Ext.chart.AbstractChart', {
         });
         return newColors;
     },
-    updateColors: function(newColors) {
+    updateColors: function (newColors) {
         var me = this,
             theme = me.getTheme(),
             colors = newColors || (theme && theme.getColors()),
@@ -19121,13 +19220,13 @@ Ext.define('Ext.chart.AbstractChart', {
         }
         me.refreshLegendStore();
     },
-    applyTheme: function(theme) {
+    applyTheme: function (theme) {
         if (theme && theme.isTheme) {
             return theme;
         }
         return Ext.Factory.chartTheme(theme);
     },
-    updateTheme: function(theme) {
+    updateTheme: function (theme) {
         var me = this,
             axes = me.getAxes(),
             seriesList = me.getSeries(),
@@ -19175,7 +19274,7 @@ Ext.define('Ext.chart.AbstractChart', {
         me.redraw();
     },
     themeOnlyIfConfigured: {},
-    updateChartTheme: function(theme) {
+    updateChartTheme: function (theme) {
         var me = this,
             chartTheme = theme.getChart(),
             initialConfig = me.getInitialConfig(),
@@ -19195,7 +19294,7 @@ Ext.define('Ext.chart.AbstractChart', {
                 isUnusedConfig = initialValue === defaultConfig[key];
                 if (isObjValue) {
                     if (isUnusedConfig && themeOnlyIfConfigured[key]) {
-                        
+
                         continue;
                     }
                     value = Ext.merge({}, value, initialValue);
@@ -19206,7 +19305,7 @@ Ext.define('Ext.chart.AbstractChart', {
             }
         }
     },
-    updateSpriteTheme: function(theme) {
+    updateSpriteTheme: function (theme) {
         var me = this,
             chartSurface = me.getSurface('chart'),
             sprites = chartSurface.getItems(),
@@ -19242,7 +19341,7 @@ Ext.define('Ext.chart.AbstractChart', {
      * @param {Object/Object[]/Ext.chart.series.Series/Ext.chart.series.Series[]} newSeries A config object
      * describing the Series to add, or an instantiated Series object. Or an array of these.
      */
-    addSeries: function(newSeries) {
+    addSeries: function (newSeries) {
         var series = this.getSeries();
         Ext.Array.push(series, newSeries);
         this.setSeries(series);
@@ -19255,7 +19354,7 @@ Ext.define('Ext.chart.AbstractChart', {
      *
      * @param {Ext.chart.series.Series/String} series The Series or the `id` of the Series to remove. May be an array.
      */
-    removeSeries: function(series) {
+    removeSeries: function (series) {
         series = Ext.Array.from(series);
         var existingSeries = this.getSeries(),
             newSeries = [],
@@ -19279,7 +19378,7 @@ Ext.define('Ext.chart.AbstractChart', {
         }
         this.setSeries(newSeries);
     },
-    applySeries: function(newSeries, oldSeries) {
+    applySeries: function (newSeries, oldSeries) {
         var me = this,
             result = [],
             oldMap, oldSeriesItem, i, ln, series;
@@ -19296,7 +19395,7 @@ Ext.define('Ext.chart.AbstractChart', {
         for (i = 0 , ln = newSeries.length; i < ln; i++) {
             series = newSeries[i];
             if (!series) {
-                
+
                 continue;
             }
             oldSeriesItem = oldMap[series.getId && series.getId() || series.id];
@@ -19339,10 +19438,10 @@ Ext.define('Ext.chart.AbstractChart', {
         me.resizing--;
         return result;
     },
-    applyLegend: function(newLegend, oldLegend) {
+    applyLegend: function (newLegend, oldLegend) {
         return Ext.factory(newLegend, Ext.chart.Legend, oldLegend);
     },
-    updateLegend: function(legend, oldLegend) {
+    updateLegend: function (legend, oldLegend) {
         if (oldLegend) {
             oldLegend.destroy();
         }
@@ -19364,14 +19463,14 @@ Ext.define('Ext.chart.AbstractChart', {
             this.legendStore.on('update', 'onUpdateLegendStore', this);
         }
     },
-    updateSeries: function(newSeries, oldSeries) {
+    updateSeries: function (newSeries, oldSeries) {
         this.resizing++;
         this.fireEvent('serieschange', this, newSeries, oldSeries);
         this.refreshLegendStore();
         this.scheduleLayout();
         this.resizing--;
     },
-    applyInteractions: function(interactions, oldInteractions) {
+    applyInteractions: function (interactions, oldInteractions) {
         if (!oldInteractions) {
             oldInteractions = [];
             oldInteractions.map = {};
@@ -19385,7 +19484,7 @@ Ext.define('Ext.chart.AbstractChart', {
         for (i = 0 , ln = interactions.length; i < ln; i++) {
             interaction = interactions[i];
             if (!interaction) {
-                
+
                 continue;
             }
             interaction = Ext.factory(interaction, null, oldMap[interaction.getId && interaction.getId() || interaction.id], 'interaction');
@@ -19402,10 +19501,10 @@ Ext.define('Ext.chart.AbstractChart', {
         }
         return result;
     },
-    applyStore: function(store) {
+    applyStore: function (store) {
         return store && Ext.StoreManager.lookup(store);
     },
-    updateStore: function(newStore, oldStore) {
+    updateStore: function (newStore, oldStore) {
         var me = this;
         if (oldStore) {
             oldStore.un({
@@ -19432,10 +19531,10 @@ Ext.define('Ext.chart.AbstractChart', {
     /**
      * Redraw the chart. If animations are set this will animate the chart too.
      */
-    redraw: function() {
+    redraw: function () {
         this.fireEvent('redraw', this);
     },
-    performLayout: function() {
+    performLayout: function () {
         var me = this,
             size = me.innerElement.getSize(),
             chartRect = [
@@ -19456,7 +19555,7 @@ Ext.define('Ext.chart.AbstractChart', {
         });
     },
     // Converts page coordinates into chart's 'main' surface coordinates.
-    getEventXY: function(e) {
+    getEventXY: function (e) {
         return this.getSurface().getEventXY(e);
     },
     /**
@@ -19466,12 +19565,12 @@ Ext.define('Ext.chart.AbstractChart', {
      * @param {Number} y
      * @return {Object} An object with `series` and `item` properties, or `false` if no item found.
      */
-    getItemForPoint: function(x, y) {
+    getItemForPoint: function (x, y) {
         var me = this,
             seriesList = me.getSeries(),
             mainRect = me.getMainRect(),
             ln = seriesList.length,
-            // If we haven't drawn yet, don't attempt to find any items.
+        // If we haven't drawn yet, don't attempt to find any items.
             i = me.hasFirstLayout ? ln - 1 : -1,
             series, item;
         // The x,y here are already converted to the 'main' surface coordinates.
@@ -19495,11 +19594,11 @@ Ext.define('Ext.chart.AbstractChart', {
      * @param {Number} y
      * @return {Array} An array of objects with `series` and `item` properties.
      */
-    getItemsForPoint: function(x, y) {
+    getItemsForPoint: function (x, y) {
         var me = this,
             seriesList = me.getSeries(),
             ln = seriesList.length,
-            // If we haven't drawn yet, don't attempt to find any items.
+        // If we haven't drawn yet, don't attempt to find any items.
             i = me.hasFirstLayout ? ln - 1 : -1,
             items = [],
             series, item;
@@ -19524,13 +19623,13 @@ Ext.define('Ext.chart.AbstractChart', {
     /**
      * Suspend the layout initialized by thickness change
      */
-    suspendThicknessChanged: function() {
+    suspendThicknessChanged: function () {
         this.delayThicknessChanged++;
     },
     /**
      * Resume the layout initialized by thickness change
      */
-    resumeThicknessChanged: function() {
+    resumeThicknessChanged: function () {
         if (this.delayThicknessChanged > 0) {
             this.delayThicknessChanged--;
             if (this.delayThicknessChanged === 0 && this.thicknessChanged) {
@@ -19538,13 +19637,13 @@ Ext.define('Ext.chart.AbstractChart', {
             }
         }
     },
-    onAnimationStart: function() {
+    onAnimationStart: function () {
         this.fireEvent('animationstart', this);
     },
-    onAnimationEnd: function() {
+    onAnimationEnd: function () {
         this.fireEvent('animationend', this);
     },
-    onThicknessChanged: function() {
+    onThicknessChanged: function () {
         if (this.delayThicknessChanged === 0) {
             this.thicknessChanged = false;
             this.performLayout();
@@ -19555,7 +19654,7 @@ Ext.define('Ext.chart.AbstractChart', {
     /**
      * @private
      */
-    onDataChanged: function() {
+    onDataChanged: function () {
         var me = this;
         if (me.isInitializing) {
             return;
@@ -19588,10 +19687,10 @@ Ext.define('Ext.chart.AbstractChart', {
      * Changes the data store bound to this chart and refreshes it.
      * @param {Ext.data.Store} store The store to bind to this chart.
      */
-    bindStore: function(store) {
+    bindStore: function (store) {
         this.setStore(store);
     },
-    applyHighlightItem: function(newHighlightItem, oldHighlightItem) {
+    applyHighlightItem: function (newHighlightItem, oldHighlightItem) {
         if (newHighlightItem === oldHighlightItem) {
             return;
         }
@@ -19602,7 +19701,7 @@ Ext.define('Ext.chart.AbstractChart', {
         }
         return newHighlightItem;
     },
-    updateHighlightItem: function(newHighlightItem, oldHighlightItem) {
+    updateHighlightItem: function (newHighlightItem, oldHighlightItem) {
         if (oldHighlightItem) {
             oldHighlightItem.series.setAttributesForItem(oldHighlightItem, {
                 highlighted: false
@@ -19616,7 +19715,7 @@ Ext.define('Ext.chart.AbstractChart', {
         }
     },
     // @private remove gently.
-    destroy: function() {
+    destroy: function () {
         var me = this,
             legend = me.getLegend(),
             axes = me.getAxes(),
@@ -19651,7 +19750,7 @@ Ext.define('Ext.chart.AbstractChart', {
      * @param {Boolean} deep
      * @return {Array}
      */
-    getRefItems: function(deep) {
+    getRefItems: function (deep) {
         var me = this,
             series = me.getSeries(),
             axes = me.getAxes(),
@@ -19685,7 +19784,7 @@ Ext.define('Ext.chart.AbstractChart', {
  */
 Ext.define('Ext.chart.overrides.AbstractChart', {
     override: 'Ext.chart.AbstractChart',
-    updateLegend: function(legend, oldLegend) {
+    updateLegend: function (legend, oldLegend) {
         var dock;
         this.callParent([
             legend,
@@ -19707,14 +19806,14 @@ Ext.define('Ext.chart.overrides.AbstractChart', {
             });
         }
     },
-    performLayout: function() {
+    performLayout: function () {
         if (this.isVisible(true)) {
             return this.callParent();
         }
         this.cancelLayout();
         return false;
     },
-    afterComponentLayout: function(width, height, oldWidth, oldHeight) {
+    afterComponentLayout: function (width, height, oldWidth, oldHeight) {
         this.callParent([
             width,
             height,
@@ -19728,7 +19827,7 @@ Ext.define('Ext.chart.overrides.AbstractChart', {
 /**
  * @class Ext.chart.grid.HorizontalGrid
  * @extends Ext.draw.sprite.Sprite
- * 
+ *
  * Horizontal Grid sprite. Used in Cartesian Charts.
  */
 Ext.define('Ext.chart.grid.HorizontalGrid', {
@@ -19751,7 +19850,7 @@ Ext.define('Ext.chart.grid.HorizontalGrid', {
             }
         }
     },
-    render: function(surface, ctx, clipRect) {
+    render: function (surface, ctx, clipRect) {
         var attr = this.attr,
             y = surface.roundPixel(attr.y),
             halfLineWidth = ctx.lineWidth * 0.5;
@@ -19768,7 +19867,7 @@ Ext.define('Ext.chart.grid.HorizontalGrid', {
 /**
  * @class Ext.chart.grid.VerticalGrid
  * @extends Ext.draw.sprite.Sprite
- * 
+ *
  * Vertical Grid sprite. Used in Cartesian Charts.
  */
 Ext.define('Ext.chart.grid.VerticalGrid', {
@@ -19791,7 +19890,7 @@ Ext.define('Ext.chart.grid.VerticalGrid', {
             }
         }
     },
-    render: function(surface, ctx, clipRect) {
+    render: function (surface, ctx, clipRect) {
         var attr = this.attr,
             x = surface.roundPixel(attr.x),
             halfLineWidth = ctx.lineWidth * 0.5;
@@ -19893,7 +19992,7 @@ Ext.define('Ext.chart.CartesianChart', {
         'cartesian',
         'chart'
     ],
-    applyInnerPadding: function(padding, oldPadding) {
+    applyInnerPadding: function (padding, oldPadding) {
         if (!Ext.isObject(padding)) {
             return Ext.util.Format.parseBox(padding);
         } else if (!oldPadding) {
@@ -19902,7 +20001,7 @@ Ext.define('Ext.chart.CartesianChart', {
             return Ext.apply(oldPadding, padding);
         }
     },
-    getDirectionForAxis: function(position) {
+    getDirectionForAxis: function (position) {
         var flipXY = this.getFlipXY();
         if (position === 'left' || position === 'right') {
             if (flipXY) {
@@ -19921,7 +20020,7 @@ Ext.define('Ext.chart.CartesianChart', {
     /**
      * Layout the axes and series.
      */
-    performLayout: function() {
+    performLayout: function () {
         this.resizing++;
         if (this.callParent() === false) {
             // Resizing will still be decremented
@@ -20062,7 +20161,7 @@ Ext.define('Ext.chart.CartesianChart', {
         this.resizing--;
         this.resumeThicknessChanged();
     },
-    refloatAxes: function() {
+    refloatAxes: function () {
         var me = this,
             axes = me.getAxes(),
             axis, axisSurface, axisRect, floating, value, alongAxis, matrix,
@@ -20078,13 +20177,13 @@ Ext.define('Ext.chart.CartesianChart', {
             value = floating ? floating.value : null;
             if (value === null) {
                 delete axis.floatingAtCoord;
-                
+
                 continue;
             }
             axisSurface = axis.getSurface();
             axisRect = axisSurface.getRect();
             if (!axisRect) {
-                
+
                 continue;
             }
             axisRect = axisRect.slice();
@@ -20129,7 +20228,7 @@ Ext.define('Ext.chart.CartesianChart', {
             axisSurface.setRect(axisRect);
         }
     },
-    redraw: function() {
+    redraw: function () {
         var me = this,
             series = me.getSeries(),
             axes = me.getAxes(),
@@ -20230,11 +20329,11 @@ Ext.define('Ext.chart.CartesianChart', {
         me.renderFrame();
         me.callParent(arguments);
     },
-    renderFrame: function() {
+    renderFrame: function () {
         this.refloatAxes();
         this.callParent(arguments);
     },
-    onPlaceWatermark: function(width, height) {
+    onPlaceWatermark: function (width, height) {
         var me = this,
             watermarkElement = me.watermarkElement,
             rect = watermarkElement && (me.getSurface ? me.getSurface('main').getRect() : me.getItems().get(0).getRect());
@@ -20250,7 +20349,7 @@ Ext.define('Ext.chart.CartesianChart', {
 /**
  * @class Ext.chart.grid.CircularGrid
  * @extends Ext.draw.sprite.Circle
- * 
+ *
  * Circular Grid sprite. Used by Radar chart to render a series of concentric circles.
  */
 Ext.define('Ext.chart.grid.CircularGrid', {
@@ -20269,7 +20368,7 @@ Ext.define('Ext.chart.grid.CircularGrid', {
 /**
  * @class Ext.chart.grid.RadialGrid
  * @extends Ext.draw.sprite.Path
- * 
+ *
  * Radial Grid sprite. Used by Radar chart to render a series of radial lines.
  * Represents the scale of the radar chart on the yField.
  */
@@ -20295,10 +20394,10 @@ Ext.define('Ext.chart.grid.RadialGrid', {
             }
         }
     },
-    render: function() {
+    render: function () {
         this.callParent(arguments);
     },
-    updatePath: function(path, attr) {
+    updatePath: function (path, attr) {
         var startRadius = attr.startRadius,
             endRadius = attr.endRadius;
         path.moveTo(startRadius, 0);
@@ -20315,7 +20414,7 @@ Ext.define('Ext.chart.grid.RadialGrid', {
  * A polar chart has two axes: an angular axis (which is a circle) and
  * a radial axis (a straight line from the center to the edge of the circle).
  * The angular axis is usually a Category axis while the radial axis is
- * typically numerical. 
+ * typically numerical.
  *
  * Pie charts and Radar charts are common examples of Polar charts.
  *
@@ -20347,10 +20446,10 @@ Ext.define('Ext.chart.PolarChart', {
          */
         innerPadding: 0
     },
-    getDirectionForAxis: function(position) {
+    getDirectionForAxis: function (position) {
         return position === 'radial' ? 'Y' : 'X';
     },
-    applyCenter: function(center, oldCenter) {
+    applyCenter: function (center, oldCenter) {
         if (oldCenter && center[0] === oldCenter[0] && center[1] === oldCenter[1]) {
             return;
         }
@@ -20359,7 +20458,7 @@ Ext.define('Ext.chart.PolarChart', {
             +center[1]
         ];
     },
-    updateCenter: function(center) {
+    updateCenter: function (center) {
         var me = this,
             axes = me.getAxes(),
             series = me.getSeries(),
@@ -20373,16 +20472,16 @@ Ext.define('Ext.chart.PolarChart', {
             seriesItem.setCenter(center);
         }
     },
-    applyInnerPadding: function(padding, oldPadding) {
+    applyInnerPadding: function (padding, oldPadding) {
         return Ext.isNumber(padding) ? padding : oldPadding;
     },
-    doSetSurfaceRect: function(surface, rect) {
+    doSetSurfaceRect: function (surface, rect) {
         var mainRect = this.getMainRect();
         surface.setRect(rect);
         surface.matrix.set(1, 0, 0, 1, mainRect[0] - rect[0], mainRect[1] - rect[1]);
         surface.inverseMatrix.set(1, 0, 0, 1, rect[0] - mainRect[0], rect[1] - mainRect[1]);
     },
-    applyAxes: function(newAxes, oldAxes) {
+    applyAxes: function (newAxes, oldAxes) {
         var me = this,
             firstSeries = Ext.Array.from(me.config.series)[0],
             i, ln, axis, foundAngular;
@@ -20409,7 +20508,7 @@ Ext.define('Ext.chart.PolarChart', {
         }
         return this.callParent(arguments);
     },
-    performLayout: function() {
+    performLayout: function () {
         try {
             this.resizing++;
             if (this.callParent() === false) {
@@ -20528,7 +20627,7 @@ Ext.define('Ext.chart.PolarChart', {
             this.resumeThicknessChanged();
         }
     },
-    refloatAxes: function() {
+    refloatAxes: function () {
         var me = this,
             axes = me.getAxes(),
             mainRect = me.getMainRect(),
@@ -20568,7 +20667,7 @@ Ext.define('Ext.chart.PolarChart', {
             }
         }
     },
-    redraw: function() {
+    redraw: function () {
         var me = this,
             axes = me.getAxes(),
             axis,
@@ -20585,7 +20684,7 @@ Ext.define('Ext.chart.PolarChart', {
         me.renderFrame();
         me.callParent(arguments);
     },
-    renderFrame: function() {
+    renderFrame: function () {
         this.refloatAxes();
         this.callParent(arguments);
     }
@@ -20602,7 +20701,7 @@ Ext.define('Ext.chart.SpaceFillingChart', {
     extend: 'Ext.chart.AbstractChart',
     xtype: 'spacefilling',
     config: {},
-    performLayout: function() {
+    performLayout: function () {
         try {
             this.resizing++;
             if (this.callParent() === false) {
@@ -20641,7 +20740,7 @@ Ext.define('Ext.chart.SpaceFillingChart', {
             this.resizing--;
         }
     },
-    redraw: function() {
+    redraw: function () {
         var me = this,
             seriesList = me.getSeries(),
             series, i, ln;
@@ -20682,14 +20781,15 @@ Ext.define('Ext.chart.axis.Axis3D', {
         depth: 0
     },
     /**
-         * @cfg {String} position
-         * Where to set the axis. Available options are `left` and `bottom`.
-         */
-    onSeriesChange: function(chart) {
+     * @cfg {String} position
+     * Where to set the axis. Available options are `left` and `bottom`.
+     */
+    onSeriesChange: function (chart) {
         var me = this,
             eventName = 'depthchange',
             listenerName = 'onSeriesDepthChange',
             i, series;
+
         function toggle(action) {
             var boundSeries = me.boundSeries;
             for (i = 0; i < boundSeries.length; i++) {
@@ -20697,13 +20797,14 @@ Ext.define('Ext.chart.axis.Axis3D', {
                 series[action](eventName, listenerName, me);
             }
         }
+
         // Remove 'depthchange' listeners from old bound series, if any.
         toggle('un');
         me.callParent(arguments);
         // Add 'depthchange' listeners to new bound series.
         toggle('on');
     },
-    onSeriesDepthChange: function(series, depth) {
+    onSeriesDepthChange: function (series, depth) {
         var me = this,
             maxDepth = depth,
             boundSeries = me.boundSeries,
@@ -20723,7 +20824,7 @@ Ext.define('Ext.chart.axis.Axis3D', {
         }
         me.setDepth(maxDepth);
     },
-    updateDepth: function(depth) {
+    updateDepth: function (depth) {
         var me = this,
             sprites = me.getSprites(),
             attr = {
@@ -20737,7 +20838,7 @@ Ext.define('Ext.chart.axis.Axis3D', {
             me.gridSpriteOdd.getTemplate().setAttributes(attr);
         }
     },
-    getGridAlignment: function() {
+    getGridAlignment: function () {
         switch (this.getPosition()) {
             case 'left':
             case 'right':
@@ -21101,18 +21202,18 @@ Ext.define('Ext.chart.axis.Time', {
         segmenter: 'time',
         aggregator: 'time'
     },
-    updateDateFormat: function(format) {
-        this.setRenderer(function(date) {
+    updateDateFormat: function (format) {
+        this.setRenderer(function (date) {
             return Ext.Date.format(new Date(date), format);
         });
     },
-    updateFromDate: function(date) {
+    updateFromDate: function (date) {
         this.setMinimum(+date);
     },
-    updateToDate: function(date) {
+    updateToDate: function (date) {
         this.setMaximum(+date);
     },
-    getCoordFor: function(value) {
+    getCoordFor: function (value) {
         if (Ext.isString(value)) {
             value = new Date(value);
         }
@@ -21167,18 +21268,18 @@ Ext.define('Ext.chart.axis.Time3D', {
         segmenter: 'time',
         aggregator: 'time'
     },
-    updateDateFormat: function(format) {
-        this.setRenderer(function(date) {
+    updateDateFormat: function (format) {
+        this.setRenderer(function (date) {
             return Ext.Date.format(new Date(date), format);
         });
     },
-    updateFromDate: function(date) {
+    updateFromDate: function (date) {
         this.setMinimum(+date);
     },
-    updateToDate: function(date) {
+    updateToDate: function (date) {
         this.setMaximum(+date);
     },
-    getCoordFor: function(value) {
+    getCoordFor: function (value) {
         if (Ext.isString(value)) {
             value = new Date(value);
         }
@@ -21218,7 +21319,7 @@ Ext.define('Ext.chart.axis.sprite.Axis3D', {
             }
         }
     },
-    doLayout: function() {
+    doLayout: function () {
         var me = this,
             chart = me.getAxis().getChart();
         if (chart.isInitializing) {
@@ -21261,7 +21362,7 @@ Ext.define('Ext.chart.axis.sprite.Axis3D', {
             me.setLayoutContext(context);
         }
     },
-    renderAxisLine: function(surface, ctx, layout, clipRect) {
+    renderAxisLine: function (surface, ctx, layout, clipRect) {
         var me = this,
             attr = me.attr,
             halfLineWidth = attr.lineWidth * 0.5,
@@ -21322,7 +21423,7 @@ Ext.define('Ext.chart.grid.HorizontalGrid3D', {
             }
         }
     },
-    render: function(surface, ctx, clipRect) {
+    render: function (surface, ctx, clipRect) {
         var attr = this.attr,
             x = surface.roundPixel(attr.x),
             y = surface.roundPixel(attr.y),
@@ -21366,7 +21467,7 @@ Ext.define('Ext.chart.grid.HorizontalGrid3D', {
 /**
  * @class Ext.chart.grid.VerticalGrid3D
  * @extends Ext.chart.grid.VerticalGrid
- * 
+ *
  * Vertical 3D Grid sprite. Used in 3D Cartesian Charts.
  */
 Ext.define('Ext.chart.grid.VerticalGrid3D', {
@@ -21382,7 +21483,7 @@ Ext.define('Ext.chart.grid.VerticalGrid3D', {
             }
         }
     },
-    render_: function(surface, ctx, clipRect) {
+    render_: function (surface, ctx, clipRect) {
         var attr = this.attr,
             x = surface.roundPixel(attr.x),
             halfLineWidth = ctx.lineWidth * 0.5;
@@ -21394,7 +21495,7 @@ Ext.define('Ext.chart.grid.VerticalGrid3D', {
         ctx.lineTo(x - halfLineWidth, clipRect[1] + clipRect[3] - surface.matrix.getDY());
         ctx.stroke();
     },
-    render: function(surface, ctx, clipRect) {
+    render: function (surface, ctx, clipRect) {
         var attr = this.attr,
             x = surface.roundPixel(attr.x),
             dy = surface.matrix.getDY(),
@@ -21599,11 +21700,11 @@ Ext.define('Ext.chart.interactions.CrossZoom', {
     },
     stopAnimationBeforeSync: false,
     zoomAnimationInProgress: false,
-    constructor: function() {
+    constructor: function () {
         this.callParent(arguments);
         this.zoomHistory = [];
     },
-    applyAxes: function(axesConfig) {
+    applyAxes: function (axesConfig) {
         var result = {};
         if (axesConfig === true) {
             return {
@@ -21615,11 +21716,11 @@ Ext.define('Ext.chart.interactions.CrossZoom', {
         } else if (Ext.isArray(axesConfig)) {
             // array of axis names - translate to full object form
             result = {};
-            Ext.each(axesConfig, function(axis) {
+            Ext.each(axesConfig, function (axis) {
                 result[axis] = {};
             });
         } else if (Ext.isObject(axesConfig)) {
-            Ext.iterate(axesConfig, function(key, val) {
+            Ext.iterate(axesConfig, function (key, val) {
                 // axis name with `true` value -> translate to object
                 if (val === true) {
                     result[key] = {};
@@ -21630,7 +21731,7 @@ Ext.define('Ext.chart.interactions.CrossZoom', {
         }
         return result;
     },
-    applyUndoButton: function(button, oldButton) {
+    applyUndoButton: function (button, oldButton) {
         var me = this;
         if (oldButton) {
             oldButton.destroy();
@@ -21640,22 +21741,22 @@ Ext.define('Ext.chart.interactions.CrossZoom', {
                 cls: [],
                 text: 'Undo Zoom',
                 disabled: true,
-                handler: function() {
+                handler: function () {
                     me.undoZoom();
                 }
             }, button));
         }
     },
-    getSurface: function() {
+    getSurface: function () {
         return this.getChart() && this.getChart().getSurface('main');
     },
-    setSeriesOpacity: function(opacity) {
+    setSeriesOpacity: function (opacity) {
         var surface = this.getChart() && this.getChart().getSurface('series');
         if (surface) {
             surface.element.setStyle('opacity', opacity);
         }
     },
-    onGestureStart: function(e) {
+    onGestureStart: function (e) {
         var me = this,
             chart = me.getChart(),
             surface = me.getSurface(),
@@ -21692,7 +21793,7 @@ Ext.define('Ext.chart.interactions.CrossZoom', {
             return false;
         }
     },
-    onGesture: function(e) {
+    onGesture: function (e) {
         var me = this;
         if (me.zoomAnimationInProgress) {
             return;
@@ -21736,7 +21837,7 @@ Ext.define('Ext.chart.interactions.CrossZoom', {
             return false;
         }
     },
-    onGestureEnd: function(e) {
+    onGestureEnd: function (e) {
         var me = this;
         if (me.zoomAnimationInProgress) {
             return;
@@ -21781,8 +21882,8 @@ Ext.define('Ext.chart.interactions.CrossZoom', {
                     height: Math.abs(me.startY - y)
                 });
                 me.selectionRect.fx.setConfig(chart.getAnimation() || {
-                    duration: 0
-                });
+                        duration: 0
+                    });
                 me.selectionRect.setAttributes({
                     globalAlpha: 0,
                     x: 0,
@@ -21792,7 +21893,7 @@ Ext.define('Ext.chart.interactions.CrossZoom', {
                 });
                 me.zoomAnimationInProgress = true;
                 chart.suspendThicknessChanged();
-                me.selectionRect.fx.on('animationend', function() {
+                me.selectionRect.fx.on('animationend', function () {
                     chart.resumeThicknessChanged();
                     surface.remove(me.selectionRect);
                     me.selectionRect = null;
@@ -21809,7 +21910,7 @@ Ext.define('Ext.chart.interactions.CrossZoom', {
             }
         }
     },
-    zoomBy: function(rect) {
+    zoomBy: function (rect) {
         var me = this,
             axisConfigs = me.getAxes(),
             chart = me.getChart(),
@@ -21848,7 +21949,7 @@ Ext.define('Ext.chart.interactions.CrossZoom', {
         me.zoomHistory.push(zoomMap);
         me.getUndoButton().setDisabled(false);
     },
-    undoZoom: function() {
+    undoZoom: function () {
         var zoomMap = this.zoomHistory.pop(),
             axes = this.getChart().getAxes();
         if (zoomMap) {
@@ -21862,10 +21963,10 @@ Ext.define('Ext.chart.interactions.CrossZoom', {
         this.getUndoButton().setDisabled(this.zoomHistory.length === 0);
         this.sync();
     },
-    onDoubleTap: function(e) {
+    onDoubleTap: function (e) {
         this.undoZoom();
     },
-    destroy: function() {
+    destroy: function () {
         this.setUndoButton(null);
         this.callParent(arguments);
     }
@@ -22063,19 +22164,19 @@ Ext.define('Ext.chart.interactions.Crosshair', {
          */
         gesture: 'drag'
     },
-    applyAxes: function(axesConfig, oldAxesConfig) {
+    applyAxes: function (axesConfig, oldAxesConfig) {
         return Ext.merge(oldAxesConfig || {}, axesConfig);
     },
-    applyLines: function(linesConfig, oldLinesConfig) {
+    applyLines: function (linesConfig, oldLinesConfig) {
         return Ext.merge(oldLinesConfig || {}, linesConfig);
     },
-    updateChart: function(chart) {
+    updateChart: function (chart) {
         if (!(chart instanceof Ext.chart.CartesianChart)) {
             throw 'Crosshair interaction can only be used on cartesian charts.';
         }
         this.callParent(arguments);
     },
-    getGestures: function() {
+    getGestures: function () {
         var me = this,
             gestures = {};
         gestures[me.getGesture()] = 'onGesture';
@@ -22083,7 +22184,7 @@ Ext.define('Ext.chart.interactions.Crosshair', {
         gestures[me.getGesture() + 'end'] = 'onGestureEnd';
         return gestures;
     },
-    onGestureStart: function(e) {
+    onGestureStart: function (e) {
         var me = this,
             chart = me.getChart(),
             axesTheme = chart.getTheme().getAxis(),
@@ -22152,7 +22253,7 @@ Ext.define('Ext.chart.interactions.Crosshair', {
                 crosshairLabelConfig = axesConfig.label || axesConfig[axisPosition].label;
                 axisLabel.labelText = axisLabel.add(Ext.apply(axisLabelConfig, crosshairLabelConfig, {
                     type: 'text',
-                    x: (function() {
+                    x: (function () {
                         switch (axisPosition) {
                             case 'left':
                                 titlePadding = titleBBox ? titleBBox.x + titleBBox.width : 0;
@@ -22164,7 +22265,7 @@ Ext.define('Ext.chart.interactions.Crosshair', {
                                 return 0;
                         }
                     })(),
-                    y: (function() {
+                    y: (function () {
                         switch (axisPosition) {
                             case 'top':
                                 titlePadding = titleBBox ? titleBBox.y + titleBBox.height : 0;
@@ -22183,7 +22284,7 @@ Ext.define('Ext.chart.interactions.Crosshair', {
             return false;
         }
     },
-    onGesture: function(e) {
+    onGesture: function (e) {
         var me = this;
         if (me.getLocks()[me.getGesture()] !== me) {
             return;
@@ -22287,7 +22388,7 @@ Ext.define('Ext.chart.interactions.Crosshair', {
         surface.renderFrame();
         return false;
     },
-    onGestureEnd: function(e) {
+    onGestureEnd: function (e) {
         var me = this,
             chart = me.getChart(),
             surface = chart.getSurface('overlay'),
@@ -22335,7 +22436,7 @@ Ext.define('Ext.chart.interactions.ItemHighlight', {
         }
     },
     highlightItem: null,
-    onMouseMoveGesture: function(e) {
+    onMouseMoveGesture: function (e) {
         var me = this,
             item, tooltip, chart;
         if (me.isDragging) {
@@ -22365,23 +22466,23 @@ Ext.define('Ext.chart.interactions.ItemHighlight', {
             return false;
         }
     },
-    showTip: function(e, item) {
+    showTip: function (e, item) {
         item.series.showTip(item, e.getXY());
         this.tipItem = item;
     },
-    onMouseEnterGesture: function() {
+    onMouseEnterGesture: function () {
         this.isMousePointer = true;
     },
-    onMouseLeaveGesture: function() {
+    onMouseLeaveGesture: function () {
         this.isMousePointer = false;
     },
-    onMouseDownGesture: function() {
+    onMouseDownGesture: function () {
         this.isDragging = true;
     },
-    onMouseUpGesture: function() {
+    onMouseUpGesture: function () {
         this.isDragging = false;
     },
-    onHighlightGesture: function(e) {
+    onHighlightGesture: function (e) {
         // A click/tap on an item makes its highlight sticky. It requires another click/tap to unhighlight.
         if (this.isMousePointer) {
             return;
@@ -22507,7 +22608,7 @@ Ext.define('Ext.chart.interactions.ItemHighlight', {
  *             }
  *         }]
  *     });
- * 
+ *
  * The configuration object for the `panzoom` interaction type should specify which axes
  * will be made navigable via the `axes` config. See the {@link #axes} config documentation
  * for details on the allowed formats. If the `axes` config is not specified, it will default
@@ -22618,17 +22719,17 @@ Ext.define('Ext.chart.interactions.PanZoom', {
     },
     // Ext.os.is.Android
     stopAnimationBeforeSync: true,
-    applyAxes: function(axesConfig, oldAxesConfig) {
+    applyAxes: function (axesConfig, oldAxesConfig) {
         return Ext.merge(oldAxesConfig || {}, axesConfig);
     },
-    applyZoomOnPanGesture: function(zoomOnPanGesture) {
+    applyZoomOnPanGesture: function (zoomOnPanGesture) {
         this.getChart();
         if (this.isMultiTouch()) {
             return false;
         }
         return zoomOnPanGesture;
     },
-    updateZoomOnPanGesture: function(zoomOnPanGesture) {
+    updateZoomOnPanGesture: function (zoomOnPanGesture) {
         var button = this.getModeToggleButton();
         if (!this.isMultiTouch()) {
             button.show();
@@ -22641,26 +22742,26 @@ Ext.define('Ext.chart.interactions.PanZoom', {
             button.hide();
         }
     },
-    toggleMode: function() {
+    toggleMode: function () {
         var me = this;
         if (!me.isMultiTouch()) {
             me.setZoomOnPanGesture(!me.getZoomOnPanGesture());
         }
     },
-    applyModeToggleButton: function(button, oldButton) {
+    applyModeToggleButton: function (button, oldButton) {
         var me = this,
             result = Ext.factory(button, 'Ext.button.Segmented', oldButton);
         if (!result && oldButton) {
             oldButton.destroy();
         }
         if (result && !oldButton) {
-            result.addListener('toggle', function(segmentedButton) {
+            result.addListener('toggle', function (segmentedButton) {
                 me.setZoomOnPanGesture(segmentedButton.getValue() === 1);
             });
         }
         return result;
     },
-    getGestures: function() {
+    getGestures: function () {
         var me = this,
             gestures = {},
             pan = me.getPanGesture(),
@@ -22675,7 +22776,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
         gestures.doubletap = 'onDoubleTap';
         return gestures;
     },
-    onDoubleTap: function(e) {
+    onDoubleTap: function (e) {
         var me = this,
             chart = me.getChart(),
             axes = chart.getAxes(),
@@ -22689,7 +22790,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
         }
         chart.redraw();
     },
-    onPanGestureStart: function(e) {
+    onPanGestureStart: function (e) {
         if (!e || !e.touches || e.touches.length < 2) {
             //Limit drags to single touch
             var me = this,
@@ -22704,7 +22805,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
             return false;
         }
     },
-    onPanGestureMove: function(e) {
+    onPanGestureMove: function (e) {
         var me = this;
         if (me.getLocks()[me.getPanGesture()] === me) {
             // Limit drags to single touch.
@@ -22719,7 +22820,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
             return false;
         }
     },
-    onPanGestureEnd: function(e) {
+    onPanGestureEnd: function (e) {
         var me = this,
             pan = me.getPanGesture();
         if (me.getLocks()[pan] === me) {
@@ -22730,7 +22831,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
             return false;
         }
     },
-    onZoomGestureStart: function(e) {
+    onZoomGestureStart: function (e) {
         if (e.touches && e.touches.length === 2) {
             var me = this,
                 xy = me.getChart().element.getXY(),
@@ -22757,7 +22858,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
             return false;
         }
     },
-    onZoomGestureMove: function(e) {
+    onZoomGestureMove: function (e) {
         var me = this;
         if (me.getLocks()[me.getZoomGesture()] === me) {
             var rect = me.getChart().getInnerRect(),
@@ -22775,9 +22876,9 @@ Ext.define('Ext.chart.interactions.PanZoom', {
                 xDistance = Math.max(44, abs(newPoints[2] - newPoints[0])),
                 yDistance = Math.max(44, abs(newPoints[3] - newPoints[1])),
                 lastDistances = this.lastZoomDistances || [
-                    xDistance,
-                    yDistance
-                ],
+                        xDistance,
+                        yDistance
+                    ],
                 zoomX = xDistance / lastDistances[0],
                 zoomY = yDistance / lastDistances[1];
             me.transformAxesBy(me.getZoomableAxes(e), rect[2] * (zoomX - 1) / 2 + newPoints[2] - lastPoints[2] * zoomX, rect[3] * (zoomY - 1) / 2 + newPoints[3] - lastPoints[3] * zoomY, zoomX, zoomY);
@@ -22785,7 +22886,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
             return false;
         }
     },
-    onZoomGestureEnd: function(e) {
+    onZoomGestureEnd: function (e) {
         var me = this,
             zoom = me.getZoomGesture();
         if (me.getLocks()[zoom] === me) {
@@ -22796,27 +22897,27 @@ Ext.define('Ext.chart.interactions.PanZoom', {
             return false;
         }
     },
-    hideLabels: function() {
+    hideLabels: function () {
         if (this.getHideLabelInGesture()) {
-            this.eachInteractiveAxes(function(axis) {
+            this.eachInteractiveAxes(function (axis) {
                 axis.hideLabels();
             });
         }
     },
-    showLabels: function() {
+    showLabels: function () {
         if (this.getHideLabelInGesture()) {
-            this.eachInteractiveAxes(function(axis) {
+            this.eachInteractiveAxes(function (axis) {
                 axis.showLabels();
             });
         }
     },
-    isEventOnAxis: function(e, axis) {
+    isEventOnAxis: function (e, axis) {
         // TODO: right now this uses the current event position but really we want to only
         // use the gesture's start event. Pinch does not give that to us though.
         var rect = axis.getSurface().getRect();
         return rect[0] <= e.getX() && e.getX() <= rect[0] + rect[2] && rect[1] <= e.getY() && e.getY() <= rect[1] + rect[3];
     },
-    getPannableAxes: function(e) {
+    getPannableAxes: function (e) {
         var me = this,
             axisConfigs = me.getAxes(),
             axes = me.getChart().getAxes(),
@@ -22841,7 +22942,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
         }
         return result;
     },
-    getZoomableAxes: function(e) {
+    getZoomableAxes: function (e) {
         var me = this,
             axisConfigs = me.getAxes(),
             axes = me.getChart().getAxes(),
@@ -22868,7 +22969,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
         }
         return result;
     },
-    eachInteractiveAxes: function(fn) {
+    eachInteractiveAxes: function (fn) {
         var me = this,
             axisConfigs = me.getAxes(),
             axes = me.getChart().getAxes();
@@ -22880,7 +22981,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
             }
         }
     },
-    transformAxesBy: function(axes, panX, panY, sx, sy) {
+    transformAxesBy: function (axes, panX, panY, sx, sy) {
         var rect = this.getChart().getInnerRect(),
             axesCfg = this.getAxes(),
             axisCfg,
@@ -22888,7 +22989,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
             result = false;
         if (!oldVisibleRanges) {
             this.oldVisibleRanges = oldVisibleRanges = {};
-            this.eachInteractiveAxes(function(axis) {
+            this.eachInteractiveAxes(function (axis) {
                 oldVisibleRanges[axis.getId()] = axis.getVisibleRange();
             });
         }
@@ -22901,7 +23002,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
         }
         return result;
     },
-    transformAxisBy: function(axis, oldVisibleRange, panX, panY, sx, sy, minZoom, maxZoom) {
+    transformAxisBy: function (axis, oldVisibleRange, panX, panY, sx, sy, minZoom, maxZoom) {
         var me = this,
             visibleLength = oldVisibleRange[1] - oldVisibleRange[0],
             visibleRange = axis.getVisibleRange(),
@@ -22937,7 +23038,7 @@ Ext.define('Ext.chart.interactions.PanZoom', {
         ]);
         return (Math.abs(left - axis.getVisibleRange()[0]) > 1.0E-10 || Math.abs(right - axis.getVisibleRange()[1]) > 1.0E-10);
     },
-    destroy: function() {
+    destroy: function () {
         this.setModeToggleButton(null);
         this.callParent();
     }
@@ -23023,14 +23124,14 @@ Ext.define('Ext.chart.interactions.Rotate', {
         rotation: 0
     },
     oldRotations: null,
-    getAngle: function(e) {
+    getAngle: function (e) {
         var me = this,
             chart = me.getChart(),
             xy = chart.getEventXY(e),
             center = chart.getCenter();
         return Math.atan2(xy[1] - center[1], xy[0] - center[0]);
     },
-    getEventRadius: function(e) {
+    getEventRadius: function (e) {
         var me = this,
             chart = me.getChart(),
             xy = chart.getEventXY(e),
@@ -23039,7 +23140,7 @@ Ext.define('Ext.chart.interactions.Rotate', {
             dy = xy[1] - center[1];
         return Math.sqrt(dx * dx + dy * dy);
     },
-    onGestureStart: function(e) {
+    onGestureStart: function (e) {
         var me = this,
             chart = me.getChart(),
             radius = chart.getRadius(),
@@ -23051,7 +23152,7 @@ Ext.define('Ext.chart.interactions.Rotate', {
             return false;
         }
     },
-    onGesture: function(e) {
+    onGesture: function (e) {
         var me = this,
             angle = me.getAngle(e) - me.angle;
         if (me.getLocks().drag === me) {
@@ -23062,7 +23163,7 @@ Ext.define('Ext.chart.interactions.Rotate', {
     /**
      * @private
      */
-    doRotateTo: function(angle, relative, animate) {
+    doRotateTo: function (angle, relative, animate) {
         var me = this,
             chart = me.getChart(),
             axes = chart.getAxes(),
@@ -23095,11 +23196,11 @@ Ext.define('Ext.chart.interactions.Rotate', {
      * @param {Boolean} [relative=false] Whether the rotation is relative to the current angle or not.
      * @param {Boolean} [animate=false] Whether to animate the rotation or not.
      */
-    rotateTo: function(angle, relative, animate) {
+    rotateTo: function (angle, relative, animate) {
         this.doRotateTo(angle, relative, animate);
         this.oldRotations = {};
     },
-    onGestureEnd: function(e) {
+    onGestureEnd: function (e) {
         var me = this;
         if (me.getLocks().drag === me) {
             me.onGesture(e);
@@ -23108,7 +23209,8 @@ Ext.define('Ext.chart.interactions.Rotate', {
             return false;
         }
     },
-    onRotate: function(e) {}
+    onRotate: function (e) {
+    }
 });
 
 /**
@@ -23121,7 +23223,7 @@ Ext.define('Ext.chart.interactions.RotatePie3D', {
     extend: 'Ext.chart.interactions.Rotate',
     type: 'rotatePie3d',
     alias: 'interaction.rotatePie3d',
-    getAngle: function(e) {
+    getAngle: function (e) {
         var chart = this.getChart(),
             rtl = chart.getInherited().rtl,
             direction = rtl ? -1 : 1,
@@ -23211,7 +23313,7 @@ Ext.define('Ext.chart.plugin.ItemEvents', {
         itemmouseover: true,
         itemmouseout: true
     },
-    init: function(chart) {
+    init: function (chart) {
         var handleEvent = 'handleEvent';
         this.chart = chart;
         chart.addElementListener({
@@ -23227,7 +23329,7 @@ Ext.define('Ext.chart.plugin.ItemEvents', {
             scope: this
         });
     },
-    hasItemMouseMoveListeners: function() {
+    hasItemMouseMoveListeners: function () {
         var listeners = this.chart.hasListeners,
             name;
         for (name in this.itemMouseMoveEvents) {
@@ -23237,7 +23339,7 @@ Ext.define('Ext.chart.plugin.ItemEvents', {
         }
         return false;
     },
-    handleEvent: function(e) {
+    handleEvent: function (e) {
         var me = this,
             chart = me.chart,
             isMouseMoveEvent = e.type in me.mouseMoveEvents,
@@ -23329,25 +23431,25 @@ Ext.define('Ext.chart.series.Cartesian', {
     fieldCategoryY: [
         'Y'
     ],
-    applyXAxis: function(newAxis, oldAxis) {
+    applyXAxis: function (newAxis, oldAxis) {
         return this.getChart().getAxis(newAxis) || oldAxis;
     },
-    applyYAxis: function(newAxis, oldAxis) {
+    applyYAxis: function (newAxis, oldAxis) {
         return this.getChart().getAxis(newAxis) || oldAxis;
     },
-    updateXAxis: function(axis) {
+    updateXAxis: function (axis) {
         axis.processData(this);
     },
-    updateYAxis: function(axis) {
+    updateYAxis: function (axis) {
         axis.processData(this);
     },
-    coordinateX: function() {
+    coordinateX: function () {
         return this.coordinate('X', 0, 2);
     },
-    coordinateY: function() {
+    coordinateY: function () {
         return this.coordinate('Y', 1, 2);
     },
-    getItemForPoint: function(x, y) {
+    getItemForPoint: function (x, y) {
         if (this.getSprites()) {
             var me = this,
                 sprite = me.getSprites()[0],
@@ -23372,7 +23474,7 @@ Ext.define('Ext.chart.series.Cartesian', {
             }
         }
     },
-    createSprite: function() {
+    createSprite: function () {
         var me = this,
             sprite = me.callParent(),
             chart = me.getChart(),
@@ -23392,7 +23494,7 @@ Ext.define('Ext.chart.series.Cartesian', {
         }
         return sprite;
     },
-    getSprites: function() {
+    getSprites: function () {
         var me = this,
             chart = this.getChart(),
             animation = me.getAnimation() || chart && chart.getAnimation(),
@@ -23415,7 +23517,7 @@ Ext.define('Ext.chart.series.Cartesian', {
         }
         return sprites;
     },
-    provideLegendInfo: function(target) {
+    provideLegendInfo: function (target) {
         var me = this,
             style = me.getSubStyleWithTheme(),
             fill = style.fillStyle;
@@ -23430,13 +23532,13 @@ Ext.define('Ext.chart.series.Cartesian', {
             index: 0
         });
     },
-    getXRange: function() {
+    getXRange: function () {
         return [
             this.dataRange[0],
             this.dataRange[2]
         ];
     },
-    getYRange: function() {
+    getYRange: function () {
         return [
             this.dataRange[1],
             this.dataRange[3]
@@ -23482,21 +23584,21 @@ Ext.define('Ext.chart.series.StackedCartesian', {
         hidden: []
     },
     animatingSprites: 0,
-    themeColorCount: function() {
+    themeColorCount: function () {
         var me = this,
             yField = me.getYField();
         return Ext.isArray(yField) ? yField.length : 1;
     },
-    updateStacked: function() {
+    updateStacked: function () {
         this.processData();
     },
-    updateSplitStacks: function() {
+    updateSplitStacks: function () {
         this.processData();
     },
-    coordinateY: function() {
+    coordinateY: function () {
         return this.coordinateStacked('Y', 1, 2);
     },
-    coordinateStacked: function(direction, directionOffset, directionCount) {
+    coordinateStacked: function (direction, directionOffset, directionCount) {
         var me = this,
             store = me.getStore(),
             items = store.getData().items,
@@ -23552,7 +23654,7 @@ Ext.define('Ext.chart.series.StackedCartesian', {
                         data = coordinatedData[k];
                         if (!data) {
                             // If the field is hidden there's no coordinated data for it.
-                            
+
                             continue;
                         }
                         data = data[j];
@@ -23571,7 +23673,7 @@ Ext.define('Ext.chart.series.StackedCartesian', {
                     attr['dataStart' + fieldCategoriesItem] = dataStart;
                     attr['data' + fieldCategoriesItem] = dataStart;
                     sprites[j].setAttributes(attr);
-                    
+
                     continue;
                 }
                 data = coordinatedData[j];
@@ -23618,7 +23720,7 @@ Ext.define('Ext.chart.series.StackedCartesian', {
             sprites[i].setAttributes(attr);
         }
     },
-    getFields: function(fieldCategory) {
+    getFields: function (fieldCategory) {
         var me = this,
             fields = [],
             fieldsItem, i, ln;
@@ -23632,12 +23734,12 @@ Ext.define('Ext.chart.series.StackedCartesian', {
         }
         return fields;
     },
-    updateLabelOverflowPadding: function(labelOverflowPadding) {
+    updateLabelOverflowPadding: function (labelOverflowPadding) {
         this.getLabel().setAttributes({
             labelOverflowPadding: labelOverflowPadding
         });
     },
-    getSprites: function() {
+    getSprites: function () {
         var me = this,
             chart = me.getChart(),
             animation = me.getAnimation() || chart && chart.getAnimation(),
@@ -23684,7 +23786,7 @@ Ext.define('Ext.chart.series.StackedCartesian', {
         }
         return sprites;
     },
-    getItemForPoint: function(x, y) {
+    getItemForPoint: function (x, y) {
         if (this.getSprites()) {
             var me = this,
                 i, ln, sprite,
@@ -23715,7 +23817,7 @@ Ext.define('Ext.chart.series.StackedCartesian', {
             return null;
         }
     },
-    provideLegendInfo: function(target) {
+    provideLegendInfo: function (target) {
         var me = this,
             sprites = me.getSprites(),
             title = me.getTitle(),
@@ -23746,13 +23848,13 @@ Ext.define('Ext.chart.series.StackedCartesian', {
             });
         }
     },
-    onSpriteAnimationStart: function(sprite) {
+    onSpriteAnimationStart: function (sprite) {
         this.animatingSprites++;
         if (this.animatingSprites === 1) {
             this.fireEvent('animationstart');
         }
     },
-    onSpriteAnimationEnd: function(sprite) {
+    onSpriteAnimationEnd: function (sprite) {
         this.animatingSprites--;
         if (this.animatingSprites === 0) {
             this.fireEvent('animationend');
@@ -23867,7 +23969,7 @@ Ext.define('Ext.chart.series.sprite.Cartesian', {
                 innerHeight: 'panzoom'
             },
             updaters: {
-                dataX: function(attr) {
+                dataX: function (attr) {
                     this.processDataX();
                     this.scheduleUpdaters(attr, {
                         dataY: [
@@ -23875,10 +23977,10 @@ Ext.define('Ext.chart.series.sprite.Cartesian', {
                         ]
                     });
                 },
-                dataY: function() {
+                dataY: function () {
                     this.processDataY();
                 },
-                panzoom: function(attr) {
+                panzoom: function (attr) {
                     var dx = attr.visibleMaxX - attr.visibleMinX,
                         dy = attr.visibleMaxY - attr.visibleMinY,
                         innerWidth = attr.flipXY ? attr.innerHeight : attr.innerWidth,
@@ -23913,7 +24015,7 @@ Ext.define('Ext.chart.series.sprite.Cartesian', {
     },
     processDataY: Ext.emptyFn,
     processDataX: Ext.emptyFn,
-    updatePlainBBox: function(plain) {
+    updatePlainBBox: function (plain) {
         var attr = this.attr;
         plain.x = attr.dataMinX;
         plain.y = attr.dataMinY;
@@ -23925,7 +24027,7 @@ Ext.define('Ext.chart.series.sprite.Cartesian', {
      * @param {String} key
      * @return {*}
      */
-    binarySearch: function(key) {
+    binarySearch: function (key) {
         var dx = this.attr.dataX,
             start = 0,
             end = dx.length;
@@ -23948,7 +24050,7 @@ Ext.define('Ext.chart.series.sprite.Cartesian', {
         }
         return start;
     },
-    render: function(surface, ctx, rect) {
+    render: function (surface, ctx, rect) {
         var me = this,
             attr = me.attr,
             inverseMatrix = attr.inverseMatrix.clone();
@@ -23964,15 +24066,15 @@ Ext.define('Ext.chart.series.sprite.Cartesian', {
             return;
         }
         var clip = inverseMatrix.transformList([
-                [
-                    rect[0] - 1,
-                    rect[3] + 1
-                ],
-                [
-                    rect[0] + rect[2] + 1,
-                    -1
-                ]
-            ]);
+            [
+                rect[0] - 1,
+                rect[3] + 1
+            ],
+            [
+                rect[0] + rect[2] + 1,
+                -1
+            ]
+        ]);
         clip = clip[0].concat(clip[1]);
         me.renderClipped(surface, ctx, clip, rect);
     },
@@ -23990,7 +24092,7 @@ Ext.define('Ext.chart.series.sprite.Cartesian', {
      * @param {Number} y
      * @return {Number} The index
      */
-    getIndexNearPoint: function(x, y) {
+    getIndexNearPoint: function (x, y) {
         var me = this,
             mat = me.attr.matrix,
             dataX = me.attr.dataX,
@@ -24072,7 +24174,7 @@ Ext.define('Ext.chart.series.sprite.StackedCartesian', {
     /**
      * @inheritdoc
      */
-    getIndexNearPoint: function(x, y) {
+    getIndexNearPoint: function (x, y) {
         var sprite = this,
             mat = sprite.attr.matrix,
             dataX = sprite.attr.dataX,
@@ -24135,7 +24237,7 @@ Ext.define('Ext.chart.series.sprite.Area', {
             }
         }
     },
-    renderClipped: function(surface, ctx, clip) {
+    renderClipped: function (surface, ctx, clip) {
         var me = this,
             attr = me.attr,
             dataX = attr.dataX,
@@ -24235,7 +24337,7 @@ Ext.define('Ext.chart.series.sprite.Area', {
  * @extends Ext.chart.series.StackedCartesian
  *
  * Creates an Area Chart.
- * 
+ *
  *     @example
  *     Ext.create({
  *        xtype: 'cartesian', 
@@ -24352,7 +24454,7 @@ Ext.define('Ext.chart.series.sprite.Bar', {
             }
         }
     },
-    drawLabel: function(text, dataX, dataStartY, dataY, labelId) {
+    drawLabel: function (text, dataX, dataStartY, dataY, labelId) {
         var me = this,
             attr = me.attr,
             label = me.getBoundMarker('labels')[0],
@@ -24440,7 +24542,7 @@ Ext.define('Ext.chart.series.sprite.Bar', {
         }
         me.putMarker('labels', labelCfg, labelId);
     },
-    drawBar: function(ctx, surface, clip, left, top, right, bottom, index) {
+    drawBar: function (ctx, surface, clip, left, top, right, bottom, index) {
         var me = this,
             itemCfg = {},
             renderer = me.attr.renderer,
@@ -24461,7 +24563,7 @@ Ext.define('Ext.chart.series.sprite.Bar', {
     /**
      * @inheritdoc
      */
-    renderClipped: function(surface, ctx, clip, rect) {
+    renderClipped: function (surface, ctx, clip, rect) {
         if (this.cleanRedraw) {
             return;
         }
@@ -24514,17 +24616,17 @@ Ext.define('Ext.chart.series.sprite.Bar', {
     /**
      * @inheritdoc
      */
-    getIndexNearPoint: function(x, y) {
+    getIndexNearPoint: function (x, y) {
         var sprite = this,
             attr = sprite.attr,
             dataX = attr.dataX,
             surface = sprite.getSurface(),
             surfaceRect = surface.getRect() || [
-                0,
-                0,
-                0,
-                0
-            ],
+                    0,
+                    0,
+                    0,
+                    0
+                ],
             surfaceHeight = surfaceRect[3],
             hitX, hitY, i, bbox,
             index = -1;
@@ -24556,10 +24658,10 @@ Ext.define('Ext.chart.series.sprite.Bar', {
 /**
  * @class Ext.chart.series.Bar
  * @extends Ext.chart.series.StackedCartesian
- * 
+ *
  * Creates a Bar or Column Chart (depending on the value of the
  * {@link Ext.chart.CartesianChart#flipXY flipXY} config).
- * 
+ *
  *     @example
  *     Ext.create({
  *        xtype: 'cartesian', 
@@ -24640,7 +24742,7 @@ Ext.define('Ext.chart.series.Bar', {
             }
         }
     },
-    getItemForPoint: function(x, y) {
+    getItemForPoint: function (x, y) {
         if (this.getSprites()) {
             var me = this,
                 chart = me.getChart(),
@@ -24653,15 +24755,15 @@ Ext.define('Ext.chart.series.Bar', {
             return me.callParent(arguments);
         }
     },
-    updateXAxis: function(axis) {
+    updateXAxis: function (axis) {
         axis.setLabelInSpan(true);
         this.callParent(arguments);
     },
-    updateHidden: function(hidden) {
+    updateHidden: function (hidden) {
         this.callParent(arguments);
         this.updateStacked();
     },
-    updateStacked: function(stacked) {
+    updateStacked: function (stacked) {
         var sprites = this.getSprites(),
             ln = sprites.length,
             visible = [],
@@ -24727,7 +24829,7 @@ Ext.define('Ext.chart.series.sprite.Bar3D', {
                 groupCount: 'panzoom'
             },
             updaters: {
-                panzoom: function(attr) {
+                panzoom: function (attr) {
                     var me = this,
                         dx = attr.visibleMaxX - attr.visibleMinX,
                         dy = attr.visibleMaxY - attr.visibleMinY,
@@ -24755,7 +24857,7 @@ Ext.define('Ext.chart.series.sprite.Bar3D', {
         series: null
     },
     depth: 0,
-    drawBar: function(ctx, surface, clip, left, top, right, bottom, index) {
+    drawBar: function (ctx, surface, clip, left, top, right, bottom, index) {
         var me = this,
             attr = me.attr,
             itemCfg = {},
@@ -24865,7 +24967,7 @@ Ext.define('Ext.chart.series.sprite.Box', {
             }
         }
     },
-    constructor: function(config) {
+    constructor: function (config) {
         this.callParent([
             config
         ]);
@@ -24873,7 +24975,7 @@ Ext.define('Ext.chart.series.sprite.Box', {
         this.rightGradient = new Ext.draw.gradient.Linear({});
         this.frontGradient = new Ext.draw.gradient.Linear({});
     },
-    updatePlainBBox: function(plain) {
+    updatePlainBBox: function (plain) {
         var attr = this.attr,
             x = attr.x,
             y = attr.y,
@@ -24890,7 +24992,7 @@ Ext.define('Ext.chart.series.sprite.Box', {
             plain.height = height - depth;
         }
     },
-    render: function(surface, ctx) {
+    render: function (surface, ctx) {
         var me = this,
             attr = me.attr,
             center = attr.x,
@@ -25127,7 +25229,7 @@ Ext.define('Ext.chart.series.Bar3D', {
             opacity: 0.8
         }
     },
-    getSprites: function() {
+    getSprites: function () {
         var sprites = this.callParent(arguments),
             sprite, zIndex, i;
         for (i = 0; i < sprites.length; i++) {
@@ -25144,11 +25246,11 @@ Ext.define('Ext.chart.series.Bar3D', {
         }
         return sprites;
     },
-    getDepth: function() {
+    getDepth: function () {
         var sprite = this.getSprites()[0];
         return sprite ? (sprite.depth || 0) : 0;
     },
-    getItemForPoint: function(x, y) {
+    getItemForPoint: function (x, y) {
         if (this.getSprites()) {
             var me = this,
                 i, sprite,
@@ -25190,11 +25292,11 @@ Ext.define('Ext.chart.series.Bar3D', {
 
 /**
  * Limited cache is a size limited cache container that stores limited number of objects.
- * 
+ *
  * When {@link #get} is called, the container will try to find the object in the list.
  * If failed it will call the {@link #feeder} to create that object. If there are too many
  * objects in the container, the old ones are removed.
- * 
+ *
  * __Note:__ This is not using a Least Recently Used policy due to simplicity and performance consideration.
  */
 Ext.define("Ext.draw.LimitedCache", {
@@ -25209,7 +25311,7 @@ Ext.define("Ext.draw.LimitedCache", {
          * Function that generates the object when look-up failed.
          * @return {Number}
          */
-        feeder: function() {
+        feeder: function () {
             return 0;
         },
         /**
@@ -25219,7 +25321,7 @@ Ext.define("Ext.draw.LimitedCache", {
         scope: null
     },
     cache: null,
-    constructor: function(config) {
+    constructor: function (config) {
         this.cache = {};
         this.cache.list = [];
         this.cache.tail = 0;
@@ -25231,7 +25333,7 @@ Ext.define("Ext.draw.LimitedCache", {
      * @param {Mixed...} args Arguments appended to feeder.
      * @return {Object}
      */
-    get: function(id) {
+    get: function (id) {
         // TODO: Implement cache hit optimization
         var cache = this.cache,
             limit = this.getLimit(),
@@ -25256,7 +25358,7 @@ Ext.define("Ext.draw.LimitedCache", {
     /**
      * Clear all the objects.
      */
-    clear: function() {
+    clear: function () {
         this.cache = {};
         this.cache.list = [];
         this.cache.tail = 0;
@@ -25280,7 +25382,7 @@ Ext.define("Ext.draw.SegmentTree", {
      * @param {Number} dataLow
      * @param {Number} dataClose
      */
-    time: function(result, last, dataX, dataOpen, dataHigh, dataLow, dataClose) {
+    time: function (result, last, dataX, dataOpen, dataHigh, dataLow, dataClose) {
         var start = 0,
             lastOffset, lastOffsetEnd,
             minimum = new Date(dataX[result.startIdx[0]]),
@@ -25464,7 +25566,7 @@ Ext.define("Ext.draw.SegmentTree", {
             currentUnit = units[unitIdx];
             minimum = extDate.align(minimum, currentUnit[0], currentUnit[1]);
             if (extDate.diff(minimum, maximum, currentUnit[0]) > dataX.length * 2 * currentUnit[1]) {
-                
+
                 continue;
             }
             if (currentUnit[3] && result.map['time_' + currentUnit[3]]) {
@@ -25535,7 +25637,7 @@ Ext.define("Ext.draw.SegmentTree", {
      * @param {Number} dataLow
      * @param {Number} dataClose
      */
-    "double": function(result, position, dataX, dataOpen, dataHigh, dataLow, dataClose) {
+    "double": function (result, position, dataX, dataOpen, dataHigh, dataLow, dataClose) {
         var offset = 0,
             lastOffset,
             step = 1,
@@ -25612,7 +25714,7 @@ Ext.define("Ext.draw.SegmentTree", {
      * @param {Number} dataClose
      * @return {Object}
      */
-    aggregateData: function(dataX, dataOpen, dataHigh, dataLow, dataClose) {
+    aggregateData: function (dataX, dataOpen, dataHigh, dataLow, dataClose) {
         var length = dataX.length,
             startIdx = [],
             endIdx = [],
@@ -25668,7 +25770,7 @@ Ext.define("Ext.draw.SegmentTree", {
      * @param {Number} key
      * @return {*}
      */
-    binarySearchMin: function(items, start, end, key) {
+    binarySearchMin: function (items, start, end, key) {
         var dx = this.dataX;
         if (key <= dx[items.startIdx[0]]) {
             return start;
@@ -25697,7 +25799,7 @@ Ext.define("Ext.draw.SegmentTree", {
      * @param {Number} key
      * @return {*}
      */
-    binarySearchMax: function(items, start, end, key) {
+    binarySearchMax: function (items, start, end, key) {
         var dx = this.dataX;
         if (key <= dx[items.endIdx[0]]) {
             return start;
@@ -25718,7 +25820,7 @@ Ext.define("Ext.draw.SegmentTree", {
         }
         return end;
     },
-    constructor: function(config) {
+    constructor: function (config) {
         this.initConfig(config);
     },
     /**
@@ -25729,7 +25831,7 @@ Ext.define("Ext.draw.SegmentTree", {
      * @param {Number} dataLow
      * @param {Number} dataClose
      */
-    setData: function(dataX, dataOpen, dataHigh, dataLow, dataClose) {
+    setData: function (dataX, dataOpen, dataHigh, dataLow, dataClose) {
         if (!dataHigh) {
             dataClose = dataLow = dataHigh = dataOpen;
         }
@@ -25753,7 +25855,7 @@ Ext.define("Ext.draw.SegmentTree", {
      * @return {Number} return.end
      * @return {Object} return.data The aggregated data
      */
-    getAggregation: function(min, max, estStep) {
+    getAggregation: function (min, max, estStep) {
         if (!this.cache) {
             return null;
         }
@@ -25822,13 +25924,13 @@ Ext.define('Ext.chart.series.sprite.Aggregative', {
     config: {
         aggregator: {}
     },
-    applyAggregator: function(aggregator, oldAggr) {
+    applyAggregator: function (aggregator, oldAggr) {
         return Ext.factory(aggregator, Ext.draw.SegmentTree, oldAggr);
     },
-    constructor: function() {
+    constructor: function () {
         this.callParent(arguments);
     },
-    processDataY: function() {
+    processDataY: function () {
         var me = this,
             attr = me.attr,
             high = attr.dataHigh,
@@ -25844,10 +25946,10 @@ Ext.define('Ext.chart.series.sprite.Aggregative', {
             }
         }
     },
-    getGapWidth: function() {
+    getGapWidth: function () {
         return 1;
     },
-    renderClipped: function(surface, ctx, clip, rect) {
+    renderClipped: function (surface, ctx, clip, rect) {
         var me = this,
             min = Math.min(clip[0], clip[2]),
             max = Math.max(clip[0], clip[2]),
@@ -25863,7 +25965,7 @@ Ext.define('Ext.chart.series.sprite.Aggregative', {
 /**
  * @class Ext.chart.series.sprite.CandleStick
  * @extends Ext.chart.series.sprite.Aggregative
- * 
+ *
  * CandleStick series sprite.
  */
 Ext.define('Ext.chart.series.sprite.CandleStick', {
@@ -25872,10 +25974,10 @@ Ext.define('Ext.chart.series.sprite.CandleStick', {
     inheritableStatics: {
         def: {
             processors: {
-                raiseStyle: function(n, o) {
+                raiseStyle: function (n, o) {
                     return Ext.merge({}, o || {}, n);
                 },
-                dropStyle: function(n, o) {
+                dropStyle: function (n, o) {
                     return Ext.merge({}, o || {}, n);
                 },
                 /**
@@ -25912,16 +26014,16 @@ Ext.define('Ext.chart.series.sprite.CandleStick', {
                 dropStyle: 'dropStyle'
             },
             updaters: {
-                raiseStyle: function() {
+                raiseStyle: function () {
                     this.raiseTemplate && this.raiseTemplate.setAttributes(this.attr.raiseStyle);
                 },
-                dropStyle: function() {
+                dropStyle: function () {
                     this.dropTemplate && this.dropTemplate.setAttributes(this.attr.dropStyle);
                 }
             }
         }
     },
-    candlestick: function(ctx, open, high, low, close, mid, halfWidth) {
+    candlestick: function (ctx, open, high, low, close, mid, halfWidth) {
         var minOC = Math.min(open, close),
             maxOC = Math.max(open, close);
         ctx.moveTo(mid, low);
@@ -25934,7 +26036,7 @@ Ext.define('Ext.chart.series.sprite.CandleStick', {
         ctx.moveTo(mid, high);
         ctx.lineTo(mid, minOC);
     },
-    ohlc: function(ctx, open, high, low, close, mid, halfWidth) {
+    ohlc: function (ctx, open, high, low, close, mid, halfWidth) {
         ctx.moveTo(mid, high);
         ctx.lineTo(mid, low);
         ctx.moveTo(mid, open);
@@ -25942,7 +26044,7 @@ Ext.define('Ext.chart.series.sprite.CandleStick', {
         ctx.moveTo(mid, close);
         ctx.lineTo(mid + halfWidth, close);
     },
-    constructor: function() {
+    constructor: function () {
         this.callParent(arguments);
         this.raiseTemplate = new Ext.draw.sprite.Rect({
             parent: this
@@ -25951,13 +26053,13 @@ Ext.define('Ext.chart.series.sprite.CandleStick', {
             parent: this
         });
     },
-    getGapWidth: function() {
+    getGapWidth: function () {
         var attr = this.attr,
             barWidth = attr.barWidth,
             padding = attr.padding;
         return barWidth + padding;
     },
-    renderAggregates: function(aggregates, start, end, surface, ctx, clip) {
+    renderAggregates: function (aggregates, start, end, surface, ctx, clip) {
         var me = this,
             attr = this.attr,
             dataX = attr.dataX,
@@ -26016,7 +26118,7 @@ Ext.define('Ext.chart.series.sprite.CandleStick', {
 /**
  * @class Ext.chart.series.CandleStick
  * @extends Ext.chart.series.Cartesian
- * 
+ *
  * Creates a candlestick or OHLC Chart.
  *
  *     @example
@@ -26143,7 +26245,7 @@ Ext.define('Ext.chart.series.CandleStick', {
         'Low',
         'Close'
     ],
-    themeColorCount: function() {
+    themeColorCount: function () {
         return 2;
     }
 });
@@ -26224,43 +26326,43 @@ Ext.define('Ext.chart.series.Polar', {
     fieldCategoryY: [
         'Y'
     ],
-    getAngleField: function() {
+    getAngleField: function () {
         return this.getXField();
     },
-    setAngleField: function(f) {
+    setAngleField: function (f) {
         return this.setXField(f);
     },
-    getLengthField: function() {
+    getLengthField: function () {
         return this.getYField();
     },
-    setLengthField: function(f) {
+    setLengthField: function (f) {
         return this.setYField(f);
     },
-    applyXAxis: function(newAxis, oldAxis) {
+    applyXAxis: function (newAxis, oldAxis) {
         return this.getChart().getAxis(newAxis) || oldAxis;
     },
-    applyYAxis: function(newAxis, oldAxis) {
+    applyYAxis: function (newAxis, oldAxis) {
         return this.getChart().getAxis(newAxis) || oldAxis;
     },
-    getXRange: function() {
+    getXRange: function () {
         return [
             this.dataRange[0],
             this.dataRange[2]
         ];
     },
-    getYRange: function() {
+    getYRange: function () {
         return [
             this.dataRange[1],
             this.dataRange[3]
         ];
     },
-    themeColorCount: function() {
+    themeColorCount: function () {
         var me = this,
             store = me.getStore(),
             count = store && store.getCount() || 0;
         return count;
     },
-    getDefaultSpriteConfig: function() {
+    getDefaultSpriteConfig: function () {
         return {
             type: this.seriesType,
             renderer: this.getRenderer(),
@@ -26270,11 +26372,11 @@ Ext.define('Ext.chart.series.Polar', {
             rotationCenterY: 0
         };
     },
-    applyRotation: function(rotation) {
+    applyRotation: function (rotation) {
         var twoPie = Math.PI * 2;
         return (rotation % twoPie + Math.PI) % twoPie - Math.PI;
     },
-    updateRotation: function(rotation) {
+    updateRotation: function (rotation) {
         var sprites = this.getSprites();
         if (sprites && sprites[0]) {
             sprites[0].setAttributes({
@@ -26287,7 +26389,7 @@ Ext.define('Ext.chart.series.Polar', {
 /**
  * @class Ext.chart.series.Gauge
  * @extends Ext.chart.series.Series
- * 
+ *
  * Creates a Gauge Chart.
  *
  *     @example
@@ -26386,7 +26488,7 @@ Ext.define('Ext.chart.series.Gauge', {
          * It can be an array of numbers (each between `minimum` and `maximum`) that
          * define the highest value of each sector. For N sectors, only (N-1) values are
          * needed because it is assumed that the first sector starts at `minimum` and the
-         * last sector ends at `maximum`. Example: a water temperature gauge that is blue 
+         * last sector ends at `maximum`. Example: a water temperature gauge that is blue
          * below 20C, red above 80C, gray in-between, and with an orange needle...
          *
          *      minimum: 0,
@@ -26395,7 +26497,7 @@ Ext.define('Ext.chart.series.Gauge', {
          *      colors: ['orange', 'blue', 'lightgray', 'red']
          *
          * It can be also an array of objects, each with the following properties:
-         * 
+         *
          * @cfg {Number} sectors.start The starting value of the sector. If omitted, it
          * uses the previous sector's `end` value or the chart's `minimum`.
          * @cfg {Number} sectors.end The ending value of the sector. If omitted, it uses
@@ -26439,9 +26541,9 @@ Ext.define('Ext.chart.series.Gauge', {
         maximum: 100,
         rotation: 0,
         /**
-        * @cfg {Number} totalAngle
-        * The size of the sector that the series will occupy.
-        */
+         * @cfg {Number} totalAngle
+         * The size of the sector that the series will occupy.
+         */
         totalAngle: Math.PI / 2,
         rect: [
             0,
@@ -26459,13 +26561,13 @@ Ext.define('Ext.chart.series.Gauge', {
          */
         wholeDisk: false
     },
-    coordinateX: function() {
+    coordinateX: function () {
         return this.coordinate('X', 0, 2);
     },
-    coordinateY: function() {
+    coordinateY: function () {
         return this.coordinate('Y', 1, 2);
     },
-    updateNeedle: function(needle) {
+    updateNeedle: function (needle) {
         var me = this,
             sprites = me.getSprites(),
             angle = me.valueToAngle(me.getValue());
@@ -26479,13 +26581,13 @@ Ext.define('Ext.chart.series.Gauge', {
             me.doUpdateStyles();
         }
     },
-    themeColorCount: function() {
+    themeColorCount: function () {
         var me = this,
             store = me.getStore(),
             count = store && store.getCount() || 0;
         return count + (me.getNeedle() ? 0 : 1);
     },
-    updateColors: function(colors, oldColors) {
+    updateColors: function (colors, oldColors) {
         var me = this,
             sectors = me.getSectors(),
             sectorCount = sectors && sectors.length,
@@ -26511,13 +26613,13 @@ Ext.define('Ext.chart.series.Gauge', {
         });
         this.doUpdateStyles();
     },
-    updateAngleField: function(angleField) {
+    updateAngleField: function (angleField) {
         this.setField(angleField);
     },
-    updateNeedleLengthRatio: function(needleLengthRatio) {
+    updateNeedleLengthRatio: function (needleLengthRatio) {
         this.setNeedleLength(needleLengthRatio * 100);
     },
-    updateRect: function(rect) {
+    updateRect: function (rect) {
         var wholeDisk = this.getWholeDisk(),
             halfTotalAngle = wholeDisk ? Math.PI : this.getTotalAngle() / 2,
             donut = this.getDonut() / 100,
@@ -26536,7 +26638,7 @@ Ext.define('Ext.chart.series.Gauge', {
             radius + (rect[3] - height * radius) / 2
         ]);
     },
-    updateCenter: function(center) {
+    updateCenter: function (center) {
         this.setStyle({
             centerX: center[0],
             centerY: center[1],
@@ -26545,13 +26647,13 @@ Ext.define('Ext.chart.series.Gauge', {
         });
         this.doUpdateStyles();
     },
-    updateRotation: function(rotation) {
+    updateRotation: function (rotation) {
         this.setStyle({
             rotationRads: rotation - (this.getTotalAngle() + Math.PI) / 2
         });
         this.doUpdateStyles();
     },
-    doUpdateShape: function(radius, donut) {
+    doUpdateShape: function (radius, donut) {
         var endRhoArray,
             sectors = this.getSectors(),
             sectorCount = (sectors && sectors.length) || 0,
@@ -26572,22 +26674,22 @@ Ext.define('Ext.chart.series.Gauge', {
         });
         this.doUpdateStyles();
     },
-    updateRadius: function(radius) {
+    updateRadius: function (radius) {
         var donut = this.getDonut();
         this.doUpdateShape(radius, donut);
     },
-    updateDonut: function(donut) {
+    updateDonut: function (donut) {
         var radius = this.getRadius();
         this.doUpdateShape(radius, donut);
     },
-    valueToAngle: function(value) {
+    valueToAngle: function (value) {
         value = this.applyValue(value);
         return this.getTotalAngle() * (value - this.getMinimum()) / (this.getMaximum() - this.getMinimum());
     },
-    applyValue: function(value) {
+    applyValue: function (value) {
         return Math.min(this.getMaximum(), Math.max(value, this.getMinimum()));
     },
-    updateValue: function(value) {
+    updateValue: function (value) {
         var me = this,
             needle = me.getNeedle(),
             angle = me.valueToAngle(value),
@@ -26599,7 +26701,7 @@ Ext.define('Ext.chart.series.Gauge', {
         });
         me.doUpdateStyles();
     },
-    processData: function() {
+    processData: function () {
         var me = this,
             store = me.getStore(),
             axis, min, max, fx, fxDuration,
@@ -26635,7 +26737,7 @@ Ext.define('Ext.chart.series.Gauge', {
         }
         me.setValue(value);
     },
-    getDefaultSpriteConfig: function() {
+    getDefaultSpriteConfig: function () {
         return {
             type: this.seriesType,
             renderer: this.getRenderer(),
@@ -26654,7 +26756,7 @@ Ext.define('Ext.chart.series.Gauge', {
             }
         };
     },
-    normalizeSectors: function(sectors) {
+    normalizeSectors: function (sectors) {
         // Make sure all the sectors in the array have a legit start and end.
         // Note: the array is modified in-place.
         var me = this,
@@ -26699,7 +26801,7 @@ Ext.define('Ext.chart.series.Gauge', {
         }
         return sectors;
     },
-    getSprites: function() {
+    getSprites: function () {
         var me = this,
             store = me.getStore(),
             value = me.getValue(),
@@ -26831,7 +26933,7 @@ Ext.define('Ext.chart.series.sprite.Line', {
                 smooth: 'smooth'
             },
             updaters: {
-                smooth: function(attr) {
+                smooth: function (attr) {
                     var dataX = attr.dataX,
                         dataY = attr.dataY;
                     if (attr.smooth && dataX && dataY && dataX.length > 2 && dataY.length > 2) {
@@ -26846,7 +26948,7 @@ Ext.define('Ext.chart.series.sprite.Line', {
         }
     },
     list: null,
-    updatePlainBBox: function(plain) {
+    updatePlainBBox: function (plain) {
         var attr = this.attr,
             ymin = Math.min(0, attr.dataMinY),
             ymax = Math.max(0, attr.dataMaxY);
@@ -26855,14 +26957,14 @@ Ext.define('Ext.chart.series.sprite.Line', {
         plain.width = attr.dataMaxX - attr.dataMinX;
         plain.height = ymax - ymin;
     },
-    drawStrip: function(ctx, strip) {
+    drawStrip: function (ctx, strip) {
         ctx.moveTo(strip[0], strip[1]);
         for (var i = 2,
-            ln = strip.length; i < ln; i += 2) {
+                 ln = strip.length; i < ln; i += 2) {
             ctx.lineTo(strip[i], strip[i + 1]);
         }
     },
-    drawStraightStroke: function(surface, ctx, start, end, list, xAxis) {
+    drawStraightStroke: function (surface, ctx, start, end, list, xAxis) {
         var me = this,
             attr = me.attr,
             renderer = attr.renderer,
@@ -26875,7 +26977,7 @@ Ext.define('Ext.chart.series.sprite.Line', {
                 step: step
             },
             strip = [],
-            // Stores last continuous segment of the stroke.
+        // Stores last continuous segment of the stroke.
             lineConfig, changes, stripStartX, x, y, x0, y0, x1, y1, i;
         for (i = 3; i < list.length; i += 3) {
             x0 = list[i - 3];
@@ -26900,7 +27002,7 @@ Ext.define('Ext.chart.series.sprite.Line', {
                     needMoveTo = false;
                 }
             } else {
-                
+
                 continue;
             }
             if (step) {
@@ -26929,7 +27031,7 @@ Ext.define('Ext.chart.series.sprite.Line', {
             }
         }
     },
-    calculateScale: function(count, end) {
+    calculateScale: function (count, end) {
         var power = 0,
             n = count;
         while (n < end && count > 0) {
@@ -26938,7 +27040,7 @@ Ext.define('Ext.chart.series.sprite.Line', {
         }
         return Math.pow(2, power > 0 ? power - 1 : power);
     },
-    drawSmoothStroke: function(surface, ctx, start, end, list, xAxis) {
+    drawSmoothStroke: function (surface, ctx, start, end, list, xAxis) {
         var me = this,
             attr = me.attr,
             step = attr.step,
@@ -27003,7 +27105,7 @@ Ext.define('Ext.chart.series.sprite.Line', {
             }
         }
     },
-    drawLabel: function(text, dataX, dataY, labelId, rect) {
+    drawLabel: function (text, dataX, dataY, labelId, rect) {
         var me = this,
             attr = me.attr,
             label = me.getBoundMarker('labels')[0],
@@ -27066,7 +27168,7 @@ Ext.define('Ext.chart.series.sprite.Line', {
         }
         me.putMarker('labels', labelCfg, labelId);
     },
-    drawMarker: function(x, y, index) {
+    drawMarker: function (x, y, index) {
         var me = this,
             attr = me.attr,
             renderer = attr.renderer,
@@ -27082,7 +27184,7 @@ Ext.define('Ext.chart.series.sprite.Line', {
         markerCfg.translationY = surfaceMatrix.y(x, y);
         me.putMarker('markers', markerCfg, index, !renderer);
     },
-    drawStroke: function(surface, ctx, start, end, list, xAxis) {
+    drawStroke: function (surface, ctx, start, end, list, xAxis) {
         var me = this,
             isSmooth = me.attr.smooth && me.smoothX && me.smoothY;
         if (isSmooth) {
@@ -27091,7 +27193,7 @@ Ext.define('Ext.chart.series.sprite.Line', {
             me.drawStraightStroke(surface, ctx, start, end, list, xAxis);
         }
     },
-    renderAggregates: function(aggregates, start, end, surface, ctx, clip, rect) {
+    renderAggregates: function (aggregates, start, end, surface, ctx, clip, rect) {
         var me = this,
             attr = me.attr,
             dataX = attr.dataX,
@@ -27179,7 +27281,7 @@ Ext.define('Ext.chart.series.sprite.Line', {
                     list[i + 1] = y;
                 } else {
                     isContinuousLine = false;
-                    
+
                     continue;
                 }
                 index = list[i + 2];
@@ -27412,13 +27514,13 @@ Ext.define('Ext.chart.series.Line', {
      * each side equal to the length of the visible axis viewport.
      */
     overflowBuffer: 1,
-    themeMarkerCount: function() {
+    themeMarkerCount: function () {
         return 1;
     },
     /**
      * @private Override {@link Ext.chart.series.Series#getDefaultSpriteConfig}
      */
-    getDefaultSpriteConfig: function() {
+    getDefaultSpriteConfig: function () {
         var me = this,
             parentConfig = me.callParent(arguments),
             style = Ext.apply({}, me.getStyle()),
@@ -27459,7 +27561,7 @@ Ext.define('Ext.chart.series.Line', {
             selectionTolerance: me.config.selectionTolerance
         });
     },
-    updateStep: function(step) {
+    updateStep: function (step) {
         var sprite = this.getSprites()[0];
         if (sprite && sprite.attr.step !== step) {
             sprite.setAttributes({
@@ -27467,7 +27569,7 @@ Ext.define('Ext.chart.series.Line', {
             });
         }
     },
-    updateFill: function(fill) {
+    updateFill: function (fill) {
         var sprite = this.getSprites()[0];
         if (sprite && sprite.attr.fillArea !== fill) {
             sprite.setAttributes({
@@ -27475,7 +27577,7 @@ Ext.define('Ext.chart.series.Line', {
             });
         }
     },
-    updateSmooth: function(smooth) {
+    updateSmooth: function (smooth) {
         var sprite = this.getSprites()[0];
         if (sprite && sprite.attr.smooth !== smooth) {
             sprite.setAttributes({
@@ -27541,7 +27643,7 @@ Ext.define('Ext.chart.series.sprite.PieSlice', {
         rendererData: null,
         rendererIndex: 0
     },
-    setGradientBBox: function(ctx, rect) {
+    setGradientBBox: function (ctx, rect) {
         var me = this,
             attr = me.attr;
         if (attr.fillStyle.isGradient || attr.strokeStyle.isGradient) {
@@ -27577,7 +27679,7 @@ Ext.define('Ext.chart.series.sprite.PieSlice', {
             }
         }
     },
-    render: function(surface, ctx, clip, rect) {
+    render: function (surface, ctx, clip, rect) {
         var me = this,
             attr = me.attr,
             itemCfg = {},
@@ -27610,7 +27712,7 @@ Ext.define('Ext.chart.series.sprite.PieSlice', {
             me.placeLabel();
         }
     },
-    placeLabel: function() {
+    placeLabel: function () {
         var me = this,
             attr = me.attr,
             attributeId = me.attr.attributeId,
@@ -27703,7 +27805,7 @@ Ext.define('Ext.chart.series.sprite.PieSlice', {
             }
         }
     },
-    sliceContainsLabel: function(attr, bbox) {
+    sliceContainsLabel: function (attr, bbox) {
         var padding = attr.labelOverflowPadding,
             middle = (attr.endRho + attr.startRho) / 2,
             outer = middle + (bbox.width + padding) / 2,
@@ -27843,13 +27945,13 @@ Ext.define('Ext.chart.series.Pie', {
     directions: [
         'X'
     ],
-    setField: function(f) {
+    setField: function (f) {
         return this.setXField(f);
     },
-    getField: function() {
+    getField: function () {
         return this.getXField();
     },
-    applyLabel: function(newLabel, oldLabel) {
+    applyLabel: function (newLabel, oldLabel) {
         if (Ext.isObject(newLabel) && !Ext.isString(newLabel.orientation)) {
             // Override default label orientation from '' to 'vertical'.
             Ext.apply(newLabel = Ext.Object.chain(newLabel), {
@@ -27866,7 +27968,7 @@ Ext.define('Ext.chart.series.Pie', {
         }
         return oldLabel;
     },
-    updateLabelData: function() {
+    updateLabelData: function () {
         var me = this,
             store = me.getStore(),
             items = store.getData().items,
@@ -27890,7 +27992,7 @@ Ext.define('Ext.chart.series.Pie', {
             }
         }
     },
-    coordinateX: function() {
+    coordinateX: function () {
         var me = this,
             store = me.getStore(),
             records = store.getData().items,
@@ -27952,21 +28054,21 @@ Ext.define('Ext.chart.series.Pie', {
         }
         me.getChart().refreshLegendStore();
     },
-    updateCenter: function(center) {
+    updateCenter: function (center) {
         this.setStyle({
             translationX: center[0] + this.getOffsetX(),
             translationY: center[1] + this.getOffsetY()
         });
         this.doUpdateStyles();
     },
-    updateRadius: function(radius) {
+    updateRadius: function (radius) {
         this.setStyle({
             startRho: radius * this.getDonut() * 0.01,
             endRho: radius * this.getRadiusFactor() * 0.01
         });
         this.doUpdateStyles();
     },
-    getStyleByIndex: function(i) {
+    getStyleByIndex: function (i) {
         var me = this,
             store = me.getStore(),
             item = store.getAt(i),
@@ -27986,7 +28088,7 @@ Ext.define('Ext.chart.series.Pie', {
         }
         return style;
     },
-    updateDonut: function(donut) {
+    updateDonut: function (donut) {
         var radius = this.getRadius();
         this.setStyle({
             startRho: radius * donut * 0.01,
@@ -27995,7 +28097,7 @@ Ext.define('Ext.chart.series.Pie', {
         this.doUpdateStyles();
     },
     rotationOffset: -0.5 * Math.PI,
-    updateRotation: function(rotation) {
+    updateRotation: function (rotation) {
         this.setStyle({
             // Subtract 90 degrees from rotation, so that `rotation` config's default
             // zero value makes first pie sector start at noon, rather than 3 o'clock.
@@ -28003,10 +28105,10 @@ Ext.define('Ext.chart.series.Pie', {
         });
         this.doUpdateStyles();
     },
-    updateTotalAngle: function(totalAngle) {
+    updateTotalAngle: function (totalAngle) {
         this.processData();
     },
-    getSprites: function() {
+    getSprites: function () {
         var me = this,
             chart = me.getChart(),
             store = me.getStore();
@@ -28059,7 +28161,7 @@ Ext.define('Ext.chart.series.Pie', {
         }
         return me.sprites;
     },
-    betweenAngle: function(x, a, b) {
+    betweenAngle: function (x, a, b) {
         var pp = Math.PI * 2,
             offset = this.rotationOffset;
         if (!this.getClockwise()) {
@@ -28087,7 +28189,7 @@ Ext.define('Ext.chart.series.Pie', {
      * @param {Number} angle The angle to search for the slice
      * @return {Object} An object containing the reocord, sprite, scope etc.
      */
-    getItemForAngle: function(angle) {
+    getItemForAngle: function (angle) {
         var me = this,
             sprites = me.getSprites(),
             attr;
@@ -28119,7 +28221,7 @@ Ext.define('Ext.chart.series.Pie', {
         }
         return null;
     },
-    getItemForPoint: function(x, y) {
+    getItemForPoint: function (x, y) {
         var me = this,
             sprites = me.getSprites();
         if (sprites) {
@@ -28156,7 +28258,7 @@ Ext.define('Ext.chart.series.Pie', {
             return null;
         }
     },
-    provideLegendInfo: function(target) {
+    provideLegendInfo: function (target) {
         var me = this,
             store = me.getStore();
         if (store) {
@@ -28183,17 +28285,17 @@ Ext.define('Ext.chart.series.Pie', {
     }
 });
 /*
-    Moved TODO comments to bottom:
-    TODO: `contrast` is not supported. Should be in the series.label config.
-    TODO: We set `contrast` to `true` to flip the color of the label if it is to similar 
-    to the background color. Finally, we set the font family
-    TODO: and size through the `font` parameter.    
-*/
+ Moved TODO comments to bottom:
+ TODO: `contrast` is not supported. Should be in the series.label config.
+ TODO: We set `contrast` to `true` to flip the color of the label if it is to similar 
+ to the background color. Finally, we set the font family
+ TODO: and size through the `font` parameter.    
+ */
 
 /**
  * @class Ext.chart.series.sprite.Pie3DPart
  * @extends Ext.draw.sprite.Path
- * 
+ *
  * Pie3D series sprite.
  */
 Ext.define('Ext.chart.series.sprite.Pie3DPart', {
@@ -28286,7 +28388,7 @@ Ext.define('Ext.chart.series.sprite.Pie3DPart', {
                 part: 'top'
             },
             updaters: {
-                partColor: function(attr) {
+                partColor: function (attr) {
                     var color = Ext.draw.Color.fly(attr.baseColor),
                         fillStyle;
                     switch (attr.part) {
@@ -28349,7 +28451,7 @@ Ext.define('Ext.chart.series.sprite.Pie3DPart', {
                     attr.fillStyle = fillStyle;
                     attr.canvasAttributes.fillStyle = fillStyle;
                 },
-                partZIndex: function(attr) {
+                partZIndex: function (attr) {
                     var rotation = attr.baseRotation,
                         midAngle = (attr.startAngle + attr.endAngle) * 0.5,
                         depth = Math.sin(midAngle + rotation);
@@ -28375,7 +28477,7 @@ Ext.define('Ext.chart.series.sprite.Pie3DPart', {
             }
         }
     },
-    updatePlainBBox: function(plain) {
+    updatePlainBBox: function (plain) {
         var attr = this.attr,
             rho = attr.part === 'inner' ? attr.startRho : attr.endRho;
         plain.width = rho * 2;
@@ -28383,16 +28485,16 @@ Ext.define('Ext.chart.series.sprite.Pie3DPart', {
         plain.x = attr.centerX - rho;
         plain.y = attr.centerY - rho * attr.distortion;
     },
-    updateTransformedBBox: function(transform) {
+    updateTransformedBBox: function (transform) {
         return this.updatePlainBBox(transform);
     },
-    updatePath: function(path) {
+    updatePath: function (path) {
         if (this.attr.endAngle < this.attr.startAngle) {
             return;
         }
         this[this.attr.part + 'Renderer'](path);
     },
-    topRenderer: function(path) {
+    topRenderer: function (path) {
         var attr = this.attr,
             margin = attr.margin,
             distortion = attr.distortion,
@@ -28413,7 +28515,7 @@ Ext.define('Ext.chart.series.sprite.Pie3DPart', {
         path.ellipse(centerX, centerY, endRho, endRho * distortion, 0, endAngle, startAngle, true);
         path.closePath();
     },
-    startRenderer: function(path) {
+    startRenderer: function (path) {
         var attr = this.attr,
             margin = attr.margin,
             centerX = attr.centerX,
@@ -28439,7 +28541,7 @@ Ext.define('Ext.chart.series.sprite.Pie3DPart', {
             path.closePath();
         }
     },
-    endRenderer: function(path) {
+    endRenderer: function (path) {
         var attr = this.attr,
             margin = attr.margin,
             centerX = attr.centerX,
@@ -28465,7 +28567,7 @@ Ext.define('Ext.chart.series.sprite.Pie3DPart', {
             path.closePath();
         }
     },
-    innerRenderer: function(path) {
+    innerRenderer: function (path) {
         var attr = this.attr,
             margin = attr.margin,
             centerX = attr.centerX,
@@ -28506,7 +28608,7 @@ Ext.define('Ext.chart.series.sprite.Pie3DPart', {
             path.closePath();
         }
     },
-    outerRenderer: function(path) {
+    outerRenderer: function (path) {
         var attr = this.attr,
             margin = attr.margin,
             centerX = attr.centerX,
@@ -28552,12 +28654,12 @@ Ext.define('Ext.chart.series.sprite.Pie3DPart', {
 /**
  * @class Ext.chart.series.Pie3D
  * @extends Ext.chart.series.Polar
- * 
+ *
  * Creates a 3D Pie Chart.
  *
  * **Note:** Labels, legends, and lines are not currently available when using the
  * 3D Pie chart series.
- * 
+ *
  *     @example
  *     Ext.create({
  *        xtype: 'polar', 
@@ -28627,17 +28729,17 @@ Ext.define('Ext.chart.series.Pie3D', {
         rotation: 0
     },
     itemOffset: 5,
-    setField: function(f) {
+    setField: function (f) {
         return this.setXField(f);
     },
-    getField: function() {
+    getField: function () {
         return this.getXField();
     },
-    applyRotation: function(rotation) {
+    applyRotation: function (rotation) {
         var twoPie = Math.PI * 2;
         return (rotation % twoPie + twoPie) % twoPie;
     },
-    updateRotation: function(rotation) {
+    updateRotation: function (rotation) {
         var sprites = this.getSprites(),
             i, ln;
         for (i = 0 , ln = sprites.length; i < ln; i++) {
@@ -28646,7 +28748,7 @@ Ext.define('Ext.chart.series.Pie3D', {
             });
         }
     },
-    updateColors: function(colors) {
+    updateColors: function (colors) {
         this.setSubStyle({
             baseColor: colors
         });
@@ -28657,13 +28759,13 @@ Ext.define('Ext.chart.series.Pie3D', {
     // the 'baseColor' attribute should be set, from which the stops of the
     // gradient (used for fillStyle) will be calculated. Themes can't handle
     // situations like that properly.
-    getStyleByIndex: function(i) {
+    getStyleByIndex: function (i) {
         var indexStyle = this.callParent([
                 i
             ]),
             style = this.getStyle(),
-            // 'fill' and 'color' are 'fillStyle' aliases
-            // (see Ext.draw.sprite.Sprite.inheritableStatics.def.aliases)
+        // 'fill' and 'color' are 'fillStyle' aliases
+        // (see Ext.draw.sprite.Sprite.inheritableStatics.def.aliases)
             fillStyle = indexStyle.fillStyle || indexStyle.fill || indexStyle.color,
             strokeStyle = style.strokeStyle || style.stroke;
         if (fillStyle) {
@@ -28677,7 +28779,7 @@ Ext.define('Ext.chart.series.Pie3D', {
         }
         return indexStyle;
     },
-    doUpdateStyles: function() {
+    doUpdateStyles: function () {
         var me = this,
             sprites = me.getSprites(),
             itemOffset = me.itemOffset,
@@ -28694,7 +28796,7 @@ Ext.define('Ext.chart.series.Pie3D', {
             sprites[i + 4].setAttributes(style);
         }
     },
-    processData: function() {
+    processData: function () {
         var me = this,
             chart = me.getChart(),
             animation = chart && chart.getAnimation(),
@@ -28744,21 +28846,21 @@ Ext.define('Ext.chart.series.Pie3D', {
     // distortion into account to calculate the proper radius.
     // The passed value is never used (or derived from) since the radius config
     // is not really meant to be used directly, as it will be reset by the next layout.
-    applyRadius: function() {
+    applyRadius: function () {
         var me = this,
             chart = me.getChart(),
             padding = chart.getInnerPadding(),
             rect = chart.getMainRect() || [
-                0,
-                0,
-                1,
-                1
-            ],
+                    0,
+                    0,
+                    1,
+                    1
+                ],
             width = rect[2] - padding * 2,
             height = (rect[3] - padding * 2 - me.getThickness() * 2) / me.getDistortion();
         return Math.min(width, height) * 0.5;
     },
-    getSprites: function() {
+    getSprites: function () {
         var me = this,
             chart = me.getChart(),
             surface = me.getSurface(),
@@ -28864,7 +28966,7 @@ Ext.define('Ext.chart.series.Pie3D', {
 /**
  * @class Ext.chart.series.sprite.Polar
  * @extends Ext.draw.sprite.Sprite
- * 
+ *
  * Polar sprite.
  */
 Ext.define('Ext.chart.series.sprite.Polar', {
@@ -28986,7 +29088,7 @@ Ext.define('Ext.chart.series.sprite.Polar', {
         store: null,
         field: null
     },
-    updatePlainBBox: function(plain) {
+    updatePlainBBox: function (plain) {
         var attr = this.attr;
         plain.x = attr.centerX - attr.endRho;
         plain.y = attr.centerY + attr.endRho;
@@ -28998,13 +29100,13 @@ Ext.define('Ext.chart.series.sprite.Polar', {
 /**
  * @class Ext.chart.series.sprite.Radar
  * @extends Ext.chart.series.sprite.Polar
- * 
+ *
  * Radar series sprite.
  */
 Ext.define('Ext.chart.series.sprite.Radar', {
     alias: 'sprite.radar',
     extend: 'Ext.chart.series.sprite.Polar',
-    getDataPointXY: function(index) {
+    getDataPointXY: function (index) {
         var me = this,
             attr = me.attr,
             centerX = attr.centerX,
@@ -29036,7 +29138,7 @@ Ext.define('Ext.chart.series.sprite.Radar', {
             y
         ];
     },
-    render: function(surface, ctx) {
+    render: function (surface, ctx) {
         var me = this,
             attr = me.attr,
             dataX = attr.dataX,
@@ -29142,47 +29244,47 @@ Ext.define('Ext.chart.series.Radar', {
      * An object containing styles for overriding series styles from theming.
      */
     config: {},
-    themeColorCount: function() {
+    themeColorCount: function () {
         return 1;
     },
-    themeMarkerCount: function() {
+    themeMarkerCount: function () {
         return 1;
     },
-    updateAngularAxis: function(axis) {
+    updateAngularAxis: function (axis) {
         axis.processData(this);
     },
-    updateRadialAxis: function(axis) {
+    updateRadialAxis: function (axis) {
         axis.processData(this);
     },
-    coordinateX: function() {
+    coordinateX: function () {
         return this.coordinate('X', 0, 2);
     },
-    coordinateY: function() {
+    coordinateY: function () {
         return this.coordinate('Y', 1, 2);
     },
-    updateCenter: function(center) {
+    updateCenter: function (center) {
         this.setStyle({
             translationX: center[0] + this.getOffsetX(),
             translationY: center[1] + this.getOffsetY()
         });
         this.doUpdateStyles();
     },
-    updateRadius: function(radius) {
+    updateRadius: function (radius) {
         this.setStyle({
             endRho: radius
         });
         this.doUpdateStyles();
     },
-    updateRotation: function(rotation) {
+    updateRotation: function (rotation) {
         this.setStyle({
             rotationRads: rotation
         });
         this.doUpdateStyles();
     },
-    updateTotalAngle: function(totalAngle) {
+    updateTotalAngle: function (totalAngle) {
         this.processData();
     },
-    getItemForPoint: function(x, y) {
+    getItemForPoint: function (x, y) {
         var me = this,
             sprite = me.sprites && me.sprites[0],
             attr = sprite.attr,
@@ -29215,7 +29317,7 @@ Ext.define('Ext.chart.series.Radar', {
         }
         return me.callParent(arguments);
     },
-    getDefaultSpriteConfig: function() {
+    getDefaultSpriteConfig: function () {
         var config = this.callParent(),
             fx = {
                 customDurations: {
@@ -29235,7 +29337,7 @@ Ext.define('Ext.chart.series.Radar', {
         }
         return config;
     },
-    getSprites: function() {
+    getSprites: function () {
         var me = this,
             chart = me.getChart(),
             animation = me.getAnimation() || chart && chart.getAnimation(),
@@ -29257,7 +29359,7 @@ Ext.define('Ext.chart.series.Radar', {
         }
         return me.sprites;
     },
-    provideLegendInfo: function(target) {
+    provideLegendInfo: function (target) {
         var me = this,
             style = me.getSubStyleWithTheme(),
             fill = style.fillStyle;
@@ -29277,13 +29379,13 @@ Ext.define('Ext.chart.series.Radar', {
 /**
  * @class Ext.chart.series.sprite.Scatter
  * @extends Ext.chart.series.sprite.Cartesian
- * 
+ *
  * Scatter series sprite.
  */
 Ext.define('Ext.chart.series.sprite.Scatter', {
     alias: 'sprite.scatterSeries',
     extend: 'Ext.chart.series.sprite.Cartesian',
-    renderClipped: function(surface, ctx, clip, clipRect) {
+    renderClipped: function (surface, ctx, clip, clipRect) {
         if (this.cleanRedraw) {
             return;
         }
@@ -29332,7 +29434,7 @@ Ext.define('Ext.chart.series.sprite.Scatter', {
             }
         }
     },
-    drawLabel: function(text, dataX, dataY, labelId, rect) {
+    drawLabel: function (text, dataX, dataY, labelId, rect) {
         var me = this,
             attr = me.attr,
             label = me.getBoundMarker('labels')[0],
@@ -29489,15 +29591,15 @@ Ext.define('Ext.chart.series.Scatter', {
             }
         }
     },
-    themeMarkerCount: function() {
+    themeMarkerCount: function () {
         return 1;
     },
-    applyMarker: function(marker, oldMarker) {
+    applyMarker: function (marker, oldMarker) {
         this.getItemInstancing();
         this.setItemInstancing(marker);
         return this.callParent(arguments);
     },
-    provideLegendInfo: function(target) {
+    provideLegendInfo: function (target) {
         var me = this,
             style = me.getMarkerStyleByIndex(0),
             fill = style.fillStyle;
@@ -30016,7 +30118,7 @@ Ext.define('Ext.chart.theme.YellowGradients', {
  * Singleton that provides methods used by the Ext.draw.Path
  * for hit testing and finding path intersection points.
  */
-Ext.define('Ext.draw.PathUtil', function() {
+Ext.define('Ext.draw.PathUtil', function () {
     var abs = Math.abs,
         pow = Math.pow,
         cos = Math.cos,
@@ -30040,7 +30142,7 @@ Ext.define('Ext.draw.PathUtil', function() {
          *                  with -1 indicating an out-of-bounds intersection
          *                  (before or after the end point or in the imaginary plane).
          */
-        cubicRoots: function(P) {
+        cubicRoots: function (P) {
             var a = P[0],
                 b = P[1],
                 c = P[2],
@@ -30054,7 +30156,7 @@ Ext.define('Ext.draw.PathUtil', function() {
                 Q = (3 * B - pow(A, 2)) / 9,
                 R = (9 * A * B - 27 * C - 2 * pow(A, 3)) / 54,
                 D = pow(Q, 3) + pow(R, 2),
-                // Polynomial discriminant.
+            // Polynomial discriminant.
                 t = [],
                 S, T, Im, th, i,
                 sign = Ext.Number.sign;
@@ -30099,7 +30201,7 @@ Ext.define('Ext.draw.PathUtil', function() {
          * @param c {Number}
          * @return {Array}
          */
-        quadraticRoots: function(a, b, c) {
+        quadraticRoots: function (a, b, c) {
             var D, rD, t, i;
             if (a === 0) {
                 return this.linearRoot(b, c);
@@ -30136,7 +30238,7 @@ Ext.define('Ext.draw.PathUtil', function() {
          * @param b {Number}
          * @return {Array}
          */
-        linearRoot: function(a, b) {
+        linearRoot: function (a, b) {
             var t = -b / a;
             if (a === 0 || t < 0 || t > 1) {
                 return [];
@@ -30154,7 +30256,7 @@ Ext.define('Ext.draw.PathUtil', function() {
          * @param P3 {Number}
          * @return {Array}
          */
-        bezierCoeffs: function(P0, P1, P2, P3) {
+        bezierCoeffs: function (P0, P1, P2, P3) {
             var Z = [];
             Z[0] = -P0 + 3 * P1 - 3 * P2 + P3;
             Z[1] = 3 * P0 - 6 * P1 + 3 * P2;
@@ -30182,14 +30284,14 @@ Ext.define('Ext.draw.PathUtil', function() {
          * @return {Array} Array of intersection points, where each intersection point
          *                  is itself a two-item array [x,y].
          */
-        cubicLineIntersections: function(px1, px2, px3, px4, py1, py2, py3, py4, x1, y1, x2, y2) {
+        cubicLineIntersections: function (px1, px2, px3, px4, py1, py2, py3, py4, x1, y1, x2, y2) {
             var P = [],
                 intersections = [],
-                // Finding line equation coefficients.
+            // Finding line equation coefficients.
                 A = y1 - y2,
                 B = x2 - x1,
                 C = x1 * (y2 - y1) - y1 * (x2 - x1),
-                // Finding cubic Bezier curve equation coefficients.
+            // Finding cubic Bezier curve equation coefficients.
                 bx = this.bezierCoeffs(px1, px2, px3, px4),
                 by = this.bezierCoeffs(py1, py2, py3, py4),
                 i, r, s, t, tt, ttt, cx, cy;
@@ -30206,7 +30308,7 @@ Ext.define('Ext.draw.PathUtil', function() {
             for (i = 0; i < r.length; i++) {
                 t = r[i];
                 if (t < 0 || t > 1) {
-                    
+
                     continue;
                 }
                 tt = t * t;
@@ -30244,13 +30346,13 @@ Ext.define('Ext.draw.PathUtil', function() {
          * @return {Array} Two-item array, where each item is itself an array
          *                  of cubic coefficients.
          */
-        splitCubic: function(P1, P2, P3, P4, z) {
+        splitCubic: function (P1, P2, P3, P4, z) {
             var zz = z * z,
                 zzz = z * zz,
                 iz = z - 1,
                 izz = iz * iz,
                 izzz = iz * izz,
-                // Common point for both curves.
+            // Common point for both curves.
                 P = zzz * P4 - 3 * zz * iz * P3 + 3 * z * izz * P2 - izzz * P1;
             return [
                 [
@@ -30276,7 +30378,7 @@ Ext.define('Ext.draw.PathUtil', function() {
          * @param d {Number}
          * @return {Array} Two-item array representing cubic's range in the given direction.
          */
-        cubicDimension: function(a, b, c, d) {
+        cubicDimension: function (a, b, c, d) {
             var qa = 3 * (-a + 3 * (b - c) + d),
                 qb = 6 * (a - 2 * b + c),
                 qc = -3 * (a - b),
@@ -30335,7 +30437,7 @@ Ext.define('Ext.draw.PathUtil', function() {
          * @param t {Number}
          * @return {Number}
          */
-        interpolateCubic: function(a, b, c, d, t) {
+        interpolateCubic: function (a, b, c, d, t) {
             if (t === 0) {
                 return a;
             }
@@ -30368,7 +30470,7 @@ Ext.define('Ext.draw.PathUtil', function() {
          * @return {Array} Array of intersection points, where each intersection point
          *                  is itself a two-item array [x,y].
          */
-        cubicsIntersections: function(ax1, ax2, ax3, ax4, ay1, ay2, ay3, ay4, bx1, bx2, bx3, bx4, by1, by2, by3, by4) {
+        cubicsIntersections: function (ax1, ax2, ax3, ax4, ay1, ay2, ay3, ay4, bx1, bx2, bx3, bx4, by1, by2, by3, by4) {
             var me = this,
                 axDim = me.cubicDimension(ax1, ax2, ax3, ax4),
                 ayDim = me.cubicDimension(ay1, ay2, ay3, ay4),
@@ -30415,7 +30517,7 @@ Ext.define('Ext.draw.PathUtil', function() {
          * @param y4 {Number}
          * @return {Number[]|null}
          */
-        linesIntersection: function(x1, y1, x2, y2, x3, y3, x4, y4) {
+        linesIntersection: function (x1, y1, x2, y2, x3, y3, x4, y4) {
             var d = (x2 - x1) * (y4 - y3) - (y2 - y1) * (x4 - x3),
                 ua, ub;
             if (d === 0) {
@@ -30448,7 +30550,7 @@ Ext.define('Ext.draw.PathUtil', function() {
          * @param y {Number}
          * @return {Boolean}
          */
-        pointOnLine: function(x1, y1, x2, y2, x, y) {
+        pointOnLine: function (x1, y1, x2, y2, x, y) {
             var t, _;
             if (abs(x2 - x1) < abs(y2 - y1)) {
                 _ = x1;
@@ -30484,7 +30586,7 @@ Ext.define('Ext.draw.PathUtil', function() {
          * @param y {Number}
          * @return {Boolean}
          */
-        pointOnCubic: function(px1, px2, px3, px4, py1, py2, py3, py4, x, y) {
+        pointOnCubic: function (px1, px2, px3, px4, py1, py2, py3, py4, x, y) {
             // Finding cubic Bezier curve equation coefficients.
             var me = this,
                 bx = me.bezierCoeffs(px1, px2, px3, px4),
@@ -30600,7 +30702,7 @@ Ext.define('Ext.draw.plugin.SpriteEvents', {
         spritemouseover: true,
         spritemouseout: true
     },
-    init: function(drawContainer) {
+    init: function (drawContainer) {
         var handleEvent = 'handleEvent';
         this.drawContainer = drawContainer;
         drawContainer.addElementListener({
@@ -30616,7 +30718,7 @@ Ext.define('Ext.draw.plugin.SpriteEvents', {
             scope: this
         });
     },
-    hasSpriteMouseMoveListeners: function() {
+    hasSpriteMouseMoveListeners: function () {
         var listeners = this.drawContainer.hasListeners,
             name;
         for (name in this.spriteMouseMoveEvents) {
@@ -30626,7 +30728,7 @@ Ext.define('Ext.draw.plugin.SpriteEvents', {
         }
         return false;
     },
-    hitTestEvent: function(e) {
+    hitTestEvent: function (e) {
         var items = this.drawContainer.getItems(),
             surface, sprite, i;
         for (i = items.length - 1; i >= 0; i--) {
@@ -30638,7 +30740,7 @@ Ext.define('Ext.draw.plugin.SpriteEvents', {
         }
         return null;
     },
-    handleEvent: function(e) {
+    handleEvent: function (e) {
         var me = this,
             drawContainer = me.drawContainer,
             isMouseMoveEvent = e.type in me.mouseMoveEvents,
@@ -30672,7 +30774,7 @@ Ext.define('Ext.chart.TipSurface', {
     /* End Definitions */
     spriteArray: false,
     renderFirst: true,
-    constructor: function(config) {
+    constructor: function (config) {
         this.callParent([
             config
         ]);
@@ -30681,7 +30783,7 @@ Ext.define('Ext.chart.TipSurface', {
             delete config.sprites;
         }
     },
-    onRender: function() {
+    onRender: function () {
         var me = this,
             i = 0,
             l = 0,
@@ -30757,7 +30859,7 @@ Ext.define('Ext.chart.interactions.ItemInfo', {
     },
     // TODO:ps The trigger above should be 'itemclick', not 'click'.
     item: null,
-    onInfoGesture: function(e, element) {
+    onInfoGesture: function (e, element) {
         var me = this,
             item = me.getItemForEvent(e),
             tooltip = item && item.series.tooltip;

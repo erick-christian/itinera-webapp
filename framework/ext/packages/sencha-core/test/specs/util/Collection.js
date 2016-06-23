@@ -1,7 +1,7 @@
-describe("Ext.util.Collection", function() {
+describe("Ext.util.Collection", function () {
     var collection, fakeScope = {};
 
-    function logEvents (col, log, property) {
+    function logEvents(col, log, property) {
         property = property || 'id';
 
         col.on({
@@ -12,7 +12,7 @@ describe("Ext.util.Collection", function() {
             add: function (sender, details) {
                 expect(sender === col).toBe(true);
                 log.push('add ' + Ext.encode(Ext.Array.pluck(details.items, property)) +
-                        ' at ' + details.at);
+                    ' at ' + details.at);
                 if (details.keys) {
                     log[log.length - 1] += ' w/keys ' + Ext.encode(details.keys);
                 }
@@ -20,7 +20,7 @@ describe("Ext.util.Collection", function() {
             remove: function (sender, details) {
                 expect(sender === col).toBe(true);
                 log.push('remove ' + Ext.encode(Ext.Array.pluck(details.items, property)) +
-                         ' at ' + details.at);
+                    ' at ' + details.at);
                 if (details.keys) {
                     log[log.length - 1] += ' w/keys ' + Ext.encode(details.keys);
                 }
@@ -32,8 +32,8 @@ describe("Ext.util.Collection", function() {
         });
     }
 
-    describe("constructor", function() {
-        it("should provide a default getKey implementation", function() {
+    describe("constructor", function () {
+        it("should provide a default getKey implementation", function () {
             collection = new Ext.util.Collection();
 
             var item1 = {id: 1, data: 'first item'},
@@ -46,9 +46,9 @@ describe("Ext.util.Collection", function() {
             expect(collection.get(2)).toBe(item2);
         });
 
-        it("should allow a custom getKey implementation", function() {
+        it("should allow a custom getKey implementation", function () {
             collection = new Ext.util.Collection({
-                keyFn: function(item) {
+                keyFn: function (item) {
                     return item.myKey;
                 }
             });
@@ -61,11 +61,11 @@ describe("Ext.util.Collection", function() {
             expect(collection.get('a')).toBe(item1);
             expect(collection.get('b')).toBe(item2);
         });
-        
-        it("should contain the source items when configured with a source", function() {
+
+        it("should contain the source items when configured with a source", function () {
             var source = new Ext.util.Collection();
             source.add({id: 1}, {id: 2}, {id: 3});
-            
+
             collection = new Ext.util.Collection({
                 source: source
             });
@@ -73,10 +73,10 @@ describe("Ext.util.Collection", function() {
         })
     });
 
-    describe("iterators", function() {
+    describe("iterators", function () {
         var fn, callScope, item1, item2, item3;
 
-        beforeEach(function() {
+        beforeEach(function () {
             collection = new Ext.util.Collection();
 
             fn = jasmine.createSpy('fn');
@@ -88,22 +88,22 @@ describe("Ext.util.Collection", function() {
             collection.add([item1, item2, item3]);
         });
 
-        describe("each", function() {
-            it("should call with the correct scope", function() {
-                collection.each(function() {
+        describe("each", function () {
+            it("should call with the correct scope", function () {
+                collection.each(function () {
                     callScope = this;
                 }, fakeScope);
 
                 expect(callScope).toBe(fakeScope);
             });
 
-            it("should call the correct number of times", function() {
+            it("should call the correct number of times", function () {
                 collection.each(fn);
 
                 expect(fn.callCount).toBe(3);
             });
 
-            it("should be called with each item", function() {
+            it("should be called with each item", function () {
                 collection.each(fn);
 
                 expect(fn).toHaveBeenCalledWith(item1, 0, 3);
@@ -112,22 +112,22 @@ describe("Ext.util.Collection", function() {
             });
         });
 
-        describe("eachKey", function() {
-            it("should be called with the correct scope", function() {
-                collection.eachKey(function() {
+        describe("eachKey", function () {
+            it("should be called with the correct scope", function () {
+                collection.eachKey(function () {
                     callScope = this;
                 }, fakeScope);
 
                 expect(callScope).toBe(fakeScope);
             });
 
-            it("should call the correct number of times", function() {
+            it("should call the correct number of times", function () {
                 collection.eachKey(fn);
 
                 expect(fn.callCount).toBe(3);
             });
 
-            it("should be called with each key", function() {
+            it("should be called with each key", function () {
                 collection.eachKey(fn);
 
                 expect(fn).toHaveBeenCalledWith(1, item1, 0, 3);
@@ -137,9 +137,9 @@ describe("Ext.util.Collection", function() {
         });
     });
 
-    describe("adding items", function() {
+    describe("adding items", function () {
         var item1, item2, item3, item4;
-        beforeEach(function() {
+        beforeEach(function () {
             collection = new Ext.util.Collection();
             item1 = {id: 1};
             item2 = {id: 2};
@@ -147,11 +147,11 @@ describe("Ext.util.Collection", function() {
             item4 = {id: 4};
         });
 
-        afterEach(function() {
+        afterEach(function () {
             item1 = item2 = item3 = item4 = null;
         });
 
-        it("should get the correct count when adding an array", function() {
+        it("should get the correct count when adding an array", function () {
             collection.add([item1, item2]);
 
             expect(collection.getCount()).toBe(2);
@@ -160,7 +160,7 @@ describe("Ext.util.Collection", function() {
             expect(collection.getAt(1)).toBe(item2);
         });
 
-        it("should get the correct count when adding varargs", function() {
+        it("should get the correct count when adding varargs", function () {
             collection.add(item1, item2);
 
             expect(collection.getCount()).toBe(2);
@@ -169,7 +169,7 @@ describe("Ext.util.Collection", function() {
             expect(collection.getAt(1)).toBe(item2);
         });
 
-        it("should get the correct count when adding sequentially", function() {
+        it("should get the correct count when adding sequentially", function () {
             collection.add(item1);
             collection.add(item2);
 
@@ -179,10 +179,10 @@ describe("Ext.util.Collection", function() {
             expect(collection.getAt(1)).toBe(item2);
         });
 
-        it("should fire the add event", function() {
+        it("should fire the add event", function () {
             var executed = false;
 
-            collection.on('add', function() {
+            collection.on('add', function () {
                 executed = true;
             });
 
@@ -190,23 +190,23 @@ describe("Ext.util.Collection", function() {
 
             expect(executed).toBe(true);
         });
-        
-        describe("with replaceAll", function() {
-            it("should add when the collection is empty", function() {
+
+        describe("with replaceAll", function () {
+            it("should add when the collection is empty", function () {
                 collection.replaceAll(item1);
                 expect(collection.getCount()).toBe(1);
             });
-            
-            it("should remove all existing items", function() {
+
+            it("should remove all existing items", function () {
                 collection.add(item1, item2, item3);
                 collection.replaceAll(item4);
                 expect(collection.getCount()).toBe(1);
                 expect(collection.first()).toBe(item4);
             });
-            
-            it("should remove even when no items are added", function() {
+
+            it("should remove even when no items are added", function () {
                 collection.add(item1, item2, item3);
-                collection.setDecoder(function() {
+                collection.setDecoder(function () {
                     return false;
                 });
                 collection.replaceAll(item4);
@@ -214,24 +214,24 @@ describe("Ext.util.Collection", function() {
             });
         });
 
-        describe("when sorted", function() {
+        describe("when sorted", function () {
             var spy, expectPos;
 
-            beforeEach(function() {
+            beforeEach(function () {
                 collection.getSorters().add('id');
                 spy = jasmine.createSpy();
                 collection.on('sort', spy);
             });
 
-            afterEach(function() {
+            afterEach(function () {
                 expect(spy).not.toHaveBeenCalled();
                 expectPos = spy = null;
             });
 
-            describe("a single item", function() {
-                describe("with no items", function() {
-                    it("should add the item", function() {
-                        expectPos = function() {
+            describe("a single item", function () {
+                describe("with no items", function () {
+                    it("should add the item", function () {
+                        expectPos = function () {
                             expect(collection.length).toBe(1);
                             expect(collection.getAt(0)).toBe(item1);
                             expect(collection.indexOfKey(1)).toBe(0);
@@ -241,10 +241,10 @@ describe("Ext.util.Collection", function() {
                         expectPos();
                     });
 
-                    describe("with items", function() {
-                        it("should put the item in the correct position", function() {
+                    describe("with items", function () {
+                        it("should put the item in the correct position", function () {
                             collection.add(item1, item3);
-                            expectPos = function() {
+                            expectPos = function () {
                                 expect(collection.length).toBe(3);
                                 expect(collection.getAt(1)).toBe(item2);
                                 expect(collection.indexOfKey(1)).toBe(0);
@@ -259,10 +259,10 @@ describe("Ext.util.Collection", function() {
                 })
             });
 
-            describe("multiple items", function() {
-                describe("with no items", function() {
-                    it("should insert the items", function() {
-                        expectPos = function() {
+            describe("multiple items", function () {
+                describe("with no items", function () {
+                    it("should insert the items", function () {
+                        expectPos = function () {
                             expect(collection.length).toBe(3);
                             expect(collection.getAt(0)).toBe(item1);
                             expect(collection.getAt(1)).toBe(item2);
@@ -276,8 +276,8 @@ describe("Ext.util.Collection", function() {
                         expectPos();
                     });
 
-                    it("should sort the added items", function() {
-                        expectPos = function() {
+                    it("should sort the added items", function () {
+                        expectPos = function () {
                             expect(collection.length).toBe(3);
                             expect(collection.getAt(0)).toBe(item1);
                             expect(collection.getAt(1)).toBe(item2);
@@ -289,13 +289,13 @@ describe("Ext.util.Collection", function() {
                     });
                 });
 
-                describe("with items", function() {
-                    it("should insert the items into the correct position", function() {
+                describe("with items", function () {
+                    it("should insert the items into the correct position", function () {
                         collection.add(item3);
-                        expectPos = function() {
+                        expectPos = function () {
                             expect(collection.length).toBe(3);
                             expect(collection.getAt(0)).toBe(item1);
-                            expect(collection.getAt(1)).toBe(item2);    
+                            expect(collection.getAt(1)).toBe(item2);
                             expect(collection.getAt(2)).toBe(item3);
                             expect(collection.indexOfKey(1)).toBe(0);
                             expect(collection.indexOfKey(2)).toBe(1);
@@ -306,9 +306,9 @@ describe("Ext.util.Collection", function() {
                         expectPos();
                     });
 
-                    it("should sort the added items", function() {
+                    it("should sort the added items", function () {
                         collection.add(item3);
-                        expectPos = function() {
+                        expectPos = function () {
                             expect(collection.length).toBe(3);
                             expect(collection.getAt(0)).toBe(item1);
                             expect(collection.getAt(1)).toBe(item2);
@@ -322,10 +322,10 @@ describe("Ext.util.Collection", function() {
                         expectPos();
                     });
 
-                    it("should insert items in a discontiguous range", function() {
+                    it("should insert items in a discontiguous range", function () {
                         collection.add(item1, item3);
                         var count = 0;
-                        expectPos = function() {
+                        expectPos = function () {
                             expect(collection.length).toBe(4);
                             expect(collection.getAt(0)).toBe(item1);
                             expect(collection.getAt(1)).toBe(item2);
@@ -336,7 +336,7 @@ describe("Ext.util.Collection", function() {
                             expect(collection.indexOfKey(3)).toBe(2);
                             expect(collection.indexOfKey(4)).toBe(3);
                         };
-                        collection.on('add', function() {
+                        collection.on('add', function () {
                             if (count === 0) {
                                 expect(collection.length).toBe(4);
                                 expect(collection.getAt(0)).toBe(item1);
@@ -358,7 +358,7 @@ describe("Ext.util.Collection", function() {
         });
     });
 
-    describe("removing items", function() {
+    describe("removing items", function () {
         var item1 = {id: 1, name: 'one'},
             item2 = {id: 2, name: 'two'},
             item3 = {id: 3, name: 'three'},
@@ -369,34 +369,34 @@ describe("Ext.util.Collection", function() {
             item8 = {id: 8, name: 'eight'},
             item9 = {id: 9, name: 'nine'};
 
-        beforeEach(function() {
+        beforeEach(function () {
             collection = new Ext.util.Collection();
 
             collection.add([
-                item1, 
-                item2, 
-                item3, 
-                item4, 
-                item5, 
-                item6, 
-                item7, 
-                item8, 
+                item1,
+                item2,
+                item3,
+                item4,
+                item5,
+                item6,
+                item7,
+                item8,
                 item9
             ]);
         });
-        
-        describe("remove", function() {
-            it("should remove a single item", function() {
+
+        describe("remove", function () {
+            it("should remove a single item", function () {
                 collection.remove(item1);
 
                 expect(collection.getCount()).toBe(8);
             });
-            
-            it("should return the removed item count", function(){
+
+            it("should return the removed item count", function () {
                 expect(collection.remove(item1)).toBe(1);
             });
 
-            it("should the passed items array", function(){
+            it("should the passed items array", function () {
                 collection.remove([item2, item3]);
                 expect(collection.getCount()).toBe(7);
             });
@@ -431,11 +431,11 @@ describe("Ext.util.Collection", function() {
                 expect(details[1].keys[1]).toBe(3);
             });
 
-            it("should return 0 if no item was found", function(){
-                expect(collection.remove({ id: 0 })).toBe(0);
+            it("should return 0 if no item was found", function () {
+                expect(collection.remove({id: 0})).toBe(0);
             });
 
-            it("should fire the remove event", function() {
+            it("should fire the remove event", function () {
                 var source, details;
 
                 collection.on('remove', function (sender, remove) {
@@ -450,12 +450,12 @@ describe("Ext.util.Collection", function() {
                 expect(details.items.length).toBe(1);
                 expect(details.items[0]).toBe(item1);
             });
-            
-            it("should only fire a single event if the items are in a large contiguous range", function() {
+
+            it("should only fire a single event if the items are in a large contiguous range", function () {
                 var spy = jasmine.createSpy(),
                     items = [],
                     i;
-                    
+
                 for (i = 0; i < 1000; ++i) {
                     items.push({
                         id: i + 1
@@ -467,24 +467,24 @@ describe("Ext.util.Collection", function() {
                 expect(spy.callCount).toBe(1);
             });
         });
-        
-        describe("removeAt", function() {
-            it("should remove a single item", function() {
+
+        describe("removeAt", function () {
+            it("should remove a single item", function () {
                 collection.removeAt(1);
 
                 expect(collection.getCount()).toBe(8);
             });
-            
-            it("should return the removed item", function(){
+
+            it("should return the removed item", function () {
                 expect(collection.removeAt(1)).toBe(item2);
             });
-            
-            it("should return false if no item was found", function(){
+
+            it("should return false if no item was found", function () {
                 expect(collection.removeAt(9)).toBeFalsy();
             });
 
-            describe("event", function() {
-                it("should fire the remove event", function() {
+            describe("event", function () {
+                it("should fire the remove event", function () {
                     var source, details;
 
                     collection.on('remove', function (sender, remove) {
@@ -501,10 +501,10 @@ describe("Ext.util.Collection", function() {
                     expect(details.keys.length).toBe(1);
                     expect(details.keys[0]).toBe(2);
                 });
-                
-                it("should update the collection during a remove", function(){
+
+                it("should update the collection during a remove", function () {
                     var count, item;
-                    collection.on('remove', function(){
+                    collection.on('remove', function () {
                         count = collection.getCount();
                         item = collection.getByKey(1);
                     });
@@ -514,9 +514,9 @@ describe("Ext.util.Collection", function() {
                 });
             });
 
-            describe("when filtered", function() {
-                it("should remove the correct item with an all inclusive filter", function() {
-                    collection.getFilters().add(function() {
+            describe("when filtered", function () {
+                it("should remove the correct item with an all inclusive filter", function () {
+                    collection.getFilters().add(function () {
                         return true;
                     });
                     collection.removeAt(1);
@@ -526,37 +526,37 @@ describe("Ext.util.Collection", function() {
                 });
             });
         });
-        
-        describe("bulkRemove", function(){
+
+        describe("bulkRemove", function () {
             it("should limit the length to that of the collection", function () {
                 collection.removeAt(4, 100);
                 expect(collection.getCount()).toBe(4);
             });
-                
-            it("should remove the correct items", function(){
+
+            it("should remove the correct items", function () {
                 collection.removeAt(3, 2);
                 expect(collection.getCount()).toBe(7);
                 expect(collection.getAt(2)).toBe(item3);
                 expect(collection.getAt(3)).toBe(item6);
-            });    
+            });
         });
-        
-        describe("removeByKey", function() {
-            it("should remove a single item", function() {
+
+        describe("removeByKey", function () {
+            it("should remove a single item", function () {
                 collection.removeByKey(1);
 
                 expect(collection.getCount()).toBe(8);
             });
-            
-            it("should return the removed item", function(){
+
+            it("should return the removed item", function () {
                 expect(collection.removeByKey(1)).toBe(item1);
             });
-            
-            it("should return false if no item was found", function(){
+
+            it("should return false if no item was found", function () {
                 expect(collection.removeByKey(10)).toBeFalsy();
             });
 
-            it("should fire the remove event", function() {
+            it("should fire the remove event", function () {
                 var source, details;
 
                 collection.on('remove', function (sender, remove) {
@@ -574,14 +574,14 @@ describe("Ext.util.Collection", function() {
                 expect(details.keys[0]).toBe(2);
             });
         });
-        
-        describe("removeAll", function(){
-            it("should remove all items", function(){
-                collection.removeAll();  
-                expect(collection.getCount()).toBe(0);  
+
+        describe("removeAll", function () {
+            it("should remove all items", function () {
+                collection.removeAll();
+                expect(collection.getCount()).toBe(0);
             });
-            
-            it("should fire the remove event with no passed items", function(){
+
+            it("should fire the remove event with no passed items", function () {
                 var called = 0,
                     source, details;
 
@@ -600,19 +600,19 @@ describe("Ext.util.Collection", function() {
                 expect(details.items).toEqual([item1, item2, item3, item4, item5, item6,
                     item7, item8, item9]);
                 expect(details.keys.length).toBe(9);
-                expect(details.keys).toEqual([1,2,3,4,5,6,7,8,9]);
+                expect(details.keys).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
             });
         });
     });
 
-    describe("clearing items", function() {
-        beforeEach(function() {
+    describe("clearing items", function () {
+        beforeEach(function () {
             collection = new Ext.util.Collection();
 
             collection.add([{id: 1}, {id: 2}]);
         });
 
-        it("should remove all items", function() {
+        it("should remove all items", function () {
             expect(collection.length).toBe(2);
 
             collection.clear();
@@ -620,10 +620,10 @@ describe("Ext.util.Collection", function() {
             expect(collection.length).toBe(0);
         });
 
-        it("should not fire the remove event", function() {
+        it("should not fire the remove event", function () {
             var called = 0;
 
-            collection.on('remove', function() {
+            collection.on('remove', function () {
                 ++called;
             });
 
@@ -633,33 +633,33 @@ describe("Ext.util.Collection", function() {
         });
     });
 
-    describe("determining insertion index in a sorted Collection", function() {
+    describe("determining insertion index in a sorted Collection", function () {
 
         // Items to sort into name order
         var item1 = {id: 2, name: 'Michael'},
             item2 = {id: 3, name: 'Yanto'},
             item3 = {id: 1, name: 'Bill'},
 
-            // Items to find insertion indices for
+        // Items to find insertion indices for
             item4 = {id: 4, name: 'Albert'}, // Insert index 0 when ASC, 3 when DESC
             item5 = {id: 5, name: 'Fred'},   // Insert index 1 when ASC, 2 when DESC
             item6 = {id: 6, name: 'Robert'}, // Insert index 2 when ASC, 1 when DESC
             item7 = {id: 7, name: 'Zebedee'};// Insert index 3 when ASC, 0 when DESC
 
-        beforeEach(function() {
+        beforeEach(function () {
             collection = new Ext.util.Collection();
             collection.add([item1, item2, item3]);
         });
 
-        function getInsertIndex (item) {
+        function getInsertIndex(item) {
             collection.add(item);
             var ret = collection.indexOf(item);
             collection.remove(item);
             return ret;
         }
 
-        describe("Sorted ascending", function() {
-            it("should find correct insertion indices", function() {
+        describe("Sorted ascending", function () {
+            it("should find correct insertion indices", function () {
                 collection.sort('name');
 
                 expect(getInsertIndex(item4)).toBe(0);
@@ -669,8 +669,8 @@ describe("Ext.util.Collection", function() {
             });
         });
 
-        describe("Sorted descending", function() {
-            it("should find correct insertion indices", function() {
+        describe("Sorted descending", function () {
+            it("should find correct insertion indices", function () {
                 collection.sort('name', 'DESC');
 
                 expect(getInsertIndex(item4)).toBe(3);
@@ -681,7 +681,7 @@ describe("Ext.util.Collection", function() {
         });
     });
 
-    describe("an existing Collection", function() {
+    describe("an existing Collection", function () {
         var item1 = {id: 1, name: 'first'},
             item2 = {id: 2, name: 'second'},
             item3 = {id: 3, name: 'third'},
@@ -691,8 +691,8 @@ describe("Ext.util.Collection", function() {
             item7 = {id: 7, name: 'seventh'},
             item8 = {id: 8, name: 'eighth'},
             item9 = {id: 9, name: 'ninth'};
-            
-        function fill () {
+
+        function fill() {
             collection.clear();
             collection.add([
                 item1,  // 0    -9
@@ -709,15 +709,15 @@ describe("Ext.util.Collection", function() {
 
         var generation;
 
-        beforeEach(function() {
+        beforeEach(function () {
             collection = new Ext.util.Collection();
 
             collection.add([item1, item2, item3]);
             generation = collection.generation;
         });
-        
-        describe("updateKey", function(){
-            it("should do nothing if the old key doesn't exist for member item", function() {
+
+        describe("updateKey", function () {
+            it("should do nothing if the old key doesn't exist for member item", function () {
                 collection.updateKey(item1, 'bar');
                 expect(collection.getByKey('bar')).toBeUndefined();
                 expect(collection.getByKey(item1.id)).toBe(item1);
@@ -725,7 +725,7 @@ describe("Ext.util.Collection", function() {
                 expect(collection.generation).toBe(generation); // no changes made
             });
 
-            it("should do nothing if the old key doesn't exist for non-member item", function() {
+            it("should do nothing if the old key doesn't exist for non-member item", function () {
                 collection.updateKey(item4, 'bar');
                 expect(collection.getByKey('bar')).toBeUndefined();
                 expect(collection.getByKey(item4.id)).toBe(undefined);
@@ -733,7 +733,7 @@ describe("Ext.util.Collection", function() {
                 expect(collection.generation).toBe(generation); // no changes made
             });
 
-            it("should throw if old key is a different item", function() {
+            it("should throw if old key is a different item", function () {
                 expect(function () {
                     collection.updateKey(item4, item1.id);
                 }).toThrow();
@@ -743,7 +743,7 @@ describe("Ext.util.Collection", function() {
                 expect(collection.generation).toBe(generation); // no changes made
             });
 
-            it("should throw if new key collides with a different item", function() {
+            it("should throw if new key collides with a different item", function () {
                 // Replace item1 so we can change its key and not have any issues with
                 // an error for claiming newItem1 was the item by id=1. We just want to
                 // check for the collision on the new id.
@@ -782,8 +782,8 @@ describe("Ext.util.Collection", function() {
             });
         });
 
-        describe("inserting items", function() {
-            it("should insert a new item", function() {
+        describe("inserting items", function () {
+            it("should insert a new item", function () {
                 var count = collection.getCount();
 
                 collection.insert(0, item4);
@@ -791,7 +791,7 @@ describe("Ext.util.Collection", function() {
                 expect(collection.getCount()).toBe(count + 1);
             });
 
-            it("should fire the add event", function() {
+            it("should fire the add event", function () {
                 var called = 0,
                     source, details;
 
@@ -812,7 +812,7 @@ describe("Ext.util.Collection", function() {
                 expect(details.keys[0]).toBe(4);
             });
 
-            it("should insert the item at the correct location", function() {
+            it("should insert the item at the correct location", function () {
                 expect(collection.items[0]).toBe(item1);
 
                 collection.insert(0, item4);
@@ -820,10 +820,10 @@ describe("Ext.util.Collection", function() {
                 expect(collection.items[0]).toBe(item4);
             });
 
-            describe("with a source", function() {
+            describe("with a source", function () {
                 var child, newItem;
 
-                beforeEach(function() {
+                beforeEach(function () {
                     fill();
                     child = new Ext.util.Collection();
                     child.setSource(collection);
@@ -834,30 +834,30 @@ describe("Ext.util.Collection", function() {
                     };
                 });
 
-                afterEach(function() {
+                afterEach(function () {
                     child.destroy();
                     newItem = child = null;
                 });
 
-                describe("inserting into the source", function() {
-                    it("should have the correct position when inserting at the start", function() {
+                describe("inserting into the source", function () {
+                    it("should have the correct position when inserting at the start", function () {
                         collection.insert(0, newItem);
                         expect(child.getAt(0)).toBe(newItem);
                     });
 
-                    it("should have the correct position when inserting into the middle", function() {
+                    it("should have the correct position when inserting into the middle", function () {
                         collection.insert(4, newItem);
                         expect(child.getAt(4)).toBe(newItem);
                     });
 
-                    it("should have the correct position when inserting at the end", function() {
+                    it("should have the correct position when inserting at the end", function () {
                         collection.insert(100, newItem);
                         expect(collection.getAt(9)).toBe(newItem);
                     });
 
-                    describe("with source sorted", function() {
-                        it("should take the sorted position from the source", function() {
-                            collection.getSorters().add(function(item1, item2) {
+                    describe("with source sorted", function () {
+                        it("should take the sorted position from the source", function () {
+                            collection.getSorters().add(function (item1, item2) {
                                 var n1 = item1.name,
                                     n2 = item2.name;
 
@@ -872,41 +872,41 @@ describe("Ext.util.Collection", function() {
                         });
                     });
 
-                    describe("with the child filtered", function() {
-                        it("hould have the correct position when inserting at the start", function() {
-                            child.getFilters().add(function(item) {
+                    describe("with the child filtered", function () {
+                        it("hould have the correct position when inserting at the start", function () {
+                            child.getFilters().add(function (item) {
                                 return item.name === 'third' || item.name === 'seventh' || item.name === 'Foo';
                             });
                             collection.insert(0, newItem);
                             expect(child.getAt(0)).toBe(newItem);
                         });
 
-                        it("should have the correct position when inserting into the middle", function() {
-                            child.getFilters().add(function(item) {
+                        it("should have the correct position when inserting into the middle", function () {
+                            child.getFilters().add(function (item) {
                                 return item.name === 'third' || item.name === 'seventh' || item.name === 'Foo';
                             });
                             collection.insert(5, newItem);
                             expect(child.getAt(1)).toBe(newItem);
                         });
 
-                        it("should have the correct position when inserting at the end", function() {
-                            child.getFilters().add(function(item) {
+                        it("should have the correct position when inserting at the end", function () {
+                            child.getFilters().add(function (item) {
                                 return item.name === 'third' || item.name === 'seventh' || item.name === 'Foo';
                             });
                             collection.insert(100, newItem);
                             expect(child.getAt(2)).toBe(newItem);
                         });
 
-                        it("should have the correct position when the nearest item in the child is the first item in the source", function() {
-                            child.getFilters().add(function(item) {
+                        it("should have the correct position when the nearest item in the child is the first item in the source", function () {
+                            child.getFilters().add(function (item) {
                                 return item.name === 'first' || item.name === 'seventh' || item.name === 'Foo';
                             });
                             collection.insert(3, newItem);
                             expect(child.getAt(1)).toBe(newItem);
                         });
 
-                        it("should have the correct position when there is no nearest item in the source", function() {
-                            child.getFilters().add(function(item) {
+                        it("should have the correct position when there is no nearest item in the source", function () {
+                            child.getFilters().add(function (item) {
                                 return item.name === 'seventh' || item.name === 'Foo';
                             });
                             collection.insert(3, newItem);
@@ -915,24 +915,24 @@ describe("Ext.util.Collection", function() {
                     });
                 });
 
-                describe("inserting into the child", function() {
-                    it("should have the correct position when inserting at the start", function() {
+                describe("inserting into the child", function () {
+                    it("should have the correct position when inserting at the start", function () {
                         child.insert(0, newItem);
                         expect(collection.getAt(0)).toBe(newItem);
                     });
 
-                    it("should have the correct position when inserting into the middle", function() {
+                    it("should have the correct position when inserting into the middle", function () {
                         child.insert(4, newItem);
                         expect(collection.getAt(4)).toBe(newItem);
                     });
 
-                    it("should have the correct position when inserting at the end", function() {
+                    it("should have the correct position when inserting at the end", function () {
                         child.insert(100, newItem);
                         expect(collection.getAt(9)).toBe(newItem);
                     });
 
-                    describe("with the source sorted", function() {
-                        it("should use the specified position", function() {
+                    describe("with the source sorted", function () {
+                        it("should use the specified position", function () {
                             collection.sort('name');
                             var item = {id: 100, name: 'zzzz'};
                             child.insert(0, item);
@@ -941,9 +941,9 @@ describe("Ext.util.Collection", function() {
                         });
                     });
 
-                    describe("when filtered", function() {
-                        it("should adjust the position for the source collection", function() {
-                            child.getFilters().add(function(item) {
+                    describe("when filtered", function () {
+                        it("should adjust the position for the source collection", function () {
+                            child.getFilters().add(function (item) {
                                 return item.name !== 'first' && item.name !== 'second';
                             });
                             child.insert(0, newItem);
@@ -954,14 +954,14 @@ describe("Ext.util.Collection", function() {
             });
         });
 
-        describe("replacing items", function() {
-            it("should replace the correct item", function() {
+        describe("replacing items", function () {
+            it("should replace the correct item", function () {
                 collection.splice(1, 1, [item4]);
 
                 expect(collection.getAt(1)).toBe(item4);
             });
 
-            it("should not change the count", function() {
+            it("should not change the count", function () {
                 var count = collection.getCount();
 
                 collection.splice(1, 1, [item4]);
@@ -969,7 +969,7 @@ describe("Ext.util.Collection", function() {
                 expect(collection.getCount()).toBe(count);
             });
 
-            it("should fire the proper events", function() {
+            it("should fire the proper events", function () {
                 var log = [];
 
                 logEvents(collection, log, 'name');
@@ -985,8 +985,8 @@ describe("Ext.util.Collection", function() {
             });
         });
 
-        describe("cloning", function() {
-            it("should copy all items into the new Collection", function() {
+        describe("cloning", function () {
+            it("should copy all items into the new Collection", function () {
                 var mc2 = collection.clone();
 
                 expect(mc2.getCount()).toBe(3);
@@ -994,110 +994,110 @@ describe("Ext.util.Collection", function() {
                 expect(mc2.items[1]).toBe(item2);
                 expect(mc2.items[2]).toBe(item3);
             });
-            
-            it("should keep the getKey fn", function(){
-                var fn = function(o){
-                    return o.id;    
+
+            it("should keep the getKey fn", function () {
+                var fn = function (o) {
+                    return o.id;
                 }, mc1 = new Ext.util.Collection({
                     keyFn: fn
                 });
-                
+
                 var mc2 = mc1.clone();
                 expect(mc2.getKey).toBe(fn);
                 mc1 = mc2 = null;
             });
         });
 
-        describe("getting items", function() {
-            
-            it("should get an item's key", function() {
+        describe("getting items", function () {
+
+            it("should get an item's key", function () {
                 expect(collection.getKey(item1)).toBe(1);
             });
-            
-            describe("first", function() {
-                it("should get the first item", function() {
+
+            describe("first", function () {
+                it("should get the first item", function () {
                     expect(collection.first()).toBe(item1);
                 });
-                
-                it("should return undefined if the collection is empty", function() {
+
+                it("should return undefined if the collection is empty", function () {
                     collection = new Ext.util.Collection();
                     expect(collection.first()).toBeUndefined();
                 });
             });
-            
-            describe("last", function() {
-                it("should get the last item", function() {
+
+            describe("last", function () {
+                it("should get the last item", function () {
                     expect(collection.last()).toBe(item3);
                 });
-                
-                it("should return undefined if the collection is empty", function() {
+
+                it("should return undefined if the collection is empty", function () {
                     collection = new Ext.util.Collection();
                     expect(collection.last()).toBeUndefined();
                 });
             });
-            
-            describe("get", function() {
-                it("should get by key", function() {
+
+            describe("get", function () {
+                it("should get by key", function () {
                     expect(collection.get(2)).toBe(item2);
                 });
-                
-                it("should return undefined if the key doesn't exist", function() {
+
+                it("should return undefined if the key doesn't exist", function () {
                     expect(collection.get(100)).toBeUndefined();
                 });
-                
-                it("should get an newly added item", function() {
+
+                it("should get an newly added item", function () {
                     var item5 = {id: 'a', name: 'fifth item'};
                     collection.add(item5);
                     expect(collection.get('a')).toBe(item5);
                 });
             });
 
-            describe("indexOf", function() {
-                it("should return the correct indexOf an item", function() {
+            describe("indexOf", function () {
+                it("should return the correct indexOf an item", function () {
                     expect(collection.indexOf(item1)).toBe(0);
                 });
-                
-                it("should return -1 if the item does not exist in the collection", function() {
+
+                it("should return -1 if the item does not exist in the collection", function () {
                     expect(collection.indexOf({id: 73})).toBe(-1);
                 });
-                
-                it("should handle null", function() {
+
+                it("should handle null", function () {
                     expect(collection.indexOf(null)).toBe(-1);
                 });
             });
-            
-            describe("indexOfKey", function() {
-                it("should return the correct indexOfKey", function() {
+
+            describe("indexOfKey", function () {
+                it("should return the correct indexOfKey", function () {
                     expect(collection.indexOfKey(2)).toBe(1);
                 });
-                
-                it("should return -1 if the key does not exist", function() {
+
+                it("should return -1 if the key does not exist", function () {
                     expect(collection.indexOfKey(42)).toBe(-1);
                 });
             });
-            
-            describe("get by key", function() {
-                it("should return the correct key", function() {
+
+            describe("get by key", function () {
+                it("should return the correct key", function () {
                     expect(collection.getByKey(3)).toBe(item3);
                 });
-                
-                it("should return undefined if the key does not exist", function() {
+
+                it("should return undefined if the key does not exist", function () {
                     expect(collection.getByKey(1200)).toBeUndefined();
                 });
             });
-            
-            describe("getAt", function() {
-                it("should get an item by index", function() {
+
+            describe("getAt", function () {
+                it("should get an item by index", function () {
                     expect(collection.getAt(2)).toBe(item3);
                 });
-                
-                it("should return undefined if the index is out of bounds", function() {
+
+                it("should return undefined if the index is out of bounds", function () {
                     expect(collection.getAt(33)).toBeUndefined();
                 });
             });
 
-            describe("when getting a range", function() {
-                it("should honor the start and limit params", function() {
+            describe("when getting a range", function () {
+                it("should honor the start and limit params", function () {
                     fill();
                     var items = collection.getRange(1, 3);
 
@@ -1106,7 +1106,7 @@ describe("Ext.util.Collection", function() {
                     expect(items[1]).toBe(item3);
                 });
 
-                it("should return all items if no params are given", function() {
+                it("should return all items if no params are given", function () {
                     fill();
                     var items = collection.getRange();
 
@@ -1117,7 +1117,7 @@ describe("Ext.util.Collection", function() {
                     expect(items[8]).toBe(item9);
                 });
 
-                it("should return all items to the end if only the start param is given", function() {
+                it("should return all items to the end if only the start param is given", function () {
                     fill();
                     var items = collection.getRange(1);
 
@@ -1126,8 +1126,8 @@ describe("Ext.util.Collection", function() {
                     expect(items[1]).toBe(item3);
                     expect(items[7]).toBe(item9);
                 });
-                
-                it("should wrap the start value if negative", function(){
+
+                it("should wrap the start value if negative", function () {
                     fill();
                     var items = collection.getRange(-6, 6);
                     expect(items.length).toBe(3);
@@ -1135,15 +1135,15 @@ describe("Ext.util.Collection", function() {
                     expect(items[1]).toBe(item5);
                     expect(items[2]).toBe(item6);
                 });
-                
-                it("should normalize the end value the collection max", function(){
+
+                it("should normalize the end value the collection max", function () {
                     fill();
                     var items = collection.getRange(6, 200);
                     expect(items.length).toBe(3);
                     expect(items[0]).toBe(item7);
                 });
-                
-                it("should return empty if start > length", function(){
+
+                it("should return empty if start > length", function () {
                     fill();
                     var items = collection.getRange(10, 15);
                     expect(items.length).toBe(0);
@@ -1151,178 +1151,178 @@ describe("Ext.util.Collection", function() {
             });
         });
 
-        describe("finding items", function() {
-            describe("findBy", function() {
-                beforeEach(function() {
+        describe("finding items", function () {
+            describe("findBy", function () {
+                beforeEach(function () {
                     fill();
                 });
-                
-                it("should find an item using a passed function", function() {
-                    var matched = collection.findBy(function(item) {
+
+                it("should find an item using a passed function", function () {
+                    var matched = collection.findBy(function (item) {
                         return item.name === 'third';
                     });
 
                     expect(matched).toBe(item3);
                 });
-                
-                it("should stop iterating once a match is found", function() {
+
+                it("should stop iterating once a match is found", function () {
                     var count = 0;
-                    collection.findBy(function(item) {
+                    collection.findBy(function (item) {
                         ++count;
                         return item.name === 'third';
                     });
 
                     expect(count).toBe(3);
                 });
-                
-                it("should return null if the item is not matched", function() {
-                    var matched = collection.findBy(function(item) {
+
+                it("should return null if the item is not matched", function () {
+                    var matched = collection.findBy(function (item) {
                         return false;
                     });
                     expect(matched).toBeNull();
                 });
-                
-                it("should pass the item and the key", function() {
+
+                it("should pass the item and the key", function () {
                     var spy = jasmine.createSpy().andReturn(true);
                     collection.findBy(spy);
                     expect(spy).toHaveBeenCalledWith(item1, 1);
                 });
-                
-                describe("scope", function() {
-                    it("should default the scope to the collection", function() {
+
+                describe("scope", function () {
+                    it("should default the scope to the collection", function () {
                         var scope;
-                        collection.findBy(function() {
+                        collection.findBy(function () {
                             scope = this;
                             return true;
                         });
                         expect(scope).toBe(collection);
                     });
-                    
-                    it("should use the passed scope", function() {
+
+                    it("should use the passed scope", function () {
                         var scope;
-                        collection.findBy(function() {
+                        collection.findBy(function () {
                             scope = this;
                             return true;
                         }, fakeScope);
                         expect(scope).toBe(fakeScope);
                     });
                 });
-                
-                describe("start", function() {
-                    it("should not iterate at all if start > length", function() {
+
+                describe("start", function () {
+                    it("should not iterate at all if start > length", function () {
                         var count = 0;
-                        collection.findBy(function() {
+                        collection.findBy(function () {
                             ++count;
                         }, null, 1000);
                         expect(count).toBe(0);
                     });
-                    
-                    it("should start from the passed index", function() {
+
+                    it("should start from the passed index", function () {
                         var keys = [];
-                        collection.findBy(function(item, key) {
+                        collection.findBy(function (item, key) {
                             keys.push(key);
                         }, null, 4);
                         expect(keys.join(',')).toBe('5,6,7,8,9');
                     });
-                    
-                    it("should not wrap around", function() {
-                        var matched = collection.findBy(function(item) {
+
+                    it("should not wrap around", function () {
+                        var matched = collection.findBy(function (item) {
                             return item.name === 'second';
                         }, null, 6);
                         expect(matched).toBeNull();
                     });
-                    
-                    it("should find an item after the start", function() {
-                        var matched = collection.findBy(function(item) {
+
+                    it("should find an item after the start", function () {
+                        var matched = collection.findBy(function (item) {
                             return item.name === 'third' || item.name === 'ninth';
                         }, null, 5);
                         expect(matched).toBe(item9);
                     });
                 });
             });
-            
-            describe("findIndexBy", function() {
-                beforeEach(function() {
+
+            describe("findIndexBy", function () {
+                beforeEach(function () {
                     fill();
                 });
-                
-                it("should find an item using a passed function", function() {
-                    var index = collection.findIndexBy(function(item) {
+
+                it("should find an item using a passed function", function () {
+                    var index = collection.findIndexBy(function (item) {
                         return item.name === 'third';
                     });
 
                     expect(index).toBe(2);
                 });
-                
-                it("should stop iterating once a match is found", function() {
+
+                it("should stop iterating once a match is found", function () {
                     var count = 0;
-                    collection.findIndexBy(function(item) {
+                    collection.findIndexBy(function (item) {
                         ++count;
                         return item.name === 'third';
                     });
 
                     expect(count).toBe(3);
                 });
-                
-                it("should return -1 if the item is not matched", function() {
-                    var index = collection.findIndexBy(function(item) {
+
+                it("should return -1 if the item is not matched", function () {
+                    var index = collection.findIndexBy(function (item) {
                         return false;
                     });
                     expect(index).toBe(-1);
                 });
-                
-                it("should pass the item and the key", function() {
+
+                it("should pass the item and the key", function () {
                     var spy = jasmine.createSpy().andReturn(true);
                     collection.findIndexBy(spy);
                     expect(spy).toHaveBeenCalledWith(item1, 1);
                 });
-                
-                describe("scope", function() {
-                    it("should default the scope to the collection", function() {
+
+                describe("scope", function () {
+                    it("should default the scope to the collection", function () {
                         var scope;
-                        collection.findIndexBy(function() {
+                        collection.findIndexBy(function () {
                             scope = this;
                             return true;
                         });
                         expect(scope).toBe(collection);
                     });
-                    
-                    it("should use the passed scope", function() {
+
+                    it("should use the passed scope", function () {
                         var scope;
-                        collection.findIndexBy(function() {
+                        collection.findIndexBy(function () {
                             scope = this;
                             return true;
                         }, fakeScope);
                         expect(scope).toBe(fakeScope);
                     });
                 });
-                
-                describe("start", function() {
-                    it("should not iterate at all if start > length", function() {
+
+                describe("start", function () {
+                    it("should not iterate at all if start > length", function () {
                         var count = 0;
-                        collection.findIndexBy(function() {
+                        collection.findIndexBy(function () {
                             ++count;
                         }, null, 1000);
                         expect(count).toBe(0);
                     });
-                    
-                    it("should start from the passed index", function() {
+
+                    it("should start from the passed index", function () {
                         var keys = [];
-                        collection.findIndexBy(function(item, key) {
+                        collection.findIndexBy(function (item, key) {
                             keys.push(key);
                         }, null, 4);
                         expect(keys.join(',')).toBe('5,6,7,8,9');
                     });
-                    
-                    it("should not wrap around", function() {
-                        var index = collection.findIndexBy(function(item) {
+
+                    it("should not wrap around", function () {
+                        var index = collection.findIndexBy(function (item) {
                             return item.name === 'second';
                         }, null, 6);
                         expect(index).toBe(-1);
                     });
-                    
-                    it("should find an item after the start", function() {
-                        var index = collection.findIndexBy(function(item) {
+
+                    it("should find an item after the start", function () {
+                        var index = collection.findIndexBy(function (item) {
                             return item.name === 'third' || item.name === 'ninth';
                         }, null, 5);
                         expect(index).toBe(8);
@@ -1330,22 +1330,22 @@ describe("Ext.util.Collection", function() {
                 });
             });
 
-            describe("findIndex", function() {
-                beforeEach(function() {
+            describe("findIndex", function () {
+                beforeEach(function () {
                     fill();
                 });
-                
-                it("should find an item's index", function() {
+
+                it("should find an item's index", function () {
                     var index = collection.findIndex('name', 'third');
                     expect(index).toBe(2);
                 });
-                
-                it("should return -1 if there is no match", function() {
+
+                it("should return -1 if there is no match", function () {
                     var index = collection.findIndex('name', 'foo');
                     expect(index).toBe(-1);
                 });
-                
-                it("should respect the root property", function() {
+
+                it("should respect the root property", function () {
                     collection = new Ext.util.Collection({
                         rootProperty: 'root'
                     });
@@ -1368,33 +1368,33 @@ describe("Ext.util.Collection", function() {
                     var index = collection.findIndex('name', 'B');
                     expect(index).toBe(1);
                 });
-                
-                describe("options", function() {
-                    describe("startIndex", function() {
-                        it("should match from the startIndex, including the start", function() {
+
+                describe("options", function () {
+                    describe("startIndex", function () {
+                        it("should match from the startIndex, including the start", function () {
                             var index = collection.findIndex('name', 's', 6, null, false);
                             expect(index).toBe(6);
                         });
-                    
-                        it("should find items after the startIndex", function() {
+
+                        it("should find items after the startIndex", function () {
                             var index = collection.findIndex('name', 's', 4, null, false);
                             expect(index).toBe(5);
                         });
-                    
-                        it("should return -1 if the startIndex is larger than the length", function() {
+
+                        it("should return -1 if the startIndex is larger than the length", function () {
                             var index = collection.findIndex('name', 's', 100);
                             expect(index).toBe(-1);
                         });
-                    
-                        it("should not 'wrap' over the collection", function() {
+
+                        it("should not 'wrap' over the collection", function () {
                             var index = collection.findIndex('name', 'one', 2);
                             expect(index).toBe(-1);
                         });
                     });
-                    
-                    describe("regex options", function() {
-                        describe("startsWith/endsWith", function() {
-                            it("should default startsWith & endsWith to true", function() {
+
+                    describe("regex options", function () {
+                        describe("startsWith/endsWith", function () {
+                            it("should default startsWith & endsWith to true", function () {
                                 var index = collection.findIndex('name', 'second');
                                 expect(index).toBe(1);
                                 index = collection.findIndex('name', 'secon');
@@ -1402,8 +1402,8 @@ describe("Ext.util.Collection", function() {
                                 index = collection.findIndex('name', 'econd');
                                 expect(index).toBe(-1);
                             });
-                            
-                            it("should match the start of the string when passing endsWith: false", function() {
+
+                            it("should match the start of the string when passing endsWith: false", function () {
                                 var index = collection.findIndex('name', 'second', null, null, false);
                                 expect(index).toBe(1);
                                 index = collection.findIndex('name', 'secon', null, null, false);
@@ -1411,8 +1411,8 @@ describe("Ext.util.Collection", function() {
                                 index = collection.findIndex('name', 'econd', null, null, false);
                                 expect(index).toBe(-1);
                             });
-                        
-                            it("should match the end of the string when passing startsWith: false", function() {
+
+                            it("should match the end of the string when passing startsWith: false", function () {
                                 var index = collection.findIndex('name', 'second', null, false);
                                 expect(index).toBe(1);
                                 index = collection.findIndex('name', 'econd', null, false);
@@ -1420,20 +1420,20 @@ describe("Ext.util.Collection", function() {
                                 index = collection.findIndex('name', 'secon', null, false);
                                 expect(index).toBe(-1);
                             });
-                            
-                            it("should match anywhere in the string when using startsWith/endsWith false", function() {
+
+                            it("should match anywhere in the string when using startsWith/endsWith false", function () {
                                 var index = collection.findIndex('name', 'con', null, false, false);
                                 expect(index).toBe(1);
                             });
                         });
-                        
-                        describe("case", function() {
-                            it("should be case insensitive by default", function() {
+
+                        describe("case", function () {
+                            it("should be case insensitive by default", function () {
                                 var index = collection.findIndex('name', 'SEVENTH');
                                 expect(index).toBe(6);
                             });
-                            
-                            it("should respect case when passing the ignoreCase flag", function() {
+
+                            it("should respect case when passing the ignoreCase flag", function () {
                                 var index = collection.findIndex('name', 'SEVENTH', null, null, null, false);
                                 expect(index).toBe(-1);
                             });
@@ -1443,59 +1443,59 @@ describe("Ext.util.Collection", function() {
             });
         });
 
-        describe("contains", function() {
-            it("should contain items that have been added", function() {
+        describe("contains", function () {
+            it("should contain items that have been added", function () {
                 expect(collection.contains(item1)).toBe(true);
             });
 
-            it("should not contain items that have not been added", function() {
-                expect(collection.contains({ id: 0 })).toBe(false);
+            it("should not contain items that have not been added", function () {
+                expect(collection.contains({id: 0})).toBe(false);
             });
 
-            it("should contain an item by key", function() {
+            it("should contain an item by key", function () {
                 expect(collection.containsKey(1)).toBe(true);
             });
 
-            it("should not contain a non-contained item by key", function() {
+            it("should not contain a non-contained item by key", function () {
                 expect(collection.containsKey(100)).toBe(false);
             });
         });
     });
 
-    describe("createFiltered", function() {
+    describe("createFiltered", function () {
         var filter, filtered;
 
-        beforeEach(function() {
+        beforeEach(function () {
             collection = new Ext.util.Collection({
-                keyFn: function(item) {
+                keyFn: function (item) {
                     return item.name;
                 }
             });
 
             collection.add([
-                {id: 1, name: 'Ed',     code: 'C', modifier: 10},
-                {id: 2, name: 'Abe',    code: 'A', modifier: 100},
+                {id: 1, name: 'Ed', code: 'C', modifier: 10},
+                {id: 2, name: 'Abe', code: 'A', modifier: 100},
                 {id: 3, name: 'Edward', code: 'B', modifier: 5}
             ]);
 
             filter = new Ext.util.Filter({
-                filterFn: function(item) {
+                filterFn: function (item) {
                     return item.name.charAt(0) === 'E';
                 }
             });
         });
-        
-        describe("copying", function() {
-            it("should return a new Collection", function() {
+
+        describe("copying", function () {
+            it("should return a new Collection", function () {
                 filtered = collection.createFiltered('name', 'Ed');
 
                 expect(filtered instanceof Ext.util.Collection).toBe(true);
                 expect(filtered).not.toBe(collection);
             });
-            
-            it("should keep the getKey function when using filter", function(){
-                var fn = function(o){
-                    return o.id;    
+
+            it("should keep the getKey function when using filter", function () {
+                var fn = function (o) {
+                    return o.id;
                 }, mc1 = new Ext.util.Collection({
                     keyFn: fn
                 });
@@ -1504,15 +1504,15 @@ describe("Ext.util.Collection", function() {
                 expect(mc2.getKey).toBe(fn);
                 mc1 = mc2 = null;
             });
-            
-            it("should keep the getKey function when using filterBy", function(){
-                var fn = function(o){
-                    return o.id;    
+
+            it("should keep the getKey function when using filterBy", function () {
+                var fn = function (o) {
+                    return o.id;
                 }, mc1 = new Ext.util.Collection({
                     keyFn: fn
                 });
 
-                var mc2 = mc1.createFiltered(function(){
+                var mc2 = mc1.createFiltered(function () {
                     return true;
                 });
                 expect(mc2.getKey).toBe(fn);
@@ -1520,12 +1520,12 @@ describe("Ext.util.Collection", function() {
             });
         });
 
-        describe("when filtering on a key and value pair", function() {
-            it("should filter correctly", function() {
+        describe("when filtering on a key and value pair", function () {
+            it("should filter correctly", function () {
                 filtered = collection.createFiltered('name', 'Edward');
 
                 expect(filtered.items[0].name).toBe('Edward');
-                expect(filtered.length).toBe(1);                
+                expect(filtered.length).toBe(1);
             });
 
             it("should use anyMatch by default", function () {
@@ -1533,8 +1533,8 @@ describe("Ext.util.Collection", function() {
 
                 expect(filtered.length).toBe(2);
             });
-            
-            it("should respect the root property", function() {
+
+            it("should respect the root property", function () {
                 collection = new Ext.util.Collection({
                     rootProperty: 'root'
                 });
@@ -1554,14 +1554,14 @@ describe("Ext.util.Collection", function() {
             });
         });
 
-        describe("when filtering using Filter object", function() {
-            it("should accept a single Filter", function() {
+        describe("when filtering using Filter object", function () {
+            it("should accept a single Filter", function () {
                 filtered = collection.createFiltered(filter);
 
                 expect(filtered.length).toBe(2);
             });
-            
-            it("should respect the root property", function() {
+
+            it("should respect the root property", function () {
                 collection = new Ext.util.Collection({
                     rootProperty: 'root'
                 });
@@ -1582,14 +1582,14 @@ describe("Ext.util.Collection", function() {
                 }));
                 expect(filtered.getCount()).toBe(1);
             });
-            
-            describe("array of filters", function() {
-                it("should accept an array of Filters", function() {
+
+            describe("array of filters", function () {
+                it("should accept an array of Filters", function () {
                     filtered = collection.createFiltered([filter]);
                     expect(filtered.length).toBe(2);
                 });
-                
-                it("should respect the root property", function() {
+
+                it("should respect the root property", function () {
                     collection = new Ext.util.Collection({
                         rootProperty: 'root'
                     });
@@ -1614,20 +1614,20 @@ describe("Ext.util.Collection", function() {
         });
     }); // createFiltered
 
-    describe("filters collection management", function() {
-        var item0  = { id: 0,  name: 'abba' },
-            item1  = { id: 1,  name: 'aaa' },
-            item2  = { id: 2,  name: 'bad' },
-            item3  = { id: 3,  name: 'ccc' },
-            item4  = { id: 4,  name: 'abc' },
-            item5  = { id: 5,  name: 'bcd' },
-            item6  = { id: 6,  name: 'cde' },
-            item7  = { id: 7,  name: 'xyz' },
-            item8  = { id: 8,  name: 'ddd' },
-            item9  = { id: 9,  name: 'dad' },
-            item10 = { id: 10, name: 'dood'};
+    describe("filters collection management", function () {
+        var item0 = {id: 0, name: 'abba'},
+            item1 = {id: 1, name: 'aaa'},
+            item2 = {id: 2, name: 'bad'},
+            item3 = {id: 3, name: 'ccc'},
+            item4 = {id: 4, name: 'abc'},
+            item5 = {id: 5, name: 'bcd'},
+            item6 = {id: 6, name: 'cde'},
+            item7 = {id: 7, name: 'xyz'},
+            item8 = {id: 8, name: 'ddd'},
+            item9 = {id: 9, name: 'dad'},
+            item10 = {id: 10, name: 'dood'};
 
-        beforeEach(function() {
+        beforeEach(function () {
             collection = new Ext.util.Collection();
             collection.add(item1, item2, item3, item4, item5, item6, item7, item8, item9);
         });
@@ -1645,7 +1645,7 @@ describe("Ext.util.Collection", function() {
                 expect(filters.length).toBe(0);
                 expect(collection.filtered).toBe(false);
 
-                filters.add({ property: 'name', value: 'a' });
+                filters.add({property: 'name', value: 'a'});
 
                 expect(refreshes).toBe(1);
                 expect(filters.length).toBe(1);
@@ -1683,7 +1683,7 @@ describe("Ext.util.Collection", function() {
                 expect(filters.length).toBe(0);
                 expect(collection.filtered).toBe(false);
 
-                filters.add({ property: 'name', value: 'a' });
+                filters.add({property: 'name', value: 'a'});
 
                 expect(refreshes).toBe(1);
                 expect(filters.length).toBe(1);
@@ -1733,7 +1733,7 @@ describe("Ext.util.Collection", function() {
                 expect(filters.length).toBe(0);
                 expect(collection.filtered).toBe(false);
 
-                filters.add({ property: 'name', value: 'a' });
+                filters.add({property: 'name', value: 'a'});
 
                 expect(refreshes).toBe(1);
                 expect(filters.length).toBe(1);
@@ -1784,7 +1784,7 @@ describe("Ext.util.Collection", function() {
                 var refreshes = 0;
 
                 collection = new Ext.util.Collection({
-                    filters: { property: 'name', value: 'a' },
+                    filters: {property: 'name', value: 'a'},
                     listeners: {
                         refresh: function () {
                             ++refreshes;
@@ -1822,7 +1822,7 @@ describe("Ext.util.Collection", function() {
                 var refreshes = 0;
 
                 collection = new Ext.util.Collection({
-                    filters: { property: 'name', value: 'a' },
+                    filters: {property: 'name', value: 'a'},
                     listeners: {
                         refresh: function () {
                             ++refreshes;
@@ -1874,7 +1874,7 @@ describe("Ext.util.Collection", function() {
                 var refreshes = 0;
 
                 collection = new Ext.util.Collection({
-                    filters: { property: 'name', value: 'a' },
+                    filters: {property: 'name', value: 'a'},
                     listeners: {
                         refresh: function () {
                             ++refreshes;
@@ -1916,7 +1916,7 @@ describe("Ext.util.Collection", function() {
                 expect(collection.filtered).toBe(false);
                 expect(collection.length).toBe(11);
 
-                filters.add({ property: 'name', value: 'd' });
+                filters.add({property: 'name', value: 'd'});
                 expect(refreshes).toBe(1);
                 expect(filters.length).toBe(1);
                 expect(collection.filtered).toBe(false);
@@ -1934,15 +1934,15 @@ describe("Ext.util.Collection", function() {
                 expect(collection.items[2]).toBe(item10);
             });
         });
-        
-        describe("events", function() {
-            it("should fire the filter event after filtering has taken place", function() {
+
+        describe("events", function () {
+            it("should fire the filter event after filtering has taken place", function () {
                 var count;
-                collection.on('filter', function() {
+                collection.on('filter', function () {
                     count = collection.getCount();
                 });
                 collection.getFilters().add({
-                    filterFn: function(item) {
+                    filterFn: function (item) {
                         return Ext.String.startsWith(item.name, 'a');
                     }
                 });
@@ -1950,123 +1950,123 @@ describe("Ext.util.Collection", function() {
             });
         });
     });
-    
-    describe("grouping", function() {
+
+    describe("grouping", function () {
         var item0, item1, item2, item3, item4, item5, item6, item7, item8, item9,
             groups;
-            
+
         function groupBy(property, direction) {
             collection.setGrouper({
                 property: property || 'group',
                 direction: direction
             });
         }
-        
+
         function clearGroup() {
             collection.setGrouper(null);
         }
-        
+
         function sortBy(property, direction) {
             collection.getSorters().add({
                 property: property || 'sortKey',
                 direction: direction
             });
         }
-        
+
         function filterBy(property, value) {
             collection.getFilters().add({
                 property: property || 'isFilter',
                 value: Ext.isDefined(value) ? value : true
             });
         }
-        
-        beforeEach(function() {
+
+        beforeEach(function () {
             collection = new Ext.util.Collection();
             collection.add(
                 (item0 = {id: 0, name: 'Item0', group: 'A', sortKey: 3, groupOrder: 3, isFilter: false, age: 10}),
-                (item1 = {id: 1, name: 'Item1', group: 'A', sortKey: 1, groupOrder: 3, isFilter: true,  age: 30}),
+                (item1 = {id: 1, name: 'Item1', group: 'A', sortKey: 1, groupOrder: 3, isFilter: true, age: 30}),
                 (item2 = {id: 2, name: 'Item2', group: 'A', sortKey: 2, groupOrder: 3, isFilter: false, age: 20}),
-                (item3 = {id: 3, name: 'Item3', group: 'B', sortKey: 2, groupOrder: 1, isFilter: true,  age: 60}),
+                (item3 = {id: 3, name: 'Item3', group: 'B', sortKey: 2, groupOrder: 1, isFilter: true, age: 60}),
                 (item4 = {id: 4, name: 'Item4', group: 'B', sortKey: 3, groupOrder: 1, isFilter: false, age: 50}),
-                (item5 = {id: 5, name: 'Item5', group: 'B', sortKey: 1, groupOrder: 1, isFilter: true,  age: 40}),
+                (item5 = {id: 5, name: 'Item5', group: 'B', sortKey: 1, groupOrder: 1, isFilter: true, age: 40}),
                 (item6 = {id: 6, name: 'Item6', group: 'C', sortKey: 1, groupOrder: 4, isFilter: false, age: 80}),
-                (item7 = {id: 7, name: 'Item7', group: 'C', sortKey: 2, groupOrder: 4, isFilter: true,  age: 70}),
+                (item7 = {id: 7, name: 'Item7', group: 'C', sortKey: 2, groupOrder: 4, isFilter: true, age: 70}),
                 (item8 = {id: 8, name: 'Item8', group: 'C', sortKey: 3, groupOrder: 4, isFilter: false, age: 90}),
-                (item9 = {id: 9, name: 'Item9', group: 'D', sortKey: 1, groupOrder: 2, isFilter: true,  age: 100})
+                (item9 = {id: 9, name: 'Item9', group: 'D', sortKey: 1, groupOrder: 2, isFilter: true, age: 100})
             );
         });
-        
-        afterEach(function() {
+
+        afterEach(function () {
             groups = item0 = item2 = item3 = item4 = item5 = item6 = item7 = item8 = item9 = null;
         });
-        
-        it("should return an Ext.util.GroupCollection", function() {
+
+        it("should return an Ext.util.GroupCollection", function () {
             groupBy();
             groups = collection.getGroups();
             expect(groups instanceof Ext.util.GroupCollection).toBe(true);
         });
-        
-        it("should group by the specified key", function() {
+
+        it("should group by the specified key", function () {
             groupBy();
             groups = collection.getGroups();
             expect(groups.length).toBe(4);
         });
-        
-        it("should have the appropriate item in each group", function() {
+
+        it("should have the appropriate item in each group", function () {
             groupBy();
             groups = collection.getGroups();
-            groups.each(function(group) {
+            groups.each(function (group) {
                 var key = group.getGroupKey();
-                group.each(function(item) {
+                group.each(function (item) {
                     expect(item.group).toBe(key);
                 });
             });
         });
-        
-        describe("clearing groups", function() {
-            it("should return no groups by default", function() {
+
+        describe("clearing groups", function () {
+            it("should return no groups by default", function () {
                 collection = new Ext.util.Collection();
                 expect(collection.getGroups()).toBeNull();
-            }); 
-            
-            it("should return no groups once the grouper has cleared", function() {
+            });
+
+            it("should return no groups once the grouper has cleared", function () {
                 groupBy();
                 collection.getGroups();
                 clearGroup();
                 expect(collection.getGroups()).toBeNull();
             });
         });
-        
-        describe("dynamic manipulation", function() {
-            describe("adding", function() {
-                it("should add to an existing group", function() {
+
+        describe("dynamic manipulation", function () {
+            describe("adding", function () {
+                it("should add to an existing group", function () {
                     groupBy();
                     var o = {
                         id: 'new',
                         group: 'D'
                     }, d;
-                    
+
                     collection.add(o);
                     d = collection.getGroups().get('D');
                     expect(d.length).toBe(2);
                     expect(d.contains(o)).toBe(true);
                 });
-                
-                it("should create a new group", function() {
+
+                it("should create a new group", function () {
                     groupBy();
                     expect(collection.getGroups().get('E')).toBeUndefined();
                     var o = {
                         id: 'new',
                         group: 'E'
                     }, e;
-                    
+
                     collection.add(o);
                     e = collection.getGroups().get('E');
                     expect(e.length).toBe(1);
                     expect(e.contains(o)).toBe(true);
                 });
 
-                it("should position correctly when adding multiple items", function() {
+                it("should position correctly when adding multiple items", function () {
                     groupBy();
                     var new1 = {
                         id: 'new1',
@@ -2081,39 +2081,39 @@ describe("Ext.util.Collection", function() {
                     expect(collection.indexOf(new2)).toBe(9);
                 });
             });
-            
-            describe("removing", function() {
-                it("should remove from an existing group", function() {
+
+            describe("removing", function () {
+                it("should remove from an existing group", function () {
                     groupBy();
                     collection.remove(item0);
                     var a = collection.getGroups().get('A');
                     expect(a.length).toBe(2);
                     expect(a.contains(item0)).toBe(false);
                 });
-                
-                it("should remove a group", function() {
+
+                it("should remove a group", function () {
                     groupBy();
                     collection.remove(item9);
                     expect(collection.getGroups().get('D')).toBeUndefined();
                 });
             });
-            
-            describe("updating", function() {
-                it("should move the item if the group changes", function() {
+
+            describe("updating", function () {
+                it("should move the item if the group changes", function () {
                     groupBy();
                     item0.group = 'D';
                     collection.itemChanged(item0);
-                    
+
                     var a = collection.getGroups().get('A'),
                         d = collection.getGroups().get('D');
-                        
+
                     expect(d.length).toBe(2);
                     expect(d.contains(item0)).toBe(true);
                     expect(a.length).toBe(2);
                     expect(a.contains(item0)).toBe(false);
                 });
 
-                it("should position the item correctly in the group", function() {
+                it("should position the item correctly in the group", function () {
                     groupBy();
                     item2.group = 'B';
                     // The change in group doesn't change the position of item2, it can remain where it
@@ -2122,7 +2122,7 @@ describe("Ext.util.Collection", function() {
                     expect(collection.getGroups().get('B').indexOf(item2)).toBe(0);
                 });
 
-                it("should position if the update is caused by an id change", function() {
+                it("should position if the update is caused by an id change", function () {
                     groupBy();
                     item2.group = 'B';
                     item2.id = 100;
@@ -2130,7 +2130,7 @@ describe("Ext.util.Collection", function() {
                     expect(collection.getGroups().get('B').indexOf(item2)).toBe(0);
                 });
 
-                it("should not exist in the group during a remove if the record is changing position", function() {
+                it("should not exist in the group during a remove if the record is changing position", function () {
                     var removeA, removeB, addA, addB, groups;
 
                     groupBy();
@@ -2138,12 +2138,12 @@ describe("Ext.util.Collection", function() {
                     item9.group = 'B';
                     // The change in group doesn't change the position of item2, it can remain where it
                     // is because we are not sorted.
-                    collection.on('remove', function() {
+                    collection.on('remove', function () {
                         removeA = groups.get('A').contains(item9);
                         removeB = groups.get('B').contains(item9);
                     });
 
-                    collection.on('add', function() {
+                    collection.on('add', function () {
                         addA = groups.get('A').contains(item9);
                         addB = groups.get('B').contains(item9);
                     });
@@ -2156,52 +2156,52 @@ describe("Ext.util.Collection", function() {
                 });
             });
         });
-        
-        describe("sorting", function() {
+
+        describe("sorting", function () {
             function expectOrder(items, c) {
                 var len = items.length,
                     i;
-                
+
                 c = c || collection;
                 for (i = 0; i < len; ++i) {
                     expect(c.getAt(i)).toBe(items[i]);
                 }
             }
-            
-            describe("the groups", function() {
+
+            describe("the groups", function () {
                 function expectGroupOrder(keys) {
                     var groups = collection.getGroups(),
                         len = keys.length,
                         i;
-                    
+
                     for (i = 0; i < len; ++i) {
                         expect(groups.getAt(i).getGroupKey()).toBe(keys[i]);
                     }
                 }
-                
-                it("should sort the groups", function() {
+
+                it("should sort the groups", function () {
                     collection = new Ext.util.Collection();
                     collection.add(item6, item4, item2, item1, item3, item9, item8, item0, item5, item7);
                     groupBy('group');
                     expectGroupOrder('A', 'B', 'C', 'D');
                 });
-                
-                it("should sort the groups according to the group direction", function() {
+
+                it("should sort the groups according to the group direction", function () {
                     collection = new Ext.util.Collection();
                     collection.add(item6, item4, item2, item1, item3, item9, item8, item0, item5, item7);
                     groupBy('group', 'DESC');
                     expectGroupOrder('D', 'C', 'B', 'A');
                 });
-                
-                it("should update the group order when the grouper changes", function() {
+
+                it("should update the group order when the grouper changes", function () {
                     collection = new Ext.util.Collection();
                     collection.add(item6, item4, item2, item1, item3, item9, item8, item0, item5, item7);
                     groupBy('group');
                     groupBy('group', 'DESC');
                     expectGroupOrder('D', 'C', 'B', 'A');
                 });
-                
-                it("should add new groups in the correct position", function() {
+
+                it("should add new groups in the correct position", function () {
                     collection = new Ext.util.Collection();
                     groupBy('group');
                     collection.add(item3);
@@ -2214,7 +2214,7 @@ describe("Ext.util.Collection", function() {
                     expectGroupOrder(['A', 'B', 'C', 'D']);
                 });
 
-                it("should sort based on the sortProperty", function() {
+                it("should sort based on the sortProperty", function () {
                     collection.setGrouper({
                         property: 'group',
                         sortProperty: 'groupOrder'
@@ -2222,10 +2222,10 @@ describe("Ext.util.Collection", function() {
                     expectGroupOrder(['B', 'D', 'A', 'C']);
                 });
 
-                it("should sort based on the sorterFn", function() {
+                it("should sort based on the sorterFn", function () {
                     collection.setGrouper({
                         property: 'group',
-                        sorterFn: function(a, b) {
+                        sorterFn: function (a, b) {
                             a = a.groupOrder;
                             b = b.groupOrder;
                             if (a === b) {
@@ -2238,23 +2238,23 @@ describe("Ext.util.Collection", function() {
                     expectGroupOrder(['C', 'A', 'D', 'B']);
                 });
             });
-            
-            describe("inside the groups", function() {
-                it("should sort the items in the collection by group", function() {
+
+            describe("inside the groups", function () {
+                it("should sort the items in the collection by group", function () {
                     collection = new Ext.util.Collection();
                     collection.add(item9, item6, item3, item0);
                     groupBy('group', 'ASC');
                     expectOrder([item0, item3, item6, item9]);
                 });
-        
-                it("should sort the groups according to the group direction", function() {
+
+                it("should sort the groups according to the group direction", function () {
                     collection = new Ext.util.Collection();
                     collection.add(item0, item3, item6, item9);
                     groupBy('group', 'DESC');
                     expectOrder([item9, item6, item3, item0]);
                 });
-            
-                it("should use the natural order inside the groups", function() {
+
+                it("should use the natural order inside the groups", function () {
                     collection = new Ext.util.Collection();
                     collection.add(item5, item4, item3, item2, item1, item0);
                     groupBy();
@@ -2263,8 +2263,8 @@ describe("Ext.util.Collection", function() {
                     expectOrder([item2, item1, item0], groups.get('A'));
                     expectOrder([item5, item4, item3], groups.get('B'));
                 });
-            
-                it("should insert the record into the correct collection position", function() {
+
+                it("should insert the record into the correct collection position", function () {
                     collection = new Ext.util.Collection();
                     collection.add({
                         id: 1,
@@ -2276,21 +2276,21 @@ describe("Ext.util.Collection", function() {
                     var nige = {
                         id: 3,
                         name: 'Nige'
-                    };  
+                    };
                     groupBy('name');
                     collection.add(nige);
                     expect(collection.indexOf(nige)).toBe(1);
                 });
             });
-            
-            describe("with sorters", function() {
-                it("should sort the collection by grouper first", function() {
+
+            describe("with sorters", function () {
+                it("should sort the collection by grouper first", function () {
                     sortBy();
                     groupBy();
                     expectOrder([item1, item2, item0, item5, item3, item4, item6, item7, item8, item9]);
                 });
-                
-                it("should sort the new groups by the sorter", function() {
+
+                it("should sort the new groups by the sorter", function () {
                     sortBy();
                     groupBy();
                     var groups = collection.getGroups();
@@ -2299,8 +2299,8 @@ describe("Ext.util.Collection", function() {
                     expectOrder([item6, item7, item8], groups.get('C'));
                     expectOrder([item9], groups.get('D'));
                 });
-                
-                it("should sort existing groups by the sorter", function() {
+
+                it("should sort existing groups by the sorter", function () {
                     groupBy();
                     sortBy();
                     var groups = collection.getGroups();
@@ -2309,8 +2309,8 @@ describe("Ext.util.Collection", function() {
                     expectOrder([item6, item7, item8], groups.get('C'));
                     expectOrder([item9], groups.get('D'));
                 });
-                
-                it("should sort by the sorter after the groups have been cleared", function() {
+
+                it("should sort by the sorter after the groups have been cleared", function () {
                     sortBy();
                     groupBy();
                     clearGroup();
@@ -2318,115 +2318,115 @@ describe("Ext.util.Collection", function() {
                 });
             });
         });
-        
-        describe("filters", function() {
-            it("should respect existing filters while grouping", function() {
+
+        describe("filters", function () {
+            it("should respect existing filters while grouping", function () {
                 filterBy();
                 groupBy();
-                
+
                 var groups = collection.getGroups(),
                     a = groups.get('A'),
                     b = groups.get('B'),
                     c = groups.get('C'),
                     d = groups.get('D');
-                    
+
                 expect(a.length).toBe(1);
                 expect(a.first()).toBe(item1);
-                
+
                 expect(b.length).toBe(2);
                 expect(b.first()).toBe(item3);
                 expect(b.last()).toBe(item5);
-                
+
                 expect(c.length).toBe(1);
                 expect(c.first()).toBe(item7);
-                
+
                 expect(d.length).toBe(1);
                 expect(d.first()).toBe(item9);
             });
-            
-            it("should filter existing groups", function() {
+
+            it("should filter existing groups", function () {
                 groupBy();
                 filterBy();
-                
+
                 var groups = collection.getGroups(),
                     a = groups.get('A'),
                     b = groups.get('B'),
                     c = groups.get('C'),
                     d = groups.get('D');
-                    
+
                 expect(a.length).toBe(1);
                 expect(a.first()).toBe(item1);
-                
+
                 expect(b.length).toBe(2);
                 expect(b.first()).toBe(item3);
                 expect(b.last()).toBe(item5);
-                
+
                 expect(c.length).toBe(1);
                 expect(c.first()).toBe(item7);
-                
+
                 expect(d.length).toBe(1);
                 expect(d.first()).toBe(item9);
             });
-            
-            it("should update groups when filters are cleared", function() {
+
+            it("should update groups when filters are cleared", function () {
                 filterBy();
                 groupBy();
-                
+
                 collection.getFilters().removeAll();
-                
+
                 var groups = collection.getGroups();
-                    
+
                 expect(groups.get('A').length).toBe(3);
                 expect(groups.get('B').length).toBe(3);
                 expect(groups.get('C').length).toBe(3);
                 expect(groups.get('D').length).toBe(1);
             });
-            
-            it("should remove groups when required", function() {
+
+            it("should remove groups when required", function () {
                 groupBy();
                 collection.getFilters().add({
-                    filterFn: function(o) {
+                    filterFn: function (o) {
                         return o.name === 'Item0';
                     }
                 });
-                
+
                 var groups = collection.getGroups();
-                
+
                 expect(groups.get('A').length).toBe(1);
                 expect(groups.get('B')).toBeUndefined();
                 expect(groups.get('C')).toBeUndefined();
                 expect(groups.get('D')).toBeUndefined();
             });
-            
-            it("should add groups when required", function() {
+
+            it("should add groups when required", function () {
                 groupBy();
                 var filters = collection.getFilters();
                 filters.add({
-                    filterFn: function(o) {
+                    filterFn: function (o) {
                         return Ext.Array.indexOf(['Item0', 'Item9'], o.name) > -1;
                     }
                 }, {
-                    filterFn: function(o) {
+                    filterFn: function (o) {
                         return o.name === 'Item0';
                     }
                 });
-                
+
                 var groups = collection.getGroups();
-                
+
                 expect(groups.get('A').length).toBe(1);
                 expect(groups.get('D')).toBeUndefined();
-                
+
                 filters.remove(filters.last());
-                
+
                 groups = collection.getGroups();
                 expect(groups.get('A').length).toBe(1);
                 expect(groups.get('D').length).toBe(1);
             });
         });
-        
-        describe("aggregation", function() {
-            describe("first", function() {
-                it("should return the first item in each group", function() {
+
+        describe("aggregation", function () {
+            describe("first", function () {
+                it("should return the first item in each group", function () {
                     groupBy();
                     expect(collection.first(true)).toEqual({
                         A: item0,
@@ -2435,14 +2435,14 @@ describe("Ext.util.Collection", function() {
                         D: item9
                     });
                 });
-                
-                it("should ignore the group paramter if not grouped", function() {
+
+                it("should ignore the group paramter if not grouped", function () {
                     expect(collection.first(true)).toBe(item0);
                 });
             });
-            
-            describe("last", function() {
-                it("should return the last item in each group", function() {
+
+            describe("last", function () {
+                it("should return the last item in each group", function () {
                     groupBy();
                     expect(collection.last(true)).toEqual({
                         A: item2,
@@ -2451,14 +2451,14 @@ describe("Ext.util.Collection", function() {
                         D: item9
                     });
                 });
-                
-                it("should ignore the group paramter if not grouped", function() {
+
+                it("should ignore the group paramter if not grouped", function () {
                     expect(collection.last(true)).toBe(item9);
                 });
             });
-            
-            describe("average", function() {
-                it("should get the average for each group", function() {
+
+            describe("average", function () {
+                it("should get the average for each group", function () {
                     groupBy();
                     expect(collection.averageByGroup('age')).toEqual({
                         A: 20,
@@ -2468,9 +2468,9 @@ describe("Ext.util.Collection", function() {
                     });
                 });
             });
-            
-            describe("bounds", function() {
-                it("should return the bounds for each group", function() {
+
+            describe("bounds", function () {
+                it("should return the bounds for each group", function () {
                     groupBy();
                     expect(collection.boundsByGroup('age')).toEqual({
                         A: [10, 30],
@@ -2480,9 +2480,9 @@ describe("Ext.util.Collection", function() {
                     });
                 });
             });
-            
-            describe("count", function() {
-                it("should return the number of items in each group", function() {
+
+            describe("count", function () {
+                it("should return the number of items in each group", function () {
                     groupBy();
                     expect(collection.countByGroup()).toEqual({
                         A: 3,
@@ -2492,9 +2492,9 @@ describe("Ext.util.Collection", function() {
                     });
                 });
             });
-            
-            describe("extremes", function() {
-                it("should return the extremes for each group", function() {
+
+            describe("extremes", function () {
+                it("should return the extremes for each group", function () {
                     groupBy();
                     expect(collection.extremesByGroup('age')).toEqual({
                         A: [item0, item1],
@@ -2504,9 +2504,9 @@ describe("Ext.util.Collection", function() {
                     });
                 });
             });
-            
-            describe("max", function() {
-                it("should return the max for each group", function() {
+
+            describe("max", function () {
+                it("should return the max for each group", function () {
                     groupBy();
                     expect(collection.maxByGroup('age')).toEqual({
                         A: 30,
@@ -2516,9 +2516,9 @@ describe("Ext.util.Collection", function() {
                     });
                 });
             });
-            
-            describe("maxItem", function() {
-                it("should return the maxItem for each group", function() {
+
+            describe("maxItem", function () {
+                it("should return the maxItem for each group", function () {
                     groupBy();
                     expect(collection.maxItemByGroup('age')).toEqual({
                         A: item1,
@@ -2528,9 +2528,9 @@ describe("Ext.util.Collection", function() {
                     });
                 });
             });
-            
-            describe("min", function() {
-                it("should return the min for each group", function() {
+
+            describe("min", function () {
+                it("should return the min for each group", function () {
                     groupBy();
                     expect(collection.minByGroup('age')).toEqual({
                         A: 10,
@@ -2540,9 +2540,9 @@ describe("Ext.util.Collection", function() {
                     });
                 });
             });
-            
-            describe("minItem", function() {
-                it("should return the minItem for each group", function() {
+
+            describe("minItem", function () {
+                it("should return the minItem for each group", function () {
                     groupBy();
                     expect(collection.minItemByGroup('age')).toEqual({
                         A: item0,
@@ -2552,9 +2552,9 @@ describe("Ext.util.Collection", function() {
                     });
                 });
             });
-            
-            describe("sum", function() {
-                it("should return the sum for each group", function() {
+
+            describe("sum", function () {
+                it("should return the sum for each group", function () {
                     groupBy();
                     expect(collection.sumByGroup('age')).toEqual({
                         A: 60,
@@ -2564,21 +2564,21 @@ describe("Ext.util.Collection", function() {
                     });
                 });
             });
-            
-            describe("with a custom aggregator", function() {
-                var fn = function(records, items) {
+
+            describe("with a custom aggregator", function () {
+                var fn = function (records, items) {
                     var total = 0,
                         len = items.length,
                         i;
-                    
+
                     for (i = 0; i < len; ++i) {
                         total += (items[i] * 2);
                     }
                     scope = this;
                     return total;
                 }, scope;
-                
-                it("should call the custom aggregator", function() {
+
+                it("should call the custom aggregator", function () {
                     groupBy();
                     expect(collection.aggregateByGroup('age', fn)).toEqual({
                         A: 120,
@@ -2587,8 +2587,8 @@ describe("Ext.util.Collection", function() {
                         D: 200
                     });
                 });
-                
-                it("should use the passed scope", function() {
+
+                it("should use the passed scope", function () {
                     groupBy();
                     collection.aggregateByGroup('age', fn, fakeScope);
                     expect(scope).toBe(fakeScope);
@@ -2597,18 +2597,18 @@ describe("Ext.util.Collection", function() {
         });
     });
 
-    describe("sorting", function() {
-        var Ed     = { id: 1, name: 'Ed',     code: 'C', modifier: 10, firstInitial: 'E' },
-            Abe    = { id: 2, name: 'Abe',    code: 'A', modifier: 100, firstInitial: 'A' },
-            Edward = { id: 3, name: 'Edward', code: 'B', modifier: 5, firstInitial: 'E' };
+    describe("sorting", function () {
+        var Ed = {id: 1, name: 'Ed', code: 'C', modifier: 10, firstInitial: 'E'},
+            Abe = {id: 2, name: 'Abe', code: 'A', modifier: 100, firstInitial: 'A'},
+            Edward = {id: 3, name: 'Edward', code: 'B', modifier: 5, firstInitial: 'E'};
 
-        function addItems (c) {
+        function addItems(c) {
             c.add(Ed, Abe, Edward);
         }
 
-        beforeEach(function() {
+        beforeEach(function () {
             collection = new Ext.util.Collection({
-                keyFn: function(item) {
+                keyFn: function (item) {
                     return item.name;
                 }
             });
@@ -2616,7 +2616,7 @@ describe("Ext.util.Collection", function() {
             addItems(collection);
         });
 
-        it("should sort ASC by default", function() {
+        it("should sort ASC by default", function () {
             collection.sort('code');
 
             expect(collection.items[0].code).toBe('A');
@@ -2624,7 +2624,7 @@ describe("Ext.util.Collection", function() {
             expect(collection.items[2].code).toBe('C');
         });
 
-        it("should accept a DESC sort", function() {
+        it("should accept a DESC sort", function () {
             collection.sort('code', "DESC");
 
             expect(collection.items[2].code).toBe('A');
@@ -2632,9 +2632,9 @@ describe("Ext.util.Collection", function() {
             expect(collection.items[0].code).toBe('C');
         });
 
-        it("should sort with an Ext.util.Sorter", function() {
+        it("should sort with an Ext.util.Sorter", function () {
             collection.sort(new Ext.util.Sorter({
-                sorterFn: function(a, b) {
+                sorterFn: function (a, b) {
                     return (a.id * a.modifier) - (b.id * b.modifier);
                 }
             }));
@@ -2644,10 +2644,10 @@ describe("Ext.util.Collection", function() {
             expect(collection.items[2].code).toBe('A');
         });
 
-        it("should perform a directional sort with an Ext.util.Sorter", function() {
+        it("should perform a directional sort with an Ext.util.Sorter", function () {
             collection.sort(new Ext.util.Sorter({
                 direction: 'DESC',
-                sorterFn: function(a, b) {
+                sorterFn: function (a, b) {
                     return (a.id * a.modifier) - (b.id * b.modifier);
                 }
             }));
@@ -2666,7 +2666,7 @@ describe("Ext.util.Collection", function() {
 
             expect(collection.sorted).toBe(true);
 
-            collection.on('sort', function() {
+            collection.on('sort', function () {
                 ++calls;
             });
 
@@ -2712,9 +2712,9 @@ describe("Ext.util.Collection", function() {
             expect(adds.join(' / ')).toBe('3 at 0');
 
             collection.add([
-                { id: 10, name: 'Nige' },
-                { id: 20, name: 'Evan' },
-                { id: 30, name: 'Don' }
+                {id: 10, name: 'Nige'},
+                {id: 20, name: 'Evan'},
+                {id: 30, name: 'Don'}
             ]);
 
             expect(adds.length).toBe(3);
@@ -2730,10 +2730,10 @@ describe("Ext.util.Collection", function() {
             expect(collection.items[5].name).toBe('Nige');
         });
 
-        it("should fire a sort event", function() {
+        it("should fire a sort event", function () {
             var calls = 0;
 
-            collection.on('sort', function() {
+            collection.on('sort', function () {
                 ++calls;
             });
 
@@ -2742,7 +2742,7 @@ describe("Ext.util.Collection", function() {
             expect(calls).toBe(1);
         });
 
-        it("should sort when sorters is manipulated", function() {
+        it("should sort when sorters is manipulated", function () {
             expect(collection.sorted).toBe(false);
             expect(collection.items[0].name).toBe('Ed');
             expect(collection.items[1].name).toBe('Abe');
@@ -2763,21 +2763,21 @@ describe("Ext.util.Collection", function() {
             expect(collection.items[1].name).toBe('Ed');
             expect(collection.items[2].name).toBe('Edward');
         });
-        
-        it("should not fire the sort event when removing all the sorters", function() {
+
+        it("should not fire the sort event when removing all the sorters", function () {
             var spy = jasmine.createSpy();
-            
+
             collection.getSorters().add('name');
             collection.on('sort', spy);
             collection.getSorters().remove('name');
             expect(spy).not.toHaveBeenCalled();
         });
 
-        it("should sort once per sorter manipulation", function() {
+        it("should sort once per sorter manipulation", function () {
             var calls = 0,
                 sorters = collection.getSorters();
 
-            collection.on('sort', function() {
+            collection.on('sort', function () {
                 ++calls;
             });
 
@@ -2787,7 +2787,7 @@ describe("Ext.util.Collection", function() {
             expect(collection.items[2].name).toBe('Edward');
 
             sorters.add(
-                { property: 'firstInitial', direction: 'DESC' },
+                {property: 'firstInitial', direction: 'DESC'},
                 'name');
 
             expect(calls).toBe(1);
@@ -2806,7 +2806,7 @@ describe("Ext.util.Collection", function() {
             expect(collection.items[1].name).toBe('Ed');
             expect(collection.items[2].name).toBe('Edward');
 
-            sorters.insert(0, { property: 'firstInitial', direction: 'DESC' });
+            sorters.insert(0, {property: 'firstInitial', direction: 'DESC'});
 
             expect(calls).toBe(3);
             expect(sorters.length).toBe(2);
@@ -2816,11 +2816,11 @@ describe("Ext.util.Collection", function() {
             expect(collection.items[2].name).toBe('Abe');
         });
 
-        it("should enforce multiSortLimit", function() {
+        it("should enforce multiSortLimit", function () {
             var calls = 0,
                 sorters = collection.getSorters();
 
-            collection.on('sort', function() {
+            collection.on('sort', function () {
                 ++calls;
             });
 
@@ -2978,7 +2978,7 @@ describe("Ext.util.Collection", function() {
             expect(collection.items[2].name).toBe('Edward');
         });
 
-        it("should add items in sorted order when the new items need cloning", function() {
+        it("should add items in sorted order when the new items need cloning", function () {
             collection.removeAll();
             collection.sort('name', 'DESC');
             collection.add([Abe, Ed, Edward]);
@@ -2990,7 +2990,7 @@ describe("Ext.util.Collection", function() {
             expect(collection.getByKey('Abe')).toBe(Abe);
         });
 
-        it("should be able to get items by key after inserting multiple items into a sorted collection", function() {
+        it("should be able to get items by key after inserting multiple items into a sorted collection", function () {
             collection.getSorters().add('name');
             var Brian = {id: 4, name: 'Brian'},
                 Aaron = {id: 5, name: 'Aaron'},
@@ -3012,7 +3012,7 @@ describe("Ext.util.Collection", function() {
             expect(collection.getAt(6)).toBe(Fredward);
         });
 
-        it("should be able to remove a sorter instance", function() {
+        it("should be able to remove a sorter instance", function () {
             var sorter = new Ext.util.Sorter({
                 property: 'name'
             });
@@ -3024,11 +3024,11 @@ describe("Ext.util.Collection", function() {
     });
 
     describe('rootProperty', function () {
-        var Ed     = { id: 1, data: { name: 'Ed',     code: 'C', modifier: 10, firstInitial: 'E' } },
-            Abe    = { id: 2, data: { name: 'Abe',    code: 'A', modifier: 100, firstInitial: 'A' } },
-            Edward = { id: 3, data: { name: 'Edward', code: 'B', modifier: 5, firstInitial: 'E' } };
+        var Ed = {id: 1, data: {name: 'Ed', code: 'C', modifier: 10, firstInitial: 'E'}},
+            Abe = {id: 2, data: {name: 'Abe', code: 'A', modifier: 100, firstInitial: 'A'}},
+            Edward = {id: 3, data: {name: 'Edward', code: 'B', modifier: 5, firstInitial: 'E'}};
 
-        function addItems (c) {
+        function addItems(c) {
             c.add(Edward, Abe, Ed);
         }
 
@@ -3094,7 +3094,7 @@ describe("Ext.util.Collection", function() {
             it('should use the rootProperty', function () {
                 collection = new Ext.util.Collection({
                     rootProperty: 'data',
-                    filters: { property: 'name', value: 'E' }
+                    filters: {property: 'name', value: 'E'}
                 });
 
                 addItems(collection);
@@ -3114,7 +3114,7 @@ describe("Ext.util.Collection", function() {
 
                 addItems(collection);
 
-                collection.setFilters({ property: 'name', value: 'E' });
+                collection.setFilters({property: 'name', value: 'E'});
 
                 expect(collection.length).toBe(2);
                 //expect(collection.items[0]).toBe(Abe);
@@ -3127,7 +3127,7 @@ describe("Ext.util.Collection", function() {
             it('should use the rootProperty', function () {
                 collection = new Ext.util.Collection({
                     rootProperty: 'data',
-                    filters: { property: 'name', value: 'E' },
+                    filters: {property: 'name', value: 'E'},
                     sorters: 'name'
                 });
 
@@ -3148,7 +3148,7 @@ describe("Ext.util.Collection", function() {
 
                 addItems(collection);
 
-                collection.setFilters({ property: 'name', value: 'E' });
+                collection.setFilters({property: 'name', value: 'E'});
                 collection.sort('name');
 
                 expect(collection.length).toBe(2);
@@ -3159,21 +3159,21 @@ describe("Ext.util.Collection", function() {
         });
     });
 
-    describe("extraKeys", function() {
+    describe("extraKeys", function () {
         var item0, item1, item2, item3, item4, item5, item6, item7, item8, item9, item10;
 
-        beforeEach(function() {
-            item0  = { id: 0,  name: 'abba', uid: '123', foo: 12 };
-            item1  = { id: 1,  name: 'aaa',  uid: '234', foo: 12 };
-            item2  = { id: 2,  name: 'bad',  uid: '345', foo: 34 };
-            item3  = { id: 3,  name: 'ccc',  uid: '456', foo: 34 };
-            item4  = { id: 4,  name: 'abc',  uid: '678', foo: 24 };
-            item5  = { id: 5,  name: 'bcd',  uid: '789', foo: 67 };
-            item6  = { id: 6,  name: 'cde',  uid: '890', foo: 78 };
-            item7  = { id: 7,  name: 'xyz',  uid: '012', foo: 34 };
-            item8  = { id: 8,  name: 'ddd',  uid: '246', foo: 34 };
-            item9  = { id: 9,  name: 'dad',  uid: '468', foo: 24 };
-            item10 = { id: 10, name: 'dood', uid: '680', foo: 24 };
+        beforeEach(function () {
+            item0 = {id: 0, name: 'abba', uid: '123', foo: 12};
+            item1 = {id: 1, name: 'aaa', uid: '234', foo: 12};
+            item2 = {id: 2, name: 'bad', uid: '345', foo: 34};
+            item3 = {id: 3, name: 'ccc', uid: '456', foo: 34};
+            item4 = {id: 4, name: 'abc', uid: '678', foo: 24};
+            item5 = {id: 5, name: 'bcd', uid: '789', foo: 67};
+            item6 = {id: 6, name: 'cde', uid: '890', foo: 78};
+            item7 = {id: 7, name: 'xyz', uid: '012', foo: 34};
+            item8 = {id: 8, name: 'ddd', uid: '246', foo: 34};
+            item9 = {id: 9, name: 'dad', uid: '468', foo: 24};
+            item10 = {id: 10, name: 'dood', uid: '680', foo: 24};
 
             collection = new Ext.util.Collection({
                 extraKeys: {
@@ -3186,7 +3186,7 @@ describe("Ext.util.Collection", function() {
             });
 
             collection.add(item0, item1, item2, item3, item4, item5, item6, item7, item8,
-                           item9, item10);
+                item9, item10);
         });
 
         it('should add items and track unique extraKeys', function () {
@@ -3222,7 +3222,7 @@ describe("Ext.util.Collection", function() {
 
             item0.uid += 'a';
             collection.itemChanged(item0);
-            
+
             expect(collection.byUid.get(item0.uid)).toBe(item0);
         });
 
@@ -3307,7 +3307,7 @@ describe("Ext.util.Collection", function() {
             expect(collection.byUid.get(item9.uid)).toBe(item9);
             expect(collection.byUid.get(item10.uid)).toBe(item10);
 
-            function evens (item) {
+            function evens(item) {
                 return item.id % 2 === 0;
             }
 
@@ -3387,7 +3387,7 @@ describe("Ext.util.Collection", function() {
             expect(collection.byFoo.get(item5.foo)).toBe(item5);
             expect(collection.byFoo.get(item6.foo)).toBe(item6);
 
-            function evens (item) {
+            function evens(item) {
                 return item.id % 2 === 0;
             }
 
@@ -3455,242 +3455,242 @@ describe("Ext.util.Collection", function() {
         });
     });
 
-    describe("aggregation", function() {
-        describe("simple objects", function() {
-            var item0 = { id: 0, amount: 40 },
-                item1 = { id: 1, amount: 20 },
-                item2 = { id: 2, amount: 10 },
-                item3 = { id: 3, amount: 30 };
+    describe("aggregation", function () {
+        describe("simple objects", function () {
+            var item0 = {id: 0, amount: 40},
+                item1 = {id: 1, amount: 20},
+                item2 = {id: 2, amount: 10},
+                item3 = {id: 3, amount: 30};
 
-            beforeEach(function() {
+            beforeEach(function () {
                 collection = new Ext.util.Collection();
                 collection.add(item0, item1, item2, item3);
             });
 
-            describe("bounds", function() {
-                it("should operate on all items", function() {
-                    expect(collection.bounds('amount')).toEqual([10,40]);
+            describe("bounds", function () {
+                it("should operate on all items", function () {
+                    expect(collection.bounds('amount')).toEqual([10, 40]);
                 });
 
-                it("should support a start index", function() {
-                    expect(collection.bounds('amount', 2)).toEqual([10,30]);
+                it("should support a start index", function () {
+                    expect(collection.bounds('amount', 2)).toEqual([10, 30]);
                 });
 
-                it("should support a range", function() {
-                    expect(collection.bounds('amount', 0, 2)).toEqual([20,40]);
+                it("should support a range", function () {
+                    expect(collection.bounds('amount', 0, 2)).toEqual([20, 40]);
                 });
             });
-            
-            describe("count", function() {
-                it("should return the count", function() {
+
+            describe("count", function () {
+                it("should return the count", function () {
                     expect(collection.count()).toBe(4);
                 });
             });
 
-            describe("extremes", function() {
-                it("should operate on all items", function() {
+            describe("extremes", function () {
+                it("should operate on all items", function () {
                     var extremes = collection.extremes('amount');
                     expect(extremes[0]).toBe(item2);
                     expect(extremes[1]).toBe(item0);
                 });
 
-                it("should support a start index", function() {
+                it("should support a start index", function () {
                     var extremes = collection.extremes('amount', 2);
                     expect(extremes[0]).toBe(item2);
                     expect(extremes[1]).toBe(item3);
                 });
 
-                it("should support a range", function() {
+                it("should support a range", function () {
                     var extremes = collection.extremes('amount', 0, 2);
                     expect(extremes[0]).toBe(item1);
                     expect(extremes[1]).toBe(item0);
                 });
             });
 
-            describe("max", function() {
-                it("should operate on all items", function() {
+            describe("max", function () {
+                it("should operate on all items", function () {
                     expect(collection.max('amount')).toBe(40);
                 });
 
-                it("should support a start index", function() {
+                it("should support a start index", function () {
                     expect(collection.max('amount', 2)).toBe(30);
                 });
 
-                it("should support a range", function() {
+                it("should support a range", function () {
                     expect(collection.max('amount', 1, 3)).toBe(20);
                 });
             });
 
-            describe("maxItem", function() {
-                it("should operate on all items", function() {
+            describe("maxItem", function () {
+                it("should operate on all items", function () {
                     expect(collection.maxItem('amount')).toBe(item0);
                 });
 
-                it("should support a start index", function() {
+                it("should support a start index", function () {
                     expect(collection.maxItem('amount', 2)).toBe(item3);
                 });
 
-                it("should support a range", function() {
+                it("should support a range", function () {
                     expect(collection.maxItem('amount', 1, 3)).toBe(item1);
                 });
             });
 
-            describe("min", function() {
-                it("should operate on all items", function() {
+            describe("min", function () {
+                it("should operate on all items", function () {
                     expect(collection.min('amount')).toBe(10);
                 });
 
-                it("should support a start index", function() {
+                it("should support a start index", function () {
                     expect(collection.min('amount', 2)).toBe(10);
                 });
 
-                it("should support a range", function() {
+                it("should support a range", function () {
                     expect(collection.min('amount', 0, 2)).toBe(20);
                 });
             });
 
-            describe("minItem", function() {
-                it("should operate on all items", function() {
+            describe("minItem", function () {
+                it("should operate on all items", function () {
                     expect(collection.minItem('amount')).toBe(item2);
                 });
 
-                it("should support a start index", function() {
+                it("should support a start index", function () {
                     expect(collection.minItem('amount', 2)).toBe(item2);
                 });
 
-                it("should support a range", function() {
+                it("should support a range", function () {
                     expect(collection.minItem('amount', 0, 2)).toBe(item1);
                 });
             });
 
-            describe("sum", function() {
-                it("should operate on all items", function() {
+            describe("sum", function () {
+                it("should operate on all items", function () {
                     expect(collection.sum('amount')).toBe(100);
                 });
 
-                it("should support a start index", function() {
+                it("should support a start index", function () {
                     expect(collection.sum('amount', 2)).toBe(40);
                 });
 
-                it("should support a range", function() {
+                it("should support a range", function () {
                     expect(collection.sum('amount', 1, 3)).toBe(30);
                 });
             });
         });
 
-        describe("complex objects", function() {
-            var item0 = { id: 0, data: { amount: 40 } },
-                item1 = { id: 1, data: { amount: 20 } },
-                item2 = { id: 2, data: { amount: 10 } },
-                item3 = { id: 3, data: { amount: 30 } };
+        describe("complex objects", function () {
+            var item0 = {id: 0, data: {amount: 40}},
+                item1 = {id: 1, data: {amount: 20}},
+                item2 = {id: 2, data: {amount: 10}},
+                item3 = {id: 3, data: {amount: 30}};
 
-            beforeEach(function() {
+            beforeEach(function () {
                 collection = new Ext.util.Collection({
                     rootProperty: 'data'
                 });
                 collection.add(item0, item1, item2, item3);
             });
 
-            describe("bounds", function() {
-                it("should operate on all items", function() {
-                    expect(collection.bounds('amount')).toEqual([10,40]);
+            describe("bounds", function () {
+                it("should operate on all items", function () {
+                    expect(collection.bounds('amount')).toEqual([10, 40]);
                 });
 
-                it("should support a start index", function() {
-                    expect(collection.bounds('amount', 2)).toEqual([10,30]);
+                it("should support a start index", function () {
+                    expect(collection.bounds('amount', 2)).toEqual([10, 30]);
                 });
 
-                it("should support a range", function() {
-                    expect(collection.bounds('amount', 0, 2)).toEqual([20,40]);
+                it("should support a range", function () {
+                    expect(collection.bounds('amount', 0, 2)).toEqual([20, 40]);
                 });
             });
 
-            describe("extremes", function() {
-                it("should operate on all items", function() {
+            describe("extremes", function () {
+                it("should operate on all items", function () {
                     var extremes = collection.extremes('amount');
                     expect(extremes[0]).toBe(item2);
                     expect(extremes[1]).toBe(item0);
                 });
 
-                it("should support a start index", function() {
+                it("should support a start index", function () {
                     var extremes = collection.extremes('amount', 2);
                     expect(extremes[0]).toBe(item2);
                     expect(extremes[1]).toBe(item3);
                 });
 
-                it("should support a range", function() {
+                it("should support a range", function () {
                     var extremes = collection.extremes('amount', 0, 2);
                     expect(extremes[0]).toBe(item1);
                     expect(extremes[1]).toBe(item0);
                 });
             });
 
-            describe("max", function() {
-                it("should operate on all items", function() {
+            describe("max", function () {
+                it("should operate on all items", function () {
                     expect(collection.max('amount')).toBe(40);
                 });
 
-                it("should support a start index", function() {
+                it("should support a start index", function () {
                     expect(collection.max('amount', 2)).toBe(30);
                 });
 
-                it("should support a range", function() {
+                it("should support a range", function () {
                     expect(collection.max('amount', 1, 3)).toBe(20);
                 });
             });
 
-            describe("maxItem", function() {
-                it("should operate on all items", function() {
+            describe("maxItem", function () {
+                it("should operate on all items", function () {
                     expect(collection.maxItem('amount')).toBe(item0);
                 });
 
-                it("should support a start index", function() {
+                it("should support a start index", function () {
                     expect(collection.maxItem('amount', 2)).toBe(item3);
                 });
 
-                it("should support a range", function() {
+                it("should support a range", function () {
                     expect(collection.maxItem('amount', 1, 3)).toBe(item1);
                 });
             });
 
-            describe("min", function() {
-                it("should operate on all items", function() {
+            describe("min", function () {
+                it("should operate on all items", function () {
                     expect(collection.min('amount')).toBe(10);
                 });
 
-                it("should support a start index", function() {
+                it("should support a start index", function () {
                     expect(collection.min('amount', 2)).toBe(10);
                 });
 
-                it("should support a range", function() {
+                it("should support a range", function () {
                     expect(collection.min('amount', 0, 2)).toBe(20);
                 });
             });
 
-            describe("minItem", function() {
-                it("should operate on all items", function() {
+            describe("minItem", function () {
+                it("should operate on all items", function () {
                     expect(collection.minItem('amount')).toBe(item2);
                 });
 
-                it("should support a start index", function() {
+                it("should support a start index", function () {
                     expect(collection.minItem('amount', 2)).toBe(item2);
                 });
 
-                it("should support a range", function() {
+                it("should support a range", function () {
                     expect(collection.minItem('amount', 0, 2)).toBe(item1);
                 });
             });
 
-            describe("sum", function() {
-                it("should operate on all items", function() {
+            describe("sum", function () {
+                it("should operate on all items", function () {
                     expect(collection.sum('amount')).toBe(100);
                 });
 
-                it("should support a start index", function() {
+                it("should support a start index", function () {
                     expect(collection.sum('amount', 2)).toBe(40);
                 });
 
-                it("should support a range", function() {
+                it("should support a range", function () {
                     expect(collection.sum('amount', 1, 3)).toBe(30);
                 });
             });
@@ -3699,21 +3699,21 @@ describe("Ext.util.Collection", function() {
 
     describe('itemChanged', function () {
         var events = {
-                add: 0,
-                beforeitemchange: 0,
-                beginupdate: 0,
-                endupdate: 0,
-                itemchange: 0,
-                filtereditemchange: 0,
-                refresh: 0,
-                remove: 0,
-                sort: 0,
-                updatekey: 0
-            };
+            add: 0,
+            beforeitemchange: 0,
+            beginupdate: 0,
+            endupdate: 0,
+            itemchange: 0,
+            filtereditemchange: 0,
+            refresh: 0,
+            remove: 0,
+            sort: 0,
+            updatekey: 0
+        };
         var eventArgs, eventNames, argList;
         var Don, Evan, Nige, Phil, Kevin;
 
-        function resetEvents () {
+        function resetEvents() {
             var listeners = {};
 
             eventArgs = [];
@@ -3723,7 +3723,7 @@ describe("Ext.util.Collection", function() {
                 events[name] = 0;
                 listeners[name] = function () {
                     ++events[name];
-                    
+
                     argList = Ext.Array.slice(arguments, 0);
 
                     // Copy the event info object because two events might use the same object
@@ -3742,11 +3742,11 @@ describe("Ext.util.Collection", function() {
 
         beforeEach(function () {
             // Reset these before each test
-            Don = { id: 1, name: 'Don', foo: 10 };
-            Evan = { id: 2, name: 'Evan', foo: 100 };
-            Nige = { id: 3, name: 'Nige', foo: 50 };
-            Phil = { id: 4, name: 'Phil', foo: 30 };
-            Kevin = { id: 5, name: 'Kevin', foo: 30 };
+            Don = {id: 1, name: 'Don', foo: 10};
+            Evan = {id: 2, name: 'Evan', foo: 100};
+            Nige = {id: 3, name: 'Nige', foo: 50};
+            Phil = {id: 4, name: 'Phil', foo: 30};
+            Kevin = {id: 5, name: 'Kevin', foo: 30};
         });
 
         describe('unsorted and unfiltered', function () {
@@ -3764,8 +3764,7 @@ describe("Ext.util.Collection", function() {
 
                 collection.itemChanged(Don);
 
-                expect(eventNames.join(',')).
-                    toBe('beginupdate,beforeitemchange,itemchange,endupdate');
+                expect(eventNames.join(',')).toBe('beginupdate,beforeitemchange,itemchange,endupdate');
 
                 var beforeitemchange = eventArgs[1][1],
                     itemchange = eventArgs[2][1];
@@ -3793,8 +3792,7 @@ describe("Ext.util.Collection", function() {
 
                 collection.itemChanged(Don, null, oldKey);
 
-                expect(eventNames.join(',')).
-                    toBe('beginupdate,beforeitemchange,updatekey,itemchange,endupdate');
+                expect(eventNames.join(',')).toBe('beginupdate,beforeitemchange,updatekey,itemchange,endupdate');
 
                 var beforeitemchange = eventArgs[1][1],
                     itemchange = eventArgs[3][1];
@@ -3833,8 +3831,7 @@ describe("Ext.util.Collection", function() {
 
                 collection.itemChanged(Don);
 
-                expect(eventNames.join(',')).
-                        toBe('beginupdate,beforeitemchange,remove,add,itemchange,endupdate');
+                expect(eventNames.join(',')).toBe('beginupdate,beforeitemchange,remove,add,itemchange,endupdate');
 
                 var beforeitemchange = eventArgs[1][1];
 
@@ -3861,8 +3858,7 @@ describe("Ext.util.Collection", function() {
 
                 collection.itemChanged(Don, null, oldKey);
 
-                expect(eventNames.join(',')).
-                    toBe('beginupdate,beforeitemchange,updatekey,itemchange,endupdate');
+                expect(eventNames.join(',')).toBe('beginupdate,beforeitemchange,updatekey,itemchange,endupdate');
 
                 var beforeitemchange = eventArgs[1][1],
                     itemchange = eventArgs[3][1];
@@ -3888,15 +3884,14 @@ describe("Ext.util.Collection", function() {
                 Don.name = 'Zaphod';
 
                 collection.on({
-                    add: function(coll, adds) {
+                    add: function (coll, adds) {
                         insertionPoint = adds.at;
                     },
                     single: true
                 });
                 collection.itemChanged(Don);
 
-                expect(eventNames.join(',')).
-                        toBe('beginupdate,beforeitemchange,remove,add,itemchange,endupdate');
+                expect(eventNames.join(',')).toBe('beginupdate,beforeitemchange,remove,add,itemchange,endupdate');
 
                 var beforeitemchange = eventArgs[1][1],
                     itemchange = eventArgs[4][1];
@@ -3912,7 +3907,7 @@ describe("Ext.util.Collection", function() {
                 expect(beforeitemchange.oldIndex).toBe(0);
                 expect(beforeitemchange.oldKey).toBe(undefined);
                 expect(beforeitemchange.wasFiltered).toBe(false);
-                
+
                 expect(itemchange.newIndex).toBe(4);
 
                 // Don's name change to Zaphod should have moved him to the end
@@ -3926,15 +3921,14 @@ describe("Ext.util.Collection", function() {
                 Don.name = 'Owen';
 
                 collection.on({
-                    add: function(coll, adds) {
+                    add: function (coll, adds) {
                         insertionPoint = adds.at;
                     },
                     single: true
                 });
                 collection.itemChanged(Don);
 
-                expect(eventNames.join(',')).
-                        toBe('beginupdate,beforeitemchange,remove,add,itemchange,endupdate');
+                expect(eventNames.join(',')).toBe('beginupdate,beforeitemchange,remove,add,itemchange,endupdate');
 
                 var beforeitemchange = eventArgs[1][1],
                     itemchange = eventArgs[4][1];
@@ -3964,15 +3958,14 @@ describe("Ext.util.Collection", function() {
                 Evan.name = 'Aaron';
 
                 collection.on({
-                    add: function(coll, adds) {
+                    add: function (coll, adds) {
                         insertionPoint = adds.at;
                     },
                     single: true
                 });
                 collection.itemChanged(Evan);
 
-                expect(eventNames.join(',')).
-                        toBe('beginupdate,beforeitemchange,remove,add,itemchange,endupdate');
+                expect(eventNames.join(',')).toBe('beginupdate,beforeitemchange,remove,add,itemchange,endupdate');
 
                 var beforeitemchange = eventArgs[1][1],
                     itemchange = eventArgs[4][1];
@@ -4002,15 +3995,14 @@ describe("Ext.util.Collection", function() {
                 Phil.name = 'Edgar';
 
                 collection.on({
-                    add: function(coll, adds) {
+                    add: function (coll, adds) {
                         insertionPoint = adds.at;
                     },
                     single: true
                 });
                 collection.itemChanged(Phil);
 
-                expect(eventNames.join(',')).
-                        toBe('beginupdate,beforeitemchange,remove,add,itemchange,endupdate');
+                expect(eventNames.join(',')).toBe('beginupdate,beforeitemchange,remove,add,itemchange,endupdate');
 
                 var beforeitemchange = eventArgs[1][1],
                     itemchange = eventArgs[4][1];
@@ -4033,8 +4025,8 @@ describe("Ext.util.Collection", function() {
                 expect(collection.items).toEqual([Don, Phil, Evan, Kevin, Nige]);
             });
 
-            it("should return the correct index when asking for an index during the remove", function() {
-                collection.on('remove', function() {
+            it("should return the correct index when asking for an index during the remove", function () {
+                collection.on('remove', function () {
                     collection.indexOf(Phil);
                 });
 
@@ -4049,7 +4041,7 @@ describe("Ext.util.Collection", function() {
             beforeEach(function () {
                 collection = new Ext.util.Collection({
                     listeners: resetEvents(),
-                    filters: { property: 'foo', value: 50, operator: '<=' }
+                    filters: {property: 'foo', value: 50, operator: '<='}
                 });
 
                 collection.add(Don, Nige, Evan);
@@ -4069,8 +4061,7 @@ describe("Ext.util.Collection", function() {
                 //expect(collection.items[0]).toBe(Don);
                 expect(collection.items[0]).toBe(Nige);
 
-                expect(eventNames.join(',')).
-                    toBe('beginupdate,beforeitemchange,remove,filtereditemchange,endupdate');
+                expect(eventNames.join(',')).toBe('beginupdate,beforeitemchange,remove,filtereditemchange,endupdate');
 
                 var beforeitemchange = eventArgs[1][1],
                     itemchange = eventArgs[3][1];
@@ -4099,8 +4090,7 @@ describe("Ext.util.Collection", function() {
                 expect(collection.items[1]).toBe(Nige);
                 expect(collection.items[2]).toBe(Evan);
 
-                expect(eventNames.join(',')).
-                    toBe('beginupdate,beforeitemchange,add,itemchange,endupdate');
+                expect(eventNames.join(',')).toBe('beginupdate,beforeitemchange,add,itemchange,endupdate');
 
                 var beforeitemchange = eventArgs[1][1],
                     itemchange = eventArgs[3][1];
@@ -4119,7 +4109,7 @@ describe("Ext.util.Collection", function() {
                 expect(beforeitemchange.wasFiltered).toBe(true);
             });
 
-            it("should pass along the modified fields", function() {
+            it("should pass along the modified fields", function () {
                 var spy = jasmine.createSpy();
                 collection.on('beforeitemchange', spy);
                 collection.itemChanged(Evan, ['foo', 'bar']);
@@ -4131,8 +4121,8 @@ describe("Ext.util.Collection", function() {
             beforeEach(function () {
                 collection = new Ext.util.Collection({
                     listeners: resetEvents(),
-                    filters: { property: 'foo', value: 50, operator: '<=' },
-                    sorters: { property: 'name', direction: 'DESC' }
+                    filters: {property: 'foo', value: 50, operator: '<='},
+                    sorters: {property: 'name', direction: 'DESC'}
                 });
 
                 collection.add(Don, Nige, Evan);
@@ -4152,8 +4142,7 @@ describe("Ext.util.Collection", function() {
                 expect(collection.items[0]).toBe(Nige);
                 //expect(collection.items[1]).toBe(Don);
 
-                expect(eventNames.join(',')).
-                    toBe('beginupdate,beforeitemchange,remove,filtereditemchange,endupdate');
+                expect(eventNames.join(',')).toBe('beginupdate,beforeitemchange,remove,filtereditemchange,endupdate');
 
                 var beforeitemchange = eventArgs[1][1],
                     itemchange = eventArgs[3][1];
@@ -4182,8 +4171,7 @@ describe("Ext.util.Collection", function() {
                 expect(collection.items[1]).toBe(Evan);
                 expect(collection.items[2]).toBe(Don);
 
-                expect(eventNames.join(',')).
-                    toBe('beginupdate,beforeitemchange,add,itemchange,endupdate');
+                expect(eventNames.join(',')).toBe('beginupdate,beforeitemchange,add,itemchange,endupdate');
 
                 var beforeitemchange = eventArgs[1][1],
                     itemchange = eventArgs[3][1];
@@ -4213,8 +4201,7 @@ describe("Ext.util.Collection", function() {
                 expect(collection.items[1]).toBe(Nige);
                 expect(collection.items[2]).toBe(Don);
 
-                expect(eventNames.join(',')).
-                    toBe('beginupdate,beforeitemchange,add,itemchange,endupdate');
+                expect(eventNames.join(',')).toBe('beginupdate,beforeitemchange,add,itemchange,endupdate');
 
                 var beforeitemchange = eventArgs[1][1],
                     itemchange = eventArgs[3][1];
@@ -4233,19 +4220,19 @@ describe("Ext.util.Collection", function() {
                 expect(beforeitemchange.wasFiltered).toBe(true);
             });
         }); // sorted / filtered
-        
-        describe("with a source", function() {
-            it("should pass along the onCollectionItemChanged to the child", function() {
+
+        describe("with a source", function () {
+            it("should pass along the onCollectionItemChanged to the child", function () {
                 var source = new Ext.util.Collection(),
                     spy = jasmine.createSpy(),
                     args;
-                    
+
                 source.add(Don);
                 collection = new Ext.util.Collection({
                     source: source
                 });
                 collection.onCollectionItemChange = spy;
-                
+
                 source.itemChanged(Don, ['name']);
                 args = spy.mostRecentCall.args;
                 expect(args[0]).toBe(source);
@@ -4254,37 +4241,37 @@ describe("Ext.util.Collection", function() {
         });
     }); // itemChanged
 
-    describe("collecting", function() {
-        describe("simple objects", function() {
-            beforeEach(function() {
+    describe("collecting", function () {
+        describe("simple objects", function () {
+            beforeEach(function () {
                 collection = new Ext.util.Collection();
 
                 collection.add([
-                    { id: 1, amount: 10, name: 'Ed' },
-                    { id: 2, amount: 20, name: 'Abe' },
-                    { id: 3, amount: 20, name: 'Ed' }
+                    {id: 1, amount: 10, name: 'Ed'},
+                    {id: 2, amount: 20, name: 'Abe'},
+                    {id: 3, amount: 20, name: 'Ed'}
                 ]);
             });
 
-            it("should collect the unique properties from each item", function() {
+            it("should collect the unique properties from each item", function () {
                 var items = collection.collect('name');
 
                 expect(items.length).toBe(2);
             });
         });
 
-        describe("complex objects", function() {
-            beforeEach(function() {
+        describe("complex objects", function () {
+            beforeEach(function () {
                 collection = new Ext.util.Collection();
 
                 collection.add([
-                    { id: 1, data: { amount: 10, name: 'Ed' } },
-                    { id: 2, data: { amount: 20, name: 'Abe' } },
-                    { id: 3, data: { amount: 20, name: 'Ed' } }
+                    {id: 1, data: {amount: 10, name: 'Ed'}},
+                    {id: 2, data: {amount: 20, name: 'Abe'}},
+                    {id: 3, data: {amount: 20, name: 'Ed'}}
                 ]);
             });
 
-            it("should collect the unique properties from each item", function() {
+            it("should collect the unique properties from each item", function () {
                 var items = collection.collect('name', 'data');
 
                 expect(items.length).toBe(2);
@@ -4292,10 +4279,10 @@ describe("Ext.util.Collection", function() {
         });
     });
 
-    describe('adding a Collection to a Collection', function() {
-        it('Should add a Collection as a single new item', function() {
+    describe('adding a Collection to a Collection', function () {
+        it('Should add a Collection as a single new item', function () {
             var mc1 = new Ext.util.Collection({
-                    keyFn: function(object) {
+                    keyFn: function (object) {
                         return object;
                     }
                 }),
@@ -4307,17 +4294,17 @@ describe("Ext.util.Collection", function() {
         });
     });
 
-    describe('adding duplicate items', function() {
-        it('should overwrite duplicates', function() {
+    describe('adding duplicate items', function () {
+        it('should overwrite duplicates', function () {
             var mc1 = new Ext.util.Collection();
             var log = [];
 
             logEvents(mc1, log, 'text');
 
-            mc1.add({ id: 1, text: 'foo' },
-                    { id: 2, text: 'bar' },
-                    { id: 1, text: 'bletch' },
-                    { id: 2, text: 'zarg' });
+            mc1.add({id: 1, text: 'foo'},
+                {id: 2, text: 'bar'},
+                {id: 1, text: 'bletch'},
+                {id: 2, text: 'zarg'});
 
             expect(log).toEqual([
                 'beginupdate',
@@ -4331,8 +4318,8 @@ describe("Ext.util.Collection", function() {
         });
     });
 
-    describe('item decoder', function() {
-        it('Should decode new items', function() {
+    describe('item decoder', function () {
+        it('Should decode new items', function () {
             var Item = Ext.define(null, {
                 isItem: true,
                 config: {
@@ -4347,17 +4334,17 @@ describe("Ext.util.Collection", function() {
             var decoded = 0;
 
             var mc = new Ext.util.Collection({
-                    decoder: function (item) {
-                        ++calls;
-                        if (!item.isItem) {
-                            ++decoded;
-                            item = new Item(item);
-                        }
-                        return item;
+                decoder: function (item) {
+                    ++calls;
+                    if (!item.isItem) {
+                        ++decoded;
+                        item = new Item(item);
                     }
-                });
+                    return item;
+                }
+            });
 
-            mc.add({ id: 42 }, new Item({ id: 'abc' }));
+            mc.add({id: 42}, new Item({id: 'abc'}));
 
             expect(calls).toBe(2);
             expect(decoded).toBe(1);

@@ -2,7 +2,7 @@
  * This plugin provides drag and/or drop functionality for a {@link Ext.grid.View GridView}.
  *
  * It creates a specialized instance of {@link Ext.dd.DragZone DragZone} which knows how to drag out of a {@link
- * Ext.grid.View GridView} and loads the data object which is passed to a cooperating {@link Ext.dd.DragZone DragZone}'s
+    * Ext.grid.View GridView} and loads the data object which is passed to a cooperating {@link Ext.dd.DragZone DragZone}'s
  * methods with the following properties:
  *
  * - `copy` : {@link Boolean}
@@ -69,13 +69,13 @@ Ext.define('Ext.grid.plugin.DragDrop', {
      * **This event is fired through the GridView. Add listeners to the {@link Ext.grid.View GridView} object**
      *
      * Fired when a drop gesture has been triggered by a mouseup event in a valid drop position in the GridView.
-     * 
+     *
      * Returning `false` to this event signals that the drop gesture was invalid, and if the drag proxy will animate
      * back to the point from which the drag began.
-     * 
-     * The dropHandlers parameter can be used to defer the processing of this event. For example to wait for the result of 
+     *
+     * The dropHandlers parameter can be used to defer the processing of this event. For example to wait for the result of
      * a message box confirmation or an asynchronous server call. See the details of this property for more information.
-     *  
+     *
      *     @example
      *     view.on('beforedrop', function(node, data, overModel, dropPosition, dropHandlers) {
      *         // Defer the handling
@@ -88,7 +88,7 @@ Ext.define('Ext.grid.plugin.DragDrop', {
      *             }
      *         });
      *     });
-     * 
+     *
      * Any other return value continues with the data transfer operation, unless the wait property is set.
      *
      * @param {HTMLElement} node The {@link Ext.grid.View GridView} node **if any** over which the mouse was positioned.
@@ -114,7 +114,7 @@ Ext.define('Ext.grid.plugin.DragDrop', {
      * @param {Object} dropHandlers
      * This parameter allows the developer to control when the drop action takes place. It is useful if any asynchronous
      * processing needs to be completed before performing the drop. This object has the following properties:
-     * 
+     *
      * @param {Boolean} dropHandlers.wait Indicates whether the drop should be deferred. Set this property to true to defer the drop.
      * @param {Function} dropHandlers.processDrop A function to be called to complete the drop operation.
      * @param {Function} dropHandlers.cancelDrop A function to be called to cancel the drop operation.
@@ -167,7 +167,7 @@ Ext.define('Ext.grid.plugin.DragDrop', {
      * - `{0}` The number of selected items.
      * - `{1}` 's' when more than 1 items (only useful for English).
      */
-    dragText : '{0} selected row{1}',
+    dragText: '{0} selected row{1}',
     //</locale>
 
     /**
@@ -175,7 +175,7 @@ Ext.define('Ext.grid.plugin.DragDrop', {
      * A named drag drop group to which this object belongs. If a group is specified, then both the DragZones and
      * DropZone used by this plugin will only interact with other drag drop objects in the same group.
      */
-    ddGroup : "GridDD",
+    ddGroup: "GridDD",
 
     /**
      * @cfg {String} [dragGroup]
@@ -204,7 +204,7 @@ Ext.define('Ext.grid.plugin.DragDrop', {
      * `false` to disallow dragging items from the View.
      */
     enableDrag: true,
-    
+
     /**
      * `true` to register this container with the Scrollmanager for auto scrolling during drag operations.
      * A {@link Ext.dd.ScrollManager} configuration may also be passed.
@@ -236,7 +236,7 @@ Ext.define('Ext.grid.plugin.DragDrop', {
      * An {@link Ext.grid.ViewDropZone DropZone} which handles mouseover and dropping records in any grid which shares the same {@link #dropGroup}.
      */
 
-    init : function(view) {
+    init: function (view) {
         view.on('render', this.onViewRender, this, {single: true});
     },
 
@@ -244,11 +244,11 @@ Ext.define('Ext.grid.plugin.DragDrop', {
      * @private
      * Component calls destroy on all its plugins at destroy time.
      */
-    destroy: function() {
+    destroy: function () {
         Ext.destroy(this.dragZone, this.dropZone);
     },
 
-    enable: function() {
+    enable: function () {
         var me = this;
         if (me.dragZone) {
             me.dragZone.unlock();
@@ -259,7 +259,7 @@ Ext.define('Ext.grid.plugin.DragDrop', {
         me.callParent();
     },
 
-    disable: function() {
+    disable: function () {
         var me = this;
         if (me.dragZone) {
             me.dragZone.lock();
@@ -270,7 +270,7 @@ Ext.define('Ext.grid.plugin.DragDrop', {
         me.callParent();
     },
 
-    onViewRender : function(view) {
+    onViewRender: function (view) {
         var me = this,
             scrollEl;
 

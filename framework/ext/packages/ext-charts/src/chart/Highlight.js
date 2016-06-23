@@ -12,7 +12,7 @@ Ext.define('Ext.chart.Highlight', {
 
     /**
      * @cfg {Boolean/Object} [highlight=false] Set to `true` to enable highlighting using the {@link #highlightCfg default highlight attributes}.
-     * 
+     *
      * Can also be an object with style properties (i.e fill, stroke, stroke-width, radius) which are may override the {@link #highlightCfg default highlight attributes}.
      */
     highlight: false,
@@ -26,13 +26,13 @@ Ext.define('Ext.chart.Highlight', {
      *        stroke: "#f55'
      *    }
      */
-    highlightCfg : {
+    highlightCfg: {
         fill: '#fdd',
         "stroke-width": 5,
         stroke: '#f55'
     },
 
-    constructor: function(config) {
+    constructor: function (config) {
         // If configured with a highlight object, apply to to *a local copy of* this class's highlightCfg. Do not mutate the prototype's copy.
         if (config.highlight && (typeof config.highlight !== 'boolean')) { //is an object
             this.highlightCfg = Ext.merge({}, this.highlightCfg, config.highlight);
@@ -43,11 +43,11 @@ Ext.define('Ext.chart.Highlight', {
      * Highlight the given series item.
      * @param {Object} item Info about the item; same format as returned by #getItemForPoint.
      */
-    highlightItem: function(item) {
+    highlightItem: function (item) {
         if (!item) {
             return;
         }
-        
+
         var me = this,
             sprite = item.sprite,
             opts = Ext.merge({}, me.highlightCfg, me.highlight),
@@ -68,7 +68,7 @@ Ext.define('Ext.chart.Highlight', {
             to = {};
             // TODO: Clean up code below.
             for (p in opts) {
-                if (! (p in sprite._defaults)) {
+                if (!(p in sprite._defaults)) {
                     sprite._defaults[p] = surface.availableAttrs[p];
                 }
                 from[p] = sprite._defaults[p];
@@ -79,14 +79,14 @@ Ext.define('Ext.chart.Highlight', {
                     Ext.apply(sprite._defaults[p], sprite.attr[p]);
                     Ext.apply(from[p], sprite._defaults[p]);
                     for (pi in sprite._defaults[p]) {
-                        if (! (pi in opts[p])) {
+                        if (!(pi in opts[p])) {
                             to[p][pi] = from[p][pi];
                         } else {
                             to[p][pi] = opts[p][pi];
                         }
                     }
                     for (pi in opts[p]) {
-                        if (! (pi in to[p])) {
+                        if (!(pi in to[p])) {
                             to[p][pi] = opts[p][pi];
                         }
                     }
@@ -111,7 +111,7 @@ Ext.define('Ext.chart.Highlight', {
     /**
      * Un-highlight any existing highlights
      */
-    unHighlightItem: function() {
+    unHighlightItem: function () {
         if (!this.highlight || !this.items) {
             return;
         }
@@ -159,7 +159,7 @@ Ext.define('Ext.chart.Highlight', {
         }
     },
 
-    cleanHighlights: function() {
+    cleanHighlights: function () {
         if (!this.highlight) {
             return;
         }

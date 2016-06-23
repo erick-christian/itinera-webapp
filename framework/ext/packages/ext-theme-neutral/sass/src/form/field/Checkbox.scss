@@ -42,113 +42,112 @@
  * @member Ext.form.field.Checkbox
  */
 @mixin extjs-checkbox-ui(
-    $ui: null,
-    $ui-field-height: $form-field-height,
-    $ui-checkbox-size: $form-checkbox-size,
-    $ui-checkbox-background-image: $form-checkbox-background-image,
-    $ui-radio-background-image: $form-radio-background-image,
-    $ui-label-color: $form-checkbox-label-color,
-    $ui-label-font-weight: $form-checkbox-label-font-weight,
-    $ui-label-font-size: $form-checkbox-label-font-size,
-    $ui-label-font-family: $form-checkbox-label-font-family,
-    $ui-label-line-height: $form-checkbox-label-line-height,
-    $ui-label-spacing: $form-checkbox-label-spacing
+  $ui: null,
+  $ui-field-height: $form-field-height,
+  $ui-checkbox-size: $form-checkbox-size,
+  $ui-checkbox-background-image: $form-checkbox-background-image,
+  $ui-radio-background-image: $form-radio-background-image,
+  $ui-label-color: $form-checkbox-label-color,
+  $ui-label-font-weight: $form-checkbox-label-font-weight,
+  $ui-label-font-size: $form-checkbox-label-font-size,
+  $ui-label-font-family: $form-checkbox-label-font-family,
+  $ui-label-line-height: $form-checkbox-label-line-height,
+  $ui-label-spacing: $form-checkbox-label-spacing
 ) {
-    .#{$prefix}form-cb-wrap-#{$ui} {
-        height: $ui-field-height;
+  .#{$prefix}form-cb-wrap-#{$ui} {
+    height: $ui-field-height;
+  }
+
+  .#{$prefix}form-cb-#{$ui} {
+    // vertically center the checkbox
+    margin-top: round(($ui-field-height - $ui-checkbox-size) / 2);
+  }
+
+  .#{$prefix}form-checkbox-#{$ui},
+  .#{$prefix}form-radio-#{$ui} {
+    width: $ui-checkbox-size;
+    height: $ui-checkbox-size;
+  }
+
+  .#{$prefix}form-radio-#{$ui} {
+    background: theme-background-image($ui-radio-background-image) no-repeat;
+
+    .#{$prefix}form-cb-checked & {
+      background-position: 0 (0 - $ui-checkbox-size);
     }
+  }
 
-    .#{$prefix}form-cb-#{$ui} {
-        // vertically center the checkbox
-        margin-top: round(($ui-field-height - $ui-checkbox-size) / 2);
+  .#{$prefix}form-checkbox-#{$ui} {
+    background: theme-background-image($ui-checkbox-background-image) no-repeat;
+
+    .#{$prefix}form-cb-checked & {
+      background-position: 0 (0 - $ui-checkbox-size);
     }
+  }
 
-    .#{$prefix}form-checkbox-#{$ui},
-    .#{$prefix}form-radio-#{$ui} {
-        width: $ui-checkbox-size;
-        height: $ui-checkbox-size;
+  .#{$prefix}field-#{$ui}-form-checkbox-focus {
+    background-position: (0 - $ui-checkbox-size) 0;
+
+    .#{$prefix}form-cb-checked & {
+      background-position: (0 - $ui-checkbox-size) (0 - $ui-checkbox-size);
     }
+  }
 
-    .#{$prefix}form-radio-#{$ui} {
-        background: theme-background-image($ui-radio-background-image) no-repeat;
+  .#{$prefix}form-cb-label-#{$ui} {
+    margin-top: round(($ui-field-height - $ui-label-line-height) / 2);
+    font: $ui-label-font-weight #{$ui-label-font-size}/#{$ui-label-line-height} $ui-label-font-family;
 
-        .#{$prefix}form-cb-checked & {
-            background-position: 0 (0 - $ui-checkbox-size);
+    &.#{$prefix}form-cb-label-before {
+      padding-right: $ui-label-spacing + $ui-checkbox-size;
+
+      @if $include-rtl {
+        &.#{$prefix}rtl {
+          padding-right: 0;
+          padding-left: $ui-label-spacing + $ui-checkbox-size;
         }
+      }
     }
 
-    .#{$prefix}form-checkbox-#{$ui} {
-        background: theme-background-image($ui-checkbox-background-image) no-repeat;
-
-        .#{$prefix}form-cb-checked & {
-            background-position: 0 (0 - $ui-checkbox-size);
-        }
+    &.#{$prefix}form-cb-label-after {
+      padding-left: $ui-label-spacing + $ui-checkbox-size;
     }
 
-    .#{$prefix}field-#{$ui}-form-checkbox-focus {
-        background-position: (0 - $ui-checkbox-size) 0;
-
-
-        .#{$prefix}form-cb-checked & {
-            background-position: (0 - $ui-checkbox-size) (0 - $ui-checkbox-size);
-        }
+    @if $include-rtl {
+      &.#{$prefix}rtl {
+        padding-left: 0;
+        padding-right: $ui-label-spacing + $ui-checkbox-size;
+      }
     }
+  }
 
-    .#{$prefix}form-cb-label-#{$ui} {
-        margin-top: round(($ui-field-height - $ui-label-line-height) / 2);
-        font: $ui-label-font-weight #{$ui-label-font-size}/#{$ui-label-line-height} $ui-label-font-family;
-
-        &.#{$prefix}form-cb-label-before {
-            padding-right: $ui-label-spacing + $ui-checkbox-size;
-
-            @if $include-rtl {
-                &.#{$prefix}rtl {
-                    padding-right: 0;
-                    padding-left: $ui-label-spacing + $ui-checkbox-size;
-                }
-            }
-        }
-
-        &.#{$prefix}form-cb-label-after {
-            padding-left: $ui-label-spacing + $ui-checkbox-size;
-        }
-
-        @if $include-rtl {
-            &.#{$prefix}rtl {
-                padding-left: 0;
-                padding-right: $ui-label-spacing + $ui-checkbox-size;
-            }
-        }
+  // Checkbox field or subclass inside cell - calculate top/bottom padding to keep row height correct
+  @if $include-ext-grid-column-widget or $include-ext-grid-plugin-editing {
+    .#{$prefix}checkbox-#{$ui}-cell > .#{$prefix}grid-cell-inner {
+      padding-top: max(ceil(($grid-row-height - $ui-field-height) / 2), 0);
+      padding-bottom: max(floor(($grid-row-height - $ui-field-height) / 2), 0);
     }
-
-    // Checkbox field or subclass inside cell - calculate top/bottom padding to keep row height correct
-    @if $include-ext-grid-column-widget or $include-ext-grid-plugin-editing {
-        .#{$prefix}checkbox-#{$ui}-cell > .#{$prefix}grid-cell-inner {
-            padding-top:    max(ceil(($grid-row-height - $ui-field-height) / 2), 0);
-            padding-bottom: max(floor(($grid-row-height - $ui-field-height) / 2), 0);
-        }
-    }
+  }
 }
 
 @if $include-checkbox-default-ui {
-    @include extjs-checkbox-ui(
-        $ui: 'default'
-    );
+  @include extjs-checkbox-ui(
+          $ui: 'default'
+  );
 }
 
 @if $include-checkbox-toolbar-ui {
-    @include extjs-checkbox-ui(
-        $ui: 'toolbar',
-        $ui-field-height: $form-toolbar-field-height,
-        $ui-checkbox-size: $form-toolbar-checkbox-size,
-        $ui-checkbox-background-image: $form-toolbar-checkbox-background-image,
-        $ui-radio-background-image: $form-toolbar-radio-background-image,
-        $ui-label-color: $form-toolbar-checkbox-label-color,
-        $ui-label-font-weight: $form-toolbar-checkbox-label-font-weight,
-        $ui-label-font-size: $form-toolbar-checkbox-label-font-size,
-        $ui-label-font-family: $form-toolbar-checkbox-label-font-family,
-        $ui-label-line-height: $form-toolbar-checkbox-label-line-height,
-        $ui-label-spacing: $form-toolbar-checkbox-label-spacing
-    );
+  @include extjs-checkbox-ui(
+          $ui: 'toolbar',
+          $ui-field-height: $form-toolbar-field-height,
+          $ui-checkbox-size: $form-toolbar-checkbox-size,
+          $ui-checkbox-background-image: $form-toolbar-checkbox-background-image,
+          $ui-radio-background-image: $form-toolbar-radio-background-image,
+          $ui-label-color: $form-toolbar-checkbox-label-color,
+          $ui-label-font-weight: $form-toolbar-checkbox-label-font-weight,
+          $ui-label-font-size: $form-toolbar-checkbox-label-font-size,
+          $ui-label-font-family: $form-toolbar-checkbox-label-font-family,
+          $ui-label-line-height: $form-toolbar-checkbox-label-line-height,
+          $ui-label-spacing: $form-toolbar-checkbox-label-spacing
+  );
 }
 

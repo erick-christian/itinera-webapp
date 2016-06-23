@@ -1,30 +1,30 @@
 //<feature amf>
 /**
  * @class Ext.direct.AmfRemotingProvider
- * 
+ *
  * <p>The {@link Ext.direct.AmfRemotingProvider AmfRemotingProvider}
  * allows making RPC calls to a Java object on a BlazeDS or ColdFusion using either the AMFX or the AMF protocols.</p>
- * 
+ *
  * <p>The default protocol is AMFX which works on all browsers. If you choose AMF, a flash plugin might be loaded in certain browsers that do not support posting binary data to the server, e.g. Internet Explorer version 9 or less. To choose AMF, set the {@link Ext.direct.AmfRemotingProvider#binary binary} property to true.</p>
  * <p>For AMFX, the server must be configured to expose the desired services via an HTTPEndpoint. For example, the following configuration snippet adds an HTTPEndpoint (AMFX endpoint) to the BlazeDS services-config.xml file:</p>
  * <pre><code>
-&lt;channel-definition id="my-http" class="mx.messaging.channels.HTTPChannel"&gt;
+ &lt;channel-definition id="my-http" class="mx.messaging.channels.HTTPChannel"&gt;
  &lt;endpoint url="http://{server.name}:{server.port}/{context.root}/messagebroker/http" class="flex.messaging.endpoints.HTTPEndpoint"/&gt;
-&lt;/channel-definition&gt;
+ &lt;/channel-definition&gt;
  </code></pre>
  *
  * <p>Once the HTTPEndpoint is configured, make sure the service is exposed via the channel by adding the channel (e.g. my-http) to your remoting-services.xml file.
  * For example this allows services to be accessed remotely by both AMF and AMFX:</p>
  * <pre><code>
-&lt;default-channels&gt;
+ &lt;default-channels&gt;
  &lt;channel ref="my-amf"/&gt;
  &lt;channel ref="my-http"/&gt;
-&lt;/default-channels&gt;
+ &lt;/default-channels&gt;
  * </code></pre>
- * 
+ *
  * <p>In order to make a call, you first need to declare the API to Ext direct. The following example defines local methods to the services provided by the sample Products application provided by Adobe as part of the BlazeDS 4.x binary turnkey distribution's testdrive (Sample 5: Updating Data):</p>
  * <pre><code>
-    Ext.direct.Manager.addProvider({
+ Ext.direct.Manager.addProvider({
         "url":"/samples/messagebroker/http", // URL for the HTTPEndpoint
         "type":"amfremoting",
         "endpoint": "my-http", // the name of the HTTPEndpoint channel as defined in the server's services-config.xml
@@ -52,14 +52,14 @@
      alert("getProducts: " + e.getMessage()); // failure message
    }
  });
-</code></pre>
- * 
+ </code></pre>
+ *
  * Note that in case server methods require parameters of a specific class (e.g. flex.samples.product.Product), you should make sure the passed parameter has a field called $flexType set to the class name (in this case flex.Samples.product.Product). This is similar to the remote class alias definition in ActionScript.
- * 
- * 
+ *
+ *
  * <p>The following example shows how to define a binary AMF-based call:</p>
  * <pre><code>
-    Ext.direct.Manager.addProvider({
+ Ext.direct.Manager.addProvider({
         "url":"/samples/messagebroker/amf", // URL for the AMFEndpoint
         "type":"amfremoting",
         "endpoint": "my-amf", // the name of the AMFEndpoint channel as defined in the server's services-config.xml
@@ -115,13 +115,13 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
          * @cfg {String} url (required) The url to connect to the {@link Ext.direct.Manager} server-side router.
          */
         url: null,
-        
+
         /**
          * @cfg {String} endpoint
          * <b>Requred</b>. This is the channel id defined in services-config.xml on the server (e.g. my-amf or my-http).
          */
         endpoint: null,
-        
+
         /**
          * @cfg {String} enableUrlEncode
          * Specify which param will hold the arguments for the method.
@@ -133,7 +133,7 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
          * If true, use AMF binary encoding instead of AMFX XML-based encoding. Note that on some browsers, this will load a flash plugin to handle binary communication with the server.
          */
         binary: false,
-        
+
         /**
          * @cfg {Number/Boolean} enableBuffer
          *
@@ -208,14 +208,14 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
          * available as the `result` in the example above.
          */
         actions: {},
-        
+
         /**
          * @cfg {String} clientId
          * Client ID to use with the server.
          * @private
          */
         clientId: null,
-        
+
         /**
          * @cfg {String} DSId
          * Session ID to use with the server.
@@ -243,18 +243,18 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
      * @param {Object} meta The meta data.
      */
 
-    constructor : function(config) {
+    constructor: function (config) {
         var me = this;
 
         me.callParent(arguments);
 
-        me.transactions = Ext.create('Ext.util.Collection', function(item) {
+        me.transactions = Ext.create('Ext.util.Collection', function (item) {
             return item.getId();
         });
         me.callBuffer = [];
     },
 
-    applyNamespace: function(namespace) {
+    applyNamespace: function (namespace) {
         if (Ext.isString(namespace)) {
             return Ext.ns(namespace);
         }
@@ -265,7 +265,7 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
      * Initialize the API
      * @private
      */
-    initAPI : function() {
+    initAPI: function () {
         var actions = this.getActions(),
             namespace = this.getNamespace(),
             action, cls, methods,
@@ -294,16 +294,16 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
      * @param {Object} method The details of the method.
      * @return {Function} A JavaScript function that will kick off the call.
      */
-    createHandler : function(action, method) {
+    createHandler: function (action, method) {
         var me = this,
             handler;
 
         if (!method.getFormHandler()) {
-            handler = function() {
+            handler = function () {
                 me.configureRequest(action, method, Array.prototype.slice.call(arguments, 0));
             };
         } else {
-            handler = function(form, callback, scope) {
+            handler = function (form, callback, scope) {
                 me.configureFormRequest(action, method, form, callback, scope);
             };
         }
@@ -315,12 +315,12 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
     },
 
     // @inheritdoc
-    isConnected: function() {
+    isConnected: function () {
         return !!this.connected;
     },
 
     // @inheritdoc
-    connect: function() {
+    connect: function () {
         var me = this;
 
         if (me.getUrl()) {
@@ -337,7 +337,7 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
     },
 
     // @inheritdoc
-    disconnect: function() {
+    disconnect: function () {
         var me = this;
 
         if (me.connected) {
@@ -352,7 +352,7 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
      * @param {Ext.direct.Transaction} transaction The transaction
      * @param {Ext.direct.Event} event The event
      */
-    runCallback: function(transaction, event) {
+    runCallback: function (transaction, event) {
         var success = !!event.getStatus(),
             functionName = success ? 'success' : 'failure',
             callback = transaction && transaction.getCallback(),
@@ -374,7 +374,7 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
      * React to the AJAX request being completed.
      * @private
      */
-    onData: function(options, success, response) {
+    onData: function (options, success, response) {
         var me = this,
             i = 0,
             ln, events, event,
@@ -421,7 +421,7 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
      * @param {Object} options The options sent to the AJAX request.
      * @return {Ext.direct.Transaction/null} The transaction, `null` if not found.
      */
-    getTransaction: function(options) {
+    getTransaction: function (options) {
         return options && options.getTid ? Ext.direct.Manager.getTransaction(options.getTid()) : null;
     },
 
@@ -432,7 +432,7 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
      * @param {Object} method The method being executed.
      * @param {Array} args
      */
-    configureRequest: function(action, method, args) {
+    configureRequest: function (action, method, args) {
         var me = this,
             callData = method.getCallData(args),
             data = callData.data,
@@ -460,10 +460,10 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
      * Gets the AJAX call info for a transaction.
      * @private
      * @param {Ext.direct.Transaction} transaction The transaction.
-     * @return {Object} 
+     * @return {Object}
      * The Flex remoting message structure ready to encode in an AMFX RemoteMessage
      */
-    getCallData: function(transaction){
+    getCallData: function (transaction) {
         if (this.getBinary()) {
             return {
                 targetUri: transaction.getAction() + "." + transaction.getMethod(),
@@ -471,29 +471,29 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
                 body: transaction.getData() || []
             };
         } else {
-            return new Ext.data.amf.RemotingMessage( 
-                              {
-                                  body: transaction.data || [],
-                                  clientId: this.getClientId(),
-                                  destination: transaction.getAction(),
-                                  headers: {
-                                      DSEndpoint: this.getEndpoint(),
-                                      DSId: this.getDSId() || "nil" // if unknown yet, use "nil"
-                                  },
-                                  messageId: Ext.data.amf.XmlEncoder.generateFlexUID(transaction.getId()), // encode as first 4 bytes of UID
-                                  operation: transaction.getMethod(),
-                                  timestamp: 0,
-                                  timeToLive: 0
-                              });
+            return new Ext.data.amf.RemotingMessage(
+                {
+                    body: transaction.data || [],
+                    clientId: this.getClientId(),
+                    destination: transaction.getAction(),
+                    headers: {
+                        DSEndpoint: this.getEndpoint(),
+                        DSId: this.getDSId() || "nil" // if unknown yet, use "nil"
+                    },
+                    messageId: Ext.data.amf.XmlEncoder.generateFlexUID(transaction.getId()), // encode as first 4 bytes of UID
+                    operation: transaction.getMethod(),
+                    timestamp: 0,
+                    timeToLive: 0
+                });
         }
         /*
-        return {
-            action: transaction.getAction(),
-            method: transaction.getMethod(),
-            data: transaction.getData(),
-            type: 'rpc',
-            tid: transaction.getId()
-        };
+         return {
+         action: transaction.getAction(),
+         method: transaction.getMethod(),
+         data: transaction.getData(),
+         type: 'rpc',
+         tid: transaction.getId()
+         };
          */
     },
 
@@ -502,7 +502,7 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
      * @private
      * @param {Object/Array} data The data to send.
      */
-    sendRequest : function(data) {
+    sendRequest: function (data) {
         var me = this,
             request = {
                 url: me.getUrl(),
@@ -519,7 +519,6 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
             amfHeaders = [];
 
 
-        
         // prepare AMFX messages
         if (Ext.isArray(data)) {
             //<debug>
@@ -535,7 +534,7 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
         }
 
         if (me.getBinary()) {
-            encoder = new Ext.data.amf.Encoder( {format: 0}); // AMF message sending always uses AMF0
+            encoder = new Ext.data.amf.Encoder({format: 0}); // AMF message sending always uses AMF0
             // encode packet
             encoder.writeAmfPacket(amfHeaders, amfMessages);
             request.binaryData = encoder.getBytes();
@@ -547,7 +546,7 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
             encoder.writeAmfxRemotingPacket(amfMessages[0]);
             request.xmlData = encoder.getBody();
         }
-        
+
         Ext.Ajax.request(request);
     },
 
@@ -556,7 +555,7 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
      * @private
      * @param {Ext.direct.Transaction} transaction The transaction.
      */
-    queueTransaction: function(transaction) {
+    queueTransaction: function (transaction) {
         var me = this,
             enableBuffer = false; // no queueing for AMFX
 
@@ -580,7 +579,7 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
      * Combine any buffered requests and send them off.
      * @private
      */
-    combineAndSend : function() {
+    combineAndSend: function () {
         var buffer = this.callBuffer,
             ln = buffer.length;
 
@@ -590,14 +589,14 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
         }
     },
 
-    
+
     /**
      * Creates a set of events based on the XHR response
      * @private
      * @param {Object} response The XHR response
      * @return {Ext.direct.Event[]} An array of Ext.direct.Event
      */
-    createEvents: function(response){
+    createEvents: function (response) {
         var data = null,
             rawBytes = [],
             events = [],
@@ -622,7 +621,7 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
              }
              }
              */
-      } catch(e) {
+        } catch (e) {
 
             event = new Ext.direct.ExceptionEvent({
                 data: e,
@@ -634,7 +633,7 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
         }
 
         if (this.getBinary()) {
-            for (i=0; i < data.getMessages().length; i++) {
+            for (i = 0; i < data.getMessages().length; i++) {
                 events.push(this.createEvent(data.getMessages()[i]));
             }
         } else {
@@ -649,7 +648,7 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
      * @param {Object} response The AMF/AMFX response object
      * @return {Ext.direct.Event} The event
      */
-    createEvent: function(response){
+    createEvent: function (response) {
         // Check targetUri to identify transaction ID and status
         var status = response.targetURI.split("/"),
             tid,
@@ -673,7 +672,7 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
                 message: (me.getBinary() ? response.body.message : response.message.faultString)
             };
             event = Ext.create('direct.exception', data);
-        } else if(status[statusIndex] == "onResult") {
+        } else if (status[statusIndex] == "onResult") {
             // Call succeeded
             data = {
                 tid: tid,
@@ -686,11 +685,10 @@ Ext.define('Ext.direct.AmfRemotingProvider', {
             Ext.Error.raise("Unknown AMF return status: " + status[statusIndex]);
             //</debug>
         }
-        
+
         return event;
     }
 
 
-    
 });
 //</feature>

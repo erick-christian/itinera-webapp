@@ -18,7 +18,7 @@ Ext.define('Ext.grid.feature.AbstractSummary', {
     // High priority rowTpl interceptor which sees summary rows early, and renders them correctly and then aborts the row rendering chain.
     // This will only see action when summary rows are being updated and Table.onUpdate->Table.bufferRender renders the individual updated sumary row.
     summaryRowTpl: {
-        fn: function(out, values, parent) {
+        fn: function (out, values, parent) {
             // If a summary record comes through the rendering pipeline, render it simply instead of proceeding through the tplchain
             if (values.record.isSummary && this.summaryFeature.showSummaryRow) {
                 this.summaryFeature.outputSummaryRecord(values.record, values, out, parent);
@@ -29,14 +29,14 @@ Ext.define('Ext.grid.feature.AbstractSummary', {
         priority: 1000
     },
 
-   /**
-    * @cfg {Boolean}
-    * True to show the summary row.
-    */
+    /**
+     * @cfg {Boolean}
+     * True to show the summary row.
+     */
     showSummaryRow: true,
 
     // Listen for store updates. Eg, from an Editor.
-    init: function() {
+    init: function () {
         var me = this;
         me.view.summaryFeature = me;
         me.rowTpl = me.view.self.prototype.rowTpl;
@@ -60,7 +60,7 @@ Ext.define('Ext.grid.feature.AbstractSummary', {
      * Toggle whether or not to show the summary row.
      * @param {Boolean} visible True to show the summary row
      */
-    toggleSummaryRow: function(visible /* private */, fromLockingPartner) {
+    toggleSummaryRow: function (visible /* private */, fromLockingPartner) {
         var me = this,
             prev = me.showSummaryRow,
             doRefresh;
@@ -92,29 +92,29 @@ Ext.define('Ext.grid.feature.AbstractSummary', {
         var me = this,
             ownerGroup = record.ownerGroup,
             summaryData = ownerGroup ? me.summaryData[ownerGroup] : me.summaryData,
-            // Use the column.getItemId() for columns without a dataIndex. The populateRecord method does the same.
+        // Use the column.getItemId() for columns without a dataIndex. The populateRecord method does the same.
             dataIndex = column.dataIndex || column.getItemId();
 
         return function (value, metaData) {
-             return column.summaryRenderer ?
+            return column.summaryRenderer ?
                 column.summaryRenderer(record.data[dataIndex], summaryData, dataIndex, metaData) :
                 // For no summaryRenderer, return the field value in the Feature record.
                 record.data[dataIndex];
         };
     },
 
-    outputSummaryRecord: function(summaryRecord, contextValues, out) {
+    outputSummaryRecord: function (summaryRecord, contextValues, out) {
         var view = contextValues.view,
             savedRowValues = view.rowValues,
             columns = contextValues.columns || view.headerCt.getVisibleGridColumns(),
             colCount = columns.length, i, column,
-            // Set up a row rendering values object so that we can call the rowTpl directly to inject
-            // the markup of a grid row into the output stream.
+        // Set up a row rendering values object so that we can call the rowTpl directly to inject
+        // the markup of a grid row into the output stream.
             values = {
                 view: view,
                 record: summaryRecord,
                 rowStyle: '',
-                rowClasses: [ this.summaryRowCls ],
+                rowClasses: [this.summaryRowCls],
                 itemClasses: [],
                 recordIndex: -1,
                 rowId: view.getRowId(summaryRecord),

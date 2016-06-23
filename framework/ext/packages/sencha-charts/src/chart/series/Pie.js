@@ -386,18 +386,18 @@ Ext.define('Ext.chart.series.Pie', {
         }
 
         if (sprites) {
-            var store  = me.getStore(),
-                items  = store.getData().items,
+            var store = me.getStore(),
+                items = store.getData().items,
                 hidden = me.getHidden(),
-                i      = 0,
-                ln     = store.getCount();
+                i = 0,
+                ln = store.getCount();
 
             for (; i < ln; i++) {
-                if(!hidden[i]) {
+                if (!hidden[i]) {
                     // Fortunately, item's id equals its index in the instances list.
                     attr = sprites[i].attr;
 
-                    if (attr.startAngle <= angle &&  attr.endAngle >= angle) {
+                    if (attr.startAngle <= angle && attr.endAngle >= angle) {
                         return {
                             series: me,
                             sprite: sprites[i],
@@ -469,7 +469,7 @@ Ext.define('Ext.chart.series.Pie', {
                     fill = fill.stops && fill.stops[0].color;
                 }
                 target.push({
-                    name: labelField ? String(items[i].get(labelField))  : field + ' ' + i,
+                    name: labelField ? String(items[i].get(labelField)) : field + ' ' + i,
                     mark: fill || style.strokeStyle || 'black',
                     disabled: hidden[i],
                     series: me.getId(),
@@ -481,9 +481,9 @@ Ext.define('Ext.chart.series.Pie', {
 });
 
 /*
-    Moved TODO comments to bottom:
-    TODO: `contrast` is not supported. Should be in the series.label config.
-    TODO: We set `contrast` to `true` to flip the color of the label if it is to similar 
-    to the background color. Finally, we set the font family
-    TODO: and size through the `font` parameter.    
-*/
+ Moved TODO comments to bottom:
+ TODO: `contrast` is not supported. Should be in the series.label config.
+ TODO: We set `contrast` to `true` to flip the color of the label if it is to similar 
+ to the background color. Finally, we set the font family
+ TODO: and size through the `font` parameter.    
+ */

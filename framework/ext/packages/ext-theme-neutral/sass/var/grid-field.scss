@@ -22,11 +22,7 @@ $grid-cell-field-height: if($grid-row-height < $form-field-height, $grid-row-hei
  * @var {number/list}
  * The padding of grid fields.
  */
-$grid-cell-field-padding:
-    top($form-field-padding)
-    right($grid-cell-inner-padding) - $form-field-border-width
-    bottom($form-field-padding)
-    left($grid-cell-inner-padding) - $form-field-border-width !default;
+$grid-cell-field-padding: top($form-field-padding) right($grid-cell-inner-padding) - $form-field-border-width bottom($form-field-padding) left($grid-cell-inner-padding) - $form-field-border-width !default;
 
 /**
  * @var {number}

@@ -33,22 +33,56 @@
             font-weight: 600;
             margin: 1em 0;
         }
-        h1 { font-size: 28px; }
-        h2 { font-size: 20px; }
-        h3 { font-size: 16px; }
-        ul li { padding: 2px 0; }
-        .doc { color: blue; }
-        .change { color: #196cb4; }
-        .new { color: #6e7a32; }
-        ul { padding: .1em 1.5em; }
-        .notes { color: #777; }
-        a { color: #0464BB; }
-        a:hover { color: rgb(28, 65, 124); }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        h3 {
+            font-size: 16px;
+        }
+
+        ul li {
+            padding: 2px 0;
+        }
+
+        .doc {
+            color: blue;
+        }
+
+        .change {
+            color: #196cb4;
+        }
+
+        .new {
+            color: #6e7a32;
+        }
+
+        ul {
+            padding: .1em 1.5em;
+        }
+
+        .notes {
+            color: #777;
+        }
+
+        a {
+            color: #0464BB;
+        }
+
+        a:hover {
+            color: rgb(28, 65, 124);
+        }
 
         .hilite {
             background-color: yellow;
             font-weight: bold;
         }
+
         pre {
             background: ghostWhite;
             border: 1px solid #ddd;
@@ -92,25 +126,25 @@
 
         <h2>New Features</h2>
         #jql
-            project = EXTJSIV and fixVersion = "aria-1.0.1" AND
-            status in ("Pending Verification", "Pending Dev Verification", "Closed") AND
-            type in ("Feature Request", Story) AND
-            (labels is empty or labels != "skipReleaseNotes") AND
-            resolution = Fixed
+        project = EXTJSIV and fixVersion = "aria-1.0.1" AND
+        status in ("Pending Verification", "Pending Dev Verification", "Closed") AND
+        type in ("Feature Request", Story) AND
+        (labels is empty or labels != "skipReleaseNotes") AND
+        resolution = Fixed
         #jql
         <h2>Bugs Fixed</h2>
         #jql
-            project = EXTJSIV and fixVersion = "aria-1.0.1" AND
-            status in ("Pending Verification", "Pending Dev Verification", "Closed") AND
-            type in (Bug) AND
-            resolution = Fixed AND
-            (labels is empty or labels != "skipReleaseNotes")
+        project = EXTJSIV and fixVersion = "aria-1.0.1" AND
+        status in ("Pending Verification", "Pending Dev Verification", "Closed") AND
+        type in (Bug) AND
+        resolution = Fixed AND
+        (labels is empty or labels != "skipReleaseNotes")
         #jql
         <h2>Known Issues</h2>
         #jql
-            project = EXTJSIV and
-            labels = "knownIssue" and labels = "aria" AND
-            status in (Open, Assigned, "In Progress")
+        project = EXTJSIV and
+        labels = "knownIssue" and labels = "aria" AND
+        status in (Open, Assigned, "In Progress")
         #jql
     </div>
     <!-- Paste release notes after a release below here... -->
@@ -284,7 +318,8 @@
                     </li>
                 </ul>
             </li>
-        Total: 36</ul>
+            Total: 36
+        </ul>
     </div>
 </div>
 </body>

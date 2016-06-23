@@ -31,7 +31,7 @@
  *
  * In the example above we configured an AJAX proxy to load data from the url '/users.json'. We told our Proxy to use a
  * {@link Ext.data.reader.Json JsonReader} to parse the response from the server into Model object - {@link
- * Ext.data.reader.Json see the docs on JsonReader} for details.
+    * Ext.data.reader.Json see the docs on JsonReader} for details.
  *
  * ## Inline data
  *
@@ -54,7 +54,7 @@
  * MemoryProxy} docs for an example).
  *
  * Additional data can also be loaded locally using {@link #method-add}.
- * 
+ *
  * ## Dynamic Loading
  *
  * Stores can be dynamically updated by calling the {@link #method-load} method:
@@ -164,7 +164,7 @@
  * ## Registering with StoreManager
  *
  * Any Store that is instantiated with a {@link #storeId} will automatically be registered with the {@link
- * Ext.data.StoreManager StoreManager}. This makes it easy to reuse the same store in multiple views:
+    * Ext.data.StoreManager StoreManager}. This makes it easy to reuse the same store in multiple views:
  *
  *     //this store can be used several times
  *     Ext.create('Ext.data.Store', {
@@ -226,25 +226,25 @@ Ext.define('Ext.data.Store', {
          * above for details.
          */
         data: 0, // pass 0 to ensure applyData is called
-        
+
         /**
-        * @cfg {Boolean} [clearRemovedOnLoad=true]
-        * `true` to clear anything in the {@link #removed} record collection when the store loads.
-        */
+         * @cfg {Boolean} [clearRemovedOnLoad=true]
+         * `true` to clear anything in the {@link #removed} record collection when the store loads.
+         */
         clearRemovedOnLoad: true,
-       
+
         /**
-        * @cfg {Boolean} [clearOnPageLoad=true]
-        * True to empty the store when loading another page via {@link #loadPage},
-        * {@link #nextPage} or {@link #previousPage}. Setting to false keeps existing records, allowing
-        * large data sets to be loaded one page at a time but rendered all together.
-        */
+         * @cfg {Boolean} [clearOnPageLoad=true]
+         * True to empty the store when loading another page via {@link #loadPage},
+         * {@link #nextPage} or {@link #previousPage}. Setting to false keeps existing records, allowing
+         * large data sets to be loaded one page at a time but rendered all together.
+         */
         clearOnPageLoad: true,
 
         /**
          * @cfg {Ext.data.Model} [associatedEntity]
          * The owner of this store if the store is used as part of an association.
-         * 
+         *
          * @private
          */
         associatedEntity: null,
@@ -282,7 +282,7 @@ Ext.define('Ext.data.Store', {
 
     /**
      * @property {Number} loadCount
-     * The number of times records have been loaded into the store. This includes loads via 
+     * The number of times records have been loaded into the store. This includes loads via
      * {@link #loadData} & {@link #loadRecords}.
      * @readonly
      */
@@ -310,8 +310,8 @@ Ext.define('Ext.data.Store', {
             if (config.buffered) {
                 //<debug>
                 if (this.self !== Ext.data.Store) {
-                    Ext.Error.raise('buffered config not supported on derived Store classes. '+
-                                    'Please derive from Ext.data.BufferedStore.');
+                    Ext.Error.raise('buffered config not supported on derived Store classes. ' +
+                        'Please derive from Ext.data.BufferedStore.');
                 }
                 //</debug>
 
@@ -366,17 +366,17 @@ Ext.define('Ext.data.Store', {
     },
 
     /**
-     * @method getData   
+     * @method getData
      * Returns the store's records.
      *
-     * **Note:** If your store has been filtered, getData() will return a filtered 
-     * collection.  Use `getData().{@link Ext.util.Collection#getSource getSource()}` to 
+     * **Note:** If your store has been filtered, getData() will return a filtered
+     * collection.  Use `getData().{@link Ext.util.Collection#getSource getSource()}` to
      * fetch all unfiltered records.
      *
-     * @return {Ext.util.Collection} An Ext.util.Collection of records 
+     * @return {Ext.util.Collection} An Ext.util.Collection of records
      * (an empty Collection if no records are held by the store).
      */
-    
+
     /**
      * @method setData
      * Loads an array of data directly into the Store.
@@ -392,11 +392,11 @@ Ext.define('Ext.data.Store', {
      * into model instances first.
      */
 
-    onCollectionBeginUpdate: function() {
+    onCollectionBeginUpdate: function () {
         this.beginUpdate();
     },
-    
-    onCollectionEndUpdate: function() {
+
+    onCollectionEndUpdate: function () {
         this.endUpdate();
     },
 
@@ -440,7 +440,7 @@ Ext.define('Ext.data.Store', {
         return dataCollection;
     },
 
-    loadInlineData: function(data) {
+    loadInlineData: function (data) {
         var me = this,
             proxy = me.getProxy(),
             blocked;
@@ -474,16 +474,16 @@ Ext.define('Ext.data.Store', {
      * @method insert
      * @inheritdoc Ext.data.LocalStore#insert
      */
-    
-    onCollectionAdd: function(collection, info) {
+
+    onCollectionAdd: function (collection, info) {
         this.onCollectionAddItems(collection, info.items, info);
     },
 
-    onCollectionFilterAdd: function(collection, items) {
+    onCollectionFilterAdd: function (collection, items) {
         this.onCollectionAddItems(collection, items);
     },
 
-    onCollectionAddItems: function(collection, records, info) {
+    onCollectionAddItems: function (collection, records, info) {
         var me = this,
             len = records.length,
             lastChunk = info ? !info.next : false,
@@ -499,7 +499,7 @@ Ext.define('Ext.data.Store', {
             if (session) {
                 session.adopt(record);
             }
-            
+
             // If ignoring, we don't want to do anything other than pull
             // the added records into the session    
             if (!ignoreAdd) {
@@ -525,7 +525,7 @@ Ext.define('Ext.data.Store', {
 
             me.setMoving(replacedItems, true);
         }
-        
+
         if (info) {
             me.fireEvent('add', me, records, info.at);
             // If there is a next property, that means there is another range that needs
@@ -545,11 +545,11 @@ Ext.define('Ext.data.Store', {
     },
 
     // If our source collection informs us that a filtered out item has changed, we must still fire the events...
-    onCollectionFilteredItemChange: function() {
+    onCollectionFilteredItemChange: function () {
         this.onCollectionItemChange.apply(this, arguments);
     },
 
-    onCollectionItemChange: function(collection, info) {
+    onCollectionItemChange: function (collection, info) {
         var me = this,
             record = info.item,
             modifiedFieldNames = info.modified || null,
@@ -564,35 +564,35 @@ Ext.define('Ext.data.Store', {
         }
     },
 
-    fireChangeEvent: function(record) {
+    fireChangeEvent: function (record) {
         var data = this.getData();
 
         data = data.getSource() || data;
         return data.contains(record);
     },
 
-    afterChange: function(record, modifiedFieldNames, type) {
+    afterChange: function (record, modifiedFieldNames, type) {
         this.getData().itemChanged(record, modifiedFieldNames || null, undefined, type);
     },
 
-    afterCommit: function(record, modifiedFieldNames) {
+    afterCommit: function (record, modifiedFieldNames) {
         this.afterChange(record, modifiedFieldNames, Ext.data.Model.COMMIT);
     },
 
-    afterEdit: function(record, modifiedFieldNames) {
+    afterEdit: function (record, modifiedFieldNames) {
         this.needsSync = this.needsSync || record.dirty;
         this.afterChange(record, modifiedFieldNames, Ext.data.Model.EDIT);
     },
 
-    afterReject: function(record) {
+    afterReject: function (record) {
         this.afterChange(record, null, Ext.data.Model.REJECT);
     },
 
-    afterDrop: function(record) {
+    afterDrop: function (record) {
         this.getData().remove(record);
     },
 
-    afterErase: function(record) {
+    afterErase: function (record) {
         this.removeFromRemoved(record);
     },
 
@@ -607,12 +607,12 @@ Ext.define('Ext.data.Store', {
      *
      * @param {Ext.data.Record} record
      */
-    addSorted: function(record) {
+    addSorted: function (record) {
         var me = this,
             remote = me.getRemoteSort(),
             data = me.getData(),
             index;
-        
+
         if (remote) {
             data.setSorters(me.getSorters());
         }
@@ -620,24 +620,24 @@ Ext.define('Ext.data.Store', {
         if (remote) {
             data.setSorters(null);
         }
-        
+
         return me.insert(index, record);
     },
 
     /**
      * Removes the specified record(s) from the Store, firing the {@link #event-remove}
      * event for the removed records.
-     * 
+     *
      * After all records have been removed a single `datachanged` is fired.
      *
      * @param {Ext.data.Model/Ext.data.Model[]/Number/Number[]} records Model instance or
      * array of instances to remove or an array of indices from which to remove records.
      */
-    remove: function(records, /* private */ isMove, silent) {
+    remove: function (records, /* private */ isMove, silent) {
         var me = this,
             data = me.getData(),
             len, i, toRemove, record;
-        
+
         if (records) {
             if (records.isModel) {
                 if (me.indexOf(records) > -1) {
@@ -665,23 +665,23 @@ Ext.define('Ext.data.Store', {
                 len = toRemove.length;
             }
         }
-        
+
         if (!len) {
             return [];
         }
-        
+
         me.removeIsMove = isMove === true;
         me.removeIsSilent = silent;
         data.remove(toRemove);
         me.removeIsSilent = false;
         return toRemove;
     },
-    
-    onCollectionRemove: function(collection, info) {
+
+    onCollectionRemove: function (collection, info) {
         var me = this,
-            // Use class-specific removed collection.
-            // TreeStore uses a different property and must not collect nodes on removal from the collection
-            // but on removal of child nodes on onNodeRemove,
+        // Use class-specific removed collection.
+        // TreeStore uses a different property and must not collect nodes on removal from the collection
+        // but on removal of child nodes on onNodeRemove,
             removed = me.removed,
             records = info.items,
             len = records.length,
@@ -692,7 +692,7 @@ Ext.define('Ext.data.Store', {
             replacement = info.replacement,
             data = me.getData(),
             i, record;
-        
+
         if (me.ignoreCollectionRemove) {
             return;
         }
@@ -702,7 +702,7 @@ Ext.define('Ext.data.Store', {
         if (replacement) {
             me.setMoving(replacement.items, true);
         }
-        
+
         for (i = 0; i < len; ++i) {
             record = records[i];
 
@@ -727,7 +727,7 @@ Ext.define('Ext.data.Store', {
                 }
             }
         }
-        
+
         if (!silent) {
             me.fireEvent('remove', me, records, index, isMove);
             // If there is a next property, that means there is another range that needs
@@ -743,7 +743,7 @@ Ext.define('Ext.data.Store', {
         }
     },
 
-    onFilterEndUpdate: function() {
+    onFilterEndUpdate: function () {
         this.callParent(arguments);
         this.callObservers('Filter');
     },
@@ -753,7 +753,7 @@ Ext.define('Ext.data.Store', {
      * @param {Number} index The record index
      * @param {Number} [count=1] The number of records to delete
      */
-    removeAt: function(index, count) {
+    removeAt: function (index, count) {
         var data = this.getData();
 
         // Sanity check input.
@@ -778,10 +778,10 @@ Ext.define('Ext.data.Store', {
      * @param {Boolean} [silent=false] Pass `true` to prevent the `{@link #event-clear}` event from being fired.
      *
      * This method is affected by filtering.
-     * 
+     *
      * @return {Ext.data.Model[]} The removed records.
      */
-    removeAll: function(silent) {
+    removeAll: function (silent) {
         var me = this,
             data = me.getData(),
             hasClear = me.hasListeners.clear,
@@ -807,10 +807,10 @@ Ext.define('Ext.data.Store', {
      * Make a set of records be current in the store. This means that unneeded records
      * will be removed and new records will be added.
      * @param {Ext.data.Model[]} records The records to be current in the store.
-     * 
+     *
      * @private
      */
-    setRecords: function(records) {
+    setRecords: function (records) {
         var count = this.getCount();
 
         ++this.loadCount;
@@ -833,7 +833,7 @@ Ext.define('Ext.data.Store', {
      * @param {Object[]} [toAdd] The items to insert at the given `index`.
      * @private
      */
-    splice: function(index, toRemove, toAdd) {
+    splice: function (index, toRemove, toAdd) {
         return this.getData().splice(index, toRemove, toAdd);
     },
 
@@ -861,7 +861,7 @@ Ext.define('Ext.data.Store', {
      * Additionally `addRecords: true` can be specified to add these records to the existing records, default is
      * to remove the Store's existing records first.
      */
-    load: function(options) {
+    load: function (options) {
         var me = this,
             pageSize = me.getPageSize(),
             session;
@@ -880,7 +880,7 @@ Ext.define('Ext.data.Store', {
         }
 
         if (pageSize || 'start' in options || 'limit' in options || 'page' in options) {
-            options.page  = options.page != null ? options.page : me.currentPage;
+            options.page = options.page != null ? options.page : me.currentPage;
             options.start = (options.start !== undefined) ? options.start : (options.page - 1) * pageSize;
             options.limit = options.limit != null ? options.limit : pageSize;
 
@@ -903,7 +903,7 @@ Ext.define('Ext.data.Store', {
      * @private
      * Called internally when a Proxy has completed a load request
      */
-    onProxyLoad: function(operation) {
+    onProxyLoad: function (operation) {
         var me = this,
             resultSet = operation.getResultSet(),
             records = operation.getRecords(),
@@ -912,7 +912,7 @@ Ext.define('Ext.data.Store', {
         if (me.isDestroyed) {
             return;
         }
-        
+
         if (resultSet) {
             me.totalCount = resultSet.getTotal();
         }
@@ -932,17 +932,17 @@ Ext.define('Ext.data.Store', {
         me.callObservers('AfterLoad', [records, successful, operation]);
     },
 
-    getUnfiltered: function() {
+    getUnfiltered: function () {
         var data = this.getData();
-        
+
         return data.getSource() || data;
     },
 
-    getNewRecords: function() {
+    getNewRecords: function () {
         return this.getUnfiltered().createFiltered(this.filterNew).getRange();
     },
 
-    getUpdatedRecords: function() {
+    getUpdatedRecords: function () {
         return this.getUnfiltered().createFiltered(this.filterUpdated).getRange();
     },
 
@@ -958,7 +958,7 @@ Ext.define('Ext.data.Store', {
      * @param {Boolean} [append=false] `true` to add the records to the existing records in the store, `false`
      * to remove the old ones first.
      */
-    loadData: function(data, append) {
+    loadData: function (data, append) {
         var me = this,
             length = data.length,
             newData = [],
@@ -984,25 +984,25 @@ Ext.define('Ext.data.Store', {
      * @param {Object[]} data The full JSON object you'd like to load into the Data store.
      * @param {Boolean} [append=false] `true` to add the records to the existing records in the store, `false`
      * to remove the old ones first.
-     * 
+     *
      * @return {Boolean} `true` if the reader processed the records correctly. See {@link Ext.data.reader.Reader#successProperty}.
      * If the reader did not process the records, nothing will be added.
      */
-    loadRawData : function(data, append) {
-         var me      = this,
-             session = me.getSession(),
-             result  = me.getProxy().getReader().read(data, session ? {
-                 recordCreator: session.recordCreator
-             } : undefined),
-             records = result.getRecords(),
-             success = result.getSuccess();
+    loadRawData: function (data, append) {
+        var me = this,
+            session = me.getSession(),
+            result = me.getProxy().getReader().read(data, session ? {
+                recordCreator: session.recordCreator
+            } : undefined),
+            records = result.getRecords(),
+            success = result.getSuccess();
 
-         if (success) {
-             me.totalCount = result.getTotal();
-             me.loadRecords(records, append ? me.addRecordsOptions : undefined);
-         }
-         return success;
-     },
+        if (success) {
+            me.totalCount = result.getTotal();
+            me.loadRecords(records, append ? me.addRecordsOptions : undefined);
+        }
+        return success;
+    },
 
     /**
      * Loads an array of {@link Ext.data.Model model} instances into the store, fires the datachanged event. This should only usually
@@ -1011,10 +1011,10 @@ Ext.define('Ext.data.Store', {
      * @param {Object} options
      * @param {Boolean} [options.addRecords=false] Pass `true` to add these records to the existing records, `false` to remove the Store's existing records first.
      */
-    loadRecords: function(records, options) {
-        var me     = this,
+    loadRecords: function (records, options) {
+        var me = this,
             length = records.length,
-            data   = me.getData(),
+            data = me.getData(),
             addRecords, i, skipSort;
 
         if (options) {
@@ -1061,7 +1061,7 @@ Ext.define('Ext.data.Store', {
      * @param {Number} page The number of the page to load.
      * @param {Object} [options] See options for {@link #method-load}.
      */
-    loadPage: function(page, options) {
+    loadPage: function (page, options) {
         var me = this,
             size = me.getPageSize();
 
@@ -1082,7 +1082,7 @@ Ext.define('Ext.data.Store', {
      * Loads the next 'page' in the current data set
      * @param {Object} options See options for {@link #method-load}
      */
-    nextPage: function(options) {
+    nextPage: function (options) {
         this.loadPage(this.currentPage + 1, options);
     },
 
@@ -1090,12 +1090,12 @@ Ext.define('Ext.data.Store', {
      * Loads the previous 'page' in the current data set
      * @param {Object} options See options for {@link #method-load}
      */
-    previousPage: function(options) {
+    previousPage: function (options) {
         this.loadPage(this.currentPage - 1, options);
     },
 
     // private
-    clearData: function(isLoad) {
+    clearData: function (isLoad) {
         var me = this,
             removed = me.removed,
             data = me.getData(),
@@ -1131,7 +1131,7 @@ Ext.define('Ext.data.Store', {
         }
     },
 
-    onIdChanged: function(rec, oldId, newId){
+    onIdChanged: function (rec, oldId, newId) {
         this.getData().updateKey(rec, oldId);
         // This event is used internally
         this.fireEvent('idchanged', this, rec, oldId, newId);
@@ -1142,7 +1142,7 @@ Ext.define('Ext.data.Store', {
      * subscribe to the Store's {@link #event-update update event}, and perform updating when the third parameter is
      * Ext.data.Record.COMMIT.
      */
-    commitChanges: function() {
+    commitChanges: function () {
         var me = this,
             recs = me.getModifiedRecords(),
             len = recs.length,
@@ -1150,7 +1150,7 @@ Ext.define('Ext.data.Store', {
 
         Ext.suspendLayouts();
         me.beginUpdate();
-        for (; i < len; i++){
+        for (; i < len; i++) {
             recs[i].commit();
         }
 
@@ -1160,15 +1160,15 @@ Ext.define('Ext.data.Store', {
         Ext.resumeLayouts(true);
     },
 
-    filterNewOnly: function(item) {
+    filterNewOnly: function (item) {
         return item.phantom === true;
     },
 
-    filterRejects: function(item) {
+    filterRejects: function (item) {
         return item.phantom || item.dirty;
     },
 
-    getRejectRecords: function() {
+    getRejectRecords: function () {
         return this.getData().createFiltered(this.filterRejects).getRange();
     },
 
@@ -1176,7 +1176,7 @@ Ext.define('Ext.data.Store', {
      * {@link Ext.data.Model#reject Rejects} outstanding changes on all {@link #getModifiedRecords modified records}
      * and re-insert any records that were removed locally. Any phantom records will be removed.
      */
-    rejectChanges: function() {
+    rejectChanges: function () {
         var me = this,
             recs = me.getRejectRecords(),
             len = recs.length,
@@ -1239,12 +1239,12 @@ Ext.define('Ext.data.Store', {
         Ext.resumeLayouts(true);
     },
 
-    onDestroy: function() {
+    onDestroy: function () {
         var me = this,
             task = me.loadTask,
             data = me.getData(),
             source = data.getSource();
-        
+
         me.callParent();
         me.setSession(null);
         me.observers = null;
@@ -1262,7 +1262,7 @@ Ext.define('Ext.data.Store', {
     },
 
     privates: {
-        onBeforeLoad: function(operation) {
+        onBeforeLoad: function (operation) {
             this.callObservers('BeforeLoad', [operation]);
         },
 
@@ -1292,7 +1292,7 @@ Ext.define('Ext.data.Store', {
          *
          * @private
          */
-        isMoving: function(records, getMap) {
+        isMoving: function (records, getMap) {
             var map = this.moveMap,
                 moving = 0,
                 len, i;
@@ -1313,7 +1313,7 @@ Ext.define('Ext.data.Store', {
             return moving;
         },
 
-        setMoving: function(records, isMoving) {
+        setMoving: function (records, isMoving) {
             var me = this,
                 map = me.moveMap || (me.moveMap = {}),
                 len = records.length,
@@ -1341,7 +1341,7 @@ Ext.define('Ext.data.Store', {
             }
         },
 
-        processAssociation: function(records) {
+        processAssociation: function (records) {
             var me = this,
                 associatedEntity = me.getAssociatedEntity();
 

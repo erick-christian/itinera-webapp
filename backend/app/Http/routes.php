@@ -13,75 +13,71 @@
 use App\Libraries\Wiser;
 use App\Libraries\ChromePhp;
 
-Route::get('/', function () {
+Route::get('/' , function () {
     return view('welcome');
 });
 
 
-Route::group(['middleware' => 'web'], function () {
+Route::group(['middleware' => 'web'] , function () {
     //
 });
 
-Route::any('/checkroute',function(){
+Route::any('/checkroute' , function () {
     return view('checkroute');
 });
 
-Route::any('/wiser',function(){
+Route::any('/wiser' , function () {
 
     echo(Wiser::isReady());
 
-    $csvFile = base_path().'\database\seeds\csvfiles\temp_country.csv';
+    $csvFile = base_path() . '\database\seeds\csvfiles\temp_country.csv';
     $dataLoad = Wiser::loadCSVFile($csvFile);
 
     return $dataLoad;
 });
 
-Route::any('/dataBridge/{nameController}',function($nameController){
-     $nameSpace = 'App\Http\Controllers';
+Route::any('/dataBridge/{nameController}' , function ($nameController) {
+    $nameSpace = 'App\Http\Controllers';
 
-    if(isset($_POST['apiController'])){
+    if (isset($_POST['apiController'])) {
         $apiController = $_POST['apiController'];
-    }
-    else{
-        if(isset($_GET['apiController'])){
+    } else {
+        if (isset($_GET['apiController'])) {
             $apiController = $_GET['apiController'];
         }
     }
 
-    if(isset($_POST['apiMethod'])){
+    if (isset($_POST['apiMethod'])) {
         $apiMethod = $_POST['apiMethod'];
-    }
-    else{
-        if(isset($_GET['apiMethod'])){
+    } else {
+        if (isset($_GET['apiMethod'])) {
             $apiMethod = $_GET['apiMethod'];
         }
     }
 
-    if(isset($_POST['apiData'])){
+    if (isset($_POST['apiData'])) {
         $apiData = $_POST['apiData'];
-    }
-    else{
-        if(isset($_GET['apiData'])){
+    } else {
+        if (isset($_GET['apiData'])) {
             $apiData = $_GET['apiData'];
         }
     }
 
-    if(isset($apiController) && isset($apiMethod) && isset($apiData)){
-        $resource      = $nameSpace.'\\'.$apiController;
+    if (isset($apiController) && isset($apiMethod) && isset($apiData)) {
+        $resource = $nameSpace . '\\' . $apiController;
         $apiController = App::make($resource);
-        $methodInApi   = $apiMethod;
+        $methodInApi = $apiMethod;
 
         $execute = $apiController->$methodInApi();
         return $execute;
-    }
-    else{
+    } else {
         $objReturnMessage = array();
         $objReturnMessage[1] = new stdClass();
-        $objReturnMessage[1]->type    = 'API-ERROR';
-        $objReturnMessage[1]->message = 'There are not defined variables' ;
+        $objReturnMessage[1]->type = 'API-ERROR';
+        $objReturnMessage[1]->message = 'There are not defined variables';
 
         $objReturn = new stdClass();
-        $objReturn->success       = false;
+        $objReturn->success = false;
         $objReturn->returnMessage = $objReturnMessage;
 
         return json_encode($objReturn);

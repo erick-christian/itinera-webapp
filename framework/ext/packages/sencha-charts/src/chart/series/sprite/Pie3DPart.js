@@ -1,7 +1,7 @@
 /**
  * @class Ext.chart.series.sprite.Pie3DPart
  * @extends Ext.draw.sprite.Path
- * 
+ *
  * Pie3D series sprite.
  */
 Ext.define('Ext.chart.series.sprite.Pie3DPart', {
@@ -206,11 +206,11 @@ Ext.define('Ext.chart.series.sprite.Pie3DPart', {
         plain.x = attr.centerX - rho;
         plain.y = attr.centerY - rho * attr.distortion;
     },
-    
+
     updateTransformedBBox: function (transform) {
         return this.updatePlainBBox(transform);
     },
-    
+
     updatePath: function (path) {
         if (this.attr.endAngle < this.attr.startAngle) {
             return;
@@ -248,7 +248,7 @@ Ext.define('Ext.chart.series.sprite.Pie3DPart', {
             centerY = attr.centerY,
             distortion = attr.distortion,
             baseRotation = attr.baseRotation,
-            startAngle = attr.startAngle + baseRotation ,
+            startAngle = attr.startAngle + baseRotation,
             endAngle = attr.endAngle + baseRotation,
             thickness = attr.thickness,
             startRho = attr.startRho,
@@ -276,7 +276,7 @@ Ext.define('Ext.chart.series.sprite.Pie3DPart', {
             centerY = attr.centerY,
             distortion = attr.distortion,
             baseRotation = attr.baseRotation,
-            startAngle = attr.startAngle + baseRotation ,
+            startAngle = attr.startAngle + baseRotation,
             endAngle = attr.endAngle + baseRotation,
             thickness = attr.thickness,
             startRho = attr.startRho,
@@ -304,7 +304,7 @@ Ext.define('Ext.chart.series.sprite.Pie3DPart', {
             centerY = attr.centerY,
             distortion = attr.distortion,
             baseRotation = attr.baseRotation,
-            startAngle = attr.startAngle + baseRotation ,
+            startAngle = attr.startAngle + baseRotation,
             endAngle = attr.endAngle + baseRotation,
             midAngle = (startAngle + endAngle) * 0.5,
             thickness = attr.thickness,
@@ -348,7 +348,7 @@ Ext.define('Ext.chart.series.sprite.Pie3DPart', {
             centerY = attr.centerY,
             distortion = attr.distortion,
             baseRotation = attr.baseRotation,
-            startAngle = attr.startAngle + baseRotation ,
+            startAngle = attr.startAngle + baseRotation,
             endAngle = attr.endAngle + baseRotation,
             midAngle = (startAngle + endAngle) * 0.5,
             thickness = attr.thickness,

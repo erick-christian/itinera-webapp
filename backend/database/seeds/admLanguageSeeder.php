@@ -15,19 +15,19 @@ class admLanguageSeeder extends Seeder
         //Seeding adm_languages
 
         admLanguage::create([
-            'name'             => 'Spanish'
+            'name' => 'Spanish'
         ]);
         admLanguage::create([
-            'name'             => 'English'
+            'name' => 'English'
         ]);
         admLanguage::create([
-            'name'             => 'Portuguese'
+            'name' => 'Portuguese'
         ]);
         admLanguage::create([
-            'name'             => 'French'
+            'name' => 'French'
         ]);
         admLanguage::create([
-            'name'             => 'Other'
+            'name' => 'Other'
         ]);
 
     }

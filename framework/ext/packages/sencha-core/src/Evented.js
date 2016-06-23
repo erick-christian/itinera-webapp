@@ -18,7 +18,7 @@ Ext.define('Ext.Evented', {
                 changeEventName = names.changeEvent,
                 doSetName = names.doSet;
 
-            return function(value) {
+            return function (value) {
                 var me = this,
                     internalName = me.$configPrefixed ? prefixedName : name,
                     initialized = me.initialized,
@@ -57,12 +57,12 @@ Ext.define('Ext.Evented', {
 
     initialized: false,
 
-    constructor: function(config) {
+    constructor: function (config) {
         this.mixins.observable.constructor.call(this, config);
         this.initialized = true;
     },
 
-    doSet: function(me, value, oldValue, options) {
+    doSet: function (me, value, oldValue, options) {
         var nameMap = options.nameMap;
 
         me[nameMap.internal] = value;
@@ -71,7 +71,7 @@ Ext.define('Ext.Evented', {
         }
     },
 
-    onClassExtended: function(cls, data) {
+    onClassExtended: function (cls, data) {
         if (!data.hasOwnProperty('eventedConfig')) {
             return;
         }
@@ -102,7 +102,7 @@ Ext.define('Ext.Evented', {
             if (eventedConfig.hasOwnProperty(name)) {
                 cfg = Ext.Config.get(name);
                 data[cfg.names.set] = cfg[cacheName] ||
-                                     (cfg[cacheName] = this.generateSetter(cfg));
+                    (cfg[cacheName] = this.generateSetter(cfg));
             }
         }
     }

@@ -10,20 +10,20 @@ Ext.define('Ext.grid.CellContext', {
      * `true` in this class to identify an object as an instantiated CellContext, or subclass thereof.
      */
     isCellContext: true,
-    
-    constructor: function(view) {
+
+    constructor: function (view) {
         this.view = view;
     },
-    
-    isEqual: function(other) {
+
+    isEqual: function (other) {
         if (other) {
             return this.record === other.record && this.column === other.column;
         }
         return false;
     },
-    
+
     // Selection row/record & column/columnHeader
-    setPosition: function(row, col) {
+    setPosition: function (row, col) {
         var me = this;
 
         // We were passed {row: 1, column: 2, view: myView} or [2, 1]
@@ -48,7 +48,7 @@ Ext.define('Ext.grid.CellContext', {
         return me;
     },
 
-    setAll: function(view, recordIndex, columnIndex, record, columnHeader) {
+    setAll: function (view, recordIndex, columnIndex, record, columnHeader) {
         var me = this;
 
         me.view = view;
@@ -59,10 +59,10 @@ Ext.define('Ext.grid.CellContext', {
         return me;
     },
 
-    setRow: function(row) {
+    setRow: function (row) {
         var me = this,
             dataSource = me.view.dataSource;
-        
+
         if (row !== undefined) {
             // Row index passed
             if (typeof row === 'number') {
@@ -81,10 +81,10 @@ Ext.define('Ext.grid.CellContext', {
             }
         }
     },
-    
-    setColumn: function(col) {
+
+    setColumn: function (col) {
         var me = this,
-                colMgr = me.view.getVisibleColumnManager();
+            colMgr = me.view.getVisibleColumnManager();
 
         // Maintainer:
         // We MUST NOT update the context view with the column's view because this context
@@ -103,7 +103,7 @@ Ext.define('Ext.grid.CellContext', {
         }
     },
 
-    next: function() {
+    next: function () {
         var me = this,
             mgr = me.view.getVisibleColumnManager();
 
@@ -115,11 +115,11 @@ Ext.define('Ext.grid.CellContext', {
         }
     },
 
-    equal: function(other) {
+    equal: function (other) {
         return (other && other.isCellContext && other.view === this.view && other.record === this.record && other.column === this.column);
     },
 
-    clone: function() {
+    clone: function () {
         var me = this,
             result = new me.self(me.view);
 

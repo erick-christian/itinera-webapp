@@ -139,7 +139,7 @@ Ext.define('Ext.chart.series.Radar', {
      *     }
      */
 
-    constructor: function(config) {
+    constructor: function (config) {
         this.callParent(arguments);
         var me = this,
             surface = me.chart.surface;
@@ -152,7 +152,7 @@ Ext.define('Ext.chart.series.Radar', {
     /**
      * Draws the series for the current chart.
      */
-    drawSeries: function() {
+    drawSeries: function () {
         var me = this,
             store = me.chart.getChartStore(),
             data = store.data.items,
@@ -183,10 +183,10 @@ Ext.define('Ext.chart.series.Radar', {
             aggregate = !(axis && axis.maximum);
 
         me.setBBox();
-        
-        maxValue = aggregate? 0 : (axis.maximum || 0);
+
+        maxValue = aggregate ? 0 : (axis.maximum || 0);
         minValue = axis.minimum || 0;
-        
+
         Ext.apply(seriesStyle, me.style || {});
 
         //if the store is empty then there's nothing to draw
@@ -199,8 +199,8 @@ Ext.define('Ext.chart.series.Radar', {
             me.radar = null;
             return;
         }
-        
-        if(!seriesStyle['stroke']){
+
+        if (!seriesStyle['stroke']) {
             seriesStyle['stroke'] = colorArrayStyle[me.themeIdx % colorArrayStyle.length];
         }
 
@@ -209,7 +209,7 @@ Ext.define('Ext.chart.series.Radar', {
 
         centerX = me.centerX = chartBBox.x + (chartBBox.width / 2);
         centerY = me.centerY = chartBBox.y + (chartBBox.height / 2);
-        me.radius = radius = Math.min(chartBBox.width, chartBBox.height) /2;
+        me.radius = radius = Math.min(chartBBox.width, chartBBox.height) / 2;
         me.items = items = [];
 
         if (aggregate) {
@@ -232,7 +232,8 @@ Ext.define('Ext.chart.series.Radar', {
             minValue = maxValue - 1;
         }
         //create path and items
-        startPath = []; path = [];
+        startPath = [];
+        path = [];
         for (i = 0; i < l; i++) {
             record = data[i];
             rho = radius * (record.get(field) - minValue) / (maxValue - minValue);
@@ -291,7 +292,7 @@ Ext.define('Ext.chart.series.Radar', {
     },
 
     // @private draws the markers for the lines (if any).
-    drawMarkers: function() {
+    drawMarkers: function () {
         var me = this,
             chart = me.chart,
             surface = chart.surface,
@@ -359,17 +360,17 @@ Ext.define('Ext.chart.series.Radar', {
         }
     },
 
-    isItemInPoint: function(x, y, item) {
+    isItemInPoint: function (x, y, item) {
         var point,
             tolerance = 10,
             abs = Math.abs;
         point = item.point;
         return (abs(point[0] - x) <= tolerance &&
-                abs(point[1] - y) <= tolerance);
+        abs(point[1] - y) <= tolerance);
     },
 
     // @private callback for when creating a label sprite.
-    onCreateLabel: function(storeItem, item, i, display) {
+    onCreateLabel: function (storeItem, item, i, display) {
         var me = this,
             group = me.labelsGroup,
             config = me.label,
@@ -387,7 +388,7 @@ Ext.define('Ext.chart.series.Radar', {
     },
 
     // @private callback for when placing a label sprite.
-    onPlaceLabel: function(label, storeItem, item, i, display, animate, index) {
+    onPlaceLabel: function (label, storeItem, item, i, display, animate, index) {
         var me = this,
             chart = me.chart,
             resizing = chart.resizing,
@@ -406,18 +407,18 @@ Ext.define('Ext.chart.series.Radar', {
             deg = theta * 180 / Math.PI,
             labelBox, direction;
 
-            function fixAngle(a) {
-                if (a < 0) {
-                    a += 360;
-                }
-                return a % 360;
+        function fixAngle(a) {
+            if (a < 0) {
+                a += 360;
             }
+            return a % 360;
+        }
 
         label.setAttributes({
-            text: format(storeItem.get(field), label, storeItem, item, i, display, animate, index),
-            hidden: true
-        },
-        true);
+                text: format(storeItem.get(field), label, storeItem, item, i, display, animate, index),
+                hidden: true
+            },
+            true);
 
         // Move the label by half its height or width depending on 
         // the angle so the label doesn't overlap the graph.
@@ -425,10 +426,10 @@ Ext.define('Ext.chart.series.Radar', {
         deg = fixAngle(deg);
         if ((deg > 45 && deg < 135) || (deg > 225 && deg < 315)) {
             direction = (deg > 45 && deg < 135 ? 1 : -1);
-            opt.y += direction * labelBox.height/2;
+            opt.y += direction * labelBox.height / 2;
         } else {
             direction = (deg >= 135 && deg <= 225 ? -1 : 1);
-            opt.x += direction * labelBox.width/2;
+            opt.x += direction * labelBox.width / 2;
         }
 
         if (resizing) {
@@ -450,7 +451,7 @@ Ext.define('Ext.chart.series.Radar', {
     },
 
     // @private for toggling (show/hide) series.
-    toggleAll: function(show) {
+    toggleAll: function (show) {
         var me = this,
             i, ln, shadow, shadows;
         if (!show) {
@@ -476,18 +477,18 @@ Ext.define('Ext.chart.series.Radar', {
     },
 
     // @private hide all elements in the series.
-    hideAll: function() {
+    hideAll: function () {
         this.toggleAll(false);
         this.hideMarkers(0);
     },
 
     // @private show all elements in the series.
-    showAll: function() {
+    showAll: function () {
         this.toggleAll(true);
     },
 
     // @private hide all markers that belong to `markerGroup`
-    hideMarkers: function(index) {
+    hideMarkers: function (index) {
         var me = this,
             count = me.markerGroup && me.markerGroup.getCount() || 0,
             i = index || 0;
@@ -498,7 +499,7 @@ Ext.define('Ext.chart.series.Radar', {
 
     // @private return the radial axis as yAxis (there is no xAxis).
     // Required by the base class 'Ext.chart.axis.Axis'.
-    getAxesForXAndYFields: function() {
+    getAxesForXAndYFields: function () {
         var me = this,
             chart = me.chart,
             axes = chart.axes,

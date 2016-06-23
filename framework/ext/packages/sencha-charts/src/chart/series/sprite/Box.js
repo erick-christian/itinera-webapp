@@ -123,8 +123,8 @@ Ext.define('Ext.chart.series.sprite.Box', {
             fillStyle = attr.fillStyle,
             color = Ext.draw.Color.create(
                 fillStyle.isGradient ?
-                fillStyle.getStops()[0].color :
-                fillStyle
+                    fillStyle.getStops()[0].color :
+                    fillStyle
             ),
             saturationFactor = attr.saturationFactor,
             brightnessFactor = attr.brightnessFactor,

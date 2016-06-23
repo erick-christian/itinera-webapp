@@ -89,10 +89,10 @@ Ext.define('Ext.container.ButtonGroup', {
     titleAlign: 'center',
 
     noTitleCls: 'notitle',
-    
+
     ariaRole: 'group',
 
-    initComponent : function() {
+    initComponent: function () {
         // Copy the component's columns config to the layout if specified
         var me = this,
             cols = me.columns;
@@ -108,10 +108,9 @@ Ext.define('Ext.container.ButtonGroup', {
     },
 
     // private
-    onBeforeAdd: function(component) {
+    onBeforeAdd: function (component) {
         if (component.isButton) {
-            if (this.defaultButtonUI && component.ui === 'default' &&
-                !component.hasOwnProperty('ui')) {
+            if (this.defaultButtonUI && component.ui === 'default' && !component.hasOwnProperty('ui')) {
                 component.ui = this.defaultButtonUI;
             } else {
                 component.ui = component.ui + '-toolbar';

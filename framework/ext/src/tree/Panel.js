@@ -192,7 +192,7 @@
  * The {@link Ext.tree.View UI} of the tree is driven by a {Ext.data.NodeStore NodeStore} which is a flattened view of *visible* nodes.
  * The NodeStore is dynamically updated to reflect the visibility state of nodes as nodes are added, removed or expanded. The UI
  * responds to mutation events fire by the NodeStore.
- * 
+ *
  * Note that nodes have several more {@link Ext.data.Model#cfg-fields fields} in order to describe their state within the hierarchy.
  *
  * If you add store listeners to the {@link Ext.data.Store#event-update update} event, then you will receive notification when any of this state changes.
@@ -288,7 +288,7 @@ Ext.define('Ext.tree.Panel', {
     // normal and locked sub tablepanels
     normalCfgCopy: ['displayField', 'root', 'singleExpand', 'useArrows', 'lines', 'rootVisible', 'scroll'],
     lockedCfgCopy: ['displayField', 'root', 'singleExpand', 'useArrows', 'lines', 'rootVisible'],
-    
+
     isTree: true,
 
     /**
@@ -300,18 +300,18 @@ Ext.define('Ext.tree.Panel', {
      * @cfg {Boolean} folderSort
      * True to automatically prepend a leaf sorter to the store.
      */
-     
+
     /**
      * @cfg {Ext.data.TreeStore} store (required)
      * The {@link Ext.data.TreeStore Store} the tree should use as its data source.
      */
-    
+
     arrowCls: Ext.baseCSSPrefix + 'tree-arrows',
     linesCls: Ext.baseCSSPrefix + 'tree-lines',
     noLinesCls: Ext.baseCSSPrefix + 'tree-no-lines',
     autoWidthCls: Ext.baseCSSPrefix + 'autowidth-table',
 
-    constructor: function(config) {
+    constructor: function (config) {
         config = config || {};
         if (config.animate === undefined) {
             config.animate = Ext.isBoolean(this.animate) ? this.animate : Ext.enableFx;
@@ -322,7 +322,7 @@ Ext.define('Ext.tree.Panel', {
         this.callParent([config]);
     },
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this,
             cls = [me.treeCls],
             store = me.store,
@@ -385,10 +385,10 @@ Ext.define('Ext.tree.Panel', {
             }
             me.addCls(me.autoWidthCls);
             me.columns = [{
-                xtype    : 'treecolumn',
-                text     : 'Name',
-                flex     : 1,
-                dataIndex: me.displayField         
+                xtype: 'treecolumn',
+                text: 'Name',
+                flex: 1,
+                dataIndex: me.displayField
             }];
         }
 
@@ -405,28 +405,28 @@ Ext.define('Ext.tree.Panel', {
         // An injected LockingView relays events from its locked side's View
         me.relayEvents(view, [
             /**
-            * @event checkchange
-            * Fires when a node with a checkbox's checked property changes
-            * @param {Ext.data.TreeModel} node The node who's checked property was changed
-            * @param {Boolean} checked The node's new checked state
-            */
+             * @event checkchange
+             * Fires when a node with a checkbox's checked property changes
+             * @param {Ext.data.TreeModel} node The node who's checked property was changed
+             * @param {Boolean} checked The node's new checked state
+             */
             'checkchange',
             /**
-            * @event afteritemexpand
-            * @inheritdoc Ext.tree.View#afteritemexpand
-            */
+             * @event afteritemexpand
+             * @inheritdoc Ext.tree.View#afteritemexpand
+             */
             'afteritemexpand',
             /**
-            * @event afteritemcollapse
-            * @inheritdoc Ext.tree.View#afteritemcollapse
-            */
+             * @event afteritemcollapse
+             * @inheritdoc Ext.tree.View#afteritemcollapse
+             */
             'afteritemcollapse'
         ]);
     },
 
     // @private
     // Hook into the TreeStore.
-    bindStore: function(store, initial) {
+    bindStore: function (store, initial) {
         var me = this,
             root = store.getRoot(),
             bufferedRenderer = me.bufferedRenderer;
@@ -576,7 +576,7 @@ Ext.define('Ext.tree.Panel', {
     },
 
     // @private
-    unbindStore: function() {
+    unbindStore: function () {
         var me = this,
             store = me.store;
 
@@ -595,7 +595,7 @@ Ext.define('Ext.tree.Panel', {
      * @param {Ext.data.TreeModel/Object} root
      * @return {Ext.data.TreeModel} The new root
      */
-    setRootNode: function() {
+    setRootNode: function () {
         return this.store.setRoot.apply(this.store, arguments);
     },
 
@@ -603,11 +603,11 @@ Ext.define('Ext.tree.Panel', {
      * Returns the root node for this tree.
      * @return {Ext.data.TreeModel}
      */
-    getRootNode: function() {
+    getRootNode: function () {
         return this.store.getRoot();
     },
 
-    onRootChange: function(root) {
+    onRootChange: function (root) {
         this.view.setRootNode(root);
     },
 
@@ -615,14 +615,14 @@ Ext.define('Ext.tree.Panel', {
      * Retrieve an array of checked records.
      * @return {Ext.data.TreeModel[]} An array containing the checked records
      */
-    getChecked: function() {
+    getChecked: function () {
         return this.getView().getChecked();
     },
 
-    isItemChecked: function(rec) {
+    isItemChecked: function (rec) {
         return rec.get('checked');
     },
-    
+
     /**
      * Expands a record that is loaded in the tree.
      * @param {Ext.data.Model} record The record to expand
@@ -630,7 +630,7 @@ Ext.define('Ext.tree.Panel', {
      * @param {Function} [callback] The function to run after the expand is completed
      * @param {Object} [scope] The scope of the callback function.
      */
-    expandNode: function(record, deep, callback, scope) {
+    expandNode: function (record, deep, callback, scope) {
         return this.getView().expand(record, deep, callback, scope || this);
     },
 
@@ -641,7 +641,7 @@ Ext.define('Ext.tree.Panel', {
      * @param {Function} [callback] The function to run after the collapse is completed
      * @param {Object} [scope] The scope of the callback function.
      */
-    collapseNode: function(record, deep, callback, scope) {
+    collapseNode: function (record, deep, callback, scope) {
         return this.getView().collapse(record, deep, callback, scope || this);
     },
 
@@ -650,7 +650,7 @@ Ext.define('Ext.tree.Panel', {
      * @param {Function} [callback] A function to execute when the expand finishes.
      * @param {Object} [scope] The scope of the callback function
      */
-    expandAll: function(callback, scope) {
+    expandAll: function (callback, scope) {
         var me = this,
             root = me.getRootNode();
 
@@ -666,7 +666,7 @@ Ext.define('Ext.tree.Panel', {
      * @param {Function} [callback] A function to execute when the collapse finishes.
      * @param {Object} [scope] The scope of the callback function
      */
-    collapseAll: function(callback, scope) {
+    collapseAll: function (callback, scope) {
         var me = this,
             root = me.getRootNode(),
             view = me.getView();
@@ -710,7 +710,7 @@ Ext.define('Ext.tree.Panel', {
      *                          last view node encountered while expanding the path.
      * @param {Object}          [options.scope] The scope (`this` reference) in which the callback function is executed.
      */
-    expandPath: function(path, options) {
+    expandPath: function (path, options) {
         var args = arguments,
             me = this,
             view = me.view,
@@ -769,7 +769,7 @@ Ext.define('Ext.tree.Panel', {
 
         // The expand success callback passed to every expand call down the path.
         // Called in the scope of the node being expanded.
-        expander = function(newChildren) {
+        expander = function (newChildren) {
             var node = this,
                 len, i, value;
 
@@ -822,7 +822,7 @@ Ext.define('Ext.tree.Panel', {
      *                          last view node encountered while expanding the path.
      * @param {Object}          [options.scope] The scope (`this` reference) in which the callback function is executed.
      */
-    ensureVisible: function(path, options) {
+    ensureVisible: function (path, options) {
         // They passed a record instance. Use the TablePanel's method.
         if (path.isEntity) {
             return this.callParent([path, options]);
@@ -838,7 +838,7 @@ Ext.define('Ext.tree.Panel', {
             last,
             node,
             parentNode,
-            onLastExpanded = function(success, lastExpanded, lastExpandedHtmlNode, targetNode) {
+            onLastExpanded = function (success, lastExpanded, lastExpandedHtmlNode, targetNode) {
                 if (!targetNode && success && lastExpanded) {
                     targetNode = lastExpanded.findChild(field, last);
                 }
@@ -893,7 +893,7 @@ Ext.define('Ext.tree.Panel', {
      * @param {HTMLElement}             callback.node If successful, the record's view node.
      * @param {Object}                  [scope] The scope of the callback function
      */
-    selectPath: function(path, field, separator, callback, scope) {
+    selectPath: function (path, field, separator, callback, scope) {
         this.ensureVisible(path, {
             field: field,
             separator: separator,

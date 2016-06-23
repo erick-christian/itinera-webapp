@@ -23,7 +23,7 @@ Ext.define('Ext.draw.Color', {
      * @param {Number} green Green component (0..255)
      * @param {Number} blue Blue component (0..255)
      */
-    constructor : function(red, green, blue) {
+    constructor: function (red, green, blue) {
         var me = this,
             clamp = Ext.Number.constrain;
         me.r = clamp(red, 0, 255);
@@ -35,7 +35,7 @@ Ext.define('Ext.draw.Color', {
      * Get the red component of the color, in the range 0..255.
      * @return {Number}
      */
-    getRed: function() {
+    getRed: function () {
         return this.r;
     },
 
@@ -43,7 +43,7 @@ Ext.define('Ext.draw.Color', {
      * Get the green component of the color, in the range 0..255.
      * @return {Number}
      */
-    getGreen: function() {
+    getGreen: function () {
         return this.g;
     },
 
@@ -51,7 +51,7 @@ Ext.define('Ext.draw.Color', {
      * Get the blue component of the color, in the range 0..255.
      * @return {Number}
      */
-    getBlue: function() {
+    getBlue: function () {
         return this.b;
     },
 
@@ -59,7 +59,7 @@ Ext.define('Ext.draw.Color', {
      * Get the RGB values.
      * @return {Number[]}
      */
-    getRGB: function() {
+    getRGB: function () {
         var me = this;
         return [me.r, me.g, me.b];
     },
@@ -68,7 +68,7 @@ Ext.define('Ext.draw.Color', {
      * Get the equivalent HSL components of the color.
      * @return {Number[]}
      */
-    getHSL: function() {
+    getHSL: function () {
         var me = this,
             r = me.r / 255,
             g = me.g / 255,
@@ -104,7 +104,7 @@ Ext.define('Ext.draw.Color', {
      * Get the equivalent HSV components of the color.
      * @return {Number[]}
      */
-    getHSV: function() {
+    getHSV: function () {
         var me = this,
             r = me.r / 255,
             g = me.g / 255,
@@ -141,7 +141,7 @@ Ext.define('Ext.draw.Color', {
      * @param {Number} [factor=0.2] Lighter factor (0..1).
      * @return {Ext.draw.Color}
      */
-    getLighter: function(factor) {
+    getLighter: function (factor) {
         var hsl = this.getHSL();
         factor = factor || this.lightnessFactor;
         hsl[2] = Ext.Number.constrain(hsl[2] + factor, 0, 1);
@@ -153,7 +153,7 @@ Ext.define('Ext.draw.Color', {
      * @param {Number} [factor=0.2] Darker factor (0..1).
      * @return {Ext.draw.Color}
      */
-    getDarker: function(factor) {
+    getDarker: function (factor) {
         factor = factor || this.lightnessFactor;
         return this.getLighter(-factor);
     },
@@ -162,7 +162,7 @@ Ext.define('Ext.draw.Color', {
      * Return the color in the hex format, i.e. '#rrggbb'.
      * @return {String}
      */
-    toString: function() {
+    toString: function () {
         var me = this,
             round = Math.round,
             r = round(me.r).toString(16),
@@ -184,7 +184,7 @@ Ext.define('Ext.draw.Color', {
      * @return {String} The color in hexadecimal format.
      * @static
      */
-    toHex: function(color) {
+    toHex: function (color) {
         if (Ext.isArray(color)) {
             color = color[0];
         }
@@ -225,7 +225,7 @@ Ext.define('Ext.draw.Color', {
      * @return Ext.draw.Color
      * @static
      */
-    fromString: function(str) {
+    fromString: function (str) {
         var values, r, g, b,
             parse = parseInt,
             firstChar = str.substr(0, 1),
@@ -271,7 +271,7 @@ Ext.define('Ext.draw.Color', {
      *
      * @return {Number}
      */
-    getGrayscale: function() {
+    getGrayscale: function () {
         // http://en.wikipedia.org/wiki/Grayscale#Converting_color_to_grayscale
         return this.r * 0.3 + this.g * 0.59 + this.b * 0.11;
     },
@@ -287,7 +287,7 @@ Ext.define('Ext.draw.Color', {
      * @return Ext.draw.Color
      * @static
      */
-    fromHSL: function(h, s, l) {
+    fromHSL: function (h, s, l) {
         var C, X, m,
             rgb = [],
             abs = Math.abs;
@@ -386,10 +386,10 @@ Ext.define('Ext.draw.Color', {
     }
 
 
-}, function() {
+}, function () {
 
     var prototype = this.prototype,
-        // These methods are both static and instance.
+    // These methods are both static and instance.
         staticMethods = ['fromHSL', 'fromHSV', 'fromString', 'toHex'],
         statics = {};
 

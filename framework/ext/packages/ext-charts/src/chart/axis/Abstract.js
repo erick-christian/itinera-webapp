@@ -10,7 +10,7 @@ Ext.define('Ext.chart.axis.Abstract', {
     requires: ['Ext.chart.Chart'],
 
     /* End Definitions */
-    
+
     /**
      * @cfg {Ext.chart.Label} label
      * The config for chart label.
@@ -19,7 +19,7 @@ Ext.define('Ext.chart.axis.Abstract', {
     /**
      * @cfg {String[]} fields
      * The fields of model to bind to this axis.
-     * 
+     *
      * For example if you have a data set of lap times per car, each having the fields:
      * `'carName'`, `'avgSpeed'`, `'maxSpeed'`. Then you might want to show the data on chart
      * with `['carName']` on Name axis and `['avgSpeed', 'maxSpeed']` on Speed axis.
@@ -29,7 +29,7 @@ Ext.define('Ext.chart.axis.Abstract', {
      * Creates new Axis.
      * @param {Object} config (optional) Config options.
      */
-    constructor: function(config) {
+    constructor: function (config) {
         config = config || {};
 
         var me = this,
@@ -55,17 +55,17 @@ Ext.define('Ext.chart.axis.Abstract', {
     minValue: 0,
     maxValue: 0,
 
-    getId: function() {
+    getId: function () {
         return this.axisId || (this.axisId = Ext.id(null, 'ext-axis-'));
     },
 
     /*
-      Called to process a view i.e to make aggregation and filtering over
-      a store creating a substore to be used to render the axis. Since many axes
-      may do different things on the data and we want the final result of all these
-      operations to be rendered we need to call processView on all axes before drawing
-      them.
-    */
+     Called to process a view i.e to make aggregation and filtering over
+     a store creating a substore to be used to render the axis. Since many axes
+     may do different things on the data and we want the final result of all these
+     operations to be rendered we need to call processView on all axes before drawing
+     them.
+     */
     processView: Ext.emptyFn,
 
     drawAxis: Ext.emptyFn,

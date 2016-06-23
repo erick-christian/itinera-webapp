@@ -1,7 +1,7 @@
 /** */
 Ext.define('Ext.aria.form.FieldSet', {
     override: 'Ext.form.FieldSet',
-    
+
     expandText: 'Expand',
     collapseText: 'Collapse',
 
@@ -42,52 +42,52 @@ Ext.define('Ext.aria.form.FieldSet', {
                     Ext.event.Event.ENTER,
                     Ext.event.Event.SPACE
                 ],
-                handler: function(key, e, eOpt) {
+                handler: function (key, e, eOpt) {
                     e.stopEvent();
                     me.toggle();
                 },
                 scope: me
             });
-            
+
             el = toggleCmp.getActionEl();
 
             if (me.collapsed) {
-                el.set({ title: me.expandText + ' ' + me.title });
+                el.set({title: me.expandText + ' ' + me.title});
             }
             else {
-                el.set({ title: me.collapseText + ' ' + me.title });
+                el.set({title: me.collapseText + ' ' + me.title});
             }
         }
     },
 
-    ariaGetRenderAttributes: function() {
+    ariaGetRenderAttributes: function () {
         var me = this,
             attrs;
-        
+
         attrs = me.callParent(arguments);
 
         attrs['aria-expanded'] = !me.collapsed;
-        
+
         return attrs;
     },
 
-    setExpanded: function(expanded) {
+    setExpanded: function (expanded) {
         var me = this,
             toggleCmp = me.toggleCmp,
             el;
 
         me.callParent(arguments);
-        me.ariaUpdate({ 'aria-expanded': expanded });
-        
+        me.ariaUpdate({'aria-expanded': expanded});
+
         // Update the title
         if (toggleCmp) {
             el = toggleCmp.getActionEl();
-            
+
             if (!expanded) {
-                el.set({ title: me.expandText + ' ' + me.title });
+                el.set({title: me.expandText + ' ' + me.title});
             }
             else {
-                el.set({ title: me.collapseText + ' ' + me.title });
+                el.set({title: me.collapseText + ' ' + me.title});
             }
         }
     }

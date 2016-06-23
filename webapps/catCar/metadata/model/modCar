@@ -19,7 +19,20 @@
             },
             "codeClass": null,
             "userConfig": {
-                "name": "car_id"
+                "name": "carmaker_code"
+            },
+            "name": "MyField2",
+            "designerId": "b2697c48-ce0b-4303-83b6-6137025d009e"
+        },
+        {
+            "type": "Ext.data.field.Field",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "name": "car_code"
             },
             "name": "MyField",
             "designerId": "04cf3651-5227-4136-8893-9776c0f167b8"
@@ -36,19 +49,6 @@
             },
             "name": "MyField7",
             "designerId": "9561d351-c1bd-4290-9e5e-d8a898f5f8d6"
-        },
-        {
-            "type": "Ext.data.field.Field",
-            "reference": {
-                "name": "fields",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "name": "maker"
-            },
-            "name": "MyField2",
-            "designerId": "b2697c48-ce0b-4303-83b6-6137025d009e"
         },
         {
             "type": "Ext.data.field.Field",

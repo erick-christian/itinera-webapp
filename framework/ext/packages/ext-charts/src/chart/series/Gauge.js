@@ -1,6 +1,6 @@
 /**
  * @class Ext.chart.series.Gauge
- * 
+ *
  * Creates a Gauge Chart. Gauge Charts are used to show progress in a certain variable. There are two ways of using the Gauge chart.
  * One is setting a store element into the Gauge and selecting the field to be used from that store. Another one is instantiating the
  * visualization and using the `setValue` method to adjust the value you want.
@@ -45,7 +45,7 @@
  *             store.getAt(0).set('value', Math.round(Math.random()*100));
  *         }
  *     });
- * 
+ *
  * In this example we create a special Gauge axis to be used with the gauge visualization (describing half-circle markers), and also we're
  * setting a maximum, minimum and steps configuration options into the axis. The Gauge series configuration contains the store field to be bound to
  * the visual display and the color set to be used with the visualization.
@@ -86,7 +86,7 @@ Ext.define('Ext.chart.series.Gauge', {
      * Use the Gauge Series as an area series or add a needle to it. Default's false.
      */
     needle: false,
-    
+
     /**
      * @cfg {Boolean/Number} donut
      * Use the entire disk or just a fraction of it for the gauge. Default's false.
@@ -104,8 +104,8 @@ Ext.define('Ext.chart.series.Gauge', {
      * An object containing styles for overriding series styles from Theming.
      */
     style: {},
-    
-    constructor: function(config) {
+
+    constructor: function (config) {
         this.callParent(arguments);
         var me = this,
             chart = me.chart,
@@ -122,24 +122,24 @@ Ext.define('Ext.chart.series.Gauge', {
                     y: 2
                 }
             },
-            {
-                "stroke-width": 4,
-                "stroke-opacity": 1,
-                stroke: 'rgb(150, 150, 150)',
-                translate: {
-                    x: 0.9,
-                    y: 1.5
-                }
-            },
-            {
-                "stroke-width": 2,
-                "stroke-opacity": 1,
-                stroke: 'rgb(100, 100, 100)',
-                translate: {
-                    x: 0.6,
-                    y: 1
-                }
-            }]
+                {
+                    "stroke-width": 4,
+                    "stroke-opacity": 1,
+                    stroke: 'rgb(150, 150, 150)',
+                    translate: {
+                        x: 0.9,
+                        y: 1.5
+                    }
+                },
+                {
+                    "stroke-width": 2,
+                    "stroke-opacity": 1,
+                    stroke: 'rgb(100, 100, 100)',
+                    translate: {
+                        x: 0.6,
+                        y: 1
+                    }
+                }]
         });
         me.group = surface.getGroup(me.seriesId);
         if (shadow) {
@@ -147,23 +147,23 @@ Ext.define('Ext.chart.series.Gauge', {
                 me.shadowGroups.push(surface.getGroup(me.seriesId + '-shadows' + i));
             }
         }
-        surface.customAttributes.segment = function(opt) {
+        surface.customAttributes.segment = function (opt) {
             var series = opt.series || me;
-            
+
             delete opt.series;
-            
+
             return me.getSegment.call(series, opt);
         };
     },
-    
+
     // @private updates some onbefore render parameters.
-    initialize: function() {
+    initialize: function () {
         var me = this,
             store = me.chart.getChartStore(),
             data = store.data.items,
             label = me.label,
             ln = data.length;
-          
+
         me.yField = [];
         if (label && label.field && ln > 0) {
             me.yField.push(data[0].get(label.field));
@@ -171,7 +171,7 @@ Ext.define('Ext.chart.series.Gauge', {
     },
 
     // @private returns an object with properties for a Slice
-    getSegment: function(opt) {
+    getSegment: function (opt) {
         var me = this,
             rad = me.rad,
             cos = Math.cos,
@@ -214,26 +214,26 @@ Ext.define('Ext.chart.series.Gauge', {
         if (singleSlice) {
             return {
                 path: [
-                ["M", x1, y1],
-                ["L", x2, y2],
-                ["A", opt.endRho, opt.endRho, 0, +flag, 1, x4, y4],
-                ["Z"]]
+                    ["M", x1, y1],
+                    ["L", x2, y2],
+                    ["A", opt.endRho, opt.endRho, 0, +flag, 1, x4, y4],
+                    ["Z"]]
             };
         } else {
             return {
                 path: [
-                ["M", x1, y1],
-                ["L", x2, y2],
-                ["A", opt.endRho, opt.endRho, 0, +flag, 1, x4, y4],
-                ["L", x3, y3],
-                ["A", opt.startRho, opt.startRho, 0, +flag, 0, x1, y1],
-                ["Z"]]
+                    ["M", x1, y1],
+                    ["L", x2, y2],
+                    ["A", opt.endRho, opt.endRho, 0, +flag, 1, x4, y4],
+                    ["L", x3, y3],
+                    ["A", opt.startRho, opt.startRho, 0, +flag, 0, x1, y1],
+                    ["Z"]]
             };
         }
     },
 
     // @private utility function to calculate the middle point of a pie slice.
-    calcMiddle: function(item) {
+    calcMiddle: function (item) {
         var me = this,
             rad = me.rad,
             slice = item.slice,
@@ -241,7 +241,7 @@ Ext.define('Ext.chart.series.Gauge', {
             y = me.centerY,
             startAngle = slice.startAngle,
             endAngle = slice.endAngle,
-            radius = Math.max(('rho' in slice) ? slice.rho: me.radius, me.label.minMargin),
+            radius = Math.max(('rho' in slice) ? slice.rho : me.radius, me.label.minMargin),
             donut = +me.donut,
             a1 = Math.min(startAngle, endAngle) * rad,
             a2 = Math.max(startAngle, endAngle) * rad,
@@ -258,7 +258,7 @@ Ext.define('Ext.chart.series.Gauge', {
     /**
      * Draws the series for the current chart.
      */
-    drawSeries: function() {
+    drawSeries: function () {
         var me = this,
             chart = me.chart,
             store = chart.getChartStore(),
@@ -285,7 +285,7 @@ Ext.define('Ext.chart.series.Gauge', {
             rendererAttributes, centerX, centerY, slice, slices, sprite, value,
             item, ln, record, i, j, startAngle, endAngle, middleAngle, sliceLength, path,
             p, spriteOptions, bbox, splitAngle, sliceA, sliceB;
-        
+
         Ext.apply(seriesStyle, me.style || {});
 
         me.setBBox();
@@ -296,25 +296,25 @@ Ext.define('Ext.chart.series.Gauge', {
             colorArrayStyle = me.colorSet;
             colorArrayLength = colorArrayStyle.length;
         }
-        
+
         //if not store or store is empty then there's nothing to draw
         if (!store || !store.getCount() || me.seriesIsHidden) {
             me.hide();
             me.items = [];
             return;
         }
-        
+
         centerX = me.centerX = chartBBox.x + (chartBBox.width / 2);
         centerY = me.centerY = chartBBox.y + chartBBox.height;
         me.radius = Math.min(centerX - chartBBox.x, centerY - chartBBox.y);
         me.slices = slices = [];
         me.items = items = [];
-        
+
         if (!me.value) {
             record = store.getAt(0);
             me.value = record.get(field);
         }
-        
+
         value = reverse ? maximum - me.value : me.value;
         if (me.needle) {
             sliceA = {
@@ -342,14 +342,14 @@ Ext.define('Ext.chart.series.Gauge', {
                 endAngle: 0,
                 rho: me.radius
             };
-            
+
             if (reverse) {
                 slices.push(sliceB, sliceA);
             } else {
                 slices.push(sliceA, sliceB);
             }
         }
-        
+
         //do pie slices after.
         for (i = 0, ln = slices.length; i < ln; i++) {
             slice = slices[i];
@@ -366,23 +366,23 @@ Ext.define('Ext.chart.series.Gauge', {
                     rho: slice.rho,
                     startRho: slice.rho * +donut / 100,
                     endRho: slice.rho
-                } 
-            }, Ext.apply(seriesStyle, colorArrayStyle && { fill: colorArrayStyle[i % colorArrayLength] } || {}));
+                }
+            }, Ext.apply(seriesStyle, colorArrayStyle && {fill: colorArrayStyle[i % colorArrayLength]} || {}));
 
             item = Ext.apply({},
-            rendererAttributes.segment, {
-                slice: slice,
-                series: me,
-                storeItem: record,
-                index: i
-            });
+                rendererAttributes.segment, {
+                    slice: slice,
+                    series: me,
+                    storeItem: record,
+                    index: i
+                });
             items[i] = item;
             // Create a new sprite if needed (no height)
             if (!sprite) {
                 spriteOptions = Ext.apply({
                     type: "path",
                     group: group
-                }, Ext.apply(seriesStyle, colorArrayStyle && { fill: colorArrayStyle[i % colorArrayLength] } || {}));
+                }, Ext.apply(seriesStyle, colorArrayStyle && {fill: colorArrayStyle[i % colorArrayLength]} || {}));
                 sprite = surface.add(Ext.apply(spriteOptions, rendererAttributes));
             }
             slice.sprite = slice.sprite || [];
@@ -401,17 +401,17 @@ Ext.define('Ext.chart.series.Gauge', {
                 sprite.setAttributes(rendererAttributes, true);
             }
         }
-        
+
         if (me.needle) {
             splitAngle = splitAngle * Math.PI / 180;
-            
+
             if (!me.needleSprite) {
                 me.needleSprite = me.chart.surface.add({
                     type: 'path',
                     path: ['M', centerX + (me.radius * +donut / 100) * cos(splitAngle),
-                                centerY + -Math.abs((me.radius * +donut / 100) * sin(splitAngle)),
-                           'L', centerX + me.radius * cos(splitAngle),
-                                centerY + -Math.abs(me.radius * sin(splitAngle))],
+                        centerY + -Math.abs((me.radius * +donut / 100) * sin(splitAngle)),
+                        'L', centerX + me.radius * cos(splitAngle),
+                        centerY + -Math.abs(me.radius * sin(splitAngle))],
                     'stroke-width': 4,
                     'stroke': '#222'
                 });
@@ -419,54 +419,57 @@ Ext.define('Ext.chart.series.Gauge', {
                 if (animate) {
                     me.onAnimate(me.needleSprite, {
                         to: {
-                        path: ['M', centerX + (me.radius * +donut / 100) * cos(splitAngle),
-                                    centerY + -Math.abs((me.radius * +donut / 100) * sin(splitAngle)),
-                               'L', centerX + me.radius * cos(splitAngle),
-                                    centerY + -Math.abs(me.radius * sin(splitAngle))]
+                            path: ['M', centerX + (me.radius * +donut / 100) * cos(splitAngle),
+                                centerY + -Math.abs((me.radius * +donut / 100) * sin(splitAngle)),
+                                'L', centerX + me.radius * cos(splitAngle),
+                                centerY + -Math.abs(me.radius * sin(splitAngle))]
                         }
                     });
                 } else {
                     me.needleSprite.setAttributes({
                         type: 'path',
                         path: ['M', centerX + (me.radius * +donut / 100) * cos(splitAngle),
-                                    centerY + -Math.abs((me.radius * +donut / 100) * sin(splitAngle)),
-                               'L', centerX + me.radius * cos(splitAngle),
-                                    centerY + -Math.abs(me.radius * sin(splitAngle))]
+                            centerY + -Math.abs((me.radius * +donut / 100) * sin(splitAngle)),
+                            'L', centerX + me.radius * cos(splitAngle),
+                            centerY + -Math.abs(me.radius * sin(splitAngle))]
                     });
                 }
             }
             me.needleSprite.setAttributes({
-                hidden: false    
+                hidden: false
             }, true);
         }
-        
+
         delete me.value;
     },
-    
+
     /**
      * Sets the Gauge chart to the current specified value.
-    */
+     */
     setValue: function (value) {
         this.value = value;
         this.drawSeries();
     },
 
     // @private callback for when creating a label sprite.
-    onCreateLabel: function(storeItem, item, i, display) {},
+    onCreateLabel: function (storeItem, item, i, display) {
+    },
 
     // @private callback for when placing a label sprite.
-    onPlaceLabel: function(label, storeItem, item, i, display, animate, index) {},
+    onPlaceLabel: function (label, storeItem, item, i, display, animate, index) {
+    },
 
     // @private callback for when placing a callout.
-    onPlaceCallout: function() {},
+    onPlaceCallout: function () {
+    },
 
     // @private handles sprite animation for the series.
-    onAnimate: function(sprite, attr) {
+    onAnimate: function (sprite, attr) {
         sprite.show();
         return this.callParent(arguments);
     },
 
-    isItemInPoint: function(x, y, item, i) {
+    isItemInPoint: function (x, y, item, i) {
         var me = this,
             cx = me.centerX,
             cy = me.centerY,
@@ -479,15 +482,15 @@ Ext.define('Ext.chart.series.Gauge', {
             angle = Math.atan2(y - cy, x - cx) / me.rad;
 
         //Only trigger events for the filled portion of the Gauge.
-        return (i === 0) && (angle >= startAngle && angle < endAngle && 
-                             rho >= item.startRho && rho <= item.endRho);
+        return (i === 0) && (angle >= startAngle && angle < endAngle &&
+            rho >= item.startRho && rho <= item.endRho);
     },
-    
+
     /**
      * Returns the color of the series (to be displayed as color for the series legend item).
      * @param item {Object} Info about the item; same format as returned by #getItemForPoint
      */
-    getLegendColor: function(index) {
+    getLegendColor: function (index) {
         var colors = this.colorSet || this.colorArrayStyle;
         return colors[index % colors.length];
     }

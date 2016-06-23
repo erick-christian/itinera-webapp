@@ -76,15 +76,13 @@ Ext.define('Ext.chart.series.Radar', {
      * An object containing styles for overriding series styles from theming.
      */
 
-    config: {
+    config: {},
 
-    },
-
-    themeColorCount: function() {
+    themeColorCount: function () {
         return 1;
     },
 
-    themeMarkerCount: function() {
+    themeMarkerCount: function () {
         return 1;
     },
 
@@ -193,7 +191,7 @@ Ext.define('Ext.chart.series.Radar', {
             animation = me.getAnimation() || chart && chart.getAnimation(),
             sprite = me.sprites[0],
             markers;
-        
+
         if (!chart) {
             return [];
         }

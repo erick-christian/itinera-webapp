@@ -7,7 +7,7 @@
  */
 Ext.define('Ext.grid.NavigationModel', {
     extend: 'Ext.view.NavigationModel',
-    
+
     alias: 'view.navigation.grid',
 
     /**
@@ -26,7 +26,7 @@ Ext.define('Ext.grid.NavigationModel', {
 
     focusCls: Ext.baseCSSPrefix + 'grid-item-focused',
 
-    getViewListeners: function() {
+    getViewListeners: function () {
         var me = this;
 
         return {
@@ -44,7 +44,7 @@ Ext.define('Ext.grid.NavigationModel', {
         };
     },
 
-    initKeyNav: function(view) {
+    initKeyNav: function (view) {
         var me = this;
 
         me.position = new Ext.grid.CellContext(view);
@@ -59,7 +59,7 @@ Ext.define('Ext.grid.NavigationModel', {
             defaultEventAction: 'stopEvent',
 
             // Every key event is tagged with the source view, so the NavigationModel is independent.
-            processEvent: function(view, record, row, recordIndex, event) {
+            processEvent: function (view, record, row, recordIndex, event) {
                 return event;
             },
             up: me.onKeyUp,
@@ -82,8 +82,8 @@ Ext.define('Ext.grid.NavigationModel', {
             scope: me
         });
     },
-    
-    onKeyTab: function(keyEvent) {
+
+    onKeyTab: function (keyEvent) {
         var view = keyEvent.position.view,
             selModel = view.getSelectionModel(),
             editingPlugin = view.editingPlugin;
@@ -96,8 +96,8 @@ Ext.define('Ext.grid.NavigationModel', {
             return this.callParent([keyEvent]);
         }
     },
-    
-    onCellMouseDown: function(view, cell, cellIndex, record, row, recordIndex, mousedownEvent) {
+
+    onCellMouseDown: function (view, cell, cellIndex, record, row, recordIndex, mousedownEvent) {
         var parentEvent = mousedownEvent.parentEvent,
             cmp = Ext.Component.fromElement(mousedownEvent.target, cell);
 
@@ -111,7 +111,7 @@ Ext.define('Ext.grid.NavigationModel', {
         }
     },
 
-    onCellClick: function(view, cell, cellIndex, record, row, recordIndex, clickEvent) {
+    onCellClick: function (view, cell, cellIndex, record, row, recordIndex, clickEvent) {
         var cmp = Ext.Component.fromElement(clickEvent.target, cell);
 
         // We must not steal focus and place it on the cell if the user clicked on a focusable component
@@ -127,7 +127,7 @@ Ext.define('Ext.grid.NavigationModel', {
         this.preventCellFocus = false;
     },
 
-    onItemMouseDown: function(view, record, item, index, mousedownEvent) {
+    onItemMouseDown: function (view, record, item, index, mousedownEvent) {
         var me = this,
             x,
             columns,
@@ -155,16 +155,16 @@ Ext.define('Ext.grid.NavigationModel', {
         }
     },
 
-    onItemClick: function(view, record, item, index, clickEvent) {
+    onItemClick: function (view, record, item, index, clickEvent) {
         // A mousedown outside a cell. Must be in a Feature
         if (!clickEvent.position.cellElement) {
             this.fireNavigateEvent(clickEvent);
         }
     },
 
-    beforeViewRefresh: function(view) {
-    // Override at TableView level because NavigationModel is shared between two sides of a lockable
-    // So we have to check that the focus position applies to us before caching
+    beforeViewRefresh: function (view) {
+        // Override at TableView level because NavigationModel is shared between two sides of a lockable
+        // So we have to check that the focus position applies to us before caching
         var position = this.getPosition();
 
         if (position && position.view === view) {
@@ -176,13 +176,13 @@ Ext.define('Ext.grid.NavigationModel', {
 
     // On record remove, it might have bumped the selection upwards.
     // Pass the "preventSelection" flag.
-    onStoreRemove: function() {
+    onStoreRemove: function () {
         if (this.position) {
             this.setPosition(this.getPosition(), null, null, null, true);
         }
     },
 
-    deferSetPosition: function(delay, recordIndex, columnIndex, keyEvent, suppressEvent, preventNavigation) {
+    deferSetPosition: function (delay, recordIndex, columnIndex, keyEvent, suppressEvent, preventNavigation) {
         var setPositionTask = this.view.getFocusTask();
 
         // This is essentially a focus operation. Use the singleton focus task used by Focusable Components
@@ -191,7 +191,7 @@ Ext.define('Ext.grid.NavigationModel', {
         return setPositionTask;
     },
 
-    setPosition: function(recordIndex, columnIndex, keyEvent, suppressEvent, preventNavigation) {
+    setPosition: function (recordIndex, columnIndex, keyEvent, suppressEvent, preventNavigation) {
         var me = this,
             view,
             selModel,
@@ -235,10 +235,10 @@ Ext.define('Ext.grid.NavigationModel', {
         // If a CellContext is passed, use it.
         // Passing null happens on blur to remove focus class.
         if (recordIndex && recordIndex.isCellContext) {
-            newRecord      = recordIndex.record;
+            newRecord = recordIndex.record;
             newRecordIndex = recordIndex.rowIdx;
             newColumnIndex = recordIndex.colIdx;
-            newColumn      = recordIndex.column;
+            newColumn = recordIndex.column;
 
             // If the record being focused is not available (eg, after a sort), then go to 0,0
             if (dataSource.indexOf(newRecord) === -1) {
@@ -348,8 +348,8 @@ Ext.define('Ext.grid.NavigationModel', {
             view,
             me.recordIndex = newRecordIndex,
             me.columnIndex = newColumnIndex,
-            me.record      = newRecord,
-            me.column      = newColumn
+            me.record = newRecord,
+            me.column = newColumn
         );
 
         if (clearing) {
@@ -378,7 +378,7 @@ Ext.define('Ext.grid.NavigationModel', {
      * This is used on view refresh and on replace.
      * @return {undefined}
      */
-    focusPosition: function(position) {
+    focusPosition: function (position) {
         var me = this,
             view,
             row;
@@ -446,7 +446,7 @@ Ext.define('Ext.grid.NavigationModel', {
      * @param {Ext.dom.Element} item
      * @return {undefined}
      */
-    focusItem: function(item) {
+    focusItem: function (item) {
         item.addCls(this.focusCls);
 
         // If they clicked on a focusable widget in a cell, we must not steal focus
@@ -455,11 +455,11 @@ Ext.define('Ext.grid.NavigationModel', {
         }
     },
 
-    getCell: function() {
+    getCell: function () {
         return this.cell;
     },
 
-    getPosition: function() {
+    getPosition: function () {
         var me = this,
             position = me.position,
             curIndex,
@@ -493,7 +493,7 @@ Ext.define('Ext.grid.NavigationModel', {
         return null;
     },
 
-    getLastFocused: function() {
+    getLastFocused: function () {
         var me = this,
             view,
             lastFocused = me.lastFocused;
@@ -508,15 +508,15 @@ Ext.define('Ext.grid.NavigationModel', {
         }
     },
 
-    onKeyUp: function(keyEvent) {
+    onKeyUp: function (keyEvent) {
         var newRecord = keyEvent.view.walkRecs(keyEvent.record, -1);
-        
+
         if (newRecord) {
             this.setPosition(newRecord, this.columnIndex, keyEvent);
         }
     },
 
-    onKeyDown: function(keyEvent) {
+    onKeyDown: function (keyEvent) {
         // If we are in the middle of an animated node expand, jump to next sibling.
         // The first child record is in a temp animation DIV and will be removed, so will blur.
         var newRecord = keyEvent.record.isExpandingOrCollapsing ? null : keyEvent.view.walkRecs(keyEvent.record, 1);
@@ -525,16 +525,16 @@ Ext.define('Ext.grid.NavigationModel', {
             this.setPosition(newRecord, this.columnIndex, keyEvent);
         }
     },
-    
-    onKeyRight: function(keyEvent) {
+
+    onKeyRight: function (keyEvent) {
         var newPosition = this.move('right', keyEvent);
 
         if (newPosition) {
             this.setPosition(newPosition, null, keyEvent);
         }
     },
-    
-    onKeyLeft: function(keyEvent) {
+
+    onKeyLeft: function (keyEvent) {
         var newPosition = this.move('left', keyEvent);
 
         if (newPosition) {
@@ -542,7 +542,7 @@ Ext.define('Ext.grid.NavigationModel', {
         }
     },
 
-    move: function(dir, keyEvent) {
+    move: function (dir, keyEvent) {
         var me = this,
             position = me.getPosition();
 
@@ -558,7 +558,7 @@ Ext.define('Ext.grid.NavigationModel', {
     },
 
     // Go one page down from the lastFocused record in the grid.
-    onKeyPageDown: function(keyEvent) {
+    onKeyPageDown: function (keyEvent) {
         var me = this,
             view = keyEvent.view,
             rowsVisible = me.getRowsVisible(),
@@ -581,7 +581,7 @@ Ext.define('Ext.grid.NavigationModel', {
     },
 
     // Go one page up from the lastFocused record in the grid.
-    onKeyPageUp: function(keyEvent) {
+    onKeyPageUp: function (keyEvent) {
         var me = this,
             view = keyEvent.view,
             rowsVisible = me.getRowsVisible(),
@@ -602,9 +602,9 @@ Ext.define('Ext.grid.NavigationModel', {
             }
         }
     },
- 
+
     // Home moves the focus to the first cell of the current row.
-    onKeyHome: function(keyEvent) {
+    onKeyHome: function (keyEvent) {
         var me = this,
             view = keyEvent.view;
 
@@ -627,12 +627,12 @@ Ext.define('Ext.grid.NavigationModel', {
         }
     },
 
-    afterBufferedScrollTo: function(newIdx, newRecord) {
+    afterBufferedScrollTo: function (newIdx, newRecord) {
         this.setPosition(newRecord, null, this.lastKeyEvent, null, !this.lastKeyEvent);
     },
 
     // End moves the focus to the last cell in the current row.
-    onKeyEnd: function(keyEvent) {
+    onKeyEnd: function (keyEvent) {
         var me = this,
             view = keyEvent.view;
 
@@ -645,7 +645,7 @@ Ext.define('Ext.grid.NavigationModel', {
                 me.lastKeyEvent = keyEvent;
                 view.bufferedRenderer.scrollTo(view.store.getCount() - 1, false, me.afterBufferedScrollTo, me);
             } else {
-                 // Walk forwards to the end record
+                // Walk forwards to the end record
                 me.setPosition(view.walkRecs(keyEvent.record, view.dataSource.getCount() - 1 - view.dataSource.indexOf(keyEvent.record)), null, keyEvent);
             }
         }
@@ -654,11 +654,11 @@ Ext.define('Ext.grid.NavigationModel', {
             me.setPosition(keyEvent.record, keyEvent.view.getVisibleColumnManager().getColumns().length - 1, keyEvent);
         }
     },
-    
+
     // Returns the number of rows currently visible on the screen or
     // false if there were no rows. This assumes that all rows are
     // of the same height and the first view is accurate.
-    getRowsVisible: function() {
+    getRowsVisible: function () {
         var rowsVisible = false,
             view = this.view,
             firstRow = view.all.first(),
@@ -673,7 +673,7 @@ Ext.define('Ext.grid.NavigationModel', {
         return rowsVisible;
     },
 
-    fireNavigateEvent: function(keyEvent) {
+    fireNavigateEvent: function (keyEvent) {
         var me = this;
 
         me.fireEvent('navigate', {

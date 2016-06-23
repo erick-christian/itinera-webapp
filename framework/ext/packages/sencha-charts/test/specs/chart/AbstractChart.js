@@ -1,4 +1,4 @@
-describe('Ext.chart.AbstractChart', function() {
+describe('Ext.chart.AbstractChart', function () {
     var chart, store;
 
     var Model = Ext.define(null, {
@@ -23,15 +23,15 @@ describe('Ext.chart.AbstractChart', function() {
         });
     }
 
-    afterEach(function() {
+    afterEach(function () {
         store = chart = Ext.destroy(chart, store);
     });
 
-    it('is defined', function() {
+    it('is defined', function () {
         expect(Ext.chart.AbstractChart).toBeDefined();
     });
 
-    describe('adding and removing series', function() {
+    describe('adding and removing series', function () {
         var store = Ext.create('Ext.data.Store', {
                 fields: ['x', 'y', 'z'],
                 data: [
@@ -41,7 +41,7 @@ describe('Ext.chart.AbstractChart', function() {
             }),
             chart;
 
-        beforeEach(function() {
+        beforeEach(function () {
             chart = new Ext.chart.CartesianChart({
                 store: store,
                 axes: [{
@@ -54,11 +54,11 @@ describe('Ext.chart.AbstractChart', function() {
             });
         });
 
-        it('should start with no series', function() {
+        it('should start with no series', function () {
             expect(chart.getSeries().length).toBe(0);
         });
 
-        it('should add and remove series using setSeries', function() {
+        it('should add and remove series using setSeries', function () {
             var series;
 
             chart.setSeries([{
@@ -84,7 +84,7 @@ describe('Ext.chart.AbstractChart', function() {
             expect(series[0].getId()).toBe('xzSeries');
         });
 
-        it('should add series using addSeries', function() {
+        it('should add series using addSeries', function () {
             var series;
 
             chart.addSeries([{
@@ -111,7 +111,7 @@ describe('Ext.chart.AbstractChart', function() {
             expect(series[1].getId()).toBe('xzSeries');
         });
 
-        it('should remove series using removeSeries', function() {
+        it('should remove series using removeSeries', function () {
             var series;
 
             chart.addSeries([{
@@ -143,7 +143,7 @@ describe('Ext.chart.AbstractChart', function() {
         });
     });
 
-    describe("stores", function() {
+    describe("stores", function () {
         function makeChart(storeOnSeries, chartCfg, seriesCfg) {
             var cfg = Ext.apply({
                 xtype: 'cartesian',
@@ -185,13 +185,13 @@ describe('Ext.chart.AbstractChart', function() {
             return ret;
         }
 
-        describe("store on the chart", function() {
+        describe("store on the chart", function () {
             function makeStoreChart(chartCfg, seriesCfg) {
                 makeChart(false, chartCfg, seriesCfg);
             }
 
-            describe("configuration", function() {
-                it("should accept a store id", function() {
+            describe("configuration", function () {
+                it("should accept a store id", function () {
                     store = new Ext.data.Store({
                         model: Model,
                         storeId: 'foo'
@@ -202,7 +202,7 @@ describe('Ext.chart.AbstractChart', function() {
                     expect(chart.getStore()).toBe(store);
                 });
 
-                it("should accept a store config", function() {
+                it("should accept a store config", function () {
                     makeStoreChart({
                         store: {
                             model: Model,
@@ -213,7 +213,7 @@ describe('Ext.chart.AbstractChart', function() {
                     expect(chart.getStore().getModel()).toBe(Model);
                 });
 
-                it("should accept a store instance", function() {
+                it("should accept a store instance", function () {
                     makeStore(10);
                     makeStoreChart({
                         store: store
@@ -222,8 +222,8 @@ describe('Ext.chart.AbstractChart', function() {
                 });
             });
 
-            describe("destruction", function() {
-                it("should remove all listeners", function() {
+            describe("destruction", function () {
+                it("should remove all listeners", function () {
                     makeStore(3);
                     var listeners = extractHasListeners(store.hasListeners);
                     makeStoreChart({
@@ -233,7 +233,7 @@ describe('Ext.chart.AbstractChart', function() {
                     expect(extractHasListeners(store.hasListeners)).toEqual(listeners);
                 });
 
-                it("should not destroy the store by default", function() {
+                it("should not destroy the store by default", function () {
                     makeStore(3);
                     makeStoreChart({
                         store: store
@@ -242,7 +242,7 @@ describe('Ext.chart.AbstractChart', function() {
                     expect(store.isDestroyed).toBe(false);
                 });
 
-                it("should destroy the store when the store has autoDestroy: true", function() {
+                it("should destroy the store when the store has autoDestroy: true", function () {
                     makeStore(3);
                     store.setAutoDestroy(true);
                     makeStoreChart({
@@ -254,13 +254,13 @@ describe('Ext.chart.AbstractChart', function() {
             });
         });
 
-        describe("store on the series", function() {
+        describe("store on the series", function () {
             function makeSeriesChart(chartCfg, seriesCfg) {
                 makeChart(true, chartCfg, seriesCfg);
             }
 
-            describe("configuration", function() {
-                it("should accept a store id", function() {
+            describe("configuration", function () {
+                it("should accept a store id", function () {
                     store = new Ext.data.Store({
                         model: Model,
                         storeId: 'foo'
@@ -272,7 +272,7 @@ describe('Ext.chart.AbstractChart', function() {
                     expect(chart.getSeries()[0].getStore()).toBe(store);
                 });
 
-                it("should accept a store config", function() {
+                it("should accept a store config", function () {
                     makeSeriesChart(null, {
                         store: {
                             model: Model,
@@ -284,7 +284,7 @@ describe('Ext.chart.AbstractChart', function() {
                     expect(chart.getSeries()[0].getStore().getModel()).toBe(Model);
                 });
 
-                it("should accept a store instance", function() {
+                it("should accept a store instance", function () {
                     makeStore(10);
                     makeSeriesChart(null, {
                         store: store
@@ -294,8 +294,8 @@ describe('Ext.chart.AbstractChart', function() {
                 });
             });
 
-            describe("destruction", function() {
-                it("should remove all listeners", function() {
+            describe("destruction", function () {
+                it("should remove all listeners", function () {
                     makeStore(3);
                     var listeners = extractHasListeners(store.hasListeners);
                     makeSeriesChart(null, {
@@ -305,7 +305,7 @@ describe('Ext.chart.AbstractChart', function() {
                     expect(extractHasListeners(store.hasListeners)).toEqual(listeners);
                 });
 
-                it("should not destroy the store by default", function() {
+                it("should not destroy the store by default", function () {
                     makeStore(3);
                     makeSeriesChart(null, {
                         store: store
@@ -314,7 +314,7 @@ describe('Ext.chart.AbstractChart', function() {
                     expect(store.isDestroyed).toBe(false);
                 });
 
-                it("should destroy the store when the store has autoDestroy: true", function() {
+                it("should destroy the store when the store has autoDestroy: true", function () {
                     makeStore(3);
                     store.setAutoDestroy(true);
                     makeSeriesChart(null, {
@@ -324,7 +324,7 @@ describe('Ext.chart.AbstractChart', function() {
                     expect(store.isDestroyed).toBe(true);
                 });
 
-                it("should not destroy the store when destroying the series by default", function() {
+                it("should not destroy the store when destroying the series by default", function () {
                     makeStore(3);
                     makeSeriesChart(null, {
                         store: store
@@ -333,7 +333,7 @@ describe('Ext.chart.AbstractChart', function() {
                     expect(store.isDestroyed).toBe(false);
                 });
 
-                it("should destroy the store when destroying the series when the store has autoDestroy: true", function() {
+                it("should destroy the store when destroying the series when the store has autoDestroy: true", function () {
                     makeStore(3);
                     store.setAutoDestroy(true);
                     makeSeriesChart(null, {

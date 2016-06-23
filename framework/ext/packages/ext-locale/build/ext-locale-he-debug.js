@@ -10,12 +10,12 @@ Ext.define('Ext.locale.container.Viewport', {
  * Hebrew Translations
  * By spartacus (from forums) 06-12-2007
  */
-Ext.onReady(function() {
+Ext.onReady(function () {
 
     if (Ext.Date) {
         Ext.Date.monthNames = ["ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"];
 
-        Ext.Date.getShortMonthName = function(month) {
+        Ext.Date.getShortMonthName = function (month) {
             return Ext.Date.monthNames[month].substring(0, 3);
         };
 
@@ -34,13 +34,13 @@ Ext.onReady(function() {
             Dec: 11
         };
 
-        Ext.Date.getMonthNumber = function(name) {
+        Ext.Date.getMonthNumber = function (name) {
             return Ext.Date.monthNumbers[name.substring(0, 1).toUpperCase() + name.substring(1, 3).toLowerCase()];
         };
 
         Ext.Date.dayNames = ["א", "ב", "ג", "ד", "ה", "ו", "ש"];
 
-        Ext.Date.getShortDayName = function(day) {
+        Ext.Date.getShortDayName = function (day) {
             return Ext.Date.dayNames[day].substring(0, 3);
         };
     }
@@ -151,7 +151,7 @@ Ext.define("Ext.locale.he.form.field.File", {
 Ext.define("Ext.locale.he.form.field.ComboBox", {
     override: "Ext.form.field.ComboBox",
     valueNotFoundText: undefined
-}, function() {
+}, function () {
     Ext.apply(Ext.form.field.ComboBox.prototype.defaultListConfig, {
         loadingText: "...טוען"
     });
@@ -168,7 +168,7 @@ Ext.define("Ext.locale.he.form.field.VTypes", {
 Ext.define("Ext.locale.he.form.field.HtmlEditor", {
     override: "Ext.form.field.HtmlEditor",
     createLinkText: ':אנא הקלד את כתובת האינטרנט עבור הקישור'
-}, function() {
+}, function () {
     Ext.apply(Ext.form.field.HtmlEditor.prototype, {
         buttonTips: {
             bold: {
@@ -275,10 +275,10 @@ Ext.define("Ext.locale.he.window.MessageBox", {
         cancel: "ביטול",
         yes: "כן",
         no: "לא"
-    }    
+    }
 });
 
 // This is needed until we can refactor all of the locales into individual files
-Ext.define("Ext.locale.he.Component", {	
+Ext.define("Ext.locale.he.Component", {
     override: "Ext.Component"
 });

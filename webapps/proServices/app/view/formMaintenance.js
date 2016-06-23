@@ -31,13 +31,9 @@ Ext.define('proServices.view.formMaintenance', {
     viewModel: {
         type: 'formmaintenance'
     },
-    height: 650,
     id: 'formMaintenance',
     itemId: 'formMaintenance',
-    maxHeight: 800,
-    maxWidth: 1350,
     ui: 'green-panel',
-    width: 1350,
     layout: 'column',
     bodyPadding: 10,
     manageHeight: false,
@@ -181,11 +177,11 @@ Ext.define('proServices.view.formMaintenance', {
     items: [
         {
             xtype: 'gridpanel',
+            columnWidth: 1,
             id: 'gridServices',
             itemId: 'gridServices',
             maxHeight: 300,
             ui: 'green-panel',
-            width: 880,
             title: 'Services',
             columnLines: false,
             forceFit: false,
@@ -300,13 +296,12 @@ Ext.define('proServices.view.formMaintenance', {
         },
         {
             xtype: 'gridpanel',
+            columnWidth: 1,
             id: 'gridSerDetail',
             itemId: 'gridSerDetail',
             margin: '5 5 5 0',
-            maxHeight: 270,
-            maxWidth: 1350,
+            maxHeight: 250,
             ui: 'green-panel',
-            width: 1350,
             title: 'Detail Service',
             columnLines: false,
             forceFit: false,

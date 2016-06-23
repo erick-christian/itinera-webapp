@@ -27,7 +27,7 @@ Ext.define('Ext.grid.locking.View', {
 
     eventRelayRe: /^(beforeitem|beforecontainer|item|container|cell|refresh)/,
 
-    constructor: function(config){
+    constructor: function (config) {
         var me = this,
             lockedView,
             normalView;
@@ -146,7 +146,7 @@ Ext.define('Ext.grid.locking.View', {
     },
 
     // Called in the context of a child view when the first child view begins its layout run
-    beforeLayout: function() {
+    beforeLayout: function () {
         // Access the Lockable object
         var me = this.ownerCt.ownerLockable.view,
             lockedView = me.lockedGrid.view,
@@ -167,7 +167,7 @@ Ext.define('Ext.grid.locking.View', {
         }
     },
 
-    onPanelRender: function() {
+    onPanelRender: function () {
         var me = this,
             mask = me.loadMask,
             cfg = {
@@ -200,33 +200,33 @@ Ext.define('Ext.grid.locking.View', {
         }
     },
 
-    getRefOwner: function() {
+    getRefOwner: function () {
         return this.ownerGrid;
     },
 
     // Implement the same API as Ext.view.Table.
     // This will return the topmost, unified visible column manager
-    getVisibleColumnManager: function() {
+    getVisibleColumnManager: function () {
         // ownerGrid refers to the topmost responsible Ext.panel.Grid.
         // This could be this view's ownerCt, or if part of a locking arrangement, the locking grid
         return this.ownerGrid.getVisibleColumnManager();
     },
 
-    getTopLevelVisibleColumnManager: function() {
+    getTopLevelVisibleColumnManager: function () {
         // ownerGrid refers to the topmost responsible Ext.panel.Grid.
         // This could be this view's ownerCt, or if part of a locking arrangement, the locking grid
         return this.ownerGrid.getVisibleColumnManager();
     },
 
-    getGridColumns: function() {
+    getGridColumns: function () {
         return this.getVisibleColumnManager().getColumns();
     },
 
-    getEl: function(column){
+    getEl: function (column) {
         return this.getViewForColumn(column).getEl();
     },
 
-    getCellSelector: function() {
+    getCellSelector: function () {
         return this.normalView.getCellSelector();
     },
 
@@ -234,11 +234,11 @@ Ext.define('Ext.grid.locking.View', {
         return this.normalView.getItemSelector();
     },
 
-    getViewForColumn: function(column) {
+    getViewForColumn: function (column) {
         var view = this.lockedView,
             inLocked;
 
-        view.headerCt.cascade(function(col){
+        view.headerCt.cascade(function (col) {
             if (col === column) {
                 inLocked = true;
                 return false;
@@ -248,7 +248,7 @@ Ext.define('Ext.grid.locking.View', {
         return inLocked ? view : this.normalView;
     },
 
-    onItemMouseEnter: function(view, record){
+    onItemMouseEnter: function (view, record) {
         var me = this,
             locked = me.lockedView,
             other = me.normalView,
@@ -263,7 +263,7 @@ Ext.define('Ext.grid.locking.View', {
         }
     },
 
-    onItemMouseLeave: function(view, record){
+    onItemMouseLeave: function (view, record) {
         var me = this,
             locked = me.lockedView,
             other = me.normalView;
@@ -276,7 +276,7 @@ Ext.define('Ext.grid.locking.View', {
         }
     },
 
-    relayFn: function(name, args){
+    relayFn: function (name, args) {
         args = args || [];
 
         var me = this,
@@ -291,15 +291,15 @@ Ext.define('Ext.grid.locking.View', {
         me.relayingOperation = false;
     },
 
-    getSelectionModel: function(){
+    getSelectionModel: function () {
         return this.normalView.getSelectionModel();
     },
 
-    getNavigationModel: function() {
+    getNavigationModel: function () {
         return this.navigationModel;
     },
 
-    getStore: function(){
+    getStore: function () {
         return this.ownerGrid.store;
     },
 
@@ -308,7 +308,7 @@ Ext.define('Ext.grid.locking.View', {
      * @param {Ext.data.Store} store The store to bind to this view
      * @since 3.4.0
      */
-    onBindStore : function(store, initial, propName) {
+    onBindStore: function (store, initial, propName) {
         var me = this,
             lockedView = me.lockedView,
             normalView = me.normalView;
@@ -324,7 +324,7 @@ Ext.define('Ext.grid.locking.View', {
         }
     },
 
-    getStoreListeners: function() {
+    getStoreListeners: function () {
         var me = this;
         return {
             refresh: me.onDataRefresh,
@@ -338,43 +338,43 @@ Ext.define('Ext.grid.locking.View', {
         };
     },
 
-    onBeginUpdate: function() {
+    onBeginUpdate: function () {
         Ext.suspendLayouts();
         this.relayFn('onBeginUpdate', arguments);
         Ext.resumeLayouts(true);
     },
-    
-    onEndUpdate: function() {
+
+    onEndUpdate: function () {
         Ext.suspendLayouts();
         this.relayFn('onEndUpdate', arguments);
         Ext.resumeLayouts(true);
     },
 
-    onDataRefresh: function() {
+    onDataRefresh: function () {
         Ext.suspendLayouts();
         this.relayFn('onDataRefresh', arguments);
         Ext.resumeLayouts(true);
     },
 
-    onReplace: function() {
+    onReplace: function () {
         Ext.suspendLayouts();
         this.relayFn('onReplace', arguments);
         Ext.resumeLayouts(true);
     },
 
-    onAdd: function() {
+    onAdd: function () {
         Ext.suspendLayouts();
         this.relayFn('onAdd', arguments);
         Ext.resumeLayouts(true);
     },
 
-    onRemove: function() {
+    onRemove: function () {
         Ext.suspendLayouts();
         this.relayFn('onRemove', arguments);
         Ext.resumeLayouts(true);
     },
 
-    onUpdate: function() {
+    onUpdate: function () {
         var normalView = this.normalGrid.view;
 
         Ext.suspendLayouts();
@@ -394,30 +394,30 @@ Ext.define('Ext.grid.locking.View', {
         Ext.resumeLayouts(true);
     },
 
-    refresh: function() {
+    refresh: function () {
         Ext.suspendLayouts();
         this.relayFn('refresh', arguments);
         Ext.resumeLayouts(true);
     },
 
-    getNode: function(nodeInfo) {
+    getNode: function (nodeInfo) {
         // default to the normal view
         return this.normalView.getNode(nodeInfo);
     },
 
-    getRow: function(nodeInfo) {
+    getRow: function (nodeInfo) {
         // default to the normal view
         return this.normalView.getRow(nodeInfo);
     },
 
-    getCell: function(record, column) {
+    getCell: function (record, column) {
         var view = this.getViewForColumn(column),
             row = view.getRow(record);
-            
+
         return Ext.fly(row).down(column.getCellSelector());
     },
 
-    indexOf: function(record) {
+    indexOf: function (record) {
         var result = this.lockedView.indexOf(record);
         if (!result) {
             result = this.normalView.indexOf(record);
@@ -425,7 +425,7 @@ Ext.define('Ext.grid.locking.View', {
         return result;
     },
 
-    focus: function() {
+    focus: function () {
         // Delegate to the view of first visible child tablepanel of the owning lockable assembly.
         var target = this.ownerGrid.down('>tablepanel:not(hidden)>tableview');
 
@@ -434,44 +434,44 @@ Ext.define('Ext.grid.locking.View', {
         }
     },
 
-    focusRow: function(row) {
+    focusRow: function (row) {
         var view,
-            // Access lastFocused directly because getter nulls it if the record is no longer in view
-            // and all we are interested in is the lastFocused View.
+        // Access lastFocused directly because getter nulls it if the record is no longer in view
+        // and all we are interested in is the lastFocused View.
             lastFocused = this.getNavigationModel().lastFocused;
-    
+
         view = lastFocused ? lastFocused.view : this.normalView;
         view.focusRow(row);
     },
 
-    focusCell: function(position) {
+    focusCell: function (position) {
         position.view.focusCell(position);
     },
 
-    onRowFocus: function() {
+    onRowFocus: function () {
         this.relayFn('onRowFocus', arguments);
     },
 
-    isVisible: function(deep) {
+    isVisible: function (deep) {
         return this.ownerGrid.isVisible(deep);
     },
 
-    getFocusEl: function() {
+    getFocusEl: function () {
         var view,
-            // Access lastFocused directly because getter nulls it if the record is no longer in view
-            // and all we are interested in is the lastFocused View.
+        // Access lastFocused directly because getter nulls it if the record is no longer in view
+        // and all we are interested in is the lastFocused View.
             lastFocused = this.getNavigationModel().lastFocused;
-    
+
         view = lastFocused ? lastFocused.view : this.normalView;
         return view.getFocusEl();
     },
 
     // Old API. Used by tests now to test coercion of navigation from hidden column to closest visible.
     // Position.column includes all columns including hidden ones.
-    getCellInclusive: function(pos, returnDom) {
+    getCellInclusive: function (pos, returnDom) {
         var col = pos.column,
             lockedSize = this.lockedGrid.getColumnManager().getColumns().length;
-            
+
         // Normalize view
         if (col >= lockedSize) {
             // Make a copy so we don't mutate the passed object
@@ -483,22 +483,22 @@ Ext.define('Ext.grid.locking.View', {
         }
     },
 
-    getHeaderByCell: function(cell) {
+    getHeaderByCell: function (cell) {
         if (cell) {
             return this.getVisibleColumnManager().getHeaderById(cell.getAttribute('data-columnId'));
         }
         return false;
     },
 
-    onRowSelect: function() {
+    onRowSelect: function () {
         this.relayFn('onRowSelect', arguments);
     },
 
-    onRowDeselect: function() {
+    onRowDeselect: function () {
         this.relayFn('onRowDeselect', arguments);
     },
 
-    onCellSelect: function(cellContext) {
+    onCellSelect: function (cellContext) {
         // Pass a contextless cell descriptor to the child view
         cellContext.column.getView().onCellSelect({
             record: cellContext.record,
@@ -506,7 +506,7 @@ Ext.define('Ext.grid.locking.View', {
         });
     },
 
-    onCellDeselect: function(cellContext) {
+    onCellDeselect: function (cellContext) {
         // Pass a contextless cell descriptor to the child view
         cellContext.column.getView().onCellDeselect({
             record: cellContext.record,
@@ -514,7 +514,7 @@ Ext.define('Ext.grid.locking.View', {
         });
     },
 
-    getCellByPosition: function(pos, returnDom) {
+    getCellByPosition: function (pos, returnDom) {
         var me = this,
             view = pos.view,
             col = pos.column;
@@ -526,49 +526,49 @@ Ext.define('Ext.grid.locking.View', {
         return view.getCellByPosition(pos, returnDom);
     },
 
-    getRecord: function(node) {
+    getRecord: function (node) {
         var result = this.lockedView.getRecord(node);
         if (!result) {
             result = this.normalView.getRecord(node);
         }
         return result;
     },
-    
-    scrollBy: function(){
+
+    scrollBy: function () {
         var normal = this.normalView;
         normal.scrollBy.apply(normal, arguments);
     },
 
-    ensureVisible: function() {
+    ensureVisible: function () {
         var normal = this.normalView;
         normal.ensureVisible.apply(normal, arguments);
     },
 
-    disable: function() {
+    disable: function () {
         this.relayFn('disable', arguments);
     },
 
-    enable: function() {
+    enable: function () {
         this.relayFn('enable', arguments);
     },
 
-    addElListener: function() {
+    addElListener: function () {
         this.relayFn('addElListener', arguments);
     },
 
-    refreshNode: function(){
+    refreshNode: function () {
         this.relayFn('refreshNode', arguments);
     },
 
-    addRowCls: function(){
+    addRowCls: function () {
         this.relayFn('addRowCls', arguments);
     },
 
-    removeRowCls: function(){
+    removeRowCls: function () {
         this.relayFn('removeRowCls', arguments);
     },
-    
-    destroy: function(){
+
+    destroy: function () {
         var me = this;
 
         // Unbind from the dataSource we bound to in constructor
@@ -583,7 +583,7 @@ Ext.define('Ext.grid.locking.View', {
         Ext.destroy(me.loadMask, me.navigationModel, me.selModel);
     }
 
-}, function() {
+}, function () {
     this.borrow(Ext.Component, ['up']);
     this.borrow(Ext.view.AbstractView, ['doFirstRefresh', 'applyFirstRefresh']);
     this.borrow(Ext.view.Table, ['cellSelector', 'selectedCellCls', 'selectedItemCls']);

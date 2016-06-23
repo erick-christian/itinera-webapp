@@ -19,11 +19,11 @@ Ext.define('Ext.mixin.Identifiable', {
 
     defaultIdSeparator: '-',
 
-    getOptimizedId: function() {
+    getOptimizedId: function () {
         return this.id;
     },
 
-    getUniqueId: function() {
+    getUniqueId: function () {
         var id = this.id,
             prototype, separator, xtype, uniqueIds, prefix;
 
@@ -62,7 +62,7 @@ Ext.define('Ext.mixin.Identifiable', {
         return id;
     },
 
-    setId: function(id) {
+    setId: function (id) {
         this.id = id;
     },
 
@@ -70,7 +70,7 @@ Ext.define('Ext.mixin.Identifiable', {
      * Retrieves the id of this component. Will autogenerate an id if one has not already been set.
      * @return {String} id
      */
-    getId: function() {
+    getId: function () {
         var id = this.id;
 
         if (!id) {

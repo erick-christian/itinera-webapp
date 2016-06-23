@@ -14,20 +14,23 @@ class CreateAdmStatesTable extends Migration
     {
         Schema::create('adm_states' , function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
 
             $table->char('country_code');
             $table->char('state_code');
             $table->char('state_name');
-            $table->char('capital');
+
+            $table->timestamps();
 
             /* Enable Soft Delete*/
             $table->softDeletes();
 
             /* Indexes */
-            $table->index('country_code' , 'state_code');
-            $table->index('state_code');
-
+            $table->unique(['country_code' , 'state_code'] ,
+                'idxCountryState');
+            $table->index(['state_code'] ,
+                'idxState');
+            $table->index(['state_name'] ,
+                'idxStateName');
         });
     }
 

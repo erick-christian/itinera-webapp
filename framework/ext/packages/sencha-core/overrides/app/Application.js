@@ -16,10 +16,10 @@
  * @param {Object/String} config Application config object or name of a class derived
  * from Ext.app.Application.
  */
-Ext.application = function(config) {
+Ext.application = function (config) {
     var createApp = function (App) {
             // This won't be called until App class has been created.
-            Ext.onReady(function() {
+            Ext.onReady(function () {
                 Ext.app.Application.instance = new App();
             });
         },
@@ -27,7 +27,7 @@ Ext.application = function(config) {
         ns;
 
     if (typeof config === "string") {
-        Ext.require(config, function() {
+        Ext.require(config, function () {
             createApp(Ext.ClassManager.get(config));
         });
     }

@@ -40,13 +40,13 @@ Ext.define('Ext.draw.Container', {
     ],
     /**
      * @cfg {String} [engine="Ext.draw.engine.Canvas"]
-     * Defines the engine (type of surface) used to render draw container contents.  
-     * 
-     * The render engine is selected automatically depending on the platform used. Priority 
+     * Defines the engine (type of surface) used to render draw container contents.
+     *
+     * The render engine is selected automatically depending on the platform used. Priority
      * is given to the {@link Ext.draw.engine.Canvas} engine due to its performance advantage.
      *
      * You may also set the engine config to be `Ext.draw.engine.Svg` if so desired.
-     */    
+     */
     engine: 'Ext.draw.engine.Canvas',
 
     /**
@@ -132,7 +132,7 @@ Ext.define('Ext.draw.Container', {
          *           x: 100,
          *           y: 100
          *      }]
-         * 
+         *
          */
         sprites: null,
 
@@ -208,7 +208,7 @@ Ext.define('Ext.draw.Container', {
         jpeg: Ext.isObject
     },
 
-    initAnimator: function() {
+    initAnimator: function () {
         this.frameCallbackId = Ext.draw.Animator.addFrameCallback('renderFrame', this);
     },
 
@@ -289,7 +289,7 @@ Ext.define('Ext.draw.Container', {
         this.setBodySize(el.getSize());
     },
 
-    setBodySize: function(size) {
+    setBodySize: function (size) {
         var me = this,
             resizeHandler = me.getResizeHandler(),
             result;

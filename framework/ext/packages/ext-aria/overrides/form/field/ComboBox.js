@@ -1,15 +1,15 @@
 /** */
 Ext.define('Ext.aria.form.field.ComboBox', {
     override: 'Ext.form.field.ComboBox',
-    
+
     requires: [
         'Ext.aria.form.field.Picker'
     ],
-    
-    createPicker: function() {
+
+    createPicker: function () {
         var me = this,
             picker;
-        
+
         picker = me.callParent(arguments);
 
         if (picker) {
@@ -19,38 +19,38 @@ Ext.define('Ext.aria.form.field.ComboBox', {
                 scope: me
             });
         }
-        
+
         return picker;
     },
-    
-    ariaGetRenderAttributes: function() {
+
+    ariaGetRenderAttributes: function () {
         var me = this,
             attrs;
-        
+
         attrs = me.callParent();
 
         attrs['aria-readonly'] = !!(!me.editable || me.readOnly);
         attrs['aria-expanded'] = !!me.isExpanded;
         attrs['aria-autocomplete'] = "list";
-        
+
         return attrs;
     },
 
-    setReadOnly: function(readOnly) {
+    setReadOnly: function (readOnly) {
         var me = this;
-        
+
         me.callParent(arguments);
-        me.ariaUpdate({ 'aria-readonly': me.readOnly });
+        me.ariaUpdate({'aria-readonly': me.readOnly});
     },
 
-    setEditable: function(editable) {
+    setEditable: function (editable) {
         var me = this;
-        
+
         me.callParent(arguments);
-        me.ariaUpdate({ 'aria-readonly': !me.editable });
+        me.ariaUpdate({'aria-readonly': !me.editable});
     },
 
-    onExpand: function() {
+    onExpand: function () {
         var me = this,
             selected = me.picker.getSelectedNodes();
 
@@ -61,7 +61,7 @@ Ext.define('Ext.aria.form.field.ComboBox', {
         });
     },
 
-    onCollapse: function() {
+    onCollapse: function () {
         var me = this;
 
         me.callParent(arguments);
@@ -71,7 +71,7 @@ Ext.define('Ext.aria.form.field.ComboBox', {
         });
     },
 
-    ariaUpdateActiveDescendant: function(list) {
+    ariaUpdateActiveDescendant: function (list) {
         this.ariaUpdate({
             'aria-activedescendant': list.highlightedItem ? list.highlightedItem.id : undefined
         });

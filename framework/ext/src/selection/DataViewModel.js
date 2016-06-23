@@ -50,7 +50,7 @@ Ext.define('Ext.selection.DataViewModel', {
      * @param {Number} The index within the store of the selected record.
      */
 
-    bindComponent: function(view) {
+    bindComponent: function (view) {
         var me = this,
             viewListeners;
 
@@ -75,36 +75,36 @@ Ext.define('Ext.selection.DataViewModel', {
         }
     },
 
-    getViewListeners: function() {
+    getViewListeners: function () {
         var me = this,
             eventListeners = {};
 
         eventListeners[me.view.triggerCtEvent] = me.onContainerClick;
         return eventListeners;
     },
-    
-    onUpdate: function(record){
+
+    onUpdate: function (record) {
         var view = this.view;
         if (view && this.isSelected(record)) {
             view.onItemSelect(record);
         }
     },
 
-    onContainerClick: function() {
+    onContainerClick: function () {
         if (this.deselectOnContainerClick) {
             this.deselectAll();
         }
     },
 
     // Allow the DataView to update the ui
-    onSelectChange: function(record, isSelected, suppressEvent, commitFn) {
+    onSelectChange: function (record, isSelected, suppressEvent, commitFn) {
         var me = this,
             view = me.view,
             eventName = isSelected ? 'select' : 'deselect',
             recordIndex = me.store.indexOf(record);
 
         if ((suppressEvent || me.fireEvent('before' + eventName, me, record, recordIndex)) !== false &&
-                commitFn() !== false) {
+            commitFn() !== false) {
 
             if (view) {
                 if (isSelected) {
@@ -120,7 +120,7 @@ Ext.define('Ext.selection.DataViewModel', {
         }
     },
 
-    destroy: function() {
+    destroy: function () {
         this.bindComponent();
         Ext.destroy(this.keyNav);
         this.callParent();

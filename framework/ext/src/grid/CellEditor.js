@@ -7,11 +7,11 @@ Ext.define('Ext.grid.CellEditor', {
 
     alignment: 'l-l?',
 
-    hideEl : false,
+    hideEl: false,
 
     cls: Ext.baseCSSPrefix + 'small-editor ' +
-        Ext.baseCSSPrefix + 'grid-editor ' +
-        Ext.baseCSSPrefix + 'grid-cell-editor',
+    Ext.baseCSSPrefix + 'grid-editor ' +
+    Ext.baseCSSPrefix + 'grid-cell-editor',
 
     treeNodeSelector: '.' + Ext.baseCSSPrefix + 'tree-node-text',
 
@@ -19,7 +19,7 @@ Ext.define('Ext.grid.CellEditor', {
 
     shadow: false,
 
-    constructor: function(config) {
+    constructor: function (config) {
         var field;
 
         // Editor must appear at the top so that it does not contribute to scrollbars.
@@ -40,7 +40,7 @@ Ext.define('Ext.grid.CellEditor', {
     // rendering into the owning grid.
     // However in a Lockable assembly the editor has to swap sides if the column is moved across.
     // Called by CellEditing#getEditor
-    setGrid: function(grid) {
+    setGrid: function (grid) {
         var me = this,
             oldGrid = me.grid,
             view,
@@ -67,14 +67,14 @@ Ext.define('Ext.grid.CellEditor', {
         }
     },
 
-    afterFirstLayout: function(width, height) {
+    afterFirstLayout: function (width, height) {
         // After we've been laid out, we can get rid of the y property, we don't want
         // to be positioned now
         delete this.y;
         this.callParent([width, height]);
     },
 
-    beforeViewRefresh: function() {
+    beforeViewRefresh: function () {
         var me = this,
             dom = me.el && me.el.dom;
 
@@ -97,7 +97,7 @@ Ext.define('Ext.grid.CellEditor', {
         }
     },
 
-    onViewRefresh: function() {
+    onViewRefresh: function () {
         var me = this,
             dom = me.el && me.el.dom,
             sorting;
@@ -109,7 +109,7 @@ Ext.define('Ext.grid.CellEditor', {
             if (me.editing && !sorting) {
                 me.allowBlur = me.wasAllowBlur;
                 me.renderTo.appendChild(dom);
-                
+
                 // The removal will have blurred, so avoid the processing in onFocusEnter by restoring the previous
                 // cellFocused setting
                 me.grid.view.cellFocused = true;
@@ -127,7 +127,7 @@ Ext.define('Ext.grid.CellEditor', {
         }
     },
 
-    startEdit: function(boundEl, value) {
+    startEdit: function (boundEl, value) {
         this.context = this.editingPlugin.context;
         this.callParent([boundEl, value]);
     },
@@ -137,7 +137,7 @@ Ext.define('Ext.grid.CellEditor', {
      * Shows the editor, end ensures that it is rendered into the correct view
      * Hides the grid cell inner element when a cell editor is shown.
      */
-    onShow: function() {
+    onShow: function () {
         var me = this,
             innerCell = me.boundEl.first();
 
@@ -158,7 +158,7 @@ Ext.define('Ext.grid.CellEditor', {
         me.callParent(arguments);
     },
 
-    onEditComplete: function(remainVisible) {
+    onEditComplete: function (remainVisible) {
         // When being asked to process edit completion, if we are not hiding, restore the cell now
         if (remainVisible) {
             this.restoreCell();
@@ -170,12 +170,12 @@ Ext.define('Ext.grid.CellEditor', {
      * @private
      * Shows the grid cell inner element when a cell editor is hidden
      */
-    onHide: function() {
+    onHide: function () {
         this.restoreCell();
         this.callParent(arguments);
     },
 
-    restoreCell: function() {
+    restoreCell: function () {
         var me = this,
             innerCell = me.boundEl.first();
 
@@ -184,14 +184,14 @@ Ext.define('Ext.grid.CellEditor', {
                 innerCell = innerCell.child(me.treeNodeSelector);
             }
             innerCell.show();
-        }        
+        }
     },
 
     /**
      * @private
      * Fix checkbox blur when it is clicked.
      */
-    afterRender: function() {
+    afterRender: function () {
         var me = this,
             field = me.field;
 
@@ -205,30 +205,30 @@ Ext.define('Ext.grid.CellEditor', {
             });
         }
     },
-    
+
     /**
      * @private
      * Because when checkbox is clicked it loses focus  completeEdit is bypassed.
      */
-    onCheckBoxMouseDown: function() {
+    onCheckBoxMouseDown: function () {
         this.completeEdit = Ext.emptyFn;
     },
-     
+
     /**
      * @private
      * Restore checkbox focus and completeEdit method.
      */
-    onCheckBoxClick: function() {
+    onCheckBoxClick: function () {
         delete this.completeEdit;
         this.field.focus(false, 10);
     },
-    
+
     /**
      * @private
      * Realigns the Editor to the grid cell, or to the text node in the grid inner cell
      * if the inner cell contains multiple child nodes.
      */
-    realign: function(autoSize) {
+    realign: function (autoSize) {
         var me = this,
             boundEl = me.boundEl,
             innerCell = boundEl.first(),
@@ -239,7 +239,7 @@ Ext.define('Ext.grid.CellEditor', {
             xOffset,
             v = '',
 
-            // innerCell is empty if there are no children, or there is one text node, and it contains whitespace
+        // innerCell is empty if there are no children, or there is one text node, and it contains whitespace
             isEmpty = !innerCellTextNode || (innerCellTextNode.nodeType === 3 && !(Ext.String.trim(v = innerCellTextNode.data).length));
 
         if (me.isForTree) {
@@ -274,18 +274,18 @@ Ext.define('Ext.grid.CellEditor', {
     },
 
     // private
-    getTreeNodeOffset: function(innerCell) {
+    getTreeNodeOffset: function (innerCell) {
         return innerCell.child(this.treeNodeSelector).getOffsetsTo(innerCell)[0];
     },
 
-    onEditorTab: function(e){
+    onEditorTab: function (e) {
         var field = this.field;
         if (field.onEditorTab) {
             field.onEditorTab(e);
         }
     },
 
-    onFocusLeave : function(e) {
+    onFocusLeave: function (e) {
         // We are going to hide because of this focus exit.
         // Ensure that hide processing does not throw focus back to the previously focused element.
         this.previousFocus = null;

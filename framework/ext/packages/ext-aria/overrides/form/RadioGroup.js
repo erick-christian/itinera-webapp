@@ -1,17 +1,17 @@
 /** */
 Ext.define('Ext.aria.form.RadioGroup', {
     override: 'Ext.form.RadioGroup',
-    
+
     requires: [
         'Ext.aria.form.CheckboxGroup'
     ],
-    
-    ariaGetRenderAttributes: function() {
+
+    ariaGetRenderAttributes: function () {
         var me = this,
             attrs;
-        
+
         attrs = me.callParent();
-        
+
         if (me.allowBlank !== undefined) {
             attrs['aria-required'] = !me.allowBlank;
         }
@@ -19,16 +19,16 @@ Ext.define('Ext.aria.form.RadioGroup', {
         return attrs;
     },
 
-    ariaGetAfterRenderAttributes: function() {
+    ariaGetAfterRenderAttributes: function () {
         var me = this,
             attrs;
-        
+
         attrs = me.callParent();
 
         if (me.labelEl) {
             attrs['aria-labelledby'] = me.labelEl.id;
         }
-        
+
         return attrs;
     }
 });

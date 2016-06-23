@@ -71,7 +71,7 @@ Ext.define('Ext.panel.Header', {
                 xtype: 'title',
                 flex: 1
             },
-            merge: function(newValue, oldValue) {
+            merge: function (newValue, oldValue) {
                 if (typeof newValue === 'string') {
                     newValue = {
                         text: newValue
@@ -99,7 +99,7 @@ Ext.define('Ext.panel.Header', {
          * first item before all specified tools or {@link #cfg-items}. This configuration does not include the icon.
          */
         titlePosition: null,
-        
+
         /**
          * @cfg {'default'/0/1/2} [titleRotation='default']
          * The rotation of the header's title text.  Can be one of the following values:
@@ -165,7 +165,7 @@ Ext.define('Ext.panel.Header', {
      *     });
      */
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this,
             items = me.items,
             itemPosition = me.itemPosition,
@@ -207,13 +207,13 @@ Ext.define('Ext.panel.Header', {
      * Add a tool to the header
      * @param {Object} tool
      */
-    addTool: function(tool) {
+    addTool: function (tool) {
         // Even though the defaultType is tool, it may be changed,
         // so let's be safe and forcibly specify tool
         this.add(Ext.ComponentManager.create(tool, 'tool'));
     },
 
-    afterLayout: function() {
+    afterLayout: function () {
         var me = this,
             frameBR, frameTR, frameTL, xPos;
 
@@ -234,7 +234,7 @@ Ext.define('Ext.panel.Header', {
         this.callParent();
     },
 
-    applyTitle: function(title, oldTitle) {
+    applyTitle: function (title, oldTitle) {
         var me = this,
             isString, configHasRotation;
 
@@ -263,7 +263,7 @@ Ext.define('Ext.panel.Header', {
             configHasRotation = ('rotation' in title);
 
             title = Ext.create(title);
-            
+
             // avoid calling the title's rotation updater on initial startup in the default scenario
             if (!configHasRotation && me.vertical && me.titleRotation === 'default') {
                 title.rotation = 1;
@@ -273,7 +273,7 @@ Ext.define('Ext.panel.Header', {
         return title;
     },
 
-    applyTitlePosition: function(position) {
+    applyTitlePosition: function (position) {
         var max = this.items.getCount();
 
         if (this._titleInItems) {
@@ -287,7 +287,7 @@ Ext.define('Ext.panel.Header', {
         this.syncBeforeAfterTitleClasses();
     },
 
-    beforeRender: function() {
+    beforeRender: function () {
         var me = this,
             itemPosition = me.itemPosition;
 
@@ -303,11 +303,11 @@ Ext.define('Ext.panel.Header', {
      * Gets the tools for this header.
      * @return {Ext.panel.Tool[]} The tools
      */
-    getTools: function(){
+    getTools: function () {
         return this.tools.slice();
     },
 
-    onAdd: function(component, index) {
+    onAdd: function (component, index) {
         var tools = this.tools;
         this.callParent([component, index]);
         if (component.isTool) {
@@ -316,17 +316,17 @@ Ext.define('Ext.panel.Header', {
         }
     },
 
-    onAdded: function(container, pos, instanced) {
+    onAdded: function (container, pos, instanced) {
         this.syncNoBorderCls();
         this.callParent([container, pos, instanced]);
     },
 
-    onRemoved: function(container, pos, instanced) {
+    onRemoved: function (container, pos, instanced) {
         this.syncNoBorderCls();
         this.callParent([container, pos, instanced]);
     },
 
-    setDock: function(dock) {
+    setDock: function (dock) {
         var me = this,
             title = me.getTitle(),
             rotation = me.getTitleRotation(),
@@ -342,7 +342,7 @@ Ext.define('Ext.panel.Header', {
             if (rotation !== titleRotation) {
                 title.setRotation(rotation);
             }
-            
+
             if (me.rendered) {
                 // remove margins set on items by box layout last time around.
                 // TODO: this will no longer be needed when EXTJS-13359 is fixed
@@ -353,23 +353,23 @@ Ext.define('Ext.panel.Header', {
         Ext.resumeLayouts(true);
     },
 
-    updateGlyph: function(glyph) {
+    updateGlyph: function (glyph) {
         this.getTitle().setGlyph(glyph);
     },
 
-    updateIcon: function(icon) {
+    updateIcon: function (icon) {
         this.getTitle().setIcon(icon);
     },
 
-    updateIconAlign: function(align, oldAlign) {
+    updateIconAlign: function (align, oldAlign) {
         this.getTitle().setIconAlign(align);
     },
 
-    updateIconCls: function(cls) {
+    updateIconCls: function (cls) {
         this.getTitle().setIconCls(cls);
     },
 
-    updateTitle: function(title, oldTitle) {
+    updateTitle: function (title, oldTitle) {
         if (!oldTitle) {
             this.insert(this.getTitlePosition(), title);
             this._titleInItems = true;
@@ -378,15 +378,15 @@ Ext.define('Ext.panel.Header', {
         this.titleCmp = title;
     },
 
-    updateTitleAlign: function(align, oldAlign) {
+    updateTitleAlign: function (align, oldAlign) {
         this.getTitle().setTextAlign(align);
     },
 
-    updateTitlePosition: function(position) {
+    updateTitlePosition: function (position) {
         this.insert(position, this.getTitle());
     },
 
-    updateTitleRotation: function(rotation) {
+    updateTitleRotation: function (rotation) {
         if (rotation === 'default') {
             rotation = (this.vertical ? 1 : 0);
         }
@@ -394,18 +394,18 @@ Ext.define('Ext.panel.Header', {
     },
 
     privates: {
-        fireClickEvent: function(type, e){
+        fireClickEvent: function (type, e) {
             var toolCls = '.' + Ext.panel.Tool.prototype.baseCls;
             if (!e.getTarget(toolCls)) {
                 this.fireEvent(type, this, e);
             }
         },
 
-        getFocusEl: function() {
+        getFocusEl: function () {
             return this.el;
         },
 
-        getFramingInfoCls: function(){
+        getFramingInfoCls: function () {
             var me = this,
                 cls = me.callParent(),
                 owner = me.ownerCt;
@@ -416,15 +416,15 @@ Ext.define('Ext.panel.Header', {
             return cls + '-' + me.dock;
         },
 
-        onClick: function(e) {
+        onClick: function (e) {
             this.fireClickEvent('click', e);
         },
 
-        onDblClick: function(e){
+        onDblClick: function (e) {
             this.fireClickEvent('dblclick', e);
         },
 
-        syncBeforeAfterTitleClasses: function(force) {
+        syncBeforeAfterTitleClasses: function (force) {
             var me = this,
                 items = me.items,
                 childItems = items.items,
@@ -442,7 +442,7 @@ Ext.define('Ext.panel.Header', {
             for (i = 0; i < itemCount; ++i) {
                 item = childItems[i];
 
-                afterCls  = item.afterTitleCls  || (item.afterTitleCls  = item.baseCls + '-after-title');
+                afterCls = item.afterTitleCls || (item.afterTitleCls = item.baseCls + '-after-title');
                 beforeCls = item.beforeTitleCls || (item.beforeTitleCls = item.baseCls + '-before-title');
 
                 if (!me.title || i < titlePosition) {
@@ -459,7 +459,7 @@ Ext.define('Ext.panel.Header', {
             }
         },
 
-        syncNoBorderCls: function() {
+        syncNoBorderCls: function () {
             var me = this,
                 ownerCt = this.ownerCt,
                 noBorderCls = me.headerCls + '-noborder';

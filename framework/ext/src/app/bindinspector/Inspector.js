@@ -17,10 +17,10 @@ Ext.define('Ext.app.bindinspector.Inspector', {
     width: 960,
     height: 575,
 
-    initComponent: function() {
+    initComponent: function () {
         var snapshot = (new Ext.app.bindinspector.Environment()).captureSnapshot(),
             env = new Ext.app.bindinspector.Environment();
-            
+
         env.unpackSnapshot(snapshot);
 
         this.items = {
@@ -30,7 +30,7 @@ Ext.define('Ext.app.bindinspector.Inspector', {
         this.callParent();
     },
 
-    afterRender: function() {
+    afterRender: function () {
         this.callParent(arguments);
         Ext.tip.QuickTipManager.init();
     }

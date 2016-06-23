@@ -18,7 +18,7 @@ class CreateAdmLanguagesTable extends Migration
             Schema::drop('adm_languages');
         }
 
-        Schema::create('adm_languages', function (Blueprint $table) {
+        Schema::create('adm_languages' , function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->char('name');

@@ -128,18 +128,18 @@ Ext.define('Ext.grid.feature.Feature', {
      */
     grid: null,
 
-    constructor: function(config) {
+    constructor: function (config) {
         this.initialConfig = config;
         this.callParent(arguments);
     },
 
-    clone: function() {
+    clone: function () {
         return new this.self(this.initialConfig);
     },
 
     init: Ext.emptyFn,
 
-    destroy: function(){
+    destroy: function () {
         this.clearListeners();
     },
 
@@ -154,7 +154,7 @@ Ext.define('Ext.grid.feature.Feature', {
      * to be passed to fireEvent.
      * @template
      */
-    getFireEventArgs: function(eventName, view, featureTarget, e) {
+    getFireEventArgs: function (eventName, view, featureTarget, e) {
         return [eventName, view, featureTarget, e];
     },
 
@@ -163,14 +163,14 @@ Ext.define('Ext.grid.feature.Feature', {
     /**
      * Enables the feature.
      */
-    enable: function() {
+    enable: function () {
         this.disabled = false;
     },
 
     /**
      * Disables the feature.
      */
-    disable: function() {
+    disable: function () {
         this.disabled = true;
     }
 

@@ -8,8 +8,8 @@
         "generateArchitectVersion": true,
         "spacesToIndent": 4,
         "lineEnding": "CRLF",
-        "genTimestamps": false,
-        "cacheBust": false,
+        "genTimestamps": true,
+        "cacheBust": true,
         "installStatus": "Not Installed",
         "urlPrefix": "",
         "canvasControls": {
@@ -19,10 +19,11 @@
                 "height": null,
                 "width": null
             }
-        }
+        },
+        "displayfield-ExtBox1-1123-inputEl": "a new version of the framework is available"
     },
     "xdsVersion": "3.5.0",
-    "xdsBuild": 203,
+    "xdsBuild": 268,
     "schemaVersion": 1,
     "upgradeVersion": 310000000001,
     "framework": "ext51",
@@ -32,18 +33,42 @@
             "d9aabfc7-12f6-4434-a219-9e774df9acac",
             "713910f4-4ffb-4378-b163-aef2d02c95ec",
             "b4fa3f80-fc34-41e6-a8d6-977e18c8b0ac",
+            "983d4ee3-390b-499f-8bf9-7546bcd2149c",
             "7a8373ad-ab71-4cbf-9933-bda82e4f7259",
+            "a9bea717-7f5e-4769-a556-5bbd343f9f55",
             "211e9d90-6e1b-46a2-b72d-0751baea6872",
-            "515e0677-e404-4a2b-8058-5f53b9cc005d",
-            "454a846f-9f53-4255-bb84-5e5e3c81272e",
-            "b2253527-2d98-4b4e-ab1e-95a51cedd106"
+            "c2649515-45e1-408c-b6de-26c6c11ded9f",
+            "8bb7ea43-2dd8-46a2-8517-c86ea6b8a1b3",
+            "2435d6d4-28d5-4240-b55d-84469077a50f",
+            "eb9455a2-d987-475c-9c6e-970a304a2a55",
+            "435b9653-06fa-49c3-a914-025097c099f8",
+            "4c06168d-a8f2-4b49-98d3-260705c71317",
+            "6e24571f-167c-4a21-8740-0148b8f1edb5",
+            "4a6f509b-e773-454c-b41e-9546ba75bd4b",
+            "0310df4d-9b5d-460a-a37f-b479709eb598",
+            "28934cd2-83ad-4bb3-92c4-ade75c8387ea",
+            "88116575-6e0b-4668-9720-d6e5bd28943a",
+            "089dc5ab-bea0-4ba4-98ca-d23ac76e824f",
+            "17c8b18f-4793-4789-9641-b038ac4e1b77"
         ],
         "store": [
-            "03511b87-c65b-4832-9b4f-bffe6efb296e"
+            "03511b87-c65b-4832-9b4f-bffe6efb296e",
+            "d9678b1c-72d4-4516-82c6-e17b10cbf0f2",
+            "cdc5ee8e-b69e-4d71-9575-ef3e78cc61b4",
+            "3be5dded-a474-48bd-a478-06933e8370f9",
+            "de23ad91-68a7-40c1-8310-44d02bb8d8e0",
+            "1364e278-c8ee-4ba2-98a2-4578a60c8365",
+            "27135014-07e9-4fcd-93c6-b6761715484d"
         ],
         "controller": [],
         "model": [
-            "c25ce4c0-5330-40bb-b543-a875fbd5d474"
+            "c25ce4c0-5330-40bb-b543-a875fbd5d474",
+            "cdad0772-e7a4-4279-91ff-b189d5818337",
+            "2671e757-6613-4eb1-a810-a0513189aaa2",
+            "c4e7f550-ece7-47f5-92e5-0d8621091271",
+            "96e6f360-1e7a-4b0d-a414-733279dc3ea3",
+            "b00d7bf1-0bcd-4f00-95d0-12b62cb4d10e",
+            "9814d478-8832-4165-8787-1a008975097d"
         ],
         "resource": [
             "f3e66cb8-767a-47e1-a67f-f901033d708c",

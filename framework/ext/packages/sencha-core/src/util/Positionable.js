@@ -33,7 +33,7 @@ Ext.define('Ext.util.Positionable', {
      * @return {Number[]} [x, y] An array containing the element's x and y coordinates
      * @private
      */
-    getAnchorToXY: function() {
+    getAnchorToXY: function () {
         Ext.Error.raise("getAnchorToXY is not implemented in " + this.$className);
     },
 
@@ -46,7 +46,7 @@ Ext.define('Ext.util.Positionable', {
      * - afterY
      * @private
      */
-    getBorderPadding: function() {
+    getBorderPadding: function () {
         Ext.Error.raise("getBorderPadding is not implemented in " + this.$className);
     },
 
@@ -54,7 +54,7 @@ Ext.define('Ext.util.Positionable', {
      * Returns the x coordinate of this element reletive to its `offsetParent`.
      * @return {Number} The local x coordinate
      */
-    getLocalX: function() {
+    getLocalX: function () {
         Ext.Error.raise("getLocalX is not implemented in " + this.$className);
     },
 
@@ -62,7 +62,7 @@ Ext.define('Ext.util.Positionable', {
      * Returns the x and y coordinates of this element relative to its `offsetParent`.
      * @return {Number[]} The local XY position of the element
      */
-    getLocalXY: function() {
+    getLocalXY: function () {
         Ext.Error.raise("getLocalXY is not implemented in " + this.$className);
     },
 
@@ -70,7 +70,7 @@ Ext.define('Ext.util.Positionable', {
      * Returns the y coordinate of this element reletive to its `offsetParent`.
      * @return {Number} The local y coordinate
      */
-    getLocalY: function() {
+    getLocalY: function () {
         Ext.Error.raise("getLocalY is not implemented in " + this.$className);
     },
 
@@ -78,7 +78,7 @@ Ext.define('Ext.util.Positionable', {
      * Gets the current X position of the DOM element based on page coordinates.
      * @return {Number} The X position of the element
      */
-    getX: function() {
+    getX: function () {
         Ext.Error.raise("getX is not implemented in " + this.$className);
     },
 
@@ -86,7 +86,7 @@ Ext.define('Ext.util.Positionable', {
      * Gets the current position of the DOM element based on page coordinates.
      * @return {Number[]} The XY position of the element
      */
-    getXY: function() {
+    getXY: function () {
         Ext.Error.raise("getXY is not implemented in " + this.$className);
     },
 
@@ -94,7 +94,7 @@ Ext.define('Ext.util.Positionable', {
      * Gets the current Y position of the DOM element based on page coordinates.
      * @return {Number} The Y position of the element
      */
-    getY: function() {
+    getY: function () {
         Ext.Error.raise("getY is not implemented in " + this.$className);
     },
 
@@ -105,7 +105,7 @@ Ext.define('Ext.util.Positionable', {
      * @param {Number} x The x coordinate. A value of `null` sets the left style to 'auto'.
      * @return {Ext.util.Positionable} this
      */
-    setLocalX: function() {
+    setLocalX: function () {
         Ext.Error.raise("setLocalX is not implemented in " + this.$className);
     },
 
@@ -119,7 +119,7 @@ Ext.define('Ext.util.Positionable', {
      * `null` sets the top style to 'auto'
      * @return {Ext.util.Positionable} this
      */
-    setLocalXY: function() {
+    setLocalXY: function () {
         Ext.Error.raise("setLocalXY is not implemented in " + this.$className);
     },
 
@@ -130,7 +130,7 @@ Ext.define('Ext.util.Positionable', {
      * @param {Number} y The y coordinate. A value of `null` sets the top style to 'auto'.
      * @return {Ext.util.Positionable} this
      */
-    setLocalY: function() {
+    setLocalY: function () {
         Ext.Error.raise("setLocalY is not implemented in " + this.$className);
     },
 
@@ -139,7 +139,7 @@ Ext.define('Ext.util.Positionable', {
      * @param {Number} The X position
      * @return {Ext.util.Positionable} this
      */
-    setX: function() {
+    setX: function () {
         Ext.Error.raise("setX is not implemented in " + this.$className);
     },
 
@@ -149,7 +149,7 @@ Ext.define('Ext.util.Positionable', {
      * are page-based)
      * @return {Ext.util.Positionable} this
      */
-    setXY: function() {
+    setXY: function () {
         Ext.Error.raise("setXY is not implemented in " + this.$className);
     },
 
@@ -158,7 +158,7 @@ Ext.define('Ext.util.Positionable', {
      * @param {Number} The Y position
      * @return {Ext.util.Positionable} this
      */
-    setY: function() {
+    setY: function () {
         Ext.Error.raise("setY is not implemented in " + this.$className);
     },
 
@@ -169,7 +169,7 @@ Ext.define('Ext.util.Positionable', {
 
     // private ==>  used outside of core
     // TODO: currently only used by ToolTip. does this method belong here?
-    adjustForConstraints: function(xy, parent) {
+    adjustForConstraints: function (xy, parent) {
         var vector = this.getConstrainVector(parent, xy);
         if (vector) {
             xy[0] += vector[0];
@@ -238,12 +238,12 @@ Ext.define('Ext.util.Positionable', {
      * Element animation config object
      * @return {Ext.util.Positionable} this
      */
-    alignTo: function(element, position, offsets, /* private (documented in ext) */ animate) {
+    alignTo: function (element, position, offsets, /* private (documented in ext) */ animate) {
         var me = this,
             el = me.el;
 
         return me.setXY(me.getAlignToXY(element, position, offsets),
-                el.anim && !!animate ? el.anim(animate) : false);
+            el.anim && !!animate ? el.anim(animate) : false);
     },
 
     /**
@@ -255,11 +255,11 @@ Ext.define('Ext.util.Positionable', {
      * @param {Number} [extraY] value to be added to the y coordinate
      * @param {Object} [size] An object containing the size to use for calculating anchor
      * position {width: (target width), height: (target height)} (defaults to the
-     * element's current size) 
+     * element's current size)
      * @return {Number[]} [x, y] An array containing the element's x and y coordinates
      * @private
      */
-    calculateAnchorXY: function(anchor, extraX, extraY, mySize) {
+    calculateAnchorXY: function (anchor, extraX, extraY, mySize) {
         //Passing a different size is useful for pre-calculating anchors,
         //especially for anchored animations that change the el size.
         var me = this,
@@ -278,27 +278,38 @@ Ext.define('Ext.util.Positionable', {
         // Calculate anchor position.
         // Test most common cases for picker alignment first.
         switch (anchor) {
-            case 'tl' : xy = [0, 0];
-                        break;
-            case 'bl' : xy = [0, myHeight];
-                        break;
-            case 'tr' : xy = [myWidth, 0];
-                        break;
-            case 'c'  : xy = [round(myWidth * 0.5), round(myHeight * 0.5)];
-                        break;
-            case 't'  : xy = [round(myWidth * 0.5), 0];
-                        break;
-            case 'l'  : xy = [0, round(myHeight * 0.5)];
-                        break;
-            case 'r'  : xy = [myWidth, round(myHeight * 0.5)];
-                        break;
-            case 'b'  : xy = [round(myWidth * 0.5), myHeight];
-                        break;
-            case 'tc' : xy = [round(myWidth * 0.5), 0];
-                        break;
-            case 'bc' : xy = [round(myWidth * 0.5), myHeight];
-                        break;
-            case 'br' : xy = [myWidth, myHeight];
+            case 'tl' :
+                xy = [0, 0];
+                break;
+            case 'bl' :
+                xy = [0, myHeight];
+                break;
+            case 'tr' :
+                xy = [myWidth, 0];
+                break;
+            case 'c'  :
+                xy = [round(myWidth * 0.5), round(myHeight * 0.5)];
+                break;
+            case 't'  :
+                xy = [round(myWidth * 0.5), 0];
+                break;
+            case 'l'  :
+                xy = [0, round(myHeight * 0.5)];
+                break;
+            case 'r'  :
+                xy = [myWidth, round(myHeight * 0.5)];
+                break;
+            case 'b'  :
+                xy = [round(myWidth * 0.5), myHeight];
+                break;
+            case 'tc' :
+                xy = [round(myWidth * 0.5), 0];
+                break;
+            case 'bc' :
+                xy = [round(myWidth * 0.5), myHeight];
+                break;
+            case 'br' :
+                xy = [myWidth, myHeight];
         }
         return [xy[0] + extraX, xy[1] + extraY];
     },
@@ -319,7 +330,7 @@ Ext.define('Ext.util.Positionable', {
      * @param {Number[]} [offsets] Offset the positioning by [x, y]
      * @return {Number[]} [x, y]
      */
-    getAlignToXY: function(alignToEl, posSpec, offset) {
+    getAlignToXY: function (alignToEl, posSpec, offset) {
         var me = this,
             constrainToEl,
             constrainTo,
@@ -339,7 +350,7 @@ Ext.define('Ext.util.Positionable', {
             //</debug>
         }
 
-        offset = offset || [0,0];
+        offset = offset || [0, 0];
         posSpec = (!posSpec || posSpec === "?" ? "tl-bl?" :
             (!(/-/).test(posSpec) && posSpec !== "" ? "tl-" + posSpec : posSpec || "tl-bl")).toLowerCase();
 
@@ -430,7 +441,7 @@ Ext.define('Ext.util.Positionable', {
                 y = swapY ? alignToElRegion.bottom : constrainTo.top;
             }
         }
-        return [x,y];
+        return [x, y];
     },
 
     /**
@@ -444,7 +455,7 @@ Ext.define('Ext.util.Positionable', {
      * element's current size)
      * @return {Number[]} [x, y] An array containing the element's x and y coordinates
      */
-    getAnchorXY: function(anchor, local, mySize) {
+    getAnchorXY: function (anchor, local, mySize) {
         var me = this,
             myPos = me.getXY(),
             el = me.el,
@@ -477,7 +488,7 @@ Ext.define('Ext.util.Positionable', {
      * position and index 1 contains the Y position. The result may also be used for
      * {@link #setXY}
      */
-    getBox: function(contentBox, local) {
+    getBox: function (contentBox, local) {
         var me = this,
             xy = local ? me.getLocalXY() : me.getXY(),
             x = xy[0],
@@ -533,7 +544,7 @@ Ext.define('Ext.util.Positionable', {
      * Otherwise, `false`.
      * @private
      */
-    calculateConstrainedPosition: function(constrainTo, proposedPosition, local, proposedSize) {
+    calculateConstrainedPosition: function (constrainTo, proposedPosition, local, proposedSize) {
         var me = this,
             vector,
             fp = me.floatParent,
@@ -583,7 +594,7 @@ Ext.define('Ext.util.Positionable', {
      * Returns the content region of this element for purposes of constraining floating
      * children.  That is the region within the borders and scrollbars, but not within the padding.
      */
-    getConstrainRegion: function() {
+    getConstrainRegion: function () {
         var me = this,
             el = me.el,
             isBody = el.dom.nodeName === 'BODY',
@@ -634,7 +645,7 @@ Ext.define('Ext.util.Positionable', {
      * @return {Number[]/Boolean} **If** the element *needs* to be translated, an `[X, Y]`
      * vector by which this element must be translated. Otherwise, `false`.
      */
-    getConstrainVector: function(constrainTo, proposedPosition, proposedSize) {
+    getConstrainVector: function (constrainTo, proposedPosition, proposedSize) {
         var thisRegion = this.getRegion(),
             vector = [0, 0],
             shadowSize = (this.shadow && this.constrainShadow && !this.shadowDisabled) ? this.shadow.getShadowSize() : undefined,
@@ -697,23 +708,23 @@ Ext.define('Ext.util.Positionable', {
     },
 
     /**
-      * Returns the offsets of this element from the passed element. The element must both
-      * be part of the DOM tree and not have display:none to have page coordinates.
-      * @param {Ext.util.Positionable/HTMLElement/String} offsetsTo The Positionable,
-      * HTMLElement, or element id to get get the offsets from.
-      * @return {Number[]} The XY page offsets (e.g. `[100, -200]`)
-      */
-    getOffsetsTo: function(offsetsTo) {
+     * Returns the offsets of this element from the passed element. The element must both
+     * be part of the DOM tree and not have display:none to have page coordinates.
+     * @param {Ext.util.Positionable/HTMLElement/String} offsetsTo The Positionable,
+     * HTMLElement, or element id to get get the offsets from.
+     * @return {Number[]} The XY page offsets (e.g. `[100, -200]`)
+     */
+    getOffsetsTo: function (offsetsTo) {
         var o = this.getXY(),
-                e = Ext.fly(offsetsTo.el || offsetsTo).getXY();
-        return [o[0] - e[0],o[1] - e[1]];
+            e = Ext.fly(offsetsTo.el || offsetsTo).getXY();
+        return [o[0] - e[0], o[1] - e[1]];
     },
 
     /**
      * Returns a region object that defines the area of this element.
      * @return {Ext.util.Region} A Region containing "top, left, bottom, right" properties.
      */
-    getRegion: function() {
+    getRegion: function () {
         var box = this.getBox();
         return new Ext.util.Region(box.top, box.right, box.bottom, box.left);
     },
@@ -723,7 +734,7 @@ Ext.define('Ext.util.Positionable', {
      * and padding.
      * @return {Ext.util.Region} A Region containing "top, left, bottom, right" member data.
      */
-    getViewRegion: function() {
+    getViewRegion: function () {
         var me = this,
             el = me.el,
             isBody = el.dom.nodeName === 'BODY',
@@ -760,7 +771,7 @@ Ext.define('Ext.util.Positionable', {
      *
      * @param {Number} distance How far to move the element in pixels
      */
-    move: function(direction, distance, /* private (documented in ext) */ animate) {
+    move: function (direction, distance, /* private (documented in ext) */ animate) {
         var me = this,
             xy = me.getXY(),
             x = xy[0],
@@ -791,7 +802,7 @@ Ext.define('Ext.util.Positionable', {
      * @param {Object} box The box to fill {x, y, width, height}
      * @return {Ext.util.Positionable} this
      */
-    setBox: function(box) {
+    setBox: function (box) {
         var me = this,
             x, y;
 
@@ -807,7 +818,7 @@ Ext.define('Ext.util.Positionable', {
         me.constrainBox(box);
         x = box.x;
         y = box.y;
-     
+
         // Position to the contrained position
         // Call setSize *last* so that any possible layout has the last word on position.
         me.setXY([x, y]);
@@ -819,7 +830,7 @@ Ext.define('Ext.util.Positionable', {
     /**
      * @private
      */
-    constrainBox: function(box) {
+    constrainBox: function (box) {
         var me = this,
             constrainedPos,
             x, y;
@@ -850,7 +861,7 @@ Ext.define('Ext.util.Positionable', {
      * @return {Object} An object with left and top properties. e.g.
      * {left: (value), top: (value)}
      */
-    translatePoints: function(x, y) {
+    translatePoints: function (x, y) {
         var pos = this.translateXY(x, y);
 
         return {
@@ -867,7 +878,7 @@ Ext.define('Ext.util.Positionable', {
      * {x: (value), y: (value)}
      * @private
      */
-    translateXY: function(x, y) {
+    translateXY: function (x, y) {
         var me = this,
             el = me.el,
             styles = el.getStyle(me._positionTopLeft),
@@ -877,8 +888,8 @@ Ext.define('Ext.util.Positionable', {
             xy = me.getXY();
 
         if (Ext.isArray(x)) {
-             y = x[1];
-             x = x[0];
+            y = x[1];
+            x = x[0];
         }
         if (isNaN(left)) {
             left = relative ? 0 : el.dom.offsetLeft;
@@ -900,7 +911,7 @@ Ext.define('Ext.util.Positionable', {
      * @return {Number[]} The translated coordinates
      * @private
      */
-    reverseTranslateXY: function(xy) {
+    reverseTranslateXY: function (xy) {
         var coords = xy,
             el = this.el,
             translatedXY = [],
@@ -912,9 +923,9 @@ Ext.define('Ext.util.Positionable', {
 
         if (offsetParent) {
             relative = el.isStyle('position', 'relative'),
-            offsetParentXY = Ext.fly(offsetParent).getXY(),
+                offsetParentXY = Ext.fly(offsetParent).getXY(),
 
-            x = xy[0] + offsetParentXY[0] + offsetParent.clientLeft;
+                x = xy[0] + offsetParentXY[0] + offsetParent.clientLeft;
             y = xy[1] + offsetParentXY[1] + offsetParent.clientTop;
 
             if (relative) {

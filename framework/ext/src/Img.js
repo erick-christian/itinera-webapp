@@ -31,8 +31,8 @@
  *
  * ## Image Dimensions
  *
- * You should include height and width dimensions for any image owned by a parent 
- * container.  By omitting dimensions, an owning container will not know how to 
+ * You should include height and width dimensions for any image owned by a parent
+ * container.  By omitting dimensions, an owning container will not know how to
  * size and position the image in the initial layout.
  */
 Ext.define('Ext.Img', {
@@ -78,17 +78,17 @@ Ext.define('Ext.Img', {
      */
 
     ariaRole: 'img',
-    
+
     maskOnDisable: false,
 
-    initComponent: function() {
+    initComponent: function () {
         if (this.glyph) {
             this.autoEl = 'div';
         }
         this.callParent();
     },
 
-    getElConfig: function() {
+    getElConfig: function () {
         var me = this,
             autoEl = me.autoEl,
             config = me.callParent(),
@@ -145,7 +145,7 @@ Ext.define('Ext.Img', {
         me.callParent(arguments);
 
         el = me.el;
-        
+
         if (autoEl === 'img' || (Ext.isObject(autoEl) && autoEl.tag === 'img')) {
             me.imgEl = el;
         } else {
@@ -170,7 +170,7 @@ Ext.define('Ext.Img', {
      * Updates the {@link #src} of the image.
      * @param {String} src
      */
-    setSrc: function(src) {
+    setSrc: function (src) {
         var me = this,
             imgEl = me.imgEl;
 
@@ -185,7 +185,7 @@ Ext.define('Ext.Img', {
      * Updates the {@link #glyph} of the image.
      * @param {Number/String} glyph
      */
-    setGlyph: function(glyph) {
+    setGlyph: function (glyph) {
         var me = this,
             glyphFontFamily = Ext._glyphFontFamily,
             old = me.glyph,

@@ -42,7 +42,7 @@ Ext.define('Ext.button.Split', {
     /* End Definitions */
 
     isSplitButton: true,
-    
+
     /**
      * @cfg {Function/String} arrowHandler
      * A function called when the arrow button is clicked (can be used instead of click event)
@@ -56,8 +56,8 @@ Ext.define('Ext.button.Split', {
      */
 
     // @private
-    arrowCls      : 'split',
-    split         : true,
+    arrowCls: 'split',
+    split: true,
 
     /**
      * @event arrowclick
@@ -71,13 +71,13 @@ Ext.define('Ext.button.Split', {
      * @param {Function} handler The function to call when the arrow is clicked.
      * @param {Object} scope (optional) Scope for the function passed above.
      */
-    setArrowHandler : function(handler, scope){
+    setArrowHandler: function (handler, scope) {
         this.arrowHandler = handler;
         this.scope = scope;
     },
 
     // @private
-    onClick : function(e) {
+    onClick: function (e) {
         var me = this;
 
         me.doPreventDefault(e);

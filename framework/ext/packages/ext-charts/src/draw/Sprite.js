@@ -305,7 +305,7 @@ Ext.define('Ext.draw.Sprite', {
      * @inheritdoc Ext.dom.Element#click
      */
 
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this;
         config = Ext.merge({}, config || {});
         me.id = Ext.id(null, 'ext-sprite-');
@@ -350,7 +350,7 @@ Ext.define('Ext.draw.Sprite', {
      * in order to supply behaviour for each stage of the drag/drop process. See {@link #draggable}.
      */
 
-    initDraggable: function() {
+    initDraggable: function () {
         var me = this;
         //create element if it doesn't exist.
         if (!me.el) {
@@ -428,7 +428,7 @@ Ext.define('Ext.draw.Sprite', {
      * @param {Boolean} redraw Flag to immediately draw the change.
      * @return {Ext.draw.Sprite} this
      */
-    setAttributes: function(attrs, redraw) {
+    setAttributes: function (attrs, redraw) {
         var me = this,
             fontProps = me.fontProperties,
             fontPropsLength = fontProps.length,
@@ -546,7 +546,7 @@ Ext.define('Ext.draw.Sprite', {
         }
         return this;
     },
-    
+
     transformText: Ext.identityFn,
 
     /**
@@ -554,7 +554,7 @@ Ext.define('Ext.draw.Sprite', {
      * This will be returned as an object with x, y, width, and height properties.
      * @return {Object} bbox
      */
-    getBBox: function() {
+    getBBox: function () {
         return this.surface.getBBox(this);
     },
 
@@ -563,8 +563,8 @@ Ext.define('Ext.draw.Sprite', {
      * @param {String} text The text to display.
      * @return {Ext.draw.Sprite} this
      */
-    setText: function(text) {
-        this.attr.text = text; 
+    setText: function (text) {
+        this.attr.text = text;
         this.surface.applyAttrs(this);
         return this;
     },
@@ -574,7 +574,7 @@ Ext.define('Ext.draw.Sprite', {
      * @param {Boolean} redraw Flag to immediately draw the change.
      * @return {Ext.draw.Sprite} this
      */
-    hide: function(redraw) {
+    hide: function (redraw) {
         this.setAttributes({
             hidden: true
         }, redraw);
@@ -586,7 +586,7 @@ Ext.define('Ext.draw.Sprite', {
      * @param {Boolean} redraw Flag to immediately draw the change.
      * @return {Ext.draw.Sprite} this
      */
-    show: function(redraw) {
+    show: function (redraw) {
         this.setAttributes({
             hidden: false
         }, redraw);
@@ -598,7 +598,7 @@ Ext.define('Ext.draw.Sprite', {
      * @return {Boolean} True if sprite was successfully removed.
      * False when there was no surface to remove it from.
      */
-    remove: function() {
+    remove: function () {
         if (this.surface) {
             this.surface.remove(this);
             return true;
@@ -606,14 +606,14 @@ Ext.define('Ext.draw.Sprite', {
         return false;
     },
 
-    onRemove: function() {
+    onRemove: function () {
         this.surface.onRemove(this);
     },
 
     /**
      * Removes the sprite and clears all listeners.
      */
-    destroy: function() {
+    destroy: function () {
         var me = this;
         if (me.fireEvent('beforedestroy', me) !== false) {
             me.remove();
@@ -627,12 +627,12 @@ Ext.define('Ext.draw.Sprite', {
      * Redraws the sprite.
      * @return {Ext.draw.Sprite} this
      */
-    redraw: function() {
+    redraw: function () {
         var me = this,
             changed = !me.el || me.dirty,
             surface = me.surface,
             owner;
-            
+
         surface.renderItem(me);
         // This would be better handled higher up in the hierarchy, but
         // we'll check these properties here for performance reasons
@@ -652,7 +652,7 @@ Ext.define('Ext.draw.Sprite', {
      * @param {String} value (optional) The value to apply to the given property, or null if an object was passed.
      * @return {Ext.draw.Sprite} this
      */
-    setStyle: function() {
+    setStyle: function () {
         this.el.setStyle.apply(this.el, arguments);
         return this;
     },
@@ -663,7 +663,7 @@ Ext.define('Ext.draw.Sprite', {
      * @param {String/String[]} className The CSS class to add, or an array of classes
      * @return {Ext.draw.Sprite} this
      */
-    addCls: function(obj) {
+    addCls: function (obj) {
         this.surface.addCls(this, obj);
         return this;
     },
@@ -674,7 +674,7 @@ Ext.define('Ext.draw.Sprite', {
      * is severly limited in VML.
      * @return {Ext.draw.Sprite} this
      */
-    removeCls: function(obj) {
+    removeCls: function (obj) {
         this.surface.removeCls(this, obj);
         return this;
     }

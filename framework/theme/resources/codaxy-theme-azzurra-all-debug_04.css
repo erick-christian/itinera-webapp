@@ -3,129 +3,155 @@
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-panel-header-green-tab-active-bottom:before {
-  display: none;
-  content: "x-slicer:stretch:top" !important; }
+    display: none;
+    content: "x-slicer:stretch:top" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-panel-header-green-tab-active-left:before {
-  display: none;
-  content: "x-slicer:stretch:right" !important; }
+    display: none;
+    content: "x-slicer:stretch:right" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-panel-header-green-tab-active-right:before {
-  display: none;
-  content: "x-slicer:stretch:left" !important; }
+    display: none;
+    content: "x-slicer:stretch:left" !important;
+}
 
 /*</if slicer>*/
 /* */
 /* line 753, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */
 .x-panel-header-green-tab-active-horizontal .x-tool-after-title {
-  margin: 0 0 0 0; }
+    margin: 0 0 0 0;
+}
+
 /* line 763, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */
 .x-panel-header-green-tab-active-horizontal .x-tool-before-title {
-  margin: 0 0 0 0; }
+    margin: 0 0 0 0;
+}
 
 /* line 775, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */
 .x-panel-header-green-tab-active-vertical .x-tool-after-title {
-  margin: 0 0 0 0; }
+    margin: 0 0 0 0;
+}
+
 /* line 785, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */
 .x-panel-header-green-tab-active-vertical .x-tool-before-title {
-  margin: 0 0 0 0; }
+    margin: 0 0 0 0;
+}
 
 /* line 815, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Panel.scss */
 .x-panel-green-tab-active-resizable .x-panel-handle {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0; }
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+}
 
 /* line 187, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top {
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  -o-border-radius: 0px;
-  border-radius: 0px;
-  padding: 4px 9px 2px 9px;
-  border-width: 1px;
-  border-style: solid;
-  background-color: #f8f9f9; }
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+    border-radius: 0px;
+    padding: 4px 9px 2px 9px;
+    border-width: 1px;
+    border-style: solid;
+    background-color: #f8f9f9;
+}
 
 /* line 237, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top-mc {
-  background-color: #f8f9f9; }
+    background-color: #f8f9f9;
+}
 
 /* line 264, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-nbr .x-tab-green-tab-active-top {
-  padding: 0 !important;
-  border-width: 0 !important;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  -o-border-radius: 0px;
-  border-radius: 0px;
-  background-color: transparent !important;
-  box-shadow: none !important; }
+    padding: 0 !important;
+    border-width: 0 !important;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+    border-radius: 0px;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
 
 /* line 281, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top-frameInfo {
-  font-family: th-1-1-1-1-1-1-1-1-4-9-2-9; }
+    font-family: th-1-1-1-1-1-1-1-1-4-9-2-9;
+}
 
 /* line 347, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top-tl {
-  background-position: 0 -2px; }
+    background-position: 0 -2px;
+}
 
 /* line 351, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top-tr {
-  background-position: right -3px; }
+    background-position: right -3px;
+}
 
 /* line 355, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top-bl {
-  background-position: 0 -4px; }
+    background-position: 0 -4px;
+}
 
 /* line 359, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top-br {
-  background-position: right -5px; }
+    background-position: right -5px;
+}
 
 /* line 363, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top-ml {
-  background-position: 0 top; }
+    background-position: 0 top;
+}
 
 /* line 371, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top-mr {
-  background-position: right top; }
+    background-position: right top;
+}
 
 /* line 379, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top-tc {
-  background-position: 0 0; }
+    background-position: 0 0;
+}
 
 /* line 383, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top-bc {
-  background-position: 0 -1px; }
+    background-position: 0 -1px;
+}
 
 /* line 390, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top-tr,
 .x-tab-green-tab-active-top-br,
 .x-tab-green-tab-active-top-mr {
-  padding-right: 1px; }
+    padding-right: 1px;
+}
 
 /* line 396, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top-tl,
 .x-tab-green-tab-active-top-bl,
 .x-tab-green-tab-active-top-ml {
-  padding-left: 1px; }
+    padding-left: 1px;
+}
 
 /* line 400, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top-tc {
-  height: 1px; }
+    height: 1px;
+}
 
 /* line 403, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top-bc {
-  height: 1px; }
+    height: 1px;
+}
 
 /* line 414, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top-tl,
@@ -136,116 +162,136 @@
 .x-tab-green-tab-active-top-bc,
 .x-tab-green-tab-active-top-ml,
 .x-tab-green-tab-active-top-mr {
-  background-image: url(images/tab/tab-green-tab-active-top-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-top-corners.gif);
+}
 
 /* line 454, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top-ml,
 .x-tab-green-tab-active-top-mr {
-  background-image: url(images/tab/tab-green-tab-active-top-sides.gif);
-  background-repeat: repeat-y; }
+    background-image: url(images/tab/tab-green-tab-active-top-sides.gif);
+    background-repeat: repeat-y;
+}
 
 /* line 464, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-top-mc {
-  padding: 4px 9px 2px 9px; }
+    padding: 4px 9px 2px 9px;
+}
 
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-green-tab-active-top:before {
-  display: none;
-  content: "x-slicer:frame:1px 1px 1px 1px, corners:url(images/tab/tab-green-tab-active-top-corners.gif), sides:url(images/tab/tab-green-tab-active-top-sides.gif)" !important; }
+    display: none;
+    content: "x-slicer:frame:1px 1px 1px 1px, corners:url(images/tab/tab-green-tab-active-top-corners.gif), sides:url(images/tab/tab-green-tab-active-top-sides.gif)" !important;
+}
 
 /*</if slicer>*/
 /* */
 /* line 187, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom {
-  -moz-border-radius-topleft: 0px;
-  -webkit-border-top-left-radius: 0px;
-  border-top-left-radius: 0px;
-  -moz-border-radius-topright: 0px;
-  -webkit-border-top-right-radius: 0px;
-  border-top-right-radius: 0px;
-  -moz-border-radius-bottomright: 0px;
-  -webkit-border-bottom-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  -moz-border-radius-bottomleft: 0px;
-  -webkit-border-bottom-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  padding: 2px 9px 4px 9px;
-  border-width: 1px 1px 1px 1px;
-  border-style: solid;
-  background-color: #f8f9f9; }
+    -moz-border-radius-topleft: 0px;
+    -webkit-border-top-left-radius: 0px;
+    border-top-left-radius: 0px;
+    -moz-border-radius-topright: 0px;
+    -webkit-border-top-right-radius: 0px;
+    border-top-right-radius: 0px;
+    -moz-border-radius-bottomright: 0px;
+    -webkit-border-bottom-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    -moz-border-radius-bottomleft: 0px;
+    -webkit-border-bottom-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding: 2px 9px 4px 9px;
+    border-width: 1px 1px 1px 1px;
+    border-style: solid;
+    background-color: #f8f9f9;
+}
 
 /* line 237, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom-mc {
-  background-color: #f8f9f9; }
+    background-color: #f8f9f9;
+}
 
 /* line 264, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-nbr .x-tab-green-tab-active-bottom {
-  padding: 0 !important;
-  border-width: 0 !important;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  -o-border-radius: 0px;
-  border-radius: 0px;
-  background-color: transparent !important;
-  box-shadow: none !important; }
+    padding: 0 !important;
+    border-width: 0 !important;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+    border-radius: 0px;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
 
 /* line 281, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom-frameInfo {
-  font-family: th-1-1-1-1-1-1-1-1-2-9-4-9; }
+    font-family: th-1-1-1-1-1-1-1-1-2-9-4-9;
+}
 
 /* line 347, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom-tl {
-  background-position: 0 -2px; }
+    background-position: 0 -2px;
+}
 
 /* line 351, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom-tr {
-  background-position: right -3px; }
+    background-position: right -3px;
+}
 
 /* line 355, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom-bl {
-  background-position: 0 -4px; }
+    background-position: 0 -4px;
+}
 
 /* line 359, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom-br {
-  background-position: right -5px; }
+    background-position: right -5px;
+}
 
 /* line 363, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom-ml {
-  background-position: 0 bottom; }
+    background-position: 0 bottom;
+}
 
 /* line 371, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom-mr {
-  background-position: right bottom; }
+    background-position: right bottom;
+}
 
 /* line 379, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom-tc {
-  background-position: 0 0; }
+    background-position: 0 0;
+}
 
 /* line 383, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom-bc {
-  background-position: 0 -1px; }
+    background-position: 0 -1px;
+}
 
 /* line 390, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom-tr,
 .x-tab-green-tab-active-bottom-br,
 .x-tab-green-tab-active-bottom-mr {
-  padding-right: 1px; }
+    padding-right: 1px;
+}
 
 /* line 396, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom-tl,
 .x-tab-green-tab-active-bottom-bl,
 .x-tab-green-tab-active-bottom-ml {
-  padding-left: 1px; }
+    padding-left: 1px;
+}
 
 /* line 400, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom-tc {
-  height: 1px; }
+    height: 1px;
+}
 
 /* line 403, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom-bc {
-  height: 1px; }
+    height: 1px;
+}
 
 /* line 414, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom-tl,
@@ -256,116 +302,136 @@
 .x-tab-green-tab-active-bottom-bc,
 .x-tab-green-tab-active-bottom-ml,
 .x-tab-green-tab-active-bottom-mr {
-  background-image: url(images/tab/tab-green-tab-active-bottom-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-bottom-corners.gif);
+}
 
 /* line 454, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom-ml,
 .x-tab-green-tab-active-bottom-mr {
-  background-image: url(images/tab/tab-green-tab-active-bottom-sides.gif);
-  background-repeat: repeat-y; }
+    background-image: url(images/tab/tab-green-tab-active-bottom-sides.gif);
+    background-repeat: repeat-y;
+}
 
 /* line 464, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-bottom-mc {
-  padding: 2px 9px 4px 9px; }
+    padding: 2px 9px 4px 9px;
+}
 
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-green-tab-active-bottom:before {
-  display: none;
-  content: "x-slicer:frame:1px 1px 1px 1px, corners:url(images/tab/tab-green-tab-active-bottom-corners.gif), sides:url(images/tab/tab-green-tab-active-bottom-sides.gif)" !important; }
+    display: none;
+    content: "x-slicer:frame:1px 1px 1px 1px, corners:url(images/tab/tab-green-tab-active-bottom-corners.gif), sides:url(images/tab/tab-green-tab-active-bottom-sides.gif)" !important;
+}
 
 /*</if slicer>*/
 /* */
 /* line 187, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left {
-  -moz-border-radius-topleft: 0px;
-  -webkit-border-top-left-radius: 0px;
-  border-top-left-radius: 0px;
-  -moz-border-radius-topright: 0px;
-  -webkit-border-top-right-radius: 0px;
-  border-top-right-radius: 0px;
-  -moz-border-radius-bottomright: 0px;
-  -webkit-border-bottom-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  -moz-border-radius-bottomleft: 0px;
-  -webkit-border-bottom-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  padding: 4px 9px 2px 9px;
-  border-width: 1px 1px 1px 1px;
-  border-style: solid;
-  background-color: #f8f9f9; }
+    -moz-border-radius-topleft: 0px;
+    -webkit-border-top-left-radius: 0px;
+    border-top-left-radius: 0px;
+    -moz-border-radius-topright: 0px;
+    -webkit-border-top-right-radius: 0px;
+    border-top-right-radius: 0px;
+    -moz-border-radius-bottomright: 0px;
+    -webkit-border-bottom-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    -moz-border-radius-bottomleft: 0px;
+    -webkit-border-bottom-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding: 4px 9px 2px 9px;
+    border-width: 1px 1px 1px 1px;
+    border-style: solid;
+    background-color: #f8f9f9;
+}
 
 /* line 237, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left-mc {
-  background-color: #f8f9f9; }
+    background-color: #f8f9f9;
+}
 
 /* line 264, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-nbr .x-tab-green-tab-active-left {
-  padding: 0 !important;
-  border-width: 0 !important;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  -o-border-radius: 0px;
-  border-radius: 0px;
-  background-color: transparent !important;
-  box-shadow: none !important; }
+    padding: 0 !important;
+    border-width: 0 !important;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+    border-radius: 0px;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
 
 /* line 281, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left-frameInfo {
-  font-family: th-1-1-1-1-1-1-1-1-4-9-2-9; }
+    font-family: th-1-1-1-1-1-1-1-1-4-9-2-9;
+}
 
 /* line 347, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left-tl {
-  background-position: 0 -2px; }
+    background-position: 0 -2px;
+}
 
 /* line 351, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left-tr {
-  background-position: right -3px; }
+    background-position: right -3px;
+}
 
 /* line 355, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left-bl {
-  background-position: 0 -4px; }
+    background-position: 0 -4px;
+}
 
 /* line 359, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left-br {
-  background-position: right -5px; }
+    background-position: right -5px;
+}
 
 /* line 363, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left-ml {
-  background-position: 0 top; }
+    background-position: 0 top;
+}
 
 /* line 371, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left-mr {
-  background-position: right top; }
+    background-position: right top;
+}
 
 /* line 379, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left-tc {
-  background-position: 0 0; }
+    background-position: 0 0;
+}
 
 /* line 383, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left-bc {
-  background-position: 0 -1px; }
+    background-position: 0 -1px;
+}
 
 /* line 390, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left-tr,
 .x-tab-green-tab-active-left-br,
 .x-tab-green-tab-active-left-mr {
-  padding-right: 1px; }
+    padding-right: 1px;
+}
 
 /* line 396, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left-tl,
 .x-tab-green-tab-active-left-bl,
 .x-tab-green-tab-active-left-ml {
-  padding-left: 1px; }
+    padding-left: 1px;
+}
 
 /* line 400, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left-tc {
-  height: 1px; }
+    height: 1px;
+}
 
 /* line 403, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left-bc {
-  height: 1px; }
+    height: 1px;
+}
 
 /* line 414, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left-tl,
@@ -376,116 +442,136 @@
 .x-tab-green-tab-active-left-bc,
 .x-tab-green-tab-active-left-ml,
 .x-tab-green-tab-active-left-mr {
-  background-image: url(images/tab/tab-green-tab-active-left-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-left-corners.gif);
+}
 
 /* line 454, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left-ml,
 .x-tab-green-tab-active-left-mr {
-  background-image: url(images/tab/tab-green-tab-active-left-sides.gif);
-  background-repeat: repeat-y; }
+    background-image: url(images/tab/tab-green-tab-active-left-sides.gif);
+    background-repeat: repeat-y;
+}
 
 /* line 464, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-left-mc {
-  padding: 4px 9px 2px 9px; }
+    padding: 4px 9px 2px 9px;
+}
 
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-green-tab-active-left:before {
-  display: none;
-  content: "x-slicer:frame:1px 1px 1px 1px, corners:url(images/tab/tab-green-tab-active-left-corners.gif), sides:url(images/tab/tab-green-tab-active-left-sides.gif)" !important; }
+    display: none;
+    content: "x-slicer:frame:1px 1px 1px 1px, corners:url(images/tab/tab-green-tab-active-left-corners.gif), sides:url(images/tab/tab-green-tab-active-left-sides.gif)" !important;
+}
 
 /*</if slicer>*/
 /* */
 /* line 187, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right {
-  -moz-border-radius-topleft: 0px;
-  -webkit-border-top-left-radius: 0px;
-  border-top-left-radius: 0px;
-  -moz-border-radius-topright: 0px;
-  -webkit-border-top-right-radius: 0px;
-  border-top-right-radius: 0px;
-  -moz-border-radius-bottomright: 0px;
-  -webkit-border-bottom-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-  -moz-border-radius-bottomleft: 0px;
-  -webkit-border-bottom-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-  padding: 4px 9px 2px 9px;
-  border-width: 1px 1px 1px 1px;
-  border-style: solid;
-  background-color: #f8f9f9; }
+    -moz-border-radius-topleft: 0px;
+    -webkit-border-top-left-radius: 0px;
+    border-top-left-radius: 0px;
+    -moz-border-radius-topright: 0px;
+    -webkit-border-top-right-radius: 0px;
+    border-top-right-radius: 0px;
+    -moz-border-radius-bottomright: 0px;
+    -webkit-border-bottom-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    -moz-border-radius-bottomleft: 0px;
+    -webkit-border-bottom-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding: 4px 9px 2px 9px;
+    border-width: 1px 1px 1px 1px;
+    border-style: solid;
+    background-color: #f8f9f9;
+}
 
 /* line 237, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right-mc {
-  background-color: #f8f9f9; }
+    background-color: #f8f9f9;
+}
 
 /* line 264, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-nbr .x-tab-green-tab-active-right {
-  padding: 0 !important;
-  border-width: 0 !important;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  -o-border-radius: 0px;
-  border-radius: 0px;
-  background-color: transparent !important;
-  box-shadow: none !important; }
+    padding: 0 !important;
+    border-width: 0 !important;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+    border-radius: 0px;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
 
 /* line 281, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right-frameInfo {
-  font-family: th-1-1-1-1-1-1-1-1-4-9-2-9; }
+    font-family: th-1-1-1-1-1-1-1-1-4-9-2-9;
+}
 
 /* line 347, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right-tl {
-  background-position: 0 -2px; }
+    background-position: 0 -2px;
+}
 
 /* line 351, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right-tr {
-  background-position: right -3px; }
+    background-position: right -3px;
+}
 
 /* line 355, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right-bl {
-  background-position: 0 -4px; }
+    background-position: 0 -4px;
+}
 
 /* line 359, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right-br {
-  background-position: right -5px; }
+    background-position: right -5px;
+}
 
 /* line 363, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right-ml {
-  background-position: 0 top; }
+    background-position: 0 top;
+}
 
 /* line 371, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right-mr {
-  background-position: right top; }
+    background-position: right top;
+}
 
 /* line 379, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right-tc {
-  background-position: 0 0; }
+    background-position: 0 0;
+}
 
 /* line 383, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right-bc {
-  background-position: 0 -1px; }
+    background-position: 0 -1px;
+}
 
 /* line 390, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right-tr,
 .x-tab-green-tab-active-right-br,
 .x-tab-green-tab-active-right-mr {
-  padding-right: 1px; }
+    padding-right: 1px;
+}
 
 /* line 396, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right-tl,
 .x-tab-green-tab-active-right-bl,
 .x-tab-green-tab-active-right-ml {
-  padding-left: 1px; }
+    padding-left: 1px;
+}
 
 /* line 400, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right-tc {
-  height: 1px; }
+    height: 1px;
+}
 
 /* line 403, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right-bc {
-  height: 1px; }
+    height: 1px;
+}
 
 /* line 414, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right-tl,
@@ -496,157 +582,219 @@
 .x-tab-green-tab-active-right-bc,
 .x-tab-green-tab-active-right-ml,
 .x-tab-green-tab-active-right-mr {
-  background-image: url(images/tab/tab-green-tab-active-right-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-right-corners.gif);
+}
 
 /* line 454, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right-ml,
 .x-tab-green-tab-active-right-mr {
-  background-image: url(images/tab/tab-green-tab-active-right-sides.gif);
-  background-repeat: repeat-y; }
+    background-image: url(images/tab/tab-green-tab-active-right-sides.gif);
+    background-repeat: repeat-y;
+}
 
 /* line 464, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/frame.scss */
 .x-tab-green-tab-active-right-mc {
-  padding: 4px 9px 2px 9px; }
+    padding: 4px 9px 2px 9px;
+}
 
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-green-tab-active-right:before {
-  display: none;
-  content: "x-slicer:frame:1px 1px 1px 1px, corners:url(images/tab/tab-green-tab-active-right-corners.gif), sides:url(images/tab/tab-green-tab-active-right-sides.gif)" !important; }
+    display: none;
+    content: "x-slicer:frame:1px 1px 1px 1px, corners:url(images/tab/tab-green-tab-active-right-corners.gif), sides:url(images/tab/tab-green-tab-active-right-sides.gif)" !important;
+}
 
 /*</if slicer>*/
 /* */
 /* line 1073, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-green-tab-active {
-  border-color: transparent;
-  cursor: pointer; }
+    border-color: transparent;
+    cursor: pointer;
+}
 
 /* line 1083, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-green-tab-active-top {
-  margin: 0px; }
-  /* line 1092, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab-green-tab-active-top.x-tab-rotate-left {
-    margin: 0px 0px 0px 0px; }
+    margin: 0px;
+}
+
+/* line 1092, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-green-tab-active-top.x-tab-rotate-left {
+    margin: 0px 0px 0px 0px;
+}
 
 /* line 1198, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-green-tab-active-right {
-  margin: 0px 0px 0px 0px; }
-  /* line 1207, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab-green-tab-active-right.x-tab-rotate-right {
-    margin: 0px 0px 0px 0px; }
+    margin: 0px 0px 0px 0px;
+}
+
+/* line 1207, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-green-tab-active-right.x-tab-rotate-right {
+    margin: 0px 0px 0px 0px;
+}
 
 /* line 1313, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-green-tab-active-bottom {
-  margin: 0px 0px 0px 0px; }
-  /* line 1322, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab-green-tab-active-bottom.x-tab-rotate-left {
-    margin: 0px 0px 0px 0px; }
+    margin: 0px 0px 0px 0px;
+}
+
+/* line 1322, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-green-tab-active-bottom.x-tab-rotate-left {
+    margin: 0px 0px 0px 0px;
+}
 
 /* line 1428, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-green-tab-active-left {
-  margin: 0px 0px 0px 0px; }
-  /* line 1437, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab-green-tab-active-left.x-tab-rotate-right {
-    margin: 0px 0px 0px 0px; }
+    margin: 0px 0px 0px 0px;
+}
+
+/* line 1437, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-green-tab-active-left.x-tab-rotate-right {
+    margin: 0px 0px 0px 0px;
+}
 
 /* line 1543, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-button-green-tab-active {
-  height: 16px; }
+    height: 16px;
+}
 
 /* line 1548, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-inner-green-tab-active {
-  font: normal 11px/16px "Segoe UI", Segoe, "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
-  color: #606060;
-  max-width: 100%; }
-  /* line 1559, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab-icon-right > .x-tab-inner-green-tab-active, .x-tab-icon-left > .x-tab-inner-green-tab-active {
-    max-width: calc(100% - 16px); }
+    font: normal 11px/16px "Segoe UI", Segoe, "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+    color: #606060;
+    max-width: 100%;
+}
+
+/* line 1559, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-icon-right > .x-tab-inner-green-tab-active, .x-tab-icon-left > .x-tab-inner-green-tab-active {
+    max-width: calc(100% - 16px);
+}
 
 /* line 1566, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-icon-el-green-tab-active {
-  height: 16px;
-  line-height: 16px;
-  background-position: center center; }
-  /* line 1570, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab-icon-left > .x-tab-icon-el-green-tab-active, .x-tab-icon-right > .x-tab-icon-el-green-tab-active {
-    width: 16px; }
-  /* line 1575, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab-icon-top > .x-tab-icon-el-green-tab-active, .x-tab-icon-bottom > .x-tab-icon-el-green-tab-active {
-    min-width: 16px; }
-  /* line 1582, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab-icon-el-green-tab-active.x-tab-glyph {
+    height: 16px;
+    line-height: 16px;
+    background-position: center center;
+}
+
+/* line 1570, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-icon-left > .x-tab-icon-el-green-tab-active, .x-tab-icon-right > .x-tab-icon-el-green-tab-active {
+    width: 16px;
+}
+
+/* line 1575, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-icon-top > .x-tab-icon-el-green-tab-active, .x-tab-icon-bottom > .x-tab-icon-el-green-tab-active {
+    min-width: 16px;
+}
+
+/* line 1582, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-icon-el-green-tab-active.x-tab-glyph {
     font-size: 16px;
     line-height: 16px;
     color: #606060;
-    opacity: 0.5; }
-    /* line 1598, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-    .x-ie8 .x-tab-icon-el-green-tab-active.x-tab-glyph {
-      color: #acacac; }
-  /* line 1605, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab-text.x-tab-icon-left > .x-tab-icon-el-green-tab-active {
-    margin-right: 4px; }
-  /* line 1616, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab-text.x-tab-icon-right > .x-tab-icon-el-green-tab-active {
-    margin-left: 4px; }
-  /* line 1627, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab-text.x-tab-icon-top > .x-tab-icon-el-green-tab-active {
-    margin-bottom: 4px; }
-  /* line 1631, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab-text.x-tab-icon-bottom > .x-tab-icon-el-green-tab-active {
-    margin-top: 4px; }
+    opacity: 0.5;
+}
+
+/* line 1598, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-ie8 .x-tab-icon-el-green-tab-active.x-tab-glyph {
+    color: #acacac;
+}
+
+/* line 1605, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-text.x-tab-icon-left > .x-tab-icon-el-green-tab-active {
+    margin-right: 4px;
+}
+
+/* line 1616, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-text.x-tab-icon-right > .x-tab-icon-el-green-tab-active {
+    margin-left: 4px;
+}
+
+/* line 1627, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-text.x-tab-icon-top > .x-tab-icon-el-green-tab-active {
+    margin-bottom: 4px;
+}
+
+/* line 1631, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-text.x-tab-icon-bottom > .x-tab-icon-el-green-tab-active {
+    margin-top: 4px;
+}
 
 /* line 1703, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-over.x-tab-green-tab-active {
-  border-color: #e2e6e6 #e2e6e6 #e2e6e6 #e2e6e6;
-  background-color: #e2e6e6; }
-  /* line 1712, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab-over.x-tab-green-tab-active .x-tab-inner-green-tab-active {
-    color: #4e4e4e; }
-  /* line 1728, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab-over.x-tab-green-tab-active .x-tab-glyph {
-    color: #4e4e4e; }
-    /* line 1736, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-    .x-ie8m .x-tab-over.x-tab-green-tab-active .x-tab-glyph {
-      color: #989a9a; }
+    border-color: #e2e6e6 #e2e6e6 #e2e6e6 #e2e6e6;
+    background-color: #e2e6e6;
+}
+
+/* line 1712, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over.x-tab-green-tab-active .x-tab-inner-green-tab-active {
+    color: #4e4e4e;
+}
+
+/* line 1728, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab-over.x-tab-green-tab-active .x-tab-glyph {
+    color: #4e4e4e;
+}
+
+/* line 1736, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-ie8m .x-tab-over.x-tab-green-tab-active .x-tab-glyph {
+    color: #989a9a;
+}
 
 /* line 1814, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-active.x-tab-green-tab-active {
-  border-color: #87939f;
-  background-color: #87939f; }
-  /* line 1820, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab.x-tab-active.x-tab-green-tab-active .x-tab-inner-green-tab-active {
-    color: white; }
-  /* line 1835, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab.x-tab-active.x-tab-green-tab-active .x-tab-glyph {
-    color: white; }
-    /* line 1843, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-    .x-ie8 .x-tab.x-tab-active.x-tab-green-tab-active .x-tab-glyph {
-      color: #c3c9cf; }
+    border-color: #87939f;
+    background-color: #87939f;
+}
+
+/* line 1820, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active.x-tab-green-tab-active .x-tab-inner-green-tab-active {
+    color: white;
+}
+
+/* line 1835, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-active.x-tab-green-tab-active .x-tab-glyph {
+    color: white;
+}
+
+/* line 1843, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-ie8 .x-tab.x-tab-active.x-tab-green-tab-active .x-tab-glyph {
+    color: #c3c9cf;
+}
 
 /* line 1922, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-disabled.x-tab-green-tab-active {
-  border-color: #e1e7ed;
-  background-color: #e1e7ed;
-  cursor: default; }
-  /* line 1939, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab.x-tab-disabled.x-tab-green-tab-active .x-tab-inner-green-tab-active {
-    color: #c3b3b3; }
-  /* line 1958, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab.x-tab-disabled.x-tab-green-tab-active .x-tab-icon-el-green-tab-active {
+    border-color: #e1e7ed;
+    background-color: #e1e7ed;
+    cursor: default;
+}
+
+/* line 1939, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled.x-tab-green-tab-active .x-tab-inner-green-tab-active {
+    color: #c3b3b3;
+}
+
+/* line 1958, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled.x-tab-green-tab-active .x-tab-icon-el-green-tab-active {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
-    opacity: 0.5; }
-  /* line 1963, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-  .x-tab.x-tab-disabled.x-tab-green-tab-active .x-tab-glyph {
+    opacity: 0.5;
+}
+
+/* line 1963, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-tab.x-tab-disabled.x-tab-green-tab-active .x-tab-glyph {
     color: #c3b3b3;
     opacity: 0.3;
-    filter: none; }
-    /* line 1978, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
-    .x-ie8 .x-tab.x-tab-disabled.x-tab-green-tab-active .x-tab-glyph {
-      color: #d8d7db; }
+    filter: none;
+}
+
+/* line 1978, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
+.x-ie8 .x-tab.x-tab-disabled.x-tab-green-tab-active .x-tab-glyph {
+    color: #d8d7db;
+}
 
 /* line 1998, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-nbr .x-tab-green-tab-active {
-  background-image: none; }
+    background-image: none;
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-over .x-tab-green-tab-active-top-tl,
@@ -655,16 +803,21 @@
 .x-tab-over .x-tab-green-tab-active-top-br,
 .x-tab-over .x-tab-green-tab-active-top-tc,
 .x-tab-over .x-tab-green-tab-active-top-bc {
-  background-image: url(images/tab/tab-green-tab-active-top-over-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-top-over-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-over .x-tab-green-tab-active-top-ml,
 .x-tab-over .x-tab-green-tab-active-top-mr {
-  background-image: url(images/tab/tab-green-tab-active-top-over-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-top-over-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-over .x-tab-green-tab-active-top-mc {
-  background-color: #e2e6e6;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-top-over-fbg.gif); }
+    background-color: #e2e6e6;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-top-over-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus .x-tab-green-tab-active-top-tl,
@@ -673,16 +826,21 @@
 .x-tab-focus .x-tab-green-tab-active-top-br,
 .x-tab-focus .x-tab-green-tab-active-top-tc,
 .x-tab-focus .x-tab-green-tab-active-top-bc {
-  background-image: url(images/tab/tab-green-tab-active-top-focus-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-top-focus-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus .x-tab-green-tab-active-top-ml,
 .x-tab-focus .x-tab-green-tab-active-top-mr {
-  background-image: url(images/tab/tab-green-tab-active-top-focus-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-top-focus-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus .x-tab-green-tab-active-top-mc {
-  background-color: #f8f9f9;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-top-focus-fbg.gif); }
+    background-color: #f8f9f9;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-top-focus-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-top-tl,
@@ -691,16 +849,21 @@
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-top-br,
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-top-tc,
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-top-bc {
-  background-image: url(images/tab/tab-green-tab-active-top-focus-over-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-top-focus-over-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-top-ml,
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-top-mr {
-  background-image: url(images/tab/tab-green-tab-active-top-focus-over-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-top-focus-over-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-top-mc {
-  background-color: #e2e6e6;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-top-focus-over-fbg.gif); }
+    background-color: #e2e6e6;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-top-focus-over-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-active .x-tab-green-tab-active-top-tl,
@@ -709,16 +872,21 @@
 .x-tab.x-tab-active .x-tab-green-tab-active-top-br,
 .x-tab.x-tab-active .x-tab-green-tab-active-top-tc,
 .x-tab.x-tab-active .x-tab-green-tab-active-top-bc {
-  background-image: url(images/tab/tab-green-tab-active-top-active-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-top-active-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-active .x-tab-green-tab-active-top-ml,
 .x-tab.x-tab-active .x-tab-green-tab-active-top-mr {
-  background-image: url(images/tab/tab-green-tab-active-top-active-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-top-active-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-active .x-tab-green-tab-active-top-mc {
-  background-color: #87939f;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-top-active-fbg.gif); }
+    background-color: #87939f;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-top-active-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-top-tl,
@@ -727,16 +895,21 @@
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-top-br,
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-top-tc,
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-top-bc {
-  background-image: url(images/tab/tab-green-tab-active-top-focus-active-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-top-focus-active-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-top-ml,
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-top-mr {
-  background-image: url(images/tab/tab-green-tab-active-top-focus-active-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-top-focus-active-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-top-mc {
-  background-color: #87939f;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-top-focus-active-fbg.gif); }
+    background-color: #87939f;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-top-focus-active-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-disabled .x-tab-green-tab-active-top-tl,
@@ -745,16 +918,21 @@
 .x-tab.x-tab-disabled .x-tab-green-tab-active-top-br,
 .x-tab.x-tab-disabled .x-tab-green-tab-active-top-tc,
 .x-tab.x-tab-disabled .x-tab-green-tab-active-top-bc {
-  background-image: url(images/tab/tab-green-tab-active-top-disabled-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-top-disabled-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-disabled .x-tab-green-tab-active-top-ml,
 .x-tab.x-tab-disabled .x-tab-green-tab-active-top-mr {
-  background-image: url(images/tab/tab-green-tab-active-top-disabled-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-top-disabled-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-disabled .x-tab-green-tab-active-top-mc {
-  background-color: #e1e7ed;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-top-disabled-fbg.gif); }
+    background-color: #e1e7ed;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-top-disabled-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-over .x-tab-green-tab-active-right-tl,
@@ -763,16 +941,21 @@
 .x-tab-over .x-tab-green-tab-active-right-br,
 .x-tab-over .x-tab-green-tab-active-right-tc,
 .x-tab-over .x-tab-green-tab-active-right-bc {
-  background-image: url(images/tab/tab-green-tab-active-right-over-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-right-over-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-over .x-tab-green-tab-active-right-ml,
 .x-tab-over .x-tab-green-tab-active-right-mr {
-  background-image: url(images/tab/tab-green-tab-active-right-over-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-right-over-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-over .x-tab-green-tab-active-right-mc {
-  background-color: #e2e6e6;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-right-over-fbg.gif); }
+    background-color: #e2e6e6;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-right-over-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus .x-tab-green-tab-active-right-tl,
@@ -781,16 +964,21 @@
 .x-tab-focus .x-tab-green-tab-active-right-br,
 .x-tab-focus .x-tab-green-tab-active-right-tc,
 .x-tab-focus .x-tab-green-tab-active-right-bc {
-  background-image: url(images/tab/tab-green-tab-active-right-focus-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-right-focus-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus .x-tab-green-tab-active-right-ml,
 .x-tab-focus .x-tab-green-tab-active-right-mr {
-  background-image: url(images/tab/tab-green-tab-active-right-focus-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-right-focus-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus .x-tab-green-tab-active-right-mc {
-  background-color: #f8f9f9;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-right-focus-fbg.gif); }
+    background-color: #f8f9f9;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-right-focus-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-right-tl,
@@ -799,16 +987,21 @@
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-right-br,
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-right-tc,
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-right-bc {
-  background-image: url(images/tab/tab-green-tab-active-right-focus-over-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-right-focus-over-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-right-ml,
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-right-mr {
-  background-image: url(images/tab/tab-green-tab-active-right-focus-over-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-right-focus-over-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-right-mc {
-  background-color: #e2e6e6;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-right-focus-over-fbg.gif); }
+    background-color: #e2e6e6;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-right-focus-over-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-active .x-tab-green-tab-active-right-tl,
@@ -817,16 +1010,21 @@
 .x-tab.x-tab-active .x-tab-green-tab-active-right-br,
 .x-tab.x-tab-active .x-tab-green-tab-active-right-tc,
 .x-tab.x-tab-active .x-tab-green-tab-active-right-bc {
-  background-image: url(images/tab/tab-green-tab-active-right-active-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-right-active-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-active .x-tab-green-tab-active-right-ml,
 .x-tab.x-tab-active .x-tab-green-tab-active-right-mr {
-  background-image: url(images/tab/tab-green-tab-active-right-active-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-right-active-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-active .x-tab-green-tab-active-right-mc {
-  background-color: #87939f;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-right-active-fbg.gif); }
+    background-color: #87939f;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-right-active-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-right-tl,
@@ -835,16 +1033,21 @@
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-right-br,
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-right-tc,
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-right-bc {
-  background-image: url(images/tab/tab-green-tab-active-right-focus-active-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-right-focus-active-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-right-ml,
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-right-mr {
-  background-image: url(images/tab/tab-green-tab-active-right-focus-active-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-right-focus-active-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-right-mc {
-  background-color: #87939f;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-right-focus-active-fbg.gif); }
+    background-color: #87939f;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-right-focus-active-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-disabled .x-tab-green-tab-active-right-tl,
@@ -853,16 +1056,21 @@
 .x-tab.x-tab-disabled .x-tab-green-tab-active-right-br,
 .x-tab.x-tab-disabled .x-tab-green-tab-active-right-tc,
 .x-tab.x-tab-disabled .x-tab-green-tab-active-right-bc {
-  background-image: url(images/tab/tab-green-tab-active-right-disabled-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-right-disabled-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-disabled .x-tab-green-tab-active-right-ml,
 .x-tab.x-tab-disabled .x-tab-green-tab-active-right-mr {
-  background-image: url(images/tab/tab-green-tab-active-right-disabled-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-right-disabled-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-disabled .x-tab-green-tab-active-right-mc {
-  background-color: #e1e7ed;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-right-disabled-fbg.gif); }
+    background-color: #e1e7ed;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-right-disabled-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-over .x-tab-green-tab-active-bottom-tl,
@@ -871,16 +1079,21 @@
 .x-tab-over .x-tab-green-tab-active-bottom-br,
 .x-tab-over .x-tab-green-tab-active-bottom-tc,
 .x-tab-over .x-tab-green-tab-active-bottom-bc {
-  background-image: url(images/tab/tab-green-tab-active-bottom-over-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-bottom-over-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-over .x-tab-green-tab-active-bottom-ml,
 .x-tab-over .x-tab-green-tab-active-bottom-mr {
-  background-image: url(images/tab/tab-green-tab-active-bottom-over-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-bottom-over-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-over .x-tab-green-tab-active-bottom-mc {
-  background-color: #e2e6e6;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-bottom-over-fbg.gif); }
+    background-color: #e2e6e6;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-bottom-over-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus .x-tab-green-tab-active-bottom-tl,
@@ -889,16 +1102,21 @@
 .x-tab-focus .x-tab-green-tab-active-bottom-br,
 .x-tab-focus .x-tab-green-tab-active-bottom-tc,
 .x-tab-focus .x-tab-green-tab-active-bottom-bc {
-  background-image: url(images/tab/tab-green-tab-active-bottom-focus-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-bottom-focus-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus .x-tab-green-tab-active-bottom-ml,
 .x-tab-focus .x-tab-green-tab-active-bottom-mr {
-  background-image: url(images/tab/tab-green-tab-active-bottom-focus-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-bottom-focus-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus .x-tab-green-tab-active-bottom-mc {
-  background-color: #f8f9f9;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-bottom-focus-fbg.gif); }
+    background-color: #f8f9f9;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-bottom-focus-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-bottom-tl,
@@ -907,16 +1125,21 @@
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-bottom-br,
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-bottom-tc,
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-bottom-bc {
-  background-image: url(images/tab/tab-green-tab-active-bottom-focus-over-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-bottom-focus-over-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-bottom-ml,
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-bottom-mr {
-  background-image: url(images/tab/tab-green-tab-active-bottom-focus-over-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-bottom-focus-over-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-bottom-mc {
-  background-color: #e2e6e6;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-bottom-focus-over-fbg.gif); }
+    background-color: #e2e6e6;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-bottom-focus-over-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-active .x-tab-green-tab-active-bottom-tl,
@@ -925,16 +1148,21 @@
 .x-tab.x-tab-active .x-tab-green-tab-active-bottom-br,
 .x-tab.x-tab-active .x-tab-green-tab-active-bottom-tc,
 .x-tab.x-tab-active .x-tab-green-tab-active-bottom-bc {
-  background-image: url(images/tab/tab-green-tab-active-bottom-active-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-bottom-active-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-active .x-tab-green-tab-active-bottom-ml,
 .x-tab.x-tab-active .x-tab-green-tab-active-bottom-mr {
-  background-image: url(images/tab/tab-green-tab-active-bottom-active-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-bottom-active-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-active .x-tab-green-tab-active-bottom-mc {
-  background-color: #87939f;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-bottom-active-fbg.gif); }
+    background-color: #87939f;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-bottom-active-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-bottom-tl,
@@ -943,16 +1171,21 @@
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-bottom-br,
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-bottom-tc,
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-bottom-bc {
-  background-image: url(images/tab/tab-green-tab-active-bottom-focus-active-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-bottom-focus-active-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-bottom-ml,
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-bottom-mr {
-  background-image: url(images/tab/tab-green-tab-active-bottom-focus-active-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-bottom-focus-active-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-bottom-mc {
-  background-color: #87939f;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-bottom-focus-active-fbg.gif); }
+    background-color: #87939f;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-bottom-focus-active-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-disabled .x-tab-green-tab-active-bottom-tl,
@@ -961,16 +1194,21 @@
 .x-tab.x-tab-disabled .x-tab-green-tab-active-bottom-br,
 .x-tab.x-tab-disabled .x-tab-green-tab-active-bottom-tc,
 .x-tab.x-tab-disabled .x-tab-green-tab-active-bottom-bc {
-  background-image: url(images/tab/tab-green-tab-active-bottom-disabled-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-bottom-disabled-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-disabled .x-tab-green-tab-active-bottom-ml,
 .x-tab.x-tab-disabled .x-tab-green-tab-active-bottom-mr {
-  background-image: url(images/tab/tab-green-tab-active-bottom-disabled-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-bottom-disabled-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-disabled .x-tab-green-tab-active-bottom-mc {
-  background-color: #e1e7ed;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-bottom-disabled-fbg.gif); }
+    background-color: #e1e7ed;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-bottom-disabled-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-over .x-tab-green-tab-active-left-tl,
@@ -979,16 +1217,21 @@
 .x-tab-over .x-tab-green-tab-active-left-br,
 .x-tab-over .x-tab-green-tab-active-left-tc,
 .x-tab-over .x-tab-green-tab-active-left-bc {
-  background-image: url(images/tab/tab-green-tab-active-left-over-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-left-over-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-over .x-tab-green-tab-active-left-ml,
 .x-tab-over .x-tab-green-tab-active-left-mr {
-  background-image: url(images/tab/tab-green-tab-active-left-over-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-left-over-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-over .x-tab-green-tab-active-left-mc {
-  background-color: #e2e6e6;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-left-over-fbg.gif); }
+    background-color: #e2e6e6;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-left-over-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus .x-tab-green-tab-active-left-tl,
@@ -997,16 +1240,21 @@
 .x-tab-focus .x-tab-green-tab-active-left-br,
 .x-tab-focus .x-tab-green-tab-active-left-tc,
 .x-tab-focus .x-tab-green-tab-active-left-bc {
-  background-image: url(images/tab/tab-green-tab-active-left-focus-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-left-focus-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus .x-tab-green-tab-active-left-ml,
 .x-tab-focus .x-tab-green-tab-active-left-mr {
-  background-image: url(images/tab/tab-green-tab-active-left-focus-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-left-focus-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus .x-tab-green-tab-active-left-mc {
-  background-color: #f8f9f9;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-left-focus-fbg.gif); }
+    background-color: #f8f9f9;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-left-focus-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-left-tl,
@@ -1015,16 +1263,21 @@
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-left-br,
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-left-tc,
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-left-bc {
-  background-image: url(images/tab/tab-green-tab-active-left-focus-over-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-left-focus-over-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-left-ml,
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-left-mr {
-  background-image: url(images/tab/tab-green-tab-active-left-focus-over-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-left-focus-over-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-over .x-tab-green-tab-active-left-mc {
-  background-color: #e2e6e6;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-left-focus-over-fbg.gif); }
+    background-color: #e2e6e6;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-left-focus-over-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-active .x-tab-green-tab-active-left-tl,
@@ -1033,16 +1286,21 @@
 .x-tab.x-tab-active .x-tab-green-tab-active-left-br,
 .x-tab.x-tab-active .x-tab-green-tab-active-left-tc,
 .x-tab.x-tab-active .x-tab-green-tab-active-left-bc {
-  background-image: url(images/tab/tab-green-tab-active-left-active-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-left-active-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-active .x-tab-green-tab-active-left-ml,
 .x-tab.x-tab-active .x-tab-green-tab-active-left-mr {
-  background-image: url(images/tab/tab-green-tab-active-left-active-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-left-active-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-active .x-tab-green-tab-active-left-mc {
-  background-color: #87939f;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-left-active-fbg.gif); }
+    background-color: #87939f;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-left-active-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-left-tl,
@@ -1051,16 +1309,21 @@
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-left-br,
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-left-tc,
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-left-bc {
-  background-image: url(images/tab/tab-green-tab-active-left-focus-active-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-left-focus-active-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-left-ml,
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-left-mr {
-  background-image: url(images/tab/tab-green-tab-active-left-focus-active-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-left-focus-active-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-focus.x-tab-active .x-tab-green-tab-active-left-mc {
-  background-color: #87939f;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-left-focus-active-fbg.gif); }
+    background-color: #87939f;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-left-focus-active-fbg.gif);
+}
 
 /* line 2023, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-disabled .x-tab-green-tab-active-left-tl,
@@ -1069,600 +1332,774 @@
 .x-tab.x-tab-disabled .x-tab-green-tab-active-left-br,
 .x-tab.x-tab-disabled .x-tab-green-tab-active-left-tc,
 .x-tab.x-tab-disabled .x-tab-green-tab-active-left-bc {
-  background-image: url(images/tab/tab-green-tab-active-left-disabled-corners.gif); }
+    background-image: url(images/tab/tab-green-tab-active-left-disabled-corners.gif);
+}
+
 /* line 2028, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-disabled .x-tab-green-tab-active-left-ml,
 .x-tab.x-tab-disabled .x-tab-green-tab-active-left-mr {
-  background-image: url(images/tab/tab-green-tab-active-left-disabled-sides.gif); }
+    background-image: url(images/tab/tab-green-tab-active-left-disabled-sides.gif);
+}
+
 /* line 2032, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab.x-tab-disabled .x-tab-green-tab-active-left-mc {
-  background-color: #e1e7ed;
-  background-repeat: repeat-x;
-  background-image: url(images/tab/tab-green-tab-active-left-disabled-fbg.gif); }
+    background-color: #e1e7ed;
+    background-repeat: repeat-x;
+    background-image: url(images/tab/tab-green-tab-active-left-disabled-fbg.gif);
+}
 
 /* line 2046, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-green-tab-active-tl,
 .x-tab-green-tab-active-bl,
 .x-tab-green-tab-active-tr,
 .x-tab-green-tab-active-br {
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF); }
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF, endColorstr=#00FFFFFF);
+}
 
 /* line 2053, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-green-tab-active .x-tab-close-btn {
-  top: 1px;
-  right: 2px;
-  width: 11px;
-  height: 12px;
-  background: url(images/tab/tab-green-tab-active-close.png) 0 0;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
-  opacity: 0.6; }
+    top: 1px;
+    right: 2px;
+    width: 11px;
+    height: 12px;
+    background: url(images/tab/tab-green-tab-active-close.png) 0 0;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+    opacity: 0.6;
+}
+
 /* line 2064, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-green-tab-active .x-tab-close-btn-over {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1; }
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
+}
+
 /* line 2080, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-green-tab-active.x-tab-active .x-tab-close-btn {
-  background-position: 0 -12px; }
+    background-position: 0 -12px;
+}
+
 /* line 2098, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-green-tab-active.x-tab-disabled .x-tab-close-btn {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
-  opacity: 0.3; }
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+    opacity: 0.3;
+}
 
 /* line 2116, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Tab.scss */
 .x-tab-closable.x-tab-green-tab-active .x-tab-button {
-  padding-right: 12px; }
+    padding-right: 12px;
+}
 
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-focus.x-tab-green-tab-active-top:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-top-focus-corners.gif), sides:url(images/tab/tab-green-tab-active-top-focus-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-top-focus-fbg.gif), frame:1px 1px 1px 1px, stretch:bottom" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-top-focus-corners.gif), sides:url(images/tab/tab-green-tab-active-top-focus-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-top-focus-fbg.gif), frame:1px 1px 1px 1px, stretch:bottom" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-focus.x-tab-green-tab-active-right:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-right-focus-corners.gif), sides:url(images/tab/tab-green-tab-active-right-focus-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-right-focus-fbg.gif), frame:1px 1px 1px 1px, stretch:left" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-right-focus-corners.gif), sides:url(images/tab/tab-green-tab-active-right-focus-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-right-focus-fbg.gif), frame:1px 1px 1px 1px, stretch:left" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-focus.x-tab-green-tab-active-bottom:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-bottom-focus-corners.gif), sides:url(images/tab/tab-green-tab-active-bottom-focus-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-bottom-focus-fbg.gif), frame:1px 1px 1px 1px, stretch:top" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-bottom-focus-corners.gif), sides:url(images/tab/tab-green-tab-active-bottom-focus-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-bottom-focus-fbg.gif), frame:1px 1px 1px 1px, stretch:top" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-focus.x-tab-green-tab-active-left:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-left-focus-corners.gif), sides:url(images/tab/tab-green-tab-active-left-focus-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-left-focus-fbg.gif), frame:1px 1px 1px 1px, stretch:right" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-left-focus-corners.gif), sides:url(images/tab/tab-green-tab-active-left-focus-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-left-focus-fbg.gif), frame:1px 1px 1px 1px, stretch:right" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-over.x-tab-green-tab-active-top:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-top-over-corners.gif), sides:url(images/tab/tab-green-tab-active-top-over-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-top-over-fbg.gif), frame:1px 1px 1px 1px, stretch:bottom" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-top-over-corners.gif), sides:url(images/tab/tab-green-tab-active-top-over-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-top-over-fbg.gif), frame:1px 1px 1px 1px, stretch:bottom" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-over.x-tab-green-tab-active-right:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-right-over-corners.gif), sides:url(images/tab/tab-green-tab-active-right-over-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-right-over-fbg.gif), frame:1px 1px 1px 1px, stretch:left" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-right-over-corners.gif), sides:url(images/tab/tab-green-tab-active-right-over-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-right-over-fbg.gif), frame:1px 1px 1px 1px, stretch:left" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-over.x-tab-green-tab-active-bottom:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-bottom-over-corners.gif), sides:url(images/tab/tab-green-tab-active-bottom-over-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-bottom-over-fbg.gif), frame:1px 1px 1px 1px, stretch:top" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-bottom-over-corners.gif), sides:url(images/tab/tab-green-tab-active-bottom-over-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-bottom-over-fbg.gif), frame:1px 1px 1px 1px, stretch:top" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-over.x-tab-green-tab-active-left:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-left-over-corners.gif), sides:url(images/tab/tab-green-tab-active-left-over-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-left-over-fbg.gif), frame:1px 1px 1px 1px, stretch:right" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-left-over-corners.gif), sides:url(images/tab/tab-green-tab-active-left-over-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-left-over-fbg.gif), frame:1px 1px 1px 1px, stretch:right" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-active.x-tab-green-tab-active-top:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-top-active-corners.gif), sides:url(images/tab/tab-green-tab-active-top-active-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-top-active-fbg.gif), frame:1px 1px 1px 1px, stretch:bottom" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-top-active-corners.gif), sides:url(images/tab/tab-green-tab-active-top-active-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-top-active-fbg.gif), frame:1px 1px 1px 1px, stretch:bottom" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-active.x-tab-green-tab-active-right:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-right-active-corners.gif), sides:url(images/tab/tab-green-tab-active-right-active-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-right-active-fbg.gif), frame:1px 1px 1px 1px, stretch:left" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-right-active-corners.gif), sides:url(images/tab/tab-green-tab-active-right-active-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-right-active-fbg.gif), frame:1px 1px 1px 1px, stretch:left" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-active.x-tab-green-tab-active-bottom:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-bottom-active-corners.gif), sides:url(images/tab/tab-green-tab-active-bottom-active-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-bottom-active-fbg.gif), frame:1px 1px 1px 1px, stretch:top" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-bottom-active-corners.gif), sides:url(images/tab/tab-green-tab-active-bottom-active-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-bottom-active-fbg.gif), frame:1px 1px 1px 1px, stretch:top" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-active.x-tab-green-tab-active-left:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-left-active-corners.gif), sides:url(images/tab/tab-green-tab-active-left-active-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-left-active-fbg.gif), frame:1px 1px 1px 1px, stretch:right" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-left-active-corners.gif), sides:url(images/tab/tab-green-tab-active-left-active-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-left-active-fbg.gif), frame:1px 1px 1px 1px, stretch:right" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-focus.x-tab-over.x-tab-green-tab-active-top:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-top-focus-over-corners.gif), sides:url(images/tab/tab-green-tab-active-top-focus-over-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-top-focus-over-fbg.gif), frame:1px 1px 1px 1px, stretch:bottom" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-top-focus-over-corners.gif), sides:url(images/tab/tab-green-tab-active-top-focus-over-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-top-focus-over-fbg.gif), frame:1px 1px 1px 1px, stretch:bottom" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-focus.x-tab-over.x-tab-green-tab-active-right:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-right-focus-over-corners.gif), sides:url(images/tab/tab-green-tab-active-right-focus-over-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-right-focus-over-fbg.gif), frame:1px 1px 1px 1px, stretch:left" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-right-focus-over-corners.gif), sides:url(images/tab/tab-green-tab-active-right-focus-over-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-right-focus-over-fbg.gif), frame:1px 1px 1px 1px, stretch:left" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-focus.x-tab-over.x-tab-green-tab-active-bottom:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-bottom-focus-over-corners.gif), sides:url(images/tab/tab-green-tab-active-bottom-focus-over-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-bottom-focus-over-fbg.gif), frame:1px 1px 1px 1px, stretch:top" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-bottom-focus-over-corners.gif), sides:url(images/tab/tab-green-tab-active-bottom-focus-over-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-bottom-focus-over-fbg.gif), frame:1px 1px 1px 1px, stretch:top" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-focus.x-tab-over.x-tab-green-tab-active-left:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-left-focus-over-corners.gif), sides:url(images/tab/tab-green-tab-active-left-focus-over-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-left-focus-over-fbg.gif), frame:1px 1px 1px 1px, stretch:right" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-left-focus-over-corners.gif), sides:url(images/tab/tab-green-tab-active-left-focus-over-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-left-focus-over-fbg.gif), frame:1px 1px 1px 1px, stretch:right" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-focus.x-tab-active.x-tab-green-tab-active-top:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-top-focus-active-corners.gif), sides:url(images/tab/tab-green-tab-active-top-focus-active-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-top-focus-active-fbg.gif), frame:1px 1px 1px 1px, stretch:bottom" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-top-focus-active-corners.gif), sides:url(images/tab/tab-green-tab-active-top-focus-active-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-top-focus-active-fbg.gif), frame:1px 1px 1px 1px, stretch:bottom" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-focus.x-tab-active.x-tab-green-tab-active-right:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-right-focus-active-corners.gif), sides:url(images/tab/tab-green-tab-active-right-focus-active-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-right-focus-active-fbg.gif), frame:1px 1px 1px 1px, stretch:left" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-right-focus-active-corners.gif), sides:url(images/tab/tab-green-tab-active-right-focus-active-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-right-focus-active-fbg.gif), frame:1px 1px 1px 1px, stretch:left" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-focus.x-tab-active.x-tab-green-tab-active-bottom:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-bottom-focus-active-corners.gif), sides:url(images/tab/tab-green-tab-active-bottom-focus-active-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-bottom-focus-active-fbg.gif), frame:1px 1px 1px 1px, stretch:top" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-bottom-focus-active-corners.gif), sides:url(images/tab/tab-green-tab-active-bottom-focus-active-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-bottom-focus-active-fbg.gif), frame:1px 1px 1px 1px, stretch:top" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-focus.x-tab-active.x-tab-green-tab-active-left:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-left-focus-active-corners.gif), sides:url(images/tab/tab-green-tab-active-left-focus-active-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-left-focus-active-fbg.gif), frame:1px 1px 1px 1px, stretch:right" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-left-focus-active-corners.gif), sides:url(images/tab/tab-green-tab-active-left-focus-active-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-left-focus-active-fbg.gif), frame:1px 1px 1px 1px, stretch:right" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-disabled.x-tab-green-tab-active-top:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-top-disabled-corners.gif), sides:url(images/tab/tab-green-tab-active-top-disabled-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-top-disabled-fbg.gif), frame:1px 1px 1px 1px, stretch:bottom" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-top-disabled-corners.gif), sides:url(images/tab/tab-green-tab-active-top-disabled-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-top-disabled-fbg.gif), frame:1px 1px 1px 1px, stretch:bottom" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-disabled.x-tab-green-tab-active-right:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-right-disabled-corners.gif), sides:url(images/tab/tab-green-tab-active-right-disabled-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-right-disabled-fbg.gif), frame:1px 1px 1px 1px, stretch:left" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-right-disabled-corners.gif), sides:url(images/tab/tab-green-tab-active-right-disabled-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-right-disabled-fbg.gif), frame:1px 1px 1px 1px, stretch:left" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-disabled.x-tab-green-tab-active-bottom:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-bottom-disabled-corners.gif), sides:url(images/tab/tab-green-tab-active-bottom-disabled-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-bottom-disabled-fbg.gif), frame:1px 1px 1px 1px, stretch:top" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-bottom-disabled-corners.gif), sides:url(images/tab/tab-green-tab-active-bottom-disabled-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-bottom-disabled-fbg.gif), frame:1px 1px 1px 1px, stretch:top" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-disabled.x-tab-green-tab-active-left:before {
-  display: none;
-  content: "x-slicer:corners:url(images/tab/tab-green-tab-active-left-disabled-corners.gif), sides:url(images/tab/tab-green-tab-active-left-disabled-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-left-disabled-fbg.gif), frame:1px 1px 1px 1px, stretch:right" !important; }
+    display: none;
+    content: "x-slicer:corners:url(images/tab/tab-green-tab-active-left-disabled-corners.gif), sides:url(images/tab/tab-green-tab-active-left-disabled-sides.gif), frame-bg:url(images/tab/tab-green-tab-active-left-disabled-fbg.gif), frame:1px 1px 1px 1px, stretch:right" !important;
+}
 
 /*</if slicer>*/
 /* */
 /* line 130, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-green-tab-active {
-  background-color: #f8f9f9;
-  border-style: solid;
-  border-color: #aeb6be; }
+    background-color: #f8f9f9;
+    border-style: solid;
+    border-color: #aeb6be;
+}
 
 /* line 139, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-green-tab-active-top {
-  border-width: 1px 1px 0 1px; }
+    border-width: 1px 1px 0 1px;
+}
 
 /* line 143, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-green-tab-active-bottom {
-  border-width: 0 1px 1px 1px; }
+    border-width: 0 1px 1px 1px;
+}
 
 /* line 147, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-green-tab-active-left {
-  border-width: 1px 0 1px 1px; }
+    border-width: 1px 0 1px 1px;
+}
 
 /* line 157, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-green-tab-active-right {
-  border-width: 1px 1px 1px 0; }
+    border-width: 1px 1px 1px 0;
+}
 
 /* line 169, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-green-tab-active-top > .x-tab-bar-body-green-tab-active {
-  padding: 2px 0 0 2px; }
+    padding: 2px 0 0 2px;
+}
+
 /* line 173, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-green-tab-active-bottom > .x-tab-bar-body-green-tab-active {
-  padding: 0 0 2px 2px; }
+    padding: 0 0 2px 2px;
+}
+
 /* line 177, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-green-tab-active-left > .x-tab-bar-body-green-tab-active {
-  padding: 0 0 2px 2px; }
+    padding: 0 0 2px 2px;
+}
+
 /* line 187, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-green-tab-active-right > .x-tab-bar-body-green-tab-active {
-  padding: 2px 2px 0 0; }
+    padding: 2px 2px 0 0;
+}
 
 /* line 199, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-plain.x-tab-bar-green-tab-active-horizontal {
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-  border-left-width: 0;
-  border-right-width: 0; }
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-left-width: 0;
+    border-right-width: 0;
+}
+
 /* line 206, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-plain.x-tab-bar-green-tab-active-vertical {
-  border-right-color: transparent;
-  border-left-color: transparent;
-  border-top-width: 0;
-  border-bottom-width: 0; }
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
 
 /* line 218, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-top > .x-tab-bar-body-green-tab-active {
-  padding-bottom: 2px; }
+    padding-bottom: 2px;
+}
+
 /* line 222, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-bottom > .x-tab-bar-body-green-tab-active {
-  padding-top: 2px; }
+    padding-top: 2px;
+}
+
 /* line 226, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-left > .x-tab-bar-body-green-tab-active {
-  padding-right: 2px; }
+    padding-right: 2px;
+}
+
 /* line 237, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-right > .x-tab-bar-body-green-tab-active {
-  padding-left: 2px; }
+    padding-left: 2px;
+}
 
 /* line 249, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-strip-green-tab-active {
-  border-style: solid;
-  border-color: #87939f;
-  background-color: #87939f; }
+    border-style: solid;
+    border-color: #87939f;
+    background-color: #87939f;
+}
 
 /* line 256, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-top > .x-tab-bar-strip-green-tab-active {
-  border-width: 1px 0 0 0;
-  height: 3px; }
+    border-width: 1px 0 0 0;
+    height: 3px;
+}
+
 /* line 260, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-top.x-tab-bar-plain > .x-tab-bar-strip-green-tab-active {
-  border-width: 1px 1px 0 1px; }
+    border-width: 1px 1px 0 1px;
+}
 
 /* line 266, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-bottom > .x-tab-bar-strip-green-tab-active {
-  border-width: 0 0 1px 0;
-  height: 3px; }
+    border-width: 0 0 1px 0;
+    height: 3px;
+}
+
 /* line 270, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-bottom.x-tab-bar-plain > .x-tab-bar-strip-green-tab-active {
-  border-width: 0 1px 1px 1px; }
+    border-width: 0 1px 1px 1px;
+}
 
 /* line 276, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-left > .x-tab-bar-strip-green-tab-active {
-  border-width: 0 0 0 1px;
-  width: 3px; }
+    border-width: 0 0 0 1px;
+    width: 3px;
+}
+
 /* line 285, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-left.x-tab-bar-plain > .x-tab-bar-strip-green-tab-active {
-  border-width: 1px 0 1px 1px; }
+    border-width: 1px 0 1px 1px;
+}
 
 /* line 296, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-right > .x-tab-bar-strip-green-tab-active {
-  border-width: 0 1px 0 0;
-  width: 3px; }
+    border-width: 0 1px 0 0;
+    width: 3px;
+}
+
 /* line 305, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-right.x-tab-bar-plain > .x-tab-bar-strip-green-tab-active {
-  border-width: 1px 1px 1px 0; }
+    border-width: 1px 1px 1px 0;
+}
 
 /* line 320, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-horizontal > .x-tab-bar-body-green-tab-active {
-  min-height: 27px; }
-  /* line 323, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
-  .x-ie9m .x-tab-bar-horizontal > .x-tab-bar-body-green-tab-active {
-    min-height: 22px; }
+    min-height: 27px;
+}
+
+/* line 323, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-ie9m .x-tab-bar-horizontal > .x-tab-bar-body-green-tab-active {
+    min-height: 22px;
+}
 
 /* line 330, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-vertical > .x-tab-bar-body-green-tab-active {
-  min-width: 27px; }
-  /* line 333, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
-  .x-ie9m .x-tab-bar-vertical > .x-tab-bar-body-green-tab-active {
-    min-width: 22px; }
+    min-width: 27px;
+}
+
+/* line 333, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-ie9m .x-tab-bar-vertical > .x-tab-bar-body-green-tab-active {
+    min-width: 22px;
+}
 
 /* line 145, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
 .x-tab-bar-green-tab-active-scroller .x-box-scroller-body-horizontal {
-  margin-left: 22px; }
+    margin-left: 22px;
+}
 
 /* line 151, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
 .x-tab-bar-green-tab-active-vertical-scroller .x-box-scroller-body-vertical {
-  margin-top: 22px; }
+    margin-top: 22px;
+}
 
 /* line 156, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
 .x-box-scroller-tab-bar-green-tab-active {
-  cursor: pointer;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
-  opacity: 0.5; }
-  /* line 165, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
-  .x-box-scroller-tab-bar-green-tab-active.x-box-scroller-hover {
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
-    opacity: 0.6; }
-  /* line 171, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
-  .x-box-scroller-tab-bar-green-tab-active.x-box-scroller-pressed {
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
-    opacity: 0.7; }
-  /* line 177, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
-  .x-box-scroller-tab-bar-green-tab-active.x-box-scroller-disabled {
+    cursor: pointer;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
     opacity: 0.5;
-    cursor: default; }
-  /* line 188, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
-  .x-box-scroller-tab-bar-green-tab-active.x-box-scroller-left, .x-box-scroller-tab-bar-green-tab-active.x-box-scroller-right {
+}
+
+/* line 165, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-green-tab-active.x-box-scroller-hover {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+    opacity: 0.6;
+}
+
+/* line 171, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-green-tab-active.x-box-scroller-pressed {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+    opacity: 0.7;
+}
+
+/* line 177, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-green-tab-active.x-box-scroller-disabled {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* line 188, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-green-tab-active.x-box-scroller-left, .x-box-scroller-tab-bar-green-tab-active.x-box-scroller-right {
     width: 24px;
     height: 24px;
     top: 50%;
-    margin-top: -12px; }
-  /* line 214, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
-  .x-box-scroller-tab-bar-green-tab-active.x-box-scroller-left {
+    margin-top: -12px;
+}
+
+/* line 214, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-green-tab-active.x-box-scroller-left {
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 0;
-    background-image: url(images/tab-bar/green-tab-active-scroll-left.png); }
-  /* line 237, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
-  .x-box-scroller-tab-bar-green-tab-active.x-box-scroller-right {
+    background-image: url(images/tab-bar/green-tab-active-scroll-left.png);
+}
+
+/* line 237, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-green-tab-active.x-box-scroller-right {
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 0;
-    background-image: url(images/tab-bar/green-tab-active-scroll-right.png); }
-  /* line 263, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
-  .x-box-scroller-tab-bar-green-tab-active.x-box-scroller-top, .x-box-scroller-tab-bar-green-tab-active.x-box-scroller-bottom {
+    background-image: url(images/tab-bar/green-tab-active-scroll-right.png);
+}
+
+/* line 263, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-green-tab-active.x-box-scroller-top, .x-box-scroller-tab-bar-green-tab-active.x-box-scroller-bottom {
     height: 24px;
     width: 24px;
     left: 50%;
-    margin-left: -12px; }
-  /* line 289, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
-  .x-box-scroller-tab-bar-green-tab-active.x-box-scroller-top {
+    margin-left: -12px;
+}
+
+/* line 289, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-green-tab-active.x-box-scroller-top {
     margin-top: 0;
     margin-right: 0;
     margin-bottom: 0;
-    background-image: url(images/tab-bar/green-tab-active-scroll-top.png); }
-  /* line 312, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
-  .x-box-scroller-tab-bar-green-tab-active.x-box-scroller-bottom {
+    background-image: url(images/tab-bar/green-tab-active-scroll-top.png);
+}
+
+/* line 312, ../../../../ext/packages/ext-theme-neutral/sass/src/layout/container/Box.scss */
+.x-box-scroller-tab-bar-green-tab-active.x-box-scroller-bottom {
     margin-top: 0;
     margin-right: 0;
     margin-bottom: 0;
-    background-image: url(images/tab-bar/green-tab-active-scroll-bottom.png); }
+    background-image: url(images/tab-bar/green-tab-active-scroll-bottom.png);
+}
 
 /* line 448, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-green-tab-active-top .x-box-scroller-tab-bar-green-tab-active {
-  margin-top: -13px; }
+    margin-top: -13px;
+}
+
 /* line 452, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-green-tab-active-right .x-box-scroller-tab-bar-green-tab-active {
-  margin-left: -11px; }
+    margin-left: -11px;
+}
+
 /* line 456, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-green-tab-active-bottom .x-box-scroller-tab-bar-green-tab-active {
-  margin-top: -11px; }
+    margin-top: -11px;
+}
+
 /* line 460, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-tab-bar-green-tab-active-left .x-box-scroller-tab-bar-green-tab-active {
-  margin-left: -13px; }
+    margin-left: -13px;
+}
 
 /* line 469, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
 .x-box-scroller-tab-bar-green-tab-active {
-  background-color: #f8f9f9; }
-  /* line 475, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
-  .x-box-scroller-tab-bar-green-tab-active .x-ie8 .x-box-scroller-plain {
-    background-color: #fff; }
+    background-color: #f8f9f9;
+}
+
+/* line 475, ../../../../ext/packages/ext-theme-neutral/sass/src/tab/Bar.scss */
+.x-box-scroller-tab-bar-green-tab-active .x-ie8 .x-box-scroller-plain {
+    background-color: #fff;
+}
 
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-bar-green-tab-active-top:before {
-  display: none;
-  content: "x-slicer:stretch:bottom" !important; }
+    display: none;
+    content: "x-slicer:stretch:bottom" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-bar-green-tab-active-bottom:before {
-  display: none;
-  content: "x-slicer:stretch:top" !important; }
+    display: none;
+    content: "x-slicer:stretch:top" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-bar-green-tab-active-left:before {
-  display: none;
-  content: "x-slicer:stretch:right" !important; }
+    display: none;
+    content: "x-slicer:stretch:right" !important;
+}
 
 /*</if slicer>*/
 /* */
 /*<if slicer>*/
 /* line 83, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
 .x-cmd-slicer.x-tab-bar-green-tab-active-right:before {
-  display: none;
-  content: "x-slicer:stretch:left" !important; }
+    display: none;
+    content: "x-slicer:stretch:left" !important;
+}
 
 /*</if slicer>*/
 /* */
 /* line 114, ../../../codaxy-theme-core/sass/etc/ui/tab.scss */
 .x-window-active {
-  /********* TAB CLOSE *********/ }
-  /* line 61, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-  .x-window-active .x-tab-bar-green-tab-active {
+    /********* TAB CLOSE *********/
+}
+
+/* line 61, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active {
     background-color: transparent;
-    border-color: #aeb6be; }
-    /* line 76, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-    .x-window-active .x-tab-bar-green-tab-active .x-tab-bar-strip {
-      border-color: #818d37;
-      background-color: #818d37; }
-    /* line 84, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-    .x-window-active .x-tab-bar-green-tab-active.x-tab-bar-bottom .x-tab-bar-strip {
-      border-color: #818d37 #818d37 #818d37 #818d37; }
-    /* line 94, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-    .x-window-active .x-tab-bar-green-tab-active.x-tab-bar-left {
-      border-width: 1px 0 1px 1px; }
-      /* line 99, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-      .x-window-active .x-tab-bar-green-tab-active.x-tab-bar-left .x-tab-bar-strip {
-        border-width: 0 0 0 1px;
-        border-color: #818d37 #818d37 #818d37 #818d37; }
-    /* line 109, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-    .x-window-active .x-tab-bar-green-tab-active.x-tab-bar-right .x-tab-bar-strip {
-      border-color: #818d37 #818d37 #818d37 #818d37; }
-    /* line 114, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-    .x-window-active .x-tab-bar-green-tab-active.x-tab-bar-plain {
-      border-width: 0;
-      -webkit-box-shadow: none;
-      -moz-box-shadow: none;
-      box-shadow: none; }
-    /* line 150, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-    .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active:last-child {
-      /* O-315
-       * sets tab:last-child border width 
-       */ }
-    /* line 189, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-    .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-active {
-      /* O-315
-       * left border color of the tab that comes after active tab is set to be the same as active tab border color
-       */
-      background-color: #818d37;
-      /* O-315
-       * used if the active tab background color and active tab border color have "alpha" value
-       */
-      border-color: #818d37;
-      color: white; }
-      /* line 233, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-      .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-active .x-tab-inner {
-        color: white; }
-        /* line 236, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-        .x-tab-over .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-active .x-tab-inner {
-          color: white; }
-      /* line 239, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-      .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-active.x-tab-over {
-        background-color: #818d37;
-        border-color: #818d37; }
-        /* line 245, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-        .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-active.x-tab-over .x-tab-inner {
-          color: white; }
-    /* line 254, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-    .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-over {
-      background-color: #b2c24e;
-      border-color: #b2c24e; }
-      /* line 263, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-      .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-over .x-tab-inner {
-        color: white; }
-    /* line 268, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-    .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-bottom {
-      border-width: 1px 1px 1px 1px; }
-      /* line 276, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-      .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-bottom.x-tab-active {
-        border-color: #818d37 #818d37 #818d37 #818d37; }
-      /* line 285, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-      .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-bottom:last-child {
-        /* O-315
-         * sets tab:last-child border width 
-         */ }
-    /* line 295, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-    .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-rotate-left {
-      border-width: 1px 1px 1px 1px; }
-      /* line 297, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-      .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-rotate-left:first-child {
-        /* O-315
-         * tab border radius rotation
-         */ }
-      /* line 308, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-      .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-rotate-left.x-tab-active {
-        /* O-315
-         * tab active border color inheritance rotation
-         */ }
-    /* line 335, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-    .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-left {
-      border-width: 1px 1px 1px 1px; }
-      /* line 337, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-      .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-left:first-child {
-        /* O-315
-         * tab border radius rotation
-         */ }
-      /* line 346, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-      .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-left.x-tab-active {
-        border-color: #818d37 #818d37 #818d37 #818d37;
-        /* O-315
-         * tab active border color inheritance 
-         */ }
-      /* line 363, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-      .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-left:last-child {
-        /* O-315
-         * tab border radius rotation 
-         */ }
-    /* line 379, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-    .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-right:first-child {
-      /* O-315
-       * tab border radius rotation
-       */ }
-    /* line 388, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-    .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-right.x-tab-active {
-      border-color: #818d37 #818d37 #818d37 #818d37;
-      /* O-315
-       * tab active border color inheritance 
-       */ }
-  /* line 420, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-  .x-window-active .x-tab-green-tab-active .x-tab-close-btn {
-    background-position: -12px 12px; }
-  /* line 425, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
-  .x-window-active .x-tab-green-tab-active.x-tab-over .x-tab-close-btn {
-    background-position: 0 -12px; }
-  /* line 153, ../../../codaxy-theme-core/sass/etc/ui/tab.scss */
-  .x-window-active .x-panel-body-green-tab-active,
-  .x-window-active .cx-ui-defined .x-panel-body-green-tab-active,
-  .x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active,
-  .x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active {
+    border-color: #aeb6be;
+}
+
+/* line 76, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-bar-strip {
+    border-color: #818d37;
+    background-color: #818d37;
+}
+
+/* line 84, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active.x-tab-bar-bottom .x-tab-bar-strip {
+    border-color: #818d37 #818d37 #818d37 #818d37;
+}
+
+/* line 94, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active.x-tab-bar-left {
+    border-width: 1px 0 1px 1px;
+}
+
+/* line 99, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active.x-tab-bar-left .x-tab-bar-strip {
+    border-width: 0 0 0 1px;
+    border-color: #818d37 #818d37 #818d37 #818d37;
+}
+
+/* line 109, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active.x-tab-bar-right .x-tab-bar-strip {
+    border-color: #818d37 #818d37 #818d37 #818d37;
+}
+
+/* line 114, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active.x-tab-bar-plain {
+    border-width: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+/* line 150, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active:last-child {
+    /* O-315
+     * sets tab:last-child border width
+     */
+}
+
+/* line 189, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-active {
+    /* O-315
+     * left border color of the tab that comes after active tab is set to be the same as active tab border color
+     */
+    background-color: #818d37;
+    /* O-315
+     * used if the active tab background color and active tab border color have "alpha" value
+     */
+    border-color: #818d37;
+    color: white;
+}
+
+/* line 233, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-active .x-tab-inner {
+    color: white;
+}
+
+/* line 236, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-tab-over .x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-active .x-tab-inner {
+    color: white;
+}
+
+/* line 239, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-active.x-tab-over {
+    background-color: #818d37;
+    border-color: #818d37;
+}
+
+/* line 245, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-active.x-tab-over .x-tab-inner {
+    color: white;
+}
+
+/* line 254, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-over {
+    background-color: #b2c24e;
+    border-color: #b2c24e;
+}
+
+/* line 263, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-over .x-tab-inner {
+    color: white;
+}
+
+/* line 268, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-bottom {
+    border-width: 1px 1px 1px 1px;
+}
+
+/* line 276, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-bottom.x-tab-active {
+    border-color: #818d37 #818d37 #818d37 #818d37;
+}
+
+/* line 285, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-bottom:last-child {
+    /* O-315
+     * sets tab:last-child border width
+     */
+}
+
+/* line 295, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-rotate-left {
+    border-width: 1px 1px 1px 1px;
+}
+
+/* line 297, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-rotate-left:first-child {
+    /* O-315
+     * tab border radius rotation
+     */
+}
+
+/* line 308, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-rotate-left.x-tab-active {
+    /* O-315
+     * tab active border color inheritance rotation
+     */
+}
+
+/* line 335, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-left {
+    border-width: 1px 1px 1px 1px;
+}
+
+/* line 337, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-left:first-child {
+    /* O-315
+     * tab border radius rotation
+     */
+}
+
+/* line 346, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-left.x-tab-active {
+    border-color: #818d37 #818d37 #818d37 #818d37;
+    /* O-315
+     * tab active border color inheritance
+     */
+}
+
+/* line 363, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-left:last-child {
+    /* O-315
+     * tab border radius rotation
+     */
+}
+
+/* line 379, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-right:first-child {
+    /* O-315
+     * tab border radius rotation
+     */
+}
+
+/* line 388, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-bar-green-tab-active .x-tab-green-tab-active.x-tab-right.x-tab-active {
+    border-color: #818d37 #818d37 #818d37 #818d37;
+    /* O-315
+     * tab active border color inheritance
+     */
+}
+
+/* line 420, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-green-tab-active .x-tab-close-btn {
+    background-position: -12px 12px;
+}
+
+/* line 425, ../../../codaxy-theme-core/sass/src/tab/Tab.scss */
+.x-window-active .x-tab-green-tab-active.x-tab-over .x-tab-close-btn {
+    background-position: 0 -12px;
+}
+
+/* line 153, ../../../codaxy-theme-core/sass/etc/ui/tab.scss */
+.x-window-active .x-panel-body-green-tab-active,
+.x-window-active .cx-ui-defined .x-panel-body-green-tab-active,
+.x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active,
+.x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active {
     /* O-315
      * added _codaxy-table-ui--text-color so grid text color can be adjusted 
      */
@@ -1672,42 +2109,55 @@
     /* M-131
      * Focus indicator same size as grid cell
      * Adding negative margin to grid-cell-inner to be same size as cell
-     */ }
-    /* line 118, ../../../codaxy-theme-core/sass/src/view/Table.scss */
-    .x-window-active .x-panel-body-green-tab-active .x-grid-item-selected,
-    .x-window-active .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-selected,
-    .x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-selected,
-    .x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-selected {
-      background-color: #e4e9c0 ; }
-    /* line 49, ../../../codaxy-theme-core/sass/src/view/Table.scss */
-    .x-window-active .x-panel-body-green-tab-active .x-grid-item-focused,
-    .x-window-active .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-focused,
-    .x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-focused,
-    .x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-focused {
-      background-color: rgba(255, 255, 255, 0) ; }
-      /* line 55, ../../../codaxy-theme-core/sass/src/view/Table.scss */
-      .x-window-active .x-panel-body-green-tab-active .x-grid-item-focused .x-grid-cell-inner:before,
-      .x-window-active .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-focused .x-grid-cell-inner:before,
-      .x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-focused .x-grid-cell-inner:before,
-      .x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-focused .x-grid-cell-inner:before {
-        border-color: #95a439 ; }
-    /* line 211, ../../../codaxy-theme-core/sass/src/view/Table.scss */
-    .x-window-active .x-panel-body-green-tab-active .x-grid-with-row-lines .x-grid-item.x-grid-item-selected,
-    .x-window-active .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-row-lines .x-grid-item.x-grid-item-selected,
-    .x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-row-lines .x-grid-item.x-grid-item-selected,
-    .x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-row-lines .x-grid-item.x-grid-item-selected {
-      border-color: #cbd687 ; }
-    /* line 226, ../../../codaxy-theme-core/sass/src/view/Table.scss */
-    .x-window-active .x-panel-body-green-tab-active .x-grid-with-row-lines .x-grid-item-selected + .x-grid-item,
-    .x-window-active .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-row-lines .x-grid-item-selected + .x-grid-item,
-    .x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-row-lines .x-grid-item-selected + .x-grid-item,
-    .x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-row-lines .x-grid-item-selected + .x-grid-item {
-      border-top-color: #cbd687 ; }
-    /* line 245, ../../../codaxy-theme-core/sass/src/view/Table.scss */
-    .x-window-active .x-panel-body-green-tab-active .x-grid-with-col-lines .x-grid-item-selected .x-grid-cell,
-    .x-window-active .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-col-lines .x-grid-item-selected .x-grid-cell,
-    .x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-col-lines .x-grid-item-selected .x-grid-cell,
-    .x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-col-lines .x-grid-item-selected .x-grid-cell {
-      border-color: #cbd687 ; }
+     */
+}
+
+/* line 118, ../../../codaxy-theme-core/sass/src/view/Table.scss */
+.x-window-active .x-panel-body-green-tab-active .x-grid-item-selected,
+.x-window-active .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-selected,
+.x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-selected,
+.x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-selected {
+    background-color: #e4e9c0;
+}
+
+/* line 49, ../../../codaxy-theme-core/sass/src/view/Table.scss */
+.x-window-active .x-panel-body-green-tab-active .x-grid-item-focused,
+.x-window-active .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-focused,
+.x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-focused,
+.x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-focused {
+    background-color: rgba(255, 255, 255, 0);
+}
+
+/* line 55, ../../../codaxy-theme-core/sass/src/view/Table.scss */
+.x-window-active .x-panel-body-green-tab-active .x-grid-item-focused .x-grid-cell-inner:before,
+.x-window-active .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-focused .x-grid-cell-inner:before,
+.x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-focused .x-grid-cell-inner:before,
+.x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-item-focused .x-grid-cell-inner:before {
+    border-color: #95a439;
+}
+
+/* line 211, ../../../codaxy-theme-core/sass/src/view/Table.scss */
+.x-window-active .x-panel-body-green-tab-active .x-grid-with-row-lines .x-grid-item.x-grid-item-selected,
+.x-window-active .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-row-lines .x-grid-item.x-grid-item-selected,
+.x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-row-lines .x-grid-item.x-grid-item-selected,
+.x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-row-lines .x-grid-item.x-grid-item-selected {
+    border-color: #cbd687;
+}
+
+/* line 226, ../../../codaxy-theme-core/sass/src/view/Table.scss */
+.x-window-active .x-panel-body-green-tab-active .x-grid-with-row-lines .x-grid-item-selected + .x-grid-item,
+.x-window-active .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-row-lines .x-grid-item-selected + .x-grid-item,
+.x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-row-lines .x-grid-item-selected + .x-grid-item,
+.x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-row-lines .x-grid-item-selected + .x-grid-item {
+    border-top-color: #cbd687;
+}
+
+/* line 245, ../../../codaxy-theme-core/sass/src/view/Table.scss */
+.x-window-active .x-panel-body-green-tab-active .x-grid-with-col-lines .x-grid-item-selected .x-grid-cell,
+.x-window-active .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-col-lines .x-grid-item-selected .x-grid-cell,
+.x-window-active .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-col-lines .x-grid-item-selected .x-grid-cell,
+.x-window-active .cx-ui-defined .cx-ui-defined .cx-ui-defined .x-panel-body-green-tab-active .x-grid-with-col-lines .x-grid-item-selected .x-grid-cell {
+    border-color: #cbd687;
+}
 
 /*@include codaxy-black-ui();*/

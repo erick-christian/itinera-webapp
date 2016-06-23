@@ -40,7 +40,7 @@ Ext.define('Ext.ux.event.RecorderManager', {
         });
         me.recorder.eventsToRecord = Ext.apply({}, me.recorder.eventsToRecord);
 
-        function speed (text, value) {
+        function speed(text, value) {
             return {
                 text: text,
                 speed: value,
@@ -155,9 +155,9 @@ Ext.define('Ext.ux.event.RecorderManager', {
             }
         });
 
-        function less (lhs, rhs) {
+        function less(lhs, rhs) {
             return (lhs.text < rhs.text) ? -1
-                        : ((rhs.text < lhs.text) ? 1 : 0);
+                : ((rhs.text < lhs.text) ? 1 : 0);
         }
 
         ret.sort(less);

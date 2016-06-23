@@ -131,7 +131,7 @@
  *
  * @singleton
  */
-Ext.Loader = (new function() {  // jshint ignore:line
+Ext.Loader = (new function () {  // jshint ignore:line
 // @define Ext.Loader
 // @require Ext.Base
 // @require Ext.Class
@@ -211,7 +211,7 @@ Ext.Loader = (new function() {  // jshint ignore:line
              */
             scriptCharset: undefined
         },
-        // These configs are delegated to Ext.Script and may need different names:
+    // These configs are delegated to Ext.Script and may need different names:
         delegatedConfigs = {
             disableCaching: true,
             disableCachingParam: true,
@@ -285,12 +285,12 @@ Ext.Loader = (new function() {  // jshint ignore:line
          */
         syncModeEnabled: false,
 
-        
+
         /**
          * @private
          */
         missingQueue: _missingQueue,
-        
+
         init: function () {
             // initalize the default path of the framework
             var scripts = document.getElementsByTagName('script'),
@@ -309,8 +309,8 @@ Ext.Loader = (new function() {  // jshint ignore:line
             }
             //</debug>
 
-            
-            if(!Manager.getPath("Ext")) {
+
+            if (!Manager.getPath("Ext")) {
                 Manager.setPath('Ext', path + 'src');
             }
 
@@ -319,24 +319,24 @@ Ext.Loader = (new function() {  // jshint ignore:line
                 Ext._classPathMetadata = null;
                 Loader.addClassPathMappings(meta);
             }
-            
-            if(manifest) {
+
+            if (manifest) {
                 loadOrder = manifest.loadOrder;
                 // if the manifest paths were calculated as relative to the 
                 // bootstrap file, then we need to prepend Boot.baseUrl to the
                 // paths before processing
                 baseUrl = Ext.Boot.baseUrl;
-                if(loadOrder && manifest.bootRelative) {
-                    for(loadlen = loadOrder.length, l = 0; l < loadlen; l++) {
+                if (loadOrder && manifest.bootRelative) {
+                    for (loadlen = loadOrder.length, l = 0; l < loadlen; l++) {
                         loadItem = loadOrder[l];
                         loadItem.path = baseUrl + loadItem.path;
-                    }                    
+                    }
                 }
             }
-            
-            if(microloader) {
+
+            if (microloader) {
                 Ready.block();
-                microloader.onMicroloaderReady(function(){
+                microloader.onMicroloaderReady(function () {
                     Ready.unblock();
                 });
             }
@@ -388,7 +388,7 @@ Ext.Loader = (new function() {  // jshint ignore:line
          * @param {String} name The config property name
          * @return {Object}
          */
-        getConfig: function(name) {
+        getConfig: function (name) {
             return name ? _config[name] : _config;
         },
 
@@ -415,7 +415,7 @@ Ext.Loader = (new function() {  // jshint ignore:line
          * @param {Object } paths a set of className: path mappings
          * @return {Ext.Loader} this
          */
-        addClassPathMappings: function(paths) {
+        addClassPathMappings: function (paths) {
             // Paths are an Ext.Inventory thing and ClassManager is an instance of that:
             Manager.setPath(paths);
             return Loader;
@@ -427,8 +427,8 @@ Ext.Loader = (new function() {  // jshint ignore:line
          * @param pathConfig
          */
 
-        addBaseUrlClassPathMappings: function(pathConfig) {
-            for(var name in pathConfig) {
+        addBaseUrlClassPathMappings: function (pathConfig) {
+            for (var name in pathConfig) {
                 pathConfig[name] = Boot.baseUrl + pathConfig[name];
             }
             Ext.Loader.addClassPathMappings(pathConfig);
@@ -462,7 +462,7 @@ Ext.Loader = (new function() {  // jshint ignore:line
          * @param {String} className
          * @return {String} path
          */
-        getPath: function(className) {
+        getPath: function (className) {
             // Paths are an Ext.Inventory thing and ClassManager is an instance of that:
             return Manager.getPath(className);
         },
@@ -491,22 +491,22 @@ Ext.Loader = (new function() {  // jshint ignore:line
 
         exclude: function (excludes) {
             var selector = Manager.select({
-                    require: function (classNames, fn, scope) {
-                        return Loader.load(classNames, fn, scope);
-                    },
+                require: function (classNames, fn, scope) {
+                    return Loader.load(classNames, fn, scope);
+                },
 
-                    syncRequire: function (classNames, fn, scope) {
-                        var wasEnabled = Loader.syncModeEnabled;
+                syncRequire: function (classNames, fn, scope) {
+                    var wasEnabled = Loader.syncModeEnabled;
 
-                        Loader.syncModeEnabled = true;
+                    Loader.syncModeEnabled = true;
 
-                        var ret = Loader.load(classNames, fn, scope);
+                    var ret = Loader.load(classNames, fn, scope);
 
-                        Loader.syncModeEnabled = wasEnabled;
+                    Loader.syncModeEnabled = wasEnabled;
 
-                        return ret;
-                    }
-                });
+                    return ret;
+                }
+            });
 
             selector.exclude(excludes);
             return selector;
@@ -526,13 +526,13 @@ Ext.Loader = (new function() {  // jshint ignore:line
                 numClasses = classNames.length,
                 className, i, numMissing, urls = [],
                 state = Manager.classState;
-            
+
             for (i = 0; i < numClasses; ++i) {
                 className = Manager.resolveName(classNames[i]);
                 if (!Manager.isCreated(className)) {
                     missingClassNames.push(className);
                     _missingQueue[className] = Loader.getPath(className);
-                    if(!state[className]) {
+                    if (!state[className]) {
                         urls.push(_missingQueue[className]);
                     }
                 }
@@ -550,7 +550,7 @@ Ext.Loader = (new function() {  // jshint ignore:line
                 Manager.onCreated(function () {
                     //<debug>
                     Ext.Array.remove(Loader.classesLoading, missingClassNames);
-                    Ext.each(missingClassNames, function(name){
+                    Ext.each(missingClassNames, function (name) {
                         Ext.Array.remove(Loader.classesLoading, name);
                     });
                     //</debug>
@@ -562,11 +562,11 @@ Ext.Loader = (new function() {  // jshint ignore:line
 
                 if (!_config.enabled) {
                     Ext.Error.raise("Ext.Loader is not enabled, so dependencies cannot be resolved dynamically. " +
-                             "Missing required class" + ((missingClassNames.length > 1) ? "es" : "") + 
-                             ": " + missingClassNames.join(', '));
+                        "Missing required class" + ((missingClassNames.length > 1) ? "es" : "") +
+                        ": " + missingClassNames.join(', '));
                 }
 
-                if(urls.length) {
+                if (urls.length) {
                     Loader.loadScripts({
                         url: urls,
                         // scope: this options object so we can pass these along:
@@ -587,7 +587,7 @@ Ext.Loader = (new function() {  // jshint ignore:line
                 // need to block ready
                 Loader.checkReady();
             }
-            
+
             if (Loader.syncModeEnabled) {
                 // Class may have been just loaded or was already loaded
                 if (numClasses === 1) {
@@ -610,7 +610,7 @@ Ext.Loader = (new function() {  // jshint ignore:line
                 return callback.apply(this, classes);
             };
         },
-        
+
         onLoadFailure: function () {
             var options = this,
                 onError = options.onError;
@@ -648,8 +648,7 @@ Ext.Loader = (new function() {  // jshint ignore:line
 // TODO: this timing of this needs to be deferred until all classes have had a chance to be created
         //<debug>
         reportMissingClasses: function () {
-            if (!Loader.syncModeEnabled && !Loader.scriptsLoading && Loader.isLoading &&
-                    !Loader.hasFileLoadError) {
+            if (!Loader.syncModeEnabled && !Loader.scriptsLoading && Loader.isLoading && !Loader.hasFileLoadError) {
                 var missingClasses = [],
                     missingPaths = [];
 
@@ -679,7 +678,7 @@ Ext.Loader = (new function() {  // jshint ignore:line
          * @param {Number} [options.priority=0] Relative priority of this callback. Negative
          * numbers are reserved.
          */
-        onReady: function(fn, scope, withDomReady, options) {
+        onReady: function (fn, scope, withDomReady, options) {
             if (withDomReady) {
                 Ready.on(fn, scope, options);
             } else {
@@ -716,7 +715,7 @@ Ext.Loader = (new function() {  // jshint ignore:line
         /**
          * @private
          */
-        triggerReady: function() {
+        triggerReady: function () {
             var listener,
                 refClasses = usedClasses;
 
@@ -762,7 +761,7 @@ Ext.Loader = (new function() {  // jshint ignore:line
          * @private
          * @param {String} className
          */
-        historyPush: function(className) {
+        historyPush: function (className) {
             if (className && !isInHistory[className] && !Manager.overrideMap[className]) {
                 isInHistory[className] = true;
                 history.push(className);
@@ -771,19 +770,19 @@ Ext.Loader = (new function() {  // jshint ignore:line
         },
 
         /**
-         * This is an internal method that delegate content loading to the 
+         * This is an internal method that delegate content loading to the
          * bootstrap layer.
          * @private
          * @param params
          */
-        loadScripts: function(params) {
+        loadScripts: function (params) {
             var manifest = Ext.manifest,
                 loadOrder = manifest && manifest.loadOrder,
                 loadOrderMap = manifest && manifest.loadOrderMap,
                 options;
-            
+
             ++Loader.scriptsLoading;
-            
+
             // if the load order map hasn't been created, create it now 
             // and cache on the manifest
             if (loadOrder && !loadOrderMap) {
@@ -815,7 +814,7 @@ Ext.Loader = (new function() {  // jshint ignore:line
          * @private
          * @param {String[]} urls
          */
-        loadScriptsSync: function(urls) {
+        loadScriptsSync: function (urls) {
             var syncwas = Loader.syncModeEnabled;
             Loader.syncModeEnabled = true;
             Loader.loadScripts({url: urls});
@@ -827,13 +826,13 @@ Ext.Loader = (new function() {  // jshint ignore:line
          * @private
          * @param {String[]} urls
          */
-        loadScriptsSyncBasePrefix: function(urls) {
+        loadScriptsSyncBasePrefix: function (urls) {
             var syncwas = Loader.syncModeEnabled;
             Loader.syncModeEnabled = true;
             Loader.loadScripts({url: urls, prependBaseUrl: true});
             Loader.syncModeEnabled = syncwas;
         },
-        
+
         /**
          * Loads the specified script URL and calls the supplied callbacks. If this method
          * is called before {@link Ext#isReady}, the script's load will delay the transition
@@ -846,7 +845,7 @@ Ext.Loader = (new function() {  // jshint ignore:line
          * @param {Function} [options.onError] The callback to call on failure to load.
          * @param {Object} [options.scope] The scope (`this`) for the supplied callbacks.
          */
-        loadScript: function(options) {
+        loadScript: function (options) {
             var isString = typeof options === 'string',
                 isArray = options instanceof Array,
                 isObject = !isArray && !isString,
@@ -868,13 +867,13 @@ Ext.Loader = (new function() {  // jshint ignore:line
         /**
          * @private
          */
-        flushMissingQueue: function() {
+        flushMissingQueue: function () {
             var name, val, missingwas = 0, missing = 0;
-            
-            for(name in _missingQueue) {
+
+            for (name in _missingQueue) {
                 missingwas++;
                 val = _missingQueue[name];
-                if(Manager.isCreated(name)) {
+                if (Manager.isCreated(name)) {
                     delete _missingQueue[name];
                 } else if (Manager.existCache[name] === 2) {
                     delete _missingQueue[name];
@@ -888,14 +887,14 @@ Ext.Loader = (new function() {  // jshint ignore:line
         /**
          * @private
          */
-        checkReady: function() {
+        checkReady: function () {
             var wasLoading = Loader.isLoading,
                 isLoading;
 
             Loader.flushMissingQueue();
             isLoading = Loader.missingCount + Loader.scriptsLoading;
-            
-            if(isLoading && !wasLoading) {
+
+            if (isLoading && !wasLoading) {
                 Ready.block();
                 Loader.isLoading = !!isLoading;
             } else if (!isLoading && wasLoading) {
@@ -959,11 +958,11 @@ Ext.Loader = (new function() {  // jshint ignore:line
      *         }
      *     });
      */
-    Class.registerPreprocessor('loader', function(cls, data, hooks, continueFn) {
+    Class.registerPreprocessor('loader', function (cls, data, hooks, continueFn) {
         //<debug>
         Ext.classSystemMonitor && Ext.classSystemMonitor(cls, 'Ext.Loader#loaderPreprocessor', arguments); // jshint ignore:line
         //</debug>
-        
+
         var me = this,
             dependencies = [],
             dependency,
@@ -972,26 +971,26 @@ Ext.Loader = (new function() {  // jshint ignore:line
             requiredMap;
 
         /*
-        Loop through the dependencyProperties, look for string class names and push
-        them into a stack, regardless of whether the property's value is a string, array or object. For example:
-        {
-              extend: 'Ext.MyClass',
-              requires: ['Ext.some.OtherClass'],
-              mixins: {
-                  thing: 'Foo.bar.Thing';
-              }
-        }
-        which will later be transformed into:
-        {
-              extend: Ext.MyClass,
-              requires: [Ext.some.OtherClass],
-              mixins: {
-                  thing: Foo.bar.Thing;
-              }
-        }
-        */
+         Loop through the dependencyProperties, look for string class names and push
+         them into a stack, regardless of whether the property's value is a string, array or object. For example:
+         {
+         extend: 'Ext.MyClass',
+         requires: ['Ext.some.OtherClass'],
+         mixins: {
+         thing: 'Foo.bar.Thing';
+         }
+         }
+         which will later be transformed into:
+         {
+         extend: Ext.MyClass,
+         requires: [Ext.some.OtherClass],
+         mixins: {
+         thing: Foo.bar.Thing;
+         }
+         }
+         */
 
-        for (i = 0,ln = dependencyProperties.length; i < ln; i++) {
+        for (i = 0, ln = dependencyProperties.length; i < ln; i++) {
             propertyName = dependencyProperties[i];
 
             if (data.hasOwnProperty(propertyName)) {
@@ -1035,35 +1034,35 @@ Ext.Loader = (new function() {  // jshint ignore:line
             detectDeadlock;
 
         /*
-        Automatically detect deadlocks before-hand,
-        will throw an error with detailed path for ease of debugging. Examples of deadlock cases:
+         Automatically detect deadlocks before-hand,
+         will throw an error with detailed path for ease of debugging. Examples of deadlock cases:
 
-        - A extends B, then B extends A
-        - A requires B, B requires C, then C requires A
+         - A extends B, then B extends A
+         - A requires B, B requires C, then C requires A
 
-        The detectDeadlock function will recursively transverse till the leaf, hence it can detect deadlocks
-        no matter how deep the path is.
-        */
+         The detectDeadlock function will recursively transverse till the leaf, hence it can detect deadlocks
+         no matter how deep the path is.
+         */
 
         if (className) {
             requiredMap = Loader.requiredByMap || (Loader.requiredByMap = {});
 
-            for (i = 0,ln = dependencies.length; i < ln; i++) {
+            for (i = 0, ln = dependencies.length; i < ln; i++) {
                 dependency = dependencies[i];
                 (requiredMap[dependency] || (requiredMap[dependency] = [])).push(className);
             }
 
-            detectDeadlock = function(cls) {
+            detectDeadlock = function (cls) {
                 deadlockPath.push(cls);
 
                 if (_requiresMap[cls]) {
                     if (Ext.Array.contains(_requiresMap[cls], className)) {
                         Ext.Error.raise("Circular requirement detected! '" + className +
-                                "' and '" + deadlockPath[1] + "' mutually require each other. Path: " +
-                                deadlockPath.join(' -> ') + " -> " + deadlockPath[0]);
+                            "' and '" + deadlockPath[1] + "' mutually require each other. Path: " +
+                            deadlockPath.join(' -> ') + " -> " + deadlockPath[0]);
                     }
 
-                    for (i = 0,ln = _requiresMap[cls].length; i < ln; i++) {
+                    for (i = 0, ln = _requiresMap[cls].length; i < ln; i++) {
                         detectDeadlock(_requiresMap[cls][i]);
                     }
                 }
@@ -1074,8 +1073,8 @@ Ext.Loader = (new function() {  // jshint ignore:line
 
         //</debug>
 
-        (className ? Loader.exclude(className) : Loader).require(dependencies, function() {
-            for (i = 0,ln = dependencyProperties.length; i < ln; i++) {
+        (className ? Loader.exclude(className) : Loader).require(dependencies, function () {
+            for (i = 0, ln = dependencyProperties.length; i < ln; i++) {
                 propertyName = dependencyProperties[i];
 
                 if (data.hasOwnProperty(propertyName)) {
@@ -1131,11 +1130,11 @@ Ext.Loader = (new function() {  // jshint ignore:line
      *         }
      *     });
      */
-    Manager.registerPostprocessor('uses', function(name, cls, data) {
+    Manager.registerPostprocessor('uses', function (name, cls, data) {
         //<debug>
         Ext.classSystemMonitor && Ext.classSystemMonitor(cls, 'Ext.Loader#usesPostprocessor', arguments); // jshint ignore:line
         //</debug>
-        
+
         var manifest = Ext.manifest,
             loadOrder = manifest && manifest.loadOrder,
             classes = manifest && manifest.classes,
@@ -1170,7 +1169,7 @@ Ext.Loader = (new function() {  // jshint ignore:line
 //</feature>
 
     Loader.init();
-    
+
 }());
 
 //-----------------------------------------------------------------------------
@@ -1180,6 +1179,6 @@ Ext._endTime = new Date().getTime();
 // This hook is to allow tools like DynaTrace to deterministically detect the availability
 // of Ext.onReady. Since Loader takes over Ext.onReady this must be done here and not in
 // Ext.env.Ready.
-if (Ext._beforereadyhandler){
+if (Ext._beforereadyhandler) {
     Ext._beforereadyhandler();
 }

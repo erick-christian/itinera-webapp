@@ -156,7 +156,7 @@ Ext.define('Ext.draw.Component', {
     viewBox: true,
 
     shrinkWrap: 3,
-    
+
     /**
      * @cfg {Boolean} autoSize
      * Turn on autoSize support which will set the bounding div's size to the natural size of the contents.
@@ -216,7 +216,7 @@ Ext.define('Ext.draw.Component', {
      * @property {Ext.draw.Surface} surface
      * The Surface instance managed by this component.
      */
-    
+
     suspendSizing: 0,
 
     /**
@@ -266,14 +266,14 @@ Ext.define('Ext.draw.Component', {
      *
      * Create the Surface on initial render
      */
-    onRender: function() {
+    onRender: function () {
         this.callParent(arguments);
         if (this.createSurface() !== false) {
             this.configureSurfaceSize();
         }
     },
-    
-    configureSurfaceSize: function(){
+
+    configureSurfaceSize: function () {
         var me = this,
             viewBox = me.viewBox,
             autoSize = me.autoSize,
@@ -290,7 +290,7 @@ Ext.define('Ext.draw.Component', {
     },
 
     // @private
-    autoSizeSurface: function(bbox) {
+    autoSizeSurface: function (bbox) {
         bbox = bbox || this.surface.items.getBBox();
         this.setSurfaceSize(bbox.width, bbox.height);
     },
@@ -302,7 +302,7 @@ Ext.define('Ext.draw.Component', {
             this.surface.setViewBox(bbox.x, bbox.y - (+Ext.isOpera), width, height);
         }
     },
-    
+
     /**
      * Create the Surface instance. Resolves the correct Surface implementation to
      * instantiate based on the 'enginePriority' config. Once the Surface instance is
@@ -312,7 +312,7 @@ Ext.define('Ext.draw.Component', {
      *
      * @private
      */
-    createSurface: function() {
+    createSurface: function () {
         var me = this,
             cfg = Ext.applyIf({
                 renderTo: me.el,
@@ -337,7 +337,7 @@ Ext.define('Ext.draw.Component', {
 
 
         function refire(eventName) {
-            return function(e) {
+            return function (e) {
                 me.fireEvent(eventName, e);
             };
         }
@@ -353,7 +353,7 @@ Ext.define('Ext.draw.Component', {
             dblclick: refire('dblclick')
         });
     },
-    
+
     initSurfaceCfg: Ext.emptyFn,
 
 
@@ -362,7 +362,7 @@ Ext.define('Ext.draw.Component', {
      *
      * Clean up the Surface instance on component destruction
      */
-    onDestroy: function() {
+    onDestroy: function () {
         Ext.destroy(this.surface);
         this.callParent(arguments);
     }

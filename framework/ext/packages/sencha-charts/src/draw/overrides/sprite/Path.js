@@ -76,7 +76,7 @@ Ext.define('Ext.draw.overrides.sprite.Path', {
             hasFill = attr.fillStyle !== Ext.draw.Color.NONE &&
                 attr.fillStyle !== Ext.draw.Color.RGBA_NONE,
             bboxHit = bbox && x >= bbox.x && x <= (bbox.x + bbox.width) &&
-                              y >= bbox.y && y <= (bbox.y + bbox.height),
+                y >= bbox.y && y <= (bbox.y + bbox.height),
             result = null,
             params;
 

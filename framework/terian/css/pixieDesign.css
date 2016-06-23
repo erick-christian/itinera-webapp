@@ -1,7 +1,7 @@
 .fontBigTitle {
     font-weight: bold !important;
     font-family: 'Ubuntu', sans-serif !important;
-    font-size: 200% !important;
+    font-size: 250% !important;
     color: rgb(255, 255, 255);
     text-shadow: 0 0 2px #000; /* horizontal-offset vertical-offset 'blur' colour */
     -moz-text-shadow: 0 0 2px #000;
@@ -61,14 +61,14 @@
     -webkit-text-shadow: 0 0 2px #000 !important;
 }
 
-.requiredField{
+.requiredField {
     font-weight: bold !important;
-    color: #990000    !important;
+    color: #990000 !important;
 }
 
-.disabledField{
+.disabledField {
     font-weight: bold !important;
-    color: #B22222    !important;
+    color: #B22222 !important;
 }
 
 .disabledRadio {
@@ -76,39 +76,36 @@
     color: #000000 !important;
 }
 
-
-.imagenAmbiente{
+.imagenAmbiente {
     background-image: url('../environment/Portal_Ambiente.png') !important;
-    background-color: #FFFFFF !important; 
+    background-color: #FFFFFF !important;
 }
 
-.imagenAmbienteMenu{
+.imagenAmbienteMenu {
     background-image: url('../environment/Portal_Menu.png') !important;
-    background-color: #FFFFFF !important; 
+    background-color: #FFFFFF !important;
 }
 
-.large-green{
-    font-size: 32px; 
+.large-green {
+    font-size: 32px;
     color: green
 }
 
-
-.icon16{
+.icon16 {
     font-size: 16px;
 }
 
-.icon24{
+.icon24 {
     font-size: 24px;
     margin-top: -8px !important;
     margin-right: 15px !important;
 }
 
-.icon32{
+.icon32 {
     font-size: 32px;
 }
 
-
-.icon16red{
+.icon16red {
     font-size: 16px;
     color: red;
     margin-top: -0px !important;
@@ -116,41 +113,41 @@
 
 }
 
-.icon32red{
+.icon32red {
     font-size: 32px;
     color: red;
     margin-top: -8px !important;
 
 }
 
-.botonZoom{
+.botonZoom {
     color: #FFFFFF !important;
     background-image: none !important;
-    border:1px solid #040203 !important;
-    background-color: #1C1F24 !important; 
+    border: 1px solid #040203 !important;
+    background-color: #1C1F24 !important;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#1C1F24), to(#1C1F24)) !important;
     background-image: -webkit-linear-gradient(top, #1C1F24, #1C1F24) !important;
     background-image: -moz-linear-gradient(top, #1C1F24, #1C1F24) !important;
     background-image: -ms-linear-gradient(top, #1C1F24, #1C1F24) !important;
     background-image: -o-linear-gradient(top, #1C1F24, #1C1F24) !important;
     background-image: linear-gradient(to bottom, #1C1F24, #1C1F24) !important;
-    filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#1C1F24, endColorstr=#1C1F24) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#1C1F24, endColorstr=#1C1F24) !important;
 }
 
-.botonZoom:hover{
+.botonZoom:hover {
     color: #FFFFFF !important;
     background-image: none !important;
-    border:1px solid #8aabc5 !important;
-    background-color: #596a72 !important; 
+    border: 1px solid #8aabc5 !important;
+    background-color: #596a72 !important;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#596a72), to(#596a72)) !important;
     background-image: -webkit-linear-gradient(top, #596a72, #596a72) !important;
     background-image: -moz-linear-gradient(top, #596a72, #596a72) !important;
     background-image: -ms-linear-gradient(top, #596a72, #596a72) !important;
     background-image: -o-linear-gradient(top, #596a72, #596a72) !important;
     background-image: linear-gradient(to bottom, #596a72, #596a72) !important;
-    filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#596a72, endColorstr=#596a72) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#596a72, endColorstr=#596a72) !important;
 }
 
-.botonZoom:active{
-    position: relative !important; 
+.botonZoom:active {
+    position: relative !important;
 }

@@ -59,19 +59,19 @@ Ext.define('Ext.grid.filters.filter.TriFilter', {
         //
         // Note use the alpha alias for the operators ('gt', 'lt', 'eq') so they map in Filters.onFilterRemove().
         filter.lt = filterLt || me.createFilter({
-            operator: 'lt',
-            value: (!stateful && value && value.lt) || null
-        }, 'lt');
+                operator: 'lt',
+                value: (!stateful && value && value.lt) || null
+            }, 'lt');
 
         filter.gt = filterGt || me.createFilter({
-            operator: 'gt',
-            value: (!stateful && value && value.gt) || null
-        }, 'gt');
+                operator: 'gt',
+                value: (!stateful && value && value.gt) || null
+            }, 'gt');
 
         filter.eq = filterEq || me.createFilter({
-            operator: 'eq',
-            value: (!stateful && value && value.eq) || null
-        }, 'eq');
+                operator: 'eq',
+                value: (!stateful && value && value.eq) || null
+            }, 'eq');
 
         me.filter = filter;
 

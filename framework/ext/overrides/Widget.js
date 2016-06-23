@@ -25,10 +25,10 @@ Ext.define('Ext.overrides.Widget', {
         baseCls: Ext.baseCSSPrefix + 'widget'
     },
 
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this,
             renderTo;
-            
+
         me.callParent([config]);
 
         // initialize the component layout
@@ -39,11 +39,11 @@ Ext.define('Ext.overrides.Widget', {
         }
     },
 
-    addCls: function(cls) {
+    addCls: function (cls) {
         this.el.addCls(cls);
     },
 
-    addClsWithUI: function(cls) {
+    addClsWithUI: function (cls) {
         this.el.addCls(cls);
     },
 
@@ -54,7 +54,7 @@ Ext.define('Ext.overrides.Widget', {
         this.initBindable();
     },
 
-    getComponentLayout: function() {
+    getComponentLayout: function () {
         var me = this,
             layout = me.componentLayout;
 
@@ -71,7 +71,7 @@ Ext.define('Ext.overrides.Widget', {
      * Needed for when widget is rendered into a grid cell. The class to add to the cell element.
      * @member Ext.Widget
      */
-    getTdCls: function() {
+    getTdCls: function () {
         return Ext.baseCSSPrefix + this.getTdType() + '-' + (this.ui || 'default') + '-cell';
     },
 
@@ -84,15 +84,15 @@ Ext.define('Ext.overrides.Widget', {
      * and all derived classes of {@link Ext.button.Button Button} can return the type 'button'
      * @member Ext.Widget
      */
-    getTdType: function() {
+    getTdType: function () {
         return this.xtype;
     },
 
-    getItemId: function() {
+    getItemId: function () {
         return this.itemId || this.id;
     },
 
-    getSizeModel: function() {
+    getSizeModel: function () {
         return Ext.Component.prototype.getSizeModel.apply(this, arguments);
     },
 
@@ -114,7 +114,7 @@ Ext.define('Ext.overrides.Widget', {
         }
     },
 
-    onRemoved: function(destroying) {
+    onRemoved: function (destroying) {
         var me = this,
             refHolder;
 
@@ -136,19 +136,19 @@ Ext.define('Ext.overrides.Widget', {
         me.ownerCt = me.ownerLayout = null;
     },
 
-    parseBox: function(box) {
+    parseBox: function (box) {
         return Ext.Element.parseBox(box);
     },
 
-    removeCls: function(cls) {
+    removeCls: function (cls) {
         this.el.removeCls(cls);
     },
 
-    removeClsWithUI: function(cls) {
+    removeClsWithUI: function (cls) {
         this.el.removeCls(cls);
     },
-    
-    render: function(container, position) {
+
+    render: function (container, position) {
         var me = this,
             element = me.element,
             proto = Ext.Component.prototype,
@@ -172,30 +172,30 @@ Ext.define('Ext.overrides.Widget', {
         Ext.fly(container).appendChild(element);
     },
 
-    setPosition: function(x, y) {
+    setPosition: function (x, y) {
         this.el.setLocalXY(x, y);
     },
 
-    up: function() {
+    up: function () {
         return Ext.Component.prototype.up.apply(this, arguments);
     },
-    
-    isAncestor: function() {
+
+    isAncestor: function () {
         return Ext.Component.prototype.isAncestor.apply(this, arguments);
     },
-    
-    onFocusEnter: function() {
+
+    onFocusEnter: function () {
         return Ext.Component.prototype.onFocusEnter.apply(this, arguments);
     },
-    
-    onFocusLeave: function() {
+
+    onFocusLeave: function () {
         return Ext.Component.prototype.onFocusLeave.apply(this, arguments);
     },
 
     // Widgets are not yet focusable as of 5.1
     focus: Ext.emptyFn,
     isFocusable: Ext.emptyFn
-}, function(Cls) {
+}, function (Cls) {
     var prototype = Cls.prototype;
 
     if (Ext.isIE8) {

@@ -13,7 +13,7 @@ class CreateAdmStatesTable extends Migration
     public function up()
     {
 
-        Schema::create('adm_states', function (Blueprint $table) {
+        Schema::create('adm_states' , function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('country_id');
@@ -25,7 +25,7 @@ class CreateAdmStatesTable extends Migration
 
             /* Indexes */
             $table->unique('id');
-            $table->index(['country_id','state_code']);
+            $table->index(['country_id' , 'state_code']);
             $table->index('state_name');
         });
     }

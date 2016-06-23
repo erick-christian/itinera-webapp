@@ -1,32 +1,32 @@
 /** */
 Ext.define('Ext.aria.window.Window', {
     override: 'Ext.window.Window',
-    
+
     requires: [
         'Ext.aria.panel.Panel',
         'Ext.util.ComponentDragger',
         'Ext.util.Region',
         'Ext.EventManager',
         'Ext.aria.FocusManager'
-    ],  
-    
+    ],
+
     closeText: 'Close Window',
     moveText: 'Move Window',
     resizeText: 'Resize Window',
-    
+
     deltaMove: 10,
     deltaResize: 10,
 
-    initComponent: function() {
+    initComponent: function () {
         var me = this,
             tools = me.tools;
-        
+
         // Add buttons to move and resize the window,
         // unless it's a Toast
         if (!tools) {
             me.tools = tools = [];
         }
-        
+
         //TODO: Create new tools
         if (!me.isToast) {
             tools.unshift(
@@ -40,27 +40,27 @@ Ext.define('Ext.aria.window.Window', {
                 }
             );
         }
-        
+
         me.callParent();
     },
-    
-    onBoxReady: function() {
+
+    onBoxReady: function () {
         var me = this,
             EO = Ext.event.Event,
             toolBtn;
-        
+
         me.callParent();
-        
+
         if (me.isToast) {
             return;
         }
-        
+
         if (me.draggable) {
             toolBtn = me.down('tool[type=move]');
-            
+
             if (toolBtn) {
-                me.ariaUpdate(toolBtn.getEl(), { 'aria-label': me.moveText });
-            
+                me.ariaUpdate(toolBtn.getEl(), {'aria-label': me.moveText});
+
                 toolBtn.keyMap = new Ext.util.KeyMap({
                     target: toolBtn.el,
                     key: [EO.UP, EO.DOWN, EO.LEFT, EO.RIGHT],
@@ -69,13 +69,13 @@ Ext.define('Ext.aria.window.Window', {
                 });
             }
         }
-        
+
         if (me.resizable) {
             toolBtn = me.down('tool[type=resize]');
-            
+
             if (toolBtn) {
-                me.ariaUpdate(toolBtn.getEl(), { 'aria-label': me.resizeText });
-            
+                me.ariaUpdate(toolBtn.getEl(), {'aria-label': me.resizeText});
+
                 toolBtn.keyMap = new Ext.util.KeyMap({
                     target: toolBtn.el,
                     key: [EO.UP, EO.DOWN, EO.LEFT, EO.RIGHT],
@@ -86,36 +86,36 @@ Ext.define('Ext.aria.window.Window', {
         }
     },
 
-    onEsc: function(k, e) {
+    onEsc: function (k, e) {
         var me = this;
-        
+
         if (e.within(me.el)) {
             e.stopEvent();
             me.close();
         }
     },
 
-    onShow: function() {
+    onShow: function () {
         var me = this;
-        
+
         me.callParent(arguments);
-        
+
         Ext.aria.FocusManager.addWindow(me);
     },
-    
-    afterHide: function() {
+
+    afterHide: function () {
         var me = this;
-        
+
         Ext.aria.FocusManager.removeWindow(me);
-        
+
         me.callParent(arguments);
     },
-        
-    moveWindow: function(keyCode, e) {
-       var me = this,
-           delta = me.deltaMove,
-           pos = me.getPosition(),
-           EO = Ext.event.Event;
+
+    moveWindow: function (keyCode, e) {
+        var me = this,
+            delta = me.deltaMove,
+            pos = me.getPosition(),
+            EO = Ext.event.Event;
 
         switch (keyCode) {
             case EO.RIGHT:
@@ -131,17 +131,17 @@ Ext.define('Ext.aria.window.Window', {
                 pos[1] += delta;
                 break;
         }
-        
+
         me.setPagePosition(pos);
         e.stopEvent();
     },
-    
-    resizeWindow: function(keyCode, e) {
-       var me = this,
-           delta = me.deltaResize,
-           width = me.getWidth(),
-           height = me.getHeight(),
-           EO = Ext.event.Event;
+
+    resizeWindow: function (keyCode, e) {
+        var me = this,
+            delta = me.deltaResize,
+            width = me.getWidth(),
+            height = me.getHeight(),
+            EO = Ext.event.Event;
 
         switch (keyCode) {
             case EO.RIGHT:
@@ -157,7 +157,7 @@ Ext.define('Ext.aria.window.Window', {
                 height += delta;
                 break;
         }
-        
+
         me.setSize(width, height);
         e.stopEvent();
     }

@@ -11,9 +11,9 @@ class tmsCar extends Model
     protected $table = 'tms_cars';
 
     protected $fillable = [
-        'car_id' ,
+        'carmaker_code' ,
+        'car_code' ,
         'car_description' ,
-        'maker' ,
         'type' ,
         'cly' ,
         'model' ,

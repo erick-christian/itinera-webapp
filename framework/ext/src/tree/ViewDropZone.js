@@ -10,7 +10,7 @@ Ext.define('Ext.tree.ViewDropZone', {
      * sibling of the parent when dropped.
      */
     allowParentInserts: false,
- 
+
     /**
      * @cfg {Boolean} allowContainerDrops
      * True if drops on the tree container (outside of a specific tree node) are allowed.
@@ -30,12 +30,12 @@ Ext.define('Ext.tree.ViewDropZone', {
      * The delay in milliseconds to wait before expanding a target tree node while dragging a droppable node
      * over the target.
      */
-    expandDelay : 500,
+    expandDelay: 500,
 
     indicatorCls: Ext.baseCSSPrefix + 'tree-ddindicator',
 
     // @private
-    expandNode : function(node) {
+    expandNode: function (node) {
         var view = this.view;
         this.expandProcId = false;
         if (!node.isLeaf() && !node.isExpanded()) {
@@ -45,19 +45,19 @@ Ext.define('Ext.tree.ViewDropZone', {
     },
 
     // @private
-    queueExpand : function(node) {
+    queueExpand: function (node) {
         this.expandProcId = Ext.Function.defer(this.expandNode, this.expandDelay, this, [node]);
     },
 
     // @private
-    cancelExpand : function() {
+    cancelExpand: function () {
         if (this.expandProcId) {
             clearTimeout(this.expandProcId);
             this.expandProcId = false;
         }
     },
 
-    getPosition: function(e, node) {
+    getPosition: function (e, node) {
         var view = this.view,
             record = view.getRecord(node),
             y = e.getY(),
@@ -92,7 +92,7 @@ Ext.define('Ext.tree.ViewDropZone', {
         }
     },
 
-    isValidDropPoint : function(node, position, dragZone, e, data) {
+    isValidDropPoint: function (node, position, dragZone, e, data) {
         if (!node || !data.item) {
             return false;
         }
@@ -116,7 +116,7 @@ Ext.define('Ext.tree.ViewDropZone', {
                 return false;
             }
         }
-        
+
         // Respect the allowDrop field on Tree nodes
         if (position === 'append' && targetNode.get('allowDrop') === false) {
             return false;
@@ -127,12 +127,12 @@ Ext.define('Ext.tree.ViewDropZone', {
 
         // If the target record is in the dragged dataset, then invalid drop
         if (Ext.Array.contains(draggedRecords, targetNode)) {
-             return false;
+            return false;
         }
         return view.fireEvent('nodedragover', targetNode, position, data, e) !== false;
     },
 
-    onNodeOver : function(node, dragZone, e, data) {
+    onNodeOver: function (node, dragZone, e, data) {
         var position = this.getPosition(e, node),
             returnCls = this.dropNotAllowed,
             view = this.view,
@@ -145,8 +145,8 @@ Ext.define('Ext.tree.ViewDropZone', {
         if (position === 'append' && !this.expandProcId && !Ext.Array.contains(data.records, targetNode) && !targetNode.isLeaf() && !targetNode.isExpanded()) {
             this.queueExpand(targetNode);
         }
-            
-            
+
+
         if (this.isValidDropPoint(node, position, dragZone, e, data)) {
             this.valid = true;
             this.currentPosition = position;
@@ -188,18 +188,18 @@ Ext.define('Ext.tree.ViewDropZone', {
     },
 
     // The mouse is no longer over a tree node, so dropping is not valid
-    onNodeOut : function(n, dd, e, data){
+    onNodeOut: function (n, dd, e, data) {
         this.valid = false;
         this.getIndicator().hide();
     },
 
-    onContainerOver : function(dd, e, data) {
+    onContainerOver: function (dd, e, data) {
         return this.allowContainerDrops ? this.dropAllowed : e.getTarget('.' + this.indicatorCls) ? this.currentCls : this.dropNotAllowed;
     },
 
     // This will be called is allowContainerDrops is set.
     // The target node is the root
-    onContainerDrop: function(dragZone, e, data) {
+    onContainerDrop: function (dragZone, e, data) {
         if (this.allowContainerDrops) {
             this.valid = true;
             this.currentPosition = 'append';
@@ -207,13 +207,13 @@ Ext.define('Ext.tree.ViewDropZone', {
             this.onNodeDrop(this.overRecord, dragZone, e, data);
         }
     },
-    
-    notifyOut: function() {
+
+    notifyOut: function () {
         this.callParent(arguments);
         this.cancelExpand();
     },
 
-    handleNodeDrop : function(data, targetNode, position) {
+    handleNodeDrop: function (data, targetNode, position) {
         var me = this,
             targetView = me.view,
             parentNode = targetNode ? targetNode.parentNode : targetView.panel.getRootNode(),
@@ -268,9 +268,9 @@ Ext.define('Ext.tree.ViewDropZone', {
             insertionMethod = targetNode.appendChild;
             argList = [null];
         }
-        
+
         // A function to transfer the data into the destination tree
-        transferData = function() {
+        transferData = function () {
             var color,
                 n;
 
@@ -299,7 +299,7 @@ Ext.define('Ext.tree.ViewDropZone', {
             if (me.sortOnDrop) {
                 targetNode.sort(targetNode.getOwnerTree().store.getSorters().sortFn);
             }
-            
+
             Ext.resumeLayouts(true);
 
             // Kick off highlights after everything's been inserted, so they are
@@ -337,5 +337,5 @@ Ext.define('Ext.tree.ViewDropZone', {
         else {
             transferData();
         }
-    }    
+    }
 });

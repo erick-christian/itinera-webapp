@@ -11,11 +11,11 @@ class admState extends Model
 
     protected $table = 'adm_states';
     protected $fillable = [
-        'country_code',
-        'state_code',
-        'state_name',
+        'country_code' ,
+        'state_code' ,
+        'state_name' ,
         'capital'
-        ];
+    ];
 
     /* Enable Soft Deleted */
     protected $dates = ['deleted_at'];

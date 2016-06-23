@@ -4,7 +4,7 @@
  */
 Ext.define('Ext.app.bindinspector.Util', {
     singleton: true,
-    
+
     getChildStub: function (name, parent) {
         var val, children;
         if (parent) {
@@ -16,9 +16,9 @@ Ext.define('Ext.app.bindinspector.Util', {
         return val || null;
     },
 
-    valueRenderer: function(v) {
+    valueRenderer: function (v) {
         var s;
-        
+
         if (v === undefined) {
             return 'undefined';
         } else if (v === null) {
@@ -37,10 +37,10 @@ Ext.define('Ext.app.bindinspector.Util', {
         return v;
     },
 
-    buildBindData: function(bind) {
+    buildBindData: function (bind) {
         var out = [],
             key, o;
-        
+
         for (key in bind) {
             o = bind[key];
             out.push({

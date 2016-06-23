@@ -100,7 +100,7 @@ Ext.define('Ext.draw.engine.ImageExporter', {
      *
      * @return {Boolean} True if the surface was successfully sent to the server.
      */
-    generate: function(surface, config) {
+    generate: function (surface, config) {
         config = config || {};
         var me = this,
             type = config.type,

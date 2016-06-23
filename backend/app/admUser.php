@@ -11,11 +11,11 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class admUser extends Model implements AuthenticatableContract,
+class admUser extends Model implements AuthenticatableContract ,
     AuthorizableContract ,
     CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, SoftDeletes;
+    use Authenticatable , Authorizable , CanResetPassword , SoftDeletes;
 
     /**
      * The database table used by the model.
@@ -29,27 +29,27 @@ class admUser extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $fillable = [
-        'username',
-        'name',
-        'last_name',
-        'address',
-        'neighborhood',
-        'district',
+        'username' ,
+        'name' ,
+        'last_name' ,
+        'address' ,
+        'neighborhood' ,
+        'district' ,
         'location' ,
         'region' ,
         'city' ,
         'state_code' ,
         'country_code' ,
-        'zip_code',
-        'gender',
-        'telephone_desk',
-        'telephone_mobile',
+        'zip_code' ,
+        'gender' ,
+        'telephone_desk' ,
+        'telephone_mobile' ,
         'birth_date' ,
-        'register_date',
+        'register_date' ,
         'profile_code' ,
-        'photo_url',
-        'active',
-        'email',
+        'photo_url' ,
+        'active' ,
+        'email' ,
         'password' ,
         'latitude' ,
         'longitude' ,
@@ -61,7 +61,7 @@ class admUser extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['password' , 'remember_token'];
 
     /* Enable Soft Deleted */
     protected $dates = ['deleted_at'];

@@ -49,7 +49,7 @@ Ext.define('Ext.form.trigger.Trigger', {
      * @cfg {Boolean} [hideOnReadOnly=true]
      * Set 'false' to prevent trigger from being hidden even though the related field is set {@link Ext.form.field.Text#readOnly readOnly}
      */
-    hideOnReadOnly : undefined,
+    hideOnReadOnly: undefined,
 
     /**
      * @cfg {Object} [scope]
@@ -59,8 +59,8 @@ Ext.define('Ext.form.trigger.Trigger', {
     /**
      * @cfg {Number} weight
      * An optional weighting to change the ordering of the items. The default weight is
-     * `0`.  Triggers are sorted by weight in ascending order before being rendered.  
-     * The value may be a negative value in order to position custom triggers ahead of 
+     * `0`.  Triggers are sorted by weight in ascending order before being rendered.
+     * The value may be a negative value in order to position custom triggers ahead of
      * default triggers like that of ComboBox.
      */
     weight: 0,
@@ -68,7 +68,7 @@ Ext.define('Ext.form.trigger.Trigger', {
     /**
      * @cfg {Number} width The trigger's width, in pixels. Typically this is not needed
      * as the trigger width is normally determined by the style sheet, (see {@link
-     * Ext.form.field.Text#$form-trigger-width extjs-text-field} or
+        * Ext.form.field.Text#$form-trigger-width extjs-text-field} or
      * {@link Ext.form.field.Text#css_mixin-extjs-text-field-ui}).
      */
 
@@ -122,8 +122,8 @@ Ext.define('Ext.form.trigger.Trigger', {
 
     renderTpl: [
         '<div id="{triggerId}" class="{baseCls} {baseCls}-{ui} {cls} {cls}-{ui} {extraCls} ',
-                '{childElCls}"<tpl if="triggerStyle"> style="{triggerStyle}"</tpl>>',
-            '{[values.$trigger.renderBody(values)]}',
+        '{childElCls}"<tpl if="triggerStyle"> style="{triggerStyle}"</tpl>>',
+        '{[values.$trigger.renderBody(values)]}',
         '</div>'
     ],
 
@@ -136,12 +136,12 @@ Ext.define('Ext.form.trigger.Trigger', {
          * @private
          * @static
          */
-        weightComparator: function(triggerA, triggerB) {
+        weightComparator: function (triggerA, triggerB) {
             return triggerA.weight - triggerB.weight;
         }
     },
 
-    constructor: function(config) {
+    constructor: function (config) {
         var me = this,
             cls;
 
@@ -166,11 +166,11 @@ Ext.define('Ext.form.trigger.Trigger', {
      * @protected
      * Called when this trigger's field is rendered
      */
-    afterFieldRender: function() {
+    afterFieldRender: function () {
         this.initEvents();
     },
 
-    destroy: function() {
+    destroy: function () {
         var me = this,
             clickRepeater = me.clickRepeater;
 
@@ -195,7 +195,7 @@ Ext.define('Ext.form.trigger.Trigger', {
      * Get the element for this trigger.
      * @return {Ext.dom.Element} The element for this trigger, `null` if not rendered.
      */
-    getEl: function() {
+    getEl: function () {
         return this.el || null;
     },
 
@@ -204,14 +204,14 @@ Ext.define('Ext.form.trigger.Trigger', {
      * {@link #overCls}, and {@link #clickCls}.
      * @protected
      */
-    getStateEl: function() {
+    getStateEl: function () {
         return this.el;
     },
 
     /**
      * Hides the trigger
      */
-    hide: function() {
+    hide: function () {
         var me = this,
             el = me.el;
 
@@ -221,7 +221,7 @@ Ext.define('Ext.form.trigger.Trigger', {
         }
     },
 
-    initEvents: function() {
+    initEvents: function () {
         var me = this,
             isFieldEnabled = me.isFieldEnabled,
             stateEl = me.getStateEl(),
@@ -250,7 +250,7 @@ Ext.define('Ext.form.trigger.Trigger', {
     },
 
     // private
-    isFieldEnabled: function() {
+    isFieldEnabled: function () {
         return !this.field.disabled;
     },
 
@@ -260,13 +260,13 @@ Ext.define('Ext.form.trigger.Trigger', {
      *
      * @since 5.0.0
      */
-    isVisible: function() {
+    isVisible: function () {
         var me = this,
             field = me.field,
             hidden = false;
 
         if (me.hidden || !field || !me.rendered || me.isDestroyed) {
-           hidden = true;
+            hidden = true;
         }
         return !hidden;
     },
@@ -275,7 +275,7 @@ Ext.define('Ext.form.trigger.Trigger', {
      * @protected
      * Handles a click on the trigger's element
      */
-    onClick: function() {
+    onClick: function () {
         var me = this,
             args = arguments,
             e = me.clickRepeater ? args[1] : args[0],
@@ -288,11 +288,11 @@ Ext.define('Ext.form.trigger.Trigger', {
     },
 
     // "this" refers to our owning input field.
-    resolveListenerScope: function(scope) {
+    resolveListenerScope: function (scope) {
         return this.field.resolveSatelliteListenerScope(this, scope);
     },
 
-    onMouseDown: function(e) {
+    onMouseDown: function (e) {
         // If it was a genuine mousedown or pointerdown, NOT a touch, then focus the input field.
         // Usually, the field will be focused, but the mousedown on the trigger
         // might be the user's first contact with the field.
@@ -308,7 +308,7 @@ Ext.define('Ext.form.trigger.Trigger', {
         }
     },
 
-    onClickRepeaterMouseDown: function(clickRepeater, e) {
+    onClickRepeaterMouseDown: function (clickRepeater, e) {
         // If it was a genuine mousedown, NOT a touch, then focus the input field.
         // Usually, the field will be focused, but the mousedown on the trigger
         // might be the user's first contact with the field.
@@ -324,7 +324,7 @@ Ext.define('Ext.form.trigger.Trigger', {
      * @protected
      * Called when this trigger's field is blurred
      */
-    onFieldBlur: function() {
+    onFieldBlur: function () {
         this.getStateEl().removeCls(this.focusCls);
     },
 
@@ -332,7 +332,7 @@ Ext.define('Ext.form.trigger.Trigger', {
      * @protected
      * Called when this trigger's field is focused
      */
-    onFieldFocus: function() {
+    onFieldFocus: function () {
         this.getStateEl().addCls(this.focusCls);
     },
 
@@ -340,7 +340,7 @@ Ext.define('Ext.form.trigger.Trigger', {
      * @protected
      * Called when this trigger's field is rendered
      */
-    onFieldRender: function() {
+    onFieldRender: function () {
         var me = this,
             /**
              * @property {Ext.dom.Element} el
@@ -360,7 +360,7 @@ Ext.define('Ext.form.trigger.Trigger', {
      * @private
      * @return {String}
      */
-    renderBody: function(renderData) {
+    renderBody: function (renderData) {
         var me = this,
             bodyTpl = me.bodyTpl;
 
@@ -376,7 +376,7 @@ Ext.define('Ext.form.trigger.Trigger', {
      * @private
      * @return {String}
      */
-    renderTrigger: function(fieldData) {
+    renderTrigger: function (fieldData) {
         var me = this,
             width = me.width,
             triggerStyle = me.hidden ? 'display:none;' : '';
@@ -411,7 +411,7 @@ Ext.define('Ext.form.trigger.Trigger', {
     /**
      * Shows the trigger
      */
-    show: function() {
+    show: function () {
         var me = this,
             el = me.el;
 

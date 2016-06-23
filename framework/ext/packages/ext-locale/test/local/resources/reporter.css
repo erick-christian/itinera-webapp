@@ -4,8 +4,8 @@ body {
     font-weight: normal;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
 
 .treegrid {
@@ -52,7 +52,6 @@ body {
     *line-height: 20px;
     zoom: 1;
 }
-
 
 .treegrid .statusMessage {
     background-color: #ffffff;
@@ -113,7 +112,7 @@ body {
 
 .row.selected {
     opacity: 0.80;
-    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
     filter: alpha(opacity=80);
 }
 
@@ -154,6 +153,7 @@ div.results {
     padding: 5px 5px 5px 5px;
     border-bottom: 1px solid #eeeeec;
 }
+
 .infos .infoMessage.warning {
     color: red;
 }
@@ -210,7 +210,7 @@ div.blockTitle {
     padding: 6px 20px 7px 30px;
     background-position: 5px 50%;
     background-repeat: no-repeat;
-    border:  1px solid #babdb6;
+    border: 1px solid #babdb6;
     background-color: #eeeeec;
     margin-right: 10px;
 }
